@@ -14,7 +14,7 @@ All agents use the inherited model and independently read their assigned files. 
 
 | Partition | Files | Evidence and interpretation |
 |---|---:|---|
-| Operating/current guidance |17| [read-root.json](read-root.json), [decision/work log](../work-log.md) |
+| Operating/current guidance |17| [read-root.json](read-root.json), [decision/work log](https://github.com/Moissanite-Labs/weft/blob/main/docs/program/work-log.md) |
 | Main raw thread |1| [read-thread1.json](read-thread1.json), [notes](notes-thread1.md) |
 | Genesis and design raw threads |2| [read-threads_design.json](read-threads_design.json), [notes](notes-threads_design.md) |
 | Design files and supplement |20| [read-supplement_design.json](read-supplement_design.json), [notes](notes-supplement_design.md) |
@@ -28,13 +28,13 @@ All agents use the inherited model and independently read their assigned files. 
 ## Validate and resume
 
 ```bash
-python scripts/corpus_audit.py check
+python scripts/corpus_audit.py check --repo /path/to/weft
 python -m unittest discover -s scripts -p test_corpus_audit.py
 ```
 
-Run from repository root. `generate` reproducibly rebuilds inventory/fence files from the immutable source commit; `progress` lists missing/stale/invalid records without pretending they are read. `check` fails on incomplete/stale/schema-invalid records or generated artifacts. It validates accounting and record structure, not comprehension, truth, executable correctness or complete semantic extraction. Seven regression tests exercise missing/stale sources, malformed types/ranges/wrappers, false duplicate cycles and fence boundaries. CI runs both commands with history available.
+Run from this repository's root. `check` inventories the immutable weft snapshot, so it needs a weft checkout (see `MIGRATION.md`). `generate` reproducibly rebuilds inventory/fence files from the immutable source commit; `progress` lists missing/stale/invalid records without pretending they are read. `check` fails on incomplete/stale/schema-invalid records or generated artifacts. It validates accounting and record structure, not comprehension, truth, executable correctness or complete semantic extraction. Seven regression tests exercise missing/stale sources, malformed types/ranges/wrappers, false duplicate cycles and fence boundaries. The unit tests run in this repository's CI. `check` needs a weft checkout at the immutable source commit.
 
-The [build program](../build-program.md) and [13 experiment cards](../experiment-cards.md) translate findings into work. [Resume instructions](../resume.md) identify exact branches, decisions and pending work; [work log](../work-log.md) preserves useful conclusions and validation. Independent reviews are [program/tooling](review-program.md), [vision/dependencies](review-vision.md) and [C3 repair](review-ic.md). Reviews may retain original requests and append their resolution; read the latest decision.
+The [build program](https://github.com/Moissanite-Labs/weft/blob/main/docs/program/build-program.md) and [13 experiment cards](https://github.com/Moissanite-Labs/weft/blob/main/docs/program/experiment-cards.md) translate findings into work. [Resume instructions](https://github.com/Moissanite-Labs/weft/blob/main/docs/program/resume.md) identify exact branches, decisions and pending work. The work log preserves useful conclusions and validation. Independent reviews are [program/tooling](review-program.md), [vision/dependencies](review-vision.md) and [C3 repair](review-ic.md). Reviews may retain original requests and append their resolution; read the latest decision.
 
 This is a complete pass over the pinned tracked files, including three preliminary plan additions to main's180-file tree. It excludes Git history, external model/library contents, other repositories, unavailable original sessions and live deployment state. Updates need changed-file rereads; changing the inventory ref does not refresh semantic evidence automatically. Source text, alternate designs and negative findings remain preserved.
 

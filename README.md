@@ -6,9 +6,11 @@ weft is the software: the runtime, the tooling, the site, the releases. This rep
 
 ## Layout
 
-- `experiments/`: experiment records, one folder per study, with preregistrations, results, and limits stated as prominently as findings. Migrated from weft with history where practical.
+- `experiments/`: experiment records, one folder per study, with preregistrations, results, and limits stated as prominently as findings. Migrated from weft with history.
 - `audit/`: reviews of the codebase and its claims, with the evidence attached.
 - `incidents/`: unplanned events worth keeping, with captured evidence and what was done about it.
+- `scripts/`: the tooling that validates the records.
+- `MIGRATION.md`: how this repository was carved out of weft, and how to read older references.
 
 ## Rules
 
