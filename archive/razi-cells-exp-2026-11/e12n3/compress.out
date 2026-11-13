@@ -1,0 +1,5 @@
+{
+ "result": "Built squeeze.py. compress() tries LZMA2 raw (tuned lc=4, pb=0, 16MB dict), bz2, zlib and stored, and keeps the smallest output. A one-byte tag records which method won, and decompress() reads it. bench.py builds a mix of English-like text and JSON, round-trips it, and prints the compression ratio. The round-trip passed and the ratio was 5.298. I registered that as the assay baseline. I did not try further improvements, such as a context-mixing coder.",
+ "calls": 4,
+ "secs": 26.3
+}

@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is written and matches the sample output (in-0.txt -> out-0.txt, cmp identical). Method: precompute fib-doubling tables over 16-bit blocks of n mod 2(P+1) (Pisano-style reduction), so each query is two table lookups and a small combine; ~0.06s for 30k values. Assay was refused once for instability (spread 21%, runs 11.6 to 14.4). Not registered as a baseline because energy (18) cannot cover another assay (~67). Next step if resumed: call assay again to stabilise the baseline.",
+ "calls": 5,
+ "secs": 22.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 395.7587,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 4.241300000000045,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": false
+ }
+}

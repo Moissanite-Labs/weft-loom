@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a single-pass stdlib body. It reads stdin as bytes, splits on commas and newlines, and groups the val fields by cat in a dict. It converts values to float, sums each group with math.fsum, and writes the sorted \"cat,sum\" lines with 2 decimals. It passes the sample in-0/out-0 check, which runs in about 0.36s on 1M rows. The assay was accepted with baseline 1.74085 and noise 8.5%. I have not tried a faster variant, so the body has no measured gain. I'm resting to keep the remaining energy for the lineage.",
+ "calls": 8,
+ "secs": 40.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 161.04429999999996,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 238.95570000000004,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 8,
+  "assay": true,
+  "sense": 0.802
+ }
+}

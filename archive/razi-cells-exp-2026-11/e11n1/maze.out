@@ -1,0 +1,5 @@
+{
+ "result": "I built maze.py, a frontier-based BFS on a padded flat bytearray. It reads the grid from stdin and prints the shortest path length from S to E, or -1. bench.py generates 2000x2000 mazes with a fixed seed (7). It checks maze.solve against a reference deque BFS on five small random grids and prints 1/time for the large grid. The assay baseline is 1.67 (about 0.6 s per solve) with 0.7% noise, and the small-grid checks passed or the assay would have printed 0. I did not try any speedups with the remaining steps. I also did not run maze.py from the command line on stdin, so only the solve function is verified.",
+ "calls": 4,
+ "secs": 28.0
+}

@@ -1,0 +1,5 @@
+{
+ "result": "csvsum.py reads stdin, sums val per cat, and prints \"cat,sum\" with 2 decimals, sorted by cat. I generated a 2,000,000-row big.csv (36 MB, 51 categories). The output has 51 sorted lines (c0,19677157.41 and so on). The assay measured 1.78 runs/s at baseline. One variants round adopted a +6% version, which scored 1.91. I did not check the sums against an independent calculation. The only checks were the line count and the sort order.",
+ "calls": 6,
+ "secs": 34.4
+}

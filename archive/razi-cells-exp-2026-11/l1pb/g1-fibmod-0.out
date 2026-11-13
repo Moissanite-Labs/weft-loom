@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a vectorized numpy fast-doubling Fibonacci mod 1e9+7. It parses all stdin integers into a uint64 array, then runs one fast-doubling pass over the bits of the largest value, using np.where to pick the branch per element. It passes the sample (in-0, 30005 lines, output OK) and is registered as baseline 8.529 (noise 5.2%). A full run takes about 0.11s, which is mostly Python and numpy startup, so further gains are likely small and below the 5% win threshold. I am resting to return the unspent energy to the lineage store rather than spend it on marginal changes.",
+ "calls": 5,
+ "secs": 17.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 301.11899999999997,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 98.881,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.6497
+ }
+}

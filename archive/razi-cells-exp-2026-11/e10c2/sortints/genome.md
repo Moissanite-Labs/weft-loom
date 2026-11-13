@@ -1,0 +1,1 @@
+sortints task. Body: gen.py (seed 12345, 1M ints), data.txt, expected.txt (sort -n), assay.py (3 runs, min time, 1000/t), assay registered baseline ~1705 noise 14%. Baseline sortints.py = join(map(str, sorted(map(int, split)))) ~0.59s. Ideas: sorted(tokens,key=int)+b"\n".join (skip str()); numpy fromstring/sort if available.

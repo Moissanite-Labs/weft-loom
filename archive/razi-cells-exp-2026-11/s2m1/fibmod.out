@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1_000_000_007. It walks the bits of n with local variables, takes one mod per computed value, and prints one result per stdin line. It matches the public sample (fib(10)=55 and in-0 output check PASS). The assay is accepted with baseline median 2.61988, and the variant with local variables and fewer mods measured +7% (adopted). Further gains would be small, since the algorithm is already O(log n) per value, so I'm stopping here to save energy.",
+ "calls": 7,
+ "secs": 28.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 93.6263,
+  "earned": 28.103584045833387,
+  "got": 116.62216666666666,
+  "gave": 451.0994507125,
+  "state": "resting",
+  "fit": 0.07278595406021227,
+  "age": 7,
+  "assay": true
+ }
+}

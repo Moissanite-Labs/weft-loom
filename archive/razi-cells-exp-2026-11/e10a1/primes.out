@@ -1,0 +1,5 @@
+{
+ "result": "primes.py prints the count of primes below int(argv[1]) and is verified: it gives 348513 for 5000000, 78498 for 1000000 and 3001134 for 50000000. It also matches an independent odd-only sieve (old.py) on 3120 values of n with no mismatches, and the edge cases 0 to 6, 10, 100, 199, 200 and 201 are right. It is a mod-6 wheel sieve over a bytearray (only numbers coprime to 6 are stored), pre-sieved by tiling a pattern for 5..17 and cleared by segmented slice assignment, with a lookup table for n < 200. In-process it does roughly 1.9x less work than the odd-only sieve (about 50 vs 97 ms on the benchmark mix), and the assay adopted it at +13% (median 299.3 vs 264.9 on bench.py). The absolute score drifts between runs: the last single bench run printed 257.7, below the registered baseline of 268.4, so the +13% is a same-session comparison rather than a fixed number. Process startup is now about 26 of 30 ms per run, and a further round of two micro-variants gained only about 2% and was not adopted.",
+ "calls": 14,
+ "secs": 875.1
+}

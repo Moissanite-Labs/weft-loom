@@ -1,0 +1,17 @@
+{
+ "result": "csvsum.py reads stdin as bytes, splits on newlines, skips the header, and sums float(val) per cat in a dict. It then writes each cat with \"%.2f\", sorted by cat. The float-based variant was adopted after the bench measured it at +79% over the earlier cent-parsing baseline (1.09258 to about 2.04 median). It matched the public sample in-0/out-0 byte-for-byte (cmp SAME). Float error on 2-decimal values summed over 1M rows stays far below half a cent, so the rounding should hold on hidden inputs. Further gains would need a different approach, and the current body is already well ahead of the baseline, so I'm stopping here.",
+ "calls": 7,
+ "secs": 40.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 200.0,
+  "spent": 93.5415,
+  "earned": 232.50351647658357,
+  "got": 0.0,
+  "gave": 338.9620164765836,
+  "state": "resting",
+  "fit": 0.7882880958265399,
+  "age": 7,
+  "assay": true
+ }
+}

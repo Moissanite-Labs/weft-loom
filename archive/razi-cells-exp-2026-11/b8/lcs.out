@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `lcs.py` to compute the length of the longest common subsequence of two strings read from stdin. The implementation combines common prefix/suffix trimming with Allison-Dix / Hyyr\u00f6 bit-parallel LCS (`S = (S + u) | (S ^ u)`), accelerated by a cached C shared library via `ctypes` using 64-bit word blocks and `__int128` carry propagation (with an arbitrary-precision Python bit-parallel fallback). Correctness is verified in `bench.py` against exact dynamic programming across edge cases, random strings over varied alphabets, CLI invocations, and 20 pairs of 3000-character strings, achieving 531.56 pairs/sec (~1.88 ms per 3000-char pair, up from 36.28 pairs/sec baseline).",
+ "calls": 15,
+ "secs": 405.8
+}

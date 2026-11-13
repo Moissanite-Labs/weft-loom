@@ -1,0 +1,5 @@
+{
+ "result": "I built csvsum.py. It reads the CSV from stdin, skips the header, sums val per cat in a defaultdict and prints the cats sorted with 2 decimals. On a generated 2,000,000-row file (50 cats) it ran in 0.54s and printed c0,2004069.21, c1,1986017.10 and c10,2022664.13. I did not check these sums against an independent method. The assay is not registered. It failed because writing to /tmp/o is not permitted in the sandbox, and my attempt to switch the output path with sed also failed. The correct fix is to write to a local file instead.",
+ "calls": 8,
+ "secs": 25.5
+}

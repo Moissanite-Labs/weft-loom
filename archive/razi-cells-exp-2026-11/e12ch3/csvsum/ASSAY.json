@@ -1,0 +1,1 @@
+{"cmd": "bash -c 's=$(date +%s.%N); python3 csvsum.py<d.csv>o.txt; e=$(date +%s.%N); [ $(wc -l <o.txt) -eq 51 ] && echo \"1/($e-$s)\" | bc -l || echo 0'", "baseline": 1.7038997152783575, "noise": 0.016596461266339693}

@@ -1,0 +1,1 @@
+{"cmd": "[ -s m1.txt ] || python3 gen.py 2000 1 0.25 > m1.txt; s=$(python3 -c \"import time;print(time.time())\"); r=$(python3 maze.py < m1.txt); e=$(python3 -c \"import time;print(time.time())\"); if [ \"$r\" = \"3998\" ]; then python3 -c \"print(1/($e-$s))\"; else echo 0; fi", "baseline": 1.8505487931051978, "noise": 0.14322307880482982}

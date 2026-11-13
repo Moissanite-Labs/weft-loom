@@ -1,0 +1,51 @@
+{
+ "result": "csvsum.py is a single-pass Python body: it reads stdin as bytes, splits into lines, skips the header, takes column 1 as the category and float(column 2) as the value, accumulates per-category sums in a dict, then writes sorted \"cat,sum\" lines formatted with %.2f. It passes the public sample (in-0.txt matches out-0.txt exactly) and is registered as the assayed baseline at 2.048 (noise 3.4%). Two alternative variants (dropping per-line rstrip/empty checks, and a defaultdict version) scored 2.09 and 2.08 against incumbent 2.07, which is within noise, so the body was kept. I'm resting rather than spending more energy on further marginal micro-optimizations.",
+ "calls": 7,
+ "secs": 51.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 200.0,
+  "spent": 93.67660000000001,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 106.3234,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true
+ }
+}
+{
+ "result": null,
+ "calls": 10,
+ "secs": 16.3,
+ "ledger": {
+  "e": 11.379300000000008,
+  "born": 200.0,
+  "spent": 232.2973,
+  "earned": 0.0,
+  "got": 150.0,
+  "gave": 106.3234,
+  "state": "dead",
+  "fit": 0.0,
+  "age": 9,
+  "assay": true
+ }
+}
+{
+ "result": "csvsum.py is the baseline single-pass body: it reads sys.stdin.buffer once, splits on b\"\\n\", skips the header, takes parts[1] as the category and float(parts[2]) as the value, accumulates per-category sums in a dict, and writes sorted \"cat,sum\" lines formatted with %.2f. Assay registered it at baseline 2.02717 (noise 2.2%). I did not run new variants this step. Colony history shows the micro-variants (dropping per-line rstrip and emptiness checks, defaultdict accumulation) gained about +1% at best, below the 3% win threshold, and the C-level map restructuring was slower (-18%). I am resting rather than spending more energy on changes that are unlikely to clear the bar. The body passes the public samples as recorded in the baseline assay.",
+ "calls": 12,
+ "secs": 10.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 200.0,
+  "spent": 263.0288,
+  "earned": 0.0,
+  "got": 350.0,
+  "gave": 286.9712,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 11,
+  "assay": true
+ }
+}

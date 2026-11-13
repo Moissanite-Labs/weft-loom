@@ -1,0 +1,1 @@
+primes.py: odd-only bytearray sieve, slice-assign, count(1). Verified 5000000->348513, 1e8->5761455 (~0.2s). bench.sh = score 1000/sec for 3 runs of 1e8; local score ~1600 but harness baseline reported 3.0 (odd). Assay registered: sh bench.sh. Ideas: wheel mod 6 / segmented / numpy if available.

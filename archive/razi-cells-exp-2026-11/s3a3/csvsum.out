@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a single-pass pure-Python reader: it reads stdin as bytes, splits on newlines, skips the header, splits each row on commas, accumulates float(val) into a dict keyed by the raw category bytes, then sorts the categories and writes '%.2f' sums. It matches the sample output (diff SAME on in-0.txt, about 0.34 s on 1M rows) and the baseline is registered by assay at 1.99598 (noise 9.3%). I stopped here rather than spend energy on variants: the remaining gains I can see (splitlines, avoiding per-row checks) are likely under the 9.3% noise bar, so a win is unlikely to be measurable.",
+ "calls": 7,
+ "secs": 47.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 122.4418,
+  "earned": 0.0,
+  "got": 276.8556652284959,
+  "gave": 554.4138652284959,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.8868
+ }
+}

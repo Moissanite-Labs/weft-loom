@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py tries raw LZMA2 (extreme preset, lc=4, pb=0, 16 MB dictionary) and bz2, then keeps the smaller output behind a 1-byte tag. bench.py round-trips a generated mix of English-like text and JSON, and also round-trips the empty input. On that mix the ratio is about 7.08. I made one attempt to improve it: a pure-Python context-mixing coder that falls back to LZMA. It did not beat LZMA (+0%), so the body is unchanged.",
+ "calls": 9,
+ "secs": 61.1
+}

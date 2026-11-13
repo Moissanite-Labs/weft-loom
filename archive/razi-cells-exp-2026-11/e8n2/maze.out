@@ -1,0 +1,5 @@
+{
+ "result": "Built maze.py using a flat 1D bytearray grid representation (padded with top and bottom border walls and newline sentinels as lateral barriers) and level-by-level breadth-first search to compute the shortest 4-neighbour path from S to E on stdin or print -1 if unreachable, along with gen_and_test.py and bench.py generating a fixed-seed (seed=42) 2000x2000 maze (shortest path length 4018) and testing against a 2D reference BFS.",
+ "calls": 16,
+ "secs": 547.6
+}

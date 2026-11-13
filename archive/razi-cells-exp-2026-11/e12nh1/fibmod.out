@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 by fast doubling. It first reduces n mod the Pisano period 2*(M+1), then applies F(2k)=F(k)(2F(k+1)-F(k)) and F(2k+1)=F(k)^2+F(k+1)^2 with fewer modulo operations. Checks: fib(10)=55, fib(10**18)=209783453, and bench.py also checks fib(90). Throughput on bench.py rose from 82 to 180 (+121%).",
+ "calls": 11,
+ "secs": 31.6
+}

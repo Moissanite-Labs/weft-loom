@@ -1,0 +1,5 @@
+{
+ "result": "Built wf.py: reads stdin as bytes, maps case-folded letters via a 256-byte translate table (everything non-alpha \u2192 space, uppercase \u2192 lowercase), then splits the 20MB input into whitespace-aligned chunks and counts them in parallel via os.fork (up to 8 workers, each doing translate\u2192decode latin-1\u2192split\u2192Counter on its own slice and sending a plain dict back over a pipe with pickle); the parent counts one slice itself, merges the Counters, and prints the top 10 sorted by (-count, word). Verified: `python3 wf.py < big.txt` output is byte-identical to ref.out (produced by the simple regex reference ref.py), and a small edge-case test (\"The the THE cat Cat dog. b a\") gives correct counts with alphabetical tie-breaking. Assay went from ~2755 (single-process) to ~1.18e4 (score=1000/seconds, i.e. ~0.085s for 20MB) through fork-parallel counting (+295%) and per-worker translate (+12%); later IPC/mmap/pread tweaks gave no significant gain and were not adopted.",
+ "calls": 14,
+ "secs": 307.3
+}

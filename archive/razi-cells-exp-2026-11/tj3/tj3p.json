@@ -1,0 +1,86 @@
+{
+ "args": {
+  "data": "tj3/data.json",
+  "out": "tj3/tj3p.json",
+  "arms": "gc,s",
+  "gens": 2,
+  "k": 2,
+  "seed": 0,
+  "batch": 32,
+  "lr": 0.001,
+  "rank": 8,
+  "margin": 0.02,
+  "model": "thinkingmachines/Inkling-2-Small",
+  "tag": "tj3p"
+ },
+ "prior": {
+  "gate": 0.73117,
+  "test": 0.6741
+ },
+ "rows": {
+  "train": 732,
+  "gate": 174,
+  "test": 157
+ },
+ "arms": {
+  "gc": {
+   "log": [
+    {
+     "gen": 0,
+     "depth": 2,
+     "way": "nat",
+     "train": 4.18277,
+     "gate": 2.10428
+    },
+    {
+     "gen": 1,
+     "depth": 4,
+     "way": "nat",
+     "train": 3.1017,
+     "gate": 1.41949
+    }
+   ],
+   "gate": 1.41949,
+   "test": 1.63726,
+   "wall_s": 217.9
+  },
+  "s": {
+   "log": [
+    {
+     "gen": 0,
+     "depth": 2,
+     "parent_gate": 7.66087,
+     "kids": [
+      {
+       "way": "nat",
+       "train": 4.20056,
+       "gate": 2.41827
+      },
+      {
+       "way": "bal",
+       "train": 5.08793,
+       "gate": 1.39485
+      }
+     ],
+     "took": "bal"
+    }
+   ],
+   "gate": 1.39485,
+   "test": 1.28062,
+   "wall_s": 151.3
+  }
+ },
+ "ok": true,
+ "start": {
+  "gate": 7.66087,
+  "test": 6.96969
+ },
+ "tokens": {
+  "start:fwd": 21155,
+  "gc:train": 9269,
+  "gc:fwd": 41169,
+  "s:train": 8434,
+  "s:fwd": 41169
+ },
+ "wall_s": 480.2
+}

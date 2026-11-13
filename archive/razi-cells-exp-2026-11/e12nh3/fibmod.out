@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 by fast doubling over the bits of n. Checks: fib(10)=55. fib(1000)=517691607, which matches a plain iterative loop. fib(10**18)=209783453, which I did not check against a second method. I registered an assay that times 20000 calls near 10**18 and returns 0 if the fib(10) or fib(1000) check fails; its baseline is about 4.1 runs/s. I made one improvement attempt, a single-mod doubling rewrite plus Pisano period reduction. It failed because the daughter cell returned wrong answers (fib(10)=1), so the original body stays.",
+ "calls": 11,
+ "secs": 60.8
+}

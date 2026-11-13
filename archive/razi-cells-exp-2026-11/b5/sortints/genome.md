@@ -1,0 +1,1 @@
+sortints: baseline pure-python sorted() ~1.55e6 ints/s assay (sh check.sh). /tmp not writable - use local folder for scratch. numpy 2.5.3, py3.14. Prior numpy variants scored 179 (broken?) - test locally before variants.

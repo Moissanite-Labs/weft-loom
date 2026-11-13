@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a fast-doubling implementation over the bit string bin(n mod P)[2:], with P=2(M+1) for M=1e9+7 (valid because M is 2 mod 5, so the Pisano period divides P). It reads whitespace-separated integers from stdin and prints fib(n) mod M, one per line. It passes the sample in-0/out-0 and gives fib(10)=55. It is registered at baseline 4.73193 (noise 1.8%). Two trimmed variants were tried and scored lower (4.64 incumbent, 4.55 and 4.12 variants), so I am resting with the incumbent body and returning unspent energy to the lineage store.",
+ "calls": 7,
+ "secs": 38.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 246.03959999999995,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 153.96040000000005,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.3751
+ }
+}

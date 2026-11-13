@@ -1,0 +1,5 @@
+{
+ "result": "Built `squeeze.py` implementing lossless `compress(bytes) -> bytes` and `decompress(bytes) -> bytes` using only Python's standard library (`lzma` and `zlib`). It selects the best raw stream representation per payload (headerless raw LZMA2 with preset 9 | PRESET_EXTREME vs raw deflate wbits=-15 level 9) prefixed with a 1-byte mode tag, handling empty inputs and arbitrary byte sequences cleanly. Verified via `bench.py` assay across English-like prose, structured indented JSON, JSON lines, and mixed log/document workloads (1.56 MB total corpus) plus edge cases (empty, single-byte, random bytes, repetitive bytes), achieving an exact round-trip and a compression ratio of 8.283835 with 0.0% variance.",
+ "calls": 16,
+ "secs": 299.1
+}

@@ -1,0 +1,980 @@
+{
+ "wall_s": 448.4,
+ "ledger": {
+  "store-compress": {
+   "e": 0.0,
+   "born": 1600.0,
+   "spent": 0.0,
+   "earned": 0.0,
+   "got": 1041.1813000000002,
+   "gave": 2641.1812999999997,
+   "state": "alive",
+   "fit": 0.0,
+   "age": 0,
+   "assay": false
+  },
+  "store-fibmod": {
+   "e": 47.075500000000034,
+   "born": 1600.0,
+   "spent": 0.0,
+   "earned": 0.0,
+   "got": 1541.218344647108,
+   "gave": 3094.142844647108,
+   "state": "alive",
+   "fit": 0.0,
+   "age": 0,
+   "assay": false
+  },
+  "store-csvsum": {
+   "e": 24.817199999999957,
+   "born": 1600.0,
+   "spent": 0.0,
+   "earned": 0.0,
+   "got": 967.4630969597325,
+   "gave": 2542.645896959733,
+   "state": "alive",
+   "fit": 0.0,
+   "age": 0,
+   "assay": false
+  },
+  "store-maze": {
+   "e": 24.972940583914234,
+   "born": 1600.0,
+   "spent": 0.0,
+   "earned": 0.0,
+   "got": 907.5235217517426,
+   "gave": 2482.5505811678286,
+   "state": "alive",
+   "fit": 0.0,
+   "age": 0,
+   "assay": false
+  },
+  "g0-compress-1": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 113.78379999999999,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 286.21619999999996,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 6,
+   "assay": true,
+   "sense": 0.7764
+  },
+  "g0-compress-0": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 99.76169999999999,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 300.23830000000004,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 5,
+   "assay": true,
+   "sense": 0.7731
+  },
+  "g0-fibmod-0": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 345.1094999999999,
+   "earned": 436.1457592964743,
+   "got": 0.0,
+   "gave": 491.0362592964743,
+   "state": "resting",
+   "fit": 1.9753580902989945,
+   "age": 14,
+   "assay": true,
+   "sense": 0.5561
+  },
+  "g0-fibmod-1": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 315.85209999999995,
+   "earned": 552.3047853506337,
+   "got": 0.0,
+   "gave": 636.4526853506337,
+   "state": "resting",
+   "fit": 2.9779315111440194,
+   "age": 14,
+   "assay": true,
+   "sense": 0.8244
+  },
+  "g0-csvsum-0": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 257.5726,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 142.42739999999998,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 9,
+   "assay": true,
+   "sense": 0.8407
+  },
+  "g0-csvsum-1": {
+   "e": 9.311100000000039,
+   "born": 400.0,
+   "spent": 390.6889,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 0.0,
+   "state": "dead",
+   "fit": 0.0,
+   "age": 5,
+   "assay": false
+  },
+  "g0-maze-0": {
+   "e": 8.576900000000013,
+   "born": 400.0,
+   "spent": 391.4231,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 0.0,
+   "state": "dead",
+   "fit": 0.0,
+   "age": 4,
+   "assay": true,
+   "sense": 0.9951
+  },
+  "g0-maze-1": {
+   "e": 11.69900000000004,
+   "born": 400.0,
+   "spent": 388.30099999999993,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 0.0,
+   "state": "dead",
+   "fit": 0.0,
+   "age": 3,
+   "assay": false
+  },
+  "g1-fibmod-0": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 354.6407,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 45.35930000000002,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 4,
+   "assay": true,
+   "sense": 1.113
+  },
+  "g1-fibmod-1": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 150.98010000000002,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 249.01989999999998,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 6,
+   "assay": true,
+   "sense": 0.7579
+  },
+  "g1-compress-1": {
+   "e": 21.30270000000004,
+   "born": 400.0,
+   "spent": 378.69730000000004,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 0.0,
+   "state": "dead",
+   "fit": 0.0,
+   "age": 6,
+   "assay": true,
+   "sense": 0.7764
+  },
+  "g1-compress-0": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 137.57459999999998,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 262.4254000000001,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 4,
+   "assay": true,
+   "sense": 0.7764
+  },
+  "g1-csvsum-0": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 171.88729999999998,
+   "earned": 126.78467581060207,
+   "got": 0.0,
+   "gave": 354.8973758106021,
+   "state": "resting",
+   "fit": 0.37294997255437856,
+   "age": 7,
+   "assay": true,
+   "sense": 0.7021
+  },
+  "g1-csvsum-1": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 359.74029999999993,
+   "earned": 209.86782114913055,
+   "got": 0.0,
+   "gave": 250.1275211491306,
+   "state": "resting",
+   "fit": 0.6899003333939577,
+   "age": 18,
+   "assay": true,
+   "sense": 0.813
+  },
+  "g1-maze-0": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 170.13190000000003,
+   "earned": 98.40608368536581,
+   "got": 0.0,
+   "gave": 328.27418368536576,
+   "state": "resting",
+   "fit": 0.27891902474620633,
+   "age": 8,
+   "assay": true,
+   "sense": 0.8633
+  },
+  "g1-maze-1": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 135.8713,
+   "earned": 52.808056898548415,
+   "got": 0.0,
+   "gave": 316.93675689854837,
+   "state": "resting",
+   "fit": 0.14113130398361884,
+   "age": 6,
+   "assay": true,
+   "sense": 0.9597
+  },
+  "g2-fibmod-0": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 327.72529999999995,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 72.27470000000002,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 5,
+   "assay": true,
+   "sense": 1.081
+  },
+  "g2-compress-0": {
+   "e": 3.351499999999991,
+   "born": 400.0,
+   "spent": 396.64849999999996,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 0.0,
+   "state": "dead",
+   "fit": 0.0,
+   "age": 6,
+   "assay": true,
+   "sense": 0.7764
+  },
+  "g2-compress-1": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 207.6986,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 192.3014,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 3,
+   "assay": true,
+   "sense": 0.7764
+  },
+  "g2-fibmod-1": {
+   "e": 2.8564000000000647,
+   "born": 400.0,
+   "spent": 397.1436,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 0.0,
+   "state": "dead",
+   "fit": 0.0,
+   "age": 3,
+   "assay": false
+  },
+  "g2-csvsum-0": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 204.8064,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 195.19359999999995,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 9,
+   "assay": true,
+   "sense": 0.9076
+  },
+  "g2-csvsum-1": {
+   "e": 8.601296959732736,
+   "born": 347.45229695973273,
+   "spent": 338.851,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 0.0,
+   "state": "dead",
+   "fit": 0.0,
+   "age": 3,
+   "assay": false
+  },
+  "g2-maze-0": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 269.2682,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 130.73180000000002,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 4,
+   "assay": true,
+   "sense": 0.9834
+  },
+  "g2-maze-1": {
+   "e": 0.0,
+   "born": 245.21094058391418,
+   "spent": 138.60309999999998,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 106.6078405839142,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 5,
+   "assay": true,
+   "sense": 1.0876
+  },
+  "g3-compress-0": {
+   "e": 7.363899999999919,
+   "born": 241.1812999999999,
+   "spent": 233.8174,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 0.0,
+   "state": "dead",
+   "fit": 0.0,
+   "age": 3,
+   "assay": true,
+   "sense": 0.7764
+  },
+  "g3-fibmod-1": {
+   "e": 13.533844647108083,
+   "born": 294.14284464710806,
+   "spent": 280.609,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 0.0,
+   "state": "dead",
+   "fit": 0.0,
+   "age": 2,
+   "assay": false
+  },
+  "g3-csvsum-0": {
+   "e": 0.0,
+   "born": 195.19359999999995,
+   "spent": 170.3764,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 24.817199999999957,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 6,
+   "assay": true,
+   "sense": 0.8139
+  },
+  "g3-fibmod-0": {
+   "e": 0.0,
+   "born": 400.0,
+   "spent": 352.92449999999997,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 47.075500000000034,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 4,
+   "assay": true,
+   "sense": 1.01
+  },
+  "g3-maze-0": {
+   "e": 0.0,
+   "born": 237.33964058391422,
+   "spent": 212.36669999999998,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 24.972940583914234,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 5,
+   "assay": true,
+   "sense": 0.9856
+  }
+ },
+ "gens": [
+  {
+   "gen": 0,
+   "kit": "compress",
+   "cells": [
+    "g0-compress-0",
+    "g0-compress-1"
+   ],
+   "had_germ": false,
+   "took": "g0-compress-1",
+   "gain": 0.0,
+   "medians": {
+    "g0-compress-0": 5.474797,
+    "g0-compress-1": 5.498104
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 1386.5,
+   "born": 800.0,
+   "spent": 213.5,
+   "earned": 0.0,
+   "returned": 586.5,
+   "states": {
+    "g0-compress-0": "resting",
+    "g0-compress-1": "resting"
+   },
+   "ages": {
+    "g0-compress-0": 5,
+    "g0-compress-1": 6
+   },
+   "rc": {
+    "g0-compress-0": 0,
+    "g0-compress-1": 0
+   },
+   "t": 1794298531.59
+  },
+  {
+   "gen": 0,
+   "kit": "fibmod",
+   "cells": [
+    "g0-fibmod-0",
+    "g0-fibmod-1"
+   ],
+   "had_germ": false,
+   "took": "g0-fibmod-1",
+   "gain": 0.0,
+   "medians": {
+    "g0-fibmod-0": 7.110266,
+    "g0-fibmod-1": 11.011579
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 1927.5,
+   "born": 800.0,
+   "spent": 661.0,
+   "earned": 988.5,
+   "returned": 1127.5,
+   "states": {
+    "g0-fibmod-0": "resting",
+    "g0-fibmod-1": "resting"
+   },
+   "ages": {
+    "g0-fibmod-0": 14,
+    "g0-fibmod-1": 14
+   },
+   "rc": {
+    "g0-fibmod-0": 0,
+    "g0-fibmod-1": 0
+   },
+   "t": 1794298532.78
+  },
+  {
+   "gen": 0,
+   "kit": "csvsum",
+   "cells": [
+    "g0-csvsum-0",
+    "g0-csvsum-1"
+   ],
+   "had_germ": false,
+   "took": "g0-csvsum-1",
+   "gain": 0.0,
+   "medians": {
+    "g0-csvsum-0": 1.778254,
+    "g0-csvsum-1": 2.18965
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 942.4,
+   "born": 800.0,
+   "spent": 648.3,
+   "earned": 0.0,
+   "returned": 142.4,
+   "states": {
+    "g0-csvsum-0": "resting",
+    "g0-csvsum-1": "dead"
+   },
+   "ages": {
+    "g0-csvsum-0": 9,
+    "g0-csvsum-1": 5
+   },
+   "rc": {
+    "g0-csvsum-0": 0,
+    "g0-csvsum-1": 1
+   },
+   "t": 1794298537.93
+  },
+  {
+   "gen": 0,
+   "kit": "maze",
+   "cells": [
+    "g0-maze-0",
+    "g0-maze-1"
+   ],
+   "had_germ": false,
+   "took": "g0-maze-0",
+   "gain": 0.0,
+   "medians": {
+    "g0-maze-0": 4.329291
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 800.0,
+   "born": 800.0,
+   "spent": 779.7,
+   "earned": 0.0,
+   "returned": 0.0,
+   "states": {
+    "g0-maze-0": "dead",
+    "g0-maze-1": "dead"
+   },
+   "ages": {
+    "g0-maze-0": 4,
+    "g0-maze-1": 3
+   },
+   "rc": {
+    "g0-maze-0": 1,
+    "g0-maze-1": 1
+   },
+   "t": 1794298539.1
+  },
+  {
+   "gen": 1,
+   "kit": "compress",
+   "cells": [
+    "g1-compress-0",
+    "g1-compress-1"
+   ],
+   "had_germ": true,
+   "took": null,
+   "gain": 0.0,
+   "medians": {
+    "germ": 5.498104,
+    "g1-compress-0": 5.498104,
+    "g1-compress-1": 5.498104
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 848.9,
+   "born": 800.0,
+   "spent": 516.3,
+   "earned": 0.0,
+   "returned": 262.4,
+   "states": {
+    "g1-compress-0": "resting",
+    "g1-compress-1": "dead"
+   },
+   "ages": {
+    "g1-compress-0": 4,
+    "g1-compress-1": 6
+   },
+   "rc": {
+    "g1-compress-0": 0,
+    "g1-compress-1": 1
+   },
+   "t": 1794298712.12
+  },
+  {
+   "gen": 1,
+   "kit": "fibmod",
+   "cells": [
+    "g1-fibmod-0",
+    "g1-fibmod-1"
+   ],
+   "had_germ": true,
+   "took": "g1-fibmod-0",
+   "gain": 0.2524,
+   "medians": {
+    "germ": 10.523062,
+    "g1-fibmod-0": 13.178862,
+    "g1-fibmod-1": 9.135806
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 1421.9,
+   "born": 800.0,
+   "spent": 505.6,
+   "earned": 0.0,
+   "returned": 294.4,
+   "states": {
+    "g1-fibmod-0": "resting",
+    "g1-fibmod-1": "resting"
+   },
+   "ages": {
+    "g1-fibmod-0": 4,
+    "g1-fibmod-1": 6
+   },
+   "rc": {
+    "g1-fibmod-0": 0,
+    "g1-fibmod-1": 0
+   },
+   "t": 1794298713.57
+  },
+  {
+   "gen": 1,
+   "kit": "csvsum",
+   "cells": [
+    "g1-csvsum-0",
+    "g1-csvsum-1"
+   ],
+   "had_germ": true,
+   "took": null,
+   "gain": -0.1091,
+   "medians": {
+    "germ": 2.059285,
+    "g1-csvsum-0": 1.508294,
+    "g1-csvsum-1": 1.83457
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 747.5,
+   "born": 800.0,
+   "spent": 531.6,
+   "earned": 336.7,
+   "returned": 605.0,
+   "states": {
+    "g1-csvsum-0": "resting",
+    "g1-csvsum-1": "resting"
+   },
+   "ages": {
+    "g1-csvsum-0": 7,
+    "g1-csvsum-1": 18
+   },
+   "rc": {
+    "g1-csvsum-0": 0,
+    "g1-csvsum-1": 0
+   },
+   "t": 1794298722.26
+  },
+  {
+   "gen": 1,
+   "kit": "maze",
+   "cells": [
+    "g1-maze-0",
+    "g1-maze-1"
+   ],
+   "had_germ": true,
+   "took": null,
+   "gain": -0.0703,
+   "medians": {
+    "germ": 4.059798,
+    "g1-maze-0": 3.188535,
+    "g1-maze-1": 3.774576
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 645.2,
+   "born": 800.0,
+   "spent": 306.0,
+   "earned": 151.2,
+   "returned": 645.2,
+   "states": {
+    "g1-maze-0": "resting",
+    "g1-maze-1": "resting"
+   },
+   "ages": {
+    "g1-maze-0": 8,
+    "g1-maze-1": 6
+   },
+   "rc": {
+    "g1-maze-0": 0,
+    "g1-maze-1": 0
+   },
+   "t": 1794298726.54
+  },
+  {
+   "gen": 2,
+   "kit": "compress",
+   "cells": [
+    "g2-compress-0",
+    "g2-compress-1"
+   ],
+   "had_germ": true,
+   "took": null,
+   "gain": 0.0,
+   "medians": {
+    "germ": 5.498104,
+    "g2-compress-0": 5.498104,
+    "g2-compress-1": 5.498104
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 241.2,
+   "born": 800.0,
+   "spent": 604.3,
+   "earned": 0.0,
+   "returned": 192.3,
+   "states": {
+    "g2-compress-0": "dead",
+    "g2-compress-1": "resting"
+   },
+   "ages": {
+    "g2-compress-0": 6,
+    "g2-compress-1": 3
+   },
+   "rc": {
+    "g2-compress-0": 1,
+    "g2-compress-1": 0
+   },
+   "t": 1794298801.43
+  },
+  {
+   "gen": 2,
+   "kit": "fibmod",
+   "cells": [
+    "g2-fibmod-0",
+    "g2-fibmod-1"
+   ],
+   "had_germ": true,
+   "took": null,
+   "gain": -0.0955,
+   "medians": {
+    "germ": 11.430406,
+    "g2-fibmod-0": 10.33842
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 694.1,
+   "born": 800.0,
+   "spent": 724.9,
+   "earned": 0.0,
+   "returned": 72.3,
+   "states": {
+    "g2-fibmod-0": "resting",
+    "g2-fibmod-1": "dead"
+   },
+   "ages": {
+    "g2-fibmod-0": 5,
+    "g2-fibmod-1": 3
+   },
+   "rc": {
+    "g2-fibmod-0": 0,
+    "g2-fibmod-1": 1
+   },
+   "t": 1794298802.43
+  },
+  {
+   "gen": 2,
+   "kit": "csvsum",
+   "cells": [
+    "g2-csvsum-0",
+    "g2-csvsum-1"
+   ],
+   "had_germ": true,
+   "took": null,
+   "gain": -0.0986,
+   "medians": {
+    "germ": 1.983573,
+    "g2-csvsum-0": 1.788005
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 195.2,
+   "born": 747.5,
+   "spent": 543.7,
+   "earned": 0.0,
+   "returned": 195.2,
+   "states": {
+    "g2-csvsum-0": "resting",
+    "g2-csvsum-1": "dead"
+   },
+   "ages": {
+    "g2-csvsum-0": 9,
+    "g2-csvsum-1": 3
+   },
+   "rc": {
+    "g2-csvsum-0": 0,
+    "g2-csvsum-1": 1
+   },
+   "t": 1794298808.09
+  },
+  {
+   "gen": 2,
+   "kit": "maze",
+   "cells": [
+    "g2-maze-0",
+    "g2-maze-1"
+   ],
+   "had_germ": true,
+   "took": null,
+   "gain": 0.0097,
+   "medians": {
+    "germ": 3.705371,
+    "g2-maze-0": 3.699021,
+    "g2-maze-1": 3.741425
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 237.3,
+   "born": 645.2,
+   "spent": 407.9,
+   "earned": 0.0,
+   "returned": 237.3,
+   "states": {
+    "g2-maze-0": "resting",
+    "g2-maze-1": "resting"
+   },
+   "ages": {
+    "g2-maze-0": 4,
+    "g2-maze-1": 5
+   },
+   "rc": {
+    "g2-maze-0": 0,
+    "g2-maze-1": 0
+   },
+   "t": 1794298812.21
+  },
+  {
+   "gen": 3,
+   "kit": "compress",
+   "cells": [
+    "g3-compress-0"
+   ],
+   "had_germ": true,
+   "took": null,
+   "gain": 0.0,
+   "medians": {
+    "germ": 5.498104,
+    "g3-compress-0": 5.498104
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 0.0,
+   "born": 241.2,
+   "spent": 233.8,
+   "earned": 0.0,
+   "returned": 0.0,
+   "states": {
+    "g3-compress-0": "dead"
+   },
+   "ages": {
+    "g3-compress-0": 3
+   },
+   "rc": {
+    "g3-compress-0": 1
+   },
+   "t": 1794298857.95
+  },
+  {
+   "gen": 3,
+   "kit": "fibmod",
+   "cells": [
+    "g3-fibmod-0",
+    "g3-fibmod-1"
+   ],
+   "had_germ": true,
+   "took": null,
+   "gain": -0.0606,
+   "medians": {
+    "germ": 12.050425,
+    "g3-fibmod-0": 11.320584
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 47.1,
+   "born": 694.1,
+   "spent": 633.5,
+   "earned": 0.0,
+   "returned": 47.1,
+   "states": {
+    "g3-fibmod-0": "resting",
+    "g3-fibmod-1": "dead"
+   },
+   "ages": {
+    "g3-fibmod-0": 4,
+    "g3-fibmod-1": 2
+   },
+   "rc": {
+    "g3-fibmod-0": 0,
+    "g3-fibmod-1": 1
+   },
+   "t": 1794298858.88
+  },
+  {
+   "gen": 3,
+   "kit": "csvsum",
+   "cells": [
+    "g3-csvsum-0"
+   ],
+   "had_germ": true,
+   "took": null,
+   "gain": -0.101,
+   "medians": {
+    "germ": 1.999247,
+    "g3-csvsum-0": 1.797376
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 24.8,
+   "born": 195.2,
+   "spent": 170.4,
+   "earned": 0.0,
+   "returned": 24.8,
+   "states": {
+    "g3-csvsum-0": "resting"
+   },
+   "ages": {
+    "g3-csvsum-0": 6
+   },
+   "rc": {
+    "g3-csvsum-0": 0
+   },
+   "t": 1794298864.25
+  },
+  {
+   "gen": 3,
+   "kit": "maze",
+   "cells": [
+    "g3-maze-0"
+   ],
+   "had_germ": true,
+   "took": null,
+   "gain": -0.0082,
+   "medians": {
+    "germ": 3.521304,
+    "g3-maze-0": 3.492275
+   },
+   "zero": {},
+   "event": "gen",
+   "store": 25.0,
+   "born": 237.3,
+   "spent": 212.4,
+   "earned": 0.0,
+   "returned": 25.0,
+   "states": {
+    "g3-maze-0": "resting"
+   },
+   "ages": {
+    "g3-maze-0": 5
+   },
+   "rc": {
+    "g3-maze-0": 0
+   },
+   "t": 1794298867.22
+  }
+ ]
+}

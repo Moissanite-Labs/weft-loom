@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is my body: it reads the whole stdin as bytes and takes a fast path that strips \\r, turns commas into spaces and drops dots, then parses the integer cents with split() and sums per category in a dict, printing sorted 'cat,sum' lines with two decimals. If the token count or dot count does not match, it falls back to a line-by-line Decimal parser. It reproduces out-0 exactly, and the assay accepted it with a baseline median of 1.97163 (noise 1.8%), so every output was checked correct by the harness. I'm resting here because further gains would need to beat that baseline by more than 3%, and the last variant round only added the 9% already adopted.",
+ "calls": 9,
+ "secs": 67.0,
+ "ledger": {
+  "e": 187.13981653111986,
+  "born": 400.0,
+  "spent": 429.9113,
+  "earned": 32.74567716868961,
+  "got": 184.30543936243023,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.08530840725680133,
+  "age": 9,
+  "assay": true,
+  "sense": 0.809
+ }
+}

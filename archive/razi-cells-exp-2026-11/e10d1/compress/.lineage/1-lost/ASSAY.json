@@ -1,0 +1,1 @@
+{"cmd": "cd ~ 2>/dev/null; python3 bench.py 2>/dev/null", "baseline": 9.2986, "noise": 0.0}

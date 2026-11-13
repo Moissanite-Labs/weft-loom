@@ -1,0 +1,5 @@
+{
+ "result": "Built maze.py: reads a '#'/'.' grid with S and E from stdin and prints the shortest 4-neighbour path length (or -1) using a numpy-vectorized layer BFS over a padded flat grid (frontier expansion via broadcast offsets, dedup via a stamp array, early exit when E is reached). Correctness verified against a pure-Python reference BFS (ref.py) on 24 random 30x30 mazes at varying wall densities plus edge cases (tiny mazes, unreachable \u2192 -1, adjacent S/E \u2192 1). On the 2000x2000 fixed-seed maze (gen.py seed 1, p=0.25) it answers 3998 in ~0.22 s wall time versus ~20 s for the pure-Python BFS; the registered assay (1/runtime with answer check) adopted this version at +9438% over the baseline, and subsequent micro-optimisation variants (int32 indices, per-direction concatenation, alternate dedup) showed no measurable gain, indicating the solution is near the numpy floor for this approach.",
+ "calls": 14,
+ "secs": 976.8
+}

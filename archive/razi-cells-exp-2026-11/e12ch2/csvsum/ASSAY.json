@@ -1,0 +1,1 @@
+{"cmd": "python3 csvsum.py < data.csv | python3 -c \"\nimport sys,time\nl=sys.stdin.read().split('\\n')\nprint(1 if len([x for x in l if x])==50 else 0)\" | grep -q 1 && s=$(date +%s.%N) && python3 csvsum.py < data.csv >/dev/null && e=$(date +%s.%N) && python3 -c \"print(1/($e-$s))\"", "baseline": 1.6691282600658768, "noise": 0.023604170010180753}

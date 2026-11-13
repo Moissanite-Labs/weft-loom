@@ -1,0 +1,5 @@
+{
+ "result": "csvsum.py reads stdin in binary mode and splits each line on commas. It sums val per cat in a defaultdict(float), then prints the cats sorted with 2 decimals. I generated a 2,000,000-row data.csv (seed 1, 50 cats). The output has 50 lines, and the sums look plausible at about 2.0M each. I did not check the sums against an independent reference. The assay measures 1/runtime and scored about 1.92, roughly 0.52 s per run. Four alternatives (read all at once, fsum, readlines, manual index) were all slower or within noise, so none was adopted.",
+ "calls": 6,
+ "secs": 77.7
+}

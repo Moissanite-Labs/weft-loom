@@ -1,0 +1,5 @@
+{
+ "result": "I built fibmod.py. It reduces n modulo the Pisano period 2*(M+1), which is 2000000016 for M=1000000007. Setup is a table of F(0..65537) plus a coarse table of F(h*65536) and F(h*65536-1) pairs. Each query is then one addition-formula combination, H0[h]*L[l+1] + H1[h]*L[l] mod M, instead of a ~31-step doubling loop. Evidence: `python3 fibmod.py < in-0.txt` matched out-0.txt with cmp (\"ok\"). The assay baseline of 4.59 rose to 12.34 (+169%) when this version was adopted. I did not re-run the checks in this last step.",
+ "calls": 8,
+ "secs": 37.3
+}

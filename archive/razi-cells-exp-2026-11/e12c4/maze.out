@@ -1,0 +1,5 @@
+{
+ "result": "I built maze.py, a level-by-level BFS over a flat grid. It uses a bytearray for visited cells and reads the whole grid from stdin. A 2000x2000 maze generated with seed 7 and 25% walls (gen.py) is the benchmark. For the 30%-wall version of that maze, maze.py printed -1, which matched the reference BFS in ref.py. The registered assay compares maze.py's output to exp.txt, which comes from ref.py.\n\nThe checking is thinner than I would like. The last assay run was on the 25%-wall maze and scored 1.229 (about 0.8 s per run), so it passed on that maze. Both mazes I checked have the answer -1, so I have not tested a case where a path exists. I made no further speed improvements, so the 25%-wall maze has only that single timing. The 29.3 baseline in the assay record was measured on the earlier 30%-wall maze, where the search probably ends early.",
+ "calls": 7,
+ "secs": 43.0
+}

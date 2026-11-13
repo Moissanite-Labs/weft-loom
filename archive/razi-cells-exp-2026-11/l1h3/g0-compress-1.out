@@ -1,0 +1,18 @@
+{
+ "result": "squeeze.py is an LZMA2 raw-format compressor (preset 9e, 1 MB dictionary, header byte picks the best of five lc/lp/pb sets). It round-trips both public samples (ratios about 4.2 and 7.2) and is registered as baseline 5.47469 with 0% noise. The only lever I found that looked worthwhile was priming with other sample text (about 3.5% smaller on in-1 when primed with in-0). Python's lzma module has no preset-dictionary option, so using it would need a custom codec. I judged that too costly for an uncertain gain on hidden inputs, so I am stopping here with about 246 energy unspent.",
+ "calls": 9,
+ "secs": 69.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 173.4501,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 226.5499,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 9,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a BFS over a flattened grid with a padded border, a bytearray free-map that merges wall and visited tests, and a tuple neighbour loop with early exit at E. It passes all three public samples (in-0/1/2 match out-0/1/2 when run from the kit directory). The assay registered a baseline of 2.949 with 7.3% noise, and the variant that replaced the earlier body measured 3.392 against 2.801, a +21% gain that was adopted. I'm resting here rather than spending more energy on further variants, since the body is correct and the remaining gains are uncertain against the noise floor.",
+ "calls": 7,
+ "secs": 50.5,
+ "ledger": {
+  "e": 1183.1538816524878,
+  "born": 400.0,
+  "spent": 124.71169999999998,
+  "earned": 76.59605119549616,
+  "got": 831.2695304569918,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.2110528775533369,
+  "age": 7,
+  "assay": true,
+  "sense": 0.8545
+ }
+}

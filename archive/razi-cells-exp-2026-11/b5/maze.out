@@ -1,0 +1,5 @@
+{
+ "result": "Built maze.py: a numpy-vectorized level-by-level BFS on a padded flat grid. The grid is parsed from stdin bytes into a boolean \"open\" array with a '#' border (so no bounds checks), and the frontier is expanded per direction (f + offset, filtered with g.take/compress, visited cells cleared with g.put) \u2014 since the frontier is unique, each shifted frontier is unique too, so no sort/dedupe is needed. Verified against a pure-Python deque BFS reference (ref.py): big.txt (2000x2000, seed 12345, p=0.25) \u2192 3998, m.txt (unreachable) \u2192 -1, t.txt (60x60) \u2192 20, all matching. Runtime on the 2000x2000 maze is ~0.16 s wall (vs ~0.45 s for the first numpy version and several seconds for pure Python); assay score rose from the 2203 baseline to ~6270 through three adopted variant rounds (+76%, +61%, +4%), with the final micro-tune round correctly rejected as no gain.",
+ "calls": 15,
+ "secs": 356.0
+}

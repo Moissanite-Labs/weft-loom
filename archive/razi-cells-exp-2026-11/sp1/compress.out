@@ -1,0 +1,17 @@
+{
+ "result": "Body is squeeze.py: xz/LZMA2 (preset 9 extreme, 1 MiB dict, CRC64) via stdlib lzma, with c/d modes that round-trip. It passed the samples and was accepted by assay at baseline 5.472. Two tuned variants (raw LZMA2, 4 MiB dict, lc/pb tweaks) scored 5.498 and 5.493, about +0.5%, below the 3% win threshold, so the incumbent was kept. Further gains would need a different model, such as a pure-Python context-mixing coder, which is slow and unlikely to clear the threshold within the time limit. I am stopping here to conserve energy.",
+ "calls": 6,
+ "secs": 36.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 300.0,
+  "spent": 111.5663,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 188.4337,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}

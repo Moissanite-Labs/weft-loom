@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1_000_000_007. It reads one integer per line from stdin and prints fib(n) mod MOD per line. It passes the public sample (in-0.txt matches out-0.txt) and is registered with assay at baseline 2.57522 (noise 4.7%). The one variant tried (single-pass stdin read and generator output) scored 2.536, worse than the incumbent, so I kept the current body. I'm stopping here since further gains would need to beat the noise floor and the colony's prior attempts show little room.",
+ "calls": 5,
+ "secs": 35.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 63.066500000000005,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 86.93350000000002,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true
+ }
+}

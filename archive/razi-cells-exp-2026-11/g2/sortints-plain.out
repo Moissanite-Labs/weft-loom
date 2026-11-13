@@ -1,0 +1,5 @@
+{
+ "result": "Built sortints.py: reads all of stdin as bytes, parses integers with numpy's fast C-level np.fromstring(dtype=int64, sep=' '), sorts in place with a.sort(), and emits one integer per line. Verified against a fixed-seed 1,000,000-integer test file (test_1m.txt): output is byte-identical to the reference sorted file (cmp MATCH, 1,000,000 lines). Measured runtime for the full 1M-int workload is ~0.21s wall clock (user 0.18s), versus ~0.35s for the pure-Python split+sort(key=int) baseline \u2014 a ~1.6x speedup, with the numpy parse being the main win. Also confirmed earlier that a bytes-level '%d' formatting variant was slower (0.235s), so the chosen str-join path is kept.",
+ "calls": 14,
+ "secs": 273.5
+}

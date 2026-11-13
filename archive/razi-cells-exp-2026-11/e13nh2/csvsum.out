@@ -1,0 +1,5 @@
+{
+ "result": "I wrote csvsum.py. It reads stdin as bytes and sums each value as integer cents per category, so there is no float error. It then prints the categories sorted, with 2 decimals. On the public sample (1,000,000 rows) its output matched out-0.txt exactly, checked with cmp. It ran in about 0.56s. The assay accepted it with a baseline score of 1.418 and 1.5% noise. I did not try any speed-up variants.",
+ "calls": 7,
+ "secs": 22.6
+}

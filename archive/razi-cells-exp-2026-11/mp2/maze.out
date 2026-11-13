@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is a level-synchronous BFS over a padded bytearray grid. Walls are pre-marked by translating '#' to visited, and the search stops as soon as E is reached. It reads stdin, prints the shortest 4-neighbour path length or -1, and handles missing S/E. It matches all three public samples (2008, -1, 78), and assay accepted it as the baseline (2.737, noise 2.4%). Its earlier variant won +31% over the original list-based BFS. I'm resting here rather than spending more energy on further micro-optimisation.",
+ "calls": 7,
+ "secs": 48.3,
+ "ledger": {
+  "e": 1193.798675752681,
+  "born": 400.0,
+  "spent": 140.59169999999997,
+  "earned": 108.10767575268095,
+  "got": 826.2827000000001,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.310317126719978,
+  "age": 7,
+  "assay": true
+ }
+}

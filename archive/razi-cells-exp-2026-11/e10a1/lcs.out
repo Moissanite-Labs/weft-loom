@@ -1,0 +1,5 @@
+{
+ "result": "lcs.py is built and verified: it reads two lines from stdin and prints the LCS length, using a bit-parallel big-integer algorithm. On the current body, check.py (69 cases through stdin/stdout against a plain DP reference, including empty strings and 700x900 strings over alphabets of 2, 4 and 26) reports 0 mismatches. A separate in-process fuzz of 400 random cases against the same DP reference also reports 0 mismatches. The assay (`python3 bench.py`, two 3000x3000 cases over 4- and 26-letter alphabets, checked end to end before timing) now prints about 947 calls/s against the registered baseline of 547, roughly +73%. The gain came from two adopted variant rounds (+18% and +45%); a third round of micro-optimisations gave no gain and the incumbent was kept.",
+ "calls": 12,
+ "secs": 917.5
+}

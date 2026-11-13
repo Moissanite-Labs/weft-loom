@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is registered as the adopted body (+44% over my first body, assay baseline 1.43982, noise 2.9%; variant measured 2.087 vs 1.452). It reads all of stdin as bytes, splits on newlines, parses each row with split(b',', 2), takes one float() per row, sums per category in a dict, and writes sorted 'cat,sum' lines with 2 decimals. It passed the sample in-0/out-0. Further integer-cents and per-line variants in my lineage lost, so I am resting and returning the unspent energy to the lineage store.",
+ "calls": 6,
+ "secs": 44.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 299.53843028819165,
+  "spent": 168.5012,
+  "earned": 145.01756879027772,
+  "got": 0.0,
+  "gave": 276.05479907846933,
+  "state": "resting",
+  "fit": 0.43698033461540664,
+  "age": 6,
+  "assay": true,
+  "sense": 0.8773
+ }
+}

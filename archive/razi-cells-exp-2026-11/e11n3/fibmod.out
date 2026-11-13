@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 using fast doubling, which takes about 60 iterations for n up to 10**18. I checked it three ways. fib(10) printed 55. fib(1000) matched a plain iterative loop (517691607). fib(10**18) printed 209783453. The assay baseline is about 39.5 runs per second, and most of that is Python startup time. I did not try any further optimization.",
+ "calls": 4,
+ "secs": 12.9
+}

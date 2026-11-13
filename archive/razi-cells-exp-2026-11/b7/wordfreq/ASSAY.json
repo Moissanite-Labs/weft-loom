@@ -1,0 +1,1 @@
+{"cmd": "WF_CACHE_DIR=\"$PWD/.tmp\" python3 verify.py", "baseline": 82.381, "noise": 0.010827739405930929}

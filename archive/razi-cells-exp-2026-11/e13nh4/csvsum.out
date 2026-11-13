@@ -1,0 +1,5 @@
+{
+ "result": "I built csvsum.py. It reads stdin, sums val per cat as integer cents, and prints sorted \"cat,sum\" lines with 2 decimals. Values that don't have exactly two decimals go through Decimal. On the public sample in-0.txt (1,000,000 rows) the output matched out-0.txt exactly (cmp returned OK). The assay accepted it with a baseline of 1.876 and 1.8% noise. I made no further optimization attempts.",
+ "calls": 7,
+ "secs": 20.6
+}

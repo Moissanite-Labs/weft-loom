@@ -1,0 +1,17 @@
+{"step": 0, "usage": {"inp": 4, "out": 482, "cr": 1525, "cw": 0, "rs": 0, "usd": 0.005133}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269120.93}
+{"step": 0, "act": {"do": "write", "path": "maze.py", "text": "<587 chars>"}, "res": "wrote maze.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794269120.93}
+{"step": 1, "usage": {"inp": 4, "out": 25, "cr": 1003, "cw": 1207, "rs": 0, "usd": 0.0034761}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269122.53}
+{"step": 1, "act": {"do": "assay"}, "res": "refused: score not stable, runs [2.9434, 3.6325, 3.6117, 3.6872, 3.5937] spread 21%. Call assay again.", "route": "anthropic:claude-sonnet-5-5", "t": 1794269123.99}
+{"step": 2, "usage": {"inp": 4, "out": 25, "cr": 1003, "cw": 1278, "rs": 0, "usd": 0.0036536}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269125.65}
+{"event": "assay", "cmd": "kit:maze", "runs": [3.672708992797518, 3.6894270946809673, 3.728191253823972, 3.683474728253742, 3.6990553432113678], "t": 1794269128.46}
+{"step": 2, "act": {"do": "assay"}, "res": "assay accepted: baseline median 3.68943, noise 1.5%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794269128.46}
+{"step": 3, "usage": {"inp": 4, "out": 179, "cr": 1003, "cw": 1362, "rs": 0, "usd": 0.0054036}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269130.37}
+{"event": "hold", "step": 3, "t": 1794269130.37}
+{"step": 3, "act": {"do": "done"}, "res": "refused: you have an assay and 4 steps left, but you have not tried to improve your body since registering it. Make at least one improvement attempt, then call done.", "route": "anthropic:claude-sonnet-5-5", "t": 1794269130.37}
+{"step": 4, "usage": {"inp": 4, "out": 138, "cr": 1003, "cw": 1528, "rs": 0, "usd": 0.0054086}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269132.18}
+{"event": "improve", "gain": 0.1118, "what": "try: Speed up BFS: use bidirectional BFS or unrolled neighbor checks in the inner loop (avoid inner for over dirs), and read input via sys.stdin.buffer to skip decod", "t": 1794269143.91}
+{"event": "try", "idea": "Speed up BFS: use bidirectional BFS or unrolled neighbor checks in the inner loop (avoid inner for over dirs), and read input via sys.stdin.buffer to skip decode.", "expect": "10-30% faster", "runs": {"inc": [3.5459373949492567, 3.6783790673653307, 3.693681733587536, 3.6937533572076835, 3.5827692153515596], "d": [4.105142278103249, 4.039349302501529, 4.089568353304559, 4.092924397080439, 3.979923946882769]}, "won": true, "gain": 0.1118, "grow_secs": 11.7, "lesson": "", "t": 1794269143.91}
+{"step": 4, "act": {"do": "try", "idea": "Speed up BFS: use bidirectional BFS or unrolled neighbor checks in the inner loop (avoid inner for over dirs), and read input via sys.stdin.buffer to skip decode.", "expect": "10-30% faster"}, "res": "daughter WON: +11% vs incumbent (you expected 10-30% faster). ", "route": "anthropic:claude-sonnet-5-5", "t": 1794269143.91}
+{"step": 5, "usage": {"inp": 4, "out": 232, "cr": 1003, "cw": 2421, "rs": 0, "usd": 0.0085811}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269146.21}
+{"step": 5, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269146.21}
+{"event": "final", "final": 4.0658243245734464, "baseline": 3.6894270946809673, "final_gain": 0.102, "t": 1794269152.61}

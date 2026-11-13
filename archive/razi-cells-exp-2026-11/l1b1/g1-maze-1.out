@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a flat-grid BFS. It reads the grid from stdin, pads it with a '#' border into one bytearray, builds the visited map with a C-level bytes.translate, and expands frontier lists level by level, returning the distance when E is reached or -1 when the frontier empties. It passes the public samples, and assay accepted it as the baseline at 3.469 (noise 4.3%). I'm resting rather than spending energy on variants: the lineage's earlier attempts at this need show 0% gains, and a win would need to beat 4.3% noise.",
+ "calls": 5,
+ "secs": 31.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 125.03799999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 274.962,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.8965
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "result": "squeeze.py is an lzma (FORMAT_ALONE, preset 9 extreme) wrapper: `c` compresses stdin, `d` decompresses, stdlib only. It is registered at baseline 5.4748 with 0.0% noise. I tested lc/lp/pb tuning on the two samples; the best setting gained about 0.1%, far below the 3% win threshold, so I did not change the body. I'm resting rather than spending energy on a stdlib-only alternative, which is unlikely to beat lzma by 3% on this text.",
+ "calls": 6,
+ "secs": 55.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 118.06020000000001,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 281.9398,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

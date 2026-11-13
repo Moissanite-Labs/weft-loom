@@ -1,0 +1,5 @@
+{
+ "result": "Built maze.py: reads the whole maze from stdin as bytes, builds a flat bytearray grid with a 1-cell wall border (so no bounds checks), translates '.SE' to open and '#' to wall in one translate() call per row, then runs a pure-Python level-by-level BFS using frontier lists with 4 unrolled neighbour checks (\u00b11, \u00b1(W+2)), marking visited in-place and exiting as soon as E is reached; prints -1 if the frontier empties. Verified on small hand cases (S.#/.##/..E \u2192 4, S#E \u2192 -1, SE \u2192 1, blocked \u2192 -1) and on a generated 2000x2000 maze (gen.py, seed 1, p=0.28) giving 3998 in ~0.48 s; the registered assay \"sh bench.sh\" (correctness checks + 1000/best-of-3 time) was accepted at baseline 2099 with 2% noise. A daughter's numpy vectorized level-BFS variant gained only +3% (within noise) and was not adopted; bidirectional BFS was rejected analytically since corner-to-corner on a square grid gives no reduction in visited cells.",
+ "calls": 17,
+ "secs": 767.8
+}

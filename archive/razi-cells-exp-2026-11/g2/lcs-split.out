@@ -1,0 +1,5 @@
+{
+ "result": "Built lcs.py, which reads two lines from stdin and prints the longest common subsequence length using a bit-parallel LCS algorithm. The longer string is encoded into per-character bitmasks, and the shorter string is scanned with integer bit operations, giving roughly O(n*m/word) behavior and very fast performance for 3000-character inputs. Verification in verify.py checked random small cases against a standard DP implementation, checked a 3000x3000 random case against a Hunt\u2013Szymanski implementation, and benchmarked three runs of the fixed 3000-character workload. It passed correctness and measured about 0.0247s per run, with the alternative Hunt\u2013Szymanski taking about 0.0443s.",
+ "calls": 14,
+ "secs": 279.8
+}

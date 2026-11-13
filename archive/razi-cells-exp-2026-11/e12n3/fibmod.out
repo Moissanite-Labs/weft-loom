@@ -1,0 +1,5 @@
+{
+ "result": "I built fibmod.py. It computes fib(n) mod 1e9+7 with fast doubling, which takes about 60 iterations for n up to 1e18. Checks passed: `python3 fibmod.py 10` printed 55, and n=10**18 printed 209783453. bench.py also checks fib(0..299) against direct big-integer iteration and re-checks the 10**18 value. The assay measures speed at about 82k calls/s, and I did not try to optimize it further.",
+ "calls": 5,
+ "secs": 13.2
+}

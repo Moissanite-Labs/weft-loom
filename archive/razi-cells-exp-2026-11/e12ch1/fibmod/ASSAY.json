@@ -1,0 +1,1 @@
+{"cmd": "python3 -c \"\nimport time,fibmod\na,b=0,1\nfor i in range(300):\n    if fibmod.fib(i)!=a%1000000007: print(0);raise SystemExit\n    a,b=b,a+b\nassert fibmod.fib(10)==55\nt=time.time()\nfor i in range(20000): fibmod.fib(10**18-i)\nprint(round(20000/(time.time()-t)))\n\"", "baseline": 81868.0, "noise": 0.022426344847803783}

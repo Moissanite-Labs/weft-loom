@@ -1,0 +1,19 @@
+{
+  "seed": 1592598565,
+  "cases": [
+    {
+      "file": "bench_i32.txt",
+      "n": 1000000,
+      "input_bytes": 10976515,
+      "output_bytes": 10976515,
+      "sha256": "e7cf1e5e630820d1eb3024ed9cb0040e7b0f2ba11234a808d8a11aa690cc84e8"
+    },
+    {
+      "file": "bench_i64.txt",
+      "n": 1000000,
+      "input_bytes": 20379970,
+      "output_bytes": 20379970,
+      "sha256": "97ea99473b7f0de9cdc3918f50cbeaa8d16df7ce7ad035e7ec977fff9887e4b4"
+    }
+  ]
+}

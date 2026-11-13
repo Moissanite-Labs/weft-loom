@@ -1,0 +1,18 @@
+{
+ "result": "Body is fibmod.py, a 3-window table matrix Fibonacci mod 1e9+7. Baseline 12.17, already about 1.17 of the best recorded. I made no changes. Gains beyond the 11% noise looked unlikely, so I'm saving energy.",
+ "calls": 1,
+ "secs": 11.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 93.217,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 306.783,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 1.1662
+ }
+}

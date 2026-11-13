@@ -1,0 +1,5 @@
+{
+ "result": "Built primes.py using an O(n^(3/4) / log n) sublinear Lucy_Hedgehog prime-counting dynamic programming algorithm operating on odd numbers only, compiled into a native C shared library (_primes.so via ctypes) with a matching pure-Python fallback. Verified that `python3 primes.py 5000000` outputs `348513` and passes all edge-case and large-input checks up to 50,000,000, improving the assay benchmark score from 193.3 to over 35,100 (~0.015 ms per 5,000,000 query).",
+ "calls": 25,
+ "secs": 825.8
+}

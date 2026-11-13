@@ -1,0 +1,5 @@
+{
+ "result": "Built primes.py: an odd-only bytearray sieve with slice assignment (sieve[start::p] = b'\\x01'*count), counting zeros to get the prime count below argv[1]. Verified against known values: 0\u21920, 1\u21920, 2\u21920, 3\u21921, 10\u21924, 100\u219225, 1e6\u219278498, 5e6\u2192348513 (the required correct count), and 1e7\u2192664579, all matching. Speed: the 5,000,000 workload runs in ~0.0036 s in-process (~0.029 s including Python startup per subprocess invocation), which is fast for pure Python.",
+ "calls": 14,
+ "secs": 265.5
+}

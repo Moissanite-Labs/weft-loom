@@ -1,0 +1,5 @@
+{
+ "result": "Built fibmod.py: an O(1) Fibonacci-mod-1e9+7 evaluator. It reduces n by the Pisano period divisor P=2(p+1)=2000000016 (valid since p\u22612 mod 5), then uses a two-level lookup table built at import (low table of F(0..32769), high table of (F(32768h), F(32768h+1)-F(32768h)) pairs) and combines them with the identity F(a+b)=F(a+1)F(b)+F(a)F(b-1) in a single modular expression. Verified: CLI prints 55 for n=10, 209783453 for n=10**18, 0/1 for n=0/1, and 3013 random n in [0,10**18] matched an independent fast-doubling implementation; full script runs in ~0.05s wall. Assay (20000 fib calls near 10**18) went from the 90k/s fast-doubling baseline to ~3.8M/s (\u224842x); further micro-tuning rounds (tuple tables, different splits, interleaved tables, walrus) gave no gain beyond noise, so the incumbent was kept.",
+ "calls": 13,
+ "secs": 244.5
+}

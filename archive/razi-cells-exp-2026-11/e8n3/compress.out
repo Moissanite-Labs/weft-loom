@@ -1,0 +1,5 @@
+{
+ "result": "Built `squeeze.py` providing exact round-trip `compress(bytes) -> bytes` and `decompress(bytes) -> bytes` using only the Python standard library (`lzma`, `json`, `re`, `collections`), paired with `bench.py` which generates a deterministic 703,963-byte benchmark mix of English-like paragraphs and structured JSON records. `squeeze.py` applies a lossless reversible preprocessor\u2014detecting and transposing homogeneous JSON object arrays into columnar layout, splitting structured hyphenated fields, and dictionary-tokenizing frequent words into single-byte high-bit tokens with capitalization markers\u2014followed by raw LZMA1 compression (`PRESET_EXTREME`, `lc=3, lp=0, pb=0, nice_len=273`) and a fallback safety check guaranteeing 100% lossless round-trip across empty bytes, single bytes, full 0..255 binary data, English text, JSON, and the combined dataset, improving the compression ratio from the 7.19x baseline to 10.61x (66,341 compressed bytes).",
+ "calls": 20,
+ "secs": 408.3
+}

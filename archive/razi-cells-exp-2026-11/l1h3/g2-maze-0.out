@@ -1,0 +1,18 @@
+{
+ "result": "Kept the existing flat-bytearray BFS maze.py. It passes the public samples and is registered at baseline 3.45. I made no changes, so the gain is +0%. I did not try a faster algorithm. A bitset BFS on big ints could be slow on long snake-like mazes, so I skipped it.",
+ "calls": 1,
+ "secs": 5.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 96.01700000000001,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 303.983,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.8085
+ }
+}

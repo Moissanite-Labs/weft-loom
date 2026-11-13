@@ -1,0 +1,5 @@
+{
+ "result": "maze.py runs a BFS on a padded flat grid. It prints -1 on the seeded 2000x2000 maze, which matches expected.txt. Earlier small-case checks gave -1, 3 and -1. The assay (`sh assay.sh`) had a baseline of about 6.3 runs per second. The adopted variant scored 28.1, a gain of about 351%. One caveat: the seeded maze has no path, so the 2000x2000 check only confirms the -1 case. The small cases are the only check of a positive path length.",
+ "calls": 6,
+ "secs": 41.8
+}

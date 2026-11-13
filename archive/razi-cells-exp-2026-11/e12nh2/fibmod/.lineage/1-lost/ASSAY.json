@@ -1,0 +1,1 @@
+{"cmd": "python3 -c \"\nimport time,subprocess,sys\nt=time.time()\nfor i in range(20):\n    o=subprocess.check_output(['python3','fibmod.py',str(10**18-i)])\nassert subprocess.check_output(['python3','fibmod.py','10']).strip()==b'55'\nprint(1/(time.time()-t))\"", "baseline": 1.8510870044927754, "noise": 0.08024228090191497}

@@ -1,0 +1,18 @@
+{
+ "result": "My body is csvsum.py, a pure-stdlib script. It reads all of stdin as bytes, replaces commas with spaces, and splits into tokens. Categories are taken from every third token and values are parsed with float. It accumulates sums in a dict, then writes each category sorted with \"%.2f\". It matched the sample output (MATCH on in-0.txt) and registered an accepted baseline of 2.0612 with 2.9% noise. I stopped here because I have not found a clearly faster variant, and further attempts would cost energy with little expected gain.",
+ "calls": 8,
+ "secs": 40.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 142.85369999999998,
+  "earned": 0.0,
+  "got": 265.4597237579558,
+  "gave": 522.6060237579558,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 8,
+  "assay": true,
+  "sense": 0.8922
+ }
+}

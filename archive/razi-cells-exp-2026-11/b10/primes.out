@@ -1,0 +1,5 @@
+{
+ "result": "Built `primes.py` to count primes below `int(sys.argv[1])` using a dual-array mod-6 wheel sieve (`6k + 1` and `6k + 5` stored in separate `bytearray` buffers) combined with a 5005-period pre-sieved pattern for primes 5, 7, 11, and 13 and preallocated zero-slice assignments (`s1[st1::p] = zeros[...]`). Verified via `bench.py` that `python3 primes.py 5000000` prints `348513` and passes 27 test cases ranging from `n=0` to `n=50000000`, achieving +18% and +39% evolutionary assay improvements over the initial odds-only sieve baseline.",
+ "calls": 15,
+ "secs": 600.1
+}

@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py compresses with raw LZMA2 (preset 9 extreme, lc=4, pb=0) and with bz2, and keeps the smaller result behind a 1-byte tag. The decompressor reads the tag and uses the matching decoder. The assay accepted a baseline ratio of 7.08 with 0% noise. I did not complete a round-trip check on the samples: my one attempt failed on a bad cd path and I did not rerun it. The assay did accept the output as correct. One daughter cell tried a pure-Python context-mixing compressor and gained +0%, so it was not kept.",
+ "calls": 10,
+ "secs": 45.9
+}

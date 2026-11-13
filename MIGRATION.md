@@ -11,6 +11,7 @@ weft is becoming the software repository. This repository is where the research 
 | `scripts/corpus_audit.py` | `scripts/corpus_audit.py` |
 | `scripts/test_corpus_audit.py` | `scripts/test_corpus_audit.py` |
 | `scripts/test_pr116_offline.py` | `scripts/test_pr116_offline.py` |
+| local razi-cells `exp/` tree (5.6 GB of generated fixtures included) | `archive/razi-cells-exp-2026-11/` (records only) |
 
 Older records cite their own original paths (for example `docs/program/experiments/E07/...` in commands and notes). Read them with the path map. They were left as written on purpose.
 

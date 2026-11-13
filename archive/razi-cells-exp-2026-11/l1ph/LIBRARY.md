@@ -1,0 +1,6 @@
+- [g0-fibmod-0] no gain: 1 variants of fibmod.py (Avoid bin() string building and per-bit string compare; same fast-doubling math, single output write.); best -8%
+- [g0-fibmod-0] WIN +8%: fibmod.py variant (Single buffered write and list comprehension; same fast-doubling math with explicit branch.) (assay: kit:fibmod)
+- [g0-fibmod-0] REST (baseline 2.482, gain +8%, returned 192 energy to the lineage store): fibmod.py is a fast-doubling Fibonacci mod 1e9+7 that reads n per line from stdin and writes results in one buffered write. It passed the sample check (in-0 matches out-0, fib(10)=55). The assay baseline was 2.48152, and the adopted variant with the single buf
+- [lineage fibmod] GEN 0: the germline body is now the body of g0-fibmod-0, the lineage's first.
+- [g1-fibmod-0] REST (baseline 2.699, gain +0%, returned 19 energy to the lineage store): fibmod.py is a fast-doubling Fibonacci mod 1e9+7. It reads one n per line from stdin, runs the doubling loop over the bits of n, and writes all results in a single buffered write. It passes the sample check (fib(10)=55, matching out-0). The assay baseline is 2
+- [lineage fibmod] GEN 1: no body beat the germline beyond noise (best +0%). The germline is unchanged.

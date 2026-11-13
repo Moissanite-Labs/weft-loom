@@ -1,0 +1,5 @@
+{
+ "result": "Built lcs.py: a bit-parallel (Hyyr\u00f6) LCS using Python big ints. It builds per-character match masks over the longer string, iterates over the shorter string with S = (S + (S & m)) | (S & ~m) using precomputed complement masks (no per-iteration masking), then returns n minus the popcount of the low n bits. Verified by check.py against a naive O(nm) DP on 34 random/edge cases (empty strings, alphabets of 2/4/26) \u2014 all pass. Performance: two 3000-char ACGT strings run in ~0.03 s total process time (answer 1950); the assay workload (two 60000-char strings, expected 39265) runs in ~0.36 s, assay score ~2800 (baseline 2748, 3.2% noise). One attempted inner-loop refactor (S ^ u instead of the ~m lookup) was 11% slower and discarded.",
+ "calls": 19,
+ "secs": 953.3
+}

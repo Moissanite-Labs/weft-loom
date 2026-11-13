@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py uses stdlib lzma with the raw LZMA2 format. It uses preset 9 with the extreme flag, a 16 MB dictionary, and lc=4, lp=0, pb=0, so it adds no container header. bench.py generates a fixed mix of English-like word text and JSON, compresses it, asserts that decompress returns the original bytes exactly, and prints the ratio. The assay was accepted with a baseline ratio of 4.469 and 0% noise. I did not try any further variants or alternative compressors.",
+ "calls": 4,
+ "secs": 49.3
+}

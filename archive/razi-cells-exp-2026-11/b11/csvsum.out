@@ -1,0 +1,5 @@
+{
+ "result": "Built csvsum.py: reads the CSV from stdin in one bulk read, then uses fully vectorized numpy byte-level parsing (locate newlines/commas via np.flatnonzero, build fixed-width category windows, hash+np.unique to group categories, parse values as exact integer cents from digit positions, np.bincount for per-category sums), with a verified pure-Python fallback (flat split + compress/float) if the input doesn't match the strict layout. Output is each cat and its sum with 2 decimals, sorted by cat, computed exactly in integer cents. Verified: output on the generated 2,000,000-row data.csv (gen.py, seed 42) is byte-identical to ref.txt, which was independently checked against a Decimal-based csv-module reference; small edge-case inputs (x/y mini CSV) also matched. Performance: original per-line loop 3.65 s (assay ~530-560 krows/s); adopted vectorized version runs ~2.2 s (assay 895.9, +60%, chosen by scored variants). A fork-parallel prototype (candD.py, 4 workers \u2192 1.03 s, 8 \u2192 0.75 s, verified correct) is left in the body as a further speedup path but was not adopted due to step budget.",
+ "calls": 15,
+ "secs": 399.5
+}

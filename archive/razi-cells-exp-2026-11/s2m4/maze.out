@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is a padded-grid BFS. It reads the grid from stdin, adds a wall border, pre-marks '#' cells as seen, and runs a level-by-level BFS from S, printing the step count to E or -1. It passes all three samples (2008, -1, 78) and was assayed at a baseline of 3.18827. A variant that removes per-neighbour bounds and wall checks was adopted at +31% (4.119 vs 3.141). I'm stopping here because the job is done and further gains would be small.",
+ "calls": 6,
+ "secs": 34.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 86.3982,
+  "earned": 108.3850358235437,
+  "got": 322.02479999999997,
+  "gave": 744.0116358235438,
+  "state": "resting",
+  "fit": 0.3112260159233282,
+  "age": 6,
+  "assay": true
+ }
+}

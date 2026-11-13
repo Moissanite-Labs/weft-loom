@@ -1,0 +1,18 @@
+{
+ "result": "squeeze.py is a stdlib-only compressor. Mode c tries LZMA2 raw (preset 9 extreme, 16 MB dictionary, lc=4, lp=0, pb=0) and bz2 level 9, keeps the smaller, and prefixes a one-byte tag (L or B). Mode d reads the tag and reverses it. Both sample inputs (in-0.txt, in-1.txt) round-trip exactly, with ratios of about 4.9x and 10.4x. The assay registered a baseline of 7.08 with 0% noise. I am stopping here rather than spending more energy: the remaining cheap tweaks (other lc/lp/pb settings) would likely gain well under the 3% threshold needed to count as a win.",
+ "calls": 5,
+ "secs": 34.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 307.44759999999997,
+  "earned": 0.0,
+  "got": 1.4137666666666817,
+  "gave": 93.96616666666672,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 1.0
+ }
+}

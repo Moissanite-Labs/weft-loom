@@ -1,0 +1,18 @@
+{
+ "result": "squeeze.py is a stdlib-only wrapper around lzma in FORMAT_RAW with LZMA2 at preset 9e, dict_size 4 MiB, lc=3, lp=0, pb=0, nice_len 273, and MF_BT4. It reads stdin as bytes and writes to stdout, with c for compress and d for decompress. On the two samples (in-0.txt 613000 -> 147528 bytes, in-1.txt 716665 -> 99043 bytes) the round trip is exact. The assay registered a baseline of 5.493 with 0.0% noise. The lc=4 and lc=1 variants scored 5.498 and 5.481, so neither beat the incumbent by the required 3%, and the body was kept. Further gains would need a different modelling approach, such as text-specific preprocessing, and I judged that unlikely to clear the 3% bar enough to justify the spend, so I am stopping here with energy left for the colony.",
+ "calls": 7,
+ "secs": 51.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 135.3781,
+  "earned": 0.0,
+  "got": 106.44723487035755,
+  "gave": 371.0691348703575,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.7757
+ }
+}

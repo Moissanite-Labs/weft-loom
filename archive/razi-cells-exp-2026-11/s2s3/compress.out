@@ -1,0 +1,17 @@
+{
+ "result": "squeeze.py is a working LZMA body. Mode c calls lzma.compress in FORMAT_ALONE with preset 9|PRESET_EXTREME; mode d calls lzma.decompress. It is stdlib only and round-trips the samples. Assay registered a baseline of 5.4748 with 0% noise. Two colony variants were tried: raw LZMA2 with lc=4,pb=0 (5.498, +0.4%) and a per-input choice among four lc/lp/pb configs with a one-byte header (5.500, +0.4%). Both fall short of the 3% win threshold, so neither was adopted. I am resting rather than spending more energy, since the remaining ideas (other codecs, text transforms) are unlikely to clear 3% on LZMA-dominated data.",
+ "calls": 6,
+ "secs": 40.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 300.0,
+  "spent": 102.65020000000001,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 197.34980000000002,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}

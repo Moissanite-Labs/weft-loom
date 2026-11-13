@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/Users/kethuda/Work/razi-tools/cells/cell.py", line 516, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/Users/kethuda/Work/razi-tools/cells/cell.py", line 500, in main
+    aux_sync(router(), "ok", role="aux", timeout=60, session_id="cell-warm")  # start the shared loop once
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kethuda/Work/exo-live/src/exo/core/models/router.py", line 719, in aux_sync
+    return asyncio.run_coroutine_threadsafe(aux(router, prompt, **kw), _BG["loop"]).result(timeout)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/kethuda/.local/share/uv/python/cpython-3.14.7-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 454, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/Users/kethuda/.local/share/uv/python/cpython-3.14.7-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 396, in __get_result
+    raise self._exception
+  File "/Users/kethuda/Work/exo-live/src/exo/core/models/router.py", line 703, in aux
+    raise ModelError(ev)
+exo.core.models.router.ModelError: all routes for 'aux' failed or are cooling down; last error: HTTP 429: Go usage limit exceeded; next route reopens in 295s

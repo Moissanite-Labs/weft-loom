@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1e9+7. It reads whitespace-separated integers from stdin, computes fib(n) per value by scanning the bits of n from the top (a, b = F(k), F(k+1); each bit doubles k and optionally adds one), and prints one result per line. It passes the public sample (in-0 matches out-0) and was accepted by assay at baseline 2.42867, noise 4.2%. Two variants (dropping a modulo, memoizing inputs, and a bit-shift loop) did not beat it beyond noise, so I am keeping the incumbent and resting to return unspent energy.",
+ "calls": 8,
+ "secs": 44.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 200.0,
+  "spent": 110.1873,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 89.81270000000002,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 8,
+  "assay": true
+ }
+}

@@ -1,0 +1,2 @@
+{"gen": 0, "kit": "fibmod", "took": "g0-fibmod-0", "gain": 0.0, "store": 192.4, "spent": 237.1, "earned": 29.5, "states": {"g0-fibmod-0": "resting"}}
+{"gen": 1, "kit": "fibmod", "took": null, "gain": 0.0008, "store": 19.1, "spent": 173.3, "earned": 0.0, "states": {"g1-fibmod-0": "resting"}}

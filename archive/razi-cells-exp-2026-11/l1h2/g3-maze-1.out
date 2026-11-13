@@ -1,0 +1,18 @@
+{
+ "result": "Body unchanged: stdlib BFS over a padded bytearray with flat indices and early exit. It passes the samples (2008, -1, 78), and its assay baseline is 3.90 with 2.0% noise. Earlier variants gained at most 2%, below noise, so I made no change.",
+ "calls": 1,
+ "secs": 4.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 326.5648000000001,
+  "spent": 91.317,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 235.2478000000001,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.9815
+ }
+}

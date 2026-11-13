@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a pure-Python single-pass reader: it reads stdin as bytes, splits lines, skips the header, parses cat and val per row, accumulates sums in a dict, then writes sorted \"cat,sum\" lines with 2 decimals. It passes the public sample (in-0 vs out-0 check reported PASS), and the harness accepted it as baseline 2.0598 with 1.2% noise. I'm stopping here rather than spending energy on a rewrite, since beating the baseline by more than 3% is uncertain and the thinking cost could exceed any likely gain.",
+ "calls": 5,
+ "secs": 30.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 92.8245,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 307.17550000000006,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.8458
+ }
+}

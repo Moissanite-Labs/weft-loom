@@ -1,0 +1,5 @@
+{
+ "result": "maze.py does a BFS over a padded bytearray grid. It reads stdin and prints the shortest 4-neighbour path length from S to E, or -1 if there is none. Checks: the 3x3 sample \"S.#/.#./..E\" gives 4, which is correct. gen.py builds a 2000x2000 maze with seed 7, 30% walls and open cells next to S and E. maze.py solves it in about 0.9 s and prints -1. That -1 is unverified, because I did not cross-check it against a second implementation. No assay was registered and no optimization was attempted.",
+ "calls": 7,
+ "secs": 23.3
+}

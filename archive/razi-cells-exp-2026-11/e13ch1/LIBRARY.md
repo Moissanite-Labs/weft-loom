@@ -1,0 +1,8 @@
+- [maze] no gain: 1 variants of maze.py (); best -3%
+- [maze] WIN +9%: maze.py variant () (assay: kit:maze)
+- [csvsum] DONE (assay baseline 1.525): I built csvsum.py, which reads all of stdin as bytes and splits it into lines. It sums each value as integer cents per category in a dict, which avoids float error, and prints the categories sorted with 2 decimals. Its output matched the public sample (in-0.txt against out-0.txt, 1M rows) byte for b
+- [maze] DONE (assay baseline 3.78): maze.py is a BFS over a padded bytearray grid. It reads stdin, finds S and E, and prints the level-by-level distance, or -1 if E is unreachable. I did not re-run the samples in this final step. The evidence is from the harness: `assay` accepted the first version with a baseline median of 3.78 and 1.
+- [compress] no gain: 2 variants of squeeze.py (); best -0%
+- [fibmod] WIN +169%: fibmod.py variant () (assay: kit:fibmod)
+- [compress] DONE (assay baseline 5.498): squeeze.py is a raw LZMA2 compressor with preset 9 extreme, a 16 MB dictionary, lc=4, lp=0 and pb=0. The assay accepted it with a compression ratio of 5.498 and 0% noise. Two variants (lc=3 and lc=4, each with nice_len 273, MF_BT4 and depth 1000) scored 5.493 and 5.498, so neither beat it and I kept
+- [fibmod] DONE (assay baseline 4.589): I built fibmod.py. It reduces n modulo the Pisano period 2*(M+1), which is 2000000016 for M=1000000007. Setup is a table of F(0..65537) plus a coarse table of F(h*65536) and F(h*65536-1) pairs. Each query is then one addition-formula combination, H0[h]*L[l+1] + H1[h]*L[l] mod M, instead of a ~31-ste

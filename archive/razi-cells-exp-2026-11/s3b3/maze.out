@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a plain BFS over a padded bytearray grid, with the frontier as lists and the visited marker overwriting cells in place. It prints the distance when it reaches E and -1 otherwise. It passes all three samples (2008, -1, 78) and runs in about 0.18 s on the 1000x1000 sample and 0.02 s on the small ones. The harness assay is registered at baseline 3.41467 with 3.6% noise. I am resting here rather than spending the remaining 81 energy on variants, since each step costs roughly as much as I have left and the current body is already correct and fast.",
+ "calls": 6,
+ "secs": 20.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 332.49870000000004,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 67.50130000000004,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.8079
+ }
+}

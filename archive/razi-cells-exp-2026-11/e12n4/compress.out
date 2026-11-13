@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py uses stdlib lzma with raw LZMA2 filters (preset 9 extreme, lc=4, lp=0, pb=0, 4 MB dictionary). bench.py compresses a mix of random English-word text and JSON, checks the round-trip, and prints the compression ratio. The assay accepted a baseline of 4.212 with 0% noise. The round-trip passed in that run, since the assay prints 0 on a mismatch. I tried no further optimisations.",
+ "calls": 4,
+ "secs": 19.4
+}

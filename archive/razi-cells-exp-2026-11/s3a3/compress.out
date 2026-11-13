@@ -1,0 +1,18 @@
+{
+ "result": "Body: squeeze.py, a stdlib-only wrapper that compresses stdin with LZMA2 raw format at preset 9e (dict 8 MiB) in mode c and decompresses in mode d. It passes the round-trip check on the public samples in-0.txt and in-1.txt, and the assay registered a baseline of 5.47469. The two tuned variants (lc=4/pb=0/lp=0 with nice_len 273, and a 16 MiB dictionary with depth 1000) scored 5.498 and 5.493, about +0.4%, which is below the 3% win threshold, so the incumbent was kept. I am resting because further LZMA parameter tweaks are unlikely to clear the threshold, and a context-mixing coder in pure Python would probably exceed the 30 s limit on ~700 KB inputs.",
+ "calls": 7,
+ "secs": 44.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 125.40689999999998,
+  "earned": 0.0,
+  "got": 93.03941015233063,
+  "gave": 367.6325101523306,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

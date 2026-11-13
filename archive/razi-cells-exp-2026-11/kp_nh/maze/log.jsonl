@@ -1,0 +1,15 @@
+{"step": 0, "usage": {"inp": 4, "out": 526, "cr": 0, "cw": 1525, "rs": 0, "usd": 0.0090805}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268519.13}
+{"step": 0, "act": {"do": "write", "path": "maze.py", "text": "<680 chars>"}, "res": "wrote maze.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794268519.13}
+{"step": 1, "usage": {"inp": 4, "out": 25, "cr": 1003, "cw": 1267, "rs": 0, "usd": 0.0036261}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268520.69}
+{"event": "assay", "cmd": "kit:maze", "runs": [2.6173394068111624, 2.6586472934174856, 2.629090251464426, 2.6747917948321547, 2.6924770548163557], "t": 1794268522.58}
+{"step": 1, "act": {"do": "assay"}, "res": "assay accepted: baseline median 2.65865, noise 2.8%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794268522.58}
+{"step": 2, "usage": {"inp": 4, "out": 165, "cr": 1003, "cw": 1351, "rs": 0, "usd": 0.0052361}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268525.08}
+{"event": "hold", "step": 2, "t": 1794268525.08}
+{"step": 2, "act": {"do": "done"}, "res": "refused: you have an assay and 5 steps left, but you have not tried to improve your body since registering it. Make at least one improvement attempt, then call done.", "route": "anthropic:claude-sonnet-5-5", "t": 1794268525.08}
+{"step": 3, "usage": {"inp": 4, "out": 134, "cr": 1003, "cw": 1521, "rs": 0, "usd": 0.0053511}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268526.63}
+{"event": "improve", "gain": 0.5866, "what": "try: Speed up BFS: pad grid with '#' border, avoid bounds checks, use bytes.translate for seen, bidirectional or set-based frontier ops; check e membership cheaply.", "t": 1794268538.63}
+{"event": "try", "idea": "Speed up BFS: pad grid with '#' border, avoid bounds checks, use bytes.translate for seen, bidirectional or set-based frontier ops; check e membership cheaply.", "expect": "20-40% faster", "runs": {"inc": [2.6769094140574947, 2.662833073773434, 2.680144513618943, 2.6704120731936563, 2.6756488181631477], "d": [4.1480157334208245, 4.256999323370823, 4.245072270232142, 4.211329426064498, 4.281949232586056]}, "won": true, "gain": 0.5866, "grow_secs": 12.0, "lesson": "", "t": 1794268538.64}
+{"step": 3, "act": {"do": "try", "idea": "Speed up BFS: pad grid with '#' border, avoid bounds checks, use bytes.translate for seen, bidirectional or set-based frontier ops; check e membership cheaply.", "expect": "20-40% faster"}, "res": "daughter WON: +59% vs incumbent (you expected 20-40% faster). ", "route": "anthropic:claude-sonnet-5-5", "t": 1794268538.64}
+{"step": 4, "usage": {"inp": 4, "out": 195, "cr": 1003, "cw": 2335, "rs": 0, "usd": 0.0079961}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268540.68}
+{"step": 4, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268540.68}
+{"event": "final", "final": 4.193827517303693, "baseline": 2.6586472934174856, "final_gain": 0.5774, "t": 1794268557.36}

@@ -1,0 +1,1 @@
+maze: maze.py = numpy vectorized layer BFS (padded flat grid, stamp-dedup), correct vs ref.py on random 30x30 tests + edge cases; 2000x2000 p=0.25 seed1 answer 3998 in ~0.22s. Assay registered (1/time, m1.txt). Adopted +9438% over pure-python BFS. Remaining: maybe micro-variants (int32 idx, early exit), then done.

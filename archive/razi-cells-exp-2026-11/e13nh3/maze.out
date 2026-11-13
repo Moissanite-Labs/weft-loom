@@ -1,0 +1,5 @@
+{
+ "result": "maze.py reads stdin as bytes into a padded bytearray grid. It runs a level-by-level BFS from S with the four neighbour checks unrolled, and it stops at E. It prints the distance, or -1 if E is unreachable. The assay accepted a baseline of 3.689. A daughter cell then beat that by 11% with this version, which uses unrolled neighbours and sys.stdin.buffer. I did not re-run the samples' out-N.txt comparison myself after the final change, so the evidence for correctness is the assay, which scores 0 on any wrong output.",
+ "calls": 9,
+ "secs": 35.8
+}

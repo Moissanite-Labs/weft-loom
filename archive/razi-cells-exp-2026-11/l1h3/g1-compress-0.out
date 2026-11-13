@@ -1,0 +1,18 @@
+{
+ "result": "squeeze.py is an LZMA2 raw-format compressor with a header byte that picks the best of five lc/lp/pb sets. It round-trips both public samples and is registered at baseline 5.50 with 0% noise. I made no changes this generation, so the gain is +0%. SENSE says the lineage once recorded a body about 28% better (my score is 0.78 of it). Reaching it would probably take a context-mixing coder, and pure Python would likely be too slow within the 30 s limit. I did not try one, so I did not spend the energy.",
+ "calls": 2,
+ "secs": 22.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 209.834,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 190.16600000000003,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 2,
+  "assay": true,
+  "sense": 0.7767
+ }
+}

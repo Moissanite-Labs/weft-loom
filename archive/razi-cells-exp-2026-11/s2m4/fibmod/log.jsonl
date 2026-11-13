@@ -1,0 +1,12 @@
+{"step": 0, "usage": {"inp": 4, "out": 770, "cr": 1928, "cw": 714, "rs": 0, "usd": 0.00049393}, "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "low", "cost": 12.9, "cap": 8000, "est": 3.3, "t": 1794285625.33}
+{"step": 0, "act": {"do": "write", "path": "fibmod.py", "text": "<623 chars>"}, "res": "wrote fibmod.py", "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "low", "next": ["light", "low"], "energy": 387.1, "t": 1794285625.33}
+{"step": 1, "usage": {"inp": 4, "out": 123, "cr": 1928, "cw": 1432, "rs": 0, "usd": 0.00026018}, "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "low", "cost": 10.6, "cap": 8000, "est": 1.7, "t": 1794285627.15}
+{"event": "assay", "cmd": "kit:fibmod", "runs": [2.5939240967954107, 2.612836146180641, 2.605370123511778, 2.6260857627382173, 2.355212571285363], "t": 1794285629.12}
+{"step": 1, "act": {"do": "assay"}, "res": "assay accepted: baseline median 2.60537, noise 10.4%. Wins must beat it by > 10.4%.", "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "low", "next": ["light", "low"], "energy": 376.5, "t": 1794285629.12}
+{"step": 2, "usage": {"inp": 4, "out": 1350, "cr": 1928, "cw": 1552, "rs": 0, "usd": 0.00088868}, "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "low", "cost": 16.9, "cap": 8000, "est": 2.6, "t": 1794285635.61}
+{"event": "variants", "path": "fibmod.py", "medians": {"inc": 2.56218448575566, "v0": 2.7542977107768523}, "best": "v0", "adopted": false, "gain": 0.075, "kinds": null, "arm": "ctrl", "t": 1794285637.94}
+{"step": 2, "act": {"do": "variants", "path": "fibmod.py", "versions": "<579 chars>", "why": "Trim per-bit operations and loop overhead in the fast-doubling body to gain speed while keeping outputs identical."}, "res": "medians inc=2.562, v0=2.754. kept incumbent.", "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "low", "next": ["light", "low"], "energy": 359.6, "t": 1794285637.95}
+{"step": 3, "usage": {"inp": 4, "out": 588, "cr": 1928, "cw": 2152, "rs": 0, "usd": 0.00058268}, "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "low", "cost": 13.8, "cap": 8000, "est": 3.2, "t": 1794285641.54}
+{"step": 3, "act": {"do": "rest"}, "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "low", "t": 1794285641.54}
+{"event": "rest", "gave": 345.7, "fit": 0.0, "age": 4, "t": 1794285641.54}
+{"event": "final", "final": 2.5837278521297433, "baseline": 2.605370123511778, "last_baseline": 2.605370123511778, "final_gain": -0.0083, "t": 1794285649.04}

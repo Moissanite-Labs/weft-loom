@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified sortints.py to read whitespace-separated integers from stdin and print them sorted one per line. Benchmarked on 1,000,000 fixed-seed random integers (plus edge-case verification for arbitrary-precision >64-bit integers, negative numbers, and mixed whitespace) via bench.py. By reading raw bytes from sys.stdin.buffer, splitting on whitespace in C, sorting in-place with key=int to avoid integer-to-string formatting overhead, and writing bulk joined bytes directly to sys.stdout.buffer, sortints.py achieves ~2.36 million integers per second (~0.42s for 1,000,000 ints, a +7290% speedup over naive parsing and printing).",
+ "calls": 16,
+ "secs": 687.2
+}

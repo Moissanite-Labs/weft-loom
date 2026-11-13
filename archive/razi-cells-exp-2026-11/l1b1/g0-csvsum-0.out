@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a plain-Python body: it reads stdin as bytes, decodes, splits lines, parses each row by index, collects float values per category in a dict, and writes sorted 'cat,sum' lines using math.fsum with 2 decimals. It passes the available sample (in-0). The assay registered a baseline of 1.7487 (noise 13.8%). Both variants I tried were slower or within noise of the incumbent (tokenizing variant +7%, bytes split variant +14% median, neither beyond noise), so I kept the incumbent and am resting to return unspent energy to the lineage store.",
+ "calls": 8,
+ "secs": 52.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 161.3619,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 238.6381,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 8,
+  "assay": true,
+  "sense": 0.7528
+ }
+}

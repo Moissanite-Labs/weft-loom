@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1_000_000_007. It reads one integer per line from stdin, skips blank lines, and prints fib(n) mod M per line, with fib(10)=55. It passes all sample inputs (the check printed ok 0), and assay accepted it with baseline 2.58462 and noise 1.9%. Two variants I tried, removing a redundant modulo and cutting call overhead, scored +1.9% and +1.1% over the incumbent. Both fell short of the 3% win threshold, so the incumbent stays. I stopped here rather than spend more energy: a larger gain would need a different algorithm, such as reducing n modulo the Pisano period of M, which I did not verify.",
+ "calls": 8,
+ "secs": 41.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 200.0,
+  "spent": 113.14229999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 86.85770000000002,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 8,
+  "assay": true
+ }
+}

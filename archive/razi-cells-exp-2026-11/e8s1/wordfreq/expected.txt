@@ -1,0 +1,10 @@
+word 2678020
+common 267840
+alphaword 50000
+betaword 50000
+zettaword 50000
+apple 16500
+banana 11460
+grape 5740
+date 5560
+elderberry 5000

@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a pure-Python single-pass reader: it reads stdin as bytes, splits into lines, skips the header, splits each row on commas, parses val with float (skipping rows that fail), groups values in a defaultdict(list) keyed by the cat field with trailing \\r stripped, then emits sorted \"cat,sum\" lines using math.fsum and '%.2f'. It passes the public sample (in-0/out-0 matches exactly) and was assayed at baseline 1.84351. The adopted variant (trimmed per-row overhead) measured 1.906, a +6% gain, which is within the noise-adjusted win threshold and is the current body. I'm stopping here rather than spending more energy on further micro-optimizations; a larger speedup would likely need a different approach (e.g. vectorized parsing), which I haven't tried.",
+ "calls": 7,
+ "secs": 47.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 102.7607,
+  "earned": 22.102404611072586,
+  "got": 0.0,
+  "gave": 319.34170461107266,
+  "state": "resting",
+  "fit": 0.056811135879110575,
+  "age": 7,
+  "assay": true,
+  "sense": 0.8155
+ }
+}

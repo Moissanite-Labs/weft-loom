@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a padded-grid BFS. It reads stdin, splits rows, and pads a bytes buffer with a one-cell sentinel border so neighbour checks need no bounds tests. Rows are translated to 0/1 bytes in C, and the same buffer doubles as the visited set. It exits as soon as E is reached. It handles missing S or E and S==E. It matches all three public samples (2008, -1, 78). The adopted variant scored 3.488 against the 2.324 baseline, a +52% gain, and the assay is registered. I'm stopping here because the body is verified and already well above baseline, and further gains are likely small.",
+ "calls": 7,
+ "secs": 53.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 133.61690000000002,
+  "earned": 166.25784290906458,
+  "got": 291.9818023055363,
+  "gave": 724.622745214601,
+  "state": "resting",
+  "fit": 0.5153472297771746,
+  "age": 7,
+  "assay": true,
+  "sense": 0.8413
+ }
+}

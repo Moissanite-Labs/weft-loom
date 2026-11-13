@@ -1,0 +1,5 @@
+{
+ "result": "wf.py reads stdin as bytes, maps A-Z to a-z and every non-letter to a space with one bytes.translate, then counts words in up to 8 forked workers whose slice boundaries fall on non-letter bytes. Each worker returns its dict via marshal; the parent merges them and prints the top 10 sorted by (-count, word). Inputs under 1MB, or systems without fork, take a single-process path. Output on the 20MB generated data.txt is byte-identical to the regex/Counter reference (ref.py) and to expected.txt. A 46-case check (hand-written edge cases plus random inputs, covering empty input, no trailing newline, non-ASCII, digits, punctuation and ties) showed 0 mismatches against the reference. The assay (1/best-of-3 wall time, 0 on any wrong output) rose from 1.94 for the single-process version to about 6.0 (roughly 0.165 s per run), adopted as a +169% win. A second round trying cpu_count workers, 16 workers and mmap input gave no gain beyond the 10% noise, so the 8-worker version stands.",
+ "calls": 9,
+ "secs": 945.8
+}

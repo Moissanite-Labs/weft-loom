@@ -1,0 +1,18 @@
+{
+ "result": "My body is maze.py: it reads the grid from stdin as bytes, pads it with a '#' border, pre-marks walls in a visited bytearray via bytes.translate, and runs a level-by-level BFS from S with unrolled 4-neighbour checks, exiting as soon as E is discovered (prints -1 if the frontier empties). It passes all three samples (2008, -1, 78). Its adopted variant won +28% over the baseline on the bench (median 3.52 vs 2.75), so I'm resting here rather than spending more energy on a marginal micro-optimization.",
+ "calls": 8,
+ "secs": 68.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 170.13190000000003,
+  "earned": 98.40608368536581,
+  "got": 0.0,
+  "gave": 328.27418368536576,
+  "state": "resting",
+  "fit": 0.27891902474620633,
+  "age": 8,
+  "assay": true,
+  "sense": 0.8633
+ }
+}

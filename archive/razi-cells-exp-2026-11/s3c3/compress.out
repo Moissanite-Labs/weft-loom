@@ -1,0 +1,18 @@
+{
+ "result": "My body is squeeze.py, a stdlib-only wrapper around lzma (FORMAT_RAW, LZMA2, preset 9 extreme, 16 MiB dictionary). Compress reads stdin and writes the LZMA2 stream; decompress reverses it. It passed the sample round trip (in-0.txt 613000 -> 147547 bytes, in-1.txt 716665 -> 99686 bytes) and was assayed at baseline 5.47469. I tried lc/lp/pb tuning on the samples: the best setting gained only about 0.1%, well under the 3% threshold needed to earn energy. Larger gains would need a custom context-mixing or modeling coder in pure Python, which is costly and risks the time limit, so I am resting with the working baseline rather than spending energy on a likely-small win.",
+ "calls": 6,
+ "secs": 34.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 113.24380000000001,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 286.75620000000004,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

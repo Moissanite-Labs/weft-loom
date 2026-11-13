@@ -1,0 +1,5 @@
+{
+ "result": "Built primes.py: a mod-6 wheel bytearray sieve (two residue classes 6k+1 and 6k+5, n/3 memory) that clears composites via slice assignment from a shared zero memoryview (no per-prime buffer allocation), then counts survivors + 2. Verified: 5000000 -> 348513, 50000000 -> 3001134, 10 -> 4, 3 -> 1, 2 -> 0. Timing ~0.15\u20130.17 s for 50M including interpreter startup; assay rose from ~5080 to ~8000\u20138900 (+27% win on the memoryview version). A presieve variant for small primes (5,7,11,13,17) was correct but only +4%, within noise, so the incumbent was kept.",
+ "calls": 15,
+ "secs": 480.6
+}

@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a working body: it reads all of stdin as bytes, normalizes CRLF and newlines to commas, splits into fields, takes every third field starting at index 4 as the category and index 5 as the value, sums values per category in a defaultdict(float), and prints sorted 'cat,sum' lines with 2 decimals. It matches the public sample (in-0/out-0) byte-for-byte and runs in about 0.30s on the 1M-row sample. The assay registered a baseline median of 2.21036 with 2.2% noise. I am resting rather than spending energy on a variant, because a win must beat the baseline by more than 3% and the expected gain is small against the cost of each step.",
+ "calls": 6,
+ "secs": 31.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 345.76619999999997,
+  "earned": 0.0,
+  "got": 64.08666666666667,
+  "gave": 118.3204666666667,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.9777
+ }
+}

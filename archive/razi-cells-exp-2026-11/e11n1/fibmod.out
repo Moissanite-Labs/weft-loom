@@ -1,0 +1,5 @@
+{
+ "result": "I built fibmod.py, which computes fib(n) mod 1e9+7 with fast doubling in about 60 steps for n up to 1e18. I checked it three ways. fib(10) gives 55. fib(1000) gives 517691607, which matches a brute-force big-integer loop. fib(10**18) gives 209783453 from the command line, but I had no independent value to compare it against. The assay baseline is 4.12 runs per second over 20000 calls near 1e18, with 1.3% noise. I did not try any optimisation beyond this first version.",
+ "calls": 4,
+ "secs": 22.9
+}

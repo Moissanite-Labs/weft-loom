@@ -1,0 +1,1 @@
+{"cmd": "python3 -c \"\nimport time,subprocess,sys\nsys.argv=['x']\nimport fibmod\nt=time.time()\nfor i in range(20000):r=fibmod.fib(10**18-i)\nd=time.time()-t\nok=fibmod.fib(10)==55 and fibmod.fib(1000)==517691607\nprint(1/d if ok else 0)\"", "baseline": 4.095524055309979, "noise": 0.005084995498856291}

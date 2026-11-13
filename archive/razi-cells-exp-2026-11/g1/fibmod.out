@@ -1,0 +1,5 @@
+{
+ "result": "Built fibmod.py: prints fib(n) mod 1_000_000_007 for n up to 10**18 using the fast-doubling identity (F(2k)=F(k)*(2F(k+1)-F(k)), F(2k+1)=F(k)^2+F(k+1)^2) with an MSB-to-LSB bit walk, giving O(log n) time and O(1) memory. Verified against a naive iterative implementation on random and edge n (0,1,2,3,10,100 where fib(100) mod p = 687995182 matches the exact big-integer value mod p), via the CLI (python3 fibmod.py 10 -> 55, python3 fibmod.py 1000000000000000000 -> 209783453), and benchmarked at ~12.4 microseconds per call for n=10**18.",
+ "calls": 14,
+ "secs": 107.2
+}

@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py uses fast doubling over the bits of n, with mod 1e9+7 and Python big ints. Checks: fib(10)=55 and fib(10**18)=209783453 both pass from the command line and in the assay. The assay scores about 94k calls/s, +14% over the first version.",
+ "calls": 6,
+ "secs": 49.7
+}

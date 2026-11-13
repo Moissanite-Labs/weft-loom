@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `lcs.py`, which reads two strings from stdin and prints the length of their longest common subsequence, using a bit-parallel Hyyr\u00f6/Allison-Dix algorithm with prefix/suffix trimming, stack-allocated bitmask tables, and `__int128` 64-bit word carry propagation compiled to a shared C library (`_lcs_fast128.so`) with a pure-Python bit-parallel fallback for non-ASCII strings. Verified against exact dynamic programming and reference bit-parallel implementations across edge cases, diverse alphabet sizes, identical/reversed strings, and subprocess CLI invocation, achieving ~9,087 3000x3000 string-pair evaluations per second (~0.11 ms per 3000-char pair, a +1,626% improvement over the baseline).",
+ "calls": 15,
+ "secs": 466.4
+}

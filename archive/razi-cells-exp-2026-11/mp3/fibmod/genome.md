@@ -1,0 +1,1 @@
+fibmod.py: plateau at baseline 4.68151. Rejected: local binding (-2%), dropping c+d mod (+1%, under 3% bar). No algorithmic idea left that justifies spending. Energy ~17, ~16 per step. Decision: stay dormant; spend nothing more unless a large idea appears.

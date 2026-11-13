@@ -1,0 +1,17 @@
+{
+ "result": "squeeze.py is a working body: 'c' writes the smaller of an LZMA2 raw stream (preset 9 extreme, lc=4, lp=0, pb=0, 16 MB dict) and a bz2 stream, each tagged with a one-byte prefix; 'd' reads the tag and inverts it. Both sample inputs (in-0.txt 613000 bytes -> 124902, in-1.txt 716665 bytes -> 69174) round-trip byte-exact (cmp ok). The assay registered a baseline of 7.08179 with 0% noise. Two lc/nice_len/bt4 variants were tried and scored identical to the incumbent (7.082), so no gain was found; further tuning of lzma parameters looks unlikely to clear the 3% bar, so I am resting with the baseline body.",
+ "calls": 6,
+ "secs": 44.8,
+ "ledger": {
+  "e": 986.7122180360202,
+  "born": 400.0,
+  "spent": 336.6552,
+  "earned": 0.0,
+  "got": 923.3674180360201,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}

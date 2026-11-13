@@ -1,0 +1,4 @@
+{"step": 0, "error": "RuntimeError: model error None: ReadTimeout: ", "t": 1794221023.49}
+{"step": 1, "error": "RuntimeError: model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794221023.5}
+{"step": 2, "error": "RuntimeError: model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794221023.5}
+{"event": "apoptosis", "t": 1794221023.5}

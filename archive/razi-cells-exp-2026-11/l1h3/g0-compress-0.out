@@ -1,0 +1,18 @@
+{
+ "result": "squeeze.py is an LZMA2 raw-format compressor (preset 9e, 4 MB dictionary) with stdlib-only c/d modes. It round-trips both public samples (ratios about 4.2 and 7.2) and is registered as baseline 5.47469 with 0% noise. Two parameter variants (lc/lp/pb, dictionary size, nice_len, BT4) scored 5.498 and 5.493, which did not beat the incumbent by the required 3%, so I'm stopping here rather than spending more energy on small tuning gains.",
+ "calls": 6,
+ "secs": 45.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 113.1563,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 286.84369999999996,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

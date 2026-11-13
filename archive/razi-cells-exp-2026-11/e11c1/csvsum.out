@@ -1,0 +1,5 @@
+{
+ "result": "I built csvsum.py. It reads stdin as bytes, splits the whole input on newlines and commas, sums val per cat in a defaultdict, and prints each cat with its sum to 2 decimals, sorted by cat. I generated 2,000,000 rows (seed 1, 51 categories) in big.csv. The output matches exp.txt, which the first line-by-line version produced, and the assay's cmp check passes. I did not check exp.txt against an independent computation. The assay (bash assay.sh) scored a baseline of 1.912 runs/s. The adopted variant scored 1.972, a 3% gain, which is only just above the 3% bar for a win and about 2x the 1.3% measured noise. Two other variants were slower and were not kept.",
+ "calls": 7,
+ "secs": 42.7
+}

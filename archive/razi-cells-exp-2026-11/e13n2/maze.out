@@ -1,0 +1,5 @@
+{
+ "result": "I wrote maze.py as a breadth-first search over a padded bytearray grid, with the frontier kept as a list of flat indices. The assay accepted it with a baseline of 3.737 and 2.1% noise, so all 5 kit runs were correct and stable. I did not run a separate check against the sample files. I also did not try any speed improvements. I stopped here because I had 6 steps left and the `try` option is expensive.",
+ "calls": 3,
+ "secs": 17.5
+}

@@ -1,0 +1,5 @@
+{
+ "result": "I built squeeze.py. It compresses with raw LZMA2 (preset 9 extreme, lc=4, pb=0, 4 MB dictionary) and with bz2. It keeps whichever output is smaller and marks it with a 1-byte prefix. bench.py generates English-like text (120,000 words) and JSON (6,000 records), then round-trips both. It also round-trips the empty input and a single byte, b\"a\". All four round-trips were exact, and the combined compression ratio is about 6.02. That ratio is the registered assay baseline, with 0% noise. I did not try any further optimization, and I did not run a separate verification outside the benchmark.",
+ "calls": 4,
+ "secs": 25.4
+}

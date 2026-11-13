@@ -1,0 +1,5 @@
+{
+ "result": "Built `primes.py` backed by a compiled C shared library (`libprimes.c` -> `libprimes.so`, with a pure-Python fallback) implementing the Lucy_Hedgehog / Meissel-Lehmer sublinear prime-counting algorithm (`O(N^(3/4))` time, `O(N^(1/2))` space) over odd numbers only, with a specialized 32-bit stack-allocated fast path (`pi_limit_32`) for inputs up to `2^32 - 1` and a 64-bit path (`pi_limit`) for larger inputs. Verified that `python3 primes.py 5000000` outputs `348513`, all 15 edge and large test cases in `bench.py` pass (up to `N = 100,000,000`), and the benchmark throughput reaches ~6,317 iterations/s (up from the 3.02 baseline, a >2000x speedup).",
+ "calls": 34,
+ "secs": 757.2
+}

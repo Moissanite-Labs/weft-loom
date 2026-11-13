@@ -1,0 +1,5 @@
+{"step": 0, "act": {"do": "sh"}, "res": "exit 1\n/usr/bin/g++\ng++: error: couldn't create cache file '/var/folders/26/tt22z54s45b9wx307z93pmjw0000gn/T/xcrun_db-6PukETcP' (errno=Operation not permitted)\nxcrun: error: couldn't create cache file '/var/folders/26/tt22z54s45b9wx307z93pmjw0000gn/T/xcrun_db-L6qQrYaq' (errno=Operation not permitted)\nld: file cannot be open()ed, errno=1 (Operation not permitted) path=/Users/kethuda/Work/razi-cells/exp/b6/wordfreq/.tmp/wf_native-8e20bf.o in '/Users/kethuda/Work/razi-cells/exp/b6/wordfreq/.tmp/wf_", "route": "openai:gpt-6-astra", "t": 1794221130.55}
+{"step": 1, "error": "RuntimeError: model error None: ReadTimeout: ", "t": 1794221201.94}
+{"step": 2, "error": "RuntimeError: model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794221201.95}
+{"step": 3, "error": "RuntimeError: model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794221201.96}
+{"event": "apoptosis", "t": 1794221201.96}

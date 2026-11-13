@@ -1,0 +1,13 @@
+{"step": 0, "act": {"do": "write", "path": "fibmod.py", "text": "<378 chars>"}, "res": "wrote fibmod.py", "route": "anthropic:claude-fable-5-2", "t": 1794252444.6}
+{"step": 1, "act": {"do": "sh"}, "res": "exit 0\nOK 209783453\n209783453\n\nreal\t0m0.039s\nuser\t0m0.019s\nsys\t0m0.011s\n", "route": "anthropic:claude-fable-5-2", "t": 1794252451.65}
+{"step": 2, "act": {"do": "sh"}, "res": "exit 0\n88773.3\n85814.5\n87017.7\n83471.7\n\nreal\t0m1.316s\nuser\t0m1.046s\nsys\t0m0.047s\n", "route": "anthropic:claude-fable-5-2", "t": 1794252469.92}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [91146.4, 87306.6, 94228.7, 93605.3, 92368.1], "t": 1794252565.7}
+{"step": 3, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 92368.1, noise 7.5%. Wins must beat it by > 7.5%.", "route": "anthropic:claude-fable-5-2", "t": 1794252565.7}
+{"step": 4, "act": {"do": "sh"}, "res": "exit 0\nOK 209783453\n224538.6\n223505.9\n225993.6\n209783453\n\nreal\t0m0.030s\nuser\t0m0.017s\nsys\t0m0.008s\n", "route": "anthropic:claude-fable-5-2", "t": 1794252598.73}
+{"step": 5, "act": {"do": "sh"}, "res": "timeout", "route": "anthropic:claude-fable-5-2", "t": 1794252653.62}
+{"step": 6, "act": {"do": "sh", "cmd": "timeout 10 python3 check.py; echo \"check exit $?\"; timeout 15 python3 bench.py; echo \"bench exit $?\""}, "res": "exit 0\ncheck exit 127\nbench exit 127\n/bin/sh: timeout: command not found\n/bin/sh: timeout: command not found\n", "route": "anthropic:claude-fable-5-2", "t": 1794252658.61}
+{"step": 7, "act": {"do": "sh"}, "res": "exit 0\nOK 209783453\ncheck exit 0\n2219068.2\n2247622.4\n209783453\n\nreal\t0m0.031s\nuser\t0m0.018s\nsys\t0m0.009s\n", "route": "anthropic:claude-fable-5-2", "t": 1794252675.21}
+{"step": 8, "act": {"do": "sh", "cmd": "python3 check.py; python3 bench.py; python3 fibmod.py 10; python3 fibmod.py 0; python3 fibmod.py 1000000000000000000; ls"}, "res": "exit 0\nOK 209783453\n2219355.5\n55\n0\n209783453\nASSAY.json\nNEED\n__pycache__\nbench.py\ncheck.py\nfibmod.py\nfibmod_dbl.bak\nlog.jsonl\nvariants.jsonl\n", "route": "anthropic:claude-fable-5-2", "t": 1794252684.9}
+{"step": 9, "act": {"do": "sh"}, "res": "exit 0\nfib_dbl calls/s 192129.45508453957\nCLI ms/run 29.62755624903366\nbare python ms/run 27.547495800536126\ntable init ms 1.1246660724282265\n", "route": "anthropic:claude-fable-5-2", "t": 1794252698.26}
+{"step": 10, "act": {"do": "done"}, "route": "anthropic:claude-fable-5-2", "t": 1794252707.16}
+{"event": "final", "final": 2238430.2, "baseline": 92368.1, "final_gain": 23.2338, "t": 1794252929.16}

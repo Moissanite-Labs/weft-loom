@@ -1,0 +1,5 @@
+{
+ "result": "Built fibmod.py. It uses fast doubling mod 1e9+7 and reads all stdin at once. It matched the expected output on sample in-0.txt. The assay accepted it with a baseline of 2.316 and 3.4% noise. I did not try any improvements.",
+ "calls": 5,
+ "secs": 19.8
+}

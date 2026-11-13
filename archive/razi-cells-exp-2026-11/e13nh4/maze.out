@@ -1,0 +1,5 @@
+{
+ "result": "maze.py is a BFS over a padded bytearray grid with frontier lists. It stops as soon as it reaches E and prints -1 if E is unreachable. The assay accepted it with a baseline of 3.638 and 1.8% noise. I did not run it against the public samples myself. I also did not test any speedup. Both daughter attempts (an unrolled BFS and a bit-parallel big-int BFS) were refused because daughters can't spawn daughters, so neither idea has been tested.",
+ "calls": 12,
+ "secs": 40.8
+}

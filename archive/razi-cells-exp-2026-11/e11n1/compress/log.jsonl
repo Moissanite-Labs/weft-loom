@@ -1,0 +1,10 @@
+{"step": 0, "usage": {"inp": 4, "out": 708, "cr": 0, "cw": 1333, "rs": 0, "usd": 0.0104205}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265535.4}
+{"step": 0, "act": {"do": "write", "path": "squeeze.py", "text": "<304 chars>"}, "res": "wrote squeeze.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794265535.4}
+{"step": 1, "usage": {"inp": 4, "out": 466, "cr": 1030, "cw": 773, "rs": 0, "usd": 0.0068065}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265540.29}
+{"step": 1, "act": {"do": "write", "path": "bench.py", "text": "<933 chars>"}, "res": "wrote bench.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794265540.29}
+{"step": 2, "usage": {"inp": 4, "out": 54, "cr": 1030, "cw": 1547, "rs": 0, "usd": 0.0046215}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265542.04}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [4.320323477066226, 4.320323477066226, 4.320323477066226, 4.320323477066226, 4.320323477066226], "t": 1794265546.58}
+{"step": 2, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 4.32032, noise 0.0%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794265546.58}
+{"step": 3, "usage": {"inp": 4, "out": 218, "cr": 1030, "cw": 1675, "rs": 0, "usd": 0.0065815}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265549.6}
+{"step": 3, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265549.6}
+{"event": "final", "final": 4.320323477066226, "baseline": 4.320323477066226, "final_gain": 0.0, "t": 1794265553.35}

@@ -1,0 +1,5 @@
+{
+ "result": "Built wf.py: a fork-parallel word counter. It detects whether stdin is a seekable file; if so each of N=cpu_count child processes preads its own line-aligned byte slice (avoiding a serial 20MB read in the parent), otherwise falls back to a single read and in-memory slicing. Each child lowercases and tokenizes with a single bytes.translate (uppercase\u2192lowercase, non-word bytes\u2192space) followed by split(), counts with collections.Counter, and sends compact 'word count' text back over a pipe; the parent merges into a dict and prints the top 10 sorted by (-count, word). Verified: output on the 20MB generated big.txt matches expected.txt byte-for-byte (diff clean), and a small edge-case test ('B b a / A a. c') gives correct case-folded, tie-by-word ordering. Assay (1000/min time over 3 runs) rose from baseline 1290 (regex+Counter) to ~7800 (~6x faster, ~0.13s per 20MB run), with the parallel-pread variant adopted as a +17% win over serial parent reads.",
+ "calls": 15,
+ "secs": 1137.7
+}

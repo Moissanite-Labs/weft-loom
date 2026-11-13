@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified csvsum.py to read a CSV from stdin with header 'id,cat,val' and print each category and the sum of val formatted to 2 decimal places, sorted by category. Generated a 2,000,000-row benchmark dataset (data.csv, ~47.8 MB) and reference output (expected.txt). By using a compiled C shared library (_fastcsv_v2.so via ctypes) that mmaps stdin fd 0 (with fallback to reading piped buffers), parses floats directly in-place, aggregates into an open-addressed FNV-1a hash table, and sorts the categories with qsort, throughput improved from 3.71M rows/s to 26.45M rows/s (+616%, processing 2,000,000 rows in ~0.075 seconds) while matching expected.txt byte-for-byte.",
+ "calls": 15,
+ "secs": 825.1
+}

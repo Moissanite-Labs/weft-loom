@@ -1,0 +1,5 @@
+{
+ "result": "I built csvsum.py. It reads the CSV from stdin, sums val per cat in a defaultdict, and prints each cat with its sum to 2 decimals, sorted by cat. I generated 2,000,000 rows (34 MB) with random.seed(1) and 51 categories. The output matches exp.txt, which I computed independently with the csv module, and cmp confirms it. The assay is registered at about 1.8 runs/s, so each run takes roughly 0.55 s. I did not try to optimize it further.",
+ "calls": 5,
+ "secs": 26.8
+}

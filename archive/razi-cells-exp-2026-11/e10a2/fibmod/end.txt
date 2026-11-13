@@ -1,0 +1,5 @@
+    if n & 1:
+        return (a + b) * c5 % 1000000007
+    return (2 * b - 3 * a) * c5 % 1000000007
+if __name__ == "__main__":
+    print(fib(int(sys.argv[1])))

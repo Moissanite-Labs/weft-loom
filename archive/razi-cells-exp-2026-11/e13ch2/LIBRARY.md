@@ -1,0 +1,7 @@
+- [fibmod] WIN +83%: fibmod.py variant () (assay: kit:fibmod)
+- [maze] WIN +18%: maze.py variant () (assay: kit:maze)
+- [csvsum] DONE (assay baseline 1.433): I wrote csvsum.py. It reads stdin as bytes and parses each val into integer cents without floats. It sums the cents per cat in a dict and prints the cats sorted with 2 decimals. Output matches out-0.txt on the public sample, which has 1,000,000 rows. The assay accepted a baseline of 1.43 s with 2.2%
+- [maze] DONE (assay baseline 3.516): maze.py is a BFS over a bytearray grid with a one-cell wall border. It stops as soon as it reaches E and prints -1 if E is unreachable. The assay accepted a baseline score of 3.516 with 1.4% noise. One variant, which unrolled the four-neighbour loop, scored 4.144 and was adopted (+18%). I did not ru
+- [fibmod] DONE (assay baseline 2.629): fibmod.py computes fib(n) mod 1e9+7 with fast doubling. It reduces n modulo the Pisano period 2000000016 first, which shortens the bit loop. It matches out-0.txt on the public sample (cmp ok). The assay baseline was 2.63 and the variant with the Pisano reduction scored 4.81 (+83%), so that variant w
+- [compress] no gain: 1 variants of squeeze.py (); best +0%
+- [compress] DONE (assay baseline 7.082): squeeze.py picks the smaller of two outputs: raw LZMA2 (preset 9 extreme, lc=4, pb=0) or bz2. It puts a one-byte tag ('L' or 'B') ahead of the payload, and decompression reads the tag to choose the decoder. The assay accepted a baseline compression ratio of 7.08 with 0% noise. I tried one variant th

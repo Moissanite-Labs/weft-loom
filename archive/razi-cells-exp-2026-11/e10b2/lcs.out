@@ -1,0 +1,5 @@
+{
+ "result": "lcs.py is built and verified: it reads two lines on stdin and prints the LCS length, using a bit-parallel (Hyyro) algorithm on Python big ints with the mask trimmed every 32 characters. test.py passes (\"ok 1972\"): 3000 random cases against a DP reference, a 3000-char ACGT pair through the real CLI, and edge cases (empty input, missing second line, CRLF, no trailing newline); `AGGTAB/GXTXAYB` gives 4. On the assay (bench.py, in-process calls/s on the 3000-char pair, after a CLI correctness check) the final body scored 602\u2013636 in my last three runs against the registered baseline of 557.7 (noise 4.4%); the chunked-masking edit was made after that baseline, and I did not re-register the assay. A side-by-side run in one process showed 607 for the chunked version against 538 for per-character masking. End to end the CLI takes about 42 ms per run, of which about 40 ms is Python startup and about 1.6 ms is the LCS computation. I therefore did not add a C helper: the ctypes import alone costs about 7 ms, so it would raise the assay number while making the real command slower.",
+ "calls": 12,
+ "secs": 621.3
+}

@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `maze.py` to compute the 4-neighbour shortest path length from `S` to `E` (or `-1` if unreachable) on a `#`/`.` grid read from stdin. The implementation uses an in-place flat `bytearray` grid with sentinel border padding (reusing raw newline characters as row separators to avoid line-splitting copies), direct offset calculation for `S` and `E`, and a level-synchronous bidirectional BFS that expands whichever frontier (`qs` or `qe`) is smaller at each step using unrolled 4-neighbour walrus indexing. Correctness and speed are verified by `bench.py` across 7 small edge-case tests and 4 fixed-seed 2000x2000 mazes (sparse, dense braided, unreachable blocked, and winding corridors), improving the benchmark score from the initial 48.07 baseline to 69.59 (+45% speedup, solving all four 2000x2000 mazes including subprocess overhead in ~1.43 seconds total).",
+ "calls": 15,
+ "secs": 850.9
+}

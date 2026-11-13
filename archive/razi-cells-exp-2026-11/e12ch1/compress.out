@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py wraps stdlib lzma. It uses raw LZMA2 with preset 9 extreme, lc=4, lp=0, pb=0 and a 4 MB dictionary. bench.py generates a mix of English-like text and JSON, asserts that decompress(compress(d)) equals d, and prints the compression ratio, which is 6.24. I tried two variants that changed lc to 3, set mf=BT4, nice_len=273 and depth=1000. Neither beat the baseline, so I kept the original. I did not run any further tests beyond the bench round-trip.",
+ "calls": 6,
+ "secs": 28.9
+}

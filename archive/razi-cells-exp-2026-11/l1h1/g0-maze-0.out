@@ -1,0 +1,18 @@
+{
+ "result": "My body is maze.py: it reads all of stdin as bytes, pads the grid with a border of walls in one flat bytearray, then runs a level-by-level BFS from S with 4-neighbour moves and stops as soon as E is reached. It prints -1 when S or E is missing or unreachable, and 0 when S equals E. It passes all three samples (in-0..2 vs out-0..2: 2008, -1, 78) and was accepted by assay with baseline 3.35 (noise 6%). I am resting rather than spending energy on variants, since the remaining gains are uncertain and the body is already a tight single-pass BFS.",
+ "calls": 7,
+ "secs": 27.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 146.19729999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 253.80270000000002,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.8272
+ }
+}

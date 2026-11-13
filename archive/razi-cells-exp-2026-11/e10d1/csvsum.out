@@ -1,0 +1,5 @@
+{
+ "result": "Built csvsum.py: reads the CSV from stdin (header id,cat,val), sums val per cat using exact integer milli-units (fast path for 3-decimal values via byte slicing, Decimal fallback for other formats incl. exponents, rounding to 2 decimals via Decimal quantize), and prints \"cat,sum\" sorted by cat. When stdin is a regular file \u22654 MB it forks up to 8 workers that each pread a newline-aligned byte range, summarize it, and send partial integer sums back through pipes which the parent merges; otherwise it runs serially. Verified byte-for-byte against expected.txt on a generated 2,000,000-row data.csv (gen.py, seed 42) \u2014 diff clean; also checked small edge inputs (negative, integer, 1e0, and 0.255 rounding cases). Assay (1000/wall-seconds on the 2M-row file) rose from baseline ~1099 (\u22480.9 s serial) to ~4050 (\u22480.25 s) with the parallel version.",
+ "calls": 15,
+ "secs": 541.9
+}

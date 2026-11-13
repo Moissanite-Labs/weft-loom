@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified wf.py to read text from stdin, extract lowercase alphabetic words, and print the 10 most common words with their counts as 'word count', breaking ties alphabetically by word. Generated a 20MB benchmark dataset (input20m.txt) and verified correctness on both edge cases (case insensitivity, punctuation/digit delimiters, alphabetical tie-breaking, pipes/streams) and the 20MB dataset. By combining a precomputed 256-byte ASCII translation table, cache-friendly 256KB chunked processing, threshold pre-filtering with heapq.nlargest before sorting, and multi-process parallel mmap + os.fork across up to 8 workers for large file inputs (with automatic fallback to chunked os.read for pipes), throughput improved from the 59.04 MB/s baseline to 210.2 MB/s (+256%, processing 20MB in ~95ms).",
+ "calls": 15,
+ "secs": 852.8
+}

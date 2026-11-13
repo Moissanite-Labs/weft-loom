@@ -1,0 +1,5 @@
+{
+ "result": "Built lcs.py: bit-parallel (Hyyr\u00f6) LCS length using a 256-entry list of bitmasks over the shorter string, no per-character branch, plus a two-line stdin/stdout CLI. Correctness is guarded by assay.py, which checks ~1200 random small cases plus medium cases (random, near-identical, periodic, disjoint) against a reference DP, and an end-to-end CLI test (AGGTAB/GXTXAYB -> 4); any mismatch prints 0. The fitness workload runs three 3000-char cases (4-letter DNA-ish, 26-letter, binary) repeatedly for 0.5 s. Final adopted variant scored 555.7 cases/s vs the previous 502.7 baseline (+11%), well beyond the 3% noise threshold, with zero correctness failures.",
+ "calls": 16,
+ "secs": 306.6
+}

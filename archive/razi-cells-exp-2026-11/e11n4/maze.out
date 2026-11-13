@@ -1,0 +1,5 @@
+{
+ "result": "I built maze.py, a level-by-level BFS on a padded bytearray grid. It prints the shortest S-to-E path length, or -1 if there is none. bench.py checks it against a reference deque BFS on 30 random 12x12 mazes. It then times a 2000x2000 maze generated with seed 1, and the answer on that maze must match the reference. The assay is registered with a baseline of 1.693 (1/seconds, about 0.6 s per solve) and 0.7% noise. I made no improvement attempts. One gap: the CLI path (`python3 maze.py` reading stdin) was never run directly. It splits stdin on whitespace and passes the lines to solve, which is the function bench.py tests.",
+ "calls": 4,
+ "secs": 50.5
+}

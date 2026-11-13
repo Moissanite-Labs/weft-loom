@@ -1,0 +1,17 @@
+{
+ "result": "csvsum.py is done. It flattens the whole CSV into one token stream (CR removed, newlines turned into commas, split on commas), drops the 'id,cat,val' header, and sums val per cat with a dict over stride-3 zipped slices. It prints 'cat,sum' lines sorted by cat with 2 decimals. It passes the public sample (in-0 matches out-0). The assay registered a baseline of 2.00046 (noise 5%), and the flattened variant was adopted with a measured +6% gain over the earlier per-line version. I stopped here because further gains would need to beat the 5% noise band, and I did not find a clear candidate for that.",
+ "calls": 11,
+ "secs": 42.9,
+ "ledger": {
+  "e": 1129.9431371963976,
+  "born": 400.0,
+  "spent": 176.4329,
+  "earned": 23.416204607987765,
+  "got": 882.9598325884098,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.060287938700547716,
+  "age": 11,
+  "assay": true
+ }
+}

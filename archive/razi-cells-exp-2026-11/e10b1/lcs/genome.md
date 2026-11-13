@@ -1,0 +1,3 @@
+STATE: lcs.py = bit-parallel LCS (Hyyro) on Python big ints, masks via translate+int(..,2), precomputed (mk, full^mk) pairs, update v=(v+(v&mk))|(v&nm), mask with `full` only every K=64 steps. Verified vs DP: ref.py unit+cli ok, bench3.py 3000 random incl. unicode ok, extra random test bad 0, 3000-char alphabets 2/4/26 match DP, CLI edge cases (CRLF, missing 2nd line, empty stdin, unicode) ok. Assay `python3 assay.py` baseline 553.5 (lcs_old.py); current lcs.py measured 911.3, 915.3, 915.6. Previous version in lcs_prev.py (~806-856).
+LESSONS: skipping per-step `& full` gave +50%. K 16..128 similar, 256 slower. Replacing (v-u) with (v & ~mk) precomputed gave ~+8% (fewer big-int ops, no temp u).
+NEXT: done. Do not claim numbers not measured.

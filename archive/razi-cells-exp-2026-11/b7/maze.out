@@ -1,0 +1,5 @@
+{
+ "result": "Built `maze.py`, a stdin-to-stdout shortest-path solver with a padded-grid BFS implemented in a cached native C helper (`mazehelper.c`/`mazehelper.so`) and an equivalent self-contained pure-Python fallback; it handles S/E as open cells, ragged rows, CRLF and other line breaks, and prints -1 when unreachable. Verification passed: the registered assay checks all fixed edge cases, 12 randomized small mazes against an independent Python BFS, and two fixed-seed 2000\u00d72000 mazes (reachable path 3998 and unreachable -1), with correct C/Python agreement on small and random cases; the accepted assay baseline is 1.50334e7 (0.6% noise), and direct big-maze timing was about 0.07 s for the reachable case versus ~0.61 s for the Python reference.",
+ "calls": 15,
+ "secs": 3220.1
+}

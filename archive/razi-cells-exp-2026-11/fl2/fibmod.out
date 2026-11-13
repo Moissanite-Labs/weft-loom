@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1e9+7. It walks the bits of n from the top, keeping (F(k), F(k+1)) and reducing mod once per step. It reads all of stdin, splits on whitespace, and writes one result per line. The adopted variant scored 2.751 against a 2.585 baseline, a +6% win. It matches all sample outputs in the public fibmod kit. Further gains would need more than 3% beyond this, and the remaining ideas (batching or caching across inputs) are unlikely to clear that bar, so I am resting here.",
+ "calls": 9,
+ "secs": 36.3,
+ "ledger": {
+  "e": 1144.434584222502,
+  "born": 400.0,
+  "spent": 141.5374,
+  "earned": 21.87128422250199,
+  "got": 864.1007,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.05620068575450632,
+  "age": 9,
+  "assay": true
+ }
+}

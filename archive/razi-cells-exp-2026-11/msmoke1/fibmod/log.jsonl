@@ -1,0 +1,13 @@
+{"step": 0, "usage": {"inp": 4, "out": 107, "cr": 0, "cw": 2544, "rs": 0, "usd": 0.007438}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "cost": 82.4, "t": 1794273774.54}
+{"step": 0, "act": {"do": "sh", "cmd": "ls /Users/kethuda/Work/razi-cells/kits/public/fibmod | head; pwd; ls"}, "res": "exit 0\nDONE\nin-0.txt\nout-0.txt\n/Users/kethuda/work/razi-cells/exp/msmoke1/fibmod\nNEED\nlog.jsonl\n", "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "none", "energy": 317.6, "t": 1794273774.57}
+{"step": 1, "usage": {"inp": 4, "out": 1836, "cr": 1897, "cw": 780, "rs": 0, "usd": 0.0206974}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "none", "cost": 215.0, "t": 1794273789.62}
+{"step": 1, "act": {"do": "sh"}, "res": "exit 0\n   30005 /Users/kethuda/Work/razi-cells/kits/public/fibmod/in-0.txt\nOK\n55\n\nreal\t0m0.077s\nuser\t0m0.068s\nsys\t0m0.011s\n", "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "none", "energy": 102.6, "t": 1794273789.77}
+{"step": 2, "usage": {"inp": 4, "out": 236, "cr": 1897, "cw": 1465, "rs": 0, "usd": 0.0064099}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "none", "cost": 72.1, "t": 1794273791.73}
+{"step": 2, "act": {"do": "sh", "cmd": "K=/Users/kethuda/Work/razi-cells/kits/public/fibmod; python3 fibmod.py < $K/in-0.txt | cmp - $K/out-0.txt && echo SAME; echo 0 | python3 fibmod.py"}, "res": "exit 0\nSAME\n0\n", "route": "anthropic:claude-sonnet-5-5", "model": "light", "effort": "none", "energy": 30.5, "t": 1794273791.87}
+{"step": 3, "usage": {"inp": 4, "out": 261, "cr": 0, "cw": 3497, "rs": 0, "usd": 0.00056802}, "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "none", "cost": 13.7, "t": 1794273793.64}
+{"event": "assay", "cmd": "kit:fibmod", "runs": [11.87009374405368, 11.286182748639535, 11.405499720200647, 11.524034270189896, 12.054250106814239], "t": 1794273794.08}
+{"step": 3, "act": {"do": "assay"}, "res": "assay accepted: baseline median 11.524, noise 6.7%. Wins must beat it by > 6.7%.", "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "none", "energy": 16.9, "t": 1794273794.08}
+{"step": 4, "usage": {"inp": 4, "out": 589, "cr": 1897, "cw": 1718, "rs": 0, "usd": 0.00052862}, "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "none", "cost": 13.3, "t": 1794273797.61}
+{"step": 4, "act": {"do": "rest"}, "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "none", "t": 1794273797.61}
+{"event": "rest", "gave": 0.0, "fit": 0.0, "age": 5, "t": 1794273797.61}
+{"event": "final", "final": 12.353660702868302, "baseline": 11.524034270189896, "final_gain": 0.072, "t": 1794273797.86}

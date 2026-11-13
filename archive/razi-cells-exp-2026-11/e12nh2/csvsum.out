@@ -1,0 +1,5 @@
+{
+ "result": "csvsum.py reads stdin as bytes, replaces newlines with commas and splits once. It slices the cat and val fields, sums val per cat in a defaultdict, and prints cat,sum with 2 decimals, sorted by cat. I checked it on 2,000,000 generated rows (seed 1, 50 categories, 34 MB). The output matched an independent reference sum, saved as ref.txt, and the assay's cmp check passes. An earlier generator bug wrote spaces instead of commas; I fixed it and regenerated the input. The assay baseline was 1.79 runs/s, about 0.55 s per run. The split-all version won by +9% over the per-line loop, which is above the 4.3% noise. One caveat: the slicing assumes every row has exactly 3 fields and the file has no quoted fields, and I did not test inputs that break that.",
+ "calls": 11,
+ "secs": 67.5
+}

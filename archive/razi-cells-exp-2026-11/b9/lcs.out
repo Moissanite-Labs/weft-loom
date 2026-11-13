@@ -1,0 +1,5 @@
+{
+ "result": "Built lcs.py: reads two lines from stdin and prints the LCS length using the bit-parallel (Allison\u2013Dix / Hyyr\u00f6) algorithm \u2014 a per-character bitmask table for string a, then for each character of b updates V = ((V+U)|(V-U)) & mask with U = V & pm[c]; the answer is n \u2212 popcount(V). This runs in O(|b| \u00b7 |a|/wordsize) big-integer ops, so 3000\u00d73000 finishes in a few milliseconds (30000\u00d730000 in ~0.25 s). Correctness was verified by check.py (30 random cases against a naive O(nm) DP, all passing) and bench.py (40 more random cases vs. naive plus the fixed 3000-char ACGT case from gen.py yielding 1948). An assay was attempted but the harness rejected it as too noisy (18\u201319% spread) and no further steps remained to stabilise it; the implementation itself is already the standard fastest pure-Python approach.",
+ "calls": 15,
+ "secs": 496.4
+}

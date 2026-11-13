@@ -1,0 +1,5 @@
+{
+ "result": "Built fibmod.py: prints fib(n) mod 1_000_000_007 for n up to 10**18. It reduces n modulo the Pisano period P=2(M+1)=2000000016 (valid since 5 is a quadratic non-residue mod M), then as a CLI runs ~31-step fast doubling (0.07s total incl. interpreter startup), while as a library it does an O(1) lookup via precomputed tables (2^18 + 2^13 entries) combined by the Fibonacci addition formula F(i+j\u00b72^18)=A0[i]\u00b7B1[j]+D0[i]\u00b7A1[j]. Verified: fib(10)=55, fib(0)=0, fib(1)=1, fib(10^18)=209783453, fib(P)=0, and bench.py cross-checks against a naive loop for n up to 12345. Assay rose from 28.6k fib/s baseline to 1.32M fib/s (+4500%).",
+ "calls": 15,
+ "secs": 381.3
+}

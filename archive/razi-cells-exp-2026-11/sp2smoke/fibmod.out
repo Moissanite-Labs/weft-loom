@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is done. It reduces n mod P = 2(10^9+7+1), since the Pisano period of 1e9+7 divides P, so the fast-doubling loop runs about 31 iterations instead of about 60. It also caches repeated inputs and reads stdin in one pass. It matches the public sample (in-0 to out-0, fib(10)=55) byte for byte. A variant with these changes scored 4.642 against 2.609 for the previous body (+78%) and was adopted. Only one sample was checked, so the remaining samples are untested.",
+ "calls": 6,
+ "secs": 51.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 200.0,
+  "spent": 79.0983,
+  "earned": 230.46607978791536,
+  "got": 0.0,
+  "gave": 351.36777978791537,
+  "state": "resting",
+  "fit": 0.7792024453264426,
+  "age": 6,
+  "assay": true
+ }
+}

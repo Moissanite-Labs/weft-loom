@@ -1,0 +1,5 @@
+{
+ "result": "I built maze.py, a BFS over a flat bytearray with a newline sentinel column. It prints the shortest 4-neighbour path length from S to E, or -1 if there is no path. gen.py makes a 2000x2000 maze with seed 7 and 28% walls. It forces open cells at both corners so S and E can connect. On that maze maze.py prints 3998, which is the Manhattan minimum, in about 1.1 s. The assay passes with a baseline of 0.896 runs per second and 0.6% noise. I did not try any speed-up. My only other checks were two small cases, which printed 4 and -1 as expected. I did not compare against a second implementation, so correctness rests on those cases and the Manhattan-minimum result.",
+ "calls": 6,
+ "secs": 31.1
+}

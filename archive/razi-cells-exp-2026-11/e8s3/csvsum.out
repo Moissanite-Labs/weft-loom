@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `csvsum.py` to read a CSV with header `id,cat,val` from stdin and print each `cat` and its summed `val` formatted to 2 decimal places, sorted by `cat`. Verified correctness against `expected.txt` on the generated 2,000,000-row dataset (`data.csv`, 47.4 MB) for both regular-file redirected stdin and piped stdin (`cmp -s` exact match), as well as edge cases. Through evolutionary variants (optimizing byte splitting, exception-based dictionary accumulation, and adding a C shared-library mmap/hash-table fast-path with pure-Python fallback), throughput improved from the baseline 3.00M rows/sec to 27.2M rows/sec (~0.073 seconds for 2,000,000 rows, +807% over baseline).",
+ "calls": 15,
+ "secs": 491.5
+}

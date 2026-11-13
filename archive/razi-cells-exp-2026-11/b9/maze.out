@@ -1,0 +1,5 @@
+{
+ "result": "Built maze.py: reads the '#'/'.' grid with S and E from stdin, pads it with a wall border into a flat boolean \"unvisited\" array, and runs a level-synchronous BFS with numpy frontiers \u2014 for each of the 4 directions sequentially it gathers neighbours, filters by unvisited, marks them visited, and concatenates into the next frontier; prints the level when E gets visited, or -1 if the frontier empties. Handles ragged lines, S==E (0), missing S/E (-1). Verified against a pure-Python deque BFS reference (ref.py) on small.txt (-1), t.txt (90), and 300x300 seeds 2\u20136 (all match, e.g. seed 4 \u2192 598); on 2000x2000 mazes from gen.py (seed 12345 \u2192 -1, seeds 3/5/6 \u2192 4000/4008/4010) it runs in ~0.19\u20130.33 s versus ~1.1 s+ for the reference. Assay (1000/elapsed on b3.txt, gated on correct outputs for 3 inputs) improved from ~2440 to ~3000 by the sequential-direction mark-after-each variant (+23%); further micro-optimizations (zero-copy parse, np.take, int32 indices) gave no gain and were rejected.",
+ "calls": 14,
+ "secs": 530.9
+}

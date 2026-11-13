@@ -1,0 +1,5 @@
+{
+ "result": "Built primes.py: an odd-only bytearray sieve (index i \u2194 odd 2i+1) that pre-stamps a periodic pattern for the small primes 3..19 (period 3\u00b75\u00b77\u00b711\u00b713\u00b717\u00b719 in odd-index space) via bytearray multiplication, then slice-assigns zeros for remaining primes up to sqrt(n) and returns 1 + sieve.count(1). Verified: 100 \u2192 25, 5000000 \u2192 348513 (the required value), 300000000 \u2192 16252325 in ~0.6 s. Assay (python3 bench.py, 1000/best-time at n=300M with correctness checks) scored 1675 vs. baseline 1641; a segmented cache-friendly variant was tried and gave no gain, confirming per-prime Python slice overhead rather than memory bandwidth is the bottleneck.",
+ "calls": 20,
+ "secs": 775.3
+}

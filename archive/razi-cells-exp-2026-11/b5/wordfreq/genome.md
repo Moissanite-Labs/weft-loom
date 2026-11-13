@@ -1,0 +1,1 @@
+wordfreq: wf.py = translate(bytes tbl)->decode latin1->split->Counter->sorted top10. Assay baseline ~2755 after +76% win. Next: try bytes-only (no decode), heapq.nlargest, most_common with tie fix. Steps limited; finish with done.

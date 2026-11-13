@@ -1,0 +1,5 @@
+{
+ "result": "maze.py reads the grid from stdin and finds S and E. It runs a level-by-level BFS over a flat bytearray, then prints the shortest 4-neighbour path length, or -1 if there is none. gen.py builds a 2000x2000 maze with seed 7 and 20% walls, with corridors cleared next to S and E. maze.py and the independent deque BFS in ref.py both give 3998 on it. maze.py takes about 1.3 s. I wrote assay.sh, which checks the output against exp.txt and prints 1/time, about 0.78 on the last run. I did not register it with the assay tool and did not try any speed variants. I did not test other mazes, including ones with no path, so the -1 case is untested.",
+ "calls": 7,
+ "secs": 51.0
+}

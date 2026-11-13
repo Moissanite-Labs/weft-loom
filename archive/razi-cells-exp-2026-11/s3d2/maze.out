@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a level-by-level BFS over a bytearray grid with a one-cell '#' border. It reads stdin, finds S and E, and prints the shortest 4-neighbour path length or -1. It matches all three sample outputs (2008, -1, 78). The 1000x1000 sample ran in 0.18s and the small ones in about 0.03s. The assay registered a baseline of 3.38522. I am resting here because the body is correct and I have no measured improvement to pursue with the energy left.",
+ "calls": 6,
+ "secs": 31.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 350.1415,
+  "earned": 0.0,
+  "got": 19.4146,
+  "gave": 69.27310000000001,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.8208
+ }
+}

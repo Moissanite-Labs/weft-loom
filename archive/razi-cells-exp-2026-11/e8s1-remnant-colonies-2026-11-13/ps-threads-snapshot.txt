@@ -1,0 +1,4 @@
+USER      PID   TT   %CPU STAT PRI     STIME     UTIME COMMAND
+kethuda 84794   ??   92.8 R    31T  25:54.21 5023:50.43 /opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python maze.py
+kethuda 85007   ??   95.2 R    31T  25:58.47 5023:08.91 /opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python maze.py
+kethuda 85197   ??   94.0 R    31T  25:54.74 5022:35.02 /opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python maze.py

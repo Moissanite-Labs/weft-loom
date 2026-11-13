@@ -1,0 +1,5 @@
+{
+ "result": "I wrote maze.py, a breadth-first search over a padded bytearray grid. It matches all three public samples: 2008, -1 and 78. The assay accepted it with a baseline of 3.777 (median, noise 2.3%). I did not try any improvements.",
+ "calls": 5,
+ "secs": 16.9
+}

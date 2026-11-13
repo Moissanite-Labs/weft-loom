@@ -1,0 +1,5 @@
+{
+ "result": "Built squeeze.py. It compresses with raw LZMA2 (extreme preset, lc=4, pb=0), bz2 and zlib, and keeps the smallest output behind a 1-byte tag. decompress reads the tag and reverses that method. bench.py generates English-like text (60000 words) and JSON (3000 records), round-trips both and checks they match exactly, then prints total input size divided by total compressed size. The assay accepted it with a baseline ratio of 7.85 and 0% noise. I did not try any further improvements.",
+ "calls": 4,
+ "secs": 17.3
+}

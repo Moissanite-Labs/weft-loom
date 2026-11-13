@@ -1,0 +1,1 @@
+{"cmd": "python3 -c \"\nimport subprocess,time,sys\nt=time.time()\no=subprocess.run('python3 csvsum.py<in.csv',shell=True,capture_output=True,text=True).stdout\ndt=time.time()-t\nok=o.startswith('c0 2004069.21') and len(o.splitlines())==50\nprint(1/dt if ok else 0)\n\"", "baseline": 1.8105258432320854, "noise": 0.01917497734950232}

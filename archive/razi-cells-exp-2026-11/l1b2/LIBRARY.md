@@ -1,0 +1,57 @@
+- [g0-fibmod-1] WIN +12%: fibmod.py variant (Iterate bits via bin() string to cut per-bit shift overhead; same fast-doubling math, same Pisano reduction.) (assay: kit:fibmod)
+- [g0-fibmod-0] no gain: 1 variants of fibmod.py (Micro-optimize I/O and loop bindings; same fast-doubling core.); best +0%
+- [g0-fibmod-1] REST (baseline 4.207, gain +12%, returned 330 energy to the lineage store): fibmod.py is built and registered. It reads n per line from stdin and prints fib(n) mod 1e9+7, using fast doubling over the bit string of n, with n reduced mod the Pisano-style period P=2(M+1), which is valid because 1e9+7 ≡ 2 (mod 5). It passed the sample in-
+- [g0-fibmod-0] WIN +20%: fibmod.py variant (Iterate bits via bin() string (the lineage's known win) with same fast-doubling core.) (assay: kit:fibmod)
+- [g0-compress-1] REST (baseline 5.475, gain +0%, returned 282 energy to the lineage store): squeeze.py is an lzma (FORMAT_ALONE, preset 9 extreme) wrapper: `c` compresses stdin, `d` decompresses, stdlib only. It is registered at baseline 5.4748 with 0.0% noise. I tested lc/lp/pb tuning on the two samples; the best setting gained about 0.1%, far below
+- [g0-compress-0] LOSS +0% (expected A body with a measured ratio above 5.47 by more than 3%, or a clear report that no such gain exists.): Improve squeeze.py beyond plain lzma (baseline ratio 5.47 on samples in kits/public/compress). Try a stdlib-only approach that beats lzma by. The daughter said: (it died without resting)
+- [g0-fibmod-0] REST (baseline 2.32, gain +20%, returned 184 energy to the lineage store): fibmod.py is built and registered. It reads integers one per line from stdin, reduces each mod P=2(M*M-1) (a multiple of the Pisano period 2(M+1) for M=1e9+7, so the result is unchanged), and computes fib(n) mod M by fast doubling over the bit string bin(n)[2:
+- [g0-compress-0] DIED at age 6 (gain +0%)
+- [g0-maze-0] REST (baseline 3.174, gain +0%, returned 30 energy to the lineage store): maze.py is a level-by-level BFS over a padded bytearray grid. It reads stdin, finds S and E, and prints the shortest 4-neighbour distance or -1. It passes all three samples (2008, -1, 78) and was registered by assay at baseline 3.17377 with noise 3.2%. I did n
+- [g0-csvsum-0] WIN +7%: rewrite (Current body: flat split on commas/newlines with zip-stride accumulation; passes sample in-0/out-0.)
+- [g0-maze-1] DIED at age 6 (gain +0%)
+- [g0-csvsum-1] WIN +37%: csvsum.py variant (Faster per-row path: unpack split with maxsplit, fast cents parse for the common 2-decimal case, no per-line empty-branch overhead.) (assay: kit:csvsum)
+- [g0-csvsum-1] REST (baseline 1.153, gain +37%, returned 379 energy to the lineage store): csvsum.py is built and registered. It reads the whole stdin as bytes, splits on newlines, and for each row splits on commas with maxsplit 2 to get cat and val. Values are parsed as integer cents, with a fast path for the common two-decimal form, and sums are k
+- [g0-csvsum-0] no gain: 2 variants of csvsum.py (Try per-line split with maxsplit=2 (sibling's approach showed this wins), avoiding flat list of 3M items.); best -2%
+- [g0-csvsum-0] no gain: 1 variants of csvsum.py (Integer-cents fast path for two-decimal values, maxsplit unpack, per-line split.); best -36%
+- [g0-csvsum-0] REST (baseline 2.129, gain +7%, returned 153 energy to the lineage store): csvsum.py is registered at baseline 2.129 (noise 6.5%, +7.2% over my first body). It reads all of stdin as bytes, splits on newlines, then splits each row with split(b',', 2) to get cat and val, sums floats per cat in a dict, and writes sorted 'cat,sum' lines
+- [lineage compress] GEN 0: the germline body is now the body of g0-compress-0, the lineage's first.
+- [lineage fibmod] GEN 0: the germline body is now the body of g0-fibmod-1, the lineage's first.
+- [lineage csvsum] GEN 0: the germline body is now the body of g0-csvsum-0, the lineage's first.
+- [lineage maze] GEN 0: the germline body is now the body of g0-maze-1, the lineage's first.
+- [g1-fibmod-1] REST (baseline 4.685, gain +0%, returned 194 energy to the lineage store): fibmod.py is a fast-doubling implementation over the bit string bin(n)[2:], with n reduced mod P=2(M+1) (valid since M=1e9+7 is 2 mod 5, so the Pisano period divides P). It reads whitespace-separated integers from stdin and prints fib(n) mod M, one per line. I
+- [g1-compress-1] REST (baseline 5.475, gain +0%, returned 286 energy to the lineage store): Body is squeeze.py, an stdlib lzma wrapper (FORMAT_ALONE, preset 9 | EXTREME) with a matching decompress path. It round-trips the samples and is registered at baseline 5.4748 (noise 0.0%). I am resting without further change because the lineage's earlier tunin
+- [g1-fibmod-0] no gain: 2 variants of fibmod.py (Trim redundant multiplications and mod operations in the doubling loop; same math.); best -2%
+- [g1-compress-0] REST (baseline 7.082, gain +0%, returned 278 energy to the lineage store): squeeze.py picks the smaller of bz2 (preset 9) and lzma (FORMAT_ALONE, preset 9 | EXTREME) per input, with a one-byte tag selecting the decoder. It round-trips both samples and is registered at baseline 7.08179 (noise 0.0%). Plain lzma scored about 4.15 on in-
+- [g1-fibmod-0] REST (baseline 4.732, gain +0%, returned 154 energy to the lineage store): fibmod.py is a fast-doubling implementation over the bit string bin(n mod P)[2:], with P=2(M+1) for M=1e9+7 (valid because M is 2 mod 5, so the Pisano period divides P). It reads whitespace-separated integers from stdin and prints fib(n) mod M, one per line. I
+- [g1-csvsum-0] DIED at age 5 with no assay
+- [g1-csvsum-1] no gain: 1 variants of csvsum.py (Drop Decimal import and per-row Decimal fallback; use float fallback for non-2-decimal values (same integer-cents sums).); best +0%
+- [g1-csvsum-1] REST (baseline 1.695, gain +0%, returned 47 energy to the lineage store): csvsum.py is registered at baseline 1.69473 (noise 1.4%). It reads all of stdin as bytes, splits on newlines, then splits each row with split(b',', 2) to get cat and val. Values are parsed as integer cents, with a fast path for two-decimal values and a Decimal
+- [g1-maze-1] WIN +17%: maze.py variant (Unroll the four neighbour checks to avoid tuple building per cell.) (assay: kit:maze)
+- [g1-maze-1] REST (baseline 3.309, gain +17%, returned 322 energy to the lineage store): maze.py is a level-by-level BFS over a padded bytearray grid with a sentinel border. It reads all of stdin, locates S and E, marks visited cells by overwriting them with '#', and returns the distance at the first E hit or -1. The neighbour checks are unrolled,
+- [g1-maze-0] no gain: 1 variants of maze.py (Unroll the four neighbour checks (lineage win elsewhere) and merge the E test into the same branch.); best +10%
+- [g1-maze-0] REST (baseline 3.302, gain +0%, returned 192 energy to the lineage store): maze.py is a level-by-level BFS over a padded bytearray grid with a sentinel border. It reads all of stdin, locates S and E, marks visited cells by overwriting them with '#', and accepts '.' and 'E' as traversable cells. It passes all three samples (2008, -1,
+- [lineage compress] GEN 1: the germline body is now the body of g1-compress-0, measured +29% over the one before.
+- [lineage fibmod] GEN 1: no body beat the germline beyond noise (best +1%). The germline is unchanged.
+- [lineage csvsum] GEN 1: no body beat the germline beyond noise (best -25%). The germline is unchanged.
+- [lineage maze] GEN 1: the germline body is now the body of g1-maze-1, measured +16% over the one before.
+- [g2-compress-1] DIED at age 4 with no assay
+- [g2-fibmod-1] REST (baseline 14.99, gain +0%, returned 64 energy to the lineage store): fibmod.py is built and registered at baseline 14.99 (noise 3.5%). It reads whitespace-separated integers from stdin and prints fib(n) mod 1e9+7, one per line. It reduces n mod P=2(M+1), which is valid because M is 2 mod 5 so the Pisano period divides P. It pre
+- [g2-compress-0] REST (baseline 7.082, gain +0%, returned 84 energy to the lineage store): squeeze.py is the lineage's germline body: it compresses stdin with both bz2 (preset 9) and lzma (FORMAT_ALONE, preset 9 | EXTREME), keeps the smaller, and writes a one-byte tag so the decoder knows which to use. It round-trips the samples and is registered at
+- [g2-csvsum-0] REST (baseline 1.485, gain +0%, returned 258 energy to the lineage store): csvsum.py is registered at baseline 1.48482 (noise 5.1%). It reads all of stdin as bytes, splits on newlines, and parses each row with split(b',', 2). Values are parsed as integer cents with a fast path for two-decimal values and a Decimal fallback, and per-ca
+- [g2-fibmod-0] REST (baseline 4.564, gain +0%, returned 183 energy to the lineage store): fibmod.py is built and registered at baseline 4.564 (noise 3.3%). It reads whitespace-separated integers from stdin, reduces each n mod P=2(M+1) with M=1e9+7 (valid because M is 2 mod 5, so the Pisano period divides P), and computes fib(n) mod M by fast doubli
+- [g2-csvsum-1] REST (baseline 1.217, gain +0%, returned 41 energy to the lineage store): csvsum.py is registered at baseline 1.21729 (noise 9.1%) and passes the sample in-0/out-0. It reads all of stdin as bytes, splits on newlines, parses each row with split(b',', 2), and keeps per-category sums as integer cents with a fast path for two-decimal va
+- [g2-maze-0] REST (baseline 4.033, gain +0%, returned 117 energy to the lineage store): maze.py is a level-by-level BFS over a padded bytearray grid with a sentinel border. It reads all of stdin, locates S and E, marks visited cells by overwriting them with '#', and returns the first-hit distance or -1. The four neighbour checks are unrolled. It
+- [g2-maze-1] DIED at age 3 (gain +0%)
+- [lineage compress] GEN 2: no body beat the germline beyond noise (best +0%). The germline is unchanged.
+- [lineage fibmod] GEN 2: the germline body is now the body of g2-fibmod-1, measured +212% over the one before.
+- [lineage csvsum] GEN 2: no body beat the germline beyond noise (best -33%). The germline is unchanged.
+- [lineage maze] GEN 2: no body beat the germline beyond noise (best +0%). The germline is unchanged.
+- [g3-maze-0] DIED at age 4 (gain +0%)
+- [g3-compress-0] DIED at age 3 (gain +0%)
+- [g3-fibmod-0] DIED at age 5 (gain +0%)
+- [g3-csvsum-0] WIN +44%: csvsum.py variant (Try plain float sums per cat with a single float() per row, which the lineage's best body used.) (assay: kit:csvsum)
+- [g3-csvsum-0] REST (baseline 1.44, gain +44%, returned 276 energy to the lineage store): csvsum.py is registered as the adopted body (+44% over my first body, assay baseline 1.43982, noise 2.9%; variant measured 2.087 vs 1.452). It reads all of stdin as bytes, splits on newlines, parses each row with split(b',', 2), takes one float() per row, sums
+- [lineage compress] GEN 3: no body beat the germline beyond noise (best +0%). The germline is unchanged.
+- [lineage fibmod] GEN 3: no body beat the germline beyond noise (best -5%). The germline is unchanged.
+- [lineage csvsum] GEN 3: no body beat the germline beyond noise (best -4%). The germline is unchanged.
+- [lineage maze] GEN 3: no body beat the germline beyond noise (best -26%). The germline is unchanged.

@@ -1,0 +1,5 @@
+{
+ "result": "I wrote squeeze.py, which uses stdlib lzma in raw LZMA2 mode with tuned parameters (lc=4, pb=0, 4MB dictionary, extreme preset). The assay accepted it with a baseline compression ratio of 5.498 and 0% noise. A manual check on in-1.txt gave 98,817 bytes from 716,665. I did not try any variants, and I did not run a separate round-trip check myself. The assay did accept it, and it requires every kit output to be correct.",
+ "calls": 5,
+ "secs": 25.1
+}

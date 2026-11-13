@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is built and registered at baseline 4.564 (noise 3.3%). It reads whitespace-separated integers from stdin, reduces each n mod P=2(M+1) with M=1e9+7 (valid because M is 2 mod 5, so the Pisano period divides P), and computes fib(n) mod M by fast doubling over bin(n)[2:]. It passes the sample in-0: output is byte-identical to out-0.txt (30005 lines). The lineage has already tried the same bin()-string core and the known variants gave at most a few percent, so I am stopping here to return unspent energy rather than spend it on a likely no-gain variant.",
+ "calls": 10,
+ "secs": 50.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 217.30360000000002,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 182.69639999999998,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 10,
+  "assay": true,
+  "sense": 0.3494
+ }
+}

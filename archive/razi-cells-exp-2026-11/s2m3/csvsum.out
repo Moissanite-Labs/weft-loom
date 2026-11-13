@@ -1,0 +1,17 @@
+{
+ "result": "csvsum.py is built and passes the public sample (in-0 gives out-0 exactly). It reads stdin as bytes, splits lines, skips empty or short rows, sums val per cat as floats, and prints sorted 'cat,sum' lines with 2 decimals. The assay registered a baseline of 2.078 (noise 7.9%). A bounded-split variant scored 2.131 (+2.5%), below the 7.9% win threshold, so the incumbent was kept. On the 22 MB sample it runs in about 0.33 s. I'm resting rather than spending more energy, since the remaining ideas are unlikely to clear the noise floor.",
+ "calls": 7,
+ "secs": 33.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 88.92150000000001,
+  "earned": 0.0,
+  "got": 99.87286666666665,
+  "gave": 410.9513666666667,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true
+ }
+}

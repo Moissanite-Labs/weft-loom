@@ -1,0 +1,5 @@
+{
+ "result": "Built fibmod.py: computes fib(n) mod 1_000_000_007 for n up to 1e18 via the Pisano period P=2(M+1) (valid since M\u22612 mod 5) and a two-level lookup: n%=P, split into 16-bit hi/lo halves, and combine with the identity F(a+b)=F(a)F(b+1)+F(a-1)F(b) using three precomputed tables (~100k entries, built in ~50ms at import). Each query is then O(1): one modulo, two array indexes, two multiplies. Verified fib(10)=55, fib(100)=687995182, fib(10**18)=209783453 and all fib(i) for i<300 against a naive loop (bench.py prints 0 on any mismatch). Assay score rose from 87779 (fast-doubling baseline) to ~3,982,000, a ~45x speedup.",
+ "calls": 9,
+ "secs": 244.5
+}

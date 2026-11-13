@@ -1,0 +1,5 @@
+{
+ "result": "I wrote maze.py, a breadth-first search over a bytearray grid padded with a wall border. The frontier is expanded level by level and it prints the distance when it reaches E, or -1 if it never does. The assay accepted it with a baseline score of 3.58 and 1.4% noise, so every kit output was correct and the timing was stable. I did not try any speed variants, and I did not separately run the sample files in the kit folder.",
+ "calls": 3,
+ "secs": 15.7
+}

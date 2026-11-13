@@ -1,0 +1,5 @@
+{
+ "result": "Built csvsum.py. It reads the CSV from stdin, sums val per cat in a defaultdict, and prints each cat with its sum to 2 decimals, sorted by cat. I generated a 2,000,000-row test file (d.csv, seed 1, 50 categories). The script runs on it in about 0.56-0.66 s, and the assay baseline is about 1.78 runs/s. The printed sums are about 2.0M per category, which is plausible for that data. I did not check them against an independent reference sum. One improvement attempt, a pandas version, was slower at about 0.94 s, so I kept the pure-Python version.",
+ "calls": 10,
+ "secs": 63.9
+}

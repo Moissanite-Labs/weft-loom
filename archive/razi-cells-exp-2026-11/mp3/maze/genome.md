@@ -1,0 +1,1 @@
+maze.py FINAL, assayed (baseline 4.1268, noise 1.5%). Passes samples 0,1,2. Pure-Python frontier BFS with walls pre-marked visited. Tried: per-level target check (+3% best, not a win), bidirectional BFS (no gain), single-blob parse (+1%). Energy ~32: no further experiments justified. Keep body as is; do not spend on variants unless a truly new algorithm appears.

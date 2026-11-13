@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 with fast doubling over the bits of n. It gave fib(10)=55 and fib(10**18)=209783453. fib(1000) matched a naive loop, 517691607. A variant that reduces (2b-a) mod M before the multiply was adopted, +14% on the assay (4.12 \u2192 4.74 calls/s, noise 3.9%).",
+ "calls": 5,
+ "secs": 18.3
+}

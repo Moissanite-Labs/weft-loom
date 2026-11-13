@@ -1,0 +1,5 @@
+{
+ "result": "wf.py is built and verified: it reads stdin as bytes, maps non-letters to spaces and uppercase to lowercase with one bytes.translate, splits the text at spaces into up to 8 chunks, counts each chunk in a forked child (Counter over split, results returned via marshal over pipes), merges, and prints the top 10 sorted by (-count, word). If fork is unavailable, a child fails, or the input is under 2MB, it falls back to a single-process Counter. Evidence: output on the 20MB big.txt is byte-identical to expected.txt and to the independent regex reference ref.py; it also matched ref.py on four small edge cases (empty input, mixed case with punctuation, digits splitting words, no trailing newline) and on a mid-size input with 1, 2, 3, 5 and 8 workers. The last assay run printed 9.03 against a registered baseline of 2.95 (single-process version, noise 1.7%), about 3x faster, at roughly 0.11 s per run. Two limits: words are ASCII [a-z]+ only, so non-ASCII letters act as separators, and the speedup depends on having several cores (timings flattened beyond 4 workers here).",
+ "calls": 11,
+ "secs": 513.8
+}

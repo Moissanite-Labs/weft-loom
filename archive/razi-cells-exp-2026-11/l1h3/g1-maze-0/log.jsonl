@@ -1,0 +1,8 @@
+{"event": "assay", "cmd": "kit:maze", "runs": [3.411200126868701, 3.4553339763199693, 3.489197726752255, 3.463280414787812, 3.374689216060703], "t": 1794298070.39}
+{"event": "sense", "ratio": 0.8059, "self": 3.4678733276138316, "best": 4.303296304480841, "shown": true, "t": 1794298079.18}
+{"event": "inherit", "ok": true, "res": "assay accepted: baseline median 3.45533, noise 3.3%. Wins must beat it by > 3.3%.", "files": ["maze.py"], "t": 1794298079.18}
+{"event": "laws", "price_show": true, "sense_show": true, "sense_dir": true, "law": "rest", "start": ["mid", "low"], "t": 1794298079.18}
+{"step": 0, "usage": {"inp": 4, "out": 308, "cr": 2006, "cw": 1654, "rs": 0, "usd": 0.0076242}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "cost": 84.2, "cap": 3026, "est": 89.3, "why": "I'm weighing a faster BFS, like a numpy or big-int bitset version, but a bitset search would need as many shift steps as the path is long, which is too slow on a twisty maze, so I'm inclined to rule it out. The other option I'm considering is simply resting so my energy comes back, and I'm starting to lean toward that.\n\nI'm checking the sense score, which comes in at 0.81 of the best. Tweaking things further would cost effort, so I'm going to rest instead.\n\n", "say": "", "t": 1794298083.03}
+{"step": 0, "act": {"do": "rest"}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "t": 1794298083.03}
+{"event": "rest", "gave": 315.8, "fit": 0.0, "age": 1, "t": 1794298083.04}
+{"event": "final", "final": 3.4162324814890788, "baseline": 3.4553339763199693, "last_baseline": 3.4553339763199693, "final_gain": -0.0113, "t": 1794298084.98}

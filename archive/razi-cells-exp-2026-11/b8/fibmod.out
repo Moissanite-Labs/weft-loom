@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `fibmod.py` to compute `fib(n) mod 1_000_000_007` for `n` up to `10**18` from `sys.argv[1]`. Starting from an iterative fast-doubling baseline (77,765 ops/sec on `bench.py`), we exploited the Pisano period of `1_000_000_007` (`2_000_000_016 < 2**31`) and decomposed `n mod 2_000_000_016` into a 16-bit low part (`lo = n & 65535`) and 15-bit high part (`hi = n >> 16`, up to 30,517) using Fibonacci addition identity lookup tables `F(lo + hi*65536) = (F(lo)*F(hi*65536 - 1) + F(lo + 1)*F(hi*65536)) mod 1_000_000_007`. This reduced per-query computation to two table lookups and two multiplications, reaching ~3.39M ops/sec (~43x speedup over baseline) while passing all verification checks including `fib(0) = 0`, `fib(10) = 55`, `fib(10**18) = 209783453`, and a 100,000-query checksum verification.",
+ "calls": 15,
+ "secs": 513.0
+}

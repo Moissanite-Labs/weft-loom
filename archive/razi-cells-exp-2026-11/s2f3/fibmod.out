@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is done. It computes fib(n) mod 1e9+7 with fast doubling over the bit string of n, using the binary digits directly instead of per-bit shifts. It passes the public sample (in-0/out-0) and the variant was adopted with a measured +16% gain over the previous body. I'm stopping here; further tuning would cost more energy than the likely gain.",
+ "calls": 7,
+ "secs": 29.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 181.091,
+  "earned": 58.5502115034561,
+  "got": 0.0,
+  "gave": 277.4592115034561,
+  "state": "resting",
+  "fit": 0.1576308301039857,
+  "age": 7,
+  "assay": true
+ }
+}

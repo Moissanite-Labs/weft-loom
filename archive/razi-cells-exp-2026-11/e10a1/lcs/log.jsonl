@@ -1,0 +1,19 @@
+{"step": 0, "act": {"do": "write", "path": "lcs.py", "text": "<696 chars>"}, "res": "wrote lcs.py", "route": "anthropic:claude-fable-5-2", "t": 1794252444.42}
+{"step": 1, "act": {"do": "sh"}, "res": "exit 0\ncases 69 bad 0\n", "route": "anthropic:claude-fable-5-2", "t": 1794252454.35}
+{"step": 2, "act": {"do": "sh"}, "res": "exit 0\n[1948, 963]\n461.5\n\nreal\t0m5.775s\nuser\t0m4.729s\nsys\t0m0.060s\n", "route": "anthropic:claude-fable-5-2", "t": 1794252477.11}
+{"step": 3, "act": {"do": "sh", "cmd": "sed -i 's/REPS=400/REPS=120/' bench.py && time python3 bench.py && python3 check.py"}, "res": "exit 1\nsed: 2: \"bench.py\n\": undefined label 'ench.py'\n", "route": "anthropic:claude-fable-5-2", "t": 1794252481.16}
+{"step": 4, "act": {"do": "sh", "cmd": "python3 -c \"\ns=open('bench.py').read().replace('REPS=400','REPS=120')\nopen('bench.py','w').write(s)\" && time python3 bench.py && python3 check.py"}, "res": "exit 0\n479.9\ncases 69 bad 0\n\nreal\t0m1.850s\nuser\t0m1.529s\nsys\t0m0.046s\n", "route": "anthropic:claude-fable-5-2", "t": 1794252490.15}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [550.7, 547.0, 552.8, 544.6, 545.3], "t": 1794252627.08}
+{"step": 5, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 547, noise 1.5%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-fable-5-2", "t": 1794252627.08}
+{"event": "variants", "path": "lcs.py", "medians": {"inc": 562.2, "v0": 507.7, "v1": 524.0, "v2": 510.0, "v3": 661.6}, "best": "v3", "adopted": true, "gain": 0.1768, "kinds": null, "arm": "ctrl", "t": 1794252823.52}
+{"event": "improve", "gain": 0.1768, "what": "lcs.py variant (Carries above bit m never affect the low m bits, so the per-iteration '& full' can be dropped and applied once at the end (saves one big-int op per char). Also )", "t": 1794252823.52}
+{"step": 6, "act": {"do": "variants"}, "res": "medians inc=562.2, v0=507.7, v1=524, v2=510, v3=661.6. ADOPTED v3 (+18%).", "route": "anthropic:claude-fable-5-2", "t": 1794252823.53}
+{"event": "variants", "path": "lcs.py", "medians": {"inc": 652.9, "v0": 947.5, "v1": 717.5, "v2": 919.6, "v3": 933.7}, "best": "v0", "adopted": true, "gain": 0.4512, "kinds": null, "arm": "ctrl", "t": 1794253129.32}
+{"event": "improve", "gain": 0.4512, "what": "lcs.py variant (Mask building does 3000 big-int OR+shift ops; replace with one int(translate(reversed a), 2) per distinct char. Drop chars of b not in a with bytes.translate so)", "t": 1794253129.32}
+{"step": 7, "act": {"do": "variants"}, "res": "medians inc=652.9, v0=947.5, v1=717.5, v2=919.6, v3=933.7. ADOPTED v0 (+45%).", "route": "anthropic:claude-fable-5-2", "t": 1794253129.33}
+{"step": 8, "act": {"do": "remember", "text": "<467 chars>"}, "res": "genome updated", "route": "anthropic:claude-fable-5-2", "t": 1794253160.16}
+{"event": "variants", "path": "lcs.py", "medians": {"inc": 954.5, "v0": 955.1, "v1": 713.2, "v2": 721.6, "v3": 932.4}, "best": "v0", "adopted": false, "gain": 0.0006, "kinds": null, "arm": "ctrl", "t": 1794253302.44}
+{"step": 9, "act": {"do": "variants"}, "res": "medians inc=954.5, v0=955.1, v1=713.2, v2=721.6, v3=932.4. kept incumbent.", "route": "anthropic:claude-fable-5-2", "t": 1794253302.45}
+{"step": 10, "act": {"do": "sh"}, "res": "exit 0\ncases 69 bad 0\n947.7\nfuzz 400 bad 0\n10\n2\n0\n", "route": "anthropic:claude-fable-5-2", "t": 1794253312.74}
+{"step": 11, "act": {"do": "done"}, "route": "anthropic:claude-fable-5-2", "t": 1794253319.65}
+{"event": "final", "final": 951.7, "baseline": 547.0, "final_gain": 0.7399, "t": 1794253355.49}

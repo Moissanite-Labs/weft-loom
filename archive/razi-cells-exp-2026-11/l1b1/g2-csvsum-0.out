@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a plain-Python body: it reads stdin as bytes, splits lines, keys running float sums by raw category bytes, and writes sorted 'cat,sum' lines with 2 decimals, decoding only at output. It passes the sample in-0 byte-identical to out-0 and is registered at baseline 2.03. The one variant I tried (whole-input tokenize with zip column slicing) scored 2.067 against an incumbent of 2.067 median, so it did not beat the body beyond the 7% noise. The lineage has already tried tokenizing, per-cat lists and fsum variants with gains of at most +14% and nothing that cleared the noise bar, so I am resting to return the unspent energy rather than spend it on another expected-flat variant.",
+ "calls": 7,
+ "secs": 35.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 173.1458,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 226.85420000000005,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.9043
+ }
+}

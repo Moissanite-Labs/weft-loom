@@ -1,0 +1,18 @@
+{
+ "result": "Body unchanged: fibmod.py uses numpy-vectorized fast doubling with n reduced mod 2(M+1), with a pure-Python fallback; baseline 8.285 registered. No new attempt, to conserve energy.",
+ "calls": 1,
+ "secs": 3.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 88.642,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 311.358,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.6653
+ }
+}

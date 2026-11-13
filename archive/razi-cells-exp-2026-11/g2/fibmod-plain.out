@@ -1,0 +1,5 @@
+{
+ "result": "Built fibmod.py, which computes F(n) mod 1_000_000_007 for n up to 10**18 using fast doubling plus reduction by the Pisano period 2*(MOD+1)=2_000_000_016. Verified fib(10)=55 and checked many small n against an iterative reference; checked 312 random and boundary large n against unreduced fast doubling, all correct. Verified the reduction period numerically. The reduced computation takes about 5.6e-6 s per call in-process, with full CLI invocation around 0.018\u20130.025 s dominated by Python interpreter startup.",
+ "calls": 14,
+ "secs": 161.9
+}

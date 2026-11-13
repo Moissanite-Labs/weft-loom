@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `fibmod.py`, which computes `fib(n) mod 1_000_000_007` for `n = int(sys.argv[1])` up to `10**18`. Using Pisano period reduction (`n %= 2_000_000_016`) followed by a two-level 16-bit table lookup (`low = n & 0xFFFF`, `high = n >> 16`) with precomputed Fibonacci step tables `_F0` (size 65,537) and `_T1_m1`/`_T1_0` (size 30,518), `fib(n)` executes in O(1) time with a single modular inner-product expression. Correctness was verified on CLI calls (`python3 fibmod.py 10` -> `55`, `python3 fibmod.py 1000000000000000000` -> `209783453`) and against reference fast-doubling across boundary and large test cases in `bench.py`, achieving ~3.37 million Fibonacci evaluations per second (up from the 21,076/s baseline).",
+ "calls": 15,
+ "secs": 712.2
+}

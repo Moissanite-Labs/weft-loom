@@ -1,0 +1,18 @@
+{"step": 0, "act": {"do": "write", "text": "<3389 chars>", "path": "bench.py"}, "res": "wrote bench.py", "route": "opencode-go:gemini-4-argon", "t": 1794250718.54}
+{"step": 1, "act": {"do": "write", "text": "<428 chars>", "path": "squeeze.py"}, "res": "wrote squeeze.py", "route": "opencode-go:gemini-4-argon", "t": 1794250727.13}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [6.406092, 6.406092, 6.406092, 6.406092, 6.406092], "t": 1794250772.68}
+{"step": 2, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 6.40609, noise 0.0%. Wins must beat it by > 3.0%.", "route": "opencode-go:gemini-4-argon", "t": 1794250772.68}
+{"step": 3, "act": {"do": "sh"}, "res": "exit 0\nlen: 183589\nlzma1: 6.65322171486555\nlzma1: 5.658960606621047\nlzma1: 7.209786365064405\n", "route": "opencode-go:gemini-4-argon", "t": 1794250793.54}
+{"step": 4, "act": {"do": "sh"}, "res": "exit 0\nbaseline lzma2: 6.40609243330949\nlzma1: 6.493324137443189\n", "route": "opencode-go:gemini-4-argon", "t": 1794250800.59}
+{"step": 5, "act": {"do": "sh"}, "res": "exit 0\nword_transform + lzma1: 7.63856123489151\n", "route": "opencode-go:gemini-4-argon", "t": 1794250814.74}
+{"step": 6, "act": {"do": "sh"}, "res": "exit 0\nsample tokens: [(b'\",\\n      ', 1611), (b'\": ', 1600), (b'the', 1477), (b'\",\\n    ', 1200), (b'be', 937), (b'\"\\n    ', 800), (b'to', 599), (b'of', 516), (b'and', 432), (b'\\n    \"id\": ', 400), (b'\\n    \"uuid\": \"', 400), (b'user', 400), (b'active', 400), (b'\\n    \"role\": \"', 400), (b'score', 400), (b'\\n    \"tags\": ', 400), (b'\\n    \"description\": \"', 400), (b'meta', 400), (b'\\n      \"created_at\": \"', 400), (b'retries', 400)]\n", "route": "opencode-go:gemini-4-argon", "t": 1794250822.82}
+{"step": 7, "act": {"do": "sh"}, "res": "exit 0\ndict_c ratio: 7.613220261668291\n", "route": "opencode-go:gemini-4-argon", "t": 1794250841.38}
+{"step": 8, "act": {"do": "sh"}, "res": "exit 0\nIdea A (word+space + json key regex): 7.823450450642405\n", "route": "opencode-go:gemini-4-argon", "t": 1794250856.71}
+{"step": 9, "act": {"do": "sh"}, "res": "exit 0\nlen(c): 183589 half: 91794 idx_json: 20521\n", "route": "opencode-go:gemini-4-argon", "t": 1794250864.6}
+{"step": 10, "act": {"do": "sh"}, "res": "exit 0\nSample 0: 400 matches\nSample 1: 175 matches\nSample 2: 224 matches\n", "route": "opencode-go:gemini-4-argon", "t": 1794250879.08}
+{"step": 11, "act": {"do": "sh"}, "res": "exit 0\nMatches in c: 400\n", "route": "opencode-go:gemini-4-argon", "t": 1794250891.2}
+{"step": 12, "error": "RuntimeError: model error None: all routes for 'main' failed or are cooling down; last error: ReadTimeout: ; next route reopens in 60s", "t": 1794250951.27}
+{"step": 13, "backoff": 62, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794250951.27}
+{"step": 14, "error": "RuntimeError: model error None: all routes for 'main' failed or are cooling down; last error: ReadTimeout: ; next route reopens in 60s", "t": 1794251073.34}
+{"step": 15, "backoff": 62, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794251073.35}
+{"event": "final", "final": 6.406092, "baseline": 6.406092, "final_gain": 0.0, "t": 1794251304.45}

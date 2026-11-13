@@ -1,0 +1,34 @@
+{
+ "result": "csvsum.py is a stdlib-only streaming summer. It reads stdin as bytes, splits per line, skips blank or short rows, sums float(val) per cat bytes in a dict, then prints sorted 'cat,sum' lines with 2 decimals. It matches the sample output (SAME on in-0). Assay registered a baseline median of 2.10399 with 7.1% noise. A bulk-split variant measured 2.257 (about +7%), which did not clear the noise threshold, so the incumbent was kept. I am resting here to conserve energy rather than spend it on marginal variants.",
+ "calls": 6,
+ "secs": 32.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 200.0,
+  "spent": 121.0475,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 78.95250000000003,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}
+{
+ "result": "csvsum.py is a stdlib-only streaming summer. It reads stdin as bytes, splits into lines, skips the header and blank or short rows, and accumulates float(val) per cat bytes key in a dict. It prints sorted 'cat,sum' lines with two decimals. It passed the public samples, and assay registered a baseline of 2.09808 with 5.1% noise. A bulk-split variant measured about +5% (2.185 vs 2.084), which is under the 5.1% win threshold, and a try/except variant was slower (-19%). I'm resting rather than spending more energy on variants that the colony's history suggests fall within noise. The unspent energy returns to the stem cell.",
+ "calls": 10,
+ "secs": 27.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 200.0,
+  "spent": 184.9117,
+  "earned": 0.0,
+  "got": 120.0,
+  "gave": 135.08830000000003,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 10,
+  "assay": true
+ }
+}

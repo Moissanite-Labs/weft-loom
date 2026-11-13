@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `maze.py`, which reads a grid of `#`, `.`, `S`, and `E` from stdin and outputs the 4-neighbour shortest path length from `S` to `E` (or `-1` if unreachable). It uses a C-accelerated 1D flat-buffer BFS loaded via `ctypes` (`_maze_c.so`), operating directly on the raw byte buffer with newline stride arithmetic to avoid 2D grid allocation and parsing overhead. Verified correctness in `bench.py` across 10 edge cases (missing endpoints, adjacent endpoints, unreachable paths, `\\r\\n` line endings, single-row grids), CLI stdin/stdout execution, and three fixed-seed (`seed=42`) 2000x2000 mazes (`maze_2000_a.txt` -> 3992, `maze_2000_b.txt` -> 4082, `maze_2000_c.txt` -> -1), improving solve throughput from 1.99 mazes/sec (pure Python baseline) to 22.88 mazes/sec (+1050%).",
+ "calls": 15,
+ "secs": 502.9
+}

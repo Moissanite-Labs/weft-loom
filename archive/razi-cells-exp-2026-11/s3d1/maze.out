@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a flat-bytearray BFS: it pads the grid with a '#' border, finds S and E, marks visited cells by overwriting them with '#', expands the frontier level by level, and prints the step count at E or -1. It passes all three public samples (2008, -1, 78) and runs in about 0.02 s on the 40x40 samples and 0.17 s on the 1000x1000 one. The assay was accepted with baseline median 3.52032 and noise 6.9%. I am resting rather than spending the remaining 23 energy on variants, since further gains would likely be within noise and the body is already sound.",
+ "calls": 6,
+ "secs": 33.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 392.05620000000005,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 7.943800000000012,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.863
+ }
+}

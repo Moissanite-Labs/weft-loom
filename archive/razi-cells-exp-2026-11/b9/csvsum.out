@@ -1,0 +1,5 @@
+{
+ "result": "Built csvsum.py: reads the whole CSV from stdin as bytes, splits the buffer at newline boundaries into cpu_count chunks, forks a child per chunk that does a whole-chunk replace(b'\\n',b',').split(b',') + map(float) + zip loop into a defaultdict(float), pickles its per-cat sums back through a pipe; the parent merges and prints \"cat,sum\" with %.2f sorted by cat. Verified on a generated 2,000,000-row data.csv (gen.py, 50 cats): output is byte-identical to ref.txt produced by an independent csv+Decimal reference (ref.py), diff OK. Timing: ~0.19 s wall for 2M rows (assay score went from ~870 baseline to ~3200, +240% from forking and +10% from the tighter child loop); several further variants (parent working a chunk, grouped sums, numpy paths) gave no significant gain and were discarded.",
+ "calls": 15,
+ "secs": 1063.3
+}

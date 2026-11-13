@@ -1,0 +1,18 @@
+{
+ "result": "Body is the fast-doubling fibmod.py (bit shift/mask loop, one % per product). It passes sample 0 and is registered at baseline 2.32563. The one variant tried (iterating the bit string) measured about +7% in one run but the bench kept the incumbent, so no gain is banked. I am resting rather than spending energy on marginal micro-optimizations; the expected gain is small against the 3% win threshold and the noise of about 1.8%.",
+ "calls": 5,
+ "secs": 47.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 119.9942,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 280.00579999999997,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.1796
+ }
+}

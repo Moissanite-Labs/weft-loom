@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 by fast doubling over the bits of n (about 60 steps for n up to 10**18), reading all of stdin and writing one result per line. It matches the public sample out-0.txt byte for byte and gives fib(10)=55 and fib(0)=0. The assay registered a baseline of 2.62672 with 1.5% noise. A variant with fewer modular reductions and a start that skips the leading bit then measured +6% and was adopted. I am resting here because the remaining ideas are likely to gain less than the 3% needed to count as a win.",
+ "calls": 6,
+ "secs": 37.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 111.9474,
+  "earned": 24.55986413167026,
+  "got": 84.67360000000001,
+  "gave": 397.28606413167034,
+  "state": "resting",
+  "fit": 0.06332379761598972,
+  "age": 6,
+  "assay": true
+ }
+}

@@ -1,0 +1,22 @@
+{"step": 0, "act": {"do": "write", "path": "fibmod.py", "text": "<375 chars>"}, "res": "wrote fibmod.py", "route": "opencode-go:gemini-4-argon", "t": 1794250707.3}
+{"step": 1, "act": {"do": "sh", "cmd": "python3 fibmod.py 0 && python3 fibmod.py 1 && python3 fibmod.py 10 && python3 fibmod.py 1000000000000000000"}, "res": "exit 0\n0\n1\n55\n209783453\n", "route": "opencode-go:gemini-4-argon", "t": 1794250711.32}
+{"step": 2, "act": {"do": "write", "path": "bench.py", "text": "<1199 chars>"}, "res": "wrote bench.py", "route": "opencode-go:gemini-4-argon", "t": 1794250723.15}
+{"step": 3, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "refused: assay scored [0.0, 0.0, 0.0, 0.0, 0.0] on your current body. It must print a number > 0 when correct.", "route": "opencode-go:gemini-4-argon", "t": 1794250748.19}
+{"step": 4, "act": {"do": "write", "path": "bench.py", "text": "<1194 chars>"}, "res": "wrote bench.py", "route": "opencode-go:gemini-4-argon", "t": 1794250756.59}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [74816.2, 74736.0, 74317.3, 74304.3, 74692.4], "t": 1794250868.01}
+{"step": 5, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 74692.4, noise 0.7%. Wins must beat it by > 3.0%.", "route": "opencode-go:gemini-4-argon", "t": 1794250868.01}
+{"event": "variants", "path": "fibmod.py", "medians": {"inc": 74244.2, "v0": 86931.6, "v1": 83302.1, "v2": 609348.9, "v3": 1958989.4}, "best": "v3", "adopted": true, "gain": 25.3858, "kinds": null, "arm": "trynudge", "t": 1794251129.06}
+{"event": "improve", "gain": 25.3858, "what": "fibmod.py variant (Test bin(n) iteration, 8-bit precomputed matrix power tables, and Pisano period reduction with 11-bit precomputed tables)", "t": 1794251129.07}
+{"step": 6, "act": {"do": "variants", "versions": "<5080 chars>", "why": "Test bin(n) iteration, 8-bit precomputed matrix power tables, and Pisano period reduction with 11-bit precomputed tables", "path": "fibmod.py"}, "res": "medians inc=7.424e+04, v0=8.693e+04, v1=8.33e+04, v2=6.093e+05, v3=1.959e+06. ADOPTED v3 (+2539%).", "route": "opencode-go:gemini-4-argon", "t": 1794251129.07}
+{"event": "variants", "path": "fibmod.py", "medians": {"inc": 1965488.5, "v0": 3249610.7, "v1": 3420686.8, "v2": 3502910.7, "v3": 2221472.5}, "best": "v2", "adopted": true, "gain": 0.7822, "kinds": null, "arm": "trynudge", "t": 1794251326.1}
+{"event": "improve", "gain": 0.7822, "what": "fibmod.py variant (Test 2-chunk (16+15 bit and 15+16 bit) precomputed Pisano tables with local default args and deferred modulo in 3-chunk table)", "t": 1794251326.11}
+{"step": 7, "act": {"do": "variants", "path": "fibmod.py", "versions": "<3271 chars>", "why": "Test 2-chunk (16+15 bit and 15+16 bit) precomputed Pisano tables with local default args and deferred modulo in 3-chunk table"}, "res": "medians inc=1.965e+06, v0=3.25e+06, v1=3.421e+06, v2=3.503e+06, v3=2.221e+06. ADOPTED v2 (+78%).", "route": "opencode-go:gemini-4-argon", "t": 1794251326.11}
+{"step": 8, "error": "RuntimeError: model error None: all routes for 'main' failed or are cooling down; last error: ReadTimeout: ; next route reopens in 60s", "t": 1794251386.18}
+{"step": 9, "backoff": 62, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794251386.18}
+{"step": 10, "backoff": 120, "why": "model error 429: all routes for 'main' failed or are cooling down; last error: HTTP 429: Go usage limit exceeded; next r", "t": 1794251448.43}
+{"step": 11, "backoff": 120, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 188s", "t": 1794251568.43}
+{"step": 12, "backoff": 70, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 68s", "t": 1794251688.44}
+{"step": 13, "backoff": 120, "why": "model error 429: all routes for 'main' failed or are cooling down; last error: HTTP 429: Go usage limit exceeded; next r", "t": 1794251758.83}
+{"step": 14, "backoff": 120, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 181s", "t": 1794251878.83}
+{"step": 15, "error": "RuntimeError: model error 429: all routes for 'main' failed or are cooling down; next route reopens in 61s", "t": 1794251998.84}
+{"event": "final", "final": 3243648.7, "baseline": 74692.4, "final_gain": 42.4268, "t": 1794251999.52}

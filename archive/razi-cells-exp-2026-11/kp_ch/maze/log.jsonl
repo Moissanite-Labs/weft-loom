@@ -1,0 +1,15 @@
+{"step": 0, "usage": {"inp": 4, "out": 467, "cr": 1705, "cw": 0, "rs": 0, "usd": 0.005019}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268476.23}
+{"step": 0, "act": {"do": "write", "path": "maze.py", "text": "<582 chars>"}, "res": "wrote maze.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794268476.23}
+{"step": 1, "usage": {"inp": 4, "out": 25, "cr": 1183, "cw": 1209, "rs": 0, "usd": 0.0035171}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268477.28}
+{"event": "assay", "cmd": "kit:maze", "runs": [3.5081354533839333, 3.5398125705988335, 3.471183180797014, 3.5361121829898425, 3.5133655131106987], "t": 1794268480.08}
+{"step": 1, "act": {"do": "assay"}, "res": "assay accepted: baseline median 3.51337, noise 2.0%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794268480.08}
+{"step": 2, "usage": {"inp": 4, "out": 201, "cr": 1183, "cw": 1294, "rs": 0, "usd": 0.0054896}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268482.68}
+{"event": "hold", "step": 2, "t": 1794268482.68}
+{"step": 2, "act": {"do": "done"}, "res": "refused: you have an assay and 5 steps left, but you have not tried to improve your body since registering it. Make at least one improvement attempt, then call done.", "route": "anthropic:claude-sonnet-5-5", "t": 1794268482.68}
+{"step": 3, "usage": {"inp": 4, "out": 491, "cr": 1183, "cw": 1462, "rs": 0, "usd": 0.0088096}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268486.3}
+{"event": "variants", "path": "maze.py", "medians": {"inc": 3.5356599998368727, "v0": 4.0052842849988926}, "best": "v0", "adopted": true, "gain": 0.1328, "kinds": null, "arm": "ctrl", "t": 1794268490.19}
+{"event": "improve", "gain": 0.1328, "what": "maze.py variant (try faster BFS styles)", "t": 1794268490.19}
+{"step": 3, "act": {"do": "variants", "path": "maze.py", "why": "try faster BFS styles", "versions": "<758 chars>"}, "res": "medians inc=3.536, v0=4.005. ADOPTED v0 (+13%).", "route": "anthropic:claude-sonnet-5-5", "t": 1794268490.19}
+{"step": 4, "usage": {"inp": 4, "out": 206, "cr": 1183, "cw": 1686, "rs": 0, "usd": 0.0065196}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268492.36}
+{"step": 4, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268492.36}
+{"event": "final", "final": 4.048853466498483, "baseline": 3.5133655131106987, "final_gain": 0.1524, "t": 1794268497.02}

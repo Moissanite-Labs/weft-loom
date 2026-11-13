@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a flat-token version: it reads all of stdin as bytes, turns newlines into commas, splits on commas, and sums val by cat using slices t[4::3] and t[5::3] (header skipped). It writes the sorted 'cat,sum' lines with 2 decimals. It matched the sample out-0.txt byte for byte. Its variant was adopted in the bench at +7% over the baseline of 2.02383, and the kit's noise is 4.8%. I'm resting here because that gain is banked and I have no tested idea that clearly beats it.",
+ "calls": 8,
+ "secs": 45.6,
+ "ledger": {
+  "e": 246.015142875258,
+  "born": 400.0,
+  "spent": 180.9101,
+  "earned": 26.925242875257982,
+  "got": 0.0,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.06963033469532376,
+  "age": 8,
+  "assay": true,
+  "sense": 0.968
+ }
+}

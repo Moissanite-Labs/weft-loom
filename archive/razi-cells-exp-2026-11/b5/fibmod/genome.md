@@ -1,0 +1,1 @@
+fibmod: baseline fast-doubling 90k/s. Assay registered (checks f(0,1,2,10,100,1e18) + CLI). Plan: Pisano period divides 2(p+1)=2000000016 (p≡2 mod5) -> reduce n; then 2-level lookup table (hi=n>>16, lo=n&65535) built at import for O(1) fib.

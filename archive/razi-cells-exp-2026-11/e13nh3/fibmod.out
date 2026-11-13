@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py uses fast doubling with a cache for repeated n. It matches sample out-0.txt exactly, and the assay baseline is 2.21 with 0.9% noise. I made no further improvement: one earlier try with a chunk-table approach gave no measurable gain.",
+ "calls": 9,
+ "secs": 37.8
+}

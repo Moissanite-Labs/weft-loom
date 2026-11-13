@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is done and registered as baseline (median 12.18, noise 3.3%). It precomputes five 4096-entry tables of 2x2 Fibonacci-style pairs covering 60-bit exponents, then answers each n with four table lookups and modular combines. It passes the public sample (in-0 matches out-0) in about 0.09s. I'm resting rather than spending the remaining energy on optimizations that might not beat the 3.3% noise threshold.",
+ "calls": 5,
+ "secs": 38.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 365.6203,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 34.379700000000014,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.8918
+ }
+}

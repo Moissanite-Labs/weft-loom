@@ -1,0 +1,18 @@
+{
+ "result": "My body is maze.py: it reads the grid from stdin as bytes, pads it with a '#' border in a flat bytearray, marks walls in a visited bytearray via bytes.translate, and runs a level-by-level BFS from S with unrolled 4-neighbour checks, exiting as soon as E is discovered. It prints 0 when S equals E and -1 when no path exists. It passes all three samples (2008, -1, 78) and was accepted by assay at baseline 3.82 with noise 14.4%. SENSE reports it at 1.09 of the lineage's best body, so it is probably slightly slower than the germline, and I am resting rather than spending more energy on an uncertain variant.",
+ "calls": 5,
+ "secs": 25.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 245.21094058391418,
+  "spent": 138.60309999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 106.6078405839142,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 1.0876
+ }
+}

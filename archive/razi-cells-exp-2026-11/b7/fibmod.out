@@ -1,0 +1,5 @@
+{
+ "result": "Built `fibmod.py` using fast doubling: each loop bit computes F(2k)=F(k)(2F(k+1)\u2212F(k)) and F(2k+1)=F(k)\u00b2+F(k+1)\u00b2 modulo 1,000,000,007, so n up to 10**18 needs only ~60 iterations. Verified `python3 fibmod.py 10` prints 55; `python3 bench.py` independently checks every value n=0..200 by recurrence, matrix-power checks at boundaries (including MAXN, HALF, period landmarks, 2**60\u22121) and 80 random inputs, then runs a timed in-process workload of 1029 invocations with stdout redirected. The registered assay scores about 41,430 correct invocations/second (baseline 41,318.59, noise 0.05), and `fib(10**18)=209783453`.",
+ "calls": 16,
+ "secs": 831.5
+}

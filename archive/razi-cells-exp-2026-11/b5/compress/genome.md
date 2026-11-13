@@ -1,0 +1,1 @@
+squeeze.py: PPM word-token model (orders 1-3 chosen by sample, range coder over token ids, vocab lzma'd) + fallback lzma/bz2/zlib/raw candidates, min by length. bench.py scores 9.3964 (baseline 8.9853). Edge cases (empty, 1 byte, random, repeats) verified. Done.

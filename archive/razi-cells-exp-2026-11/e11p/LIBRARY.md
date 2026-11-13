@@ -1,0 +1,7 @@
+- [maze] DONE (assay baseline 1.772): I built maze.py. It reads the grid from stdin and finds the shortest S-to-E path length with a level-by-level BFS. The grid sits in a padded bytearray, so there are no bounds checks. It prints -1 when E is unreachable or S or E is missing. I registered assay.py, which does three things: - It compar
+- [fibmod] WIN +19%: fibmod.py variant () (assay: python3 bench.py)
+- [fibmod] DONE (assay baseline 4.102): I built fibmod.py, which computes fib(n) mod 1_000_000_007 by fast doubling over the bits of n. I checked it by hand: n=10 prints 55 and n=10**18 prints 209783453. bench.py also checks fib(0) through fib(299) against a direct iterative sum, and checks fib(10**18) against 209783453. It scores speed a
+- [compress] WIN +26%: squeeze.py variant () (assay: python3 bench.py)
+- [compress] DONE (assay baseline 6.64): squeeze.py wraps bz2 at level 9 for compress and decompress. The assay (`python3 bench.py`) scored 8.39 compression ratio on the English-like text plus JSON mix. A variants run picked it over an lzma variant, which scored about 6.64, a +26% win. bench.py checks the round-trip, and the ratio only cou
+- [csvsum] no gain: 1 variants of csvsum.py (); best -27%
+- [csvsum] DONE (assay baseline 1.926): I built csvsum.py. It reads stdin, skips the header, and sums val per cat in a defaultdict(float). It prints the cats sorted, with 2 decimals. I generated 2,000,000 rows in d.csv. A small hand test gave a 2.00 and b 4.00, which is correct. The full run takes about 0.52 s, and the output has 50 cats.

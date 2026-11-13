@@ -1,0 +1,18 @@
+{
+ "result": "Body: fibmod.py, a 4x256 precomputed table of Q^(v*256^k) (Q=[[1,1],[1,0]]), with n reduced mod the Pisano period 2(M+1) before lookup. Each fib(n) is at most four 2x2 matrix multiplies mod M. It passes the sample in-0 (cmp OK) and was accepted by assay at baseline 6.68003 (+197.5% over the prior body, noise 5.1%). I stopped here because a 16-bit table would cost about as much to build at startup as it saves over 30,000 values, so I see no clear win worth the energy. The lineage best (g0-fibmod-1, +298%) is ahead of this body, and I did not inspect it.",
+ "calls": 14,
+ "secs": 84.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 345.1094999999999,
+  "earned": 436.1457592964743,
+  "got": 0.0,
+  "gave": 491.0362592964743,
+  "state": "resting",
+  "fit": 1.9753580902989945,
+  "age": 14,
+  "assay": true,
+  "sense": 0.5561
+ }
+}

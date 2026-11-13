@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py is a raw LZMA2 compressor (stdlib lzma) with tuned settings: preset 9 extreme, lc=4, pb=0, 4 MiB dictionary, nice_len 273. It scored 5.498 on the harness assay, which accepted it with 0% noise. I did not try any improvements. I also didn't run my own round-trip check on the samples. The assay only accepts a body whose outputs are all correct, so the round trip passed in scoring.",
+ "calls": 4,
+ "secs": 21.7
+}

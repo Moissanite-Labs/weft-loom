@@ -1,0 +1,11 @@
+{"event": "laws", "price_show": true, "sense_show": true, "sense_dir": true, "law": "rest", "start": ["mid", "low"], "t": 1794298726.81}
+{"step": 0, "usage": {"inp": 4, "out": 103, "cr": 2006, "cw": 2274, "rs": 0, "usd": 0.0071242}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "cost": 79.2, "cap": 2927, "est": 99.2, "why": "", "say": "", "t": 1794298728.9}
+{"step": 0, "act": {"do": "sh", "cmd": "ls; ls /Users/kethuda/Work/razi-cells/kits/public/fibmod | head"}, "res": "exit 0\nNEED\nlog.jsonl\nDONE\nin-0.txt\nout-0.txt\n", "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "next": ["mid", "none"], "energy": 320.8, "t": 1794298728.92}
+{"step": 1, "usage": {"inp": 4, "out": 2344, "cr": 2006, "cw": 2372, "rs": 0, "usd": 0.0297792}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "none", "cost": 305.8, "cap": 2344, "est": 78.3, "why": "", "say": "", "t": 1794298746.68}
+{"step": 1, "bad_reply": "", "bad_len": 0, "route": "anthropic:claude-sonnet-5-5", "t": 1794298746.68}
+{"step": 1, "error": "ValueError: no tool call in reply; call exactly one tool", "t": 1794298746.68}
+{"event": "downshift", "frm": "mid", "to": "light", "e": 15.0, "est": 6.1, "t": 1794298746.69}
+{"step": 2, "usage": {"inp": 4, "out": 177, "cr": 2006, "cw": 2416, "rs": 0, "usd": 0.00041096}, "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "none", "cost": 12.1, "cap": 177, "est": 6.1, "why": "", "say": "", "t": 1794298748.65}
+{"step": 2, "bad_reply": "", "bad_len": 0, "route": "anthropic:claude-haiku-5-5", "t": 1794298748.65}
+{"step": 2, "error": "ValueError: no tool call in reply; call exactly one tool", "t": 1794298748.65}
+{"event": "death", "age": 3, "fit": 0.0, "t": 1794298748.65}

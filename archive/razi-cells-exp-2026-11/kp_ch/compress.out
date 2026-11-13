@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py uses stdlib lzma in raw mode (LZMA2, preset 9 extreme, lc=4, lp=0, pb=0, 1 MB dictionary). I checked a small round trip by hand and it matched. The harness assay accepted it with a baseline compression ratio of 5.498 and 0.0% noise. One variants round tried lc=3 and lc=4 with nice_len 273, BT4 and depth 1000. They scored 5.493 and 5.498 against 5.498 for the incumbent, so neither won and I kept the incumbent. I did not try a custom context-mixing coder, which might compress better.",
+ "calls": 7,
+ "secs": 35.9
+}

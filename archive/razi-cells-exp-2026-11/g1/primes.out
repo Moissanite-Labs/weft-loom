@@ -1,0 +1,5 @@
+{
+ "result": "Built primes.py: an odd-only bytearray sieve (index i => odd number 2i+1, slice-assignment strikeout from p*p, plus 1 for the even prime 2) that prints the count of primes below int(argv[1]). Verified against a reference full sieve over many inputs (0,1,2,3,10,100,1000,999983,...,5000000) with zero mismatches; below 5000000 it prints 348513 as required. Speed: ~0.0036 s of compute and ~0.030 s wall time including Python startup for n=5,000,000 (metric 278 on the 1/seconds workload). A numpy-vectorized alternative was tested in a divide-style comparison and was slower (~0.0088 s, metric 113), so the pure-stdlib odd-only sieve was kept.",
+ "calls": 14,
+ "secs": 211.6
+}

@@ -1,0 +1,5 @@
+{
+ "result": "Built `lcs.py`, which reads two lines from stdin and prints their longest-common-subsequence length using a bit-parallel DP: it builds one big-integer bitmask per character of the longer string and updates the DP row with `V = x & ~(x - ((V << 1) | 1))`, so each of the shorter string\u2019s characters costs only a handful of native big-integer operations, and returns `V.bit_count()`. Verification passed exhaustive binary pairs up to length 6 (261,121 cases), exhaustive ternary pairs up to length 4 (132,496 cases), 400 random Unicode/space cases, CLI tests including empty strings, CRLF, Unicode, and 3000 identical characters, plus a 3000\u00d73000 `acgt` performance case; the registered assay passed with median 1000 and 0% noise, and the 3000\u00d73000 core computation took about 1.9 ms per call.",
+ "calls": 16,
+ "secs": 3130.3
+}

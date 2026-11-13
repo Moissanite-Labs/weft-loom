@@ -1,0 +1,1 @@
+{"cmd": "python3 csvsum.py<in.csv | python3 -c \"\nimport sys,hashlib\ns=sys.stdin.read()\nok=s.startswith('c0,2004069.21') and len(s.splitlines())==50\nimport time\nprint(1 if ok else 0)\" ; s=$(date +%s.%N); python3 csvsum.py<in.csv>/dev/null; e=$(date +%s.%N); python3 -c \"print(1/($e-$s))\"", "baseline": 1.7790461033909708, "noise": 0.04788403094095835}

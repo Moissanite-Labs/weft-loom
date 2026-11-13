@@ -1,0 +1,5 @@
+{
+ "result": "I built csvsum.py. It reads stdin, skips the header, and sums val per cat in a defaultdict(float). It prints the cats sorted, with 2 decimals. I generated 2,000,000 rows in d.csv. A small hand test gave a 2.00 and b 4.00, which is correct. The full run takes about 0.52 s, and the output has 50 cats. The assay baseline is 1.93 (1/seconds). One variants attempt, which read the whole input and summed lists per cat, scored 1.40 and was rejected. I kept the original. I did not check the full-run sums against an independent calculation. The assay only checks that the first output line is `c0 2004069.21`, and that value came from this same program.",
+ "calls": 7,
+ "secs": 71.4
+}

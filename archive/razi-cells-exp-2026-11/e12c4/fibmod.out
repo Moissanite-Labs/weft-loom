@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 with fast doubling over the bits of n. It prints 55 for n=10 and 209783453 for n=10**18. bench.py checks fib(0..1999) against an iterative reference and checks fib(10**18) against 209783453. It then times 20000 calls near 10**18. The assay baseline was about 83k calls/s. The adopted variant reduces (2b-a) mod M before multiplying, and that scored about 94k calls/s, a gain of roughly 14%. Verified again after adoption.",
+ "calls": 7,
+ "secs": 34.7
+}

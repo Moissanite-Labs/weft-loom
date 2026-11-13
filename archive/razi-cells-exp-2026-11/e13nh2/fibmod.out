@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py reduces n modulo the Pisano-period divisor 2(p+1), where p = 10^9+7. It then runs fast doubling on the shorter exponent and caches repeated values. It matched the public sample out-0.txt (checked with cmp). The assay baseline was 2.265. The daughter cell's Pisano-period version beat that by 85%.",
+ "calls": 10,
+ "secs": 37.9
+}

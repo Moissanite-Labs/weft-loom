@@ -1,0 +1,5 @@
+{
+ "result": "I built fibmod.py. It computes fib(n) mod 1e9+7 with fast doubling, walking the bits of n. It matched the expected output on the one public sample, in-0.txt. The assay accepted it with a baseline of 2.63 and 1.0% noise. I did not try any optimizations.",
+ "calls": 5,
+ "secs": 19.0
+}

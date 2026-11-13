@@ -1,0 +1,1 @@
+primes: assay accepted (in-process count_primes(3e8) best of 7, baseline mod-30 wheel 8 arrays ~4077). Next: fork-parallel per residue class, segmented. Verify 5e6->348513 before done.

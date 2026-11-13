@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py is a raw LZMA2 compressor with preset 9 extreme, a 16 MB dictionary, lc=4, lp=0 and pb=0. The assay accepted it with a compression ratio of 5.498 and 0% noise. Two variants (lc=3 and lc=4, each with nice_len 273, MF_BT4 and depth 1000) scored 5.493 and 5.498, so neither beat it and I kept the original. A direct run on the public samples gave 147,420 bytes for in-0.txt (613,000 bytes) and 98,817 bytes for in-1.txt (716,665 bytes). My own round-trip check failed because of a path typo in the command, so I never confirmed it myself. The only round-trip evidence is that the assay accepted the body, and the assay requires every output to be correct.",
+ "calls": 7,
+ "secs": 32.3
+}

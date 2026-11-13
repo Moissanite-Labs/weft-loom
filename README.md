@@ -10,6 +10,7 @@ weft is the software: the runtime, the tooling, the site, the releases. This rep
 - `audit/`: reviews of the codebase and its claims, with the evidence attached.
 - `incidents/`: unplanned events worth keeping, with captured evidence and what was done about it.
 - `scripts/`: the tooling that validates the records.
+- `archive/`: records imported from the operator's local run trees, minus generated bulk fixtures.
 - `MIGRATION.md`: how this repository was carved out of weft, and how to read older references.
 
 ## Rules

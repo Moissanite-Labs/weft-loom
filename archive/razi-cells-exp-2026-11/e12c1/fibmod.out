@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 with the fast-doubling method, using one loop step per bit of n. It prints 55 for n=10 and 209783453 for n=10**18, and both match the expected values. I registered an assay that times 20000 calls of fib near 10**18 and prints calls per second. The first version scored about 82.6k calls/s. A variant that reduces (2b-a) mod M before multiplying and picks the branch with a conditional expression scored about 94k calls/s (+14%, past the 3.3% noise). It was adopted. I made no further attempts to speed it up.",
+ "calls": 5,
+ "secs": 18.5
+}

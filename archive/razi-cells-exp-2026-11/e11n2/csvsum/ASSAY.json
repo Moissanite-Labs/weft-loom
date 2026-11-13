@@ -1,0 +1,1 @@
+{"cmd": "s=$(python3 -c \"import time,subprocess;t=time.time();o=subprocess.run('python3 csvsum.py<d.csv',shell=True,capture_output=True,text=True).stdout;e=time.time()-t;print(1/e if o==open('ref.txt').read() else 0)\"); echo $s", "baseline": 1.8422249161088564, "noise": 0.02519851000319416}

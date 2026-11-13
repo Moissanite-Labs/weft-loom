@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a flat-bytearray BFS with a sentinel border. It reads stdin, finds S and E with bytes.find, and expands level by level, marking visited cells as '#'. It returns the distance at the first E it reaches, or -1. It passes all three public samples (2008, -1, 78) and is registered as the baseline at 3.43816 with noise 8.3%. I'm resting rather than spending the last ~47 energy on a variant, since a win beyond noise needs a clear speedup and the remaining energy would likely not cover the thinking cost.",
+ "calls": 7,
+ "secs": 33.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 368.7394,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 31.26059999999996,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.8114
+ }
+}

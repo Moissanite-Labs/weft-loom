@@ -1,0 +1,5 @@
+{
+ "result": "Built squeeze.py (stdlib only) with compress/decompress that round-trip exactly. It tries several backends per input and keeps the smallest, tagged with a 1-byte header: raw LZMA2 (preset 9 extreme, lc=4/lp=0/pb=0, nice_len 273, bt4), bz2 -9, zlib -9, stored, plus two reversible preprocessing stages \u2014 a word-tokenized adaptive arithmetic-coder path and, the key win, a JSON canonicalization stage that detects pretty-printed JSON (json.loads then verifies json.dumps(indent=2) reproduces the input byte-for-byte), stores the compact separators form through LZMA, and re-indents on decompress; only used when exact re-serialization is verified. Evidence: `python3 bench.py` (the registered assay) prints 7.1424 vs the 6.9771 baseline (+2.4%), with the JSON corpus going from ~1818914 \u2192 189929 bytes (ratio 9.58) and every sample (text, JSON, mixed, empty, b\"x\"*1000) round-tripping exactly; additional edge tests (empty, truncated JSON `{`/`[1,2`, binary \\x00\\xff patterns, os.urandom(3000), JSON with unicode) all round-trip (\"edge ok\").",
+ "calls": 20,
+ "secs": 846.8
+}

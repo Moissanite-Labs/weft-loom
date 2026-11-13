@@ -1,0 +1,5 @@
+{
+ "result": "Built sortints.py: reads all of stdin as bytes, parses the whitespace-separated integers with numpy.fromstring(dtype=int64, sep=' '), sorts in-place, and writes the result as one \"\\n\".join(map(str, a.tolist())) encoded block (with a pure-Python sorted(map(int, split())) fallback if numpy is unavailable). Test data: gen.py with random.seed(12345) produces 1,000,000 ints in [-1e9, 1e9] with mixed space/newline separators; expected.txt was produced by the original pure-Python version and the numpy version's output matches it byte-for-byte (verified by cmp in the assay and directly). Performance: assay score rose from baseline 2299 (\u22480.43 s/run) to 3900 (\u22480.25 s per 1M ints, including interpreter startup), a ~70% improvement beyond the 13% noise threshold.",
+ "calls": 16,
+ "secs": 541.8
+}

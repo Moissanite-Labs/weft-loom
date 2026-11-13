@@ -1,0 +1,5 @@
+{
+ "result": "Built `lcs.py` to compute the length of the longest common subsequence of two strings read from stdin (and exposed via `lcs_length(s1, s2)`), backed by a pre-compiled CPython C extension (`_lcs_ext.so`), a ctypes shared library (`_lcs.so`), and a pure-Python bit-parallel fallback. The implementation strips common prefixes and suffixes in 64-bit chunks, builds per-character bitmasks only for characters actually present in the string, and executes Hyyr\u00f6/Allison-Dix 64-bit word-parallel dynamic programming using hardware carry-add (`__builtin_addcll`) and population count (`__builtin_popcountll`) intrinsics with loop unrolling for 3000-character strings. Correctness and CLI execution were verified against a reference dynamic programming implementation across edge cases, random strings over varying alphabet sizes, and 3000-character inputs (`bench.py`), achieving ~17,530 3000-character string pairs per second (~57 microseconds per pair, up from the 550.63 pairs/sec pure-Python baseline).",
+ "calls": 29,
+ "secs": 834.2
+}

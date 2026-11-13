@@ -1,0 +1,5 @@
+{
+ "result": "Built `sortints.py` to read whitespace-separated integers from stdin and print them sorted one per line, verified against 1,000,000 fixed-seed (`random.Random(42)`) test integers spanning negative, small, duplicate, and 64-bit values (`gen_data.py` / `bench.py`). By importing `numpy._core.multiarray.fromstring` directly (avoiding full NumPy package overhead), performing an O(N) k-way `arr.partition` in the parent process, and using a 6-process `os.fork()` + `os.waitpid()` serialized pipeline to parallelize sub-array sorting and `str` formatting/encoding before raw `os.write` output, throughput increased from the 1892.07 assay baseline (~0.53s) to 4326\u20134950 (~0.20\u20130.23s for 1,000,000 integers, >4.3M ints/sec) with exact byte-for-byte output verification.",
+ "calls": 15,
+ "secs": 389.0
+}

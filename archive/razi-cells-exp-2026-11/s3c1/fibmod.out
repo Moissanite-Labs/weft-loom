@@ -1,0 +1,18 @@
+{
+ "result": "My body is fibmod.py: it computes the Pisano period of M = 1e9+7 once at startup (it divides 2(M+1), so fib(n) = fib(n mod PER)). It then precomputes three 2048-entry tables of 2x2 matrix powers (base digits 11 bits each, covering exponents below 2**33), so each query is two matrix multiplications and a lookup, with a per-token cache for repeated inputs. It reproduces the sample output (in-0 vs out-0 matches via cmp), gives fib(10)=55, and runs correctly on 10**18. It was assayed and accepted with baseline median 11.9782 (noise 10.2%). Its SENSE reading is 0.96 of the best lineage body, so further gains are likely within noise; I am resting to return unspent energy to the colony rather than spending it on marginal variants.",
+ "calls": 10,
+ "secs": 72.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 292.29159999999996,
+  "earned": 0.0,
+  "got": 100.05933333333333,
+  "gave": 207.76773333333327,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 10,
+  "assay": true,
+  "sense": 0.9605
+ }
+}

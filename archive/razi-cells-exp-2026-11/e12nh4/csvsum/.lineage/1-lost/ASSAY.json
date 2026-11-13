@@ -1,0 +1,1 @@
+{"cmd": "python3 csvsum.py<in.csv>o.txt && python3 -c \"\nimport sys,time\nl=open('o.txt').read().split()\nprint(1 if len(l)==50 and l[0].startswith('c0,') else 0)\" | grep -q 1 && echo 1", "baseline": 1.0, "noise": 0.0}

@@ -1,0 +1,5 @@
+{
+ "result": "I built maze.py. It reads the grid from stdin and finds the shortest S-to-E path length with a level-by-level BFS. The grid sits in a padded bytearray, so there are no bounds checks. It prints -1 when E is unreachable or S or E is missing.\n\nI registered assay.py, which does three things:\n- It compares solve() against a reference deque BFS on 30 random 12x12 mazes.\n- It checks that \"S#E\" returns -1.\n- It times a 2000x2000 maze generated with seed 1, and checks the result against the reference. The score is 1/seconds, or 0 if any check fails.\n\nAll checks passed, and the assay was accepted with a baseline of about 1.77 (roughly 0.56 s per solve) and 1% noise. I did not try any speed-up variants, so the current maze.py is the original correct version.",
+ "calls": 4,
+ "secs": 53.8
+}

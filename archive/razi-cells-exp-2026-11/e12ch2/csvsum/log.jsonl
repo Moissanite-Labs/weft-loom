@@ -1,0 +1,13 @@
+{"step": 0, "usage": {"inp": 4, "out": 372, "cr": 1488, "cw": 0, "rs": 0, "usd": 0.0040256}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266645.24}
+{"step": 0, "act": {"do": "write", "path": "csvsum.py", "text": "<308 chars>"}, "res": "wrote csvsum.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794266645.24}
+{"step": 1, "usage": {"inp": 4, "out": 167, "cr": 1210, "cw": 666, "rs": 0, "usd": 0.003585}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266647.36}
+{"step": 1, "act": {"do": "sh", "cmd": "python3 -c \"\nimport random\nr=random.Random(1)\nwith open('data.csv','w') as f:\n    f.write('id,cat,val\\n')\n    for i in range(2000000):\n        f.write('%d,c%d,%.2f\\n'%(i,r.randrange(50),r.random()*100))\n\"\ntime python3 csvsum.py < data.csv | head -3"}, "res": "exit 0\nc0 2004069.21\nc1 1986017.10\nc10 2022664.13\n\nreal\t0m0.603s\nuser\t0m0.588s\nsys\t0m0.013s\n", "route": "anthropic:claude-sonnet-5-5", "t": 1794266649.09}
+{"step": 2, "usage": {"inp": 4, "out": 188, "cr": 1210, "cw": 906, "rs": 0, "usd": 0.004395}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266651.48}
+{"event": "assay", "cmd": "python3 csvsum.py < data.csv | python3 -c \"\nimport sys,time\nl=sys.stdin.read().split('\\n')\nprint(1 if len([x for x in l if x])==50 else 0)\" | grep -q 1 && s=$(date +%s.%N) && python3 csvsum.py < data.csv >/dev/null && e=$(date +%s.%N) && python3 -c \"print(1/($e-$s))\"", "runs": [1.6691282600658768, 1.6362862505349536, 1.6756846377543457, 1.647050877381748, 1.670141163288068], "t": 1794266657.75}
+{"step": 2, "act": {"do": "assay"}, "res": "assay accepted: baseline median 1.66913, noise 2.4%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794266657.75}
+{"step": 3, "usage": {"inp": 4, "out": 408, "cr": 1210, "cw": 1293, "rs": 0, "usd": 0.0075625}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266660.28}
+{"event": "variants", "path": "csvsum.py", "medians": {"inc": 1.660903293252525, "v0": 1.7046461449299395, "v1": 1.3481158922793979}, "best": "v0", "adopted": false, "gain": 0.0263, "kinds": null, "arm": "ctrl", "t": 1794266674.52}
+{"step": 3, "act": {"do": "variants", "path": "csvsum.py", "versions": "<705 chars>"}, "res": "medians inc=1.661, v0=1.705, v1=1.348. kept incumbent.", "route": "anthropic:claude-sonnet-5-5", "t": 1794266674.52}
+{"step": 4, "usage": {"inp": 4, "out": 324, "cr": 1210, "cw": 2128, "rs": 0, "usd": 0.00881}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266677.86}
+{"step": 4, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266677.87}
+{"event": "final", "final": 1.6539999329614667, "baseline": 1.6691282600658768, "final_gain": -0.0091, "t": 1794266683.79}

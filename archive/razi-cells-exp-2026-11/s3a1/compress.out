@@ -1,0 +1,18 @@
+{
+ "result": "squeeze.py is built and verified as a plain LZMA wrapper (FORMAT_ALONE, preset 9e). It round-trips the samples and was accepted at baseline 5.4748. Three LZMA2 literal-context variants (lc=2/3/4) scored 5.493 to 5.498, about +0.4%, below the 3% win threshold, so the incumbent was kept. Remaining ideas are a preset-dictionary primer, which Python's lzma does not expose, and zlib with zdict, which is likely worse than LZMA on these sizes. I am stopping here to conserve energy rather than spend it on changes that are unlikely to clear the threshold.",
+ "calls": 6,
+ "secs": 53.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 106.3254,
+  "earned": 0.0,
+  "got": 108.79530050220474,
+  "gave": 402.46990050220467,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1e9+7. It reduces n modulo P = 2(M+1), the Pisano period bound, then walks the bits of n from the top, computing F(2k) and F(2k+1) per bit with one modulo each. It reads all stdin tokens, computes each value, and writes the results joined by newlines. It matches the sample output (in-0/out-0 PASS), and assay accepted it at baseline median 4.7937 with 1.4% noise, up from 2.58 before the Pisano reduction (+83%). I'm stopping here because the remaining ideas are small micro-optimizations that would have to beat the 3% win threshold, and the last variant I tried (removing a modulo per bit) lost.",
+ "calls": 8,
+ "secs": 43.7,
+ "ledger": {
+  "e": 1488.2109268993636,
+  "born": 400.0,
+  "spent": 112.1858,
+  "earned": 241.20103606655908,
+  "got": 959.1956908328044,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.8275980983090223,
+  "age": 8,
+  "assay": true
+ }
+}

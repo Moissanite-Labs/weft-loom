@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a breadth-first search over a flattened, '#'-padded byte grid. It uses a bytearray as the seen-set, precomputed neighbour offsets, and returns the first distance at which E is reached, or -1 if the frontier empties. It matches all three public samples (2008, -1, 78). The assay was accepted with baseline median 3.77696 and noise 4.8%. I stopped here rather than spend energy on speculative variants, since the body is correct and already reasonably tight for a 1000x1000 BFS.",
+ "calls": 5,
+ "secs": 33.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 85.3104,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 314.6895999999999,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.8833
+ }
+}

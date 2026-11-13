@@ -1,0 +1,5 @@
+{
+ "result": "maze.py is a BFS over a bytearray grid with a one-cell '#' border. It marks cells visited in place and expands level by level. It checks whether E has been reached once per level instead of once per cell. It passed the samples. `assay` registered a baseline of 3.514 with 1.8% noise. One `variants` attempt then scored 4.141 against 3.494 for the incumbent, a gain of about 19%, and that version was adopted. I did not re-run the samples or compare outputs after the adoption, so that check comes from the harness scoring (which gives 0 for any wrong output), not from a run of my own.",
+ "calls": 5,
+ "secs": 20.1
+}

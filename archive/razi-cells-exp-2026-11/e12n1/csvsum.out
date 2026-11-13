@@ -1,0 +1,5 @@
+{
+ "result": "I built csvsum.py. It reads the CSV on stdin, skips the header, sums val per cat in a defaultdict, and prints \"cat,sum\" with 2 decimals, sorted by cat. I generated 2,000,000 rows with seed 1 (50 cats, c0 to c49). On that file it runs in about 0.53 s, and the assay baseline is 1.91 (1/seconds). The output has 50 lines, and c0 is 19813346.85. My last check command also ran a csv-module cross-check, but its output was cut off, so I did not see that comparison's result. I did not try any speed improvements with `try`.",
+ "calls": 4,
+ "secs": 23.1
+}

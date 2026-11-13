@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is built and verified. It reads n per line from stdin and prints fib(n) mod 1_000_000_007 using fast doubling over the bits of n, with the modulo folded into the inner step. It passes the sample (in-0 matches out-0, fib(10)=55). The bench baseline is registered at 2.598 (noise 1.5%). The adopted variant (inlined per-number work, one fewer modulo) measured 2.751, about +5%, and its output is unchanged. I'm stopping here because the body is correct and a further win would need to beat the current body by more than 3%, which I don't expect to justify the energy.",
+ "calls": 6,
+ "secs": 45.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 92.1713,
+  "earned": 18.557201506614287,
+  "got": 0.0,
+  "gave": 326.38590150661423,
+  "state": "resting",
+  "fit": 0.04748599601622816,
+  "age": 6,
+  "assay": true,
+  "sense": 0.2123
+ }
+}

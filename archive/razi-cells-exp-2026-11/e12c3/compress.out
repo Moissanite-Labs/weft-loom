@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py uses stdlib lzma with raw LZMA2 filters (preset 9 extreme, lc=4, lp=0, pb=0, 4 MB dictionary). bench.py round-trips a mix of English-like text and JSON, and the compression ratio is 6.56. Round-trip is exact, because the bench prints 0 on any mismatch. Three tuning variants (lc, nice_len, depth, mf) gained at most 0.05%, which is under the 3% threshold, so none was adopted. I did not try a custom context-mixing coder, which could compress better.",
+ "calls": 5,
+ "secs": 30.9
+}

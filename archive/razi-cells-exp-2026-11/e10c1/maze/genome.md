@@ -1,0 +1,1 @@
+maze.py: BFS level-by-level on padded bytearray (walls=0), works & verified vs ref.py on small + b3 (seed3 => 4000), big(seed42) => -1. Assay registered (baseline 1872, time b3+big). Plan: variants of maze.py: drop per-neighbor e-check (check g[e] after each level), comprehension-based nxt. Then done.

@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is an 11-bit, 3-window table of symmetric matrices for Fibonacci mod 1e9+7. It reduces n mod the Pisano period, then multiplies three table entries. Assay baseline is 13.59, and it scores 1.04 of the best body recorded. I made no changes. Earlier generations found gains below the 8.6% noise threshold, so I'm saving energy.",
+ "calls": 1,
+ "secs": 5.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 99.917,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 300.08299999999997,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 1.0425
+ }
+}

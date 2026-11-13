@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a stdlib BFS over a padded bytearray (sentinel '#' border, flat indices, list frontier, early exit when E is reached). It passes all three samples (2008, -1, 78). Assay baseline is 3.16655 with noise 13%. One variant, which tests E by byte value, scored 3.017 and was rejected, so the incumbent stays. I'm resting here: further gains would need more than 13% over this baseline, and the one attempt at that failed.",
+ "calls": 7,
+ "secs": 35.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 147.0922,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 252.9078,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.8577
+ }
+}

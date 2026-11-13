@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is a flat-array BFS over a padded grid with early exit at E. It reads stdin, finds S and E, and prints the shortest 4-neighbour path length or -1. It matches all three public samples (2008, -1, 78) and the assay is accepted with baseline median 2.57872 and noise 13.8%. I'm resting rather than spending energy on a speed variant, since a win needs more than 13.8% over baseline and the BFS is already close to what plain Python allows.",
+ "calls": 4,
+ "secs": 15.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 50.1335,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 349.8665,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 4,
+  "assay": true
+ }
+}

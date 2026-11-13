@@ -1,0 +1,18 @@
+{
+ "result": "My body is csvsum.py: it reads stdin as bytes and, for plain input with no quotes, CR, spaces or tabs, takes a flat-split fast path. It replaces commas with spaces, slices the cat and val tokens, converts each value to integer cents with float rounding, accumulates in a dict, and writes sorted \"cat,sum\" lines with 2 decimals. Otherwise it falls back to a csv-module parser. It passes the sample in-0 and was assayed at a baseline of 1.82652 (noise 14.5%). I am resting rather than spending my remaining 41 energy on an optimisation that would need more than 14.5% gain to register, so the unspent energy returns to the lineage store.",
+ "calls": 6,
+ "secs": 35.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 195.19359999999995,
+  "spent": 170.3764,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 24.817199999999957,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.8139
+ }
+}

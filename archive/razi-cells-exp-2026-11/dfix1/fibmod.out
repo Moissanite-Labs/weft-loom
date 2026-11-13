@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py reduces n mod 2(M+1) (the Pisano period bound). For large inputs it uses baby-step/giant-step tables, each fib(n) is one combination of table lookups. It matched the public samples (out-N.txt). The assay baseline was 4.106 with 0.8% noise. A daughter cell's table version beat that by 166% and replaced the body. I did not re-run the samples after that replacement; the evidence for correctness is the earlier sample check on the first version and the assay accepting the daughter's body, which requires correct output.",
+ "calls": 11,
+ "secs": 39.0
+}

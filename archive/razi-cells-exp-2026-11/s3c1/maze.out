@@ -1,0 +1,18 @@
+{
+ "result": "My body is maze.py: it reads the grid from stdin, pads it with a one-cell wall border in a single flat bytearray, and runs a level-synchronous BFS from S with the visited map pre-marked from the walls. Each level is expanded with four unrolled neighbour checks, and E is tested when a cell is first reached. It prints the distance, or -1 if E is unreachable or S or E is missing. It passes all three public samples (2008, -1, 78) and was assayed at a median of 4.02 (noise 5.4%), a +42% gain on the original baseline. Further tweaks I tried were not adopted, so I am stopping here.",
+ "calls": 9,
+ "secs": 90.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 184.8303,
+  "earned": 140.81041293245937,
+  "got": 203.94319999999996,
+  "gave": 559.9233129324593,
+  "state": "resting",
+  "fit": 0.4219455397939351,
+  "age": 9,
+  "assay": true,
+  "sense": 0.9378
+ }
+}

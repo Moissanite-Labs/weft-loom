@@ -1,0 +1,5 @@
+{
+ "result": "Built fibmod.py: computes fib(n) mod 1_000_000_007 for n up to 10**18 in O(1) per call. It reduces n modulo the Pisano period 2(p+1)=2000000016 (valid since p \u2261 2 mod 5), then uses two precomputed tables built once at import (L[i]=F(i) for i\u22642^16, and A[h]=F(h\u00b72^16), B[h]=F(h\u00b72^16\u22121) for h up to P/2^16) so fib(n) = (A[h]\u00b7L[l+1] + B[h]\u00b7L[l]) mod M with h=n>>16, l=n&65535 \u2014 just two multiplications and one mod. Verified via CLI: fib(10)=55, fib(10^18)=209783453, fib(0)=0, fib(1)=1, fib(P)=0, and random n cross-checked against fast doubling; bench.py also checks 27 small n against the naive iterative definition. Assay (python3 bench.py, 20000 random n up to 10^18) went from 87k calls/s (fast doubling) to ~3.0\u20133.5M calls/s (+3168% adopted win); subsequent micro-optimization and table-split variants gave no gain beyond noise. CLI run including table build takes ~0.05 s.",
+ "calls": 12,
+ "secs": 802.1
+}

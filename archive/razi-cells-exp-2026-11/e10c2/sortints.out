@@ -1,0 +1,5 @@
+{
+ "result": "Built sortints.py: reads all stdin bytes, splits into tokens, and sorts without converting to int by exploiting that for same-sign decimal tokens, length-then-lexicographic order equals numeric order (negatives sorted descending by length then lex, positives ascending). Negatives are sorted in a forked child process writing directly to stdout while the parent sorts positives, then the parent waits and writes its block, giving a correctly ordered, race-free output. Verified byte-identical to `sort -n` (expected.txt) on 1,000,000 seeded random 32-bit ints (gen.py, seed 12345); assay (python3 assay.py, 1000/min-time over 3 runs, 0 on mismatch) rose from baseline ~1705 (\u22480.59 s) to ~2548 (\u22480.39 s), a +50% win adopted beyond noise. A numpy-based variant was tested but lost due to import/formatting overhead.",
+ "calls": 15,
+ "secs": 1057.3
+}

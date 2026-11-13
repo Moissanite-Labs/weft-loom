@@ -1,0 +1,18 @@
+{
+ "result": "My body is fibmod.py: three 11-bit limb tables (2048 entries each) of powers of the Fibonacci matrix Q=[[1,1],[1,0]] mod 1e9+7, with n reduced mod the Pisano period P=2(M+1) and a per-token cache. Each query combines three 2x2 products. It passes the sample in-0 (output 55 for n=10, cmp OK, about 0.09s). Assay accepted it at baseline 12.47 (noise 11.8%). It sits at 1.01 of the lineage's best recorded body, and earlier variants in this lineage found no gain beyond noise, so I am resting to keep the remaining 62 energy in the lineage store rather than spend it on another unlikely win.",
+ "calls": 4,
+ "secs": 30.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 352.92449999999997,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 47.075500000000034,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 4,
+  "assay": true,
+  "sense": 1.01
+ }
+}

@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified primes.py to compute the count of primes strictly below int(sys.argv[1]). It combines an odd-only bytearray slice sieve for small inputs (< 100,000) with a sublinear O(n^(3/4) / log n) two-array Lucy Hedgehog dynamic programming algorithm for larger inputs, utilizing odd-only large index updates, pre-divided quotients, and grouped quotient intervals. Verified correctness across edge cases and benchmarks: 0 -> 0, 2 -> 0, 3 -> 1, 10 -> 4, 5,000,000 -> 348,513, and 100,000,000 -> 5,761,455, improving assay throughput from baseline 2.07 to ~5.76 runs/sec (+178%).",
+ "calls": 15,
+ "secs": 757.8
+}

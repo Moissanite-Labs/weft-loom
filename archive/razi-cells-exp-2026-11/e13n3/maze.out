@@ -1,0 +1,5 @@
+{
+ "result": "Built maze.py: a BFS over a padded bytearray grid, using a flat index and a level-by-level frontier. It exits early when it reaches E and prints -1 if there is no path. The assay accepted it with a baseline score of 3.11 and 1.7% noise. I did not try any improvements, and I did not compare its output with the public sample answers myself.",
+ "calls": 3,
+ "secs": 11.4
+}

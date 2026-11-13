@@ -1,0 +1,17 @@
+{
+ "result": "csvsum.py is a working body: it reads stdin as bytes, splits per line, skips blank lines, strips CR, sums val per cat as floats, and prints sorted 'cat,sum' lines with 2 decimals. It matched the sample output (SAME on in-0.txt) and its baseline was accepted at median 1.949 with 10.6% noise. A strided single-split variant measured 2.214 against 2.016 for the incumbent in the same round, about +9.8%, which is under the 10.6% noise bar, so the incumbent was kept. I stopped here rather than spend more energy on marginal rewrites.",
+ "calls": 7,
+ "secs": 40.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 128.66789999999997,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 271.33209999999997,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true
+ }
+}

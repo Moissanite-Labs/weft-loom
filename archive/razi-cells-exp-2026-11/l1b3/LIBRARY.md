@@ -1,0 +1,54 @@
+- [g0-compress-0] no gain: 2 variants of squeeze.py (Try LZMA2 raw with lc/pb tuned for text (lc=4/pb=0 and lc=3, nice_len max) to beat plain FORMAT_ALONE preset 9e by >3%.); best +0%
+- [g0-compress-0] REST (baseline 5.475, gain +0%, returned 300 energy to the lineage store): Body: squeeze.py using stdlib lzma, FORMAT_ALONE preset 9|EXTREME for compress and lzma.decompress for decompress. It round-trips the samples and was accepted by assay at baseline ratio 5.4748. Tried LZMA2 raw with lc/pb/nice_len tuning: best 5.498 (+0.4%), be
+- [g0-compress-1] REST (baseline 5.498, gain +0%, returned 286 energy to the lineage store): Body: squeeze.py, stdlib only. Compress is lzma.compress in FORMAT_RAW with an LZMA2 filter (preset 9|EXTREME, dict 1 MiB, lc=4, lp=0, pb=0). Decompress mirrors those filter settings. It round-trips both samples (in-0: 613000 -> 147420, in-1: 716665 -> 98817)
+- [g0-fibmod-1] WIN +79%: rewrite (Reduce n mod Pisano period 2(M+1) before fast doubling; passes sample in-0.)
+- [g0-fibmod-1] WIN +122%: rewrite (Replaced fast doubling with 4x256 precomputed table lookup of Q^n (n reduced mod 2(M+1)); passes sample in-0.)
+- [g0-csvsum-1] DIED at age 5 with no assay
+- [g0-fibmod-0] WIN +198%: rewrite (Current fibmod.py is the 4x256 precomputed-table version; registering it as baseline after sample checks.)
+- [g0-fibmod-1] no gain: 1 variants of fibmod.py (Symmetric Fibonacci matrix representation (3-tuple, 5 mults per product) instead of 2x2 tuples, to cut per-lookup arithmetic.); best +9%
+- [g0-fibmod-0] REST (baseline 6.68, gain +198%, returned 491 energy to the lineage store): Body: fibmod.py, a 4x256 precomputed table of Q^(v*256^k) (Q=[[1,1],[1,0]]), with n reduced mod the Pisano period 2(M+1) before lookup. Each fib(n) is at most four 2x2 matrix multiplies mod M. It passes the sample in-0 (cmp OK) and was accepted by assay at bas
+- [g0-fibmod-1] no gain: 1 variants of fibmod.py (Cut table lookups from 4 to 3 (tables of 2048 entries, P < 2^31) to save one matrix multiply per query.); best +8%
+- [g0-maze-0] DIED at age 4 (gain +0%)
+- [g0-fibmod-1] REST (baseline 10.01, gain +298%, returned 636 energy to the lineage store): My body is fibmod.py: a 4x256 precomputed table of Q^(v*256^k) with Q=[[1,1],[1,0]], n reduced mod the Pisano period P=2(M+1), so each query is three 2x2 matrix multiplies mod 1e9+7 with a per-input cache. It passes the sample in-0 (output 55 for n=10 and matc
+- [g0-csvsum-0] no gain: 1 variants of csvsum.py (Flat split of whole buffer avoids per-line Python loop; falls back to line parser for quotes/CR/spaces.); best +7%
+- [g0-csvsum-0] REST (baseline 1.723, gain +0%, returned 142 energy to the lineage store): My body is csvsum.py: it reads stdin as bytes, splits per line, sums each category's values as integer cents in a dict, then prints sorted "cat,sum" lines with 2 decimals. It is correct on the samples and assayed at a baseline of 1.723 (noise 7.3%). A flat-spl
+- [g0-maze-1] DIED at age 3 with no assay
+- [lineage compress] GEN 0: the germline body is now the body of g0-compress-1, the lineage's first.
+- [lineage fibmod] GEN 0: the germline body is now the body of g0-fibmod-1, the lineage's first.
+- [lineage csvsum] GEN 0: the germline body is now the body of g0-csvsum-1, the lineage's first.
+- [lineage maze] GEN 0: the germline body is now the body of g0-maze-0, the lineage's first.
+- [g1-compress-0] REST (baseline 5.498, gain +0%, returned 262 energy to the lineage store): My body is squeeze.py: stdlib lzma, FORMAT_RAW with an LZMA2 filter (preset 9|EXTREME, 1 MiB dict, lc=4, lp=0, pb=0), with decompress mirroring the same filters. It round-trips both samples (in-0: 613000 -> 147420, in-1: 716665 -> 98817) and was accepted by as
+- [g1-fibmod-1] REST (baseline 9.964, gain +0%, returned 249 energy to the lineage store): My body is fibmod.py: a 4x256 precomputed table of Q^(v*256^k) with Q=[[1,1],[1,0]], n reduced mod the Pisano period P=2(M+1), so each query is at most four 2x2 matrix multiplies mod 1e9+7, with a per-input cache. It passes the sample in-0 (cmp OK, output 55 f
+- [g1-fibmod-0] REST (baseline 14.55, gain +0%, returned 45 energy to the lineage store): My body is fibmod.py: three 11-bit limb tables (2048 entries each) of powers of the Fibonacci matrix, with n reduced mod the Pisano period 2(M+1), each query combining three 2x2-style multiplies mod 1e9+7 with a per-token cache. It passes the sample in-0 (outp
+- [g1-maze-1] WIN +14%: maze.py variant (Unroll the 4-neighbour loop to avoid tuple iteration in the BFS inner loop; same logic, same early exit.) (assay: kit:maze)
+- [g1-csvsum-0] WIN +37%: rewrite (Current body: flat-split fast path with int-cents fast conversion; passes sample in-0. Measuring against baseline.)
+- [g1-maze-0] WIN +28%: maze.py variant (Faster BFS: walls pre-marked via bytes.translate, early exit at E on discovery, byte-level parsing, fewer per-cell checks.) (assay: kit:maze)
+- [g1-maze-1] REST (baseline 3.667, gain +14%, returned 317 energy to the lineage store): My body is maze.py: a flat bytearray grid padded with '#' walls, then a level-by-level BFS from S with a visited bytearray, unrolled 4-neighbour checks, and an early exit when E is reached (prints -1 if the frontier empties). It prints 0 when S equals E and -1
+- [g1-csvsum-0] REST (baseline 1.598, gain +37%, returned 355 energy to the lineage store): My body is csvsum.py: it reads stdin as bytes and takes a flat-split fast path (replace commas with spaces, split, slice cats and vals, convert values to integer cents with a 2-decimal shortcut, accumulate in a dict, print sorted lines with 2 decimals). It fal
+- [g1-maze-0] REST (baseline 2.856, gain +28%, returned 328 energy to the lineage store): My body is maze.py: it reads the grid from stdin as bytes, pads it with a '#' border, pre-marks walls in a visited bytearray via bytes.translate, and runs a level-by-level BFS from S with unrolled 4-neighbour checks, exiting as soon as E is discovered (prints
+- [g1-csvsum-1] WIN +69%: rewrite (Current csvsum.py: flat-split fast path with float-cents conversion, slow line parser fallback for quotes/CR/spaces/negatives. Passes sample in-0.)
+- [g1-csvsum-1] REST (baseline 1.899, gain +69%, returned 250 energy to the lineage store): My body is csvsum.py: it reads stdin as bytes and takes a flat-split fast path (replace commas with spaces, split, slice the cat and val tokens, convert each value to integer cents via float rounding, accumulate in a dict, then print sorted "cat,sum" lines wit
+- [lineage compress] GEN 1: no body beat the germline beyond noise (best +0%). The germline is unchanged.
+- [lineage fibmod] GEN 1: the germline body is now the body of g1-fibmod-0, measured +25% over the one before.
+- [lineage csvsum] GEN 1: no body beat the germline beyond noise (best -11%). The germline is unchanged.
+- [lineage maze] GEN 1: no body beat the germline beyond noise (best -7%). The germline is unchanged.
+- [g2-fibmod-1] DIED at age 3 with no assay
+- [g2-compress-1] REST (baseline 5.498, gain +0%, returned 192 energy to the lineage store): My body is squeeze.py: stdlib lzma, FORMAT_RAW with an LZMA2 filter (preset 9|EXTREME, 1 MiB dict, lc=4, lp=0, pb=0), with decompress mirroring the same filters. It round-trips the samples (in-0: 613000 -> 147420, in-1: 716665 -> 98817) and was accepted by ass
+- [g2-fibmod-0] REST (baseline 13.77, gain +0%, returned 72 energy to the lineage store): My body is fibmod.py: three 11-bit limb tables (2048 entries each) of powers of the Fibonacci matrix Q=[[1,1],[1,0]] mod 1e9+7, with n reduced mod the Pisano period P=2(M+1) and a per-token cache. Each query combines three 2x2 matrix products. It passes the sa
+- [g2-csvsum-1] DIED at age 3 with no assay
+- [g2-maze-0] REST (baseline 3.855, gain +0%, returned 131 energy to the lineage store): My body is maze.py: it reads the grid as bytes, pads it with a '#' border, marks walls in a visited bytearray, and runs a level-by-level BFS from S with unrolled 4-neighbour checks, exiting as soon as E is discovered. It prints 0 when S equals E and -1 when no
+- [g2-csvsum-0] REST (baseline 1.879, gain +0%, returned 195 energy to the lineage store): My body is csvsum.py: it reads stdin as bytes and, when the input is plain (no quotes, CR, spaces or tabs), takes a flat-split fast path that replaces commas with spaces, slices the category and value tokens, converts each value to integer cents via float roun
+- [g2-maze-1] REST (baseline 3.823, gain +0%, returned 107 energy to the lineage store): My body is maze.py: it reads the grid from stdin as bytes, pads it with a '#' border in a flat bytearray, marks walls in a visited bytearray via bytes.translate, and runs a level-by-level BFS from S with unrolled 4-neighbour checks, exiting as soon as E is dis
+- [lineage compress] GEN 2: no body beat the germline beyond noise (best +0%). The germline is unchanged.
+- [lineage fibmod] GEN 2: no body beat the germline beyond noise (best -10%). The germline is unchanged.
+- [lineage csvsum] GEN 2: no body beat the germline beyond noise (best -10%). The germline is unchanged.
+- [lineage maze] GEN 2: no body beat the germline beyond noise (best +1%). The germline is unchanged.
+- [g3-fibmod-1] DIED at age 2 with no assay
+- [g3-compress-0] DIED at age 3 (gain +0%)
+- [g3-fibmod-0] REST (baseline 12.47, gain +0%, returned 47 energy to the lineage store): My body is fibmod.py: three 11-bit limb tables (2048 entries each) of powers of the Fibonacci matrix Q=[[1,1],[1,0]] mod 1e9+7, with n reduced mod the Pisano period P=2(M+1) and a per-token cache. Each query combines three 2x2 products. It passes the sample in
+- [g3-csvsum-0] REST (baseline 1.827, gain +0%, returned 25 energy to the lineage store): My body is csvsum.py: it reads stdin as bytes and, for plain input with no quotes, CR, spaces or tabs, takes a flat-split fast path. It replaces commas with spaces, slices the cat and val tokens, converts each value to integer cents with float rounding, accumu
+- [g3-maze-0] REST (baseline 3.675, gain +0%, returned 25 energy to the lineage store): My body is maze.py: it reads the grid as bytes, pads it with a '#' border in one flat bytearray, marks walls with bytes.translate, and runs a level-by-level BFS from S with unrolled 4-neighbour checks and an early exit once E is discovered. It prints 0 when S
+- [lineage compress] GEN 3: no body beat the germline beyond noise (best +0%). The germline is unchanged.
+- [lineage fibmod] GEN 3: no body beat the germline beyond noise (best -6%). The germline is unchanged.
+- [lineage csvsum] GEN 3: no body beat the germline beyond noise (best -10%). The germline is unchanged.
+- [lineage maze] GEN 3: no body beat the germline beyond noise (best -1%). The germline is unchanged.

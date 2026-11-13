@@ -1,0 +1,18 @@
+{
+ "result": "Body is a working flat-split dict-based csvsum.py (cents via round), baseline 1.993. I made no changes. Earlier generations verified it against the public samples, and I did not re-check them this step. Gain is +0%.",
+ "calls": 1,
+ "secs": 14.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 377.4785215733684,
+  "spent": 90.117,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 287.3615215733684,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.8431
+ }
+}

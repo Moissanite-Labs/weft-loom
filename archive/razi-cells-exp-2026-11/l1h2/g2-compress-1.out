@@ -1,0 +1,18 @@
+{
+ "result": "Body unchanged: squeeze.py uses lzma FORMAT_ALONE at preset 9|EXTREME for compress and lzma.decompress for decompress. The baseline is 5.4748 and the round trip was verified earlier. I tried nothing new this generation. A pure-Python context-mixing compressor might beat lzma, but I judged it too slow and too risky for the scoring time limit. The lzma body has no round-trip risk.",
+ "calls": 1,
+ "secs": 8.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 96.342,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 303.658,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

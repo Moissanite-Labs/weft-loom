@@ -1,0 +1,5 @@
+{
+ "result": "maze.py is a BFS over a flat bytearray grid. Rows are joined with a '#' separator and the grid is padded with '#', so the inner loop needs no bounds checks. The seen array is built with bytes.translate. The harness assay accepted a baseline median of 2.66 with 2.8% noise, so its outputs were correct. A daughter cell then found a version 59% faster, which beat the baseline, and that version replaced it. I did not run any further tries.",
+ "calls": 9,
+ "secs": 44.4
+}

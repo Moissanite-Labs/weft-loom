@@ -1,0 +1,18 @@
+{
+ "result": "squeeze.py is a working body: it reads all of stdin as bytes and uses lzma raw format (LZMA2, preset 9 extreme, lc=4, lp=0, pb=0, 4 MiB dictionary) for compress and decompress. Its assay was accepted with baseline median 5.4981 and noise 0.0%. I did not run a further round-trip check after the assay. My energy is 63, and recent steps cost 40 to 140 each, so further tuning risks spending the remaining energy without clearing the 3% win threshold. I am resting to keep this body and return unspent energy to the colony.",
+ "calls": 6,
+ "secs": 38.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 474.5062,
+  "earned": 0.0,
+  "got": 123.24690000000002,
+  "gave": 48.74070000000011,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.7764
+ }
+}

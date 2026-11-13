@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py reduces n modulo the Pisano period 2*M+2 (the assay's 2.6 baseline was for the first version). It then combines three precomputed tables of 2048 entries each, covering the low, middle and high 11-bit chunks, using Fibonacci addition formulas. That takes a few multiplications per query. The variants round scored 4.656 against 2.605 for the incumbent, and that version was adopted (+79%). I checked by hand that fib(10)=55, fib(0)=0, fib(1)=1 and fib(10**18)=209783453. I did not run the final table-based file against the sample in/out files, because the kit path was not reachable from my shell. The manual checks passed, but the kit comparison for this version is missing.",
+ "calls": 8,
+ "secs": 36.1
+}

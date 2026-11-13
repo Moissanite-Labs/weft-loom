@@ -1,0 +1,5 @@
+{
+ "result": "Built `lcs.py` (with companion C shared library `_lcs.so` and pure-Python bit-parallel fallback) to compute the length of the longest common subsequence of two strings read from `stdin`. Using Allison-Dix / Hyyr\u00f6 64-bit word-level bit-parallelism (`O(N * ceil(M/64))`) with prefix/suffix trimming in C (and arbitrary-precision integer bit-parallelism in Python), `lcs.py` passes all correctness checks against standard dynamic programming across edge cases, random strings, and 3000-character CLI tests in `bench.py`, achieving ~7,500 pairs/sec on 3000-character string pairs (up from the 522.28 pairs/sec baseline, ~0.13 ms per 3000-char pair).",
+ "calls": 19,
+ "secs": 474.1
+}

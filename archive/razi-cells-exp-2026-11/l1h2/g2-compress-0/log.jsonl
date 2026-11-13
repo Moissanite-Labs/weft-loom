@@ -1,0 +1,8 @@
+{"event": "assay", "cmd": "kit:compress", "runs": [5.474797278184618, 5.474797278184618, 5.474797278184618, 5.474797278184618, 5.474797278184618], "t": 1794297284.59}
+{"event": "sense", "ratio": 0.7731, "self": 5.474797278184618, "best": 7.081788013843081, "shown": true, "t": 1794297296.06}
+{"event": "inherit", "ok": true, "res": "assay accepted: baseline median 5.4748, noise 0.0%. Wins must beat it by > 3.0%.", "files": ["squeeze.py"], "t": 1794297296.06}
+{"event": "laws", "price_show": true, "sense_show": true, "sense_dir": true, "law": "rest", "start": ["mid", "low"], "t": 1794297296.06}
+{"step": 0, "usage": {"inp": 4, "out": 329, "cr": 2006, "cw": 2250, "rs": 0, "usd": 0.0093242}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "cost": 101.2, "cap": 2904, "est": 101.6, "why": "I'm noting the lzma baseline at 5.47, and that the best lineage body scored 1.0 against our 0.77, so a better approach must exist. Pure-Python context mixing could get there, but at roughly 600KB the runtime may be too long for an unknown time limit. I'm considering a cheaper order-2 mixing setup as a middle ground.\n\nI'm estimating that pure-Python throughput might be only about 20-50KB/s per bit-model, which would be too slow for this data size. I'm leaning toward resting here instead of pushing further.\n\n", "say": "", "t": 1794297300.52}
+{"step": 0, "act": {"do": "rest"}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "t": 1794297300.52}
+{"event": "rest", "gave": 298.8, "fit": 0.0, "age": 1, "t": 1794297300.52}
+{"event": "final", "final": 5.474797278184618, "baseline": 5.474797278184618, "last_baseline": 5.474797278184618, "final_gain": 0.0, "t": 1794297308.09}

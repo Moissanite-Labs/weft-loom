@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1e9+7 over the Pisano-period reduction n mod 2(M+1), with a per-value cache. It reads all of stdin, prints one result per line, and matches the samples (in-0 vs out-0 cmp ok, about 0.24 s on 30,005 values). The assay was accepted with baseline 3.92869 and noise 3.4%. I'm resting rather than spending the remaining ~91 energy: a further variant costs about 70 to 100 per step, and the expected gain from micro-optimising this loop is likely under the 3.4% noise threshold.",
+ "calls": 5,
+ "secs": 31.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 323.4212,
+  "earned": 0.0,
+  "got": 34.19916666666668,
+  "gave": 110.77796666666667,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.3203
+ }
+}

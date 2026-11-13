@@ -1,0 +1,5 @@
+{
+ "result": "csvsum.py reads stdin and sums val per cat, then prints the totals sorted by cat with 2 decimals. The current version is a variant that flattens the input into one token list and sums with a defaultdict. I generated a 2,000,000-row d.csv (36 MB) to test it. The assay is the inverse of the run time in seconds, and it also returns 0 unless the output has exactly 100 lines. It measured 1.71 for the first version and about 1.86 for the adopted variant, a gain of about 11% with 0.9% noise. I did not independently check the sums against a reference. The md5sum step in a.sh failed because that command isn't installed, which the assay ignores. I also didn't test edge cases such as a missing trailing newline.",
+ "calls": 5,
+ "secs": 40.2
+}

@@ -1,0 +1,16 @@
+{"step": 0, "act": {"do": "sh", "cmd": "python3 -c \"import numpy, scipy; print('numpy/scipy available')\" 2>/dev/null || python3 --version; which gcc pypy3 2>/dev/null"}, "res": "exit 1\nPython 3.14.8\n/usr/bin/gcc\n", "route": "opencode-go:gemini-4-argon", "t": 1794249763.4}
+{"step": 1, "act": {"do": "sh"}, "res": "exit 0\nTest 1 (expect 4): 4\nTest 2 (expect -1): -1\n", "route": "opencode-go:gemini-4-argon", "t": 1794249775.63}
+{"step": 2, "act": {"do": "sh"}, "res": "exit 0\nGenerated mazes.\nmaze2000.txt 3994 0.835s\nmaze2000_b.txt -1 0.742s\n", "route": "opencode-go:gemini-4-argon", "t": 1794249794.63}
+{"step": 3, "act": {"do": "sh"}, "res": "exit 0\nmaze2000_1.txt -1 0.059s\nmaze2000_2.txt -1 0.090s\nmaze2000_unreach.txt -1 0.057s\n", "route": "opencode-go:gemini-4-argon", "t": 1794249829.64}
+{"step": 4, "act": {"do": "sh"}, "res": "exit 0\nmaze2000_1.txt -1 0.824s\nmaze2000_2.txt 53664 0.902s\nmaze2000_unreach.txt -1 0.836s\n", "route": "opencode-go:gemini-4-argon", "t": 1794249848.78}
+{"step": 5, "act": {"do": "sh"}, "res": "exit 0\n0\nExpected 4110, got 3996\n", "route": "opencode-go:gemini-4-argon", "t": 1794249870.16}
+{"step": 6, "act": {"do": "write", "text": "<1708 chars>", "path": "bench.py"}, "res": "wrote bench.py", "route": "opencode-go:gemini-4-argon", "t": 1794249881.52}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [121.58, 121.66, 122.05, 121.83, 121.43], "t": 1794250008.77}
+{"step": 7, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 121.66, noise 0.5%. Wins must beat it by > 3.0%.", "route": "opencode-go:gemini-4-argon", "t": 1794250008.77}
+{"step": 8, "error": "RuntimeError: model error None: all routes for 'main' failed or are cooling down; last error: ReadTimeout: ; next route reopens in 60s", "t": 1794250068.84}
+{"step": 9, "backoff": 62, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794250068.84}
+{"step": 10, "error": "RuntimeError: model error None: all routes for 'main' failed or are cooling down; last error: ReadTimeout: ; next route reopens in 60s", "t": 1794250190.92}
+{"step": 11, "backoff": 62, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794250190.93}
+{"step": 12, "error": "RuntimeError: model error None: all routes for 'main' failed or are cooling down; last error: ReadTimeout: ; next route reopens in 60s", "t": 1794250313.01}
+{"event": "apoptosis", "t": 1794250313.01}
+{"event": "final", "final": 116.59, "baseline": 121.66, "final_gain": -0.0417, "t": 1794250321.22}

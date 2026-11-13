@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is built and verified. It reads n values from stdin and prints fib(n) mod 1e9+7 using fast doubling over 12-bit windows with precomputed power tables, so it handles n up to 10**18 and beyond. It matches the sample out-0.txt exactly (cmp OK) on 30,005 lines in about 0.10s wall time. The baseline assay is registered at 9.30392 (noise 3.4%). I stopped here because the body already meets the need, and further tuning would cost more energy than a likely gain of a few percent would return.",
+ "calls": 4,
+ "secs": 41.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 222.4533,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 177.5467,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 4,
+  "assay": true,
+  "sense": 0.8202
+ }
+}

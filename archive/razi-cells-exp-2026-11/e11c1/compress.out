@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py uses stdlib lzma (raw LZMA2, preset 9 extreme, 16MB dictionary, lc=4, lp=0, pb=0). It round-trips exactly. bench.py checks that on a text+JSON mix and prints the ratio, which is 0 if the round trip fails. The ratio went from 6.61 with bz2 to 7.90 with lzma, a gain of 20%. I didn't try further variants.",
+ "calls": 5,
+ "secs": 34.0
+}

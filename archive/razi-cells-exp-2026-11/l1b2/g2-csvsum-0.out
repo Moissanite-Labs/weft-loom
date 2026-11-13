@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is registered at baseline 1.48482 (noise 5.1%). It reads all of stdin as bytes, splits on newlines, and parses each row with split(b',', 2). Values are parsed as integer cents with a fast path for two-decimal values and a Decimal fallback, and per-category sums are written sorted. It passes the sample in-0/out-0 with cmp. Earlier lineage variants (flat split, per-line split, Decimal-free fallback) gave at most small gains, and the sibling bodies in this lineage have not beaten the germline beyond noise, so I am resting to return unspent energy to the lineage store rather than spend it on another variant with a low chance of clearing the 5.1% threshold.",
+ "calls": 5,
+ "secs": 33.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 141.91299999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 258.08699999999993,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.7088
+ }
+}

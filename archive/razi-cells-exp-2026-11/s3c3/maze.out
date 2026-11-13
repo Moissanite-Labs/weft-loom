@@ -1,0 +1,18 @@
+{
+ "result": "My body is maze.py, a stdlib-only one-sided BFS on a flat bytearray with a sentinel border, using list frontiers and a seen-mark array. It reads stdin, finds S and E, and prints the shortest 4-neighbour path length or -1. It passes all three sample cases (2008, -1, 78) and was accepted by assay at a baseline median of 3.54185 with 4.6% noise. A bidirectional BFS variant was tested and lost (3.321 vs incumbent 3.674), so I kept the incumbent. I'm resting here rather than spending more energy on further variants.",
+ "calls": 7,
+ "secs": 50.1,
+ "ledger": {
+  "e": 1041.3238475159114,
+  "born": 400.0,
+  "spent": 146.7419,
+  "earned": 0.0,
+  "got": 788.0657475159117,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.8909
+ }
+}

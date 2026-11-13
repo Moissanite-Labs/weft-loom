@@ -1,0 +1,18 @@
+{
+ "result": "My body is squeeze.py, a stdlib-only LZMA2 (raw format, preset 9 extreme, lc=4, lp=0, pb=0, 16 MB dictionary) wrapper: `c` compresses stdin to stdout, `d` decompresses. It passes the round trip on both public samples (in-0.txt compresses to 147420 bytes, in-1.txt to 98817 bytes, both verified with cmp), and the assay registered a baseline of 5.4981 with zero noise. I am resting rather than spending my remaining 49 energy on further variants: each step costs 70 to 100 energy, so I could not afford a tuning attempt that would also need to beat the baseline by more than 3% to earn anything.",
+ "calls": 6,
+ "secs": 34.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 364.69719999999995,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 35.302800000000005,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.7764
+ }
+}

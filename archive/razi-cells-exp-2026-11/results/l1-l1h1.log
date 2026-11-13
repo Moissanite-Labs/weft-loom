@@ -1,0 +1,16 @@
+{"gen": 0, "kit": "compress", "took": "g0-compress-0", "gain": 0.0, "store": 1071.1, "spent": 520.2, "earned": 0.0, "states": {"g0-compress-0": "resting", "g0-compress-1": "dead"}}
+{"gen": 0, "kit": "fibmod", "took": "g0-fibmod-1", "gain": 0.0, "store": 1533.4, "spent": 535.8, "earned": 469.2, "states": {"g0-fibmod-0": "resting", "g0-fibmod-1": "resting"}}
+{"gen": 0, "kit": "csvsum", "took": "g0-csvsum-1", "gain": 0.0, "store": 1140.3, "spent": 459.7, "earned": 0.0, "states": {"g0-csvsum-0": "resting", "g0-csvsum-1": "resting"}}
+{"gen": 0, "kit": "maze", "took": "g0-maze-1", "gain": 0.0, "store": 1306.9, "spent": 293.1, "earned": 0.0, "states": {"g0-maze-0": "resting", "g0-maze-1": "resting"}}
+{"gen": 1, "kit": "compress", "took": null, "gain": 0.0, "store": 879.9, "spent": 191.2, "earned": 0.0, "states": {"g1-compress-0": "resting", "g1-compress-1": "resting"}}
+{"gen": 1, "kit": "fibmod", "took": null, "gain": -0.0004, "store": 1371.5, "spent": 161.9, "earned": 0.0, "states": {"g1-fibmod-0": "resting", "g1-fibmod-1": "resting"}}
+{"gen": 1, "kit": "csvsum", "took": null, "gain": 0.0094, "store": 977.8, "spent": 162.5, "earned": 0.0, "states": {"g1-csvsum-0": "resting", "g1-csvsum-1": "resting"}}
+{"gen": 1, "kit": "maze", "took": null, "gain": -0.0019, "store": 1152.8, "spent": 154.1, "earned": 0.0, "states": {"g1-maze-0": "resting", "g1-maze-1": "resting"}}
+{"gen": 2, "kit": "compress", "took": null, "gain": 0.0, "store": 683.3, "spent": 196.6, "earned": 0.0, "states": {"g2-compress-0": "resting", "g2-compress-1": "resting"}}
+{"gen": 2, "kit": "fibmod", "took": null, "gain": 0.0208, "store": 1194.0, "spent": 177.5, "earned": 0.0, "states": {"g2-fibmod-0": "resting", "g2-fibmod-1": "resting"}}
+{"gen": 2, "kit": "csvsum", "took": null, "gain": 0.0127, "store": 811.7, "spent": 166.1, "earned": 0.0, "states": {"g2-csvsum-0": "resting", "g2-csvsum-1": "resting"}}
+{"gen": 2, "kit": "maze", "took": null, "gain": 0.0081, "store": 980.6, "spent": 172.2, "earned": 0.0, "states": {"g2-maze-0": "resting", "g2-maze-1": "resting"}}
+{"gen": 3, "kit": "compress", "took": null, "gain": 0.0, "store": 281.7, "spent": 390.9, "earned": 0.0, "states": {"g3-compress-0": "resting", "g3-compress-1": "dead"}}
+{"gen": 3, "kit": "fibmod", "took": null, "gain": 0.0226, "store": 1005.8, "spent": 188.2, "earned": 0.0, "states": {"g3-fibmod-0": "resting", "g3-fibmod-1": "resting"}}
+{"gen": 3, "kit": "csvsum", "took": null, "gain": 0.0158, "store": 641.2, "spent": 170.5, "earned": 0.0, "states": {"g3-csvsum-0": "resting", "g3-csvsum-1": "resting"}}
+{"gen": 3, "kit": "maze", "took": null, "gain": 0.017, "store": 797.1, "spent": 183.5, "earned": 0.0, "states": {"g3-maze-0": "resting", "g3-maze-1": "resting"}}

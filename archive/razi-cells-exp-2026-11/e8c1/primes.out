@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified primes.py to print the exact count of primes strictly below int(argv[1]). Replaced the O(N) bytearray sieve with an array-based O(N^(3/4)) Lucy-Hedgehog sublinear prime-counting algorithm that operates only on odd quotients and splits the large-quotient transitions into direct large[i * p] and small[m // (i * p)] loops to avoid conditional branching inside the inner loop. Verified exactness via CLI (python3 primes.py 5000000 -> 348513) and across 18 test cases from N=0 up to N=200,000,000, improving assay performance from a baseline of 196.2 to 1410 (+619% speedup).",
+ "calls": 16,
+ "secs": 910.5
+}

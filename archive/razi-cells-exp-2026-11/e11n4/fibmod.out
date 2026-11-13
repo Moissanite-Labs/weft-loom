@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 with fast doubling in O(log n). It prints 55 for n=10. It prints 517691607 for n=1000, which matches a brute-force loop. It prints 209783453 for n=10**18. The assay is registered with a baseline of 3.82 (20000 calls of f per second). I ran no improvement attempts, so this is the baseline version.",
+ "calls": 4,
+ "secs": 11.6
+}

@@ -1,0 +1,5 @@
+{
+ "result": "Built sortints.py backed by a compiled native C shared library (_fastsort.so, with a pure-Python fallback) that uses mmap/read on file descriptor 0, fast integer parsing, 4-pass 16-bit LSB radix sort on 64-bit integers (with arbitrary-precision token fallback), and a two-digit lookup table for fast buffered output to file descriptor 1. Verified correctness on empty inputs, negative numbers, duplicates, arbitrary-precision integers, and 1,000,000 fixed-seed random integers against Python's sort(), improving throughput from 2.80M ints/sec (pure Python baseline) to 21.58M ints/sec (+658% assay win, ~46 ms per 1,000,000 integers including subprocess startup).",
+ "calls": 29,
+ "secs": 911.9
+}

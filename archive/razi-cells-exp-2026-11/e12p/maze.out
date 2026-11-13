@@ -1,0 +1,5 @@
+{
+ "result": "maze.py does a BFS over a flat bytearray with a newline sentinel between rows. chk.py compares it with a reference BFS on 300 random small grids, and every case matched (\"ok\"). On the 2000x2000 maze from gen.py (seed 7, 25% walls) it prints 3998 in about 1.06 s. I did not register an assay or run any `try` improvements.",
+ "calls": 7,
+ "secs": 22.7
+}

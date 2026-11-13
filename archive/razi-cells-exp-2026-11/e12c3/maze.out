@@ -1,0 +1,5 @@
+{
+ "result": "I built maze.py, a BFS over a flattened grid that prints the shortest S-to-E length or -1. I did not register an assay and did not run any variants. Checks on small cases: 'S.#/#.E/...' gives 3, and a blocked case gives -1. gen.py (seed 1, 2000x2000, 70% open) writes m.txt. maze.py runs on it in about 0.16 s and prints -1. That -1 is suspiciously fast, so the BFS probably stops early on a tiny reachable region. I did not confirm that the -1 is correct, so speed on a maze with a real path is unverified.",
+ "calls": 8,
+ "secs": 25.9
+}

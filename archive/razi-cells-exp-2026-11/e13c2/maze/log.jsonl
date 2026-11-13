@@ -1,0 +1,10 @@
+{"step": 0, "usage": {"inp": 4, "out": 514, "cr": 1705, "cw": 0, "rs": 0, "usd": 0.005489}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268888.31}
+{"step": 0, "act": {"do": "write", "path": "maze.py", "text": "<657 chars>"}, "res": "wrote maze.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794268888.31}
+{"step": 1, "usage": {"inp": 4, "out": 161, "cr": 1183, "cw": 1256, "rs": 0, "usd": 0.0049946}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268889.9}
+{"step": 1, "act": {"do": "sh", "cmd": "cd /Users/kethuda/Work/razi-cells/kits/public/maze; for f in in-*.txt; do n=${f#in-}; n=${n%.txt}; python3 ~+/../../../$OLDPWD/maze.py <$f 2>&1 | head -1; cat out-$n.txt; done 2>&1 | head; "}, "res": "exit 0\n/opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/kethuda/Work/razi-cells/kits/public/maze/../../..//Users/kethuda/work/razi-cells/exp/e13c2/maze/maze.py': [Errno 2] No such file or directory\n2008\n/opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/kethuda/Work/razi-cells/kits/public/maze/../..", "route": "anthropic:claude-sonnet-5-5", "t": 1794268890.0}
+{"step": 2, "usage": {"inp": 4, "out": 25, "cr": 1183, "cw": 1852, "rs": 0, "usd": 0.0051246}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268891.47}
+{"event": "assay", "cmd": "kit:maze", "runs": [3.656537750109044, 3.6770558374109994, 3.7442362076973157, 3.7437216599310923, 3.720461284025493], "t": 1794268896.22}
+{"step": 2, "act": {"do": "assay"}, "res": "assay accepted: baseline median 3.72046, noise 2.4%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794268896.22}
+{"step": 3, "usage": {"inp": 4, "out": 205, "cr": 1183, "cw": 1936, "rs": 0, "usd": 0.0071346}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268898.45}
+{"step": 3, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794268898.45}
+{"event": "final", "final": 3.6778097718551854, "baseline": 3.720461284025493, "final_gain": -0.0115, "t": 1794268904.69}

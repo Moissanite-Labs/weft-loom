@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py reads all of stdin as bytes, flat-splits on commas and newlines, slices the cat and val fields with zip/map float, sums each cat in integer cents via round(v*100) in a dict, and writes sorted 'cat,sum' lines with 2 decimals and a sign. It passes the public sample out-0 and is registered at baseline 1.893 (noise 2.9%), a +6% win over the prior body. Further micro-variants look unlikely to clear the 3% win threshold, so I am resting to return energy to the lineage store.",
+ "calls": 3,
+ "secs": 32.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 269.4686,
+  "earned": 21.576121573368102,
+  "got": 0.0,
+  "gave": 152.10752157336807,
+  "state": "resting",
+  "fit": 0.05542159575663175,
+  "age": 3,
+  "assay": true,
+  "sense": 0.8603
+ }
+}

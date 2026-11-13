@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1_000_000_007 that reads n per line from stdin and prints F(n) per line. It passes the public samples (in-0 matches out-0; fib(10)=55) and is registered with an assay baseline of 2.549 (noise 2.4%). The one variant I tried (direct bit iteration without bin()) scored 2.256, slower than the incumbent, so I kept the current body. Further micro-optimizations are unlikely to beat the 3% win threshold given the noise, so I am stopping to conserve energy.",
+ "calls": 6,
+ "secs": 45.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 117.6337,
+  "earned": 0.0,
+  "got": 94.94190000000002,
+  "gave": 377.3082,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}

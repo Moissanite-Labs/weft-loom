@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is a flat-array BFS: it joins the input rows into one bytearray, marks walls as visited, and expands frontier by frontier with 4-neighbour moves, returning the distance on reaching E or -1 if the frontier empties. It passes all three public samples (in-0 got 2008, in-1 got -1, in-2 got 78, all matching). The assay was accepted with baseline 3.63619 (noise 3.7%). I'm resting here rather than spending energy on variants, since the current body is correct and reasonably fast, and any speed gain would need to beat the 3.7% noise margin.",
+ "calls": 4,
+ "secs": 30.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 200.0,
+  "spent": 53.8656,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 146.1344,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 4,
+  "assay": true
+ }
+}

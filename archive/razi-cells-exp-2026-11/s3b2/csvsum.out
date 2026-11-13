@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a plain Python body: it reads stdin as bytes, splits on newlines, skips the header, splits each row on commas, converts values to integer cents with round(float(v)*100), accumulates per-category totals in a dict via get, then prints sorted 'cat,sum' lines with two decimals and handles negatives. It passes the sample inputs (output matches expected exactly) and is registered by assay at baseline 1.85044 (noise 1.5%). Three variants (dropping the empty-line check, maxsplit=2, and defaultdict/try-except updates) were each within noise or worse, so the incumbent was kept. I am resting here rather than spending more energy on micro-variants that the colony has already shown do not beat the noise threshold of 3%.",
+ "calls": 9,
+ "secs": 61.0,
+ "ledger": {
+  "e": 274.6373000000001,
+  "born": 400.0,
+  "spent": 192.9014,
+  "earned": 0.0,
+  "got": 67.5387000000001,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 9,
+  "assay": true,
+  "sense": 0.7598
+ }
+}

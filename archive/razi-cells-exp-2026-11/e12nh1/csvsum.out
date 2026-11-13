@@ -1,0 +1,5 @@
+{
+ "result": "csvsum.py reads a CSV on stdin and prints each cat with its val sum (2 decimals), sorted by cat. It replaces newlines with commas, splits the whole input once, then sums with zip over the token slices. I generated a 2M-row d.csv and checked the first lines (c0 2004069.21, c1 1986017.10, c10 2022664.13) against an independent defaultdict computation. They matched, but I did not compare every category. The assay run time was about 0.55s, and the assay baseline score was 1.80. The token-split version beat the per-line version by 6%, which is less than the 20-30% I expected. One assumption: it expects exactly 3 fields per row and a trailing newline.",
+ "calls": 11,
+ "secs": 55.3
+}

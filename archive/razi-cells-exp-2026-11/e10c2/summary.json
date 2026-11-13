@@ -1,0 +1,244 @@
+{
+ "calls": 110,
+ "improvements": 13,
+ "imp_per_100_calls": 11.82,
+ "done": 8,
+ "bad_replies": 0,
+ "wall_s": 1143.0,
+ "par": 8,
+ "peak_rss_mb": 1160.7,
+ "peak_cpu_pct": 164.5,
+ "mean_cpu_pct": 24.2,
+ "cells": {
+  "primes": {
+   "rc": 0,
+   "secs": 1132.9,
+   "steps": 22,
+   "errors": 0,
+   "acts": {
+    "write": 2,
+    "variants": 3,
+    "sh": 5,
+    "remember": 1,
+    "done": 1,
+    "assay": 3
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 3,
+   "tries": 0,
+   "improvements": 2,
+   "final_gain": 12.4661,
+   "gain": 11.94,
+   "apoptosis": false,
+   "calls": 15,
+   "routes": {
+    "anthropic:claude-fable-5-1": 15
+   },
+   "done": true
+  },
+  "sortints": {
+   "rc": 0,
+   "secs": 1061.6,
+   "steps": 22,
+   "errors": 0,
+   "acts": {
+    "write": 1,
+    "variants": 3,
+    "sh": 8,
+    "remember": 1,
+    "done": 1,
+    "assay": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 3,
+   "tries": 0,
+   "improvements": 2,
+   "final_gain": 0.6869,
+   "gain": 0.819,
+   "apoptosis": false,
+   "calls": 15,
+   "routes": {
+    "anthropic:claude-fable-5-1": 15
+   },
+   "done": true
+  },
+  "wordfreq": {
+   "rc": 0,
+   "secs": 1141.8,
+   "steps": 24,
+   "errors": 0,
+   "acts": {
+    "write": 1,
+    "variants": 4,
+    "sh": 6,
+    "remember": 1,
+    "done": 1,
+    "assay": 2
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 4,
+   "tries": 0,
+   "improvements": 3,
+   "final_gain": 4.8791,
+   "gain": 6.844,
+   "apoptosis": false,
+   "calls": 15,
+   "routes": {
+    "anthropic:claude-fable-5-1": 15
+   },
+   "done": true
+  },
+  "compress": {
+   "rc": 0,
+   "secs": 1058.2,
+   "steps": 19,
+   "errors": 0,
+   "acts": {
+    "write": 3,
+    "variants": 2,
+    "sh": 7,
+    "done": 1,
+    "assay": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 2,
+   "tries": 0,
+   "improvements": 1,
+   "final_gain": 0.1063,
+   "gain": 0.1,
+   "apoptosis": false,
+   "calls": 14,
+   "routes": {
+    "anthropic:claude-fable-5-1": 14
+   },
+   "done": true
+  },
+  "fibmod": {
+   "rc": 0,
+   "secs": 979.9,
+   "steps": 18,
+   "errors": 0,
+   "acts": {
+    "write": 2,
+    "variants": 3,
+    "sh": 4,
+    "remember": 1,
+    "done": 1,
+    "assay": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 3,
+   "tries": 0,
+   "improvements": 1,
+   "final_gain": 27.414,
+   "gain": 22.636,
+   "apoptosis": false,
+   "calls": 12,
+   "routes": {
+    "anthropic:claude-fable-5-1": 12
+   },
+   "done": true
+  },
+  "lcs": {
+   "rc": 0,
+   "secs": 1052.8,
+   "steps": 16,
+   "errors": 0,
+   "acts": {
+    "write": 3,
+    "variants": 3,
+    "sh": 2,
+    "remember": 1,
+    "done": 1,
+    "assay": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 3,
+   "tries": 0,
+   "improvements": 0,
+   "final_gain": 0.0014,
+   "gain": 0,
+   "apoptosis": false,
+   "calls": 11,
+   "routes": {
+    "anthropic:claude-fable-5-1": 11
+   },
+   "done": true
+  },
+  "csvsum": {
+   "rc": 0,
+   "secs": 1101.9,
+   "steps": 22,
+   "errors": 0,
+   "acts": {
+    "write": 3,
+    "variants": 3,
+    "sh": 5,
+    "done": 1,
+    "assay": 2
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 3,
+   "tries": 0,
+   "improvements": 3,
+   "final_gain": 4.2697,
+   "gain": 4.593,
+   "apoptosis": false,
+   "calls": 14,
+   "routes": {
+    "anthropic:claude-fable-5-1": 14
+   },
+   "done": true
+  },
+  "maze": {
+   "rc": 0,
+   "secs": 981.1,
+   "steps": 19,
+   "errors": 0,
+   "acts": {
+    "write": 3,
+    "variants": 2,
+    "sh": 6,
+    "remember": 1,
+    "done": 1,
+    "assay": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 2,
+   "tries": 0,
+   "improvements": 1,
+   "final_gain": 95.7281,
+   "gain": 94.381,
+   "apoptosis": false,
+   "calls": 14,
+   "routes": {
+    "anthropic:claude-fable-5-1": 14
+   },
+   "done": true
+  }
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a stdlib BFS over a padded bytearray. It uses flat indices, a list frontier and an early exit when E is reached. It has an assay baseline of 3.87 with 5.6% noise. Earlier variants in the lineage gained at most 2%, so I made no change and spent no energy.",
+ "calls": 1,
+ "secs": 3.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 83.217,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 316.783,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.9604
+ }
+}

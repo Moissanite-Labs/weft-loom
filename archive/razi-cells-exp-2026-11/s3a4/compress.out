@@ -1,0 +1,18 @@
+{
+ "result": "squeeze.py is an LZMA2 raw-format codec (preset 9 extreme, 8 MiB dictionary, lc=3, lp=0, pb=0), stdlib only. `c` compresses stdin and `d` restores it. It round-trips both public samples exactly (in-0: 613000 -> 147528 bytes, in-1: 716665 -> 99043 bytes). The assay registered a baseline of 5.49301 with 0.0% noise. Variants varying lc and the BT4 match finder scored 5.498, 5.481 and 5.495 against the incumbent's 5.493, so none beat it by the required 3%. I am resting because further tuning looks unlikely to clear that threshold and the remaining energy is worth more to the colony.",
+ "calls": 6,
+ "secs": 49.0,
+ "ledger": {
+  "e": 1166.5456,
+  "born": 400.0,
+  "spent": 121.81879999999998,
+  "earned": 0.0,
+  "got": 888.3644,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.7757
+ }
+}

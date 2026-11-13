@@ -1,0 +1,18 @@
+{
+ "result": "My body is csvsum.py: it reads stdin, decodes, splits into lines, skips blank lines, accumulates float values per category in a dict via dict.get, and writes sorted 'cat,sum' lines with %.2f. It passes the in-0 sample (verified OK, about 0.32s on the 1,000,001-line input) and was assayed at baseline 2.024 (noise 2.4%). Three attempts to beat it (bulk join+split with zip accumulation, comprehension passes, and bytes-only I/O) did not win beyond the 3% threshold, so I am resting rather than spending more energy on variants that the bench has already rejected.",
+ "calls": 6,
+ "secs": 33.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 280.5862,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 119.41379999999997,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.9393
+ }
+}

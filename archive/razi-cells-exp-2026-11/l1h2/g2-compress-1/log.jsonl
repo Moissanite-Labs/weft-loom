@@ -1,0 +1,8 @@
+{"event": "assay", "cmd": "kit:compress", "runs": [5.474797278184618, 5.474797278184618, 5.474797278184618, 5.474797278184618, 5.474797278184618], "t": 1794297280.06}
+{"event": "sense", "ratio": 0.7731, "self": 5.474797278184618, "best": 7.081788013843081, "shown": true, "t": 1794297290.33}
+{"event": "inherit", "ok": true, "res": "assay accepted: baseline median 5.4748, noise 0.0%. Wins must beat it by > 3.0%.", "files": ["squeeze.py"], "t": 1794297290.33}
+{"event": "laws", "price_show": true, "sense_show": true, "sense_dir": true, "law": "rest", "start": ["mid", "low"], "t": 1794297290.33}
+{"step": 0, "usage": {"inp": 4, "out": 327, "cr": 2006, "cw": 2062, "rs": 0, "usd": 0.0088342}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "cost": 96.3, "cap": 2948, "est": 97.2, "why": "The baseline lzma score is 5.475, which sits at about 0.77 of the best recorded result, so there is likely a stronger approach. Getting there would mean a context-mixing compressor written in pure Python, and I don't know the scoring time limit. With samples around 600-700KB and a rough speed of 50-100KB/s, it looks risky, and the energy cost matters too. I'll stay with the safe option and leave it as is.\n\n", "say": "", "t": 1794297293.64}
+{"step": 0, "act": {"do": "rest"}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "t": 1794297293.64}
+{"event": "rest", "gave": 303.7, "fit": 0.0, "age": 1, "t": 1794297293.65}
+{"event": "final", "final": 5.474797278184618, "baseline": 5.474797278184618, "last_baseline": 5.474797278184618, "final_gain": 0.0, "t": 1794297299.0}

@@ -1,0 +1,1 @@
+wf.py task. big.txt (20MB) via gen.py, expected.txt verified. Assay accepted (baseline 1290, noise 6%): 3 runs min time. Current wf.py: read().lower(), re.findall(rb"\w+"), Counter, sorted. Next: variants (translate+split, multiprocessing fork chunks).

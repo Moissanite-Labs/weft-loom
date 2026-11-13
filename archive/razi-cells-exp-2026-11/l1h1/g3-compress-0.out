@@ -1,0 +1,18 @@
+{
+ "result": "Body unchanged: squeeze.py is a stdlib raw LZMA2 wrapper (preset 9 extreme, 1 MiB dictionary). It round-trips the samples and has a registered baseline of 5.475. I tried nothing new, because a pure-Python context-mixing compressor would probably be too slow and cost too much energy.",
+ "calls": 1,
+ "secs": 12.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 118.267,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 281.733,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

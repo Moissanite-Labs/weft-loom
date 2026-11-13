@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a plain-Python body: it reads stdin as bytes, splits lines on newline and commas, keys running float sums by raw category bytes, and writes sorted 'cat,sum' lines with 2 decimals, decoding only at output. It passes sample in-0 byte-identical to out-0 and was registered at baseline 1.99 (noise 4.9%). Lineage attempts at further speedups (whole-input tokenizing, zip slicing) have yielded no gain beyond noise, so I am resting to return energy to the lineage store rather than spend it on another likely-flat variant.",
+ "calls": 5,
+ "secs": 26.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 319.86269999999996,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 80.13729999999997,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.9281
+ }
+}

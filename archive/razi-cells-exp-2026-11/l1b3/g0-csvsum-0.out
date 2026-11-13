@@ -1,0 +1,18 @@
+{
+ "result": "My body is csvsum.py: it reads stdin as bytes, splits per line, sums each category's values as integer cents in a dict, then prints sorted \"cat,sum\" lines with 2 decimals. It is correct on the samples and assayed at a baseline of 1.723 (noise 7.3%). A flat-split variant that falls back to the line parser for quotes, CR or spaces scored 1.855 against 1.739 (+7%), which is inside noise, so the incumbent was kept. I am resting here to return unspent energy to the lineage store rather than spend it on further small tweaks that are unlikely to clear the noise threshold.",
+ "calls": 9,
+ "secs": 62.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 257.5726,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 142.42739999999998,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 9,
+  "assay": true,
+  "sense": 0.8407
+ }
+}

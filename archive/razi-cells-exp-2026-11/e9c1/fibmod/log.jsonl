@@ -1,0 +1,12 @@
+{"step": 0, "act": {"do": "write", "path": "fibmod.py", "text": "<353 chars>"}, "res": "wrote fibmod.py", "route": "opencode-go:gemini-4-argon", "t": 1794250702.78}
+{"step": 1, "act": {"do": "write", "text": "<987 chars>", "path": "bench.py"}, "res": "wrote bench.py", "route": "opencode-go:gemini-4-argon", "t": 1794250718.94}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [74491.4, 74218.4, 74403.4, 74525.4, 74455.7], "t": 1794250733.98}
+{"step": 2, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 74455.7, noise 0.4%. Wins must beat it by > 3.0%.", "route": "opencode-go:gemini-4-argon", "t": 1794250733.98}
+{"event": "variants", "path": "fibmod.py", "medians": {"inc": 74341.0, "v0": 152670.2, "v1": 3875593.5, "v2": 3997834.4, "v3": 154307.3}, "best": "v2", "adopted": true, "gain": 52.777, "kinds": null, "arm": "ctrl", "t": 1794250902.86}
+{"event": "improve", "gain": 52.777, "what": "fibmod.py variant (Test Pisano period reduction + O(1) 2^16-base table lookup vs fast doubling)", "t": 1794250902.86}
+{"step": 3, "act": {"do": "variants", "why": "Test Pisano period reduction + O(1) 2^16-base table lookup vs fast doubling", "versions": "<2684 chars>", "path": "fibmod.py"}, "res": "medians inc=7.434e+04, v0=1.527e+05, v1=3.876e+06, v2=3.998e+06, v3=1.543e+05. ADOPTED v2 (+5278%).", "route": "opencode-go:gemini-4-argon", "t": 1794250902.86}
+{"event": "variants", "path": "fibmod.py", "medians": {"inc": 3917024.3, "v0": 3953259.4, "v1": 3857367.4, "v2": 3865811.2, "v3": 3531411.1, "v4": 3755850.9}, "best": "v0", "adopted": false, "gain": 0.0093, "kinds": null, "arm": "ctrl", "t": 1794251184.27}
+{"step": 4, "act": {"do": "variants", "why": "Test micro-optimizations on table lookup: base 2^15, single F0 array, tuple storage, inline expressions, walrus operator", "versions": "<4439 chars>", "path": "fibmod.py"}, "res": "medians inc=3.917e+06, v0=3.953e+06, v1=3.857e+06, v2=3.866e+06, v3=3.531e+06, v4=3.756e+06. kept incumbent.", "route": "opencode-go:gemini-4-argon", "t": 1794251184.28}
+{"step": 5, "act": {"do": "sh", "cmd": "python3 fibmod.py 10 && python3 bench.py"}, "res": "exit 0\n55\n3953213.7\n", "route": "opencode-go:gemini-4-argon", "t": 1794251203.76}
+{"step": 6, "act": {"do": "done"}, "route": "opencode-go:gemini-4-argon", "t": 1794251211.61}
+{"event": "final", "final": 3849312.4, "baseline": 74455.7, "final_gain": 50.6994, "t": 1794251331.26}

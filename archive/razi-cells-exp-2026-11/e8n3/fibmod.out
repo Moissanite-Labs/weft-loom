@@ -1,0 +1,5 @@
+{
+ "result": "Built `fibmod.py` and its companion C extension `_fibmod.so` to compute `fib(n) mod 1_000_000_007` for `n` up to `10**18`. Using Pisano period reduction (`n %= 2_000_000_016 < 2**31`) combined with two precomputed 16-bit step lookup tables (size 65,536 and 30,518) in a `METH_O` C extension and fast doubling in the CLI entrypoint, throughput on `bench.py` improved from the 76,957 ops/sec baseline to 10,812,319.8 ops/sec (~140x speedup). Verified exact outputs across CLI and module invocations, including `fib(10) = 55`, `fib(50) = 586268941`, `fib(10**18) = 209783453`, and 100,000 random values up to `10**18`.",
+ "calls": 20,
+ "secs": 450.3
+}

@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py reduces n mod the Pisano period 2000000016. It then looks up fib(n) from two precomputed tables: 65536 consecutive Fibonacci values for the low 16 bits, and (F(x), F(x+1)) pairs for the high part. Each query costs one table lookup plus one mod. It matched out-0.txt on the public sample. The assay accepted the first version, a fast-doubling loop, with a baseline of 2.268. A daughter cell then built this table version and won by +407% over it. I did not re-run the assay on the final body.",
+ "calls": 9,
+ "secs": 49.7
+}

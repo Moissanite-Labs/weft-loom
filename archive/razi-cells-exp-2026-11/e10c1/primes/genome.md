@@ -1,0 +1,1 @@
+primes.py: mod-210 wheel sieve with per-residue bytearrays, slice assignment; 200M in ~0.17s, verified 5000000->348513, 200000000->11078937, small n (2,3,100,2000,2001) correct. Micro-opts (preallocated zero memoryview, M=30 vs 210) gave no gain. Done.

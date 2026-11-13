@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py prints fib(n) mod 1_000_000_007 for n up to 10**18 and is verified on the current body. It reduces n using the period 2,000,000,016, folds the index by symmetry, then runs a Lucas-number doubling ladder (about 25 iterations, seeded from a 17-entry table) and converts back to Fibonacci with a modular inverse of 5. The last run of check.py passed: fib(n) matches a naive loop for n = 0 to 299 and an independent matrix-power reference for 10**18, 10**18-1, 2**59, 999999999999 and 123456789012345678. The CLI printed 55 for n=10, 209783453 for n=10**18, 0 for n=0 and 1 for n=1. bench.py, which gates on 200 more random n below 10**18 plus 85 smaller random n against the matrix reference, printed 321296.6 calls/s against the registered baseline of 89451.1 (about 3.6x), after two scored variant wins of +11% and +5%. That score measures in-process calls to fib(); a single CLI run is dominated by Python startup (about 26-30 ms), where the candidates I timed by hand were indistinguishable.",
+ "calls": 15,
+ "secs": 1100.4
+}

@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py has compress and decompress built on stdlib bz2 at level 9. bench.py generates a fixed mix of English-like text and JSON, round-trips it and prints the compression ratio. The assay (`python3 bench.py`) scored 4.936 for the earlier raw-LZMA2 version, which was the incumbent. The bz2 variant scored 6.092, a 23% gain, and was adopted. The last bench run printed 6.0916, which is non-zero, so the round-trip check passed. I did not test edge cases such as empty input.",
+ "calls": 7,
+ "secs": 37.4
+}

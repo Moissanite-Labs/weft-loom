@@ -1,0 +1,5 @@
+{
+ "result": "Built lcs.py using bit-parallel LCS with optimized character masks. It reads two lines from stdin and prints the LCS length, preserving spaces and supporting Unicode. Verified against independent dynamic programming on 16,129 exhaustive pairs, 100 randomized Unicode pairs, and 3000-character strings, plus CLI edge cases. Benchmarked 3000-character DNA inputs at approximately 1.23 ms per calculation; only scored optimizations were retained.",
+ "calls": 15,
+ "secs": 407.2
+}

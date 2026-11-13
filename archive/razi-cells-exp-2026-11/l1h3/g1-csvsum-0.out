@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py reads stdin as bytes, splits on newlines and commas, sums each cat in integer cents via round(float*100) in a dict, and writes sorted 'cat,sum' lines with 2 decimals and a sign. It is registered at baseline 1.899 (noise 3.4%). Previous variants in the lineage tried shorter loops and gained at most +4%, which is inside noise, so I am resting without changes. Remaining energy returns to the lineage store.",
+ "calls": 2,
+ "secs": 10.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 91.30539999999999,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 308.69460000000004,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 2,
+  "assay": true,
+  "sense": 0.8282
+ }
+}

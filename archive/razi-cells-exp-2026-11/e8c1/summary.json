@@ -1,0 +1,236 @@
+{
+ "calls": 121,
+ "improvements": 11,
+ "imp_per_100_calls": 9.09,
+ "done": 7,
+ "bad_replies": 0,
+ "wall_s": 915.6,
+ "par": 8,
+ "peak_rss_mb": 1119.7,
+ "peak_cpu_pct": 135.8,
+ "mean_cpu_pct": 8.9,
+ "cells": {
+  "primes": {
+   "rc": 0,
+   "secs": 914.3,
+   "steps": 22,
+   "errors": 4,
+   "acts": {
+    "assay": 1,
+    "write": 1,
+    "done": 1,
+    "sh": 3,
+    "variants": 2
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 2,
+   "tries": 0,
+   "improvements": 2,
+   "final_gain": 6.0442,
+   "gain": 5.885,
+   "apoptosis": false,
+   "calls": 16,
+   "routes": {
+    "opencode-go:gemini-4-argon": 8
+   },
+   "done": true
+  },
+  "sortints": {
+   "rc": 0,
+   "secs": 692.1,
+   "steps": 21,
+   "errors": 0,
+   "acts": {
+    "assay": 1,
+    "write": 2,
+    "done": 1,
+    "sh": 10,
+    "variants": 2
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 2,
+   "tries": 0,
+   "improvements": 1,
+   "final_gain": 0.1542,
+   "gain": 72.897,
+   "apoptosis": false,
+   "calls": 16,
+   "routes": {
+    "opencode-go:gemini-4-argon": 16
+   },
+   "done": true
+  },
+  "wordfreq": {
+   "rc": 0,
+   "secs": 857.1,
+   "steps": 23,
+   "errors": 3,
+   "acts": {
+    "assay": 1,
+    "write": 1,
+    "done": 1,
+    "sh": 3,
+    "variants": 3
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 3,
+   "tries": 0,
+   "improvements": 3,
+   "final_gain": 2.3682,
+   "gain": 2.508,
+   "apoptosis": false,
+   "calls": 15,
+   "routes": {
+    "opencode-go:gemini-4-argon": 9
+   },
+   "done": true
+  },
+  "compress": {
+   "rc": 1,
+   "secs": 605.1,
+   "steps": 18,
+   "errors": 2,
+   "acts": {
+    "write": 2,
+    "assay": 1,
+    "sh": 9
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 0,
+   "tries": 0,
+   "improvements": 0,
+   "final_gain": 0.0,
+   "gain": 0,
+   "apoptosis": false,
+   "calls": 16,
+   "routes": {
+    "opencode-go:gemini-4-argon": 12
+   },
+   "done": false
+  },
+  "fibmod": {
+   "rc": 0,
+   "secs": 829.6,
+   "steps": 20,
+   "errors": 1,
+   "acts": {
+    "assay": 1,
+    "write": 2,
+    "done": 1,
+    "sh": 4,
+    "variants": 3
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 3,
+   "tries": 0,
+   "improvements": 2,
+   "final_gain": 250.0459,
+   "gain": 233.933,
+   "apoptosis": false,
+   "calls": 13,
+   "routes": {
+    "opencode-go:gemini-4-argon": 11
+   },
+   "done": true
+  },
+  "lcs": {
+   "rc": 0,
+   "secs": 844.7,
+   "steps": 18,
+   "errors": 3,
+   "acts": {
+    "assay": 2,
+    "write": 3,
+    "done": 1,
+    "sh": 2,
+    "variants": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 1,
+   "tries": 0,
+   "improvements": 0,
+   "final_gain": 0.0044,
+   "gain": 0,
+   "apoptosis": false,
+   "calls": 15,
+   "routes": {
+    "opencode-go:gemini-4-argon": 9
+   },
+   "done": true
+  },
+  "csvsum": {
+   "rc": 0,
+   "secs": 829.9,
+   "steps": 21,
+   "errors": 1,
+   "acts": {
+    "assay": 1,
+    "write": 1,
+    "done": 1,
+    "sh": 7,
+    "variants": 3
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 3,
+   "tries": 0,
+   "improvements": 1,
+   "final_gain": 6.0946,
+   "gain": 6.161,
+   "apoptosis": false,
+   "calls": 15,
+   "routes": {
+    "opencode-go:gemini-4-argon": 13
+   },
+   "done": true
+  },
+  "maze": {
+   "rc": 0,
+   "secs": 839.7,
+   "steps": 21,
+   "errors": 2,
+   "acts": {
+    "assay": 1,
+    "write": 1,
+    "done": 1,
+    "sh": 6,
+    "variants": 2
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 2,
+   "tries": 0,
+   "improvements": 2,
+   "final_gain": 6.749,
+   "gain": 6.884,
+   "apoptosis": false,
+   "calls": 15,
+   "routes": {
+    "opencode-go:gemini-4-argon": 11
+   },
+   "done": true
+  }
+ }
+}

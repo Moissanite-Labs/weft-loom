@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is the fast-doubling version with n reduced modulo PERIOD = 2*(MOD+1) (Pisano period bound), per-token memoization, and byte-level stdin reading. It passes the public sample (in-0 gives 55 for n=10 and matches out-0), and the bench registered it as a +79% win over the earlier baseline (2.506 -> 4.473 in the adopted variant). Further micro-variants of the loop were tried earlier and did not beat it, so I am resting and returning unspent energy to the lineage store.",
+ "calls": 7,
+ "secs": 55.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 133.2034,
+  "earned": 232.40565211783658,
+  "got": 0.0,
+  "gave": 499.20225211783657,
+  "state": "resting",
+  "fit": 0.7878506251753206,
+  "age": 7,
+  "assay": true,
+  "sense": 0.3765
+ }
+}

@@ -1,0 +1,7 @@
+- [compress] DIED at age 5 (gain +0%)
+- [maze] REST (baseline 3.55, gain +0%, gave 41 energy to the living): maze.py is a flat-bytearray BFS: it pads the grid with a wall border, marks visited cells by overwriting them, expands frontier lists level by level, and prints the distance on reaching E or -1 if the frontier empties. It passes all three samples (2008, -1, 78
+- [fibmod] REST (baseline 14.45, gain +0%, gave 47 energy to the living): fibmod.py is a fast-doubling-free table method: it precomputes 2x2 Fibonacci matrix tables for 11-bit chunks of n (mod 2*(P+1) reduced exponent), then combines three lookups per value with a few modular multiplications. It matches the sample output exactly (in
+- [csvsum] no gain: 1 variants of csvsum.py (Drop the redundant empty-line check (empty line splits to len 1 and is skipped anyway) to cut per-row work; output unchanged.); best -1%
+- [csvsum] no gain: 1 variants of csvsum.py (Split with maxsplit=2 so each row does one fewer split-piece allocation; output identical for well-formed rows.); best +2%
+- [csvsum] no gain: 2 variants of csvsum.py (Try dict-update strategies (defaultdict, try/except) to cut per-row get-call overhead; output unchanged.); best -2%
+- [csvsum] REST (baseline 1.85, gain +0%, gave 0 energy to the living): csvsum.py is a plain Python body: it reads stdin as bytes, splits on newlines, skips the header, splits each row on commas, converts values to integer cents with round(float(v)*100), accumulates per-category totals in a dict via get, then prints sorted 'cat,su

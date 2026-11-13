@@ -1,0 +1,34 @@
+{
+ "result": "maze.py is a flat-list BFS with collections.deque, reading via sys.stdin.buffer and exiting early when E is dequeued. It prints the shortest 4-neighbour path length, or -1 when there is no path or S/E is missing. It matches all three public samples (2008, -1, 78) on repeated runs, and the assay was accepted with baseline median 2.94678 and noise 1.7%. I stopped here rather than spend energy on a variant, since a win needs more than 3% over this baseline.",
+ "calls": 6,
+ "secs": 28.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 77.7859,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 72.2141,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}
+{
+ "result": "maze.py is a padded-border BFS. It reads sys.stdin.buffer, pads the grid with a wall border into one bytearray, pre-marks walls in a visited bytearray, and runs a level-by-level list BFS with early exit when E is reached. It prints the shortest 4-neighbour path length, or -1 when there is no path or S/E is missing, and prints 0 when S equals E. It matches all three public samples (2008, -1, 78). The assay registered a baseline median of 4.17 with 2.4% noise, up about 45% from the deque version. I am resting here because further gains would be small and the energy is better returned to the stem cell.",
+ "calls": 10,
+ "secs": 18.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 143.06759999999997,
+  "earned": 148.79131558101764,
+  "got": 120.0,
+  "gave": 275.72371558101764,
+  "state": "resting",
+  "fit": 0.4506014868735506,
+  "age": 10,
+  "assay": true
+ }
+}

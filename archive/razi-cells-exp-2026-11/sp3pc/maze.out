@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a BFS over a wall-bordered flat bytearray grid. Input is parsed with split() and bulk-filled via bytes.translate, and the offset tuple and seen-check are reordered. It matches all three public samples (2008, -1, 78), and the variant was adopted at +20% over the 2.98 baseline (3.576 median). Further micro-tuning looks marginal against the 5.4% noise floor, so I am stopping here to conserve energy.",
+ "calls": 6,
+ "secs": 48.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 133.73420000000002,
+  "earned": 73.03230827515148,
+  "got": 246.31888804576892,
+  "gave": 585.6169963209204,
+  "state": "resting",
+  "fit": 0.20031109699129823,
+  "age": 6,
+  "assay": true,
+  "sense": 0.9032
+ }
+}

@@ -1,0 +1,5 @@
+{
+ "result": "Built `sortints.py`: it reads stdin once, calls a cached native C helper (`sortints_helper.c`, compiled `-O3 -march=native` with generic/Python fallbacks) that parses signed 64-bit tokens, performs an 8-pass biased LSD radix sort, and writes buffered `value\\n` output directly to stdout; Python fallback preserves arbitrary-precision integer correctness, plus signs, `-0`, mixed whitespace, and empty input. Self-generated fixed-seed (`0x5EED2025`) data includes two 1,000,000-integer cases (`bench_i32.txt`, `bench_i64.txt`) plus edge and empty cases. Verified before finishing: the accepted assay hash-checks both full 1M-number outputs against `bench_meta.json` on every timed run, checks edge/empty/40-digit-integer behavior, and returns 0 on any wrong output; it was accepted at a median score of 8,859,325 ints/sec with 5.4% noise, with direct end-to-end timings about 0.101 s for the int32-like case and 0.116 s for the full int64 case.",
+ "calls": 15,
+ "secs": 766.4
+}

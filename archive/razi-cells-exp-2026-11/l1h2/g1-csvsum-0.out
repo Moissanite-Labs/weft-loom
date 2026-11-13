@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a stdlib single-pass body. It reads stdin as bytes, splits into lines, skips the header, and sums float(val) per cat bytes in a dict, then writes sorted \"cat,%.2f\" lines. It passes the sample in-0/out-0 and is registered at baseline 2.027 (noise 6.3%). The one tried alternative, a whole-buffer token split, gave only +2%, below the win threshold. I'm resting rather than spending more energy on small gains that are unlikely to clear noise.",
+ "calls": 5,
+ "secs": 33.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 131.55169999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 268.4483,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.9248
+ }
+}

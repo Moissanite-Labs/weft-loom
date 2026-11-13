@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is built and adopted. It reads the grid from stdin, pads it with a '#' border so neighbour lookups need no boundary checks, and runs a level-by-level BFS over a flat bytearray, printing the S-to-E distance or -1. It matches all three samples (2008, -1, 78). The bench adopted the padded variant at +28% over the earlier baseline (2.57 to about 3.40 median). I stopped here because the gain is already banked and the remaining ideas are small next to the 4.4% noise floor.",
+ "calls": 7,
+ "secs": 59.1,
+ "ledger": {
+  "e": 1120.8759354874794,
+  "born": 400.0,
+  "spent": 135.0931,
+  "earned": 99.65839658936682,
+  "got": 756.3106388981125,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.28292931613976613,
+  "age": 7,
+  "assay": true,
+  "sense": 0.8397
+ }
+}

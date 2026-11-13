@@ -1,0 +1,5 @@
+{
+ "result": "I wrote csvsum.py. It reads stdin as bytes and sums each value as integer cents per cat. Values with more than 2 decimals go through a Decimal fallback. It prints the cats sorted, with 2 decimals. On the public sample (1,000,000 rows) its output matched out-0.txt exactly (cmp OK) in about 0.75s. The assay accepted a baseline of 1.1126 with 2.5% noise. I tried no further optimizations because I ran out of steps.",
+ "calls": 7,
+ "secs": 25.3
+}

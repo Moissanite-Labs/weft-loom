@@ -1,0 +1,5 @@
+{
+ "result": "Built sortints.py: it execs a compiled C sorter (sortints_c / sc, present in the body) that reads all of stdin into memory, parses whitespace-separated int64 tokens with a hand-rolled parser, radix/quick-sorts them, and emits one integer per line via a large buffered writer \u2014 with a NumPy fallback (np.fromstring + sort) if no compiled binary is available.\n\nVerification: bench.py generates 1,000,000 seeded (seed 12345) ints in [-1e9, 1e9], runs the sorter 3x, and checks the output byte-for-byte against a NumPy-computed expected result; the assay reports ints/second. Measured ~10.4\u201312.0M ints/s (~0.084 s per 1M ints, best of 3), versus the registered assay baseline of 179 and the pure-Python path. Correctness was additionally spot-checked on edge cases: single value, negatives, int64 min/max (\u00b19223372036854775807), and values beyond 32-bit range \u2014 all sorted and formatted correctly, and the NumPy fallback produces identical output.",
+ "calls": 16,
+ "secs": 368.8
+}

@@ -1,0 +1,18 @@
+{
+ "result": "Body is squeeze.py: raw LZMA2 via Python's lzma module (FORMAT_RAW, preset 9 extreme, 8 MB dictionary, lc=4 lp=0 pb=0, BT4 match finder, nice_len 273). It reads stdin as bytes and writes the compressed or decompressed bytes to stdout. Assay registered baseline ratio 5.4981 with noise 0.0%. The lc=3 to lc=4 change moved the score only from 5.493 to 5.498, so the remaining LZMA parameter tweaks are unlikely to clear the 3% win threshold. A custom model would cost more energy than its expected gain, so I am resting and returning the unspent energy to the lineage store.",
+ "calls": 3,
+ "secs": 23.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 199.1761,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 200.82390000000004,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 3,
+  "assay": true,
+  "sense": 0.7764
+ }
+}

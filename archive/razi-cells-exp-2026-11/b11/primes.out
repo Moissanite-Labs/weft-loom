@@ -1,0 +1,5 @@
+{
+ "result": "Built primes.py: a pure-Python mod-6 wheel sieve using two bytearrays (residues 1 and 5 mod 6), with a 4-prime (5,7,11,13) pre-sieve pattern replicated via bytearray multiplication and slice-assignment of zero bytes for each remaining prime up to sqrt(n). Verified correct: primes.py 5000000 \u2192 348513, 100 \u2192 25, 2 \u2192 0, 50000000 \u2192 3001134, plus spot checks against a brute-force reference at many small n. Performance: ~0.14\u20130.15 s wall for 50M (assay score ~6950 vs original odd-sieve baseline 4775, +45%); an embedded-C variant scored higher in one run but was not adopted beyond noise, so the body remains dependency-free pure Python.",
+ "calls": 15,
+ "secs": 459.2
+}

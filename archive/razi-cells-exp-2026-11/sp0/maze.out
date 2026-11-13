@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is a level-by-level BFS on a padded bytearray grid. It reads stdin, finds S and E, and uses a translate table to mark open cells, with a visited bytearray and flat integer indices. It prints the step count or -1. It matches all three sample outputs (2008, -1, 78) and the S-adjacent-E case. The assay was accepted with baseline median 3.03338 and noise 6.7%. I am stopping here rather than spending energy on a variant, since the body is correct and a further speedup would need to beat the 6.7% noise band to earn anything.",
+ "calls": 6,
+ "secs": 26.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 79.42699999999999,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 70.57300000000001,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}

@@ -1,0 +1,5 @@
+squeeze.py state: tag byte + payload. Tags: 0 raw, 1 zlib, 2 bz2, 16..20 raw LZMA2 variants, 32 word model (word/separator tokens + static order-0 range coder), 33 two segments split at text/non-text changepoint. Smallest candidate wins.
+Assay: `python3 bench.py` (seeded corpus: text 400k, json 400k, mixed 200k; prints raw/comp, 0 on round-trip fail). Registered baseline 4.7895 (LZMA-only version). Current body measures 5.3527: text 4.964, json 6.414 (still plain LZMA), mixed 4.557. Runtime ~2.5 s.
+Round-trip checked on 18 edge cases (empty, 1 byte, zeros, random, repeated, mixed binary+text+json): all ok.
+Ideas not tried: JSON-specific model (column/field-wise split of records, numeric fields coded separately); order-1 or order-2 context for word tokens in the range coder instead of order-0.
+Lesson: on Zipf pseudo-word text, word tokens + order-0 range coder beat LZMA by ~18% on the text part; JSON is where the remaining gain is.

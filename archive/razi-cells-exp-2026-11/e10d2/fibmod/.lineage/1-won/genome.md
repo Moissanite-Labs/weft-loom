@@ -1,0 +1,1 @@
+fibmod: fast-doubling fib in fibmod.py, bench.py assay accepted (baseline ~89784 fib/s, noise 0.8%). Plan: reduce n mod Pisano period 2*(M+1)=2000000016 (M≡2 mod 5 so pi(M)|2(p+1)) -> ~31 bits instead of 60; then table of F(k),F(k+1) for top 16 bits + 15 doubling steps. Verify fib(10**18)==209783453, fib(1000)==517691607.

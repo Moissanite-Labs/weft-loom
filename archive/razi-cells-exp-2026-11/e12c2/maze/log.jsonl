@@ -1,0 +1,16 @@
+{"step": 0, "usage": {"inp": 4, "out": 541, "cr": 1493, "cw": 0, "rs": 0, "usd": 0.0057166}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266531.42}
+{"step": 0, "act": {"do": "write", "path": "maze.py", "text": "<724 chars>"}, "res": "wrote maze.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794266531.42}
+{"step": 1, "usage": {"inp": 4, "out": 517, "cr": 1210, "cw": 1010, "rs": 0, "usd": 0.007945}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266535.34}
+{"step": 1, "act": {"do": "sh"}, "res": "exit 0\n-1\n-1\n4\n", "route": "anthropic:claude-sonnet-5-5", "t": 1794266535.78}
+{"step": 2, "usage": {"inp": 4, "out": 53, "cr": 1210, "cw": 1459, "rs": 0, "usd": 0.0044275}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266537.04}
+{"step": 2, "act": {"do": "assay", "cmd": "sh as.sh"}, "res": "refused: assay too noisy, runs [28.3736, 26.0626, 25.1992, 28.0954, 29.8891] spread 17%. Use a heavier workload or repeat inside the command and print the best or median.", "route": "anthropic:claude-sonnet-5-5", "t": 1794266547.85}
+{"step": 3, "usage": {"inp": 4, "out": 841, "cr": 1210, "cw": 1562, "rs": 0, "usd": 0.012565}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266554.01}
+{"step": 3, "act": {"do": "sh"}, "res": "exit 0\n-1\n-1\nsed: 1: \"gen.py\n\": extra characters at the end of g command\n", "route": "anthropic:claude-sonnet-5-5", "t": 1794266554.39}
+{"step": 4, "usage": {"inp": 4, "out": 497, "cr": 1210, "cw": 1837, "rs": 0, "usd": 0.0098125}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266557.94}
+{"step": 4, "act": {"do": "sh"}, "res": "exit 0\n-1\n0.33175538159742163\n", "route": "anthropic:claude-sonnet-5-5", "t": 1794266562.31}
+{"step": 5, "usage": {"inp": 4, "out": 53, "cr": 1210, "cw": 2095, "rs": 0, "usd": 0.0060175}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266564.07}
+{"event": "assay", "cmd": "sh as.sh", "runs": [0.3091457692074951, 0.3131595968582678, 0.32539647936287114, 0.32236352037875354, 0.3286259806941137], "t": 1794266589.15}
+{"step": 5, "act": {"do": "assay", "cmd": "sh as.sh"}, "res": "assay accepted: baseline median 0.322364, noise 6.0%. Wins must beat it by > 6.0%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794266589.15}
+{"step": 6, "usage": {"inp": 4, "out": 315, "cr": 1210, "cw": 2700, "rs": 0, "usd": 0.01015}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266592.25}
+{"step": 6, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266592.26}
+{"event": "final", "final": 0.3305042101167303, "baseline": 0.32236352037875354, "final_gain": 0.0253, "t": 1794266605.29}

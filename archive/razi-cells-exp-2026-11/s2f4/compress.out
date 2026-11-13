@@ -1,0 +1,17 @@
+{
+ "result": "Body: squeeze.py picks the smallest of LZMA (FORMAT_ALONE, preset 9e), bz2 level 9, and zlib level 9, with a one-byte tag for the codec, and decompress dispatches on that tag. It passed the samples and was accepted by assay at baseline 7.08179 (noise 0%). Evidence it works: the assay ran the round trip on the samples and reported every output correct. I tried one improvement, LZMA lc/pb tuning with a 16 MB dictionary; it gave +0% and was not adopted, which matches a colony attempt from earlier. Stopping here: a further win needs more than 3% over 7.08, and the remaining obvious levers (lc/pb, dictionary) are already exhausted, so further spending is unlikely to pay back.",
+ "calls": 5,
+ "secs": 40.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 87.31639999999999,
+  "earned": 0.0,
+  "got": 283.31663206583517,
+  "gave": 596.0002320658352,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true
+ }
+}

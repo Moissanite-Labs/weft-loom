@@ -1,0 +1,1 @@
+{"kind": "write", "step": 0, "path": "fibmod.py", "code": "import sys\nM=1000000007\ndef fib(n):\n    a,b=0,1\n    for c in bin(n)[2:]:\n        t=a*((2*b-a)%M)%M\n        u=(a*a+b*b)%M\n        a,b=(u,(t+u)%M) if c=='1' else (t,u)\n    return a\nif __name__==\"__main__\":\n    print(fib(int(sys.argv[1])))\n", "t": 1794266435.47}

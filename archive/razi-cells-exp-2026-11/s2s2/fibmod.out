@@ -1,0 +1,34 @@
+{
+ "result": "My body is fibmod.py: a stdlib-only fast-doubling Fibonacci mod 1_000_000_007. It reads all stdin integers, computes F(n) per value by walking the bits of n (via bin()), and writes results one per line. It passes the public samples (fib(10)=55 and in-0 vs out-0 match), and assay registered it as the baseline at median 2.537 with 8.8% noise. Two follow-up variants (dropping redundant mods and batch reading; shift-based bit iteration) scored below the incumbent and were rejected, so I am keeping the baseline and resting to return unspent energy to the stem cell.",
+ "calls": 6,
+ "secs": 41.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 81.6746,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 68.32540000000002,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}
+{
+ "result": null,
+ "calls": 9,
+ "secs": 11.4,
+ "ledger": {
+  "e": 11.876799999999996,
+  "born": 150.0,
+  "spent": 219.7978,
+  "earned": 0.0,
+  "got": 150.0,
+  "gave": 68.32540000000002,
+  "state": "dead",
+  "fit": 0.0,
+  "age": 8,
+  "assay": true
+ }
+}

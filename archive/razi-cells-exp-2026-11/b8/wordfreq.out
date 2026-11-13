@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `wf.py`, which reads text from stdin and prints the 10 most common lowercase words with their counts formatted as `word count`, breaking ties alphabetically by word. Generated a 20MB Zipf-distributed text benchmark (`input20m.txt` via `gen.py`) with mixed case, digits, and punctuation, and verified exact outputs against a pure-Python reference (`re.findall(r'[a-z]+', text.lower())`) as well as tie-breaking and edge-case tests in `bench.py`. Using `variants`, we evolved `wf.py` from a pure-Python `re.findall` + `Counter` baseline (~73 MB/s) to a cached C shared library loaded via `ctypes` using `mmap` on seekable stdin (with `read` fallback for pipes), a 256-byte lowercase/alpha lookup table, and 4-thread `pthread` parallel chunk scanning with per-thread L2-resident linear-probing hash tables, achieving up to 275 MB/s (and +87% in the final multi-threaded variant) while passing all correctness checks.",
+ "calls": 15,
+ "secs": 465.8
+}

@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py tries zlib, bz2 and raw LZMA2 (lc=4, pb=0, 16MB dictionary). It keeps the smallest output, prefixed with a one-byte method tag, and decompress() reads the tag to pick the decoder. bench.py round-trips generated English-like text and JSON and scored a ratio of about 7.63, so the round-trip passes. One improvement attempt failed: a daughter cell tried word substitution and context mixing, but its log shows no implementation, benchmark or round-trip check, and the result was +0%. The body is unchanged.",
+ "calls": 9,
+ "secs": 64.1
+}

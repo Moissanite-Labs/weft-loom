@@ -1,0 +1,1 @@
+{"cmd": "sh assay.sh 2>/dev/null", "baseline": 1.0007105150016964, "noise": 0.05033085033727057}

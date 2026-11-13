@@ -1,0 +1,5 @@
+{
+ "result": "Built fibmod.py: computes fib(n) mod 1_000_000_007 for n up to 10**18 via the Pisano period P=2*(M+1) (reduces n to <2^31) and an O(1) two-table lookup using F(m+k)=F(m)F(k+1)+F(m-1)F(k) with m a multiple of 2^16; tables are precomputed at import. Verified: `python3 fibmod.py 10` \u2192 55, fib(0)=0, fib(1)=1, fib(10**18)=209783453 (matches known value), and fib(i) agrees with naive iteration for i<3000. The assay (bench.py: correctness checks + 20000 random n up to 1e18) went from ~84k fib/s baseline to ~2.5M fib/s (+2264% adopted win); two subsequent micro-opt variant rounds gave no further gain beyond noise, so the current version is retained.",
+ "calls": 12,
+ "secs": 975.0
+}

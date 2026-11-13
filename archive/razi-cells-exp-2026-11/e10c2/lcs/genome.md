@@ -1,0 +1,1 @@
+lcs: bit-parallel LCS (Hyyro) in lcs.py works, check.py passes (3000-char run 0.033s). Assay python3 bench.py baseline ~1512, noise 11%. Two variants rounds (translate masks, bit_count, leaner I/O, no sys import) gave <=10% -> no win; runtime is startup-dominated. Plan: one last variants round w/ os.read/os.write + combined micro-opts, then done.

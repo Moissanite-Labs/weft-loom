@@ -1,0 +1,8 @@
+{"event": "assay", "cmd": "kit:fibmod", "runs": [8.567869842473376, 8.52132926780892, 8.605518721707, 8.604586912824503, 8.57868368266492], "t": 1794296624.0}
+{"event": "sense", "ratio": 0.6694, "self": 8.512666834700127, "best": 12.717205892935743, "shown": true, "t": 1794296632.19}
+{"event": "inherit", "ok": true, "res": "assay accepted: baseline median 8.57868, noise 1.0%. Wins must beat it by > 3.0%.", "files": ["fibmod.py"], "t": 1794296632.19}
+{"event": "laws", "price_show": true, "sense_show": true, "sense_dir": true, "law": "rest", "start": ["mid", "low"], "t": 1794296632.19}
+{"step": 0, "usage": {"inp": 4, "out": 125, "cr": 2006, "cw": 2734, "rs": 0, "usd": 0.0084942}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "cost": 92.9, "cap": 2826, "est": 109.3, "why": "", "say": "", "t": 1794296633.65}
+{"step": 0, "act": {"do": "rest"}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "t": 1794296633.65}
+{"event": "rest", "gave": 307.1, "fit": 0.0, "age": 1, "t": 1794296633.65}
+{"event": "final", "final": 8.470281331167286, "baseline": 8.57868368266492, "last_baseline": 8.57868368266492, "final_gain": -0.0126, "t": 1794296641.68}

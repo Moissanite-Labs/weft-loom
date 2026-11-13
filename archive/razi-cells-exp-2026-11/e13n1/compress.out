@@ -1,0 +1,5 @@
+{
+ "result": "Built squeeze.py. It uses stdlib lzma with raw LZMA2 filters (preset 9 extreme, 4 MB dictionary, lc=4, lp=0, pb=0), and the decoder uses the same filter chain. The assay accepted it with a baseline ratio of 5.498 and 0% noise, which means every kit output round-tripped correctly. I did not try any improvements, such as a context-mixing compressor, in the remaining steps.",
+ "calls": 4,
+ "secs": 17.9
+}

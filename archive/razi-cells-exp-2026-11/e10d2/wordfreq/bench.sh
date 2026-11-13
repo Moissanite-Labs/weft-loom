@@ -1,0 +1,6 @@
+#!/bin/sh
+s=$(python3 -c 'import time;print(time.time())')
+python3 wf.py < big.txt > out.txt || { echo 0; exit 0; }
+e=$(python3 -c 'import time;print(time.time())')
+cmp -s out.txt expected.txt || { echo 0; exit 0; }
+python3 -c "print(1000/($e-$s))"

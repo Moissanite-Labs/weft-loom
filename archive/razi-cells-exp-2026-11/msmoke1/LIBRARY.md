@@ -1,0 +1,1 @@
+- [fibmod] REST (baseline 11.52, gain +0%, gave 0 energy to the living): fibmod.py is built and passes the public sample (in-0 matches out-0 exactly, and fib(10)=55 holds). It uses the Fibonacci matrix in the form (a + b*sqrt5) over F_P, so fib(n) = (2*(a*Lb + b*La)) mod P, where P = 1e9+7 and P+1 = 2*(P+1)/2 splitting. It precompu

@@ -1,0 +1,5 @@
+{
+ "result": "I built maze.py. It reads the grid, pads it with a wall border, and runs a level-by-level BFS on a flat bytearray. The BFS stops as soon as it reaches E. The assay accepted it with a baseline score of 3.80768 and 1.2% noise. I did not try any improvements, and I did not separately check the output against the sample files. The only evidence it works is that the assay accepted it, which requires every output to be correct.",
+ "calls": 3,
+ "secs": 13.1
+}

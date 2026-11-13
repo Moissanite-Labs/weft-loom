@@ -1,0 +1,5 @@
+{
+ "result": "csvsum.py reads stdin as bytes and groups the val strings by cat. It sums each group with fsum over float() and prints \"cat,sum\" with 2 decimals, sorted by cat. The assay accepted a baseline of 1.566 with 2.6% noise. A variants round then scored 1.745 against 1.576 for the incumbent, and that version was adopted as a gain of about 11%. I did not read the sample files, because the kit path was not a directory. I also did not run a separate check of the final body against the samples, so correctness rests on the assay accepting the baseline, which requires every output to be correct.",
+ "calls": 5,
+ "secs": 33.3
+}

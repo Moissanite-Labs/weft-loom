@@ -1,0 +1,1 @@
+primes.py: mod-6 wheel sieve (two bytearrays for residues 1,5 mod 6), slice-assign bytes(cnt), count(1). Verified 5000000->348513, 1e8->5761455, 2->0, 10->4, 7->3, 100->25. bench.sh = 1000/sec for 3 runs of 1e8; score ~3190 (was 2078 with odd-only sieve; daughter won +58%). Assay registered: sh bench.sh. Done.

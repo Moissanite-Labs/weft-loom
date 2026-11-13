@@ -1,0 +1,5 @@
+{
+ "result": "Built csvsum.py to read CSV from stdin and output category totals with two decimal places, sorted by category. It uses a C accelerator for ordinary two-decimal inputs and a Python CSV/Decimal fallback for quoted fields and other numeric formats. Verified all 2,000,000 generated rows against independently computed integer-cent totals, plus cases covering empty data, quoted commas/newlines, negative values, large numbers, and rounding. The registered benchmark passed five stability runs; five complete executions take approximately 0.48 seconds total on this machine. Run with: python3 csvsum.py < input.csv.",
+ "calls": 25,
+ "secs": 550.8
+}

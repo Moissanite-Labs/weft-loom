@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py uses raw LZMA2 (preset 9 extreme, 16 MB dictionary, lc=4, lp=0, pb=0). Both public samples round-trip exactly (cmp ok). The assay accepted it with a baseline ratio of 5.498 and 0% noise. I made one improvement attempt, a pure-Python context-mixing compressor, but the daughter cell never ran it, so there is no evidence on whether it beats LZMA.",
+ "calls": 11,
+ "secs": 49.5
+}

@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a 5-table lookup implementation (12-bit chunks, 2x2 Fibonacci pair tables). It is registered at baseline about 12.0 and was verified on the public sample by earlier generations. I made no changes this generation, so the gain is +0%. Earlier lineage attempts at variants gained at most 3%, which is within noise.",
+ "calls": 1,
+ "secs": 11.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 93.092,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 306.908,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.9147
+ }
+}

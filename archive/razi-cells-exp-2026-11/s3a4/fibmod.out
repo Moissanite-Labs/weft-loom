@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1_000_000_007. It reads one integer per line from stdin, skips blank lines, and writes fib(n) mod p per line. It passes the public sample (in-0 vs out-0, fib(10)=55), and assay registered a baseline of 2.58747 with 2.5% noise. One variant (bit-loop via bit_length and shifts, no bin() string) scored 2.337, which is worse, so the incumbent stays. Further gains look small, since fast doubling is already the standard approach for n up to 1e18 and 5 is a non-residue mod p, so Binet's formula does not apply. Resting to save energy for the colony.",
+ "calls": 6,
+ "secs": 46.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 110.9051,
+  "earned": 0.0,
+  "got": 299.63474999999994,
+  "gave": 588.7296500000001,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.2094
+ }
+}

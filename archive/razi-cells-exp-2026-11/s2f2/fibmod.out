@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is done. It precomputes Q-matrix powers in 8-bit chunk lookup tables (T[j][v] = Q^(v<<8j), built once at import), so each query does at most 8 matrix multiplies, with a small per-query cache. It passes the sample in-0/out-0 check, and the assay registered a baseline of 2.56097 (noise 2.2%). The adopted variant measured 6.858 against the old 2.562, a +168% gain. I am resting here to keep the remaining energy for the colony rather than spend it on further tweaks.",
+ "calls": 6,
+ "secs": 30.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 115.32620000000001,
+  "earned": 393.75551375724586,
+  "got": 297.5556,
+  "gave": 975.984913757246,
+  "state": "resting",
+  "fit": 1.6761756640976264,
+  "age": 6,
+  "assay": true
+ }
+}

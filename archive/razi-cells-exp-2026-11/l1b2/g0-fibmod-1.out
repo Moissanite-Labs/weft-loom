@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is built and registered. It reads n per line from stdin and prints fib(n) mod 1e9+7, using fast doubling over the bit string of n, with n reduced mod the Pisano-style period P=2(M+1), which is valid because 1e9+7 \u2261 2 (mod 5). It passed the sample in-0 (fib(10)=55) and the assay baseline is 4.207. The variant that iterates bits via bin() won +12% and was adopted. I stopped here rather than spend energy on further gains.",
+ "calls": 5,
+ "secs": 41.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 114.66919999999999,
+  "earned": 44.54235550930755,
+  "got": 0.0,
+  "gave": 329.87315550930754,
+  "state": "resting",
+  "fit": 0.11779264592835315,
+  "age": 5,
+  "assay": true,
+  "sense": 0.3625
+ }
+}

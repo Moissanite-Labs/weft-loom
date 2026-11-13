@@ -1,0 +1,1 @@
+wf.py task DONE-ready. Assay "sh bench.sh" baseline 1161 (regex version). Current wf.py = bytes.translate(non-alnum->space, upper->lower) + split() + Counter + sort (-n,w): scores ~1935 (~0.5s on 20MB), out.txt == expected.txt verified, small test OK (the 3,a 2,b 2,c 1). Finish with done.

@@ -1,0 +1,22 @@
+{"step": 0, "act": {"do": "sh", "cmd": "python3 -c \"import numpy, numba, gmpy2\" 2>&1; which gcc clang; python3 --version; lscpu | grep \"Model name\\|CPU(s):\""}, "res": "exit 1\nOMP: Warning #179: Function Can't set size of /tmp file failed:\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import numpy, numba, gmpy2\nModuleNotFoundError: No module named 'numba'\n/usr/bin/gcc\n/usr/bin/clang\nPython 3.14.8\n/bin/sh: lscpu: command not found\n", "route": "opencode-go:gemini-4-argon", "t": 1794248838.49}
+{"step": 1, "act": {"do": "write", "path": "primes.py", "text": "<979 chars>"}, "res": "wrote primes.py", "route": "opencode-go:gemini-4-argon", "t": 1794248850.35}
+{"step": 2, "act": {"do": "sh"}, "res": "exit 0\n348513\n0 0\n1 0\n2 0\n3 1\n4 2\n5 2\n10 4\n100 25\n5000000 348513\n10 runs of 5M: 0.2917035829741508\n", "route": "opencode-go:gemini-4-argon", "t": 1794248857.51}
+{"step": 3, "act": {"do": "write", "path": "bench.py", "text": "<1859 chars>"}, "res": "wrote bench.py", "route": "opencode-go:gemini-4-argon", "t": 1794248876.62}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [405.41, 402.76, 408.52, 414.91, 413.17], "t": 1794248914.47}
+{"step": 4, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 408.52, noise 3.0%. Wins must beat it by > 3.0%.", "route": "opencode-go:gemini-4-argon", "t": 1794248914.47}
+{"step": 5, "error": "RuntimeError: model error None: all routes for 'main' failed or are cooling down; last error: ReadTimeout: ; next route reopens in 60s", "t": 1794248974.55}
+{"step": 6, "backoff": 62, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794248974.55}
+{"step": 7, "error": "RuntimeError: model error None: all routes for 'main' failed or are cooling down; last error: ReadTimeout: ; next route reopens in 60s", "t": 1794249096.63}
+{"step": 8, "backoff": 62, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794249096.63}
+{"event": "variants", "path": "primes.py", "medians": {"inc": 412.86, "v0": 409.72, "v1": 0.0, "v2": 404.64, "v3": 435.32, "v4": 451.68, "v5": 424.08}, "best": "v4", "adopted": true, "gain": 0.094, "kinds": ["safe", "safe", "safe", "bold", "bold", "bold"], "arm": "safebold", "t": 1794249342.35}
+{"event": "improve", "gain": 0.094, "what": "primes.py variant (Test safe bytearray sieve optimizations (isqrt, pre-sieve 3, preallocated slice) and bold algorithms (pre-tiled 3-wheel, pre-tiled 3*5*7-wheel, and sublinear O()", "t": 1794249342.35}
+{"step": 9, "act": {"do": "variants"}, "res": "medians inc=412.9, v0=409.7, v1=0, v2=404.6, v3=435.3, v4=451.7, v5=424.1. ADOPTED v4 (+9%).", "route": "opencode-go:gemini-4-argon", "t": 1794249342.35}
+{"event": "variants", "path": "primes.py", "medians": {"inc": 456.62, "v0": 451.54, "v1": 456.96, "v2": 467.92, "v3": 494.14, "v4": 0.0, "v5": 0.0}, "best": "v3", "adopted": true, "gain": 0.0822, "kinds": ["safe", "safe", "safe", "bold", "bold", "bold"], "arm": "safebold", "t": 1794249502.23}
+{"event": "improve", "gain": 0.0822, "what": "primes.py variant (Test safe pre-tiled wheel improvements (divmod no-copy + preallocated zero slice, 11-wheel, 13-wheel) vs bold sublinear O(N^0.75) Lucy-Hedgehog variants (odd-on)", "t": 1794249502.24}
+{"step": 10, "act": {"do": "variants"}, "res": "medians inc=456.6, v0=451.5, v1=457, v2=467.9, v3=494.1, v4=0, v5=0. ADOPTED v3 (+8%).", "route": "opencode-go:gemini-4-argon", "t": 1794249502.24}
+{"step": 11, "error": "RuntimeError: model error None: all routes for 'main' failed or are cooling down; last error: ReadTimeout: ; next route reopens in 60s", "t": 1794249562.3}
+{"step": 12, "backoff": 62, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794249562.3}
+{"step": 13, "error": "RuntimeError: model error None: all routes for 'main' failed or are cooling down; last error: ReadTimeout: ; next route reopens in 60s", "t": 1794249684.37}
+{"step": 14, "backoff": 62, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794249684.37}
+{"step": 15, "act": {"do": "done"}, "route": "opencode-go:gemini-4-argon", "t": 1794249751.1}
+{"event": "final", "final": 489.03, "baseline": 408.52, "final_gain": 0.1971, "t": 1794249752.62}

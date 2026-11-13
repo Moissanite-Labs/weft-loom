@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py has compress and decompress using raw LZMA2 from the stdlib. The settings are preset 9 extreme, 16 MB dictionary, lc=4, lp=0, pb=0, BT4 match finder, nice_len 273 and depth 1000. bench.py builds a mix of about 150k words of English-like text plus 5000 JSON records and asserts that decompress(compress(d)) == d. The assay gives a compression ratio of 4.33 and that assert passed. I tried one improvement, a custom context-mixing compressor. The daughter cell never ran it because it tried to spawn a nested daughter, so the idea is untested and the LZMA version stays.",
+ "calls": 9,
+ "secs": 60.8
+}

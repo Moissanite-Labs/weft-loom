@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py tries raw LZMA2 (lc=4, pb=0, 4 MB dictionary), bz2 and zlib. It keeps the smallest output and prefixes it with a one-byte method tag, and decompression reverses the tagged method. The assay accepted it with a baseline ratio of 7.08 and 0% noise. A context-mixing daughter attempt was refused before it ran, so it gave no improvement.",
+ "calls": 9,
+ "secs": 40.8
+}

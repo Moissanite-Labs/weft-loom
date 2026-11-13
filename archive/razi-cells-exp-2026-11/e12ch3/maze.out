@@ -1,0 +1,5 @@
+{
+ "result": "maze.py reads the grid from stdin and runs a level-by-level BFS over a padded flat bytearray. It prints the shortest path length from S to E, or -1. On the seeded 2000x2000 maze (seed 7, 28% walls), it prints -1, which matches the independent deque BFS in ref.py. The assay scores 1/runtime. An adopted variant raised the score from 6.66 to about 29, which is +337%. After adoption, one run of the assay scored 27.2 and the output still matched the reference.\n\nThe one maze I tested has answer -1, so a reachable path is untested. Correctness is only checked on that maze.",
+ "calls": 7,
+ "secs": 33.4
+}

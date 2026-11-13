@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `primes.py` to compute the count of primes strictly below `int(sys.argv[1])` using a wheel-6 sparse-S1 Lucy_Hedgehog $O(N^{3/4})$ sublinear DP algorithm in pure Python. By initializing counts only for integers coprime to 6 and restricting $S_1[i]$ updates to indices $i \\equiv 1, 5 \\pmod 6$ (using `bisect_right` to slice active ranges), it avoids large memory allocations and achieves ~240 assay score (~5.8 ms for $N=5{,}000{,}000$, ~28.9 ms for $N=50{,}000{,}000$, and ~50.1 ms for $N=100{,}000{,}000$), improving over the initial sieve baseline by >65%. Verified exactness across edge cases ($N=0..12, 100, 1000$) and confirmed `python3 primes.py 5000000` outputs `348513`.",
+ "calls": 15,
+ "secs": 522.5
+}

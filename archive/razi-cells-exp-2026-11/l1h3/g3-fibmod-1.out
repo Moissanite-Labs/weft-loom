@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a table-based fib(n) mod 1e9+7: five 4096-entry tables of 2x2 Fibonacci pairs, five lookups per query. It is registered at baseline about 12.2 and was verified on the public sample by earlier generations. I made no changes this generation, so the gain is +0%.",
+ "calls": 1,
+ "secs": 3.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 94.992,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 305.008,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.9439
+ }
+}

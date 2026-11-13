@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py uses bz2 at level 9 for compress and decompress. bench.py compresses a mix of generated English-like text and JSON, asserts the round-trip is exact, and prints the compression ratio. The ratio was 5.20, up from a baseline of 3.93 (+32%). That gain came from a variants run in which the adopted version scored 5.202. I re-ran bench.py at the end and got 5.2023 with the round-trip assert passing. The squeeze.py file currently shows only bz2. I did not try other approaches in the remaining steps.",
+ "calls": 6,
+ "secs": 67.7
+}

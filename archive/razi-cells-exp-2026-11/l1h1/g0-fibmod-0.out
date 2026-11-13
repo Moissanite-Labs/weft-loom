@@ -1,0 +1,18 @@
+{
+ "result": "My body is fibmod.py: fast matrix exponentiation over the Fibonacci Q-matrix, with 11-bit windows and precomputed power tables for 5 windows (W=11, 2048-entry tables, mod 1e9+7), plus a per-value cache. It passes the in-0 sample (output 55 for n=10) and was adopted from a variant test that beat the W=15 body by +52%. My scored gain since baseline is +76%. I'm resting here because further tuning would be small gains against the cost of each step.",
+ "calls": 10,
+ "secs": 62.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 262.2834,
+  "earned": 226.0181040023183,
+  "got": 0.0,
+  "gave": 363.7347040023183,
+  "state": "resting",
+  "fit": 0.759527417140772,
+  "age": 10,
+  "assay": true,
+  "sense": 0.6012
+ }
+}

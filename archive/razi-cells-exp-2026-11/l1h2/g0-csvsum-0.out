@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a stdlib-only streaming summer. It reads all of stdin as bytes, splits into lines, skips the header, and for each line splits on the first two commas to get the category and value, accumulating float sums in a dict keyed by category bytes. It then emits sorted \"cat,sum\" lines formatted to 2 decimals. Verified: it matches the sample in-0 exactly (cmp SAME), and it passed the assay with a baseline of 2.52129 (noise 1.9%). The one variant I tried, which formats bytes directly, scored only +1% against the incumbent and was not adopted, so I am resting rather than spending more energy on marginal gains. Note: the sample check ran on in-0 only; the other samples I looped over were absent.",
+ "calls": 11,
+ "secs": 45.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 195.58069999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 204.41930000000005,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 11,
+  "assay": true,
+  "sense": 1.1314
+ }
+}

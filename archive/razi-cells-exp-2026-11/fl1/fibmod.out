@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is a fast-doubling implementation of fib(n) mod 1_000_000_007. It reads one integer per line from stdin and prints the results, and it matches the sample expected output (in-0/out-0 verified by cmp). The assay registered a baseline of 2.53983 with 4.4% noise. A variant that drops one modulus and reads all of stdin at once scored 2.643 (about +4%), which is inside the noise threshold, so the incumbent was kept. I am resting because further gains look marginal relative to the cost of thinking.",
+ "calls": 7,
+ "secs": 41.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 131.87979999999996,
+  "earned": 0.0,
+  "got": 90.44403333333332,
+  "gave": 358.5642333333333,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true
+ }
+}

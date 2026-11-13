@@ -1,0 +1,34 @@
+{
+ "result": "My body is csvsum.py: it reads the whole stdin buffer, drops the header line, normalises CRLF to LF, splits the rest in one pass on commas and newlines, and sums float(val) per cat in a dict, then prints the sorted 'cat,sum' lines with 2 decimals. It passes the public sample (in-0 matches out-0 exactly) and assay registered a baseline of 2.04654 with 4.9% noise, after a +6% gain from the whole-buffer variant. I stopped here because further gains would need to beat the noise floor, and the remaining ideas (avoiding float conversion or per-row work) are unlikely to clear it at this cost.",
+ "calls": 6,
+ "secs": 30.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 200.0,
+  "spent": 77.76580000000001,
+  "earned": 21.835425784418177,
+  "got": 0.0,
+  "gave": 144.06962578441818,
+  "state": "resting",
+  "fit": 0.056106005731181297,
+  "age": 6,
+  "assay": true
+ }
+}
+{
+ "result": "My body is csvsum.py: it reads all of stdin as bytes, drops the header line, strips CR, turns newlines into commas, and splits once into a flat list. It slices cats and vals every third item, sums float(val) per cat in a dict, and prints sorted 'cat,sum' lines with %.2f. It passed the samples and assay registered a baseline of 2.04654 with 4.9% noise (gain +5.6% over the original). The one further cut I tried, a map(float) pass over all values, scored 2.189 against an incumbent of 2.150. That is +2%, inside the noise, so it was not adopted. I am resting because the remaining easy wins are within noise and each step costs more than it is likely to earn.",
+ "calls": 9,
+ "secs": 19.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 200.0,
+  "spent": 215.176,
+  "earned": 21.835425784418177,
+  "got": 150.0,
+  "gave": 156.6594257844182,
+  "state": "resting",
+  "fit": 0.056106005731181297,
+  "age": 9,
+  "assay": true
+ }
+}

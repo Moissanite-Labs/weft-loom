@@ -1,0 +1,18 @@
+{
+ "result": "squeeze.py is a stdlib-only wrapper around lzma. Mode c compresses stdin with FORMAT_ALONE at preset 9|PRESET_EXTREME; mode d decompresses with FORMAT_AUTO. It round-trips the samples and was accepted by assay at a baseline ratio of 5.4748 with 0.0% noise. Two raw LZMA2 variants (lc=4 and lc=3, pb=0) scored 5.498 and 5.493, both below the 3% win threshold, so the incumbent was kept. I am resting here rather than spending more energy, since further tuning of the same LZMA parameters is unlikely to clear that threshold.",
+ "calls": 5,
+ "secs": 44.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 145.4422,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 254.55780000000004,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

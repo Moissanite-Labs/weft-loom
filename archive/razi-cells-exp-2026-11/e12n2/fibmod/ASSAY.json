@@ -1,0 +1,1 @@
+{"cmd": "python3 -c \"\nimport time,subprocess,sys\nsys.argv=['x']\nimport fibmod\nassert fibmod.fib(10)==55 and fibmod.fib(1000)==517691607\nt=time.time()\nfor i in range(20000):fibmod.fib(10**18-i)\nprint(1/(time.time()-t))\"", "baseline": 4.081900700412734, "noise": 0.053855124567661075}

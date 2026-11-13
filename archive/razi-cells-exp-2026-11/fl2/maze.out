@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is a flat-array BFS: reads the grid from stdin, finds S and E by index, expands frontier levels with a bytearray visited map (walls pre-marked), and prints the step count or -1. It matches all three public samples (2008, -1, 78). The assay is registered at baseline median 3.45049 with 10.5% noise. I stopped here because the body is correct and assayed, and further speedups in pure Python would need a variant that beats the baseline by more than 10.5%, which I did not attempt.",
+ "calls": 6,
+ "secs": 27.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 100.4098,
+  "earned": 0.0,
+  "got": 92.47643333333332,
+  "gave": 392.0666333333333,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}

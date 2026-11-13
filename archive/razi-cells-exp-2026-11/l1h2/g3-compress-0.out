@@ -1,0 +1,18 @@
+{
+ "result": "Body unchanged: lzma FORMAT_ALONE preset 9|EXTREME, baseline 5.4748. I tried nothing new. A pure-Python context-mixing compressor would likely be too slow and risky on the hidden inputs. Tuning lzma lc/pb would likely gain under the 3% noise threshold.",
+ "calls": 1,
+ "secs": 8.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 117.592,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 282.408,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

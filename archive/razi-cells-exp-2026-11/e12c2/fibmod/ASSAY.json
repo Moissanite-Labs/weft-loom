@@ -1,0 +1,1 @@
+{"cmd": "python3 -c \"\nimport subprocess,time,sys\nt=time.time()\nok=True\nfor n,e in((10,'55'),(10**18,'209783453')):\n    for _ in range(30):\n        o=subprocess.run([sys.executable,'fibmod.py',str(n)],capture_output=True,text=True).stdout.strip()\n        ok&=o==e\nd=time.time()-t\nprint(1/d if ok else 0)\"", "baseline": 0.675517766810581, "noise": 0.025718703138637822}

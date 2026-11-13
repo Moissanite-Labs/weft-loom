@@ -1,0 +1,1 @@
+s=$(python3 -c 'import time;print(time.time())'); python3 wf.py < data.txt > out.txt || exit 1; e=$(python3 -c 'import time;print(time.time())'); cmp -s out.txt expected.txt || { echo 0; exit 0; }; python3 -c "print(1000/($e-$s))"

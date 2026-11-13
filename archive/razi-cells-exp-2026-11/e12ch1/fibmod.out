@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 by fast doubling over the bits of n. Checks: `python3 fibmod.py 10` prints 55, and `python3 fibmod.py 1000000000000000000` prints 209783453. The assay compares fib(i) for i<300 against exact values, then times 20000 calls near 1e18. The baseline was about 81.9k calls/s. The adopted variant scored about 94.2k calls/s, a gain of about 14% against 2.2% noise. I did not run an independent check of the 1e18 result beyond the assay's small-n correctness test.",
+ "calls": 7,
+ "secs": 21.9
+}

@@ -1,0 +1,1 @@
+{"cmd": "python3 csvsum.py<in.csv>o3 && cmp -s o3 o1 && python3 -c \"print(1/$( { /usr/bin/time -p python3 csvsum.py<in.csv>/dev/null; } 2>&1 | awk '/real/{print $2}'))\"", "baseline": 1.8518518518518516, "noise": 0.03704974271012}

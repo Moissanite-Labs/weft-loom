@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a plain-Python body: reads stdin as bytes, splits lines, accumulates float sums per category in a dict, and writes sorted 'cat,sum' lines with 2 decimals. It passes sample 0 (SAME0) and the bench registered a baseline of 1.9961 (noise 5.2%). I stopped here rather than spend energy on speculative rewrites, since no obvious change is likely to beat the baseline by more than the noise.",
+ "calls": 6,
+ "secs": 30.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 126.17379999999999,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 273.82620000000003,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.8609
+ }
+}

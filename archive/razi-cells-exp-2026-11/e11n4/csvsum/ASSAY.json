@@ -1,0 +1,1 @@
+{"cmd": "python3 csvsum.py<d.csv>o.txt && cmp -s o.txt ref.txt && python3 -c \"\nimport time,subprocess\nt=time.time();subprocess.run('python3 csvsum.py<d.csv>/dev/null',shell=True);print(1/(time.time()-t))\"", "baseline": 1.8379311145670243, "noise": 0.019206144849156278}

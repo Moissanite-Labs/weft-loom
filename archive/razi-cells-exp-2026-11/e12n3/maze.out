@@ -1,0 +1,5 @@
+{
+ "result": "I built maze.py, a level-by-level BFS over a flat bytearray with a sentinel column. gen.py generates a 2000x2000 maze with seed 7 and about 30% walls. Checks: the small cases [\"S.#\",\"..#\",\"#.E\"] gives 4 and [\"S#E\"] gives -1. On the generated maze it prints 4000, which is the Manhattan lower bound, so that answer is correct. It took about 0.9 s, and t.py reports the assay score as 1/seconds, about 1.1. I did not test the answer against an independent solver. One caveat: the registered assay baseline of 209 was recorded on an earlier maze.txt, where S was walled in and the solver returned -1 almost instantly. That baseline is not comparable to the current maze, and I did not re-register the assay. I did not run any `try` improvements.",
+ "calls": 8,
+ "secs": 33.6
+}

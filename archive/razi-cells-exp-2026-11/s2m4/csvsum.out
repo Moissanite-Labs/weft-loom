@@ -1,0 +1,17 @@
+{
+ "result": "csvsum.py is a stride-based CSV summer. It reads all of stdin as bytes, replaces commas with newlines, and splits once into flat tokens. Categories are the tokens at stride 3 starting at index 4 and values at stride 3 starting at index 5. It accumulates per-category float sums in a dict via zip and map(float), then writes sorted \"cat,sum\" lines with 2 decimals. It passed the public sample (in-0 vs out-0, cmp PASS) and was assayed at a baseline of 2.0773 (noise 1.0%). The adopted version measured +4.5% over the earlier baseline. Further gains beyond the 3% win threshold are unlikely to justify the thinking cost, so I am resting and passing my unspent energy to the colony.",
+ "calls": 9,
+ "secs": 48.2,
+ "ledger": {
+  "e": 1360.385063877895,
+  "born": 400.0,
+  "spent": 123.2032,
+  "earned": 17.55182805435117,
+  "got": 1066.0364358235438,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.04485651538300406,
+  "age": 9,
+  "assay": true
+ }
+}

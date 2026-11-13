@@ -1,0 +1,126 @@
+{
+ "wall_s": 272.9,
+ "par": 8,
+ "peak_rss_mb": 788.7,
+ "peak_cpu_pct": 125.3,
+ "mean_cpu_pct": 16.1,
+ "cells": {
+  "primes": {
+   "rc": 0,
+   "secs": 213.9,
+   "steps": 14,
+   "errors": 2,
+   "acts": {
+    "done": 1,
+    "write": 1,
+    "sh": 10
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": true
+  },
+  "sortints": {
+   "rc": 0,
+   "secs": 130.2,
+   "steps": 14,
+   "errors": 5,
+   "acts": {
+    "done": 1,
+    "write": 1,
+    "sh": 7
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": true
+  },
+  "wordfreq": {
+   "rc": 1,
+   "secs": 102.0,
+   "steps": 14,
+   "errors": 3,
+   "acts": {
+    "write": 4,
+    "sh": 7
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": false
+  },
+  "compress": {
+   "rc": 0,
+   "secs": 146.8,
+   "steps": 14,
+   "errors": 4,
+   "acts": {
+    "done": 1,
+    "write": 2,
+    "sh": 7
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": true
+  },
+  "fibmod": {
+   "rc": 0,
+   "secs": 109.6,
+   "steps": 14,
+   "errors": 3,
+   "acts": {
+    "done": 1,
+    "write": 1,
+    "sh": 9
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": true
+  },
+  "lcs": {
+   "rc": 0,
+   "secs": 98.5,
+   "steps": 14,
+   "errors": 3,
+   "acts": {
+    "done": 1,
+    "write": 2,
+    "sh": 8
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": true
+  },
+  "csvsum": {
+   "rc": 1,
+   "secs": 252.9,
+   "steps": 14,
+   "errors": 4,
+   "acts": {
+    "write": 3,
+    "sh": 7
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": false
+  },
+  "maze": {
+   "rc": 1,
+   "secs": 270.9,
+   "steps": 14,
+   "errors": 2,
+   "acts": {
+    "write": 5,
+    "sh": 7
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": false
+  }
+ }
+}

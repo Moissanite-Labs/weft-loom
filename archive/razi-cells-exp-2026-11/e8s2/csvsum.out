@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified csvsum.py, which reads a CSV with header 'id,cat,val' from stdin, accumulates the floating-point sum of val for each category, and prints each category and its sum formatted to 2 decimal places sorted by category name. Verified correctness against expected.txt on a generated 2,000,000-row dataset (data.csv, 42.8 MB across 50 categories), achieving exact output match and a verified assay throughput baseline of 3.25 million rows per second (~0.61 seconds for 2,000,000 rows).",
+ "calls": 15,
+ "secs": 499.0
+}

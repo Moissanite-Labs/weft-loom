@@ -1,0 +1,18 @@
+{
+ "result": "squeeze.py is the lineage's germline body: it compresses stdin with both bz2 (preset 9) and lzma (FORMAT_ALONE, preset 9 | EXTREME), keeps the smaller, and writes a one-byte tag so the decoder knows which to use. It round-trips the samples and is registered at baseline 7.08179 with 0.0% noise. I am resting without further changes. Lzma tuning alone was previously shown to gain about 0.1%, and a pure-Python context-mixing coder would likely be too slow for the 30 s limit on ~700 KB inputs, so I see no change worth the energy that would clear the 3% win threshold.",
+ "calls": 4,
+ "secs": 24.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 315.5956,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 84.4044,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 4,
+  "assay": true,
+  "sense": 1.0
+ }
+}

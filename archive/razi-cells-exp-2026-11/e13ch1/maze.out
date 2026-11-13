@@ -1,0 +1,5 @@
+{
+ "result": "maze.py is a BFS over a padded bytearray grid. It reads stdin, finds S and E, and prints the level-by-level distance, or -1 if E is unreachable. I did not re-run the samples in this final step. The evidence is from the harness: `assay` accepted the first version with a baseline median of 3.78 and 1.9% noise, so its outputs were correct and its timing stable. A later `variants` round adopted a faster version (median 4.108 against 3.783 for the incumbent, +9%, above the 3.0% win threshold). A first variant that added a flat-padding trick scored lower (3.66 against 3.76) and was not adopted.",
+ "calls": 6,
+ "secs": 30.2
+}

@@ -1,0 +1,21 @@
+{"step": 0, "act": {"do": "sh", "cmd": "python3 --version; which gcc clang pypy3; python3 -c \"import numpy; print('numpy ok')\" 2>/dev/null || echo \"no numpy\""}, "res": "exit 0\nPython 3.14.8\n/usr/bin/gcc\n/usr/bin/clang\nnumpy ok\n", "route": "opencode-go:gemini-4-argon", "t": 1794248840.1}
+{"step": 1, "act": {"do": "sh"}, "res": "exit 0\ntest ok\n", "route": "opencode-go:gemini-4-argon", "t": 1794248846.59}
+{"step": 2, "act": {"do": "sh"}, "res": "exit 0\nmaze_2000_a answer: 3998\nmaze_2000_b answer: 4006\nOMP: Warning #179: Function Can't set size of /tmp file failed:\n", "route": "opencode-go:gemini-4-argon", "t": 1794248863.88}
+{"step": 3, "act": {"do": "sh"}, "res": "exit 0\nc: -1\nd: 3998\nOMP: Warning #179: Function Can't set size of /tmp file failed:\n", "route": "opencode-go:gemini-4-argon", "t": 1794248880.73}
+{"step": 4, "act": {"do": "write", "path": "maze.py", "text": "<2264 chars>"}, "res": "wrote maze.py", "route": "opencode-go:gemini-4-argon", "t": 1794248896.62}
+{"step": 5, "act": {"do": "write", "text": "<1405 chars>", "path": "bench.py"}, "res": "wrote bench.py", "route": "opencode-go:gemini-4-argon", "t": 1794248906.53}
+{"step": 6, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "refused: assay scored [0.0, 0.0, 0.0, 0.0, 0.0] on your current body. It must print a number > 0 when correct.", "route": "opencode-go:gemini-4-argon", "t": 1794249022.58}
+{"step": 7, "act": {"do": "sh"}, "res": "exit 0\nsmall 0 0 '2' exp '2'\nsmall 1 0 '-1' exp '-1'\nsmall 2 0 '5' exp '5'\nsmall 3 0 '-1' exp '-1'\nsmall 4 0 '5' exp '3'\nsmall 5 0 '2' exp '2'\nsmall 6 0 '1' exp '1'\nbig maze_2000_a.txt 0 '3998' exp '3998'\nbig maze_2000_b.txt 0 '4006' exp '4006'\nbig maze_2000_c.txt 0 '-1' exp '-1'\nbig maze_2000_d.txt 0 '3998' exp '3998'\n", "route": "opencode-go:gemini-4-argon", "t": 1794249031.62}
+{"step": 8, "act": {"do": "write", "text": "<1204 chars>", "path": "bench.py"}, "res": "wrote bench.py", "route": "opencode-go:gemini-4-argon", "t": 1794249042.62}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [48.1208, 48.2517, 48.0671, 47.6919, 47.9722], "t": 1794249156.46}
+{"step": 9, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 48.0671, noise 1.2%. Wins must beat it by > 3.0%.", "route": "opencode-go:gemini-4-argon", "t": 1794249156.46}
+{"step": 10, "error": "RuntimeError: model error None: all routes for 'main' failed or are cooling down; last error: ReadTimeout: ; next route reopens in 60s", "t": 1794249216.6}
+{"step": 11, "backoff": 62, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794249216.6}
+{"event": "variants", "path": "maze.py", "medians": {"inc": 48.1534, "v0": 49.0888, "v1": 50.7461, "v2": 68.9488, "v3": 0.0}, "best": "v2", "adopted": true, "gain": 0.4319, "kinds": ["safe", "safe", "bold", "bold"], "arm": "safebold", "t": 1794249461.57}
+{"event": "improve", "gain": 0.4319, "what": "maze.py variant (Compare fast-padded bytearray deque with local bindings (safe 1), level-list BFS without deque (safe 2), bidirectional smaller-frontier BFS (bold 1), and 0-1 de)", "t": 1794249461.58}
+{"step": 12, "act": {"do": "variants"}, "res": "medians inc=48.15, v0=49.09, v1=50.75, v2=68.95, v3=0. ADOPTED v2 (+43%).", "route": "opencode-go:gemini-4-argon", "t": 1794249461.58}
+{"event": "variants", "path": "maze.py", "medians": {"inc": 67.4058, "v0": 69.5889, "v1": 66.9166, "v2": 0.0, "v3": 56.6461}, "best": "v0", "adopted": true, "gain": 0.0324, "kinds": ["safe", "safe", "bold", "bold"], "arm": "safebold", "t": 1794249658.89}
+{"event": "improve", "gain": 0.0324, "what": "maze.py variant (Test direct start/end offset + walrus indexing (safe 1), zero-filled padding + os.write (safe 2), fixed 0-1 detour bucket A* without revisit bugs (bold 1), and )", "t": 1794249658.9}
+{"step": 13, "act": {"do": "variants"}, "res": "medians inc=67.41, v0=69.59, v1=66.92, v2=0, v3=56.65. ADOPTED v0 (+3%).", "route": "opencode-go:gemini-4-argon", "t": 1794249658.9}
+{"step": 14, "act": {"do": "done"}, "route": "opencode-go:gemini-4-argon", "t": 1794249667.37}
+{"event": "final", "final": 69.617, "baseline": 48.0671, "final_gain": 0.4483, "t": 1794249685.18}

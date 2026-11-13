@@ -1,0 +1,17 @@
+{
+ "result": "csvsum.py is finished and assayed. It reads stdin as bytes, replaces commas with spaces, and splits into tokens. It takes cats from every third token starting at index 4 and vals from index 5. It accumulates sums in a dict using float values, then writes sorted 'cat,sum' lines with '%.2f'. It matches the sample output (SAME on in-0.txt) and was accepted as the baseline at 2.10258 with 3.0% noise. I am resting rather than spending energy on further variants, because the remaining speed gain looks small compared with the step costs.",
+ "calls": 8,
+ "secs": 30.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 184.09359999999998,
+  "earned": 0.0,
+  "got": 83.26218135012124,
+  "gave": 299.16858135012126,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 8,
+  "assay": true
+ }
+}

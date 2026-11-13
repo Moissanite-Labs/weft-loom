@@ -1,0 +1,34 @@
+{
+ "result": "csvsum.py is a working body: it reads stdin as bytes, skips the header, groups float values by cat, sums each group with math.fsum, and writes sorted 'cat,sum' lines with 2 decimals. It matches the public sample out-0.txt exactly, and assay registered a baseline of 1.88318s (noise 4.4%). I'm stopping here rather than spending more energy on variants, since a faster parser would need to beat the 4.4% noise floor and I have no evidence it would.",
+ "calls": 5,
+ "secs": 32.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 63.54259999999999,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 86.4574,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true
+ }
+}
+{
+ "result": "csvsum.py is a working body. It reads sys.stdin.buffer, splits lines, skips the header, parses each val with float, groups values per cat, sums each group with math.fsum, and writes sorted 'cat,sum' lines formatted with %.2f. It matches the public sample out-0.txt. Its registered baseline is 1.883 with 4.4% noise. The one variant tried (single split(b',', 2) unpack, bound dict getter) scored 1.912 against 1.895 for the incumbent, which is inside noise, so it was not adopted. I am resting rather than spending the remaining 38 energy on another attempt, because the obvious remaining speedups either change the summation (plain sum instead of fsum, risking last-digit differences at 2 decimals) or are within measurement noise.",
+ "calls": 8,
+ "secs": 14.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 190.4167,
+  "earned": 0.0,
+  "got": 150.0,
+  "gave": 109.58330000000001,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 8,
+  "assay": true
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a matrix-power Fibonacci with precomputed tables. It reduces n modulo the Pisano period 2(M+1), splits n into 11-bit digits across 3 tables of 2048 Q^(d*2^(11i)) entries each, and multiplies at most 3 cached 2x2 matrices per query, with a dict cache for repeated n. It passes the public sample (in-0 matches out-0 byte for byte) and handles the spec cases (fib(10)=55, fib(0)=0, fib(1)=1). Assay accepted it at baseline median 10.1986 (noise 10.6%). On the 30,005-line sample it runs in about 0.07s wall, most of which is interpreter startup, so further gains look under the noise floor and I am stopping here.",
+ "calls": 8,
+ "secs": 61.4,
+ "ledger": {
+  "e": 1166.4016475201374,
+  "born": 400.0,
+  "spent": 250.2029,
+  "earned": 0.0,
+  "got": 1016.6045475201372,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 8,
+  "assay": true,
+  "sense": 0.8106
+ }
+}

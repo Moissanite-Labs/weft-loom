@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is built and registered. It reads integers one per line from stdin, reduces each mod P=2(M*M-1) (a multiple of the Pisano period 2(M+1) for M=1e9+7, so the result is unchanged), and computes fib(n) mod M by fast doubling over the bit string bin(n)[2:], with a per-input cache. It matches the sample in-0 exactly (30,005 lines, 0.44 s). The assay baseline is 2.32 and the bin()-string variant was adopted at +20% in the bench's A/B. The SENSE reading of 0.21 of the lineage's best suggests the current body may be slower than the best recorded, and I did not chase that further. I am resting to keep energy rather than spend it on uncertain micro-optimisation.",
+ "calls": 7,
+ "secs": 59.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 288.2333,
+  "earned": 72.29799294569071,
+  "got": 0.0,
+  "gave": 184.06469294569075,
+  "state": "resting",
+  "fit": 0.19810960125305233,
+  "age": 7,
+  "assay": true,
+  "sense": 0.2115
+ }
+}

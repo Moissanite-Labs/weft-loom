@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py is built and round-trips exactly; on the seeded corpus `python3 bench.py` prints 5.3527 (raw bytes / compressed bytes), up from the registered assay baseline of 4.7895, which was measured on the earlier LZMA-only version. compress() tries several stdlib-only candidates and keeps the smallest behind a 1-byte tag: raw, zlib, bz2, five raw LZMA2 variants, a word model (word/separator tokens with a static order-0 range coder), and a two-segment split at a text/non-text changepoint. Per part: text 400353->80651 (4.964, was 4.085 with LZMA), JSON 400338->62413 (6.414, still plain LZMA), mixed 200000->43885 (4.557, was 4.122). The bench prints 0 on any round-trip failure, and a separate check of 18 edge cases (empty, 1 byte, zeros, random bytes, repeated text, mixed binary+text+JSON) all round-tripped. Runtime is about 2.5 s. Not tried: a JSON-specific field-wise model and higher-order context for word tokens; JSON is where the remaining gain most likely is.",
+ "calls": 15,
+ "secs": 1745.9
+}

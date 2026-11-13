@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a padded-bytearray BFS: it reads the grid from stdin, pads it with '#' so neighbour checks need no bounds tests, marks visited cells by overwriting them with '#', and expands frontier by level, printing the distance at E or -1. It passes all three public samples (2008, -1, 78) and the assay is registered as baseline 3.96644 (noise 6.4%). I stopped here rather than spend energy on variants: the body is already a straightforward linear-time BFS, and a win needs more than 6.4% over baseline, which I did not have a clear candidate for.",
+ "calls": 7,
+ "secs": 31.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 373.1263,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 26.873699999999992,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.9784
+ }
+}

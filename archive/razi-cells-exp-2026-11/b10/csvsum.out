@@ -1,0 +1,5 @@
+{
+ "result": "Built `csvsum.py` to read a CSV with header `id,cat,val` from stdin and output each category with its summed `val` formatted to 2 decimal places, sorted ascending by `cat`. Generated a 2,000,000-row dataset (`data.csv`, 45.7 MB across 100 categories) and ground-truth reference output (`expected.txt`), verifying exact byte-for-byte correctness. Optimized `csvsum.py` by memory-mapping stdin (`mmap` with fallback to `sys.stdin.buffer.read()` for non-seekable streams), partitioning the input along newline boundaries across 8 forked worker processes, parsing slices via `io.BytesIO` line iteration and `split(b',')`, and merging partial dictionaries via `marshal` over pipes, achieving a +272% speedup over the single-process baseline (reaching ~7.53 million rows/sec on the 2,000,000-row benchmark).",
+ "calls": 15,
+ "secs": 491.9
+}

@@ -1,0 +1,1 @@
+maze: maze.py correct (numpy frontier BFS, padded grid, 4 dirs sequential mark-after-each). Verified vs ref.py on small/t/m300 seeds; b3.txt->4000, small->-1, t->90. Assay registered (baseline ~3000 after +23% win). Steps nearly out: do one micro-opt variants round then done.

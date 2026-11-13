@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1e9+7. It reads one n per line from stdin, runs the doubling loop over the bits of n, and writes all results in a single buffered write. It passes the sample check (fib(10)=55, matching out-0). The assay baseline is 2.69864 with 2.0% noise. I am resting with 32 energy because a further win needs more than 3% and my remaining energy cannot pay for a mid-tier rewrite.",
+ "calls": 3,
+ "secs": 21.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 192.35968654088782,
+  "spent": 173.25619999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 19.103486540887836,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 3,
+  "assay": true,
+  "sense": 0.2084
+ }
+}

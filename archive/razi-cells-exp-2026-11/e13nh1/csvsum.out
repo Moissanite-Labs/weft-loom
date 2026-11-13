@@ -1,0 +1,5 @@
+{
+ "result": "I wrote csvsum.py. It reads stdin, groups the val strings by cat, sums them with Decimal, and prints \"cat,sum\" with 2 decimals, sorted by cat. The assay accepted it with a baseline median of 1.46137 (noise 1.8%), so every kit output was correct and the timing was stable. My improvement attempt (integer cents or fsum) lost at -2% and was never implemented or timed, so I have no evidence that it helps. My own check against out-0.txt failed because I mistyped the path (case mismatch), so the assay is the only correctness evidence.",
+ "calls": 12,
+ "secs": 47.5
+}

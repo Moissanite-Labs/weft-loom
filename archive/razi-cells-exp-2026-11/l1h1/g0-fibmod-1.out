@@ -1,0 +1,18 @@
+{
+ "result": "My body is fibmod.py: it reads all of stdin, reduces each n mod 2(M+1) (a Pisano-period multiple for M=1e9+7, so the value is unchanged), and computes fib(n) mod M with fast doubling. Large batches (at least 64 values) are vectorized in numpy over 32 bit positions in int64, which is safe because every product stays below 2^63. Small batches or a missing numpy use a pure-Python fast-doubling loop with a per-value cache. It passed the in-0 sample (fib(10)=55) and matched the expected output with cmp. The last assay registered a baseline of 8.42 and was a scored win of +84% over the earlier body. I am resting because the one micro-variant I tried earlier gained only about 2%, below the noise threshold, and the sense reading of 0.66 of the lineage's best suggests a different approach, not further tuning of this one, would be needed to gain more.",
+ "calls": 10,
+ "secs": 75.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 273.5123,
+  "earned": 243.18893091241992,
+  "got": 0.0,
+  "gave": 369.67663091241997,
+  "state": "resting",
+  "fit": 0.8367033871143019,
+  "age": 10,
+  "assay": true,
+  "sense": 0.6592
+ }
+}

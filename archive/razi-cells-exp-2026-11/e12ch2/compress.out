@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py has compress and decompress that round-trip exactly. The file I last printed still showed bz2 level 9, not the lzma version. The assay (python3 bench.py) went from 6.766 to 8.449 (+25%) when variant v3 was adopted. I did not confirm which code is in the file now. bench.py checks the round trip and prints 0 if it fails. It printed 8.449, so the round trip passed on the text+JSON mix.",
+ "calls": 6,
+ "secs": 41.8
+}

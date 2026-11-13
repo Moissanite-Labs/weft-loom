@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py uses stdlib lzma in raw mode (LZMA2 extreme, lc=4, lp=0, pb=0, 4 MB dictionary). The round trip worked on the samples. The assay registered a baseline compression ratio of 5.498 with 0% noise. A context-mixing daughter attempt (pure-Python lpaq-style) ended with no gain, but it was never timed or measured, so the idea is untested rather than disproven.",
+ "calls": 9,
+ "secs": 36.4
+}

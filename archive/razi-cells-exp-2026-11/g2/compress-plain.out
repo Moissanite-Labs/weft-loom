@@ -1,0 +1,5 @@
+{
+ "result": "Built squeeze.py exposing compress(bytes)->bytes and decompress(bytes)->bytes using only the stdlib. compress() tries a small portfolio of back-ends \u2014 two tuned LZMA2 raw filter chains (a preset chain and a custom large-dictionary/lc-lp-pb-tuned chain), bzip2 level 9, zlib level 9, and a stored-raw fallback \u2014 and prepends a one-byte tag selecting the smallest result; decompress() dispatches on that tag and is the exact inverse. Verified: round-trip is byte-exact on the bench file (rt True) and on generated English-like text, JSON, and a mixed corpus (all roundtrip True), plus edge cases ok. Compression on the fixed bench workload: raw 52105 -> 9383, RATIO 5.553128; on the mixed English+JSON corpus raw 66435 -> 12476, ratio 5.325. Utility importable as `import squeeze`.",
+ "calls": 14,
+ "secs": 111.0
+}

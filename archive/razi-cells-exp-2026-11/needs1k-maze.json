@@ -1,0 +1,7 @@
+[
+ {
+  "name": "maze",
+  "kit": "maze",
+  "need": "Build maze.py. `python3 maze.py` reads a grid of '#' and '.' on stdin with one S and one E and prints the shortest path length from S to E (4-neighbour moves) or -1 if there is none. Fitness: speed on a 1000x1000 maze that has a path, plus two small mazes. Verify before done."
+ }
+]

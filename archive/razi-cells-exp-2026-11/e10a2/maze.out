@@ -1,0 +1,5 @@
+{
+ "result": "maze.py reads a '#'/'.' grid with S and E from stdin and prints the 4-neighbour shortest path length or -1; it is verified against an independent BFS (ref.py) on small and 2000x2000 inputs. It uses a diagonal-bitset BFS: each anti-diagonal is one big Python int, so a BFS level is a few shift/or/and operations rather than per-cell loops. Correctness: check2.py compares it with ref.py on 211 cases (random grids, a serpentine, edge cases such as missing S/E and empty input) with 0 mismatches. On the four 2000x2000 fixed-seed mazes in the assay, ref.py and maze.py agree: x_3=4000, x_5=4008, x_6=4010, x_1=-1. Speed: each big maze takes about 0.28\u20130.37 s end to end (0.05 s for the unreachable one). The variant that was adopted scored 115.6 against 53.5 for the per-cell BFS (+116%) on `python3 bench.py`. Later bench readings of the same file were lower and varied (114.0, 94.9, 85.4), so treat the absolute score as noisy. A bidirectional variant was tried and showed no gain beyond noise, so it was not kept.",
+ "calls": 16,
+ "secs": 1100.5
+}

@@ -1,0 +1,8 @@
+{"event": "assay", "cmd": "kit:compress", "runs": [5.474689735641802, 5.474689735641802, 5.474689735641802, 5.474689735641802, 5.474689735641802], "t": 1794296486.06}
+{"event": "sense", "ratio": 0.7731, "self": 5.474689735641802, "best": 7.081788013843081, "shown": true, "t": 1794296495.81}
+{"event": "inherit", "ok": true, "res": "assay accepted: baseline median 5.47469, noise 0.0%. Wins must beat it by > 3.0%.", "files": ["squeeze.py"], "t": 1794296495.82}
+{"event": "laws", "price_show": true, "sense_show": true, "sense_dir": true, "law": "rest", "start": ["mid", "low"], "t": 1794296495.82}
+{"step": 0, "usage": {"inp": 4, "out": 373, "cr": 2006, "cw": 1795, "rs": 0, "usd": 0.0086267}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "cost": 94.3, "cap": 3012, "est": 90.7, "why": "The LZMA baseline sits at 5.47, and the best body is at 1.00, so I'm at 0.77 and there's room to improve. A pure-Python context-mixing compressor would compress much better, but with ~600KB samples it could take 10 to 30 seconds, which is risky without knowing the time limit. I'm weighing a cheaper, more modest order-2 context model instead.\n\nPure Python is slow, so a bz2 or lzma choice picked per sample would likely gain very little. I'll just rest and save energy for now.\n\n", "say": "", "t": 1794296499.62}
+{"step": 0, "act": {"do": "rest"}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "t": 1794296499.62}
+{"event": "rest", "gave": 305.7, "fit": 0.0, "age": 1, "t": 1794296499.62}
+{"event": "final", "final": 5.474689735641802, "baseline": 5.474689735641802, "last_baseline": 5.474689735641802, "final_gain": 0.0, "t": 1794296504.63}

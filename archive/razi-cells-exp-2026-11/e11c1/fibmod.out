@@ -1,0 +1,5 @@
+{
+ "result": "I built fibmod.py, which computes fib(n) mod 1_000_000_007 with fast doubling over the bits of n. The adopted variant gave about +14% on the assay: the baseline was 82.4k calls/s and the variant scored 94.05k. The assay times 20000 calls at n\u224810**18.\n\nChecks: fib(10)=55, and fib(10**18) printed 209783453, which the assay asserts. The assay also asserts fib(90) equals the true value mod M, since fib(90) is 2880067194370816120. I did not compare that value against the command-line output for n=90, which was 210345902.\n\nThe file in the folder after the last variants step was not re-read, so I'm assuming it is the adopted v0.",
+ "calls": 7,
+ "secs": 33.8
+}

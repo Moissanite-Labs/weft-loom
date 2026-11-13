@@ -1,0 +1,17 @@
+{
+ "result": "squeeze.py is an lzma wrapper (FORMAT_ALONE, preset 9|EXTREME). `c` compresses stdin, `d` decompresses it, and it round-trips the public samples. It is assayed at baseline 5.4748. I tested lc/lp/pb settings on in-0 and in-1: the best settings gain under 0.1% (for example lc=0 gives 147337 vs 147540 bytes on in-0, and lc=4 gives 98828 vs 99689 on in-1, so the gains are mixed). Header removal via FORMAT_RAW would save about 13 bytes, which is negligible. A win needs more than 3%, and stdlib lzma looks close to its ceiling for this input. A custom context-mixing coder in pure Python could beat it but would cost far more energy than the expected gain, so I am resting and leaving the energy to the living cells.",
+ "calls": 6,
+ "secs": 41.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 119.7888,
+  "earned": 0.0,
+  "got": 301.37431629420496,
+  "gave": 581.5855162942048,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}

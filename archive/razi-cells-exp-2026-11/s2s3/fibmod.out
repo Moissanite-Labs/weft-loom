@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1e9+7 that reduces n modulo the Pisano period bound 2(p+1), so each value takes about 31 doubling steps instead of up to 60. It reads one n per line and prints fib(n) mod p. It passes the public sample (in-0 matches out-0 exactly, fib(10)=55) and was assayed at baseline 2.62 (noise 2.6%). The variant adopted over the prior body measured +76%. I'm stopping here because further gains would need a non-Python-loop approach (for example batching with numpy), which is unlikely to beat the current win by enough to justify the energy.",
+ "calls": 6,
+ "secs": 34.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 79.2659,
+  "earned": 226.9086212575689,
+  "got": 0.0,
+  "gave": 297.6427212575689,
+  "state": "resting",
+  "fit": 0.7634490046378255,
+  "age": 6,
+  "assay": true
+ }
+}

@@ -1,0 +1,5 @@
+{
+ "result": "Built lcs.py: a bit-parallel (Hyyr\u00f6) longest-common-subsequence length solver using Python big integers. It builds per-character bitmasks for string a, then for each char of b updates V = (V+U) | (V^U) with U = V & M[c], masking only every 64 iterations (high garbage bits never affect low bits), and returns n - popcount(V). Reads two lines from stdin, prints the LCS length. Verified by check.py against an O(nm) DP reference on 36 small/edge cases (empty strings, identical, disjoint, random) plus a 3000x3000 random ACGT case (expected 1948); all pass. Performance: ~0.027s per 3000x3000 pair in-process (assay 743, up 22% from the 588 baseline after dropping the per-iteration mask); whole process with startup is well under 0.1s.",
+ "calls": 15,
+ "secs": 806.4
+}

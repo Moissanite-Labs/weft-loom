@@ -1,0 +1,17 @@
+{
+ "result": "csvsum.py reads CSV from stdin, groups val by cat with exact math.fsum, and prints sorted 'cat,sum' lines with 2 decimals. It matches the sample out-0.txt byte for byte (cmp SAME) and runs in about 0.39s on the 1,000,000-row sample. The assay is registered as baseline 1.84596 with noise 12.4%. I stopped here because the body is correct and the remaining speedup ideas are small compared with the 12.4% noise bar, so trying them would spend energy for little expected win.",
+ "calls": 7,
+ "secs": 26.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 122.57070000000002,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 277.42929999999996,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true
+ }
+}

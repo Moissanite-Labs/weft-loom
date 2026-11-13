@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a table-based fast-doubling solver. It reduces n modulo P = 2(M+1) (Pisano bound), splits n into a high part j = n>>16 and low part b = n&65535, and combines a precomputed table of F(i) for i \u2264 65537 with a table of F(jK) for the high part. Per-token memoization and byte-level stdin reading are included. It passes the public sample (in-0 gives 55 for n=10 and matches out-0). It is registered at baseline 12.3 with noise 5.8%. I'm resting rather than spending the remaining 59 energy on variants, since earlier variants in this lineage did not beat the incumbent beyond noise.",
+ "calls": 4,
+ "secs": 24.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 355.322,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 44.67799999999999,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 4,
+  "assay": true,
+  "sense": 1.0046
+ }
+}

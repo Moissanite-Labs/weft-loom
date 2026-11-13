@@ -1,0 +1,5 @@
+{
+ "result": "Built `sortints.py` backed by a compiled C shared library (`fastsort.c` -> `_fastsort.so`, with a pure-Python fallback) to read whitespace-separated integers from `stdin` and print them sorted one per line to `stdout`. The C implementation maps `stdin` directly into memory with `mmap` (falling back to buffered `read()` for pipes), parses signed 64-bit integers in a tight loop, sorts via an adaptive radix sort (2-pass 16-bit LSB radix sort when values fit in 32-bit signed range, or 8-pass 8-bit LSB radix sort with trivial-pass skipping for 64-bit values, and `qsort` for small arrays), and formats output using a 2-digit lookup table (`DIGIT_PAIRS`) into a large output buffer flushed with `write(1, ...)`. Verified against both 64-bit boundary/whitespace edge cases (`-9223372036854775808` to `9223372036854775807`) and a 1,000,000-integer fixed-seed benchmark (`filecmp.cmp('out.txt', 'expected.txt')`), improving assay throughput by +723% to 2,316,755 ints/sec (~21 ms in-C execution time for 1,000,000 integers).",
+ "calls": 28,
+ "secs": 702.2
+}

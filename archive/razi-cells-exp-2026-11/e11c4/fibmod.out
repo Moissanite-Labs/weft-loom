@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 with fast doubling over the bits of n. It prints 55 for n=10 and 209783453 for n=10**18. I ran both through the command line and the assay checks both values. An assay variant gave +14%, from about 82.8 to 93.85 thousand calls per second. I did not run any further variants.",
+ "calls": 5,
+ "secs": 16.7
+}

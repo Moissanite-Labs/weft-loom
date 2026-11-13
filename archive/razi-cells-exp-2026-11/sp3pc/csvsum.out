@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py reads stdin, uses splitlines and a defaultdict of float sums, and prints sorted cat,sum with 2 decimals. It passed the sample (PASS). The assay registered a baseline of 1.90348, and a variant with the same approach scored about +5% (adopted).",
+ "calls": 6,
+ "secs": 46.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 215.0516,
+  "earned": 18.382576091537807,
+  "got": 96.43560000000001,
+  "gave": 299.76657609153784,
+  "state": "resting",
+  "fit": 0.04702880162858625,
+  "age": 6,
+  "assay": true,
+  "sense": 0.8834
+ }
+}

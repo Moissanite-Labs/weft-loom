@@ -1,0 +1,1 @@
+{"cmd": "python3 -c \"\nimport fibmod,time\nr=fibmod.fib(10**18)\nif r!=209783453 or fibmod.fib(10)!=55: print(0)\nelse:\n    t=time.time()\n    for i in range(20000): fibmod.fib(10**18-i)\n    print(1/(time.time()-t))\n\"", "baseline": 4.120311447034161, "noise": 0.03919326858063066}

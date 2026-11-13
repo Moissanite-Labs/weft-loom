@@ -1,0 +1,5 @@
+{
+ "result": "Built squeeze.py (stdlib only) with compress/decompress that round-trip exactly, verified by bench.py on 6 text chunks, 6 JSON chunks, plus edge cases (empty, 1 byte, binary 0-255). compress tries many candidates and picks the smallest, tagged by a leading byte: raw store, bz2, zlib, raw LZMA2 (preset 9 extreme, lc 0-4, pb0, bt4, nice_len 273), the same LZMA over a tokenized stream (known vocabulary words and JSON key fragments mapped to single high bytes 0x81+, with a 0x80 capitalization marker and implied-preceding-space tokens with 0x7F marking no-space), and for JSON arrays of uniform records a columnar transform (parse, verify exact re-serialization with indent=2, flatten nested dicts into per-field columns, one JSON value per line, then tokenize + LZMA). Every transform is verified by inverse before being offered as a candidate, so correctness is guaranteed by construction. Assay (python3 bench.py, compression ratio) went from 8.85 baseline \u2192 9.39 (tokenization) \u2192 10.45 (columnar JSON) \u2192 10.84 (implied-space tokens), all adopted as scored wins with zero noise.",
+ "calls": 15,
+ "secs": 922.1
+}

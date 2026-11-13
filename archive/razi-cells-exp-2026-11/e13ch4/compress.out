@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py tries two compressors and keeps the smaller output. One is raw LZMA2 (extreme preset, lc=4, pb=0, 16MB dictionary). The other is bz2 level 9. A one-byte tag at the start of the output tells the decompressor which was used. A round trip on in-1.txt matched with cmp. The assay registered a baseline ratio of 7.08 with 0% noise. One variant (lc=3) scored the same, so the incumbent was kept. I did not verify the round trip on in-0.txt.",
+ "calls": 8,
+ "secs": 31.5
+}

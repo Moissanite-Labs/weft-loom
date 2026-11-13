@@ -1,0 +1,5 @@
+{
+ "result": "Built fibmod.py: fast doubling for fib(n) mod 1e9+7 implemented in C (compiled on first import with cc -O3 into fibmod_c.so, cached), bound via cffi ABI mode with ctypes and a pure-Python fallback chain. The C routine returns 0 for n=0, else iterates the bit-length of n top-down maintaining (a,b)=(F(k),F(k+1)) via c=(a*((2b)-a))%MOD, d=(a^2+b^2)%MOD, selecting (d,c+d) or (c,d) per bit \u2014 O(log n), so n up to 1e18 costs ~60 iterations. main() prints fib(int(sys.argv[1])).\n\nVerification: fib(0)=0, fib(10)=55, fib(1e18)=209783453, all matching an independent 2x2 matrix-power reference; the assay's correctness gate (n=0..299, 1e6, 1e9, 1e18, 1e18-1, 2^59, 2^60-1, plus 200k random n in [0,1e18)) passes with 0 mismatches. Assay accepted at baseline 1.506e+06 calls/s (noise 3.1%); the adopted cffi variant (replacing ctypes, whose per-call overhead dominated the ~670 ns/call) won +25% at 1.88e+06 calls/s. Cached .so files still in body are scratch artifacts; the module regenerates them on demand.",
+ "calls": 16,
+ "secs": 1029.6
+}

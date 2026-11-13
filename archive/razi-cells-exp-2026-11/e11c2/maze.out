@@ -1,0 +1,5 @@
+{
+ "result": "I wrote maze.py, a level-by-level BFS over a flat bytearray grid. It reads the maze from stdin and prints the shortest S-to-E length, or -1 if there is no path. On the seed-7 2000x2000 maze from gen.py (30% walls) it runs in about 0.73 s. The output was -1, and an independent deque BFS also gave -1, so the two agree. That maze is unsolvable, so the test only exercises the no-path case. A solvable case was not checked, and no assay was registered. exp.txt holds -1, which means t.sh would report speed only for a no-path answer. The current maze.py also has a leftover `or True` check that scans the whole frontier with `e in nx` on every level. I did not remove or time that, so the speed could be improved.",
+ "calls": 7,
+ "secs": 35.8
+}

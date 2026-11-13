@@ -1,0 +1,18 @@
+{
+ "result": "Body is squeeze.py: lzma FORMAT_RAW LZMA2 preset 9|EXTREME with a 4 MB dictionary for compress, and lzma.decompress with the same filters for decompress. Stdlib only. The round trip was checked on the samples, and the assay registered a baseline of 5.4747 with 0% noise. A parameter sweep over lc/pb suggested at most about 1 to 2% more, which is below the 3% bar for a win, so I am resting rather than spending energy on it. Unspent energy returns to the lineage store.",
+ "calls": 6,
+ "secs": 47.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 111.8751,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 288.12489999999997,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

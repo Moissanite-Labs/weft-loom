@@ -1,0 +1,15 @@
+{"step": 0, "usage": {"inp": 4, "out": 674, "cr": 1493, "cw": 0, "rs": 0, "usd": 0.0070466}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265487.22}
+{"step": 0, "act": {"do": "write", "path": "maze.py", "text": "<663 chars>"}, "res": "wrote maze.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794265487.22}
+{"step": 1, "usage": {"inp": 4, "out": 699, "cr": 1210, "cw": 1088, "rs": 0, "usd": 0.00996}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265493.1}
+{"step": 1, "act": {"do": "write", "path": "bench.py", "text": "<742 chars>"}, "res": "wrote bench.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794265493.1}
+{"step": 2, "usage": {"inp": 4, "out": 54, "cr": 1210, "cw": 2012, "rs": 0, "usd": 0.00582}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265494.29}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [5.745440897067627, 5.80309642071475, 5.802614722687215, 5.688379675213536, 5.750568982631634], "t": 1794265499.55}
+{"step": 2, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 5.75057, noise 2.0%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794265499.55}
+{"step": 3, "usage": {"inp": 4, "out": 252, "cr": 1210, "cw": 2112, "rs": 0, "usd": 0.00805}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265502.54}
+{"step": 3, "act": {"do": "sh", "cmd": "printf 'S.#\\n.#.\\n..E\\n' | python3 maze.py; printf 'S#E\\n' | python3 maze.py; python3 bench.py"}, "res": "exit 0\n4\n-1\n5.770307768714652\n", "route": "anthropic:claude-sonnet-5-5", "t": 1794265503.09}
+{"step": 4, "usage": {"inp": 4, "out": 401, "cr": 1210, "cw": 2295, "rs": 0, "usd": 0.0099975}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265506.38}
+{"event": "variants", "path": "maze.py", "medians": {"inc": 5.81544711501799, "v0": 5.981361295668035}, "best": "v0", "adopted": false, "gain": 0.0285, "kinds": null, "arm": "ctrl", "t": 1794265515.5}
+{"step": 4, "act": {"do": "variants", "path": "maze.py", "versions": "<644 chars>"}, "res": "medians inc=5.815, v0=5.981. kept incumbent.", "route": "anthropic:claude-sonnet-5-5", "t": 1794265515.5}
+{"step": 5, "usage": {"inp": 4, "out": 237, "cr": 1210, "cw": 3156, "rs": 0, "usd": 0.01051}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265518.62}
+{"step": 5, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265518.62}
+{"event": "final", "final": 5.7749714301449835, "baseline": 5.750568982631634, "final_gain": 0.0042, "t": 1794265522.23}

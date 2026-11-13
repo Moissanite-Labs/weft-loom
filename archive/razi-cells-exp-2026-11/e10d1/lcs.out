@@ -1,0 +1,5 @@
+{
+ "result": "Built lcs.py: reads two lines from stdin and prints the length of their longest common subsequence using the bit-parallel Hyyr\u00f6/Allison-Dix algorithm \u2014 one Python big-int per row (v = ((v+u)|(v-u)) & full, u = v & mask[ch]), with per-character bitmasks precomputed for the shorter string, so the work is O(len(a)\u00b7len(b)/wordsize) machine ops instead of an O(nm) Python DP. Verification: check.py compares lcs.py against a naive DP on 40 random string pairs over several alphabets (all pass, \"ok\"); big.txt (two 3000-char lines) gives 1948, matching the naive DP run independently; huge.txt (two 40000-char random acgt lines) gives 26148 in ~0.27 s total including interpreter startup, so 3000-char inputs run in a few milliseconds. Assay (4\u00d7 huge + 1\u00d7 big, correctness-gated) baseline 1046 with 0.9% noise; a daughter exploring deferred masking / bit_count / list-indexed masks was correct but only +3%, confirming the current loop is already near the floor for Python big-int arithmetic.",
+ "calls": 15,
+ "secs": 634.1
+}

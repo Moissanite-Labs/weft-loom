@@ -1,0 +1,5 @@
+{
+ "result": "Built sortints.py: reads all of stdin as bytes via os.read, parses with np.fromstring(sep=' ') into int64, downcasts to int32 when the value range fits (2x faster sort), sorts in place, then formats output at C speed via repr(a.tolist()) \u2192 strip brackets \u2192 replace(b', ', b'\\n'), and writes with os.write. Verified: check.sh compares output byte-for-byte against Python's sorted() reference on the 1,000,000-int fixed-seed data.txt (ok==True), and a separate 1000-int test with 64-bit-range values (beyond int32, exercising the int64 path, including negatives) matched exactly (diff empty / True). Assay went from ~1.03e6 (pure-Python baseline, ~1.0s) to ~2.1\u20132.5e6 (\u22480.4\u20130.45s per 1M ints) through three adopted variant rounds (+85%, +22%, +15%); key lesson recorded: numpy's OMP warning on stderr had corrupted earlier scores, fixed by redirecting stderr and setting KMP_WARNINGS=0 in check.sh.",
+ "calls": 15,
+ "secs": 825.4
+}

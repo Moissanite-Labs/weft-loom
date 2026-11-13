@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a 3-window (11-bit) table matrix Fibonacci mod 1e9+7. It reduces n mod the Pisano period, then multiplies three precomputed table entries. The assay baseline is 13.02 and I made no changes. I did not run the samples this step. I'm resting to save energy because earlier lineage attempts found no further gains beyond the 4% noise.",
+ "calls": 1,
+ "secs": 5.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 97.367,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 302.633,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 1.1653
+ }
+}

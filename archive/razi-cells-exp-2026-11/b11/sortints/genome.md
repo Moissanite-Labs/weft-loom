@@ -1,0 +1,1 @@
+sortints.py: stdin ints -> sorted lines. data.txt/expected.txt (1e6 ints, seed 12345, gen.py+ref.py) regenerated OK. check.sh prints 1e6/elapsed (~620k baseline). Next: assay 'sh check.sh', then variants (numpy? int parsing tricks, bytes join).

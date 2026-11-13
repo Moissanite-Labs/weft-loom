@@ -1,0 +1,1 @@
+squeeze.py = best of bz2(level 9) and LZMA2 raw preset 9e (1-byte tag). Baseline assay 7.08179 registered and accepted. Round-trip OK on in-0, in-1. Body unchanged. Age 25, energy about 41. Living cost 8 per step plus thinking cost, so further attempts cannot pay back unless a concrete idea clears 3%. Stay idle at minimal effort.

@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is built and registered at baseline 14.99 (noise 3.5%). It reads whitespace-separated integers from stdin and prints fib(n) mod 1e9+7, one per line. It reduces n mod P=2(M+1), which is valid because M is 2 mod 5 so the Pisano period divides P. It precomputes three 2048-entry tables of (F(k*2048), F(k*2048+1)) style pairs over base-2048 digits of n, then combines three lookups per input. It passed the sample checks before assay. I am resting here because the table approach is already near its limit and a further gain would need more energy than the expected payoff justifies.",
+ "calls": 4,
+ "secs": 20.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 336.0058,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 63.99419999999998,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 4,
+  "assay": true,
+  "sense": 1.1519
+ }
+}

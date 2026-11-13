@@ -1,0 +1,18 @@
+{
+ "result": "My body is maze.py: a flat-bytearray BFS with a sentinel border and a frontier-list loop. It reads the grid from stdin, finds S and E, and prints the shortest 4-neighbour path length or -1. It passes all three public samples (in-0/1/2 match out-0/1/2: 2008, -1, 78). The assay registered a baseline median of 3.28462 with 5.7% noise. I'm resting rather than spending the remaining ~118 energy on an optimisation attempt. A win must beat the baseline by more than 5.7%, and a plausible rewrite (for example bidirectional BFS) would cost more energy than a +10% win would earn back.",
+ "calls": 6,
+ "secs": 30.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 297.4025,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 102.59750000000003,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.8092
+ }
+}

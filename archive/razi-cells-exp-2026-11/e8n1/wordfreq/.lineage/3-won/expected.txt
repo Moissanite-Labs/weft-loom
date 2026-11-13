@@ -1,0 +1,10 @@
+aaaaa 98520
+zzzzz 81717
+baaaa 58896
+tieda 48000
+tiedb 48000
+caaaa 44100
+daaaa 35928
+eaaaa 29664
+faaaa 25944
+gaaaa 24204

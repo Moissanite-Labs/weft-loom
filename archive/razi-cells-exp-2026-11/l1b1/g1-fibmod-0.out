@@ -1,0 +1,18 @@
+{
+ "result": "Body is fibmod.py: fast doubling with a precomputed table of fib(h*S) for S=2^16 (X/Y arrays built once), n reduced modulo the Pisano bound P=2(M+1) so the table index is about 31 bits, per-token memoization, and byte-level stdin reading. It passes public sample 0 (cmp matches out-0 exactly) and is registered as baseline 10.7588 (noise 6.9%). Startup is about 0.09s total, so per-value cost is small. Variants in the lineage have mostly failed to beat the incumbent beyond noise, so I am resting to return the remaining energy to the lineage store.",
+ "calls": 5,
+ "secs": 25.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 303.30779999999993,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 96.69220000000001,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.8221
+ }
+}

@@ -1,0 +1,1 @@
+lcs: bit-parallel LCS (Hyyro) in lcs.py correct; check.py = assay (baseline ~588). Micro-opts (bit_count, list lookup, premask) gave no gain. Remaining idea: drop per-iteration mask (high garbage bits never affect low bits), mask only at end; use V^U instead of V-U. Then done.

@@ -1,0 +1,5 @@
+{
+ "result": "I built fibmod.py, which computes fib(n) mod 1_000_000_007 by fast doubling over the bits of n. I checked it by hand: n=10 prints 55 and n=10**18 prints 209783453. bench.py also checks fib(0) through fib(299) against a direct iterative sum, and checks fib(10**18) against 209783453. It scores speed as calls per second over 20000 large-n calls. The assay baseline was 4.102 with 1.3% noise. A variants round adopted a faster version at about 4.9, a gain of roughly 19%. I re-ran both manual checks after the swap and they still pass.",
+ "calls": 7,
+ "secs": 65.3
+}

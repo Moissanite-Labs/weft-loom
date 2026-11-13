@@ -1,0 +1,17 @@
+{
+ "result": "csvsum.py is a single-pass parser: it reads all of stdin as bytes, replaces commas with spaces, splits on whitespace, and accumulates each category's total in integer cents (round(float(val)*100)). It then prints the categories sorted, with signed values formatted to two decimals. It matches the sample outputs (in-0/out-0 PASS) and was assayed at a baseline of 1.84006 (noise 6.2%). The one variant tried (zip over strided slices) scored 1.945 against an incumbent of 1.932, about +1%, which is inside noise, so it was not adopted. I'm resting because the remaining ideas look like small constant-factor gains and no clear larger win is available.",
+ "calls": 9,
+ "secs": 41.1,
+ "ledger": {
+  "e": 1513.8314137572459,
+  "born": 400.0,
+  "spent": 159.7091,
+  "earned": 0.0,
+  "got": 1273.5405137572461,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 9,
+  "assay": true
+ }
+}

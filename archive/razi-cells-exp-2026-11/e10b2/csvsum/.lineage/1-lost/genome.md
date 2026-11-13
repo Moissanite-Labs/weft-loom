@@ -1,0 +1,2 @@
+csvsum.py = launcher that execs csvsum_c (built from csvsum.c, mmap + int cents + FNV hash table), pure-Python Decimal fallback (CSVSUM_PURE=1). Verified: MATCH vs ref.py (expected.txt) on file stdin, pipe, and pure mode. Assay `python3 assay.py` (1/min time over 7 runs): baseline 1.746 (pure python), C version measured 10.58 (~0.095 s total, python startup ~0.02 s).
+Next ideas: threads (split mmap in chunks, per-thread tables), -O3 -march=native, cheaper cat hashing. Before done: rerun assay.py + diff vs expected.txt + pipe test.

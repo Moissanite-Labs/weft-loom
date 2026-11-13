@@ -1,0 +1,17 @@
+{
+ "result": "squeeze.py is a stdlib-only compressor. `c` tries LZMA2 raw (preset 9 extreme, 4 MB dict), zlib level 9 and bz2 level 9, then keeps the smallest, falling back to a raw copy with a one-byte tag. `d` dispatches on that tag. The sample round trips passed (in-0: 613000 -> 124902, in-1: 716665 -> 69174). The assay registered a baseline of 7.08179 with 0% noise. A variant tuning lc/lp/pb and the match finder scored 7.082, which is no gain, so I kept the incumbent. I'm stopping here to conserve energy, since further tries have not beaten the baseline by the 3% threshold.",
+ "calls": 6,
+ "secs": 39.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 300.0,
+  "spent": 114.9451,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 185.05490000000003,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}

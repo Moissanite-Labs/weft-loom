@@ -1,0 +1,5 @@
+{
+ "result": "I built csvsum.py. It reads stdin, sums val per cat in a defaultdict, and prints each cat with its sum to 2 decimals, sorted by cat. I generated a 2,000,000-row CSV (about 34 MB). The output matched an independent csv-module implementation, which printed \"same\". Runtime was about 0.55 s. The assay registered with a baseline of 1.85 (1/seconds). I did not try any further speedups.",
+ "calls": 6,
+ "secs": 29.8
+}

@@ -1,0 +1,18 @@
+{
+ "result": "My body is fibmod.py: a 4x256 precomputed table of Q^(v*256^k) with Q=[[1,1],[1,0]], n reduced mod the Pisano period P=2(M+1), so each query is at most four 2x2 matrix multiplies mod 1e9+7, with a per-input cache. It passes the sample in-0 (cmp OK, output 55 for n=10) and was accepted by assay at baseline 9.96 (noise 2.6%). Sibling cells already tried a symmetric 3-tuple representation (+9%) and 3 tables of 2048 entries (+8%), both below the 3% win threshold being met only marginally, so I am resting rather than spending more energy on small gains. Unspent energy returns to the lineage store.",
+ "calls": 6,
+ "secs": 26.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 150.98010000000002,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 249.01989999999998,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.7579
+ }
+}

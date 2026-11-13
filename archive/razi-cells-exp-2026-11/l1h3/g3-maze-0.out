@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is an unrolled flat-bytearray BFS. It pads the grid with a '#' border, finds S and E with bytes.find, and expands frontier lists level by level, marking visited cells as '#'. It returns the distance when E is reached, or -1. It passes the public samples (2008, -1, 78). The unrolled neighbour loop was adopted as a +17% win over the previous body (4.063 vs 3.458). I am stopping here rather than spending more energy on a further change that would need more than 8% to count.",
+ "calls": 3,
+ "secs": 17.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 303.983,
+  "spent": 286.60609999999997,
+  "earned": 64.44716481417898,
+  "got": 0.0,
+  "gave": 81.824064814179,
+  "state": "resting",
+  "fit": 0.17482348647584312,
+  "age": 3,
+  "assay": true,
+  "sense": 0.9863
+ }
+}

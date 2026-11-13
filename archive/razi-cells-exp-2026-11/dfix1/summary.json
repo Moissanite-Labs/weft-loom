@@ -1,0 +1,76 @@
+{
+ "calls": 21,
+ "improvements": 1,
+ "imp_per_100_calls": 4.76,
+ "done": 2,
+ "bad_replies": 0,
+ "wall_s": 44.7,
+ "par": 4,
+ "peak_rss_mb": 149.3,
+ "peak_cpu_pct": 20.9,
+ "mean_cpu_pct": 2.2,
+ "cells": {
+  "fibmod": {
+   "rc": 0,
+   "secs": 42.0,
+   "steps": 19,
+   "errors": 0,
+   "acts": {
+    "write": 1,
+    "sh": 2,
+    "assay": 1,
+    "try": 1,
+    "done": 2
+   },
+   "splits": 1,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 0,
+   "tries": 1,
+   "improvements": 1,
+   "final_gain": 1.7166,
+   "gain": 1.66,
+   "apoptosis": false,
+   "token_budget_hit": false,
+   "tokens": 13387,
+   "usd": 0.0451,
+   "calls": 11,
+   "routes": {
+    "anthropic:claude-sonnet-5-5": 14
+   },
+   "done": true
+  },
+  "maze": {
+   "rc": 0,
+   "secs": 43.6,
+   "steps": 16,
+   "errors": 0,
+   "acts": {
+    "write": 1,
+    "sh": 1,
+    "assay": 1,
+    "try": 1,
+    "done": 2
+   },
+   "splits": 1,
+   "ties": 1,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 0,
+   "tries": 1,
+   "improvements": 0,
+   "final_gain": -0.005,
+   "gain": 0,
+   "apoptosis": false,
+   "token_budget_hit": false,
+   "tokens": 10517,
+   "usd": 0.0367,
+   "calls": 10,
+   "routes": {
+    "anthropic:claude-sonnet-5-5": 12
+   },
+   "done": true
+  }
+ }
+}

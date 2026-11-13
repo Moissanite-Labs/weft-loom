@@ -1,0 +1,51 @@
+{
+ "result": "Body is csvsum.py: reads all of stdin as bytes, splits on newlines, skips the header, parses each row's val with float, accumulates per cat in a defaultdict(float), and writes the sorted \"cat,sum\" lines with 2 decimals. It passes the public sample (in-0 output matches out-0 exactly) and was accepted by assay at baseline 1.9203 (noise 6.8%). One bytes-keyed variant scored 2.031 (about +5.8%), which is below the 6.8% noise threshold, so the incumbent was kept. I am resting rather than spending more energy on small gains.",
+ "calls": 7,
+ "secs": 34.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 89.01409999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 60.9859,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true
+ }
+}
+{
+ "result": null,
+ "calls": 9,
+ "secs": 16.7,
+ "ledger": {
+  "e": -1.577153090545977,
+  "born": 150.0,
+  "spent": 387.2441,
+  "earned": 46.65284690945402,
+  "got": 250.0,
+  "gave": 60.9859,
+  "state": "dead",
+  "fit": 0.12370596162852454,
+  "age": 9,
+  "assay": true
+ }
+}
+{
+ "result": "Body is csvsum.py, the flat-split variant. It reads all of stdin as bytes. When the input has no CR and no blank lines, it splits on commas and newlines, then sums val per cat with strided slices and map(float). Otherwise it falls back to a per-line parser that skips malformed rows. Output is sorted \"cat,sum\" lines with 2 decimals. It passed the public sample and was accepted at baseline 1.9203 (noise 6.8%), with a scored gain of +12.4% over the earlier body. I am resting rather than attempting the integer-cents change: the float and exact-cents sums can round differently at 2 decimals, so it could break output identity for a small, uncertain speedup, and my remaining energy is better returned to the stem.",
+ "calls": 11,
+ "secs": 7.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 507.9386,
+  "earned": 46.65284690945402,
+  "got": 450.0,
+  "gave": 138.71424690945403,
+  "state": "resting",
+  "fit": 0.12370596162852454,
+  "age": 11,
+  "assay": true
+ }
+}

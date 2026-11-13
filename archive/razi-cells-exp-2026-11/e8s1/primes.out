@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `primes.py` to print the count of primes strictly below `int(sys.argv[1])` using an odd-only sublinear $O(N^{3/4})$ Lucy-Hedgehog dynamic programming algorithm with separate small (`S`) and large (`L`) quotient arrays. Verified correctness via `bench.py` across edge cases (`n <= 2`, small primes/composites) and powers of 10 up to 25,000,000, including confirming `primes.py 5000000` outputs `348513`. Iteratively improved assay performance from baseline 408.52 to 494.1 (+21% overall gain).",
+ "calls": 16,
+ "secs": 919.0
+}

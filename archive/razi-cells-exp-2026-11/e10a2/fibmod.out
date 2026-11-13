@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py prints fib(n) mod 1_000_000_007 for n up to 10**18 and is verified: `python3 fibmod.py 10` prints 55 and `python3 fibmod.py 1000000000000000000` prints 209783453. check.py passes (\"ok 55 209783453\"), comparing against naive iteration for n < 2000 and an independent 2x2 matrix power for 2000 random n up to 10**18. bench.py (the assay) also checks edge cases and the command line before timing, and returns 0 on any mismatch. It now scores about 393,000 fib calls/s in-process, against 258,000 for the previous F-doubling version in the same variants run (+53%, noise about 1.2%); the registered assay baseline of 95,382 is older still. The method first reduces n using F(n+p+1) = -F(n) and F(p+1-j) = (-1)^j F(j), which brings it to at most about 5\u00b710^8. It then runs a Lucas ladder on W[m] = L(2m), costing 2 multiplications per bit, starting from a 1026-entry table that covers the top 10 bits. The final step recovers F from W(m) and W(m+1) using the inverse of 5.",
+ "calls": 16,
+ "secs": 1096.0
+}

@@ -1,0 +1,44 @@
+{
+ "calls": 5,
+ "improvements": 1,
+ "imp_per_100_calls": 20.0,
+ "done": 1,
+ "bad_replies": 0,
+ "wall_s": 20.3,
+ "par": 4,
+ "peak_rss_mb": 79.3,
+ "peak_cpu_pct": 32.1,
+ "mean_cpu_pct": 3.8,
+ "cells": {
+  "maze": {
+   "rc": 0,
+   "secs": 19.6,
+   "steps": 15,
+   "errors": 0,
+   "acts": {
+    "done": 2,
+    "assay": 1,
+    "write": 1,
+    "variants": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 1,
+   "tries": 0,
+   "improvements": 1,
+   "final_gain": 0.3468,
+   "gain": 0.366,
+   "apoptosis": false,
+   "token_budget_hit": false,
+   "tokens": 7128,
+   "usd": 0.0297,
+   "calls": 5,
+   "routes": {
+    "anthropic:claude-sonnet-5-5": 10
+   },
+   "done": true
+  }
+ }
+}

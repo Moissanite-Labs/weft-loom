@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a split-based reader: it reads stdin as bytes, normalises CR/LF, splits on commas, groups the val tokens by cat in a dict, and sums each group with fsum before printing sorted \"cat,sum\" lines at 2 decimals. It passes sample in-0 byte-for-byte against out-0, and assay registered a baseline of 1.76322 (noise 2.7%). I stopped here rather than spend more energy on a rewrite: the remaining obvious speedups (summing in integer cents, or plain sum() instead of fsum) risk last-digit rounding errors the harness would reject, and a win must beat the baseline by more than 3% to earn anything.",
+ "calls": 8,
+ "secs": 46.7,
+ "ledger": {
+  "e": 34.50499999999998,
+  "born": 400.0,
+  "spent": 392.3687,
+  "earned": 0.0,
+  "got": 26.873699999999992,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 8,
+  "assay": true,
+  "sense": 0.7526
+ }
+}

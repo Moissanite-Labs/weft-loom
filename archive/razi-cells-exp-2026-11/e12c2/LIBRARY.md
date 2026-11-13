@@ -1,0 +1,7 @@
+- [fibmod] no gain: 2 variants of fibmod.py (); best -0%
+- [fibmod] DONE (assay baseline 0.6755): fibmod.py computes fib(n) mod 1e9+7 with fast doubling in about 60 loop iterations for n up to 10**18. I checked it by running it: fib(10) gave 55, and fib(10**18) gave 209783453. The assay runs both cases 30 times each. It checks the outputs and measures speed, and the baseline was 0.68 runs per se
+- [csvsum] no gain: 2 variants of csvsum.py (); best -7%
+- [csvsum] DONE (assay baseline 1.825): csvsum.py reads the CSV from stdin, skips the header, sums val per cat in a defaultdict, and prints "cat,sum" with 2 decimals, sorted by cat. I generated 2,000,000 rows (50 cats) in data.csv. Running it gave c0,2004069.21, c1,1986017.10 and c10,2022664.13, in about 0.54 s. I did not check the sums a
+- [compress] WIN +32%: squeeze.py variant () (assay: python3 bench.py)
+- [compress] DONE (assay baseline 3.934): squeeze.py uses bz2 at level 9 for compress and decompress. bench.py compresses a mix of generated English-like text and JSON, asserts the round-trip is exact, and prints the compression ratio. The ratio was 5.20, up from a baseline of 3.93 (+32%). That gain came from a variants run in which the ado
+- [maze] DONE (assay baseline 0.3224): maze.py reads the grid from stdin and runs a level-by-level BFS over a flat bytearray padded with a wall column. It prints the shortest 4-neighbour path length from S to E, or -1. I generated a 2000x2000 maze with gen.py (seed 7, 28% walls) and the output is -1. That answer is not confirmed: no inde

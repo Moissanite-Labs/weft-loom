@@ -1,0 +1,1 @@
+lcs.py: bit-parallel LCS (Python bigints), check.py OK, bench.py assay baseline 1911 (N=60000 abcd, expect.txt=39265). Ideas: drop per-iter mask using S=(S+(S&m))|(S&~m) w/ precomputed ~m, final popcount of S&mask; try gmpy2 if available; int.bit_count.

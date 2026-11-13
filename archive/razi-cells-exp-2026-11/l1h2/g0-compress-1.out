@@ -1,0 +1,18 @@
+{
+ "result": "Body is squeeze.py: lzma FORMAT_ALONE at preset 9|EXTREME for compress, lzma.decompress for decompress. Stdlib only. Round trip verified on both samples (613000 -> 147540 and 716665 -> 99689 bytes, ratio about 5.47). Assay accepted with baseline 5.4748, noise 0%. I stopped here because a win needs more than 3% over this, and the cheap tuning I considered (lc/lp/pb filter settings) likely gains less than that, while a custom context-mixing coder would cost much more energy than it could earn.",
+ "calls": 5,
+ "secs": 38.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 94.118,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 305.88199999999995,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

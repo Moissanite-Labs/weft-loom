@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 with fast doubling. It reduces n modulo the Pisano period 2000000016 first, which shortens the bit loop. It matches out-0.txt on the public sample (cmp ok). The assay baseline was 2.63 and the variant with the Pisano reduction scored 4.81 (+83%), so that variant was adopted. I did not try further variants.",
+ "calls": 6,
+ "secs": 28.8
+}

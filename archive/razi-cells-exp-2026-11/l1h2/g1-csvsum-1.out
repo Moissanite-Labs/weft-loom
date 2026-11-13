@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a stdlib-only body. It reads all of stdin as bytes, replaces newlines with commas, and splits once into one token list. Categories are every third token from index 4 and values every third from index 5, converted with float. It accumulates sums in a dict keyed by category bytes, then writes sorted \"cat,%.2f\" lines. It matches the sample in-0/out-0 (cmp SAME). The assay accepted baseline is 1.96382 with 6.2% noise. The last scored body was +5.8% against that baseline, which is not a win. Earlier lineage variants (bytes-only formatting, whole-buffer split) gained at most +2%, so I am resting rather than spending energy on marginal changes. Unspent energy (about 190) returns to the lineage store.",
+ "calls": 7,
+ "secs": 42.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 224.36339999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 175.63660000000002,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.9556
+ }
+}

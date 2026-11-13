@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py uses raw LZMA2 from the stdlib lzma module (preset 9 extreme, lc=4, lp=0, pb=0, 4 MB dictionary). The assay accepted it with a baseline compression ratio of 5.498 and 0% noise. Its correctness check on the hidden inputs passed. My own shell round-trip check failed because of a path error, so I did not verify the round trip myself on the public samples. I tried two variants, one with lc=3 and one with lc=4 plus nice_len=273, the BT4 match finder and depth 1000. They scored 5.493 and 5.498, no better than the baseline, so I kept the incumbent.",
+ "calls": 7,
+ "secs": 34.2
+}

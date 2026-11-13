@@ -1,0 +1,5 @@
+{
+ "result": "Built wf.py: reads all stdin as bytes, applies a single bytes.translate table that lowercases A-Z and maps every non-alphanumeric byte to a space, then split() + collections.Counter, sorts by (-count, word) and prints the top 10 as 'word count'. Test data: gen.py produces a 20MB Zipf-like corpus (big.txt, seed 42) with capitalization and punctuation; expected.txt was cross-checked against the earlier regex-based implementation and a hand-checked small case ('The the, THE a a b / b. c' -> the 3, a 2, b 2, c 1). Assay `sh bench.sh` (1000/seconds, 0 if output differs from expected.txt) rose from baseline 1161 (regex version) to ~1935, i.e. ~0.5s for 20MB, with out.txt == expected.txt verified via cmp.",
+ "calls": 13,
+ "secs": 580.4
+}

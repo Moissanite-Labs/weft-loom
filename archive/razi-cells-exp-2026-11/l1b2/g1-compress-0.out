@@ -1,0 +1,18 @@
+{
+ "result": "squeeze.py picks the smaller of bz2 (preset 9) and lzma (FORMAT_ALONE, preset 9 | EXTREME) per input, with a one-byte tag selecting the decoder. It round-trips both samples and is registered at baseline 7.08179 (noise 0.0%). Plain lzma scored about 4.15 on in-0 and 7.19 on in-1, and bz2 about 4.91 and 10.36, so the per-input choice is what lifts the score. Earlier lineage tuning of lc/lp/pb gained only about 0.1%, so I am resting rather than spending energy on a change unlikely to clear the 3% win threshold.",
+ "calls": 5,
+ "secs": 37.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 121.6092,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 278.3908,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 1.0
+ }
+}

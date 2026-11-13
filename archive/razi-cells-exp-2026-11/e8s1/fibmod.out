@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified fibmod.py to compute fib(n) mod 1_000_000_007 for n up to 10**18. Using Pisano period reduction (n %= 2_000_000_016) combined with a 2-chunk 16-bit split (n = (hi << 16) | lo) and four precomputed lookup tuples (T0A, T0B of size 65,536 and T1C, T1DMC of size 30,518), each query executes in O(1) time with just two table-pair lookups, two multiplications, and one modulo operation. Correctness is verified via bench.py against a fast-doubling reference implementation across edge cases (including n=0, 1, 10 -> 55, and 10**18 -> 207936038) and CLI invocation. Throughput improved from the 66.8k ops/s fast-doubling baseline to 4.61M ops/s (~69x speedup).",
+ "calls": 7,
+ "secs": 628.1
+}

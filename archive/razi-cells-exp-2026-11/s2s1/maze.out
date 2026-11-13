@@ -1,0 +1,17 @@
+{
+ "result": "My body is maze.py: it reads all of stdin as bytes, pads the grid with a wall border in a flat bytearray, finds S and E with find(), and runs a level-by-level BFS over the flat index with +-1 and +-width offsets. It prints the distance, or -1 if E is unreachable or S/E is missing. It matches all three public samples (2008, -1, 78) on repeated runs. Assay registered a baseline of 3.56528 with 6.0% noise. A variant with early exit and local append binding scored 3.385 against the incumbent's 3.368, which is within noise, so I kept the incumbent and stopped.",
+ "calls": 7,
+ "secs": 29.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 200.0,
+  "spent": 97.4953,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 102.5047,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true
+ }
+}

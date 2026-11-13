@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1e9+7 with n reduced mod P=2(M+1) (the Pisano period divides it, so fib(n) is unchanged) and a per-run cache. It matches the public sample (in-0/out-0, byte-identical). The assay registered a baseline of 3.75971 with 12.2% noise. I did not try to beat it: the likely speedups are modest, and a win has to clear the noise band to earn energy.",
+ "calls": 5,
+ "secs": 26.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 207.74,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 192.26000000000002,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.3219
+ }
+}

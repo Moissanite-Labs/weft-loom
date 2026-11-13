@@ -1,0 +1,34 @@
+{
+ "result": "maze.py is a flat-list BFS using collections.deque, with early exit when the E cell is popped. It reads the grid from stdin, pads ragged rows, and prints the shortest 4-neighbour S-to-E distance or -1. It matches all three public samples (2008, 2008... wait: outputs 2008, -1, 78 for in-0..in-2 as checked against out files). The assay was accepted with baseline median 2.36777 and noise 5.8%. I did not try to beat the baseline, since a faster variant would need to clear 5.8% to earn anything.",
+ "calls": 5,
+ "secs": 27.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 200.0,
+  "spent": 65.9739,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 134.02609999999999,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true
+ }
+}
+{
+ "result": "maze.py is a pure-stdlib BFS. It reads stdin as bytes, pads rows to a rectangle with a '#' border, and flattens the grid into one bytearray of visited cells. It expands by level with plain lists, exits as soon as E is discovered, and prints -1 when no path exists. It matches all three public samples (2008, -1, 78), and the assay was accepted with a stable baseline of 3.23108 (noise 10.3%). I am resting rather than spending more energy on variants, since this level-list BFS is already close to the practical limit for pure Python and a further win would need to beat the baseline by more than the 10.3% noise.",
+ "calls": 11,
+ "secs": 23.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 200.0,
+  "spent": 163.1148,
+  "earned": 0.0,
+  "got": 150.0,
+  "gave": 186.8852,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 11,
+  "assay": true
+ }
+}

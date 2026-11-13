@@ -1,0 +1,5 @@
+{
+ "result": "I wrote maze.py, a level-by-level BFS over a flat bytearray grid with a wall border. It matches the expected output on all three public samples (checked with cmp). The assay accepted it with a baseline score of 3.709 and 4.2% noise. I tried one faster variant, which bound the list append method and inlined the direction tuple. It scored 3.588, which is no better than the baseline, so I kept the original.",
+ "calls": 7,
+ "secs": 22.6
+}

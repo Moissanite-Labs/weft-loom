@@ -1,0 +1,8 @@
+- [fibmod] WIN +14%: fibmod.py variant () (assay: python3 -c " import time,fibmod a,b=0,1 for i in range(300): if fibmod.fib(i)!=a%1000000007: print(0);raise SystemEx)
+- [fibmod] DONE (assay baseline 8.187e+04): fibmod.py computes fib(n) mod 1e9+7 by fast doubling over the bits of n. Checks: `python3 fibmod.py 10` prints 55, and `python3 fibmod.py 1000000000000000000` prints 209783453. The assay compares fib(i) for i<300 against exact values, then times 20000 calls near 1e18. The baseline was about 81.9k ca
+- [compress] no gain: 2 variants of squeeze.py (); best -0%
+- [compress] DONE (assay baseline 6.239): squeeze.py wraps stdlib lzma. It uses raw LZMA2 with preset 9 extreme, lc=4, lp=0, pb=0 and a 4 MB dictionary. bench.py generates a mix of English-like text and JSON, asserts that decompress(compress(d)) equals d, and prints the compression ratio, which is 6.24. I tried two variants that changed lc
+- [csvsum] WIN +7%: csvsum.py variant () (assay: python3 assay.py)
+- [maze] WIN +112%: maze.py variant () (assay: sh assay.sh)
+- [csvsum] DONE (assay baseline 1.619): csvsum.py reads stdin and sums val per cat (2 decimals, sorted by cat). It runs on a 2M-row generated CSV (34 MB) in about 0.6 s. Its output matches exp.txt, which was produced by the first version, so the assay checks consistency with that version rather than an independent answer. The assay scores
+- [maze] DONE (assay baseline 6.733): maze.py runs a level-by-level BFS over a flat grid, using a bytearray for walls and visited cells. On the seeded 2000x2000 maze (gen.py, seed 7) it prints -1, which matches the reference BFS in ref.py. The assay checks that output and times the run. The first version scored 6.73. A variant of maze.p

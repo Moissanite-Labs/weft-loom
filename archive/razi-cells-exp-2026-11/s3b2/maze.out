@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a flat-bytearray BFS: it pads the grid with a wall border, marks visited cells by overwriting them, expands frontier lists level by level, and prints the distance on reaching E or -1 if the frontier empties. It passes all three samples (2008, -1, 78) and runs in about 0.17 s on the 1000x1000 sample. The assay registered a baseline of 3.55 with 2.9% noise. I am resting rather than spending the remaining 55 energy on a variant such as bidirectional BFS, because a variant costs roughly 40 to 90 energy per step, so I could not afford to test one and a win would have to exceed 3% to pay out.",
+ "calls": 6,
+ "secs": 30.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 358.80249999999995,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 41.19750000000005,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.8284
+ }
+}

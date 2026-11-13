@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a table-based fast-doubling solver. It reduces n modulo P = 2(M+1), splits n into j = n>>16 and l = n&65535, and combines precomputed tables A[j] and C[j] (fib at multiples of 65536) with f[l] and f[l+1]. It memoizes repeated tokens and reads stdin as bytes in one go. It passes sample in-0 byte-identical to out-0 and gives 55 for n=10. It is registered as the baseline at 10.0944 (noise 10.7%). I am resting with 26 energy because the remaining budget cannot pay for a further experiment that would need to beat the noise threshold.",
+ "calls": 5,
+ "secs": 23.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 388.5528,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 11.447200000000024,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.8055
+ }
+}

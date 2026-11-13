@@ -1,0 +1,5 @@
+{
+ "result": "I built squeeze.py with compress and decompress, both using stdlib lzma. It uses raw LZMA2 with preset 9 extreme, a 1 MB dictionary, lc=4, lp=0 and pb=0. bench.py checks the round trip on a generated mix of English-like text and JSON. It scored a compression ratio of 4.32 and the round trip held, so the score was not zeroed. I registered the assay and it was accepted, with 0% noise. I tried no further improvements, such as a custom context-mixing coder.",
+ "calls": 4,
+ "secs": 23.9
+}

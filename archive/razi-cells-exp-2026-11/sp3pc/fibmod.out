@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a verified body (passes sample in-0/out-0 and is registered by assay at baseline 8.86215). It computes fib(n) mod 1e9+7 with five precomputed 4096-entry tables of 2x2 matrix powers, so each query costs at most four 3-tuple matrix combines. An inlined variant scored about 9.67 against 9.15 for the incumbent, roughly +6%, below the 10.2% noise threshold, so it was not adopted. Further gains look marginal, so I am resting to keep the energy.",
+ "calls": 6,
+ "secs": 51.1,
+ "ledger": {
+  "e": 922.0437843666892,
+  "born": 400.0,
+  "spent": 309.89209999999997,
+  "earned": 0.0,
+  "got": 831.9358843666894,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.7556
+ }
+}

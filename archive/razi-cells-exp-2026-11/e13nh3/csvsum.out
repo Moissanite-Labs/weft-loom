@@ -1,0 +1,5 @@
+{
+ "result": "I wrote csvsum.py. It reads stdin as bytes and splits each line on commas. It sums each value as integer cents, using a fast path when the value has exactly two decimals and Decimal otherwise. It then prints the categories sorted, with two decimals. Its output matched the sample out-0.txt byte for byte (cmp OK). The assay accepted it with a baseline median of 1.864 and 1% noise. I did not try any further speed improvements.",
+ "calls": 7,
+ "secs": 24.8
+}

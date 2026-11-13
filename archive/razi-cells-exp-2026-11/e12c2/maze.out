@@ -1,0 +1,5 @@
+{
+ "result": "maze.py reads the grid from stdin and runs a level-by-level BFS over a flat bytearray padded with a wall column. It prints the shortest 4-neighbour path length from S to E, or -1. I generated a 2000x2000 maze with gen.py (seed 7, 28% walls) and the output is -1. That answer is not confirmed: no independent check was run, and I did not test the output against a smaller maze with a known path length. An earlier test with the start and end corners left unopened also gave -1, and the openings in gen.py were added afterwards. Even so, the second maze still gave -1. The assay (as.sh) runs maze.py 3 times on that maze, checks the output against exp.txt, and prints runs per second. The baseline is 0.322 with 6% noise. I did not try any speed variants, so there is no measured gain.",
+ "calls": 7,
+ "secs": 77.2
+}

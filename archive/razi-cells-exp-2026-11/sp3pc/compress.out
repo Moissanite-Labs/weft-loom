@@ -1,0 +1,18 @@
+{
+ "result": "Body is squeeze.py: stdlib lzma raw LZMA2 (preset 9 extreme, 1 MiB dict), c/d modes, round-trip verified on samples and registered by assay at baseline 5.47469. Two tuned variants (lc/pb/lp, 8 MiB dict, nice_len 273, BT4) scored 5.498 and 5.493, about +0.4%, below the 3% win threshold, so the incumbent was kept. Further gains would need a custom model, which costs more energy than the likely small return, so I am stopping here.",
+ "calls": 5,
+ "secs": 40.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 110.69319999999999,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 289.3068,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

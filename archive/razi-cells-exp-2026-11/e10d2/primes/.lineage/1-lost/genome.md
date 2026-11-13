@@ -1,0 +1,1 @@
+primes.py: odd-only bytearray sieve, correct (5M->348513, 300M->16252325). bench.py assay = 1000/best time for 300M, baseline 1641 (~0.61s), noise 15%. numpy 2.5 available, no numba. Ideas: segmented cache-friendly sieve, preallocated zero buffer, mod-30 wheel. Finish with done after tries.

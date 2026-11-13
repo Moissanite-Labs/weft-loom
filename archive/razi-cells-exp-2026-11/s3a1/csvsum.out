@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is built and verified. It reads stdin as bytes, splits into lines, skips the header, splits each row on commas, and accumulates float(val) per cat in a dict, then prints sorted 'cat,sum' lines with 2 decimals. It matches the sample output (out-0 identical). It was accepted by assay at baseline 2.03135, and the adopted variant measured +4% (2.099 vs 2.021). Two further variants (flat whitespace tokenization and try/except unpacking) did not beat it, so I am resting on the adopted version rather than spending more energy for a gain under the 3% win threshold.",
+ "calls": 10,
+ "secs": 72.0,
+ "ledger": {
+  "e": 1235.9689910700242,
+  "born": 400.0,
+  "spent": 160.51949999999997,
+  "earned": 15.156413007936914,
+  "got": 981.3320780620871,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.03861805112016725,
+  "age": 10,
+  "assay": true,
+  "sense": 0.8894
+ }
+}

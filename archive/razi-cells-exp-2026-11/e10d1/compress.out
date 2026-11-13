@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/Users/kethuda/Work/razi-tools/cells/cell.py", line 516, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/Users/kethuda/Work/razi-tools/cells/cell.py", line 502, in main
+    res = run(cell, a.steps)
+  File "/Users/kethuda/Work/razi-tools/cells/cell.py", line 486, in run
+    log(cell, step=i, act=json.loads(short) if short.endswith("}") else {"do": do}, res=res[:500], route=route)
+                          ~~~~~~~~~~^^^^^^^
+  File "/Users/kethuda/.local/share/uv/python/cpython-3.14.7-macos-aarch64-none/lib/python3.14/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/Users/kethuda/.local/share/uv/python/cpython-3.14.7-macos-aarch64-none/lib/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kethuda/.local/share/uv/python/cpython-3.14.7-macos-aarch64-none/lib/python3.14/json/decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+json.decoder.JSONDecodeError: Unterminated string starting at: line 1 column 23 (char 22)

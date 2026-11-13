@@ -1,0 +1,5 @@
+{
+ "result": "Built primes.py using a mod-6 split bytearray sieve (separating 6k+1 and 6k+5 residue classes with slice-assignment zeroing in C), achieving 421.7 calls/s (~2.37 ms per call for N=5,000,000, a +50% speedup over the odd-only sieve baseline of 279.8 calls/s) and verified exact output of 348513 for N=5,000,000 as well as edge cases from N=0 to N=10,000,000.",
+ "calls": 15,
+ "secs": 657.6
+}

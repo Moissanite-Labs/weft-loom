@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 with fast doubling, which takes O(log n) steps. Checks: fib(10)=55, fib(1000)=517691607 (matches a naive loop), and fib(10**18)=209783453. The assay (20000 calls near 10**18) gave a baseline of 4.11 runs/s. I made no further optimisation attempts.",
+ "calls": 4,
+ "secs": 10.8
+}

@@ -1,0 +1,1 @@
+{"cmd": "python3 -c \"\nimport time,fibmod\nassert fibmod.fib(10)==55 and fibmod.fib(90)==2880067194370816120%1000000007\nassert fibmod.fib(10**18)==209783453\nt=time.time()\nfor i in range(20000): fibmod.fib(10**18-i)\nprint(20000/(time.time()-t)/1000)\n\"", "baseline": 82.3970013908643, "noise": 0.013485161845897245}

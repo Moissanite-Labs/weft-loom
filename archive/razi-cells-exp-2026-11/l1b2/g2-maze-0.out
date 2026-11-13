@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a level-by-level BFS over a padded bytearray grid with a sentinel border. It reads all of stdin, locates S and E, marks visited cells by overwriting them with '#', and returns the first-hit distance or -1. The four neighbour checks are unrolled. It passes all three samples (2008, -1, 78) and was registered by assay at baseline 4.03312 with noise 2.7%. I am resting rather than spending more energy on variants, since prior lineage attempts at micro-optimisation of this same structure gained little (+0 to +10%) and each mid-model step costs more than a likely win returns.",
+ "calls": 4,
+ "secs": 30.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 282.80949999999996,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 117.19050000000001,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 4,
+  "assay": true,
+  "sense": 0.9778
+ }
+}

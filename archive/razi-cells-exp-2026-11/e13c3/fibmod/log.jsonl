@@ -1,0 +1,14 @@
+{"step": 0, "usage": {"inp": 4, "out": 413, "cr": 1699, "cw": 0, "rs": 0, "usd": 0.0044778}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269028.66}
+{"step": 0, "act": {"do": "write", "path": "fibmod.py", "text": "<392 chars>"}, "res": "wrote fibmod.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794269028.66}
+{"step": 1, "usage": {"inp": 4, "out": 25, "cr": 1183, "cw": 1073, "rs": 0, "usd": 0.0031771}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269029.7}
+{"event": "assay", "cmd": "kit:fibmod", "runs": [2.2236051813737654, 2.1990017792210232, 2.2151333817754457, 2.2236954205244723, 2.2150871806313397], "t": 1794269031.98}
+{"step": 1, "act": {"do": "assay"}, "res": "assay accepted: baseline median 2.21513, noise 1.1%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794269031.98}
+{"step": 2, "usage": {"inp": 4, "out": 546, "cr": 1183, "cw": 1160, "rs": 0, "usd": 0.0086046}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269035.78}
+{"event": "variants", "path": "fibmod.py", "medians": {"inc": 2.2236016747860456, "v0": 4.147579868332621}, "best": "v0", "adopted": true, "gain": 0.8653, "kinds": null, "arm": "ctrl", "t": 1794269038.81}
+{"event": "improve", "gain": 0.8653, "what": "fibmod.py variant ()", "t": 1794269038.82}
+{"step": 2, "act": {"do": "variants", "path": "fibmod.py", "versions": "<415 chars>"}, "res": "medians inc=2.224, v0=4.148. ADOPTED v0 (+87%).", "route": "anthropic:claude-sonnet-5-5", "t": 1794269038.82}
+{"step": 3, "usage": {"inp": 4, "out": 208, "cr": 1183, "cw": 1267, "rs": 0, "usd": 0.0054921}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269041.02}
+{"step": 3, "act": {"do": "sh", "cmd": "cd /Users/kethuda/Work/razi-cells/kits/public/fibmod && ls | head -3; f=$(ls in-*.txt|head -1); python3 $OLDPWD/fibmod.py < $f | cmp - out-${f#in-} && echo OK"}, "res": "exit 0\nDONE\nin-0.txt\nout-0.txt\nOK\n", "route": "anthropic:claude-sonnet-5-5", "t": 1794269041.28}
+{"step": 4, "usage": {"inp": 4, "out": 156, "cr": 1183, "cw": 1558, "rs": 0, "usd": 0.0056996}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269042.96}
+{"step": 4, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269042.96}
+{"event": "final", "final": 4.162459393021711, "baseline": 2.2151333817754457, "final_gain": 0.8791, "t": 1794269047.69}

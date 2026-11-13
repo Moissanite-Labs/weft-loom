@@ -1,0 +1,18 @@
+{"step": 0, "act": {"do": "sh", "cmd": "python3 --version; python3 -c \"\nfor mod in ['numpy', 'numba', 'cython', 'ctypes']:\n    try:\n        __import__(mod)\n        print(mod, 'available')\n    except ImportError:\n        print(mod, 'NO')\n\""}, "res": "exit 0\nPython 3.14.8\nnumpy available\nnumba NO\ncython NO\nctypes available\nOMP: Warning #179: Function Can't set size of /tmp file failed:\n", "route": "opencode-go:gemini-4-argon", "t": 1794250711.26}
+{"step": 1, "act": {"do": "sh"}, "res": "exit 0\nres: 0 time for 100 runs: 0.1963608330115676\n", "route": "opencode-go:gemini-4-argon", "t": 1794250717.87}
+{"step": 2, "act": {"do": "sh"}, "res": "exit 0\nabcde ace 3 3\nabc abc 3 3\nabc def 0 0\nAGGTAB GXTXAYB 4 4\naaaaaaaaaa aaaaa 5 5\nabacaba cababac 5 5\n", "route": "opencode-go:gemini-4-argon", "t": 1794250729.68}
+{"step": 3, "act": {"do": "write", "text": "<1154 chars>", "path": "lcs.py"}, "res": "wrote lcs.py", "route": "opencode-go:gemini-4-argon", "t": 1794250738.01}
+{"step": 4, "act": {"do": "assay"}, "res": "refused: assay scored [0.0, 0.0, 0.0, 0.0, 0.0] on your current body. It must print a number > 0 when correct.", "route": "opencode-go:gemini-4-argon", "t": 1794250848.1}
+{"step": 5, "act": {"do": "write", "text": "<2116 chars>", "path": "bench.py"}, "res": "wrote bench.py", "route": "opencode-go:gemini-4-argon", "t": 1794250858.42}
+{"step": 6, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "refused: assay scored [0.0, 0.0, 0.0, 0.0, 0.0] on your current body. It must print a number > 0 when correct.", "route": "opencode-go:gemini-4-argon", "t": 1794251090.3}
+{"step": 7, "act": {"do": "sh", "cmd": "python3 -c '\nimport lcs, bench\nfor sa, sb in [(\"aaaa\", \"aa\"), (\"ab\", \"a\"), (\"ba\", \"a\")]:\n    print(sa, sb, lcs.lcs(sa, sb), bench.dp_lcs(sa, sb))\n'"}, "res": "exit 0\naaaa aa 2 2\nab a 1 1\nba a 1 1\n", "route": "opencode-go:gemini-4-argon", "t": 1794251095.6}
+{"step": 8, "act": {"do": "sh"}, "res": "exit 0\nMISMATCH: baaabbbaaabbbb aaa 0 3\n", "route": "opencode-go:gemini-4-argon", "t": 1794251122.28}
+{"step": 9, "act": {"do": "write", "text": "<1191 chars>", "path": "lcs.py"}, "res": "wrote lcs.py", "route": "opencode-go:gemini-4-argon", "t": 1794251137.1}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [562.7, 566.25, 577.22, 567.91, 585.44], "t": 1794251308.62}
+{"step": 10, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 567.91, noise 4.0%. Wins must beat it by > 4.0%.", "route": "opencode-go:gemini-4-argon", "t": 1794251308.62}
+{"step": 11, "error": "RuntimeError: model error None: all routes for 'main' failed or are cooling down; last error: ReadTimeout: ; next route reopens in 60s", "t": 1794251368.68}
+{"step": 12, "backoff": 62, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794251368.68}
+{"step": 13, "backoff": 120, "why": "model error 429: all routes for 'main' failed or are cooling down; last error: HTTP 429: Go usage limit exceeded; next r", "t": 1794251430.95}
+{"step": 14, "backoff": 120, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 188s", "t": 1794251550.96}
+{"step": 15, "backoff": 70, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 68s", "t": 1794251670.96}
+{"event": "final", "final": 576.36, "baseline": 567.91, "final_gain": 0.0149, "t": 1794251743.45}

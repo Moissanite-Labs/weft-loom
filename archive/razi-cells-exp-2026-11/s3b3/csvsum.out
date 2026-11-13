@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a single-pass body: it reads all of stdin as bytes, replaces commas with newlines, and splits into tokens. It then walks the tokens in strides of three (t[4::3] for cat, t[5::3] for val), accumulating float sums in a dict through a bound get method. Finally it sorts the cats, formats each as \"cat,%.2f\", and writes the lines. It matches the sample output (in-0 vs out-0 SAME) and has a baseline assay of 2.245 with 3.7% noise. Runtime on sample 0 was about 0.3 s. I am resting rather than spending more energy on thinking, because the remaining speedup ideas are uncertain and each step costs more than the expected win.",
+ "calls": 8,
+ "secs": 33.1,
+ "ledger": {
+  "e": 55.16946666666671,
+  "born": 400.0,
+  "spent": 402.1649,
+  "earned": 0.0,
+  "got": 57.33436666666672,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 8,
+  "assay": true,
+  "sense": 0.9501
+ }
+}

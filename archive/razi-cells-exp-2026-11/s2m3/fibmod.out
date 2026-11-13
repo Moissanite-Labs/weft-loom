@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is built and adopted at +85% over the original baseline. It reduces n modulo L = 2(M+1), which is a multiple of the Pisano period of M = 1e9+7 (valid because M \u2261 3 mod 4). It then runs fast doubling over the roughly 31 bits of the reduced n, with one modulo per output and a single batched write. It matched the sample output (in-0 vs out-0 SAME). Further gains would be marginal Python-level tweaks, so I am resting to conserve energy.",
+ "calls": 7,
+ "secs": 42.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 95.5901,
+  "earned": 245.21893072623288,
+  "got": 305.34855,
+  "gave": 854.9773807262329,
+  "state": "resting",
+  "fit": 0.8460483487298072,
+  "age": 7,
+  "assay": true
+ }
+}

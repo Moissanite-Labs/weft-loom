@@ -1,0 +1,5 @@
+{
+ "result": "Built fibmod.py: prints fib(n) mod 1_000_000_007 for n up to 10**18 (and beyond). It first reduces n modulo the Pisano period P=2*(M+1)=2000000016 (valid since M is prime with M\u22612 mod 5), leaving a ~31-bit index, then answers in O(1) via two precomputed tables built at import (~45 ms total startup): L[k]=(F(k),F(k+1)) for k<2^15 and H[j]=(F(j\u00b72^15),F(j\u00b72^15+1)) for j\u2264P>>15, combined with the addition identity F(m+k)=F(m+1)F(k)+F(m)F(k\u22121). Verified: fib(10)=55, fib(1000)=517691607, fib(10**18)=209783453, fib(0)=0, fib(1)=1, fib(P)=0, plus bench.py asserts against a brute-force table for n<2000 and the CLI output. Assay (python3 bench.py, 10k random n in [10^17,10^18)) rose from 89,784 fib/s (fast doubling) \u2192 180k (Pisano reduction) \u2192 ~1.84M fib/s with the lookup tables (+1425% scored win); whole CLI run including table build takes ~0.06 s.",
+ "calls": 17,
+ "secs": 762.5
+}

@@ -1,0 +1,132 @@
+{
+ "args": {
+  "data": "tj3/data.json",
+  "out": "tj3/tj3_s0.json",
+  "arms": "gc,gn,gb,s",
+  "gens": 12,
+  "k": 2,
+  "seed": 0,
+  "batch": 32,
+  "lr": 0.001,
+  "rank": 8,
+  "margin": 0.02,
+  "model": "thinkingmachines/Inkling-2-Small",
+  "tag": "tj3s0"
+ },
+ "prior": {
+  "gate": 0.73117,
+  "test": 0.6741
+ },
+ "rows": {
+  "train": 732,
+  "gate": 174,
+  "test": 157
+ },
+ "arms": {
+  "gc": {
+   "log": [
+    {
+     "gen": 0,
+     "depth": 2,
+     "way": "nat",
+     "train": 4.1599,
+     "gate": 2.19119
+    },
+    {
+     "gen": 1,
+     "depth": 4,
+     "way": "nat",
+     "train": 2.84854,
+     "gate": 1.40509
+    },
+    {
+     "gen": 2,
+     "depth": 6,
+     "way": "nat",
+     "train": 1.17007,
+     "gate": 0.72216
+    },
+    {
+     "gen": 3,
+     "depth": 8,
+     "way": "nat",
+     "train": 0.62453,
+     "gate": 0.96589
+    },
+    {
+     "gen": 4,
+     "depth": 10,
+     "way": "nat",
+     "train": 0.77452,
+     "gate": 0.75298
+    },
+    {
+     "gen": 5,
+     "depth": 12,
+     "way": "nat",
+     "train": 0.44836,
+     "gate": 0.98574
+    },
+    {
+     "gen": 6,
+     "depth": 14,
+     "way": "nat",
+     "train": 0.80947,
+     "gate": 0.8286
+    },
+    {
+     "gen": 7,
+     "depth": 16,
+     "way": "nat",
+     "train": 0.58084,
+     "gate": 0.85605
+    },
+    {
+     "gen": 8,
+     "depth": 18,
+     "way": "nat",
+     "train": 0.36962,
+     "gate": 0.94147
+    },
+    {
+     "gen": 9,
+     "depth": 20,
+     "way": "nat",
+     "train": 0.46147,
+     "gate": 1.0207
+    },
+    {
+     "gen": 10,
+     "depth": 22,
+     "way": "nat",
+     "train": 0.36077,
+     "gate": 1.09318
+    },
+    {
+     "gen": 11,
+     "depth": 24,
+     "way": "nat",
+     "train": 0.65584,
+     "gate": 0.6676
+    }
+   ],
+   "gate": 0.6676,
+   "test": 0.67553,
+   "wall_s": 802.1
+  }
+ },
+ "ok": false,
+ "start": {
+  "gate": 7.66087,
+  "test": 6.96969
+ },
+ "tokens": {
+  "start:fwd": 21155,
+  "gc:train": 50448,
+  "gc:fwd": 141239,
+  "gn:train": 4236,
+  "gn:fwd": 10007
+ },
+ "wall_s": 1203.7,
+ "error": "RequestFailedError: Request failed: This ServiceClient is poisoned. We cannot run further operations against it. Please create a new ServiceClient if you wish to continue. Failure reason: training run d4cbf147-a786-59d3-a5b1-09bef028b421:train:2 failed: Training checkpoint saved. Free checkpoint storage limit reached (bytes or checkpoint count); this training client is closed. Delete checkpoints or switch to paid sto"
+}

@@ -1,0 +1,6 @@
+{"event": "variants", "path": "primes.py", "medians": {"inc": 2.1832410604592627, "v0": 1.9268269809868228, "v1": 1.9654841334460527}, "best": "v1", "adopted": false, "gain": -0.0997, "t": 1794221154.03}
+{"step": 0, "act": {"do": "variants"}, "res": "medians inc=2.183, v0=1.927, v1=1.965. kept incumbent.", "route": "openai:gpt-6-astra", "t": 1794221154.03}
+{"event": "variants", "path": "primes.py", "medians": {"inc": 2.19918152005474, "v0": 2.4384125570162256, "v1": 2.607400455114014}, "best": "v1", "adopted": false, "gain": 0.1856, "t": 1794221192.74}
+{"step": 1, "act": {"do": "variants"}, "res": "medians inc=2.199, v0=2.438, v1=2.607. kept incumbent.", "route": "openai:gpt-6-astra", "t": 1794221192.74}
+{"step": 2, "act": {"do": "sh"}, "res": "exit 0\n348513\nSmall boundaries verified\n2.0028776343186823\n", "route": "openai:gpt-6-astra", "t": 1794221202.78}
+{"step": 3, "act": {"do": "done"}, "route": "openai:gpt-6-astra", "t": 1794221206.66}

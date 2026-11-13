@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified maze.py to read a grid of '#' and '.' with 'S' and 'E' from stdin and print the 4-neighbour shortest path length from S to E or -1 if unreachable. Generated 2000x2000 solvable and unreachable benchmark mazes with a fixed seed (expected shortest path length 47,750 and -1) alongside small edge-case grids (including 1D grids, CRLF/LF newlines, missing S/E, and unreachable targets). By reading stdin directly in a compiled C shared library (_maze_solver_v3.so loaded via ctypes) into a pre-padded buffer, eliminating boundary checks via newline/padding sentinel rows, and running an unrolled bidirectional BFS with L2-cache-resident static frontier queues, performance improved from the pure-Python baseline score of 62.55 to 483.8 (+673%, ~69 ms per 2000x2000 maze subprocess execution including Python startup).",
+ "calls": 15,
+ "secs": 836.0
+}

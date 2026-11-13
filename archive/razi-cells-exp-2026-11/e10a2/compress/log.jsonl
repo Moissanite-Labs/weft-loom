@@ -1,0 +1,14 @@
+{"step": 0, "act": {"do": "sh"}, "res": "exit 0\n4.7387\n150150 38976 b'\\x01'\n150367 22451 b'\\x01'\n60463 14567 b'\\x01'\n0 1 b'\\x00'\n1 2 b'\\x00'\n256 235 b'\\x02'\n\nreal\t0m0.381s\nuser\t0m0.325s\nsys\t0m0.020s\n", "route": "anthropic:claude-fable-5-2", "t": 1794254229.49}
+{"step": 1, "backoff": 20, "why": "TimeoutError", "t": 1794254469.5}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [4.7387, 4.7387, 4.7387, 4.7387, 4.7387], "t": 1794254771.19}
+{"step": 2, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 4.7387, noise 0.0%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-fable-5-2", "t": 1794254771.19}
+{"step": 3, "backoff": 20, "why": "TimeoutError", "t": 1794255011.19}
+{"step": 4, "backoff": 20, "why": "TimeoutError", "t": 1794255271.2}
+{"step": 5, "backoff": 20, "why": "TimeoutError", "t": 1794255531.22}
+{"step": 6, "backoff": 20, "why": "TimeoutError", "t": 1794255791.23}
+{"step": 7, "backoff": 20, "why": "TimeoutError", "t": 1794256051.24}
+{"step": 8, "error": "TimeoutError: ", "t": 1794256311.26}
+{"step": 9, "error": "TimeoutError: ", "t": 1794256551.27}
+{"step": 10, "error": "TimeoutError: ", "t": 1794256791.28}
+{"event": "apoptosis", "t": 1794256791.28}
+{"event": "final", "final": 4.7387, "baseline": 4.7387, "final_gain": 0.0, "t": 1794256792.42}

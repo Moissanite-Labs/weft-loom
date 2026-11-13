@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `lcs.py` to compute the length of the longest common subsequence of two strings read as two lines from stdin using Allison-Dix / Hyyr\u00f6 bit-parallel algorithm with arbitrary-precision integers and C-level `int.bit_count()`. Verified correctness via `bench.py` against a reference dynamic programming implementation across CLI subprocess tests (including empty, disjoint, identical, and standard strings) as well as randomized strings across multiple lengths and alphabet sizes up to 3000 characters. On the 3000-character benchmark suite, `lcs.py` achieves ~501.5 pairs/second (~2.0 ms per 3000-char pair) with 1.5% noise.",
+ "calls": 15,
+ "secs": 829.9
+}

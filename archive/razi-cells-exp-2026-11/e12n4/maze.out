@@ -1,0 +1,5 @@
+{
+ "result": "I built maze.py, a BFS over a flat bytearray with a padded sentinel column. It reads the grid from stdin and prints the shortest S-to-E length, or -1 if there is no path. bench.py generates a 2000x2000 maze with seed 7 and compares maze.py's output against an independent reference BFS. The assay scored 19.6 runs/s (noise 8.6%), and it returns 0 when the answer is wrong, so a nonzero score means the answer matched the reference. I tried no further optimisations, and I did not test other mazes or edge cases such as a missing S or E.",
+ "calls": 4,
+ "secs": 17.7
+}

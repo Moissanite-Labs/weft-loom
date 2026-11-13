@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is done. It pads the grid with a '#' border so the BFS needs no per-cell bounds checks, and it tests for the goal when cells are enqueued. It uses a flat bytearray and stdlib only. It matches all three sample outputs (2008, -1, 78). The assay baseline is 3.22348, and the adopted variant measured +15% (3.773 vs 3.268 median). I'm stopping here because the requirement is met and the body is verified.",
+ "calls": 7,
+ "secs": 38.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 98.7852,
+  "earned": 57.37668085517223,
+  "got": 0.0,
+  "gave": 108.59148085517222,
+  "state": "resting",
+  "fit": 0.1542395191493644,
+  "age": 7,
+  "assay": true
+ }
+}

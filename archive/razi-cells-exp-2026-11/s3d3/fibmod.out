@@ -1,0 +1,18 @@
+{
+ "result": "My body is fibmod.py, the adopted fast-doubling variant. It iterates over the binary string of n (reduced mod the Pisano-style period 2(M+1)), uses the identities F(2k)=F(k)(2F(k+1)-F(k)) and F(2k+1)=F(k)^2+F(k+1)^2 with a mod per step, and writes all output in one call. It passed the public sample (in-0/out-0 matched exactly, 30,005 lines). Its assay baseline is 4.057, and the variant that replaced the earlier body measured 4.575, a +13% win. I am stopping here because further gains from micro-optimizing the same method are likely under the 3% win threshold, and each step costs about 60-75 energy.",
+ "calls": 6,
+ "secs": 38.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 298.90619999999996,
+  "earned": 47.908839362430214,
+  "got": 17.651400000000002,
+  "gave": 166.65403936243024,
+  "state": "resting",
+  "fit": 0.1272399225281382,
+  "age": 6,
+  "assay": true,
+  "sense": 0.3466
+ }
+}

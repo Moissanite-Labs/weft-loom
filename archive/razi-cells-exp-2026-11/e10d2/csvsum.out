@@ -1,0 +1,5 @@
+{
+ "result": "Built csvsum.py: reads the whole CSV from stdin as bytes, strips the header, and sums val per cat. The serial version (decode \u2192 split('\\n') \u2192 per-line split(',',2) + float + defaultdict) ran at ~3757 k rows/s on the 2,000,000-row generated data.csv. The final version forks one worker per CPU (os.fork, chunk boundaries aligned to newlines), each summing its byte slice and sending a marshal'd dict back over a pipe; the parent merges, sorts by cat, and prints \"cat,%.2f\". Output verified byte-identical to a csv-module reference (cmp \u2192 SAME), and the assay (rows/sec in thousands, 0 on mismatch) rose from 3757 to ~12,100\u201313,650, a ~3.3x speedup (wall 0.18 s vs 0.6 s for 2M rows). A numpy bulk-vectorized variant was tried and gave no gain (string-key grouping dominated), so it was discarded.",
+ "calls": 19,
+ "secs": 912.7
+}

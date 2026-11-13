@@ -1,0 +1,5 @@
+{
+ "result": "Built primes.py: a mod-6 wheel sieve of Eratosthenes using two bytearrays (one for numbers \u22611 mod 6, one for \u22615 mod 6), clearing composites with slice assignment of bytes(cnt) and counting with bytearray.count(1); it prints the number of primes below int(argv[1]). Verified outputs: 5000000\u2192348513 (required), 100000000\u21925761455, 2\u21920, 7\u21923, 10\u21924, 100\u219225. Assay (sh bench.sh = 1000/seconds for three runs of n=1e8, with correctness gates returning 0 on wrong output) improved from 2078 (odd-only sieve) to ~3190 via a daughter's +58% win adopting the wheel sieve.",
+ "calls": 19,
+ "secs": 734.7
+}

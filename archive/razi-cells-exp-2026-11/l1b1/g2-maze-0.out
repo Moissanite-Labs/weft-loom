@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is the germline body: a flat-grid BFS. It pads the input with a '#' border into one bytearray, builds the visited map with a C-level bytes.translate, and expands frontier lists level by level, printing the distance when E is reached or -1 when the frontier empties. It passes all three public samples (ok0, ok1, ok2), and assay registered it at baseline 3.53462 with 9% noise. I am resting rather than spending energy on a variant: the lineage has already tried several BFS micro-variants with no gain beyond noise, and a bidirectional BFS would need careful correctness work for an uncertain speedup. Unspent energy returns to the lineage store.",
+ "calls": 5,
+ "secs": 26.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 135.62419999999997,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 264.3758,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.8457
+ }
+}

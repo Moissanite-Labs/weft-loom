@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py compresses with raw LZMA2 (lc=4, pb=0, 16MB dict, extreme preset) and with bz2 level 9. It keeps the smaller output and adds a 1-byte header so the decoder knows which one was used. The assay accepted it with a baseline ratio of 7.08 and 0% noise, which means its outputs were correct on the harness kit. My own round-trip check on the public samples never ran because of a path error, so I did not verify it myself. The one improvement attempt, a pure-Python context-mixing compressor, did not beat the baseline (+0%). The log doesn't say why it lost.",
+ "calls": 10,
+ "secs": 52.2
+}

@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a single-pass Python solution: it reads stdin as bytes, strips '.' and turns newlines into commas, splits into tokens, takes the category and value slices (dropping the trailing empty tokens), parses each value as an integer in cents, accumulates per category in a dict, then formats each sum with a sign and two decimals in sorted category order. It passed the public sample (in-0/out-0, 1,000,000 rows, all values with two decimals) and was registered via assay at baseline 2.21256 (noise 1.9%). I did not try to improve speed further because remaining energy could not cover a test that would need to beat the baseline by more than 3%.",
+ "calls": 6,
+ "secs": 38.6,
+ "ledger": {
+  "e": 8.508100000000011,
+  "born": 400.0,
+  "spent": 395.46380000000005,
+  "earned": 0.0,
+  "got": 3.971900000000006,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.9072
+ }
+}

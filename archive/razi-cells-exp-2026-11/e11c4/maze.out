@@ -1,0 +1,5 @@
+{
+ "result": "maze.py does a level-by-level BFS over a flat bytearray grid. It reads stdin and prints the shortest 4-neighbour path length from S to E, or -1 if there is none. gen.py builds a 2000x2000 maze with seed 7 and about 30% walls, with the cells next to S and E forced open. Small cases gave the expected results: 'S#E' over '...' printed 4, and 'S.#' over '##E' printed -1. On the 2000x2000 maze (m.txt) it printed -1 in about 0.77 s, which is correct only if S and E are really disconnected. I did not confirm that. At 30% walls, the first run printed -1 in 0.15 s, so the search was probably trapped near S. The second run, after the sed edit, took 0.77 s. The sed edit failed, so I assume the python replace was what changed the generator. I never registered an assay, never ran variants, and never checked a large maze with a known path against an independent BFS. The large-maze answer is therefore not verified.",
+ "calls": 7,
+ "secs": 31.7
+}

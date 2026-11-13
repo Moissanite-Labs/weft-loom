@@ -1,0 +1,5 @@
+{
+ "result": "Built fibmod.py: fib(n) mod 1_000_000_007 via iterative fast doubling with Pisano-period reduction (n %= 2000000016, the period mod 1e9+7 since 5 is a non-residue there), plus the negative-index identity F(-m)=(-1)^(m+1)F(m) in both the library function and the CLI. Fast doubling identities F(2k)=F(k)(2F(k+1)-F(k)) and F(2k+1)=F(k)^2+F(k+1)^2 are applied bit-by-bit over bin(n); a shift-based variant and a recursive variant were both benchmarked and were slower, so the string-bin loop was kept (~1.0 microsecond per call, ~26 CLI runs/sec). Evidence: verify.py passes, including fib(10)=55, fib(0)=0, fib(1)=1, fib(-7)=13, fib(-10)=999999952 (=-55 mod p), fib(10^18)=209783453; the CLI was cross-checked against an independent no-period-reduction fast-doubling reference on random and edge-case inputs and all matched. This body wins over the matrix-exponentiation lineage branch, which lost on per-bit constant factors.",
+ "calls": 22,
+ "secs": 494.3
+}

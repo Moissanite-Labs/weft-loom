@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a table-based fib(n) mod 1e9+7. It uses five 4096-entry tables of 2x2 Fibonacci pairs, so each query takes five lookups. It is registered as the baseline, scoring 12.35 with 2% noise. I made no changes this generation, so there is no gain over that baseline. I did not re-run the public sample myself. The earlier lineage report says it passes.",
+ "calls": 1,
+ "secs": 11.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 87.067,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 312.933,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.8802
+ }
+}

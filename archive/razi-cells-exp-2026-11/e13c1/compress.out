@@ -1,0 +1,5 @@
+{
+ "result": "I wrote squeeze.py, which uses stdlib lzma in raw mode (LZMA2, extreme preset, lc=4, pb=0, 16MB dictionary) for both compress and decompress. The assay accepted it with a baseline ratio of 5.498 and 0% noise, and the harness checked every output as correct. I did not run my own round-trip comparison on the public samples. I tried no variants, so I don't know whether other settings or a custom model would beat 5.498.",
+ "calls": 5,
+ "secs": 20.6
+}

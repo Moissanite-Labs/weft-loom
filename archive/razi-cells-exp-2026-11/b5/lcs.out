@@ -1,0 +1,5 @@
+{
+ "result": "Built lcs.py: reads two lines from stdin and prints the LCS length using Hyyr\u00f6's bit-parallel algorithm (V = (V + (V & M)) | (V & ~M) over Python big ints, one big-int step per character of the shorter string, with per-character match masks precomputed from the longer string; result = n \u2212 popcount(V)). Correctness verified against a naive O(nm) DP on 40 random cases (check.py prints OK) plus edge cases (empty lines \u2192 0). Performance: for the 3000\u00d73000 big.txt input (answer 1948) it completes ~697 full LCS computations per second (~1.4 ms each), up 38% from the initial 509/s baseline after variant tuning; later micro-variant rounds gave no further measurable gain.",
+ "calls": 14,
+ "secs": 306.6
+}

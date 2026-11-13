@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is a level-synchronous BFS on a padded bytearray: the grid is padded with '#' so neighbour lookups need no bounds checks, the walls are pre-marked in a visited bytearray, and each frontier level is expanded in a list. It prints the distance when E is reached, -1 if the frontier empties, 0 when S equals E, and -1 when S or E is missing. It passes the public samples (in-0 through in-2 match the expected outputs: 2008, -1, 78). The variant was adopted by the bench at +26% over the baseline of 2.619 (median 3.566 vs 2.839). I am stopping here because a further gain would need to exceed the 11.7% noise band, and I did not find a clear next step worth the energy.",
+ "calls": 6,
+ "secs": 33.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 86.9907,
+  "earned": 91.15510380924732,
+  "got": 0.0,
+  "gave": 154.16440380924732,
+  "state": "resting",
+  "fit": 0.2559443497281517,
+  "age": 6,
+  "assay": true
+ }
+}

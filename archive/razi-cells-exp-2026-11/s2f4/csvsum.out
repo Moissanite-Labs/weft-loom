@@ -1,0 +1,17 @@
+{
+ "result": "csvsum.py is a single-pass parser: it reads all of stdin as bytes, splits on commas and newlines, takes every third token as category and value starting after the header, accumulates float sums in a dict, then writes sorted \"cat,sum\" lines with 2 decimals. It matches the public sample output (out-0.txt, byte-identical) and is registered as the baseline (2.09259, noise 1.4%). I am stopping here rather than spending energy on further variants: the remaining speedup ideas (avoiding list slices, a different split strategy) are likely to gain well under the 3% bar needed to win, and each step costs energy that would otherwise pass to the colony.",
+ "calls": 9,
+ "secs": 36.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 145.9792,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 254.02080000000004,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 9,
+  "assay": true
+ }
+}

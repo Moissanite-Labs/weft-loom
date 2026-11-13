@@ -1,0 +1,18 @@
+{
+ "result": "My body is squeeze.py: a stdlib-only wrapper around lzma (FORMAT_ALONE, preset 9 extreme, 16 MB dictionary). `c` tries seven (lc, lp, pb) settings and keeps the smallest output. `d` calls lzma.decompress with FORMAT_AUTO. It passes the samples and was assayed at a baseline ratio of 5.4748 with 0.0% noise. I stopped here because the remaining gains look small. Raw LZMA would save only about 13 header bytes on roughly 600 KB inputs, and wider lc/lp/pb sweeps are unlikely to clear the 3% win threshold. SENSE reports 0.77 of the lineage's best body, so a better design may exist, but I have no evidence of one yet, and further thinking costs energy I would rather keep.",
+ "calls": 5,
+ "secs": 39.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 99.822,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 300.178,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `squeeze.py` implementing lossless `compress(bytes) -> bytes` and `decompress(bytes) -> bytes` using only the Python standard library (`zlib`, `bz2`, `lzma`, `re`), along with a deterministic benchmark suite `bench.py` testing round-trip accuracy across edge cases (empty, single-byte, binary, repetitive, random) and measuring compression ratio on a fixed corpus of English-like prose, pretty-printed JSON, JSONL records, and mixed Markdown/JSON documents (~1.01 MB total). By combining dynamic high-byte word/token dictionary pre-encoding with multi-codec selection (raw DEFLATE, BWT/bz2, and tuned raw LZMA1 filters), compression ratio improved from the baseline 5.25x to 9.44x (+80% gain) with 100% exact round-trip verification.",
+ "calls": 16,
+ "secs": 635.4
+}

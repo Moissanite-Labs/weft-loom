@@ -1,0 +1,5 @@
+{
+ "result": "lcs.py reads two lines from stdin and prints the LCS length using a bit-parallel algorithm on Python big ints: per-character match masks built with bytes.translate (with a dict fallback for non-latin-1 input), the row update v = (v + u) | (v ^ u), masking to m bits once every 64 rows, and the answer as m - v.bit_count(). Verification: check.py passes (3000 random small cases against a reference DP, CLI edge cases for empty input, a missing second line, CRLF and no trailing newline, and a 3000-char ACGT pair where the CLI prints 1948, matching the reference), and a separate run of medium-size cases with unequal lengths, crossing the 64-row chunk boundary and including non-latin-1 characters, also passed. Speed: on the assay `python3 bench.py` (3000-char pairs over three alphabets, 0 if any answer is wrong) the adopted variant scored a median of 930.1 against 551.9 for the previous version (+69%, noise about 2%); later reruns ranged 880\u2013930, roughly 1.1 ms per 3000x3000 pair in-process. Further tuning of the chunk size and a walrus form of the inner loop stayed within noise and was not adopted.",
+ "calls": 12,
+ "secs": 855.2
+}

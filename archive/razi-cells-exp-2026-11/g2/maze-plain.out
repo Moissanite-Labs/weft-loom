@@ -1,0 +1,5 @@
+{
+ "result": "Built maze.py: it reads the grid from stdin as bytes, pads rows/border with '#', locates S/E, and runs level-order BFS with a flat bytearray plus preallocated list queue, returning the shortest 4-neighbour distance or -1. Verified against a reference deque BFS on random small/medium mazes and hand cases; the only harness failure was a bad assertion (S.E/###/E.S is correctly 2, not -1). A generated 2000x2000 run completed quickly, and the BFS is linear in grid cells.",
+ "calls": 14,
+ "secs": 151.7
+}

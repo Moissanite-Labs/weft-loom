@@ -1,0 +1,5 @@
+{
+ "result": "Built `lcs.py` backed by a compiled Python C extension (`_lcs.so` from `_lcs.c`) and a pure-Python bit-parallel fallback (`_py_lcs_length`) to compute the longest common subsequence length of two strings read as two lines from stdin. The algorithm strips common prefixes and suffixes, then runs Allison-confluent bit-parallel LCS (Hyyr\u00f6 / Crochemore-Iliopoulos-Pinzon) across 64-bit word blocks in C using 128-bit carry arithmetic and hardware `popcount` (or arbitrary-precision Python integer bitmasks for non-Latin1 Unicode or fallback). Verified against standard dynamic programming across 40+ edge cases, random strings, Unicode strings, and CLI invocations on 3000-character strings; throughput improved from the 595.99 pairs/sec pure-Python bit-parallel baseline to ~7,550 pairs/sec on 3000x3000 string pairs (~0.13 ms per 3000-char pair, >12.6x faster than the bit-parallel Python baseline).",
+ "calls": 25,
+ "secs": 690.2
+}

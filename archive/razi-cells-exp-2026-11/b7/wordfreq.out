@@ -1,0 +1,5 @@
+{
+ "result": "Built `wf.py`: it reads stdin as bytes once, uses a precomputed 256-byte translation table to fold ASCII uppercase to lowercase and turn every non-letter byte into a separator, counts the resulting words with `Counter`, selects the top 10 with `heapq.nsmallest(10, ..., key=(-count, word))`, and writes `word count` lines in one buffered output call; empty input produces no output. Verified with `verify.py`, which independently generates an exact 20,000,000-byte corpus (mixed case, digits, punctuation, UTF-8 bytes, NULs, and a deliberate tenth-place tie), computes the oracle answer with a separate regex/Counter implementation, checks edge cases, and compares three fresh subprocess outputs byte-for-byte. The expected output begins `wordaa 96000` through `wordaj 44800`; all checks passed. The registered assay was accepted at a median throughput of 82.381 MB/s with 1.1% noise, and a direct timed verification run reported 81.727 MB/s.",
+ "calls": 15,
+ "secs": 1109.4
+}

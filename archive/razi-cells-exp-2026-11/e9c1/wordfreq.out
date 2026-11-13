@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified wf.py to read text from stdin, normalize words to lowercase, count occurrences, and print the top 10 most common words formatted as 'word count' (breaking ties alphabetically). Verified against a reference regex implementation on a generated 20MB text dataset (input20mb.txt / expected.txt). Replacing string regex parsing with binary stdin reading, 256-byte translation table normalization, byte splitting, and Counter aggregation improved throughput on the 20MB benchmark from 32.15 MB/s to 48.52 MB/s (+51%).",
+ "calls": 15,
+ "secs": 737.9
+}

@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py has compress and decompress, using only the stdlib. compress tries raw LZMA2 (extreme preset, 16 MB dictionary, lc=4, lp=0, pb=0), bz2 and zlib. It keeps the smallest output and tags it with a one-byte header. bench.py runs it on a generated mix of English-like text and JSON, and the round-trip checked out exactly. The assay (`python3 bench.py`) is registered with a compression ratio of 5.06 and 0% noise. I made no improvement attempts, so this is the baseline version.",
+ "calls": 4,
+ "secs": 52.4
+}

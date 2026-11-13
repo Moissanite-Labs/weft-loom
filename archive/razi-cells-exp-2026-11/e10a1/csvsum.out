@@ -1,0 +1,5 @@
+{
+ "result": "csvsum.py is built and verified: it reads the 'id,cat,val' CSV from stdin and prints each cat with the sum of val to 2 decimals, sorted by cat. On the generated 2,000,000-row file (gen.py, 200 categories) its output is byte-identical to expected.txt and to an independent Decimal-based reference (ref.py), both when stdin is a file and when it is a pipe. It also handles a small hand-checked case, a last line with no trailing newline, header-only input and empty input, all with exit code 0. It splits the input at newline boundaries across 12 forked workers and merges their per-category sums. That took the assay score from 1.92 (single process, about 0.5 s per run) to about 8.0\u20138.9 (about 0.12 s per run), the adopted +361% win. A second round of variants (str keys, different worker counts) showed no gain beyond noise and was not adopted. One limit: sums are accumulated as floats per chunk, which matches the Decimal reference on this data, but exact agreement in the last decimal is not guaranteed for every possible input.",
+ "calls": 12,
+ "secs": 849.7
+}

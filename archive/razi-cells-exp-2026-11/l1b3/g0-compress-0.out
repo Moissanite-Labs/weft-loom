@@ -1,0 +1,18 @@
+{
+ "result": "Body: squeeze.py using stdlib lzma, FORMAT_ALONE preset 9|EXTREME for compress and lzma.decompress for decompress. It round-trips the samples and was accepted by assay at baseline ratio 5.4748. Tried LZMA2 raw with lc/pb/nice_len tuning: best 5.498 (+0.4%), below the 3% win threshold, so the incumbent was kept. I am resting rather than spending more energy, since the remaining ideas (priming dictionaries, custom context-mixing in pure Python) are unlikely to beat the threshold cheaply.",
+ "calls": 5,
+ "secs": 43.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 99.76169999999999,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 300.23830000000004,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

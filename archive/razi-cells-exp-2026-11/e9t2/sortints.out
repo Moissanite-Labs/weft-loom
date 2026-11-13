@@ -1,0 +1,5 @@
+{
+ "result": "Built sortints.py to read whitespace-separated integers from stdin and print them sorted one per line. Generated a 1,000,000-integer benchmark dataset (input.txt and expected.txt) with a fixed seed (random.Random(42)) spanning negative, zero, positive, small, and 64-bit integers across varied whitespace (spaces, tabs, newlines). Optimized sortints.py by compiling and caching a C shared library (_sortfast.so) loaded via ctypes, using mmap on stdin (with read() fallback for pipes), custom integer parsing, an 8-pass LSD radix sort with sign-bit flipping and pass-skipping when bytes are uniform, and fast buffered integer formatting, with a pure-Python fallback if C compilation is unavailable. This improved the assay score (1000 / median_seconds on 1,000,000 integers, verified byte-for-byte against expected.txt) from 263.48 (~3.80 s in pure Python) to 1949.35 (~0.51 s total including Python process startup, or ~19.5 million ints/s, a +640% speedup).",
+ "calls": 15,
+ "secs": 747.0
+}

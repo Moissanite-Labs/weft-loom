@@ -1,0 +1,18 @@
+{
+ "result": "Body unchanged: csvsum.py reads stdin, splits lines, sums floats per category in a dict, and prints sorted 'cat,sum' lines with 2 decimals. Baseline is 2.04. I made no new attempt, because earlier variants in this lineage didn't beat noise.",
+ "calls": 1,
+ "secs": 7.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 75.61699999999999,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 324.38300000000004,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.9621
+ }
+}

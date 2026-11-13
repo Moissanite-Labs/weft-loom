@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1e9+7 that reads n per line from stdin and writes results in one buffered write. It passed the sample check (in-0 matches out-0, fib(10)=55). The assay baseline was 2.48152, and the adopted variant with the single buffered write and list comprehension scored +8% over it. I'm resting here because the need is met and further gains look marginal.",
+ "calls": 7,
+ "secs": 35.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 237.1407,
+  "earned": 29.500386540887785,
+  "got": 0.0,
+  "gave": 192.35968654088782,
+  "state": "resting",
+  "fit": 0.0765386777572925,
+  "age": 7,
+  "assay": true,
+  "sense": 0.2091
+ }
+}

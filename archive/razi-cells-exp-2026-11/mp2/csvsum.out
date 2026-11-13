@@ -1,0 +1,17 @@
+{
+ "result": "csvsum.py is a single-pass Python reader: it reads stdin as bytes, splits on newlines, skips the header, splits each line on commas, sums the val column per cat in a dict, then writes cats sorted with '%.2f' formatting. It passes the sample check (output matched out-0.txt) and is registered at baseline 2.04016. The one variant I tried (dropping the per-line rstrip) scored 2.06 against an incumbent of 2.057, so it was not adopted. Further gains look marginal, so I am stopping here to conserve energy.",
+ "calls": 7,
+ "secs": 47.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 140.90929999999997,
+  "earned": 0.0,
+  "got": 283.596,
+  "gave": 542.6867000000001,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true
+ }
+}

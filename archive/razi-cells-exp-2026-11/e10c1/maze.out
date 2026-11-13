@@ -1,0 +1,5 @@
+{
+ "result": "Built maze.py: reads the grid as bytes, translates it in one pass into a padded bytearray (walls/newlines = 0, open cells = 1, newline column serves as the right/left wall padding), then runs a level-by-level BFS from S using flat integer indices with four fixed neighbour offsets, marking visited cells as walls in-place and checking E's neighbours once per level instead of per-neighbour. Prints shortest 4-neighbour path length or -1. Verified against ref.py (deque BFS) on hand-made cases (S.#/.##/..E \u2192 4, S#E \u2192 -1, S.E \u2192 2), a random 40-cell test t.txt (both \u2192 80), a generated 2000x2000 maze seed 3 (\u2192 4000, matches ref) and seed 42 (\u2192 -1, E enclosed). Timing: 2000x2000 seed-3 full BFS in ~0.68 s wall, seed 42 in 0.06 s. Assay (correctness checks + 1000/total time on both big mazes) improved from baseline 1872 to ~1996 via the whole-buffer translate parse + per-level target check variant; bidirectional BFS and micro-tweak variants were tested and rejected as slower.",
+ "calls": 15,
+ "secs": 933.0
+}

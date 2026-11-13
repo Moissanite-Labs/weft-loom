@@ -1,0 +1,5 @@
+{
+ "result": "Built `squeeze.py` implementing lossless `compress(bytes) -> bytes` and `decompress(bytes) -> bytes` using only the Python standard library (`json`, `lzma`, `re`, `collections`). It combines recursive array-of-objects columnar JSON reorganization (`_to_columnar` / `_from_columnar`), dynamic single-byte dictionary word tokenization with capitalization prefix coding (`_encode_words` / `_decode_words`), and raw LZMA1 stream compression (`PRESET_EXTREME`, `lc=3, lp=0, pb=0, nice_len=273`), verifying exact round-trip before selecting the smallest representation. Verified via `python3 eval.py` across edge cases (empty bytes, single byte, repeated strings, full 0-255 binary data) and the mixed English-like text + JSON corpus, achieving a compression ratio of 11.76x (improving over the 8.45x baseline) with zero round-trip errors.",
+ "calls": 26,
+ "secs": 834.8
+}

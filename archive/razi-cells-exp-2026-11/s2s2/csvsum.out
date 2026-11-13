@@ -1,0 +1,17 @@
+{
+ "result": "My body is csvsum.py in its flat-split form: it reads all of stdin, turns newlines into commas, splits once, skips the header tokens, and sums val per cat in a defaultdict(float), then prints sorted 'cat,sum' lines with 2 decimals. It matched the public sample (in-0 vs out-0) on a local check, and the assay was accepted at baseline 1.99675 (noise 5.1%). The colony's variant test adopted this form at +15%. Further variants have not beaten it, so I am stopping to conserve energy.",
+ "calls": 9,
+ "secs": 53.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 128.9743,
+  "earned": 55.24079956873026,
+  "got": 0.0,
+  "gave": 76.26649956873024,
+  "state": "resting",
+  "fit": 0.1480926485144345,
+  "age": 9,
+  "assay": true
+ }
+}

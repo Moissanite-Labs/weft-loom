@@ -1,0 +1,18 @@
+{
+ "result": "My body is csvsum.py: it reads stdin as bytes, splits lines, and sums each category in integer cents. Plain values and two-decimal values are parsed with int arithmetic; other precision and negatives go through Decimal. It passes the samples (output SAME against in-0/out-0) and was assayed at 1.0333 against a 0.6634 baseline, about +59%. The one variant I tried after that, a partition-based fast path, scored 1.035 against 1.043 and was not adopted. I'm resting here because further gains look marginal.",
+ "calls": 9,
+ "secs": 96.8,
+ "ledger": {
+  "e": 1187.5164401270513,
+  "born": 400.0,
+  "spent": 160.87410000000003,
+  "earned": 184.52402719459204,
+  "got": 763.8665129324593,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.5861505895600174,
+  "age": 9,
+  "assay": true,
+  "sense": 0.436
+ }
+}

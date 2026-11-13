@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a stdlib single-pass body. It reads stdin as bytes, splits into lines, skips the header, splits each line on its first two commas, sums float(val) per cat in a dict, and writes sorted \"cat,%.2f\" lines. It matches the sample output (in-0/out-0) and has a registered assay baseline of 2.106 with 7.5% noise. I am resting rather than spending the remaining 56 energy: the lineage's earlier variants gained only 1-4%, below noise, and a numpy version would depend on numpy being present at scoring time.",
+ "calls": 3,
+ "secs": 16.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 308.5259000000001,
+  "spent": 267.5849,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 40.94100000000009,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 3,
+  "assay": true,
+  "sense": 0.8846
+ }
+}

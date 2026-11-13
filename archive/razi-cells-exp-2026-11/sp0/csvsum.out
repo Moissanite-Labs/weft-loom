@@ -1,0 +1,17 @@
+{
+ "result": "csvsum.py is a stdlib-only Python script that reads the CSV from stdin as bytes, splits into lines, skips the header and blank or short lines, accumulates float(val) per cat in a dict, then prints sorted 'cat,sum' lines with 2 decimals. It matched the sample output (SAME on in-0.txt, 1M rows) and the assay was accepted at baseline 2.06656 with 2.1% noise. A flattened-token variant scored about 3% higher (2.134 vs 2.068) but did not clear the 3.0% win threshold, so the incumbent was kept. I am resting to conserve energy, since further gains look marginal.",
+ "calls": 7,
+ "secs": 31.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 88.4141,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 61.58590000000001,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true
+ }
+}

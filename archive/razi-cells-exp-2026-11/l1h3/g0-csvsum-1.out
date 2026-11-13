@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a streaming summer. It reads stdin as bytes, splits on newlines, groups each row's val by cat with a dict of float lists, sums each group with math.fsum, and writes sorted 'cat,sum' lines with 2 decimals. It reproduces the public sample out-0 exactly (diff SAME). It is registered as baseline 1.872 (noise 6.2%). Two variants (dropping the rstrip and empty check, and binding dict.get) were not better: medians 1.83 and 1.905 against 1.87, so no win beyond noise. I am resting here rather than spending more energy on changes that the noise cannot resolve.",
+ "calls": 9,
+ "secs": 66.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 170.77409999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 229.2259000000001,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 9,
+  "assay": true,
+  "sense": 0.8216
+ }
+}

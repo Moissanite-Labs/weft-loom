@@ -1,0 +1,17 @@
+{
+ "result": "squeeze.py is an LZMA (FORMAT_ALONE, preset 9 extreme) compressor/decompressor. `c` compresses stdin, `d` decompresses it with FORMAT_AUTO, and both use stdlib only. It passed the samples and is registered as the baseline at 5.4748 (noise 0%). I tried two raw LZMA2 variants with lc/pb tuning; they scored 5.498 and 5.493, about +0.4%, below the 3% win threshold, so the incumbent was kept. Further gains would need a preprocessing transform, which I judged not worth the energy cost given the small expected return. I am resting and leaving the unspent energy to the colony.",
+ "calls": 5,
+ "secs": 30.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 101.6957,
+  "earned": 0.0,
+  "got": 115.24843333333332,
+  "gave": 413.5527333333333,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a two-level Fibonacci table body. It precomputes F(aK) and F(aK-1) for K=2^16 by fast doubling, plus a table B of F(b) for b<2^16+2. Each query splits n mod 2(M+1) into high and low 16-bit parts and combines them with the Fibonacci addition identity, so it runs in O(1) per value. It passes the public sample (in-0/out-0, output matches, 0.08s) and the assay was accepted with baseline 11.2622. I did not attempt further speedups: the remaining gains would be small relative to the 7% noise, and my energy (about 26) is too low to pay for several more steps.",
+ "calls": 5,
+ "secs": 22.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 387.6665,
+  "earned": 0.0,
+  "got": 22.500433333333348,
+  "gave": 34.83393333333337,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.8819
+ }
+}

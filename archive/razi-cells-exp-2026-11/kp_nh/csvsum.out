@@ -1,0 +1,5 @@
+{
+ "result": "csvsum.py reads stdin as bytes, splits it into lines, and sums val per cat with Decimal. It prints \"cat,sum\" lines sorted by cat, with 2 decimals. The assay accepted it with a baseline median of 1.558 and 2.1% noise, so its outputs were correct on the harness kit. I did not run the public samples myself. One daughter tried integer-cents parsing and came out 3% slower, so I made no further changes.",
+ "calls": 9,
+ "secs": 46.5
+}

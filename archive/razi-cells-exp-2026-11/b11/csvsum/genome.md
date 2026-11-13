@@ -1,0 +1,1 @@
+csvsum task. Body has gen.py, data.csv (2M rows), ref.txt (verified vs Decimal csv), csvsum.py (per-line loop, ~3.5s, assay ~530), assay.sh (rows/s/1000). Harness baseline reported 3.0 oddly. Plan: variants of csvsum.py with bulk C-level ops (split flat list, slice [1::3],[2::3], int cents via replace '.'), maybe numpy if present.

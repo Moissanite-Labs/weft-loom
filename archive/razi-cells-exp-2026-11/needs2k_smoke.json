@@ -1,0 +1,12 @@
+[
+ {
+  "name": "fibmod",
+  "kit": "fibmod",
+  "need": "Build fibmod.py. `python3 fibmod.py` reads integers n on stdin, one per line, each up to 10**18, and prints fib(n) mod 1_000_000_007 for each, one per line. fib(10)=55. Fitness: speed on about 30,000 values. Verify before done."
+ },
+ {
+  "name": "maze",
+  "kit": "maze",
+  "need": "Build maze.py. `python3 maze.py` reads a grid of '#' and '.' on stdin with one S and one E and prints the shortest path length from S to E (4-neighbour moves) or -1 if there is none. Fitness: speed on a 1000x1000 maze that has a path, plus two small mazes. Verify before done."
+ }
+]

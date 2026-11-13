@@ -1,0 +1,5 @@
+NEED: primes.py prints count of primes below int(argv[1]). 5000000 -> 348513.
+STATE: primes.py = mod-30 wheel, 8 residue bytearrays, presieved by pattern replication (primes 7..17, plus 19 when n >= 2e7); falls back to the mod-6 wheel (_small) for n < 1000. Came from a winning daughter (+35%). Verified after the merge: verify.py primes -> OK (n in 0..4999, 40 random n up to 3e6, values around 510510*k, 2e7, 21234567, known 5e6/3e7/1e8), and python3 primes.py 5000000 -> 348513.
+ASSAY: `python3 assay.py` (checks small n + 5e6, times 5e6, 3x1e8, 3e7; prints 100/dt). Baseline 138.7 (odd-only sieve), noise 13%. mod-6 version: ~235-240. Current mod-30 presieved version: 334.91, 291.25, 327.38 on three runs (daughter saw 317-322).
+LESSONS: numpy version (pnp.py) was slower in this assay: numpy import costs ~0.1 s per process, more than it saves at n<=1e8. mod-6 wheel beat odd-only by ~45-70%; mod-30 + presieve beat mod-6 by ~35%. Timings are noisy run to run (291-335 for the same code).
+NEXT: call done. Leftover scratch files (cA.py, cB.py, cC.py, p6.py, pnp.py, _*.txt) are not needed by primes.py.

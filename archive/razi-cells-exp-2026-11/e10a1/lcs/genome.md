@@ -1,0 +1,2 @@
+lcs.py state: bit-parallel LCS (big-int), masks via int(ra.translate(t),2), b filtered by translate, loop v=(v+(v&mk))|(v&nmk), no per-iter &full. Assay `python3 bench.py` ~947 (was 547 baseline). check.py passed (69 cases, 0 bad) before the last two adopted variants; RE-RUN `python3 check.py` before done.
+Plan: one last variants round of micro ideas (sub/xor form without tuple unpack), then check.py, then done. Do not memoize across calls (would game the bench).

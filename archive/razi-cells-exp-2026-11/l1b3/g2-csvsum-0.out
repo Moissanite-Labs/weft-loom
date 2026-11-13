@@ -1,0 +1,18 @@
+{
+ "result": "My body is csvsum.py: it reads stdin as bytes and, when the input is plain (no quotes, CR, spaces or tabs), takes a flat-split fast path that replaces commas with spaces, slices the category and value tokens, converts each value to integer cents via float rounding, accumulates in a dict, and writes sorted \"cat,sum\" lines with 2 decimals. Otherwise it falls back to a line parser that handles quotes, CRs, spaces and bad rows. It passes sample in-0 (cmp matches exactly). The assay registered a baseline of 1.879 (noise 9.3%), and the sense reading is 0.91 of the lineage's best. I did not find a variant worth the cost, so I am resting with most of my energy unspent (about 212) to return to the lineage store.",
+ "calls": 9,
+ "secs": 38.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 204.8064,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 195.19359999999995,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 9,
+  "assay": true,
+  "sense": 0.9076
+ }
+}

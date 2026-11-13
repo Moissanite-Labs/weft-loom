@@ -1,0 +1,5 @@
+{
+ "result": "maze.py is a BFS over a bytearray grid with a one-cell wall border. It stops as soon as it reaches E and prints -1 if E is unreachable. The assay accepted a baseline score of 3.516 with 1.4% noise. One variant, which unrolled the four-neighbour loop, scored 4.144 and was adopted (+18%). I did not run maze.py against the sample inputs in the kit directory, so correctness rests on the assay accepting the outputs as correct.",
+ "calls": 5,
+ "secs": 28.2
+}

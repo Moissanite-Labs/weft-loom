@@ -1,0 +1,1 @@
+fibmod: Pisano period P=2(M+1) for M=1e9+7 (M≡2 mod 5). fib(n)=table lookup: n%=P, split hi/lo 16 bits, F(a+b)=F(a)F(b+1)+F(a-1)F(b). Tables ~100k entries built at import (~50ms). bench.py score ~3.98M vs fast-doubling baseline 87779. Verified fib(10)=55, fib(1e18)=209783453, fib(100)=687995182. Done next.

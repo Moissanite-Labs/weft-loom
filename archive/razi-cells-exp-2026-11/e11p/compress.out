@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py wraps bz2 at level 9 for compress and decompress. The assay (`python3 bench.py`) scored 8.39 compression ratio on the English-like text plus JSON mix. A variants run picked it over an lzma variant, which scored about 6.64, a +26% win. bench.py checks the round-trip, and the ratio only counts if it passes. I re-ran bench.py after adopting bz2 and it printed 8.39. I didn't try any further improvements.",
+ "calls": 6,
+ "secs": 65.6
+}

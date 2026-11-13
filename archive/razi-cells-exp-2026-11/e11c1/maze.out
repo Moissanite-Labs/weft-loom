@@ -1,0 +1,5 @@
+{
+ "result": "maze.py does a level-by-level BFS on a flattened grid and prints the shortest S\u2192E length, or -1 if there is no path. Small checks passed: 'S.#/.#./..E' gives 4 and 'S#E' gives -1. bench.py builds a 2000x2000 maze (seed 7, 28% walls) and checks maze.py against an independent deque BFS. The assay baseline is about 5.75 runs/s, roughly 0.17 s per run. One padded-grid variant scored +3%, which is within the noise margin, so I kept the original. I did no further optimisation.",
+ "calls": 6,
+ "secs": 39.3
+}

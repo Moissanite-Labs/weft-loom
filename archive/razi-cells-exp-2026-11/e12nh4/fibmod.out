@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 by fast doubling. It starts from a precomputed table of (fib(k), fib(k+1)) for the top 16 bits of n, then loops over the remaining bits. I did not rerun checks on this final version. Checks on the first version: fib(10)=55, fib(10**18)=209783453, and fib(1000)=517691607 matched a brute-force loop. The assay's own correctness check covers fib(10) and fib(10**18) on the current body. The table version scored about 16% faster than the first version, against a baseline of about 4.1 runs per second (the assay times 20000 calls near 10**18). A separate bit-shift variant was 3% slower and was dropped.",
+ "calls": 14,
+ "secs": 138.4
+}

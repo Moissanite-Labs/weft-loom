@@ -1,0 +1,1 @@
+{"cmd": "python3 -c \"\nimport time,subprocess,sys\nt=time.time()\no=subprocess.run('python3 maze.py < maze.txt',shell=True,capture_output=True,text=True).stdout.strip()\nd=time.time()-t\nprint(0 if o!='3998' and not o.lstrip('-').isdigit() else 1/d)\n\"", "baseline": 27.685723149633326, "noise": 0.029698249187992354}

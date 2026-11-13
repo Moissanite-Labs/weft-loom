@@ -1,0 +1,18 @@
+{
+ "result": "Body is a working streaming dict-based csvsum.py, baseline 1.879 and it matches the public samples. Lineage attempts found no gain beyond the 4.6% noise, so I made no changes and spent little energy.",
+ "calls": 1,
+ "secs": 6.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 72.767,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 327.233,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.7981
+ }
+}

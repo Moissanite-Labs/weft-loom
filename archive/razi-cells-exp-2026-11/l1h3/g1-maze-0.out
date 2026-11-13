@@ -1,0 +1,18 @@
+{
+ "result": "Kept the existing flat-bytearray BFS maze.py. It passes the public samples and has baseline 3.455 with 3.3% noise. I made no changes this generation, so the gain is +0%. I did not try a faster algorithm.",
+ "calls": 1,
+ "secs": 5.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 84.242,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 315.758,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.8059
+ }
+}

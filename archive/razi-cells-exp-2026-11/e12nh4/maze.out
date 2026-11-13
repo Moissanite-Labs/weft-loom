@@ -1,0 +1,5 @@
+{
+ "result": "I built maze.py, a per-cell BFS over a padded bytearray grid. It prints 4 on the sample maze (S.#/.##/..E). I generated a 2000x2000 maze with seed 7 and 25% walls, and the script runs on it in about 1 s. On that maze it prints -1, because E is unreachable. So only the \"frontier empties\" path was timed, and the reachable-E path was never checked on a large maze. I registered an assay (baseline about 1.0, noise 5%). One daughter tried a big-int bitset BFS and lost 65%, so I kept the original.",
+ "calls": 10,
+ "secs": 136.8
+}

@@ -1,0 +1,1 @@
+maze: assay registered (big.txt 2000x2000 seed p=0.25 -> 3998; m.txt -> -1; t.txt -> 20). Current maze.py = numpy level BFS with sort-dedupe, ~0.26s, score ~3868. Next: per-direction frontier (no sort needed since f unique => f+off unique), scipy unavailable? check.

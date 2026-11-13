@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified sortints.py along with fixed-seed test dataset (input.txt, 1,000,000 integers across varied ranges and whitespace) and exact reference output (expected.txt) verified via MD5 checksum in bench.py. Using evolutionary variants, we improved sorting throughput from the baseline 1490.6 score (~0.67s wall-clock time for 1,000,000 integers) to 3514.3 (+136% speedup, ~0.28s wall-clock time) using vectorized NumPy C-buffer parsing (np.fromstring) and in-place C quicksort.",
+ "calls": 16,
+ "secs": 630.1
+}

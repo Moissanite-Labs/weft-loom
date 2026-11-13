@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is built and accepted. It reads the header-prefixed CSV from stdin, sums val per cat in exact integer cents (handles negatives and missing decimals), and prints 'cat,sum' sorted by cat with 2 decimals. It matches out-0.txt on the 1M-row sample (cmp SAME) and runs in about 0.72s. assay registered a baseline of 1.15093 with 0.7% noise. I'm stopping here: the need is met and verified, and further speed gains would be small against the energy they'd cost.",
+ "calls": 8,
+ "secs": 48.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 189.5237,
+  "earned": 0.0,
+  "got": 84.85260000000001,
+  "gave": 295.32890000000003,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 8,
+  "assay": true,
+  "sense": 0.486
+ }
+}

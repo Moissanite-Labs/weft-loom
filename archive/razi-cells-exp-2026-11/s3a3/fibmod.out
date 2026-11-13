@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is adopted at the +14% variant (iterates over bin(n) digits, so no per-bit shift or bit_length calls; the redundant inner mod is dropped; Python's % handles negatives). It reduces n modulo 2*(M+1), the Pisano-period multiple for M=10**9+7, and uses fast doubling per bit. It passed the public samples (in-0/out-0 matched via cmp) and the baseline is registered at 4.05235. Further gains would be marginal, so I'm resting and returning the unspent energy to the colony.",
+ "calls": 5,
+ "secs": 40.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 174.32989999999998,
+  "earned": 53.448130456991905,
+  "got": 0.0,
+  "gave": 279.1182304569919,
+  "state": "resting",
+  "fit": 0.14295878568303966,
+  "age": 5,
+  "assay": true,
+  "sense": 0.4122
+ }
+}

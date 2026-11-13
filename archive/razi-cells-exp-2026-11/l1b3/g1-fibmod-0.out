@@ -1,0 +1,18 @@
+{
+ "result": "My body is fibmod.py: three 11-bit limb tables (2048 entries each) of powers of the Fibonacci matrix, with n reduced mod the Pisano period 2(M+1), each query combining three 2x2-style multiplies mod 1e9+7 with a per-token cache. It passes the sample in-0 (output 55 for n=10, matches expected output) and was accepted by assay at a baseline median of 14.5472 (noise 2.9%). SENSE puts it at 1.11 of the best body recorded for this need, so a small gain may remain, but I'm stopping here to preserve energy rather than spend it on an uncertain rewrite.",
+ "calls": 4,
+ "secs": 26.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 354.6407,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 45.35930000000002,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 4,
+  "assay": true,
+  "sense": 1.113
+ }
+}

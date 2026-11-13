@@ -1,0 +1,5 @@
+{
+ "result": "Built squeeze.py using only the Python standard library (lzma, json, re) with compress(bytes)->bytes and decompress(bytes)->bytes that round-trip all inputs exactly. The compressor combines reversible domain-specific pre-transforms\u2014including a lossless capital-letter word normalization transform and a lossless columnar transposition for structured JSON blocks, arrays of records, and interleaved JSON-lines\u2014followed by headerless raw LZMA1 extreme compression tuned for byte/text streams (lc=3, lp=0, pb=0, nice_len=273, depth=1000), falling back safely to raw LZMA1 for arbitrary binary data. Verified exact round-trip correctness across empty bytes, single bytes, repeated nulls, full 0..255 byte sequences, random binary data, and a 1.55 MB benchmark suite of English prose, structured JSON, and interleaved text+JSON, improving overall compression ratio from the 7.987 baseline to 9.169 (+15%, compressing 1,553,091 bytes down to 169,390 bytes).",
+ "calls": 15,
+ "secs": 467.7
+}

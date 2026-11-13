@@ -1,0 +1,5 @@
+{
+ "result": "csvsum.py reads the CSV from stdin, sums val for each cat, and prints \"cat sum\" with 2 decimals, sorted by cat. I checked it with bench.sh on a 2,000,000-row generated data.csv (seed 1, 51 categories). bench.sh compares the output with a plain-Python reference and prints 0 on any mismatch. The output matched, and the assay scored 1.613 runs per second at baseline. A variant that reads all of stdin, splits it into one flat token list and sums with defaultdict(float) scored 1.93, which is +19% and was adopted. I did not run bench.sh again on the adopted version, but the assay ran it and would have scored 0 on a mismatch.",
+ "calls": 7,
+ "secs": 49.2
+}

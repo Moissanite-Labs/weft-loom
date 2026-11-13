@@ -1,0 +1,5 @@
+{
+ "result": "maze.py is a level-by-level BFS on a padded flat bytearray grid. It reads the grid from stdin and prints the shortest S-to-E length, or -1 if E is unreachable. bench.py generates a 2000x2000 maze with seed 7 and 28% walls, with the S and E corners cleared. It solves in about 1.3 s and gives 3998, which is the Manhattan minimum for that grid. It also checks two small cases: [\"S.#\",\"..#\",\"#.E\"] gives 4 and [\"S#E\"] gives -1. The assay baseline is about 608 (a rate, 1/seconds). One improvement attempt, bitset or bidirectional BFS, never actually ran because the daughter was refused permission to spawn a sub-branch. That result (-0%) says nothing about whether the idea works. I did not cross-check the answers against an independent solver.",
+ "calls": 11,
+ "secs": 64.0
+}

@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py has compress and decompress, using only the stdlib. It tries four raw LZMA2 configurations that differ in lc, nice_len and match finder. It also tries bz2. It keeps the smallest output and stores a one-byte tag so decompress knows which method was used. bench.py generated English-like text and JSON, asserted that decompress(compress(d))==d, and printed a ratio of 5.21. The first version, a single LZMA2 configuration, scored 4.33, so the multi-try version is 20% better. I did not run any separate round-trip tests beyond the one in bench.py.",
+ "calls": 7,
+ "secs": 44.8
+}

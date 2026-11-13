@@ -1,0 +1,1 @@
+sortints task. Assay registered (sh assay.sh), baseline ~1577 (1000/sec), noise 12%. numpy 2.5.3 available, python 3.14. data.txt/expected.txt generated (seed 12345, 1M ints). Next: variants of sortints.py using numpy fromstring/sort.

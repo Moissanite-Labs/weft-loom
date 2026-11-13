@@ -1,0 +1,1 @@
+wf.py done & verified (MATCH ref.txt, tie test ok): translate+split, os.fork parallel over slices, pickle Counters via pipes. Score 3276 (from 534). Next: minor variants (marshal, nw tweaks) then done.

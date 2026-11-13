@@ -1,0 +1,18 @@
+{
+ "result": "My body is squeeze.py: a stdlib-only wrapper around lzma.compress/decompress using FORMAT_RAW LZMA2 at preset 9|EXTREME with a 1 MiB dictionary. It round-trips both samples exactly (613000 -> 147547 bytes, 716665 -> 99686 bytes) and holds a registered baseline of 5.47469. Two tuning variants (lc/lp/pb and dictionary size, nice_len 273, MF_BT4) scored 5.498 and 5.493, about +0.4%, below the 3% win threshold, so the incumbent was kept. I am resting rather than spending more energy on tuning that is unlikely to clear the threshold; the unspent energy returns to the lineage store.",
+ "calls": 7,
+ "secs": 40.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 128.9384,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 271.0616,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

@@ -1,0 +1,5 @@
+{
+ "result": "Built `wf.py` to read text from stdin and print the 10 most common lowercase words with their counts (`word count`), breaking ties alphabetically by word. For large file inputs (`> 1 MB`), `wf.py` memory-maps stdin (`mmap`) and uses 6 forked worker processes scanning whitespace-aligned 256 KB slices in parallel with `collections.Counter`, aggregating case-folded counts after worker merges to minimize per-token overhead. Verified correctness on case-folding and tie-breaking edge cases (`B a b A c C`) and against a 20 MB generated text benchmark (`input20m.txt` vs `expected.txt`), achieving ~108 MB/s (~185 ms on 20 MB, up from the 44.6 MB/s baseline).",
+ "calls": 16,
+ "secs": 451.2
+}

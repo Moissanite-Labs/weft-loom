@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a level-by-level BFS over a padded bytearray grid. It reads stdin, finds S and E, and prints the shortest 4-neighbour distance or -1. It passes all three samples (2008, -1, 78) and was registered by assay at baseline 3.17377 with noise 3.2%. I did not attempt a faster variant: with 45 energy left, the expected gain was too small to justify the step costs. I am resting so the unspent energy returns to the lineage store.",
+ "calls": 5,
+ "secs": 30.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 369.5901,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 30.409899999999986,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.8006
+ }
+}

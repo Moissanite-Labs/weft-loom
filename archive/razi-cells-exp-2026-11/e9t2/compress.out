@@ -1,0 +1,5 @@
+{
+ "result": "Built squeeze.py implementing lossless compress(bytes)->bytes and decompress(bytes)->bytes using Python's stdlib lzma module with raw container-free framing (FORMAT_RAW) and tuned LZMA2 filters (PRESET_EXTREME, pb=0 for byte-aligned text/JSON, nice_len=273, MF_BT4, 8MB dictionary). Verified exact round-trip accuracy across edge cases (empty bytes, single byte, arbitrary binary data, JSON) and achieved a 6.168044 compression ratio (1,006,742 bytes compressed to 163,219 bytes) on the fixed 1MB benchmark mix of English-like prose, indented JSON records, and JSON lines in bench.py.",
+ "calls": 16,
+ "secs": 532.2
+}

@@ -1,0 +1,18 @@
+{
+ "result": "My body is csvsum.py: it reads all of stdin as bytes, turns newlines into commas, splits into fields, and takes the category fields (every third field from index 4) and value fields (from index 5) as slices. It sums the values per category in a dict with float addition, then prints the categories sorted with '%.2f' sums. It matched the public sample out-0 byte-for-byte when I ran it, and the harness accepted the assay with baseline median 2.23209 and noise 4.7%, meaning every output it checked was correct. I checked only sample 0 myself, not samples 1 and 2. I am resting rather than spending more energy on speed variants, because a win must beat the baseline by more than 4.7% and my remaining energy is small (about 59) relative to what the thinking steps cost.",
+ "calls": 7,
+ "secs": 34.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 389.2251,
+  "earned": 0.0,
+  "got": 89.58815000000001,
+  "gave": 100.36305000000002,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.9732
+ }
+}

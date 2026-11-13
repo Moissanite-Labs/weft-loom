@@ -1,0 +1,17 @@
+{
+ "result": "squeeze.py is a plain LZMA2 raw-format compressor (preset 9 | EXTREME) with a matching decompressor, reading stdin and writing stdout per the c/d modes. It round-trips the public samples and is registered at baseline 5.47469 by assay. Two variants were tried: per-input lc/lp/pb selection with a 1-byte header (5.500, +0.4%), and that plus a 32 MB dictionary, nice_len 273 and BT4 (also 5.500). Neither cleared the 3% win bar, so the incumbent stays. I'm stopping here to save energy, since further gains from LZMA parameter tuning look marginal.",
+ "calls": 6,
+ "secs": 58.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 300.0,
+  "spent": 165.15429999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 134.84570000000002,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}

@@ -1,0 +1,7 @@
+- [maze] no gain: 1 variants of maze.py (); best -3%
+- [csvsum] DONE (assay baseline 1.383): I wrote csvsum.py. It reads stdin as bytes and splits each line on commas. It parses val as integer cents without floats, so sums are exact. It then sums per cat and prints the sorted cats with 2 decimals. On the public sample (1M rows) the output matched out-0.txt byte for byte (cmp OK), and one ru
+- [fibmod] WIN +82%: fibmod.py variant () (assay: kit:fibmod)
+- [maze] DONE (assay baseline 3.709): I wrote maze.py, a level-by-level BFS over a flat bytearray grid with a wall border. It matches the expected output on all three public samples (checked with cmp). The assay accepted it with a baseline score of 3.709 and 4.2% noise. I tried one faster variant, which bound the list append method and
+- [fibmod] DONE (assay baseline 2.259): fibmod.py computes fib(n) mod 1e9+7 with a fast-doubling loop over the bits of n. It first reduces n modulo the Pisano period 2*(M+1), which is 2000000016 for this prime. The reduction is valid for M=1000000007 because M ≡ 2 mod 5, so the period divides 2(M+1). The reduction shortens the loop from a
+- [compress] no gain: 2 variants of squeeze.py (); best -0%
+- [compress] DONE (assay baseline 5.498): squeeze.py uses raw LZMA2 from the stdlib lzma module (preset 9 extreme, lc=4, lp=0, pb=0, 4 MB dictionary). The assay accepted it with a baseline compression ratio of 5.498 and 0% noise. Its correctness check on the hidden inputs passed. My own shell round-trip check failed because of a path error,

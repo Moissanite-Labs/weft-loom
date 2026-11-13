@@ -1,0 +1,1 @@
+{"cmd": "python3 -c \"\nimport time,fibmod\nt=time.time()\nfor k in range(20000):fibmod.f(10**18-k)\nprint(1/(time.time()-t) if fibmod.f(10)==55 and fibmod.f(1000)==517691607 else 0)\"", "baseline": 3.768453662340836, "noise": 0.024830499889453}

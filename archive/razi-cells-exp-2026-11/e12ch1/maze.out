@@ -1,0 +1,5 @@
+{
+ "result": "maze.py runs a level-by-level BFS over a flat grid, using a bytearray for walls and visited cells. On the seeded 2000x2000 maze (gen.py, seed 7) it prints -1, which matches the reference BFS in ref.py. The assay checks that output and times the run. The first version scored 6.73. A variant of maze.py then scored 14.31, a gain of 112%, and was adopted. I did not re-check the adopted variant's output against ref.py separately. The assay does check it against exp.txt (-1), so the adopted version passed that check. This maze returns -1 (no path), so the run does not test the path-length output.",
+ "calls": 6,
+ "secs": 32.8
+}

@@ -1,0 +1,5 @@
+{
+ "result": "Built squeeze.py (stdlib only) with compress/decompress that round-trip exactly. It tokenizes input into words/spaces/punctuation, builds a sorted vocabulary (lzma-compressed), and codes token ids with a PPM-style context model (order 1\u20133, chosen by trial on a sample) via a 64-bit range coder with escape-to-lower-order fallback; alternative candidates (raw lzma extreme, bz2, zlib, stored) are also produced and the shortest is picked, tagged by a 1-byte header. bench.py (the registered assay) generates a fixed mix of English-like text, indented JSON, and a hybrid, verifies decompress(compress(d))==d for each, and prints the aggregate compression ratio: 9.3964 vs the lzma-only baseline of 8.9853 (+4.6%). Edge cases (empty, single byte, random bytes, highly repetitive, full byte range) all round-trip correctly; the whole bench runs in ~2 s.",
+ "calls": 15,
+ "secs": 354.2
+}

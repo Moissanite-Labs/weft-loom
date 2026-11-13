@@ -1,0 +1,5 @@
+{
+ "result": "Built `primes.py` as a thin dispatcher to a native C extension (`sieve.so`, odd-only byte sieve with sqrt bound), with an equivalent pure-Python odd sieve fallback; the C module was compiled with `clang -O3` using a writable `TMPDIR=.tmp/ccache` to bypass the sandbox's xcrun cache permission error. Verification: the registered assay `python3 bench.py` checks all n\u226410000 against trial division, n=100000\u21929592, and the required n=5000000\u2192348513 before timing; it was accepted over 5 stable runs at baseline 459.87 reps/s and latest measured 467.29 reps/s (~2.14 ms/call), and the `__main__` path prints `count(int(argv[1]))`, so `python3 primes.py 5000000` prints 348513. The 7919 mismatch in an ad-hoc check was a bad expected value (7919 is the 1000th prime, hence 999 primes strictly below it), not a defect.",
+ "calls": 16,
+ "secs": 826.4
+}

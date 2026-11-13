@@ -1,0 +1,5 @@
+{
+ "result": "Built squeeze.py (stdlib only): compress() tries several candidates and keeps the smallest, tagging each with a 1-byte header \u2014 raw lzma (lc=4,pb=0 tuned for text), zlib-9, bz2-9, stored, and a JSON-aware columnar transform (detects indent=2 lists of records, compact lists, or NDJSON with a uniform schema; splits into per-field columns, each column compressed with its own best codec via _best/_multi, and verifies the exact inverse before use). decompress() dispatches on the tag and rebuilds the original (re-serializing JSON in the detected format). Evidence: bench.py round-trips all three generated corpora plus edge cases (empty, 1 byte, repeated, all 256 bytes) and reports ratio 8.3116, up from 7.51 baseline (+10% from the per-column bz2/lzma best-of variant); random-choice generation bounds the data's entropy, so remaining headroom is small (text at 96KB bz2 vs ~90KB entropy).",
+ "calls": 14,
+ "secs": 1054.0
+}

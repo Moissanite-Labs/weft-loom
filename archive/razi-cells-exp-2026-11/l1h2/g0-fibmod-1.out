@@ -1,0 +1,18 @@
+{
+ "result": "Body is fibmod.py: fast doubling Fibonacci mod 1e9+7 with the exponent reduced mod P=2(M+1) (the Pisano period for this modulus) and a per-input memo cache. It reads stdin, prints one result per line, and uses only the stdlib. It passes the sample check (in-0 vs out-0, and fib(10)=55). The earlier assay registered a baseline of 2.07355 with 4.9% noise. I did not run a further assay after the last edit, and I did not find a clearly faster variant, so I am resting to conserve energy rather than spend it on a marginal change.",
+ "calls": 8,
+ "secs": 53.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 204.01289999999997,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 195.98709999999997,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 8,
+  "assay": true,
+  "sense": 0.1823
+ }
+}

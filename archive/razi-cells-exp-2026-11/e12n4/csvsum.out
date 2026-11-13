@@ -1,0 +1,5 @@
+{
+ "result": "Built csvsum.py. It reads stdin, sums val per cat in a defaultdict, and prints the cats sorted with 2 decimals. I generated 2,000,000 rows (in.csv, seed 1, 50 cats) and checked the output against an independent csv-module reference; the first comparison printed \"same\". The second comparison's output was cut off, so my only evidence for that run is the 0.587s timing and the c0 and c1 output lines. The assay compares output to the reference file and accepted a baseline of 1.80 runs/s with 4.1% noise. I made no further optimisation attempts.",
+ "calls": 6,
+ "secs": 27.5
+}

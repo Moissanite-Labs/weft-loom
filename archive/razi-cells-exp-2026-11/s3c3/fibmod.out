@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is the adopted bin()-string fast-doubling variant. It reads all stdin tokens, reduces each n mod the Pisano period 2(M+1), and computes fib(n) mod 1e9+7 with the doubling identities, one loop over the binary digits of n. It passed the sample checks (fib(10)=55 and in-0/out-0 matched) and the assay registered a baseline of 4.30053 with 3.4% noise. The last variant was adopted at +9%. I'm stopping here since further gains would need to beat noise by more than 3.4% and the remaining ideas are small.",
+ "calls": 5,
+ "secs": 35.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 188.48489999999998,
+  "earned": 32.64814751591162,
+  "got": 95.5854,
+  "gave": 339.7486475159116,
+  "state": "resting",
+  "fit": 0.08504381513479253,
+  "age": 5,
+  "assay": true,
+  "sense": 0.377
+ }
+}

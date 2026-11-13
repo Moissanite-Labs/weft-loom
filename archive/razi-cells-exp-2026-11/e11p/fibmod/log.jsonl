@@ -1,0 +1,18 @@
+{"step": 0, "usage": {"inp": 4, "out": 280, "cr": 0, "cw": 1476, "rs": 0, "usd": 0.006498}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265362.42}
+{"step": 0, "act": {"do": "write", "path": "fibmod.py", "text": "<237 chars>"}, "res": "wrote fibmod.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794265362.42}
+{"step": 1, "usage": {"inp": 4, "out": 76, "cr": 1210, "cw": 653, "rs": 0, "usd": 0.0026425}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265364.76}
+{"step": 1, "act": {"do": "sh", "cmd": "python3 fibmod.py 10; python3 fibmod.py 1000000000000000000"}, "res": "exit 0\n55\n209783453\n", "route": "anthropic:claude-sonnet-5-5", "t": 1794265364.83}
+{"step": 2, "usage": {"inp": 4, "out": 378, "cr": 1210, "cw": 718, "rs": 0, "usd": 0.005825}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265368.92}
+{"step": 2, "act": {"do": "write", "path": "bench.py", "text": "<269 chars>"}, "res": "wrote bench.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794265368.92}
+{"step": 3, "usage": {"inp": 4, "out": 54, "cr": 1210, "cw": 1104, "rs": 0, "usd": 0.00355}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265369.95}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [4.111, 4.116, 4.061, 4.101, 4.102], "t": 1794265371.42}
+{"step": 3, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 4.102, noise 1.3%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794265371.42}
+{"step": 4, "usage": {"inp": 4, "out": 492, "cr": 1210, "cw": 1233, "rs": 0, "usd": 0.0082525}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265378.59}
+{"event": "variants", "path": "fibmod.py", "medians": {"inc": 4.131, "v0": 4.726, "v1": 0.0, "v2": 4.912}, "best": "v2", "adopted": true, "gain": 0.1891, "kinds": null, "arm": "ctrl", "t": 1794265402.37}
+{"event": "improve", "gain": 0.1891, "what": "fibmod.py variant ()", "t": 1794265402.38}
+{"step": 4, "act": {"do": "variants", "path": "fibmod.py", "versions": "<688 chars>"}, "res": "medians inc=4.131, v0=4.726, v1=0, v2=4.912. ADOPTED v2 (+19%).", "route": "anthropic:claude-sonnet-5-5", "t": 1794265402.38}
+{"step": 5, "usage": {"inp": 4, "out": 76, "cr": 1210, "cw": 1435, "rs": 0, "usd": 0.0045975}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265403.54}
+{"step": 5, "act": {"do": "sh", "cmd": "python3 fibmod.py 10; python3 fibmod.py 1000000000000000000"}, "res": "exit 0\n55\n209783453\n", "route": "anthropic:claude-sonnet-5-5", "t": 1794265403.62}
+{"step": 6, "usage": {"inp": 4, "out": 251, "cr": 1210, "cw": 1510, "rs": 0, "usd": 0.006535}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265406.72}
+{"step": 6, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794265406.72}
+{"event": "final", "final": 4.894, "baseline": 4.102, "final_gain": 0.1931, "t": 1794265425.0}

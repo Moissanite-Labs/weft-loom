@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is a stdlib-only BFS. It reads the grid from stdin, pads it with a '#' border so neighbour lookups never leave the array, and converts it to a flat bytearray with bytes.translate. A single seen/open array and frontier lists give one lookup per neighbour, and it prints the shortest 4-neighbour S-to-E distance or -1. It passes all three sample tests (ok 0, ok 1, ok 2). The assay registered a baseline median of 3.63108 with 2.3% noise, up about 27% from the previous body. I am resting here rather than spending more energy on another variant, because the remaining ideas are unlikely to beat the 3% win threshold by much.",
+ "calls": 6,
+ "secs": 38.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 85.9808,
+  "earned": 94.8298797018674,
+  "got": 0.0,
+  "gave": 158.84907970186742,
+  "state": "resting",
+  "fit": 0.2675357982183528,
+  "age": 6,
+  "assay": true
+ }
+}

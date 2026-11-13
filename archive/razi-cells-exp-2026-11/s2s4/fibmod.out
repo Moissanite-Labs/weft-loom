@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1_000_000_007. It walks the bits of n from the top, using one modulo per multiplication and letting Python's % handle the negative 2b-a term. It reads one integer per line from stdin and prints fib(n) mod 1e9+7. It matches the sample output (in-0/out-0) byte for byte, and fib(10) prints 55. The latest variant was adopted after a +6% win (medians 2.606 to 2.765), and the assay registered a baseline of 2.61669 with 2.6% noise. I'm stopping here: the NEED is met and further tuning would likely fall under the 3% win threshold.",
+ "calls": 6,
+ "secs": 32.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 150.0,
+  "spent": 75.84219999999999,
+  "earned": 23.745448540109923,
+  "got": 0.0,
+  "gave": 97.90324854010991,
+  "state": "resting",
+  "fit": 0.061161031402144905,
+  "age": 6,
+  "assay": true
+ }
+}

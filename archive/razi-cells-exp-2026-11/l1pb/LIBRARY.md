@@ -1,0 +1,5 @@
+- [g0-fibmod-0] WIN +214%: rewrite (Vectorized numpy fast-doubling Fibonacci mod 1e9+7 over all inputs at once (replaces the per-value pure-Python loop).)
+- [g0-fibmod-0] REST (baseline 8.187, gain +214%, returned 563 energy to the lineage store): fibmod.py is a vectorized numpy fast-doubling Fibonacci mod 1e9+7. It parses all inputs into a uint64 array and runs one fast-doubling pass over the bits of the largest value, using np.where to select between the two branches. It passes the sample (in-0 matche
+- [lineage fibmod] GEN 0: the germline body is now the body of g0-fibmod-0, the lineage's first.
+- [g1-fibmod-0] REST (baseline 8.529, gain +0%, returned 99 energy to the lineage store): fibmod.py is a vectorized numpy fast-doubling Fibonacci mod 1e9+7. It parses all stdin integers into a uint64 array, then runs one fast-doubling pass over the bits of the largest value, using np.where to pick the branch per element. It passes the sample (in-0,
+- [lineage fibmod] GEN 1: no body beat the germline beyond noise (best -1%). The germline is unchanged.

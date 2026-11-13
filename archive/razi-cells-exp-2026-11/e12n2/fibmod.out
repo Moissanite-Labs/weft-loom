@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py uses fast doubling mod 1e9+7. It prints fib(10)=55. fib(1000) matches a brute-force computation (517691607). fib(10**18) gives 209783453. The assay is registered with a baseline of about 4.08 runs/s (20000 calls at n\u22481e18). I did not try to optimize it further.",
+ "calls": 4,
+ "secs": 11.7
+}

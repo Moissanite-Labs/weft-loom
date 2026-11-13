@@ -1,0 +1,5 @@
+{
+ "result": "Built wf.py backed by a pre-compiled multithreaded C extension module (wf_ext) that reads stdin via zero-copy mmap (or buffered read for pipes), partitions the input across 4 pthreads aligned on whitespace boundaries, lowercases and hashes words in a single pass into thread-local open-addressed hash tables with inline 24-byte word storage, merges the counts, and outputs the top 10 words sorted by (-count, word). Verified correctness on tie-breaking, case insensitivity, pipe/file inputs, and a generated 20.9 MB text corpus, achieving ~543 MB/s (38.4 ms per 20 MB run, up from the 58.5 MB/s pure-Python baseline).",
+ "calls": 22,
+ "secs": 649.4
+}

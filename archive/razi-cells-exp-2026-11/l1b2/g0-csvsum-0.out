@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is registered at baseline 2.129 (noise 6.5%, +7.2% over my first body). It reads all of stdin as bytes, splits on newlines, then splits each row with split(b',', 2) to get cat and val, sums floats per cat in a dict, and writes sorted 'cat,sum' lines with %.2f. It matches the sample output (in-0 vs out-0 diff is clean). My two later variants, a per-line split and an integer-cents parser, did not beat the incumbent (2.146 and 2.181 vs 2.236, and 1.44 for the cents path), so I am stopping here to return unspent energy to the lineage store.",
+ "calls": 12,
+ "secs": 85.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 274.9577,
+  "earned": 27.740403774769774,
+  "got": 0.0,
+  "gave": 152.78270377476977,
+  "state": "resting",
+  "fit": 0.07181235938109842,
+  "age": 12,
+  "assay": true,
+  "sense": 0.9562
+ }
+}

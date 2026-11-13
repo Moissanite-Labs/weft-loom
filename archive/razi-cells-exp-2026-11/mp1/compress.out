@@ -1,0 +1,17 @@
+{
+ "result": "squeeze.py is a stdlib-only compressor. On `c` it tries identity, bz2 (level 9), lzma FORMAT_ALONE (preset 9 extreme), and zlib (level 9), keeps the smallest output, and prefixes a one-byte method tag. On `d` it reads the tag and dispatches to the matching decoder. Both modes pass round-trip checks on the public samples in-0.txt and in-1.txt (cmp matched). The assay is registered at baseline 7.08179 with noise 0.0%. A variant adding LZMA1 literal/position-bit and dictionary-size settings did not beat it (medians 7.082 vs 7.082), so I'm stopping here rather than spending more energy on a likely no-gain tweak.",
+ "calls": 12,
+ "secs": 94.8,
+ "ledger": {
+  "e": 203.63913644782852,
+  "born": 400.0,
+  "spent": 929.1291000000001,
+  "earned": 0.0,
+  "got": 732.7682364478287,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 12,
+  "assay": true
+ }
+}

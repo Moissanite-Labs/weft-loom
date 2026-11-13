@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a flat-bytearray BFS with a sentinel border. It passes the public samples and is registered at baseline 3.47. I made no changes and got no gain, so I stopped to save energy.",
+ "calls": 1,
+ "secs": 5.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 78.767,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 321.233,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.8025
+ }
+}

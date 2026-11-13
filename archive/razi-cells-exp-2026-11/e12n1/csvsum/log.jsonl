@@ -1,0 +1,10 @@
+{"step": 0, "usage": {"inp": 4, "out": 463, "cr": 1308, "cw": 0, "rs": 0, "usd": 0.0048996}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266403.38}
+{"step": 0, "act": {"do": "write", "path": "csvsum.py", "text": "<330 chars>"}, "res": "wrote csvsum.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794266403.38}
+{"step": 1, "usage": {"inp": 4, "out": 247, "cr": 1030, "cw": 708, "rs": 0, "usd": 0.004454}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266405.64}
+{"step": 1, "act": {"do": "sh"}, "res": "exit 0\nc0,19813346.85\nc1,20037496.47\nc10,20123026.34\nc0,19813346.85\nc1,20037496.47\nc10,20123026.34\n\nreal\t0m0.533s\nuser\t0m0.518s\nsys\t0m0.012s\n", "route": "anthropic:claude-sonnet-5-5", "t": 1794266408.97}
+{"step": 2, "usage": {"inp": 4, "out": 193, "cr": 1030, "cw": 982, "rs": 0, "usd": 0.004599}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266410.63}
+{"event": "assay", "cmd": "python3 csvsum.py<d.csv | python3 -c \"\nimport sys\nl=sys.stdin.read().split()\nprint(1 if len(l)==50 and l[0]=='c0,19813346.85' else 0)\" | grep -q 1 && s=$(date +%s.%N) && python3 csvsum.py<d.csv>/dev/null && e=$(date +%s.%N) && python3 -c \"print(1/($e-$s))\"", "runs": [1.9072898756804515, 1.9132460103683666, 1.903261083627605, 1.9061673724519244, 1.9140003495512647], "t": 1794266416.08}
+{"step": 2, "act": {"do": "assay", "cmd": "python3 csvsum.py<d.csv | python3 -c \"\nimport sys\nl=sys.stdin.read().split()\nprint(1 if len(l)==50 and l[0]=='c0,19813346.85' else 0)\" | grep -q 1 && s=$(date +%s.%N) && python3 csvsum.py<d.csv>/dev/null && e=$(date +%s.%N) && python3 -c \"print(1/($e-$s))\""}, "res": "assay accepted: baseline median 1.90729, noise 0.6%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794266416.08}
+{"step": 3, "usage": {"inp": 4, "out": 248, "cr": 1030, "cw": 1515, "rs": 0, "usd": 0.0064815}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266419.22}
+{"step": 3, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266419.22}
+{"event": "final", "final": 1.8968597352638836, "baseline": 1.9072898756804515, "final_gain": -0.0055, "t": 1794266422.97}

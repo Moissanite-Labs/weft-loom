@@ -1,0 +1,5 @@
+{
+ "result": "Built squeeze.py using only the Python standard library (re, lzma, bz2, zlib) providing exact round-trip compress(bytes)->bytes and decompress(bytes)->bytes functions. The compressor dynamically selects the shortest encoding among raw storage, headerless raw deflate/bzip2/LZMA1 streams, a repeated-sentence dictionary preprocessor (which extracts repeated capitalized sentences, sorts them for dictionary prefix sharing, and replaces occurrences with compact 1-byte indices), and a structured JSON-and-text columnar preprocessor (which separates JSON templates from field columns such as fixed-width numerical digits, words, and sentences before applying tuned raw LZMA1 compression). Verified against bench.py on edge cases (empty, single-byte, repeated strings, all 256 byte values, random bytes) and the mixed English-like text and JSON benchmark corpus, achieving exact lossless round-trips on all inputs and improving the overall compression ratio from 23.926952 to 30.570889.",
+ "calls": 22,
+ "secs": 686.6
+}

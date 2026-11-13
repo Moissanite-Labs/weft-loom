@@ -1,0 +1,6 @@
+- [fibmod] DIED at age 5 (gain +0%)
+- [compress] DIED at age 4 with no assay
+- [maze] DIED at age 5 (gain +0%)
+- [csvsum] no gain: 1 variants of csvsum.py (Skip per-line decode and empty-line branch; key sums by bytes and format bytes directly. Same row order so float sums are identical; sorting ASCII bytes matches); best +3%
+- [csvsum] WIN +7%: csvsum.py variant (Flatten the whole input into one comma-split token list (newlines become commas) and stride by 3, avoiding a per-line split loop. Header occupies the first thre) (assay: kit:csvsum)
+- [csvsum] REST (baseline 2.024, gain +7%, gave 0 energy to the living): csvsum.py is a flat-token version: it reads all of stdin as bytes, turns newlines into commas, splits on commas, and sums val by cat using slices t[4::3] and t[5::3] (header skipped). It writes the sorted 'cat,sum' lines with 2 decimals. It matched the sample

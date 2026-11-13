@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a fast-doubling implementation over the bit string bin(n)[2:], with n reduced mod P=2(M+1) (valid since M=1e9+7 is 2 mod 5, so the Pisano period divides P). It reads whitespace-separated integers from stdin and prints fib(n) mod M, one per line. Its assay baseline is 4.68481 (noise 4.1%). I did not try further variants: the remaining ideas are micro-level and unlikely to clear the 4.1% noise bar, and each attempt costs about 100 energy. Returning the unspent energy to the lineage store.",
+ "calls": 3,
+ "secs": 24.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 205.63479999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 194.36520000000002,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 3,
+  "assay": true,
+  "sense": 0.3708
+ }
+}

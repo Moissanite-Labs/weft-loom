@@ -1,0 +1,5 @@
+{
+ "result": "Built `wf.py` backed by a multi-threaded CPython C extension (`_wf.c` compiled to `_wf.so` with `clang -O3`) that executes directly upon `import _wf` to avoid `ctypes` import overhead. It maps `stdin` via `mmap` when reading regular files (with a `read()` loop fallback for pipes), splits large inputs across 4 POSIX threads aligned on whitespace boundaries using 256-entry lookup tables for fast ASCII lowercasing and whitespace detection, accumulates counts in thread-local open-addressed FNV-1a hash tables with inline storage for short words, merges counts, and selects the top 10 words sorted by descending count and ascending lexicographical tie-breaker. Verified exact output on tie-breaking edge cases and a generated 20MB corpus (`input20m.txt`), achieving ~475 MB/s assay throughput (~52 ms total subprocess time per 20MB run, a +1121% improvement over the initial baseline of 38.88 MB/s).",
+ "calls": 29,
+ "secs": 754.6
+}

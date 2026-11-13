@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is built and passes all three samples (in-0 \u2192 2008, in-1 \u2192 -1, in-2 \u2192 78). It reads the grid from stdin, pads it with a wall border, and runs a level-by-level BFS over a flat bytearray, stopping as soon as E is reached and printing -1 if the frontier empties. The assay registered a baseline of 3.87355 with 9.8% noise. One variant that tested E once per BFS level scored 4.016 against an incumbent of 3.962, which is inside noise, so the incumbent was kept. I am resting here rather than spending more energy on small micro-optimisations that the noise floor is likely to hide.",
+ "calls": 7,
+ "secs": 31.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 100.38139999999999,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 299.61859999999996,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true
+ }
+}

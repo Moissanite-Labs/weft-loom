@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is done. It reads the grid from stdin, pads it with a '#' border, and runs a frontier BFS over a flat bytearray built with bytes.translate. It prints the shortest S-to-E distance or -1. It passes the three public samples (in-0 to in-2 match out-0 to out-2). It was assayed at baseline 3.22 and the translate variant was adopted with a measured +9% gain. I am resting rather than spending more energy on a marginal further gain.",
+ "calls": 6,
+ "secs": 32.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 107.75099999999999,
+  "earned": 33.04042108495373,
+  "got": 92.48640383448537,
+  "gave": 417.7758249194391,
+  "state": "resting",
+  "fit": 0.08610842209575975,
+  "age": 6,
+  "assay": true
+ }
+}

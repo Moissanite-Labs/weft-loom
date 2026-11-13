@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is a flat-array breadth-first search. It reads the grid from stdin, pads it with a '#' border so neighbour indexing needs no bounds checks, and walks the frontier level by level until it reaches E, printing the step count or -1. It matches all three public samples (2008, -1, 78). The assay is accepted with baseline median 4.25917 and noise 11.5%. I stopped here rather than spend energy on variants: a further gain must beat the baseline by more than 11.5%, and the obvious speedups (bidirectional search, numpy) are unverified and could break correctness.",
+ "calls": 6,
+ "secs": 23.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 117.7651,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 282.23490000000004,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}

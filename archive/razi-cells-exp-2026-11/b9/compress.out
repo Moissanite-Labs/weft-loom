@@ -1,0 +1,5 @@
+{
+ "result": "Built squeeze.py (stdlib only) with compress/decompress that round-trip exactly. It tries several candidate encodings per input and keeps the smallest: raw, zlib-9, bz2-9, and raw LZMA2 (preset 9 extreme, lc=4/lp=0/pb=0). Additionally, if the input parses as JSON and re-serializes identically under one of three json.dumps modes (indent=2, compact, default), it is converted into a structural payload (type/structure stream + null-separated string table + zigzag-varint integer stream) before being handed to the same compressors, which removes JSON syntax redundancy; decompress rebuilds the object and re-dumps it in the recorded mode. Evidence: `python3 bench.py` (fixed English-like text + JSON corpus, ~6 MB mix) reports ratio 6.0297 vs the registered baseline 5.8539 (+3%), with round-trip verified for every corpus part, plus edge cases (empty bytes, single byte, random binary, small JSON, unicode JSON, JSON with trailing whitespace, repeated \\x00\\x01\\xff) all round-tripped exactly. The last sed edit failed and left squeeze.py unchanged, so the working 6.0297 version is what remains in the body.",
+ "calls": 15,
+ "secs": 300.9
+}

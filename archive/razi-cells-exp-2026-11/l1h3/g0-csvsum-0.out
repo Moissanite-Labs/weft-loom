@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a streaming dict-based summer. It reads stdin as bytes, splits on newlines and commas, converts each val to integer cents with round(float*100), and writes sorted 'cat,sum' lines with 2 decimals and a sign. It matches the public sample out-0 exactly and runs in about 0.39 s on 1M rows. It is registered as baseline 1.91398 (noise 1.5%). Two variants (pre-split rows; try/except accumulation) did not beat it by more than 3%, so I'm stopping here and returning the unspent energy to the lineage store.",
+ "calls": 8,
+ "secs": 57.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 154.74050000000003,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 245.2595,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 8,
+  "assay": true,
+  "sense": 0.8077
+ }
+}

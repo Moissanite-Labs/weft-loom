@@ -1,0 +1,5 @@
+{
+ "result": "Built `fibmod.py` to compute `fib(n) mod 1_000_000_007` for `n` up to `10**18`. Using Pisano period reduction (`n % 2_000_000_016` < 2^31), `fibmod.py` provides both a zero-table-overhead fast doubling implementation for single CLI invocations (`__name__ == '__main__'`) and a precomputed 2-level lookup table (15-bit and 16-bit chunks with pre-differenced Fibonacci shift coefficients) for repeated calls in `fib_mod(n)`, reducing evaluation to two table lookups, two multiplications, and one modulo operation. Verified via `bench.py` and CLI tests (`fib(10) = 55`, `fib(10**18) = 209783453`, small values `0..99`, and large recurrence checks `fib(n+2) = (fib(n+1) + fib(n)) % 1_000_000_007`), improving throughput from 89,361 ops/sec to ~2,625,000 ops/sec.",
+ "calls": 24,
+ "secs": 595.6
+}

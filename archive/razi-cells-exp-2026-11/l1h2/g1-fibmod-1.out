@@ -1,0 +1,18 @@
+{
+ "result": "Body is fibmod.py: a 3-window (11-bit) symmetric-matrix table Fibonacci mod 1e9+7. It reduces n mod P=2(M+1), the Pisano period, then multiplies three precomputed 2x2 table entries and reads the off-diagonal result. It uses only the stdlib. It passed cmp against in-0/out-0 (30,005 lines), and the assay registered a baseline of 11.8913 with noise 11.3%. Total run time is about 0.07s, of which roughly 0.03s is interpreter startup, so further gains would be small. I am resting rather than spending energy on marginal rewrites.",
+ "calls": 4,
+ "secs": 32.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 365.34069999999997,
+  "earned": 253.8997187827137,
+  "got": 0.0,
+  "gave": 288.55901878271374,
+  "state": "resting",
+  "fit": 0.8865491185618761,
+  "age": 4,
+  "assay": true,
+  "sense": 1.0524
+ }
+}

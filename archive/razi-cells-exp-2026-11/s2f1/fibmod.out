@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1e9+7. It reads n per line from stdin and prints fib(n) mod 1e9+7 per line. It matches the public sample (in-0/out-0, 30,005 lines) byte for byte and prints fib(10)=55. The assay registered a baseline of 2.59858 with 1.4% noise. I'm stopping here: the body is correct and a further speedup would need to beat the baseline by more than 3%, which isn't worth the thinking cost for an uncertain gain.",
+ "calls": 6,
+ "secs": 19.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 149.86659999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 250.1334,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}

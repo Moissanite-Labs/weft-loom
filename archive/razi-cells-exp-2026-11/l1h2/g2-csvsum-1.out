@@ -1,0 +1,18 @@
+{
+ "result": "Body unchanged: csvsum.py is a stdlib single-pass summer (split lines, split first two commas, float sums in a dict, sorted output with 2 decimals). It passes the samples and has a registered baseline of 2.004. Earlier variants in the lineage gained only 1-4%, which is inside the 5.7% noise, so I tried nothing new.",
+ "calls": 1,
+ "secs": 6.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 81.717,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 318.283,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.9716
+ }
+}

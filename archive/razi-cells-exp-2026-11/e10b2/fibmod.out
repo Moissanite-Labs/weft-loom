@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py is built and verified: `python3 fibmod.py N` prints fib(N) mod 1_000_000_007 for N up to 10**18, and fib(10) gives 55 (fib(10**18) gives 209783453). It first reduces n modulo 2000000016, a multiple of the Pisano period for this modulus, then uses fast doubling on the command line. Evidence: check.py passes \u2014 the first 5000 values against plain iteration, plus edge cases around the period and 2000 random n up to 10**18 against an independent matrix power that does no period reduction. The assay also checks the command-line output on 8 inputs, including 0, 1, 10, 10**18 and 2000000016, before printing a score. One thing to know about the score: it measures throughput of the imported `fib(n)` function, not command-line time. A command-line run takes about 25 ms, which is essentially all Python startup, and no algorithm change moved it measurably. The imported path uses three precomputed tables and reaches about 2.1M calls/s, against the 179,670 baseline for fast doubling (assay noise 11%). The tables are kept out of the command-line path because building them costs about 1 ms per run.",
+ "calls": 12,
+ "secs": 451.4
+}

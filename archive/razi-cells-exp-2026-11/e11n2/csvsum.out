@@ -1,0 +1,5 @@
+{
+ "result": "csvsum.py reads stdin and sums val per cat in a defaultdict(float). It prints each cat with a 2-decimal sum, sorted by cat. I generated a 2,000,000-row CSV (d.csv) and checked the output against an independent csv-module reference. The two matched, and the check printed OK. The assay reruns the script on d.csv and compares the output to ref.txt. Its baseline is 1.84 runs per second (about 0.54 s per run, 2.5% noise). I did no further optimization.",
+ "calls": 7,
+ "secs": 25.6
+}

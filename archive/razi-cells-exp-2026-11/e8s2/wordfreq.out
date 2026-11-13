@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `wf.py`, which reads text from stdin, extracts lowercase alphabetic `[a-z]+` words, and outputs the 10 most frequent words with their counts (`word count`) ordered by descending count and ascending lexicographical tie-break. To maximize throughput on 20 MB inputs, `wf.py` uses an on-demand compiled C shared library (`_wf_fast.so` loaded via `ctypes`) that memory-maps the input file descriptor (`mmap`) and scans words in a single pass with inline ASCII lowercase conversion, FNV-1a 64-bit hashing, and an open-addressed linear-probing hash table backed by a contiguous string arena, falling back seamlessly to `bytes.translate` + `Counter` when stdin is a pipe or `gcc` is unavailable. Correctness was verified against both tricky edge cases (mixed case, digits/punctuation splits, exact frequency ties, and <10 unique words) and the 20 MB benchmark dataset (`data.txt` vs `expected.txt`), improving assay throughput from 41.23 MB/s baseline to 239.2 MB/s (+480%, ~0.084s for 20 MB including Python startup).",
+ "calls": 15,
+ "secs": 660.8
+}

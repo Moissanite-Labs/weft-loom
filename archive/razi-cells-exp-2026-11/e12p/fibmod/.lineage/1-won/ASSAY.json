@@ -1,0 +1,1 @@
+{"cmd": "python3 -c \"\nimport fibmod,timeit\nok=fibmod.fib(10)==55 and fibmod.fib(1000)==517691607\nt=min(timeit.repeat(lambda:fibmod.fib(10**18-1),number=20000,repeat=7))\nprint(20000/t/1000 if ok else 0)\"", "baseline": 81.52917489828911, "noise": 0.01364944347107977}

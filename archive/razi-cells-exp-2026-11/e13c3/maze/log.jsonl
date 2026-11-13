@@ -1,0 +1,14 @@
+{"step": 0, "usage": {"inp": 4, "out": 470, "cr": 1705, "cw": 0, "rs": 0, "usd": 0.005049}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269028.69}
+{"step": 0, "act": {"do": "write", "path": "maze.py", "text": "<547 chars>"}, "res": "wrote maze.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794269028.69}
+{"step": 1, "usage": {"inp": 4, "out": 164, "cr": 1183, "cw": 1180, "rs": 0, "usd": 0.0048346}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269030.29}
+{"step": 1, "act": {"do": "sh", "cmd": "cd /Users/kethuda/Work/razi-cells/kits/public/maze; ls | head -4; for i in 1 2 3; do [ -f in-$i.txt ] && python3 ~+/../../../../$OLDPWD/maze.py < in-$i.txt; [ -f out-$i.txt ] && cat out-$i.txt; done"}, "res": "exit 1\nDONE\nin-0.txt\nin-1.txt\nin-2.txt\n-1\n78\n/opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/kethuda/Work/razi-cells/kits/public/maze/../../../..//Users/kethuda/work/razi-cells/exp/e13c3/maze/maze.py': [Errno 2] No such file or directory\n/opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/kethuda/Wo", "route": "anthropic:claude-sonnet-5-5", "t": 1794269030.37}
+{"step": 2, "usage": {"inp": 4, "out": 25, "cr": 1183, "cw": 1655, "rs": 0, "usd": 0.0046321}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269031.34}
+{"event": "assay", "cmd": "kit:maze", "runs": [3.776045859055519, 3.721033490396797, 3.780602204008753, 3.8154019572514364, 3.7866476543003573], "t": 1794269033.31}
+{"step": 2, "act": {"do": "assay"}, "res": "assay accepted: baseline median 3.7806, noise 2.5%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794269033.31}
+{"step": 3, "usage": {"inp": 4, "out": 740, "cr": 1183, "cw": 1739, "rs": 0, "usd": 0.0119921}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269038.34}
+{"event": "variants", "path": "maze.py", "medians": {"inc": 3.8013924343646144, "v0": 4.102634224061807}, "best": "v0", "adopted": true, "gain": 0.0792, "kinds": null, "arm": "ctrl", "t": 1794269044.89}
+{"event": "improve", "gain": 0.0792, "what": "maze.py variant ()", "t": 1794269044.89}
+{"step": 3, "act": {"do": "variants", "path": "maze.py", "versions": "<725 chars>"}, "res": "medians inc=3.801, v0=4.103. ADOPTED v0 (+8%).", "route": "anthropic:claude-sonnet-5-5", "t": 1794269044.89}
+{"step": 4, "usage": {"inp": 4, "out": 328, "cr": 1183, "cw": 2226, "rs": 0, "usd": 0.0090896}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269048.32}
+{"step": 4, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269048.32}
+{"event": "final", "final": 4.123124021644578, "baseline": 3.780602204008753, "final_gain": 0.0906, "t": 1794269051.13}

@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py uses fast doubling with a bit loop and gives fib(n) mod 1e9+7. Checks: fib(10)=55, fib(1000)=517691607 (matches a plain iterative loop), and fib(10**18)=209783453. The assay baseline is 82.09 (thousands of calls per second, 1.2% noise). I did not try any further optimization.",
+ "calls": 4,
+ "secs": 11.5
+}

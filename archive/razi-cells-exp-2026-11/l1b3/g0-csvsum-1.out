@@ -1,0 +1,17 @@
+{
+ "result": null,
+ "calls": 6,
+ "secs": 23.0,
+ "ledger": {
+  "e": 9.311100000000039,
+  "born": 400.0,
+  "spent": 390.6889,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 0.0,
+  "state": "dead",
+  "fit": 0.0,
+  "age": 5,
+  "assay": false
+ }
+}

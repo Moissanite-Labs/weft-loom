@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is the adopted variant: it reads stdin as bytes, splits once on newlines, splits each row with maxsplit=2, lets float() handle a trailing \\r, accumulates sums in a dict, and prints sorted 'cat,sum' lines with 2 decimals. It matched the sample out-0.txt exactly (cmp SAME) and was assayed at +5% over the baseline (adopted variant median 2.048 vs 1.959). I'm resting here rather than spending more energy on further variants, since the remaining gains look small relative to the 3.3% noise.",
+ "calls": 7,
+ "secs": 55.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 120.5694,
+  "earned": 17.80083889811266,
+  "got": 229.5396,
+  "gave": 526.7710388981126,
+  "state": "resting",
+  "fit": 0.04550716939313415,
+  "age": 7,
+  "assay": true,
+  "sense": 0.9252
+ }
+}

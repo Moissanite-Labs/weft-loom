@@ -1,0 +1,5 @@
+{
+ "result": "Built primes.py: an odd-only sieve of Eratosthenes. It allocates a bytearray of size n>>1 (bit i = odd number 2i+1), marks 1 as non-prime, crosses out multiples of each prime p starting at p*p using stride-p slice assignment with a precomputed bytes block (the fastest marking method measured: 3.2 ms for n=5e6), then counts primes as 1 + size - s.count(1) (bytearray.count runs at C speed, ~0.8 ms vs ~5.9 ms for sum()). Verified correct on all bench cases: 10->4, 100->25, 1000->168, 30->10, 4->2, 3->1, 999983->78497, 1000000->78498, and 5000000->348513 (the required value). Microbenchmarks confirmed mark=3.2ms, count=0.8ms; remaining time is Python interpreter startup (~24ms of the ~29ms per run, process startup is the floor since bench spawns a fresh subprocess each rep). Assay accepted at baseline 29376 and the current body now measures ~33691 (about +15% over baseline), with the correct counts guaranteed by the EXPECT checks in bench.py that gate every score.",
+ "calls": 15,
+ "secs": 531.9
+}

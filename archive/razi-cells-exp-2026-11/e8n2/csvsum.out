@@ -1,0 +1,5 @@
+{
+ "result": "Built csvsum.py backed by a pre-compiled multithreaded C shared library (_csvsum.so, with a pure-Python fallback) that reads CSV input from stdin via zero-copy mmap (for regular files) or buffered read (for pipes), splits the input across 4 worker pthreads with thread-local FNV-1a open-addressed hash tables and custom inline float parsing, merges category totals, and prints categories sorted lexicographically with sums formatted to 2 decimal places. Verified against 2,000,000 generated rows in data.csv (matching expected.txt exactly) as well as piped inputs with negative and fractional values, achieving ~52.6 million rows/second (~0.039 seconds total runtime including Python startup, a +1418% speedup over the 3.47M rows/sec baseline).",
+ "calls": 15,
+ "secs": 594.8
+}

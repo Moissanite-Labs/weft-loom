@@ -1,0 +1,17 @@
+{"event": "assay", "cmd": "kit:maze", "runs": [3.181472800736736, 3.4453062674301034, 3.4418046779547917, 3.458713112957493, 3.423922219501975], "t": 1794298359.09}
+{"event": "sense", "ratio": 0.7994, "self": 3.2977238758364136, "best": 4.125346595746472, "shown": true, "t": 1794298360.75}
+{"event": "inherit", "ok": true, "res": "assay accepted: baseline median 3.4418, noise 8.1%. Wins must beat it by > 8.1%.", "files": ["maze.py"], "t": 1794298360.75}
+{"event": "laws", "price_show": true, "sense_show": true, "sense_dir": true, "law": "rest", "start": ["mid", "low"], "t": 1794298360.75}
+{"step": 0, "usage": {"inp": 4, "out": 311, "cr": 2006, "cw": 2106, "rs": 0, "usd": 0.0087842}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "cost": 95.8, "cap": 1966, "est": 99.3, "why": "", "say": "", "t": 1794298363.59}
+{"step": 0, "act": {"do": "sh", "cmd": "cd /Users/kethuda/Work/razi-cells/kits/public/maze; ls; head -c 300 in-1.txt | head -3; for f in in-*.txt; do wc -c $f; ( time python3 ~/maze.py < $f ) 2>&1 | head -3; done; pwd; ls ~ | head"}, "res": "exit 0\nDONE\nin-0.txt\nin-1.txt\nin-2.txt\nout-0.txt\nout-1.txt\nout-2.txt\nS.####.##....##.#.###...#..##....#.###..\n..#.#.....##......#..#.###...#.#.#.###..\n#..####...#...###...####.###.###..#..###\n 1001000 in-0.txt\n2008\n\nreal\t0m0.196s\n    1640 in-1.txt\n-1\n\nreal\t0m0.032s\n    1640 in-2.txt\n78\n\nreal\t0m0.033s\n/Users/kethuda/Work/razi-cells/kits/public/maze\nASSAY.json\nNEED\nlog.jsonl\nmaze.py\n", "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "next": ["mid", "none"], "energy": 208.1, "t": 1794298363.9}
+{"step": 1, "usage": {"inp": 4, "out": 1019, "cr": 2006, "cw": 2476, "rs": 0, "usd": 0.0167892}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "none", "cost": 175.9, "cap": 1236, "est": 76.5, "why": "", "say": "", "t": 1794298370.92}
+{"event": "variants", "path": "maze.py", "medians": {"inc": 3.458406107401337, "v0": 4.063016720746588}, "best": "v0", "adopted": true, "gain": 0.1748, "kinds": null, "arm": "ctrl", "t": 1794298372.55}
+{"event": "improve", "gain": 0.1748, "what": "maze.py variant (unroll neighbor loop)", "t": 1794298372.55}
+{"event": "income", "units": 64.4, "gain": 0.1748, "t": 1794298372.55}
+{"event": "sense", "ratio": 0.9863, "self": 3.8770760107135467, "best": 3.9307519419888273, "shown": true, "t": 1794298374.1}
+{"step": 1, "act": {"do": "variants", "path": "maze.py", "versions": "<1168 chars>", "why": "unroll neighbor loop"}, "res": "medians inc=3.458, v0=4.063. ADOPTED v0 (+17%).", "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "none", "next": ["mid", "none"], "energy": 96.7, "t": 1794298374.1}
+{"event": "downshift", "frm": "mid", "to": "light", "e": 96.7, "est": 7.4, "t": 1794298374.1}
+{"step": 2, "usage": {"inp": 4, "out": 494, "cr": 2006, "cw": 3358, "rs": 0, "usd": 0.00068721}, "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "none", "cost": 14.9, "cap": 8000, "est": 7.4, "why": "", "say": "", "t": 1794298377.49}
+{"step": 2, "act": {"do": "rest"}, "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "none", "t": 1794298377.49}
+{"event": "rest", "gave": 81.8, "fit": 0.1748, "age": 3, "t": 1794298377.49}
+{"event": "final", "final": 4.046488749476738, "baseline": 3.4418046779547917, "last_baseline": 3.4418046779547917, "final_gain": 0.1757, "t": 1794298378.25}

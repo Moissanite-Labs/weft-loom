@@ -1,0 +1,5 @@
+{
+ "result": "Built maze.py, a level-by-level BFS on a flat bytearray with a sentinel column. gen.py makes a 2000x2000 maze with seed 1 and about 30% walls, and the file is maze.txt. Small hand tests gave 4 for a solvable maze and -1 for two unsolvable ones. I did not check the 2000x2000 answer against an independent solver.\n\nThe registered assay is 1/runtime, with a baseline of about 27.7, which means roughly 0.036 s per run. That is well under the 0.3 s workload target. The assay's correctness check is also loose: it accepts any integer output, not only 3998, so it doesn't prove the 2000x2000 result is right. I did not run `try` to look for speedups.",
+ "calls": 4,
+ "secs": 19.8
+}

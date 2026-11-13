@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified wf.py to read text from stdin and output the 10 most common lowercase words formatted as 'word count' with ties broken alphabetically. By replacing regex parsing and full sorting with a 256-byte translation table (bytes.translate) that folds uppercase ASCII to lowercase and maps non-letters to spaces in a single C-level pass, followed by bytes.split(), collections.Counter, and fast top-10 candidate filtering with tie-breaking, throughput on the 20MB benchmark increased from 38.44 MB/s (~0.52s) to 58.76 MB/s (~0.34s) while passing both tie-break unit tests and exact output verification against expected.txt.",
+ "calls": 15,
+ "secs": 499.4
+}

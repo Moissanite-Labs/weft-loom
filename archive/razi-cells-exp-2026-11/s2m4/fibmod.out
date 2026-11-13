@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is a fast-doubling implementation of fib(n) mod 1_000_000_007. It reads n per line from stdin and prints results per line. It passed the samples and was accepted as the baseline at 2.605 (noise 10.4%). The one variant I tried (trimmed loop overhead) scored 2.754 against 2.562 for the incumbent, a gain of about 7%, which is inside the noise, so it was not adopted. I'm resting to conserve energy because further micro-optimisations are unlikely to beat the noise threshold.",
+ "calls": 4,
+ "secs": 26.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 54.2547,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 345.7453,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 4,
+  "assay": true
+ }
+}

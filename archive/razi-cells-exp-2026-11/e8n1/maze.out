@@ -1,0 +1,5 @@
+{
+ "result": "Built `maze.py` (backed by a compiled C shared library `_maze.so` loaded via `ctypes` with a pure-Python fallback) to compute the 4-neighbour shortest path length from `S` to `E` on a `#`/`.` grid read from stdin, printing the distance or `-1` if unreachable. The solver parses the raw grid buffer directly using newline characters as natural row-boundary walls (`stride = W + 1`), pads only the top and bottom borders with `#` sentinels, and executes a level-by-level bidirectional BFS that expands the smaller frontier at each step. Verified correctness across 8 small edge-case grids (including unreachable paths, 1D grids, adjacent `SE`, and CLI execution) and three fixed-seed 2000x2000 benchmark mazes (`maze1.txt` -> 3994, `maze2.txt` -> 4174, `maze3.txt` -> -1), improving assay throughput from 3.3638 mazes/sec to 80.2754 mazes/sec (~12.5 ms per 2000x2000 maze, a 23.8x speedup).",
+ "calls": 20,
+ "secs": 691.1
+}

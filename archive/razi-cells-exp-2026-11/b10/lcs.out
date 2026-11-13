@@ -1,0 +1,5 @@
+{
+ "result": "Built `lcs.py` to compute the length of the longest common subsequence of two strings read from stdin using Allison-Dix / Hyyr\u00f6 bit-parallel dynamic programming over Python's arbitrary-precision integers (`u = S & p; S = (S + u) | (S - u)`). Improved performance by +28% via fast character-position bitmask construction (`str.translate` + `int(..., 2)` for small alphabets and `str.find` loops for larger alphabets), pruning characters not in `set(a) & set(b)`, and skipping DP updates on non-matching characters (`if p := pos_get(ch):`). Verified correctness across edge cases, randomized tests of varying alphabet sizes, and 3000-character strings via `bench.verify()` against reference O(nm) DP and CLI subprocess execution, achieving ~557+ 3000-char LCS pairs/sec (<1.8 ms per pair).",
+ "calls": 15,
+ "secs": 401.7
+}

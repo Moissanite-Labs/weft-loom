@@ -1,0 +1,5 @@
+{
+ "result": "Built primes.py: a mod-30 wheel sieve (8 residue classes, one bytearray per class, composites cleared via slice assignment from a shared zero buffer) with small primes precomputed once by an odd-only sieve, and the 16 (8 classes \u00d7 2 pieces) sieve tasks run in parallel child processes via os.fork, returning counts over pipes (serial fallback for n<1e6 or no fork). Verified: primes.py 5000000 \u2192 348513 (correct), also 2\u21920, 10\u21924, 1000000\u219278498, 200000000\u219211078937, 300000000\u219216252325. Assay (in-process count_primes(3e8), best of 7) went from baseline ~1838 to ~24560 (+469% adopted, then a further tuning round kept the incumbent); wall-clock `python3 primes.py 200000000` runs in ~0.07 s.",
+ "calls": 15,
+ "secs": 1128.6
+}

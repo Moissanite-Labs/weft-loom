@@ -1,0 +1,1 @@
+lcs.py: bit-parallel LCS (v=((v+u)|(v-u))&full), verified by check.py (random vs naive) and big.txt=1948, huge.txt(40k acgt)=26148. Assay registered baseline ~1046 (4x huge + 1x big runs). Ideas left: reduce per-iter overhead (mask every k iters, list masks by ord). Then done.

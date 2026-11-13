@@ -1,0 +1,5 @@
+{
+ "result": "Built wf.py: reads all of stdin as bytes, uses a single bytes.translate table to lowercase and map non-word bytes to spaces, splits, and counts with collections.Counter; on multi-core machines it os.forks up to 8 workers over newline-aligned slices and merges per-worker dicts via pickle over pipes. Output is the top 10 by (-count, word). Verified: output on the generated 20MB data.txt matches ref.txt byte-for-byte (cmp MATCH), and a small tie/case test ('The the THE cat. Cat dog! a a a b') prints 'a 3 / the 3 / cat 2 / b 1 / dog 1' as required. Assay score rose from 534 (regex baseline) to ~3276 (\u22480.3s wall for 20MB); later micro-tweaks (marshal, uncapped workers, bigger chunks) gave no further gain so the incumbent was kept.",
+ "calls": 13,
+ "secs": 390.9
+}

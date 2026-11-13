@@ -1,0 +1,10 @@
+{"event": "assay", "cmd": "kit:csvsum", "runs": [1.8794953685862017, 1.8755758617429918, 1.9402005928270003, 1.899417909242267, 1.934684722989498], "t": 1794298058.09}
+{"event": "sense", "ratio": 0.8282, "self": 1.9135005270513363, "best": 2.310419492758433, "shown": true, "t": 1794298073.28}
+{"event": "inherit", "ok": true, "res": "assay accepted: baseline median 1.89942, noise 3.4%. Wins must beat it by > 3.4%.", "files": ["csvsum.py"], "t": 1794298073.28}
+{"event": "laws", "price_show": true, "sense_show": true, "sense_dir": true, "law": "rest", "start": ["mid", "low"], "t": 1794298073.28}
+{"step": 0, "usage": {"inp": 4, "out": 146, "cr": 2006, "cw": 1959, "rs": 0, "usd": 0.0067667}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "cost": 75.7, "cap": 2968, "est": 95.1, "why": "", "say": "", "t": 1794298074.99}
+{"step": 0, "act": {"do": "sh", "cmd": "cd /Users/kethuda/Work/razi-cells/kits/public/csvsum; ls | head; head -3 in-0.txt; wc -l in-0.txt"}, "res": "exit 0\nDONE\nin-0.txt\nout-0.txt\nid,cat,val\n0,kkg,64697.49\n1,abs,6806.47\n 1000001 in-0.txt\n", "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "next": ["light", "none"], "energy": 324.3, "t": 1794298075.04}
+{"step": 1, "usage": {"inp": 4, "out": 960, "cr": 2006, "cw": 2107, "rs": 0, "usd": 0.00076384}, "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "none", "cost": 15.6, "cap": 8000, "est": 5.6, "why": "", "say": "", "t": 1794298080.4}
+{"step": 1, "act": {"do": "rest"}, "route": "anthropic:claude-haiku-5-5", "model": "light", "effort": "none", "t": 1794298080.4}
+{"event": "rest", "gave": 308.7, "fit": 0.0, "age": 2, "t": 1794298080.4}
+{"event": "final", "final": 1.8947472630275464, "baseline": 1.899417909242267, "last_baseline": 1.899417909242267, "final_gain": -0.0025, "t": 1794298084.09}

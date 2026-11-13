@@ -1,0 +1,18 @@
+{
+ "result": "Body is fibmod.py: a 3-window (11-bit) symmetric-matrix table Fibonacci mod 1e9+7. It reduces n mod PER=2(M+1), the Pisano period for this modulus, then multiplies three precomputed table entries and reads the off-diagonal result. It uses only the stdlib and reads one integer per line. It matches the sample out-0 byte for byte (cmp ok, about 0.03 to 0.08 s on 30,005 lines), and the assay registered baseline 13.1489 (+100% over the previous body). I am stopping here because further gains would need to beat the 6% noise band, and the remaining energy is worth more returned to the lineage store.",
+ "calls": 4,
+ "secs": 26.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 346.91330000000005,
+  "earned": 277.28551190320906,
+  "got": 0.0,
+  "gave": 330.372211903209,
+  "state": "resting",
+  "fit": 1.0001332028317065,
+  "age": 4,
+  "assay": true,
+  "sense": 1.1614
+ }
+}

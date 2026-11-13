@@ -1,0 +1,1 @@
+{"kind": "write", "step": 3, "path": "sortints.py", "code": "import sys\n\ndef main():\n    data = sys.stdin.read().split()\n    data.sort(key=int)\n    sys.stdout.write('\\n'.join(data) + '\\n')\n\nif __name__ == '__main__':\n    main()\n", "t": 1794249780.46}

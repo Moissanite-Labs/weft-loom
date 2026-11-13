@@ -1,0 +1,5 @@
+{
+ "result": "Built lcs.py: reads two lines from stdin and prints the LCS length. For ASCII input it uses an embedded C implementation of the Hyyr\u00f6 bit-parallel LCS algorithm on 64-bit words (manual carry chain), compiled once with gcc -O3 -march=native and cached next to the script as _lcs_bin3; it falls back to a pure-Python bigint bit-parallel version (V = (V + (V&M)) | (V&~M)) for non-ASCII input or when no compiler is available. Verified: check.py (60 random cases vs a classic O(nm) DP reference) prints OK, big.txt gives 1948, edge cases (single line, empty lines) give 0, and the assay (which also checks correctness on 3000-char-class inputs and times 40000\u00d740000-char strings) scores ~6700, up from a baseline of 1403 (+278% over the best pure-Python version); 3000-char strings run in well under a millisecond of compute plus process startup.",
+ "calls": 15,
+ "secs": 591.2
+}

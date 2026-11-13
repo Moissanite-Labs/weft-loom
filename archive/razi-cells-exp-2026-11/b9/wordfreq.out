@@ -1,0 +1,5 @@
+{
+ "result": "Built wf.py: reads all of stdin as bytes, applies a single 256-byte translate table that lowercases A\u2013Z and maps every non-letter byte to a space, splits on whitespace, counts with collections.Counter (C-level), then sorts items by (-count, word) and prints the top 10 as \"word count\". Verified against the independent regex-based reference ref.py on a generated 20MB corpus (big.txt from gen.py, seed 7): outputs are byte-identical (expected.txt). Assay (sh assay.sh, median of 7 runs of 100/CPU-seconds) rose from 86.96 with the original regex version to ~285 (+167%, ~0.35 s for 20MB); subsequent variant rounds (chunked counting, split(b' '), str path, gc.disable) gave no gain beyond noise, so the simple translate+split+Counter version was kept.",
+ "calls": 12,
+ "secs": 801.3
+}

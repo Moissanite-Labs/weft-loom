@@ -1,0 +1,5 @@
+{
+ "result": "I wrote fibmod.py. It computes fib(n) mod 1e9+7 with fast doubling, and it first reduces n modulo 2(M+1)(M-1). It matches the public sample (in-0.txt against out-0.txt). The assay accepted it with a baseline of 2.244 (noise 1.9%). I did not try any improvements.",
+ "calls": 5,
+ "secs": 21.4
+}

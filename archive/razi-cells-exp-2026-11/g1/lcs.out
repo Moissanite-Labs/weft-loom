@@ -1,0 +1,5 @@
+{
+ "result": "Built lcs.py implementing Hyyro's bit-parallel LCS length algorithm: it reads two lines from stdin, builds a per-character bitmask for the shorter string, and runs the carry/reduce bit-parallel loop over the longer string, returning m - popcount(V). Verified against a classic O(nm) DP on many random small strings (all matching) and on the sample 'ABCBDAB'/'BDCABA' (prints 4). On 3000-char inputs (identical, random ACGT, random ASCII) it completes in about 2 ms, well within performance needs, and handles empty/imbalanced inputs correctly.",
+ "calls": 14,
+ "secs": 96.2
+}

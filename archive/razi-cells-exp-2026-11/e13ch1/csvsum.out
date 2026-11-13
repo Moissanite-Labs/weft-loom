@@ -1,0 +1,5 @@
+{
+ "result": "I built csvsum.py, which reads all of stdin as bytes and splits it into lines. It sums each value as integer cents per category in a dict, which avoids float error, and prints the categories sorted with 2 decimals. Its output matched the public sample (in-0.txt against out-0.txt, 1M rows) byte for byte under cmp. The assay accepted it with a baseline median of 1.5248 and 1.8% noise. I made no further optimisation. The sample has no negative or sub-cent values, so those code paths are untested.",
+ "calls": 7,
+ "secs": 28.3
+}

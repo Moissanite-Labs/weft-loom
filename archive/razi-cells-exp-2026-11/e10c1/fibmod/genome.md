@@ -1,0 +1,1 @@
+fibmod task. Assay = python3 bench.py (baseline 87k calls/s fast-doubling). Ideas: Pisano period 2*(p+1)=2000000016 reduces n to 31 bits; precomputed digit tables (matrix-vector steps) -> few mults. Verify CLI: fib(10)=55, fib(1e18)=209783453.

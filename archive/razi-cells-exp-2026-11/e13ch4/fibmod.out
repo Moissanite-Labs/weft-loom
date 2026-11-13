@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 by fast doubling. It first reduces n modulo the Pisano period 2000000016, which shortens the loop. It passes the public sample: the output matched out-0.txt with cmp. The assay registered a baseline of 2.27, and the adopted variant scored 4.31, a gain of 90%. I did not run any further optimisation.",
+ "calls": 6,
+ "secs": 21.6
+}

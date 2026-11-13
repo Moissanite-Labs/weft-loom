@@ -1,0 +1,5 @@
+{
+ "result": "Built `csvsum.py`, which reads a CSV with header `id,cat,val` from `stdin` and outputs each category and the sum of its `val` formatted to 2 decimal places, sorted lexicographically by `cat`. It uses a pre-compiled (and auto-compiled on fallback) multi-threaded C shared library (`_csvsum_c1.dylib`) via `ctypes` that memory-maps `stdin` (or reads chunks from pipes), splits the input across 8 worker threads with thread-local open-addressed FNV-1a hash tables and fast custom floating-point parsing, and merges/sorts the aggregated categories, alongside a pure-Python fallback. Verified correctness on both small edge cases (including negative values and unsorted categories) and a generated 2,000,000-row dataset (`data.csv` against `expected.txt`), improving throughput from 3.20M rows/sec baseline to 50.37M rows/sec (+1467%, processing 2,000,000 rows in ~40 ms including process startup).",
+ "calls": 15,
+ "secs": 735.3
+}

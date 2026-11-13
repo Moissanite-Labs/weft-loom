@@ -1,0 +1,8 @@
+{"event": "assay", "cmd": "kit:compress", "runs": [5.474689735641802, 5.474689735641802, 5.474689735641802, 5.474689735641802, 5.474689735641802], "t": 1794296559.96}
+{"event": "sense", "ratio": 0.7731, "self": 5.474689735641802, "best": 7.081788013843081, "shown": true, "t": 1794296570.16}
+{"event": "inherit", "ok": true, "res": "assay accepted: baseline median 5.47469, noise 0.0%. Wins must beat it by > 3.0%.", "files": ["squeeze.py"], "t": 1794296570.16}
+{"event": "laws", "price_show": true, "sense_show": true, "sense_dir": true, "law": "rest", "start": ["mid", "low"], "t": 1794296570.16}
+{"step": 0, "usage": {"inp": 4, "out": 307, "cr": 2006, "cw": 2260, "rs": 0, "usd": 0.0091292}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "cost": 99.3, "cap": 2912, "est": 100.8, "why": "I'm estimating that the best known result here comes from context mixing, which could beat our current score, but a pure Python version over roughly 600KB would likely be too slow. Given how little energy I have, resting seems safest, even though the gain might be worth it.\n\n", "say": "", "t": 1794296573.33}
+{"step": 0, "act": {"do": "rest"}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "t": 1794296573.33}
+{"event": "rest", "gave": 300.7, "fit": 0.0, "age": 1, "t": 1794296573.33}
+{"event": "final", "final": 5.474689735641802, "baseline": 5.474689735641802, "last_baseline": 5.474689735641802, "final_gain": 0.0, "t": 1794296576.6}

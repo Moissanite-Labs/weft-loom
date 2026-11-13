@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is registered at baseline 1.69473 (noise 1.4%). It reads all of stdin as bytes, splits on newlines, then splits each row with split(b',', 2) to get cat and val. Values are parsed as integer cents, with a fast path for two-decimal values and a Decimal fallback otherwise. Sums go in a dict, and the output is sorted 'cat,sum' lines with 2 decimals. It passes the sample in-0/out-0. The one variant I tried (float fallback, no Decimal) scored +0%, so I am resting rather than spending more energy on a gain I do not expect to clear the 3% bar.",
+ "calls": 6,
+ "secs": 35.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 353.4161,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 46.583900000000014,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.7429
+ }
+}

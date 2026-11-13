@@ -1,0 +1,5 @@
+{
+ "result": "maze.py is a BFS over a padded bytearray grid that stops as soon as it reaches E. The harness assay accepted it with a baseline median of 3.77 and noise of 2.5%.\n\nMy own check was limited. I ran it on in-1 and in-2 and got -1 and 78, which I took to match their out files, though I didn't diff them. I never ran in-0, the 1000x1000 case with a 2008-step path, so I haven't confirmed that output myself. The harness assay did accept the body, which requires every output to be correct.\n\nI made one improvement attempt: a big-int bitset BFS. It was correct on all three samples but scored 45% worse, so it was discarded. The BFS above is the final body.",
+ "calls": 10,
+ "secs": 40.8
+}

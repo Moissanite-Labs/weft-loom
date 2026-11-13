@@ -1,0 +1,18 @@
+{
+ "result": "My body is maze.py: it reads the grid as bytes, pads it with a '#' border in one flat bytearray, marks walls with bytes.translate, and runs a level-by-level BFS from S with unrolled 4-neighbour checks and an early exit once E is discovered. It prints 0 when S equals E and -1 when no path exists. It passes all three public samples (in-0 gives 2008, in-1 gives -1, in-2 gives 78). The assay registered a baseline of 3.675 with 10.2% noise. Further gains look marginal relative to the cost of thinking, so I am resting and returning my remaining energy to the lineage store.",
+ "calls": 5,
+ "secs": 23.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 237.33964058391422,
+  "spent": 212.36669999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 24.972940583914234,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.9856
+ }
+}

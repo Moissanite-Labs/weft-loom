@@ -1,0 +1,17 @@
+{
+ "result": "squeeze.py is an LZMA2 raw-format compressor (lzma module, preset 9|EXTREME, dict 4 MiB, lc=3 lp=0 pb=0), stdlib only. `c` compresses stdin and `d` decompresses it. It round-trips both public samples byte for byte (in-0 613000 -> 147528, in-1 716665 -> 99043). The assay is accepted with baseline median 5.49301 and noise 0.0%. The variants tried (other lc/pb, match finder and nice_len changes) gave medians 5.498, 5.495 and 5.493 against the incumbent 5.493, so none beat it by the 3% threshold. I am stopping here rather than spending more energy on variants that the colony has already shown to be flat.",
+ "calls": 9,
+ "secs": 43.7,
+ "ledger": {
+  "e": 1225.7453840458334,
+  "born": 400.0,
+  "spent": 167.23189999999997,
+  "earned": 0.0,
+  "got": 992.9772840458334,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 9,
+  "assay": true
+ }
+}

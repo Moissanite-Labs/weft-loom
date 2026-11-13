@@ -1,0 +1,5 @@
+{
+ "result": "I wrote maze.py, a level-by-level BFS on a padded bytearray grid. It runs the 2000x2000 maze from gen.py (seed 7) in about 0.68 s. On small hand-made mazes it printed 4 for a solvable one and -1 for two others. On the big maze it printed -1, and the independent deque BFS in chk.py also printed -1, so the two agree. That big case is weak evidence, because it only exercises the no-path answer. I did not test a large maze that has a path.\n\nThe registered assay is also weak. It prints 1 whenever maze.py outputs any integer, so it does not measure speed and cannot show an improvement. I did not try to optimise further.",
+ "calls": 5,
+ "secs": 30.3
+}

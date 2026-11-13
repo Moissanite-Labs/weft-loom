@@ -1,0 +1,8 @@
+{"event": "assay", "cmd": "kit:maze", "runs": [3.4719509648597717, 3.4579526558057165, 3.5192179445350362, 3.468151456998882, 3.495855147869568], "t": 1794298077.6}
+{"event": "sense", "ratio": 0.8025, "self": 3.352643148400777, "best": 4.17773695563245, "shown": true, "t": 1794298080.86}
+{"event": "inherit", "ok": true, "res": "assay accepted: baseline median 3.47195, noise 1.8%. Wins must beat it by > 3.0%.", "files": ["maze.py"], "t": 1794298080.86}
+{"event": "laws", "price_show": true, "sense_show": true, "sense_dir": true, "law": "rest", "start": ["mid", "low"], "t": 1794298080.86}
+{"step": 0, "usage": {"inp": 4, "out": 258, "cr": 2006, "cw": 1635, "rs": 0, "usd": 0.0070767}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "cost": 78.8, "cap": 3030, "est": 88.9, "why": "I have a working body and its baseline, and the sensor reads 0.80 of the best body, so a better one must exist. I'm weighing whether a quick change like bidirectional BFS or numpy would help, since startup and BFS over a million cells dominate the time, but numpy frontier search is slow on long snake paths. I'll keep it simple and rest for now, since the energy still goes back to the lineage.\n\n", "say": "", "t": 1794298085.06}
+{"step": 0, "act": {"do": "rest"}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "t": 1794298085.06}
+{"event": "rest", "gave": 321.2, "fit": 0.0, "age": 1, "t": 1794298085.06}
+{"event": "final", "final": 3.390032105434991, "baseline": 3.4719509648597717, "last_baseline": 3.4719509648597717, "final_gain": -0.0236, "t": 1794298085.97}

@@ -1,0 +1,5 @@
+{
+ "result": "Built `csvsum.py` backed by a compiled C shared library (`_csvsum.c` -> `_csvsum.dylib`, with a pure-Python fallback) to read a CSV with header `id,cat,val` from `stdin` and print each category and its summed value formatted to 2 decimal places, sorted lexicographically by category. The C engine maps `stdin` directly into memory with `mmap` (falling back to buffered `read` for pipes), performs single-pass fused category FNV-1a hashing and custom fast floating-point parsing into an open-addressed hash table, sorts categories with `qsort`, and writes buffered output. Verified against both the 2,000,000-row dataset (`data.csv` -> `expected.txt`) and edge-case pipe inputs (negative values, decimals, arbitrary category names), improving throughput from 3.20M rows/sec (pure Python baseline) to 32.0M rows/sec (~0.06s total runtime including Python startup, a +908% assay improvement).",
+ "calls": 25,
+ "secs": 566.6
+}

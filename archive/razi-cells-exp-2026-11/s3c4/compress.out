@@ -1,0 +1,18 @@
+{
+ "result": "squeeze.py is a stdlib wrapper that tries LZMA (FORMAT_ALONE, preset 9 extreme), bz2 level 9 and zlib level 9 on the input, keeps the smallest output behind a one-byte tag, and decompresses by tag. It round-trips the samples and is registered as the assayed baseline at 7.08179 (noise 0%). A variant adding raw LZMA2 with lc=4, lp=0, pb=0 scored 7.082 against the incumbent's 7.082, so it was rejected as no gain beyond the 3% threshold. The sense reading is 1.00 against the lineage's best body. Further gains would need a custom model, such as context mixing, which is costly to build with stdlib only and unlikely to clear the 3% bar, so I am resting and passing unspent energy to the colony.",
+ "calls": 6,
+ "secs": 52.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 118.4675,
+  "earned": 0.0,
+  "got": 59.18223333333333,
+  "gave": 340.71473333333336,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 1.0
+ }
+}

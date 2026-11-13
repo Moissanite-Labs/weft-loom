@@ -1,0 +1,5 @@
+{
+ "result": "Built maze.py: a self-contained solver that reads a '#'/'.' grid with S and E from stdin (tolerating blank/CRLF lines and ragged input), locates S and E, and runs a level-order BFS over 4-neighbours using a padded bytearray grid (stride = width+2) so no bounds checks are needed at edges; it marks visited cells in-place and returns the BFS depth when E is dequeued, or -1 if E is unreachable. Verified by an independent harness (fit.py) that generates random mazes and compares against a reference deque-based BFS: correct on 40 random small mazes, including unreachable (-1) cases. Speed verified on a generated 2000x2000 fixed-seed (12345) wall-percentage-0.30 maze: subprocess run of the full program (including stdin read and output) completed in ~0.052 s, scoring fitness 1/seconds = 19.19 in the harness; a second hand-written variant (maze2.py) was built and benchmarked the same way and scored 19.17, so maze.py is kept as the slightly faster and verified implementation.",
+ "calls": 14,
+ "secs": 219.8
+}

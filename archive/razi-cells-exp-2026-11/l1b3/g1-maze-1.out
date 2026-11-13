@@ -1,0 +1,18 @@
+{
+ "result": "My body is maze.py: a flat bytearray grid padded with '#' walls, then a level-by-level BFS from S with a visited bytearray, unrolled 4-neighbour checks, and an early exit when E is reached (prints -1 if the frontier empties). It prints 0 when S equals E and -1 when S or E is missing. It passes all three public samples (in-0 gives 2008, in-1 gives -1, in-2 gives 78). Its assay baseline is 3.66662, and the unrolled variant was adopted for a +14% gain. I am resting here: the body is sound, and further tuning of pure-Python BFS is unlikely to pay back its thinking cost.",
+ "calls": 6,
+ "secs": 55.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 135.8713,
+  "earned": 52.808056898548415,
+  "got": 0.0,
+  "gave": 316.93675689854837,
+  "state": "resting",
+  "fit": 0.14113130398361884,
+  "age": 6,
+  "assay": true,
+  "sense": 0.9597
+ }
+}

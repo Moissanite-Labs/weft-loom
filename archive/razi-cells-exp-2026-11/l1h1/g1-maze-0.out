@@ -1,0 +1,18 @@
+{
+ "result": "Body unchanged: maze.py is a flat padded bytearray with level-by-level BFS from S. It stops as soon as E is reached and prints -1 if there is no path. Baseline score is 3.987. I made no new attempt, so there is no evidence of improvement beyond that baseline.",
+ "calls": 1,
+ "secs": 5.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 75.092,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 324.908,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.8761
+ }
+}

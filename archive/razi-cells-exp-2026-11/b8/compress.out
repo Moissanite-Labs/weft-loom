@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `squeeze.py` providing exact round-trip lossless `compress(bytes) -> bytes` and `decompress(bytes) -> bytes` using only the Python standard library (`lzma` with raw tuned LZMA1 filters `preset=9|PRESET_EXTREME, lc=3, lp=0, pb=0, nice_len=273` and `bz2` level-9 BWT compression, selecting the smaller representation per payload with a 1-byte header and empty-input fast path). Verified exact round-trip correctness across a fixed 312 KB corpus of English-like prose and structured JSON records (`bench.py`) as well as binary and boundary edge cases (`b\"\"`, single-byte, repeating patterns, and all 256 byte values), improving the benchmark compression ratio from the 8.876 baseline up to 11.98x.",
+ "calls": 16,
+ "secs": 377.8
+}

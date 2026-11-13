@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is built and passes the samples (in-0 -> out-0 matches, fib(10)=55). It reads all of stdin, caches repeated n, and computes F(n) mod 1e9+7 with fast doubling, one modulo per bit step. The variant that removed the extra per-bit modulo was adopted after scoring +4% over the baseline of 2.59 (medians 2.605 -> 2.709). I stopped here because further gains would need to beat the 3% win threshold, and the remaining ideas are small compared with the cost of trying them.",
+ "calls": 7,
+ "secs": 54.3,
+ "ledger": {
+  "e": 1059.640849923977,
+  "born": 400.0,
+  "spent": 169.9834,
+  "earned": 15.659132101913404,
+  "got": 813.9651178220635,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.039924204547691966,
+  "age": 7,
+  "assay": true,
+  "sense": 0.2165
+ }
+}

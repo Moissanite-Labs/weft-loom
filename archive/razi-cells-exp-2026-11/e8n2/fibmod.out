@@ -1,0 +1,5 @@
+{
+ "result": "Built fibmod.py backed by a pre-compiled CPython C extension (_fibmod.cpython-314-darwin.so, with an identical pure-Python fallback) that reduces n modulo the Pisano period of 1,000,000,007 (2,000,000,016 < 2^31) and computes fib(n) mod 1,000,000,007 in O(1) time via two 16-bit lookup tables (T0 of size 65,536 and T1 of size 30,518) and two 64-bit multiplications. Verified exactness against matrix exponentiation across boundary and large test cases (n=0, 1, 2, 10 -> 55, 10^15+37, 10^18-1, 10^18 -> 209783453), improving assay throughput from 77,684 ops/sec to over 22,000,000 ops/sec (~283x speedup) and CLI execution time to 27 ms.",
+ "calls": 27,
+ "secs": 691.3
+}

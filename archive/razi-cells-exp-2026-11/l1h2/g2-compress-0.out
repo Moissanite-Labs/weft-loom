@@ -1,0 +1,18 @@
+{
+ "result": "Body unchanged: lzma FORMAT_ALONE preset 9|EXTREME, baseline 5.4748. I tried nothing new. A pure-Python context-mixing compressor would likely be too slow and risky on the hidden inputs.",
+ "calls": 1,
+ "secs": 12.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 101.24199999999999,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 298.75800000000004,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

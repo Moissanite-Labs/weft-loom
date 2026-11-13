@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `maze.py`, which reads a grid of `#`, `.`, `S`, and `E` on stdin and outputs the shortest 4-neighbour path length from `S` to `E` (or `-1` if unreachable). The solver operates directly on a flat 1D `bytearray` with `#`-sentinel top/bottom row padding (and natural `\\n` side-row sentinels) to eliminate bounds checks, marks visited cells in-place, and uses a level-by-level unrolled `collections.deque` BFS with bound method references (`popleft`/`append`). Verified against edge cases (unreachable, missing endpoints, tiny grids) and two fixed-seed 2000x2000 winding-backbone mazes (`seed=42` -> path length 82976, `seed=99` -> path length 82944), improving benchmark score by +27% from 155.8 to 197.8 (~0.5s per 2000x2000 maze).",
+ "calls": 16,
+ "secs": 469.9
+}

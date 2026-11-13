@@ -1,0 +1,5 @@
+{
+ "result": "Built `maze.py` backed by a compiled CPython C extension (`_maze.c` -> `_maze.so`) that solves 4-neighbour shortest path from `S` to `E` on grids of `#` and `.` from `stdin`. The solver maps `stdin` directly into memory with `mmap` (`MAP_PRIVATE` with `read()` fallback for pipes), uses SIMD-accelerated `memchr` to compute row stride and locate `S` and `E`, and runs an in-place bidirectional BFS expanding the smaller frontier each step, using the newline characters as natural row-boundary sentinels. Verified against a pure-Python reference BFS across edge cases (1D rows, columns, unsolvable grids, missing endpoints) and three fixed-seed 2000x2000 mazes (`maze_2000_1.txt` -> 4006, `maze_2000_2.txt` -> 4002, `maze_2000_3.txt` -> -1), improving the benchmark score from 266.69 to ~2453 (~40 ms per 2000x2000 maze including Python startup).",
+ "calls": 20,
+ "secs": 479.4
+}

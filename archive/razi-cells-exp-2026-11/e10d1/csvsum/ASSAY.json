@@ -1,0 +1,1 @@
+{"cmd": "python3 -c \"\nimport subprocess,time\nt=time.perf_counter()\nout=subprocess.run(['python3','csvsum.py'],stdin=open('data.csv','rb'),capture_output=True).stdout\ndt=time.perf_counter()-t\nexp=open('expected.txt','rb').read()\nprint(0 if out!=exp else round(1000/dt,2))\n\"", "baseline": 1099.47, "noise": 0.025894294523725093}

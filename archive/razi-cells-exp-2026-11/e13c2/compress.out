@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py uses stdlib lzma in raw LZMA2 mode with extreme preset 9, a 16MB dictionary, lc=4, lp=0 and pb=0. I tuned these settings for text. The assay accepted it with a baseline compression ratio of 5.498 and 0% noise, and every output was correct. The assay's correctness check covers the round trip. I did not run a separate round-trip test on the sample files, and I did not try any other variants.",
+ "calls": 4,
+ "secs": 19.2
+}

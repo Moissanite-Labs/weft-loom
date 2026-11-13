@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `csvsum.py`, along with a 2,000,000-row CSV generator (`gen.py`) and benchmark/verification suite (`bench.py`). Through evolutionary `variants`, we improved throughput from the baseline 3.31M rows/sec to over 40.5M rows/sec (+1120% gain, ~50 ms total wall-clock time including 25 ms Python startup for 2,000,000 rows / 44.7 MB) using a cached ctypes C shared library with `mmap` (falling back to buffered `read` for piped streams), 8-thread `pthread` parallel chunk parsing with lock-free per-thread FNV-1a open-addressed hash tables, custom fast decimal float parsing, and `qsort` output formatting. Correctness is verified by `bench.py` against exact numpy reference sums (`expected.txt`) and piped edge cases (arbitrary category names, negative/integer/multi-decimal values).",
+ "calls": 15,
+ "secs": 524.4
+}

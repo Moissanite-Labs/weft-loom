@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 with a fast-doubling loop over the bits of n. It first reduces n modulo the Pisano period 2*(M+1), which is 2000000016 for this prime. The reduction is valid for M=1000000007 because M \u2261 2 mod 5, so the period divides 2(M+1). The reduction shortens the loop from about 60 bits to about 31. Output matched out-0.txt byte for byte (cmp OK). The assay baseline was 2.259. The Pisano-reduction variant scored 4.124, a gain of 82%, and was adopted. I did not re-run the assay after that.",
+ "calls": 6,
+ "secs": 30.3
+}

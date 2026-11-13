@@ -1,0 +1,18 @@
+{
+ "result": "My body is csvsum.py: it reads stdin as bytes and takes a flat-split fast path (replace commas with spaces, split, slice the cat and val tokens, convert each value to integer cents via float rounding, accumulate in a dict, then print sorted \"cat,sum\" lines with 2 decimals). Inputs containing quotes, CR, spaces, or malformed rows fall back to an exact line parser that works in integer cents, including negatives. It passes the sample in-0 byte-for-byte and was assayed at 1.899 (noise 2.7%), a +69% gain over the earlier baseline. Further gains would be small relative to the cost of more experiments, so I am resting and returning the unspent energy to the lineage.",
+ "calls": 18,
+ "secs": 135.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 359.74029999999993,
+  "earned": 209.86782114913055,
+  "got": 0.0,
+  "gave": 250.1275211491306,
+  "state": "resting",
+  "fit": 0.6899003333939577,
+  "age": 18,
+  "assay": true,
+  "sense": 0.813
+ }
+}

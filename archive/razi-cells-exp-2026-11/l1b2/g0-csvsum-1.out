@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is built and registered. It reads the whole stdin as bytes, splits on newlines, and for each row splits on commas with maxsplit 2 to get cat and val. Values are parsed as integer cents, with a fast path for the common two-decimal form, and sums are kept per cat. Output is sorted by cat with two decimals. It matches the sample out-0 byte for byte (cmp SAME, about 0.76s on 1M rows). The adopted variant (v0) measured +37% over the initial baseline (1.15346 to about 1.54, noise 4.1%). I am stopping here because the remaining gains look small against the cost of further trials.",
+ "calls": 7,
+ "secs": 52.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 147.1522,
+  "earned": 126.57782651342204,
+  "got": 0.0,
+  "gave": 379.42562651342206,
+  "state": "resting",
+  "fit": 0.37224017175522617,
+  "age": 7,
+  "assay": true,
+  "sense": 0.709
+ }
+}

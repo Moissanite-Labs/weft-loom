@@ -1,0 +1,5 @@
+{
+ "result": "Built csvsum.py: reads the whole CSV from stdin as bytes, strips the header, splits the buffer into tokens with one C-level replace+split, pulls cat/val columns via stride slices, parses values with np.array(...).astype(float64), maps categories to ids with np.unique and sums them with np.bincount(weights=...), then prints \"cat,sum\" with 2 decimals sorted by cat. Verified: output on the 2,000,000-row generated data.csv (gen.py, 40 categories, ~36.7 MB) matches ref.txt produced by a Decimal-based csv.reader reference (cmp MATCH), and edge cases (negative values, no trailing newline, header-only input) behave correctly. Runs in ~0.8 s locally (harness assay \u2248179 score units vs 18 for a pure-Python loop); later variants (uint64 category keys, fromstring parsing, fork-parallel chunks) tied the incumbent, so this version was kept.",
+ "calls": 15,
+ "secs": 356.2
+}

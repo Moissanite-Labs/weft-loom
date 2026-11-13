@@ -1,0 +1,5 @@
+{
+ "result": "Built squeeze.py: compress() tries several stdlib codecs (LZMA2 raw with preset 9|EXTREME plus zlib/bz2 alternatives) and emits the smallest with a one-byte tag; decompress() dispatches on the tag. Round-trip verified on the benchmark docs (English-like text, indented JSON, JSON-lines, mixed), empty input, single byte, all 256 byte values, random bytes, and highly repetitive input. Assay (python3 bench.py) is stable at 6.6798 compression ratio with zero noise. Experimental adaptive word-model arithmetic coders (sq3/sq4) beat LZMA on pure text (16.2K vs 17.8K) but the hybrid only gained ~1% overall, within the harness's acceptance threshold, so the simpler stdlib best-of version was kept as the incumbent.",
+ "calls": 15,
+ "secs": 576.1
+}

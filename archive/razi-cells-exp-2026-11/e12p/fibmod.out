@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py computes fib(n) mod 1e9+7 by fast doubling. It first reduces n modulo the Pisano period 2000000016, which leaves about 31 loop steps instead of 60. It also uses fewer modulo operations per step. Checks: fib(10)=55, and fib(1000)=517691607, which matches a naive iterative loop. I did not re-run these checks on the final body after the daughter cell's change. The assay calls fib(10**18-1) 20000 times, takes the best of 7 repeats, and reports kilo-calls per second (0 if the correctness checks fail). The baseline was 81.5, and the daughter's version scored +1208% over that.",
+ "calls": 11,
+ "secs": 65.4
+}

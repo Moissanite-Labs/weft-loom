@@ -1,0 +1,5 @@
+{
+ "result": "maze.py is a breadth-first search on a flat bytearray grid with a wall border. It reads stdin, finds S and E, and prints the shortest path length or -1. It matched all three public samples (checked with cmp), and the assay accepted it with a baseline score of 3.79 and 2.3% noise. I made one attempt to improve it, and that attempt lost. The daughter cell's try was refused because daughters can't spawn daughters, so it measured nothing about BFS speed.",
+ "calls": 9,
+ "secs": 36.5
+}

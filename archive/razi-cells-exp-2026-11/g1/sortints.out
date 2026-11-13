@@ -1,0 +1,5 @@
+{
+ "result": "Built sortints.py: reads all of stdin, parses whitespace-separated integers with numpy's fromstring (sep=' '), sorts with np.int64 sort, and writes them one per line. Verified against the reference output on empty input, small inputs, mixed-whitespace input, and a fixed-seed (12345) random 1,000,000-integer stream (test1m.txt) \u2014 output matches a Python sorted() reference exactly, and the 1M workload runs in ~0.23s. Candidate benchmarks showed this numpy approach (0.235s) beat the pure-Python split/sort (0.465s) and tied the np.array(bytes-split) variant (0.226s), so the simple numpy fromstring version was kept. OMP warnings appear on stderr but do not affect stdout.",
+ "calls": 14,
+ "secs": 127.7
+}

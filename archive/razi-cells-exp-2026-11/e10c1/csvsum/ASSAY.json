@@ -1,0 +1,1 @@
+{"cmd": "cd ~ 2>/dev/null; s=$(date +%s.%N); python3 csvsum.py < data.csv > out_a.txt; e=$(date +%s.%N); cmp -s out_a.txt out1.txt && python3 -c \"print(1000/($e-$s))\" || echo 0", "baseline": 1126.9203477670244, "noise": 0.05434144251987899}

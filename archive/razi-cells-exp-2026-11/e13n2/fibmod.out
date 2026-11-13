@@ -1,0 +1,5 @@
+{
+ "result": "I wrote fibmod.py using fast doubling mod 1e9+7, with one pass over the bits of each n. It matches out-0.txt on the public sample (checked with cmp). The assay accepted it with a baseline of 2.253 and 0.9% noise. I did not try any speedups.",
+ "calls": 5,
+ "secs": 18.4
+}

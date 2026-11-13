@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py uses stdlib lzma in raw LZMA2 mode (preset 9 extreme, lc=4, lp=0, pb=0, 4 MB dictionary). It round-trips exactly. bench.py checks the round-trip on a generated mix of text and JSON, and the compression ratio is 3.758. Three variants that tuned the lzma parameters scored 3.756 to 3.758, so none beat the incumbent. I did not try a custom context-mixing coder in the remaining steps.",
+ "calls": 5,
+ "secs": 29.6
+}

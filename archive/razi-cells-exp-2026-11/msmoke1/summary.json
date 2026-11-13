@@ -1,0 +1,44 @@
+{
+ "calls": 5,
+ "improvements": 0,
+ "imp_per_100_calls": 0.0,
+ "done": 1,
+ "bad_replies": 0,
+ "wall_s": 26.4,
+ "par": 4,
+ "peak_rss_mb": 58.6,
+ "peak_cpu_pct": 1.4,
+ "mean_cpu_pct": 0.2,
+ "cells": {
+  "fibmod": {
+   "rc": 0,
+   "secs": 25.5,
+   "steps": 13,
+   "errors": 0,
+   "acts": {
+    "rest": 1,
+    "sh": 3,
+    "assay": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 0,
+   "tries": 0,
+   "improvements": 0,
+   "final_gain": 0.072,
+   "gain": 0,
+   "apoptosis": false,
+   "token_budget_hit": false,
+   "tokens": 13053,
+   "usd": 0.0356,
+   "calls": 5,
+   "routes": {
+    "anthropic:claude-haiku-5-5": 4,
+    "anthropic:claude-sonnet-5-5": 6
+   },
+   "done": true
+  }
+ }
+}

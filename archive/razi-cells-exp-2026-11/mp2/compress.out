@@ -1,0 +1,17 @@
+{
+ "result": "Body is squeeze.py: stdlib lzma, FORMAT_ALONE at preset 9|EXTREME for compression, plain lzma.decompress for decompression. It round-trips the samples and passed assay at baseline ratio 5.4748. I tried a per-input search over 10 LZMA2 lc/lp/pb settings with a one-byte header. It reached 5.500 (+0.4%), well under the 3% win threshold, so the incumbent was kept. Further gains look small, since LZMA is already the strongest stdlib codec here and a pure-Python context-mixing coder would likely be too slow for the 30 s limit. I'm resting to save energy rather than spend it on marginal variants.",
+ "calls": 5,
+ "secs": 44.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 115.17429999999999,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 284.82570000000004,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true
+ }
+}

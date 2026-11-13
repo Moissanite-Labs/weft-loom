@@ -1,0 +1,5 @@
+{
+ "result": "Built `sortints.py` backed by a compiled C extension (`_fastsort.cpython-314-darwin.so`, source in `fastsort.c`) that performs zero-copy `mmap` (with chunked `read` fallback for pipes) on `stdin`, parses whitespace-separated signed 64-bit integers in a single pass, sorts them using an adaptive 8-bit/11-bit LSD radix sort (skipping trivial byte passes where all values share the same prefix), and formats output using a 200-byte 2-digit lookup table directly into an output buffer written to `stdout`. Verified against a seeded 1,000,000-integer dataset (`input.txt` / `expected.txt`) and edge cases (negative numbers, zeros, irregular whitespace, pipes), improving throughput from the baseline 2,699.23k ints/sec (~0.37s) to 19,480k ints/sec (~0.051s per 1,000,000 integers, a +601% speedup).",
+ "calls": 15,
+ "secs": 662.0
+}

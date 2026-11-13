@@ -1,0 +1,5 @@
+{
+ "result": "Built `sortints.py` backed by a compiled C shared library (`_sortints.so` from `_sortints.c`, loaded via `ctypes` with a pure-Python fallback) to read whitespace-separated integers from stdin and print them sorted one per line. The C implementation memory-maps stdin when backed by a regular file (or dynamically reads streams into a flat buffer), parses 64-bit signed integers while tracking token offsets (falling back to Python on arbitrary-precision overflow), sorts using an 8-pass LSD radix sort on sign-flipped 64-bit keys, and writes the sorted integers in bulk directly to stdout. Verified with `bench.py` against fixed-seed 1,000,000-integer test data (`input.txt` and `expected.txt`), empty/whitespace-only input, and >64-bit integer edge cases, achieving a throughput of ~1,870,179 integers/second (~0.53s for 1,000,000 integers, up from ~543,000 integers/second in pure Python).",
+ "calls": 21,
+ "secs": 714.7
+}

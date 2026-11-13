@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a stdlib script that reads stdin as one buffer, replaces commas with spaces, and splits on whitespace. It skips the 3-token header, then sums values per category in integer cents (round(float(v)*100)) and prints sorted 'cat,sum' lines with 2 decimals. It passes the sample (in-0.txt matches out-0.txt, about 0.4s on 1M rows) and the assay was adopted at +7% over the baseline of 1.821 (variant median 1.949). I'm resting here because further gains look small relative to the cost of more thinking.",
+ "calls": 8,
+ "secs": 51.7,
+ "ledger": {
+  "e": 422.451867145328,
+  "born": 400.0,
+  "spent": 217.2114,
+  "earned": 27.13001814655469,
+  "got": 212.53324899877327,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.07017805948891387,
+  "age": 8,
+  "assay": true,
+  "sense": 0.8297
+ }
+}

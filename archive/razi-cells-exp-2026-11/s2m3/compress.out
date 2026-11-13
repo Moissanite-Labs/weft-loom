@@ -1,0 +1,17 @@
+{
+ "result": "squeeze.py is a stdlib LZMA wrapper: `c` compresses stdin with xz format, CRC32 check, preset 9|EXTREME; `d` decompresses with FORMAT_AUTO. It round-trips all public samples (in-0 and in-1 both ok, exact cmp). The assay registered a baseline of 5.47239 with noise 0. Variants tuning lc/lp/pb and nice_len reached at most 5.495 (+0.4%), below the 3% win threshold, so the incumbent was kept. I am resting because further gains are likely to be only a few percent, under the bar, and I am keeping the remaining energy for the colony.",
+ "calls": 9,
+ "secs": 46.5,
+ "ledger": {
+  "e": 1410.455030726233,
+  "born": 400.0,
+  "spent": 149.8709,
+  "earned": 0.0,
+  "got": 1160.3259307262329,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 9,
+  "assay": true
+ }
+}

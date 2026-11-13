@@ -1,0 +1,8 @@
+{"event": "assay", "cmd": "kit:maze", "runs": [3.8929288844243146, 3.940510116267907, 3.896814926542506, 3.868471953634086, 3.9467524076041522], "t": 1794297398.12}
+{"event": "sense", "ratio": 0.9815, "self": 3.7668549017422053, "best": 3.837735435848874, "shown": true, "t": 1794297403.69}
+{"event": "inherit", "ok": true, "res": "assay accepted: baseline median 3.89681, noise 2.0%. Wins must beat it by > 3.0%.", "files": ["maze.py"], "t": 1794297403.69}
+{"event": "laws", "price_show": true, "sense_show": true, "sense_dir": true, "law": "rest", "start": ["mid", "low"], "t": 1794297403.69}
+{"step": 0, "usage": {"inp": 4, "out": 139, "cr": 2006, "cw": 2613, "rs": 0, "usd": 0.0083317}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "cost": 91.3, "cap": 2093, "est": 109.2, "why": "", "say": "", "t": 1794297407.6}
+{"step": 0, "act": {"do": "rest"}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "t": 1794297407.6}
+{"event": "rest", "gave": 235.2, "fit": 0.0, "age": 1, "t": 1794297407.6}
+{"event": "final", "final": 3.6705099403255232, "baseline": 3.896814926542506, "last_baseline": 3.896814926542506, "final_gain": -0.0581, "t": 1794297408.42}

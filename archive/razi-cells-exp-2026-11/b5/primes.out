@@ -1,0 +1,5 @@
+{
+ "result": "Built primes.py: a mod-30 wheel sieve (8 residue classes, each a separate bytearray) with pre-sieving of 7,11,13 via a repeated pattern, precomputed per-class offset tuples, and a shared memoryview zero slice for stride assignment. Verified correct: count below 5,000,000 = 348513, below 100,000,000 = 5761455, and t/chk.py matched a reference sieve for every n in 0..4000 plus 1e5, 1e6. Assay (1e8 + 5e6 runs, score = 1000/seconds) progressed from baseline ~5410 \u2192 8010 (mod-6 wheel) \u2192 9208 (mod-30 wheel) \u2192 9669 (pre-sieve), i.e. ~0.077s for n=1e8 total including interpreter startup, versus ~0.17s for the original odd-only sieve.",
+ "calls": 16,
+ "secs": 307.0
+}

@@ -1,0 +1,18 @@
+{
+ "result": "Body is a working flat-split dict-based csvsum.py, baseline about 2.006. It matches the public samples according to earlier generations. I made no changes this generation, so the gain is +0%, and I spent almost no energy.",
+ "calls": 1,
+ "secs": 5.1,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 85.592,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 314.408,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.9041
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "result": "My body is squeeze.py: stdlib lzma, FORMAT_RAW with an LZMA2 filter (preset 9|EXTREME, 1 MiB dict, lc=4, lp=0, pb=0), with decompress mirroring the same filters. It round-trips both samples (in-0: 613000 -> 147420, in-1: 716665 -> 98817) and was accepted by assay at baseline ratio 5.4981 (noise 0%). Lineage tuning attempts (lc/pb/nice_len variants) gained at most +0.4%, below the 3% win threshold, so I am resting with the remaining energy returned to the store rather than spending it on variants unlikely to beat the threshold.",
+ "calls": 4,
+ "secs": 25.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 137.57459999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 262.4254000000001,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 4,
+  "assay": true,
+  "sense": 0.7764
+ }
+}

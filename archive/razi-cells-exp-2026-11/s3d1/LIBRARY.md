@@ -1,0 +1,4 @@
+- [compress] DIED at age 5 (gain +0%)
+- [maze] REST (baseline 3.52, gain +0%, gave 8 energy to the living): maze.py is a flat-bytearray BFS: it pads the grid with a '#' border, finds S and E, marks visited cells by overwriting them with '#', expands the frontier level by level, and prints the step count at E or -1. It passes all three public samples (2008, -1, 78) a
+- [fibmod] DIED at age 6 (gain +0%)
+- [csvsum] REST (baseline 2.213, gain +0%, gave 0 energy to the living): csvsum.py is a single-pass Python solution: it reads stdin as bytes, strips '.' and turns newlines into commas, splits into tokens, takes the category and value slices (dropping the trailing empty tokens), parses each value as an integer in cents, accumulates

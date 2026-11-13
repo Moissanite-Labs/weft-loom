@@ -1,0 +1,5 @@
+{
+ "result": "Built lcs.py: reads two lines from stdin and prints the LCS length using Hyyr\u00f6's bit-parallel algorithm (per-character bitmasks over the longer string, then one big-int update `S = x & ~(x - ((S<<1)|1))` per character of the shorter string, popcount at the end), O(n\u00b7m/w) with Python big ints. Correctness verified by check.py against a classic O(nm) DP on 35 random/edge cases (empty strings, identical, disjoint, AGGTAB/GXTXAYB) \u2014 all match; a 3000\u00d73000 run takes ~0.035 s including interpreter startup. Assay (bench.py: 12 correctness checks + 24 runs on 2500\u20133000-char pairs) baseline ~1512 with 11% noise; three variants rounds (translate-based masks, bit_count, os.read/os.write I/O, dropping sys import, combined micro-opts) all landed within noise, confirming the runtime is dominated by process startup rather than the algorithm, so the simple, correct incumbent was kept.",
+ "calls": 11,
+ "secs": 1048.5
+}

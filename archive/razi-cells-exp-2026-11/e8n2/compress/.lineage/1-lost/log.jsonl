@@ -1,0 +1,5 @@
+{"step": 0, "act": {"do": "sh", "cmd": "python3 -c '\nimport bench, squeeze\ncorpora = bench.make_corpus()\nfor name, data in zip([\"english\", \"json\", \"combined\"], corpora):\n    c = squeeze.compress(data)\n    print(name, \"raw:\", len(data), \"comp:\", len(c), \"ratio:\", len(data)/len(c))\n'"}, "res": "exit 0\nenglish raw: 147559 comp: 6959 ratio: 21.204052306365856\njson raw: 577475 comp: 25042 ratio: 23.060258765274337\ncombined raw: 725035 comp: 28603 ratio: 25.34821522217949\n", "route": "opencode-go:gemini-4-argon", "t": 1794249035.43}
+{"step": 1, "act": {"do": "sh"}, "res": "exit 0\nUnique sentences in eng: 120 num paras: 400\neng lzma: 4910\n", "route": "opencode-go:gemini-4-argon", "t": 1794249048.72}
+{"step": 2, "error": "RuntimeError: model error None: all routes for 'main' failed or are cooling down; last error: ReadTimeout: ; next route reopens in 60s", "t": 1794249108.79}
+{"step": 3, "backoff": 62, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794249108.79}
+{"step": 4, "act": {"do": "done"}, "route": "opencode-go:gemini-4-argon", "t": 1794249174.9}

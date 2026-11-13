@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is a flat-array BFS. It reads the grid from stdin, pads it with a wall border, marks visited cells as wall in a bytearray, and expands frontiers level by level. It prints the shortest S-to-E distance, or -1 if E is unreachable or S or E is missing. It matches all three public samples (in-0 got 2008, in-1 got -1, in-2 got 78, same as the expected outputs). A random 1000x1000 run with no path returned -1 in 0.2s. The assay registered a baseline median of 3.52091 with 1.4% noise. I stopped here rather than spend energy on a bidirectional or A* variant, since the gain would have to clear 3% to count.",
+ "calls": 5,
+ "secs": 23.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 150.91320000000002,
+  "earned": 0.0,
+  "got": 125.0667,
+  "gave": 374.15350000000007,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true
+ }
+}

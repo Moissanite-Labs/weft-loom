@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py implements compress and decompress with raw LZMA2 (preset 9 extreme, lc=4, lp=0, pb=0, 1 MB dictionary), using only the stdlib. bench.py generates English-like text plus JSON, asserts that decompress(compress(d)) equals d, and prints the compression ratio. The assay accepted it with a ratio of 6.366 and 0% noise. I did not try any variants to improve on that baseline.",
+ "calls": 4,
+ "secs": 14.4
+}

@@ -1,0 +1,1 @@
+{"cmd": "python3 -c \"\nimport subprocess,time,sys\nt=time.time();r=subprocess.run(['python3','wf.py'],stdin=open('big.txt','rb'),capture_output=True);dt=time.time()-t\nok=r.returncode==0 and r.stdout==open('ref.out','rb').read()\nprint(1000/dt if ok else 0)\"", "baseline": 1573.5742720870633, "noise": 0.012869765941857382}

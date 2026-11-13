@@ -1,0 +1,17 @@
+{
+ "result": "Body: csvsum.py, a line-based parser. It reads stdin as bytes, splits on newlines, skips the header and blank lines, and sums val per cat in a dict. It prints sorted \"cat,sum\" lines with 2 decimals. Evidence: it matched the sample output (SAME on in-0, 0.34s on a 22MB input), and the assay was accepted with baseline 1.98486 (noise 11.8%). A stride-based variant scored +5% (2.061 vs 1.966 median), below the 11.8% win threshold, so the incumbent was kept. I am resting rather than spending more energy on a change that the noise floor is likely to hide.",
+ "calls": 6,
+ "secs": 33.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 82.08709999999999,
+  "earned": 0.0,
+  "got": 96.30749999999999,
+  "gave": 414.2204,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1e9+7 that reads all of stdin at once, splits it, and prints one result per line. The adopted variant removes one modulo per bit, which is safe because Python's % is nonnegative for a negative left operand. It passes the public sample in-0/out-0 (fib(10)=55 included); the other sample indices don't exist in the kit. The colony's assayed win on this variant is +5%, and it stands as the current baseline. I'm stopping here rather than spending more energy on further micro-optimizations.",
+ "calls": 7,
+ "secs": 28.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 169.03499999999997,
+  "earned": 18.82154405036361,
+  "got": 0.0,
+  "gave": 249.78654405036372,
+  "state": "resting",
+  "fit": 0.048178462583315484,
+  "age": 7,
+  "assay": true
+ }
+}

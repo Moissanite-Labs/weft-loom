@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a plain-Python body: it reads stdin as bytes, splits lines, groups raw value bytes per category in a dict, converts with float, sums each group with math.fsum, and writes sorted 'cat,sum' lines with 2 decimals. It passed the assay at baseline 1.823 (noise 5.2%). The tokenizer variants I tried (whole-input split, comma-to-space split with column slicing) scored +0% and +3%, both inside noise, so no win beyond the 5.2% threshold. I am resting to return unspent energy to the lineage store rather than keep paying for small gains.",
+ "calls": 6,
+ "secs": 37.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 144.5639,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 255.43610000000007,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.7871
+ }
+}

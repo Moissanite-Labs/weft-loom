@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified fibmod.py backed by a compiled C extension (_fibmod.so / _fibmod.c) to compute fib(n) mod 1,000,000,007 for n up to 10**18. The algorithm reduces n modulo the Pisano period 2,000,000,016 and uses O(1) baby-step giant-step table lookups (splitting m = n mod 2,000,000,016 into lower 16 bits and upper 15 bits across interleaved struct Pair tables T[65536] and H[30519]) via Fib(a + b) = Fib(a)*Fib(b+1) + Fib(a-1)*Fib(b). Verified CLI and library outputs against a fast-doubling reference implementation across edge cases including n=0 (0), n=1 (1), n=10 (55), and n=10**18 (209783453), improving assay throughput from a baseline of 75,378 to over 19,100,000 ops/sec (~250x speedup).",
+ "calls": 13,
+ "secs": 825.3
+}

@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is built and passes the public sample (in-0 matches out-0 exactly, and fib(10)=55 holds). It uses the Fibonacci matrix in the form (a + b*sqrt5) over F_P, so fib(n) = (2*(a*Lb + b*La)) mod P, where P = 1e9+7 and P+1 = 2*(P+1)/2 splitting. It precomputes 65536 low powers and 65536 high powers of the unit, which covers n mod 2(P+1) with two table lookups per query. It is assayed at baseline 11.524 (noise 6.7%). I am stopping here: energy is 17, too little to fund a further experiment that would need to beat the baseline by more than 6.7%, and the body is already O(1) per query after a one-time precompute.",
+ "calls": 5,
+ "secs": 25.4,
+ "ledger": {
+  "e": 3.5806000000000253,
+  "born": 400.0,
+  "spent": 396.4194,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true
+ }
+}

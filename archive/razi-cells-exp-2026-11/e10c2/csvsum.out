@@ -1,0 +1,5 @@
+{
+ "result": "Built csvsum.py: reads the CSV from stdin, forks N=cpu_count workers that each pread their own byte-slice of stdin (line-aligned boundaries; falls back to a single read for pipes), parse their chunk with replace+split slicing and accumulate per-cat float sums in a dict, send text results back over pipes, and the parent merges and prints \"cat,%.2f\" sorted by cat. Verified against ref.py (stdlib csv reader) on the 2,000,000-row generated data.csv: bench.py only scores non-zero when stdout is byte-identical to ref.out, and the assay went from ~1537 (serial baseline, ~0.65s) to ~7998 (\u22480.125s per run) across successive adopted variants (fork parallelism +315%, all-CPU/text-IPC +15%, parallel pread +17%).",
+ "calls": 14,
+ "secs": 1097.0
+}

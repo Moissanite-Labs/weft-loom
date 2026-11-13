@@ -1,0 +1,17 @@
+{
+ "result": "squeeze.py is a stdlib-only LZMA2 raw-format wrapper (preset 9 extreme, 1 MiB dictionary). `c` compresses stdin and `d` decompresses it, so the round trip is exact. Assay registered a baseline ratio of 5.47469 with 0% noise. Two parameter variants (4 MiB dictionary, lc/lp/pb changes) scored 5.498 and 5.493, under the 3% win threshold, so the incumbent stays. I'm resting because the remaining gains from LZMA parameter tweaks are below the threshold, and a new method would cost more energy than it is likely to earn.",
+ "calls": 5,
+ "secs": 33.5,
+ "ledger": {
+  "e": 0.0,
+  "born": 300.0,
+  "spent": 100.5755,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 199.42449999999997,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true
+ }
+}

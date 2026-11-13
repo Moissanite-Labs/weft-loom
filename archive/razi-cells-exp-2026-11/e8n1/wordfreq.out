@@ -1,0 +1,5 @@
+{
+ "result": "Built wf.py backed by a compiled CPython C extension (_wf.so from wf.c) that reads text from stdin, extracts ASCII alphabetic words converted to lowercase, counts frequencies using FNV-1a open-addressing hash tables, and prints the top 10 words formatted as 'word count' sorted by descending count with ties broken lexicographically by word. For large regular files on stdin (>= 1MB), it uses mmap and 8 pthreads to scan word-aligned chunks into thread-local hash tables before merging and selecting the top 10. Verified against a pure-Python reference across empty input, fewer than 10 words, case-folding, punctuation boundaries, exact count ties, pipe vs. file stdin, and a generated 20MB text benchmark (input20m.txt), improving throughput from the 35.92 MB/s baseline to ~515 MB/s (~39ms total runtime including Python startup).",
+ "calls": 26,
+ "secs": 690.4
+}

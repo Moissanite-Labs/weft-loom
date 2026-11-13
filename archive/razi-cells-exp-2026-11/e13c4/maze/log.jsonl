@@ -1,0 +1,8 @@
+{"step": 0, "usage": {"inp": 4, "out": 498, "cr": 1705, "cw": 0, "rs": 0, "usd": 0.005329}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269168.88}
+{"step": 0, "act": {"do": "write", "path": "maze.py", "text": "<632 chars>"}, "res": "wrote maze.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794269168.88}
+{"step": 1, "usage": {"inp": 4, "out": 25, "cr": 1183, "cw": 1249, "rs": 0, "usd": 0.0036171}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269169.94}
+{"event": "assay", "cmd": "kit:maze", "runs": [3.605071612737012, 3.569421295017448, 3.5932915050882452, 3.583297181733161, 3.553305137938825], "t": 1794269173.11}
+{"step": 1, "act": {"do": "assay"}, "res": "assay accepted: baseline median 3.5833, noise 1.4%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794269173.11}
+{"step": 2, "usage": {"inp": 4, "out": 182, "cr": 1183, "cw": 1333, "rs": 0, "usd": 0.0053971}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269175.04}
+{"step": 2, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794269175.05}
+{"event": "final", "final": 3.5661642249529972, "baseline": 3.583297181733161, "final_gain": -0.0048, "t": 1794269180.85}

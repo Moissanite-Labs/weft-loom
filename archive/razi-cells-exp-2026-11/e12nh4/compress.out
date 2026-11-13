@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py tries raw LZMA (tuned with lc=4, pb=0, extreme preset), bz2, zlib and stored. It keeps the smallest output, with a 1-byte tag so decompress knows which codec to invert. The assay round-trips a mix of 60k random English-like words and 3000 JSON records, and it scores a ratio of 5.82. I did not run any separate checks on edge cases such as empty input. A daughter cell tried a pure-Python context-mixing coder. It took about 13 s on ~400 KB and scored the same 5.82, so I kept the LZMA version.",
+ "calls": 11,
+ "secs": 141.3
+}

@@ -1,0 +1,5 @@
+{
+ "result": "Built `wf.py` (with C shared library `_wf.so` compiled from `_wf.c` and a fast byte-translation `Counter` pure-Python fallback) to read text from stdin, normalize ASCII letters to lowercase, count words, and print the 10 most common words formatted as `word count` with ties broken alphabetically by word. Verified correctness on a generated 20MB corpus (`input.txt`), matching the exact expected reference output (`bo 125934`, `hfmc 74782`, etc., including exact tie-breaking between `bytcrgse 22518` and `p 22518`), while improving throughput from the initial baseline of 37.4 MB/s to 237.3 MB/s (~0.084s per 20MB input).",
+ "calls": 16,
+ "secs": 729.8
+}

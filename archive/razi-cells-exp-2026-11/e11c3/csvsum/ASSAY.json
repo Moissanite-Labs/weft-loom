@@ -1,0 +1,1 @@
+{"cmd": "sh bench.sh 2>/dev/null", "baseline": 1.9238426361247059, "noise": 0.017264667640658583}

@@ -1,0 +1,18 @@
+{
+ "result": "Body is squeeze.py: raw LZMA2 via Python's lzma module, preset 9 extreme, 8 MB dictionary, lc=3 lp=0 pb=0, BT4 match finder, nice_len 273. Round trip passes on both samples (OK0, OK1). Registered baseline ratio 5.493. The lc=4 variant from the sweep (5.705 aggregate) measured only 5.498 on the bench, below the 3% win threshold, so I kept the incumbent. Stopping here to conserve energy rather than spend more on marginal LZMA parameter tweaks.",
+ "calls": 7,
+ "secs": 53.7,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 136.0735,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 263.92650000000003,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.7757
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "result": "fibmod.py is a fast-doubling Fibonacci mod 1e9+7 that reads integers from stdin and prints one result per line. It passes the public sample (in-0/out-0 match exactly) and is registered as the baseline at 2.63561 with 2.8% noise. I tried one alternative (bit-shift loop, read-all stdin) and it scored 2.18, worse than the incumbent, so I kept the original. I'm stopping here because the remaining ideas are unlikely to beat the 3% win threshold.",
+ "calls": 6,
+ "secs": 29.3,
+ "ledger": {
+  "e": 0.0,
+  "born": 200.0,
+  "spent": 77.99839999999999,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 122.00160000000001,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true
+ }
+}

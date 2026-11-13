@@ -1,0 +1,17 @@
+{"step": 0, "usage": {"inp": 4, "out": 644, "cr": 1493, "cw": 0, "rs": 0, "usd": 0.0067466}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266436.91}
+{"step": 0, "act": {"do": "write", "path": "maze.py", "text": "<818 chars>"}, "res": "wrote maze.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794266436.91}
+{"step": 1, "usage": {"inp": 4, "out": 734, "cr": 1210, "cw": 1223, "rs": 0, "usd": 0.0106475}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266442.05}
+{"step": 1, "act": {"do": "sh"}, "res": "exit 0\n-1\n6.71420322550322953175\n", "route": "anthropic:claude-sonnet-5-5", "t": 1794266442.79}
+{"step": 2, "usage": {"inp": 4, "out": 187, "cr": 1210, "cw": 1919, "rs": 0, "usd": 0.0069175}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266445.43}
+{"event": "assay", "cmd": "sh assay.sh", "runs": [6.695188168263469, 6.735185958484314, 6.792878346341696, 6.733462615815557, 6.70263748785147], "t": 1794266451.11}
+{"step": 2, "act": {"do": "assay", "cmd": "sh assay.sh"}, "res": "assay accepted: baseline median 6.73346, noise 1.5%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794266451.12}
+{"step": 3, "usage": {"inp": 4, "out": 407, "cr": 1210, "cw": 2102, "rs": 0, "usd": 0.009575}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266455.08}
+{"event": "hold", "step": 3, "t": 1794266455.08}
+{"step": 3, "act": {"do": "done"}, "res": "refused: you have an assay and 4 steps left, but you have not tried to improve your body since registering it. Make at least one improvement attempt, then call done.", "route": "anthropic:claude-sonnet-5-5", "t": 1794266455.08}
+{"step": 4, "usage": {"inp": 4, "out": 724, "cr": 1210, "cw": 2464, "rs": 0, "usd": 0.01365}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266460.14}
+{"event": "variants", "path": "maze.py", "medians": {"inc": 6.75392740878821, "v0": 14.312499105468806}, "best": "v0", "adopted": true, "gain": 1.1191, "kinds": null, "arm": "ctrl", "t": 1794266462.58}
+{"event": "improve", "gain": 1.1191, "what": "maze.py variant ()", "t": 1794266462.59}
+{"step": 4, "act": {"do": "variants", "path": "maze.py", "versions": "<940 chars>"}, "res": "medians inc=6.754, v0=14.31. ADOPTED v0 (+112%).", "route": "anthropic:claude-sonnet-5-5", "t": 1794266462.59}
+{"step": 5, "usage": {"inp": 4, "out": 252, "cr": 1210, "cw": 2795, "rs": 0, "usd": 0.0097575}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266464.94}
+{"step": 5, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266464.95}
+{"event": "final", "final": 14.437305998700642, "baseline": 6.733462615815557, "final_gain": 1.1441, "t": 1794266465.64}

@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a padded-grid, level-synchronous BFS. It reads the grid from stdin, pads it with a wall border so neighbour lookups need no bounds checks, and uses one visited bytearray seeded from the '#' cells. It prints the shortest 4-neighbour S-to-E distance, or -1 if there is none. It matches all three public samples (2008, -1, 78), and assay accepted it with baseline 2.458 and 2.2% noise. The variant that replaced the per-cell deque version measured +38% (3.431 vs 2.479). Remaining risk: hidden inputs with unusual shapes were not tested beyond the samples.",
+ "calls": 7,
+ "secs": 50.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 181.0705,
+  "earned": 130.00151782206336,
+  "got": 232.51705000000004,
+  "gave": 581.4480678220634,
+  "state": "resting",
+  "fit": 0.3840358977713425,
+  "age": 7,
+  "assay": true,
+  "sense": 0.8108
+ }
+}

@@ -1,0 +1,5 @@
+{
+ "result": "Built primes.py: an odd-only bytearray sieve counting primes strictly below int(argv[1]). Index i maps to 2i+1; for each prime p it marks composites with a single C-level slice assignment `sieve[start::p] = b'\\x00' * k` starting at p*p, then returns 1 + sum(sieve) (count of set flags = odd primes, plus the prime 2). Verified against known values via subprocess on the real script: n=0,1,2 -> 0; 3 -> 1; 10 -> 4; 100 -> 25; 1000 -> 168; 1e6 -> 78498; 5e6 -> 348513 (matches the required answer). Internal sieve time for 5e6 is ~0.004s; the whole run including Python startup is ~0.029s. A numpy-vectorized alternative was already tested in lineage split 1 and tied/lost (28.53 vs 28.89 fitness), confirming the pure-bytearray approach is the right choice.",
+ "calls": 21,
+ "secs": 179.7
+}

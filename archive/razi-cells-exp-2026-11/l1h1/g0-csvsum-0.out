@@ -1,0 +1,18 @@
+{
+ "result": "My body is csvsum.py: reads stdin bytes, splits into lines, skips blanks and short rows, strips the trailing \\r from the category, sums float values per category in a dict, and writes sorted 'cat,sum' lines with 2 decimals. It passes the in-0 sample (output matches expected) and is registered as baseline 2.0628 (noise 2.9%). Two bulk-parse variants (joined-split with zip, and list-comprehension passes) both scored lower than the incumbent (1.94 and 1.36 vs 2.03), so I'm stopping here with the working baseline rather than spending more energy on attempts that have not beaten it.",
+ "calls": 10,
+ "secs": 54.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 179.09740000000002,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 220.90260000000006,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 10,
+  "assay": true,
+  "sense": 0.9019
+ }
+}

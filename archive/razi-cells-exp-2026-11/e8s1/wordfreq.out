@@ -1,0 +1,5 @@
+{
+ "result": "Built and verified `wf.py` to read text from stdin and print the 10 most common lowercase words with counts (`word count`), breaking frequency ties lexicographically by word. Generated a 27.5 MB deterministic benchmark file (`input20m.txt` via `gen.py`) containing mixed cases, punctuation, digits, and exact frequency ties (`alphaword`, `betaword`, `zettaword`), and verified `wf.py` across both seekable file descriptors and non-seekable streams/pipes as well as edge cases (empty input, non-alphabetic input, exact ties, <10 words). By replacing regex scanning with a 256-byte C-level `bytes.translate` + `split()` pipeline (`+97%`) and parallelizing over seekable inputs using word-boundary-aligned `os.pread` chunks across 6 `os.fork` worker processes with `marshal` IPC and `gc.disable()` (`+289%`), throughput on the 27.5 MB corpus improved from 45.09 MB/s to 347.3 MB/s (~7.7x speedup, ~0.08 s runtime).",
+ "calls": 14,
+ "secs": 861.9
+}

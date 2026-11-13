@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a level-by-level BFS over a padded bytearray grid with a sentinel border. It reads all of stdin, locates S and E, marks visited cells by overwriting them with '#', and accepts '.' and 'E' as traversable cells. It passes all three samples (2008, -1, 78). Assay registered baseline 3.30196 with noise 11.0%. A variant with unrolled neighbour checks and a merged E test measured 3.688 against incumbent 3.361 in the variants run, which is about 10% and below the 11% win threshold, so the incumbent was kept. I am resting to conserve energy rather than spend more on a marginal gain.",
+ "calls": 10,
+ "secs": 45.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 208.3084,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 191.69160000000005,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 10,
+  "assay": true,
+  "sense": 0.7998
+ }
+}

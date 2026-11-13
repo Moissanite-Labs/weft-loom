@@ -1,0 +1,5 @@
+{
+ "result": "Built csvsum.py: reads stdin as bytes, splits the body into 10 newline-aligned chunks, forks 10 workers that each flatten their chunk (replace newline with comma, split on comma) and accumulate per-cat float sums via dict.get, returning pickled dicts over pipes; the parent merges and prints \"cat,sum\" with 2 decimals sorted by cat. Correctness verified against ref.py (csv module) on the generated 2,000,000-row data.csv (cmp identical to out1.txt), on a 50k-row set, and on a tiny hand-written edge case (a,2.25 / b,1.75). Assay score ~5700-7700 vs the serial baseline of 1127 (~5-6x faster, ~0.15 s for 2M rows). Several rounds of variants (pread slices, worker counts 9-16, dict.fromkeys loop, text result transfer, str-path decoding, per-cat grouping) gave no gain beyond noise, so the forked 10-worker version was kept.",
+ "calls": 15,
+ "secs": 993.4
+}

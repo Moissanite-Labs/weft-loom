@@ -1,0 +1,1 @@
+maze.py: numpy frontier BFS on padded flat bool array, ~0.19s per 2000x2000. bench.sh = correctness (small cases + t.txt vs ref.py) + 1000/time over m,m2,m3. Assay registered "sh bench.sh"; harness baseline reported 3.0 (local run printed ~1450 — mismatch, investigate). Steps limited; finish with done when verified.

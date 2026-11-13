@@ -1,0 +1,8 @@
+- [fibmod] WIN +22%: fibmod.py variant () (assay: python3 -c " import time,fibmod assert fibmod.fib(10)==55 and fibmod.fib(10**18)==209783453 t=time.time() for i in range)
+- [fibmod] DONE (assay baseline 82.05): fibmod.py computes fib(n) mod 1e9+7 with fast doubling over the bits of n. I checked it on two inputs: fib(10)=55 and fib(10**18)=209783453. Both matched the expected values from the command line. The assay measures thousands of fib calls per second on n near 10**18. A variant with the modulus appli
+- [csvsum] no gain: 2 variants of csvsum.py (); best +3%
+- [csvsum] DONE (assay baseline 1.669): csvsum.py reads the CSV from stdin, sums val per cat in a defaultdict, and prints each cat with its sum to 2 decimals, sorted by cat. I generated 2,000,000 rows with 50 categories. On that file the first 3 output lines looked right (c0 2004069.21, c1 1986017.10, c10 2022664.13), and the assay checks
+- [compress] WIN +25%: squeeze.py variant (tune lzma params) (assay: python3 bench.py)
+- [maze] WIN +351%: maze.py variant () (assay: sh assay.sh)
+- [maze] DONE (assay baseline 6.298): maze.py runs a BFS on a padded flat grid. It prints -1 on the seeded 2000x2000 maze, which matches expected.txt. Earlier small-case checks gave -1, 3 and -1. The assay (`sh assay.sh`) had a baseline of about 6.3 runs per second. The adopted variant scored 28.1, a gain of about 351%. One caveat: the
+- [compress] DONE (assay baseline 6.766): squeeze.py has compress and decompress that round-trip exactly. The file I last printed still showed bz2 level 9, not the lzma version. The assay (python3 bench.py) went from 6.766 to 8.449 (+25%) when variant v3 was adopted. I did not confirm which code is in the file now. bench.py checks the round

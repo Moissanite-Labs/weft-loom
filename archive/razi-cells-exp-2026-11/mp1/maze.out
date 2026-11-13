@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is a bidirectional BFS. It expands the smaller frontier from S and E, uses one mark bytearray built with bytes.translate (walls marked 1), and returns the path length on the first meeting, or -1 if the frontiers die out. It passes all three public samples (2008, -1, 78). It was assayed at baseline 3.28653, and the bidirectional variant won +10% (median 3.657 vs 3.329), so the gain is registered.",
+ "calls": 6,
+ "secs": 36.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 170.5223,
+  "earned": 37.59759239746494,
+  "got": 232.84647202518187,
+  "gave": 499.9217644226468,
+  "state": "resting",
+  "fit": 0.0985531336990002,
+  "age": 6,
+  "assay": true
+ }
+}

@@ -1,0 +1,136 @@
+{
+ "calls": 24,
+ "improvements": 0,
+ "imp_per_100_calls": 0.0,
+ "done": 3,
+ "bad_replies": 1,
+ "wall_s": 63.2,
+ "par": 4,
+ "peak_rss_mb": 472.6,
+ "peak_cpu_pct": 99.3,
+ "mean_cpu_pct": 21.7,
+ "cells": {
+  "compress": {
+   "rc": 1,
+   "secs": 62.8,
+   "steps": 21,
+   "errors": 1,
+   "acts": {
+    "sh": 3,
+    "variants": 1,
+    "assay": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 1,
+   "assays": 1,
+   "variants": 1,
+   "tries": 0,
+   "improvements": 0,
+   "final_gain": 0.0,
+   "gain": 0,
+   "apoptosis": false,
+   "token_budget_hit": false,
+   "tokens": 16019,
+   "usd": 0.0543,
+   "calls": 6,
+   "routes": {
+    "anthropic:claude-sonnet-5-5": 10,
+    "anthropic:claude-haiku-5-5": 2
+   },
+   "done": false
+  },
+  "fibmod": {
+   "rc": 0,
+   "secs": 31.9,
+   "steps": 15,
+   "errors": 0,
+   "acts": {
+    "sh": 2,
+    "assay": 1,
+    "write": 1,
+    "rest": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 0,
+   "tries": 0,
+   "improvements": 0,
+   "final_gain": 0.0408,
+   "gain": 0,
+   "apoptosis": false,
+   "token_budget_hit": false,
+   "tokens": 9039,
+   "usd": 0.0283,
+   "calls": 5,
+   "routes": {
+    "anthropic:claude-sonnet-5-5": 8,
+    "anthropic:claude-haiku-5-5": 2
+   },
+   "done": true
+  },
+  "csvsum": {
+   "rc": 0,
+   "secs": 35.1,
+   "steps": 20,
+   "errors": 0,
+   "acts": {
+    "sh": 5,
+    "assay": 1,
+    "rest": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 0,
+   "tries": 0,
+   "improvements": 0,
+   "final_gain": 0.0111,
+   "gain": 0,
+   "apoptosis": false,
+   "token_budget_hit": false,
+   "tokens": 12611,
+   "usd": 0.0333,
+   "calls": 7,
+   "routes": {
+    "anthropic:claude-sonnet-5-5": 10,
+    "anthropic:claude-haiku-5-5": 4
+   },
+   "done": true
+  },
+  "maze": {
+   "rc": 0,
+   "secs": 30.6,
+   "steps": 17,
+   "errors": 0,
+   "acts": {
+    "sh": 3,
+    "assay": 1,
+    "write": 1,
+    "rest": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "bad_replies": 0,
+   "assays": 1,
+   "variants": 0,
+   "tries": 0,
+   "improvements": 0,
+   "final_gain": 0.0308,
+   "gain": 0,
+   "apoptosis": false,
+   "token_budget_hit": false,
+   "tokens": 12390,
+   "usd": 0.0249,
+   "calls": 6,
+   "routes": {
+    "anthropic:claude-sonnet-5-5": 8,
+    "anthropic:claude-haiku-5-5": 4
+   },
+   "done": true
+  }
+ }
+}

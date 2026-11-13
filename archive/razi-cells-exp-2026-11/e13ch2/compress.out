@@ -1,0 +1,5 @@
+{
+ "result": "squeeze.py picks the smaller of two outputs: raw LZMA2 (preset 9 extreme, lc=4, pb=0) or bz2. It puts a one-byte tag ('L' or 'B') ahead of the payload, and decompression reads the tag to choose the decoder. The assay accepted a baseline compression ratio of 7.08 with 0% noise. I tried one variant that added nice_len=273, the BT4 match finder and depth=1000. It scored the same, so I kept the original. I did not run a separate round-trip check in the last steps. The assay only accepts a body whose outputs are all correct, so it passed that check.",
+ "calls": 6,
+ "secs": 33.0
+}

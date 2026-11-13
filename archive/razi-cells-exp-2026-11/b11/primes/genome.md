@@ -1,0 +1,1 @@
+primes: assay=sh assay.sh (times 50M run; score=1000/dt). Current primes.py = mod-6 wheel, 2 bytearrays, pre-sieve 5,7 pattern (score ~6947, ~0.144s). Baseline odd sieve 4775. Next ideas: mod-30 wheel (8 arrays), pre-sieve 11,13 too (period 5005). 9 steps left at this point.

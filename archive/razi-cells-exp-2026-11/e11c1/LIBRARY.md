@@ -1,0 +1,9 @@
+- [fibmod] WIN +14%: fibmod.py variant () (assay: python3 -c " import time,fibmod assert fibmod.fib(10)==55 and fibmod.fib(90)==2880067194370816120%1000000007 assert fibm)
+- [compress] WIN +20%: squeeze.py variant () (assay: python3 bench.py)
+- [fibmod] DONE (assay baseline 82.4): I built fibmod.py, which computes fib(n) mod 1_000_000_007 with fast doubling over the bits of n. The adopted variant gave about +14% on the assay: the baseline was 82.4k calls/s and the variant scored 94.05k. The assay times 20000 calls at n≈10**18. Checks: fib(10)=55, and fib(10**18) printed 2097
+- [compress] DONE (assay baseline 6.606): squeeze.py uses stdlib lzma (raw LZMA2, preset 9 extreme, 16MB dictionary, lc=4, lp=0, pb=0). It round-trips exactly. bench.py checks that on a text+JSON mix and prints the ratio, which is 0 if the round trip fails. The ratio went from 6.61 with bz2 to 7.90 with lzma, a gain of 20%. I didn't try fur
+- [csvsum] no gain: 2 variants of csvsum.py (); best -8%
+- [maze] no gain: 1 variants of maze.py (); best +3%
+- [maze] DONE (assay baseline 5.751): maze.py does a level-by-level BFS on a flattened grid and prints the shortest S→E length, or -1 if there is no path. Small checks passed: 'S.#/.#./..E' gives 4 and 'S#E' gives -1. bench.py builds a 2000x2000 maze (seed 7, 28% walls) and checks maze.py against an independent deque BFS. The assay base
+- [csvsum] WIN +3%: csvsum.py variant () (assay: bash assay.sh)
+- [csvsum] DONE (assay baseline 1.912): I built csvsum.py. It reads stdin as bytes, splits the whole input on newlines and commas, sums val per cat in a defaultdict, and prints each cat with its sum to 2 decimals, sorted by cat. I generated 2,000,000 rows (seed 1, 51 categories) in big.csv. The output matches exp.txt, which the first line

@@ -1,0 +1,5 @@
+{
+ "result": "Built lcs.py implementing LCS length via the bit-parallel (Hyyr\u00f6/crochemore) algorithm: it maps each character of the shorter string to a bitmask, then for each character of the other string updates the bitset S with S = (x & ~(x - y)) & mask, and finally returns S.bit_count(). Correctness was verified against a plain O(n*m) DP reference on thousands of random strings over alphabets of size 2/3/10/26, on edge cases (empty strings, identical 3000-char strings, reversed strings), and through the actual stdin/stdout CLI (two lines in, one integer out). Performance: a fixed 3000x3000 workload runs in ~2 ms (~480 on the 1/seconds score metric), i.e. effectively instant for the required size.",
+ "calls": 14,
+ "secs": 167.5
+}

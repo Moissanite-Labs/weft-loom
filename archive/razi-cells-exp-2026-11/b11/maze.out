@@ -1,0 +1,5 @@
+{
+ "result": "Built maze.py: reads a '#'/'.' grid with S and E from stdin and prints the shortest 4-neighbour path length or -1. It embeds a C BFS (padded byte grid, flat int queue, level-by-level search) that is compiled once with cc -O2 and cached next to the script (_maze_bin3), then exec'd via os.execv; if no compiler is available it falls back to a pure-Python padded-bytearray BFS with bytes.translate parsing. Verified correctness in assay.sh against hand cases (4, -1) and a reference deque BFS (ref.py) on a seeded 300x300 random maze, plus two generated 2000x2000 mazes (gen.py, fixed seeds) t.txt/u.txt. Assay score went from 340.6 (pure-Python baseline) \u2192 554.6 (translate parsing) \u2192 2945 (C BFS, +444%), i.e. both 2000x2000 mazes solve in ~0.35 s total including interpreter startup.",
+ "calls": 15,
+ "secs": 406.0
+}

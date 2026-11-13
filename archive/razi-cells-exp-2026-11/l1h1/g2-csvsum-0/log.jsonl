@@ -1,0 +1,8 @@
+{"event": "assay", "cmd": "kit:csvsum", "runs": [1.781062319271571, 2.0648910933433418, 2.0661980558898727, 2.055424872848451, 2.041336554901584], "t": 1794296579.13}
+{"event": "sense", "ratio": 0.8858, "self": 2.0488601931746313, "best": 2.313047903321332, "shown": true, "t": 1794296587.19}
+{"event": "inherit", "ok": true, "res": "assay accepted: baseline median 2.05542, noise 13.9%. Wins must beat it by > 13.9%.", "files": ["csvsum.py"], "t": 1794296587.19}
+{"event": "laws", "price_show": true, "sense_show": true, "sense_dir": true, "law": "rest", "start": ["mid", "low"], "t": 1794296587.19}
+{"step": 0, "usage": {"inp": 4, "out": 149, "cr": 2006, "cw": 2195, "rs": 0, "usd": 0.0073867}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "cost": 81.9, "cap": 2921, "est": 99.9, "why": "", "say": "", "t": 1794296589.02}
+{"step": 0, "act": {"do": "rest"}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "t": 1794296589.02}
+{"event": "rest", "gave": 318.1, "fit": 0.0, "age": 1, "t": 1794296589.03}
+{"event": "final", "final": 2.0929952664341664, "baseline": 2.055424872848451, "last_baseline": 2.055424872848451, "final_gain": 0.0183, "t": 1794296594.72}

@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a flat-grid BFS. It pads the input into a bytearray with a '#' border, marks visited cells by overwriting them with '#', and expands frontier by level, printing the distance when it reaches E or -1 if the frontier empties. It matches all three public samples (2008, -1, 78). The assay was accepted with baseline median 3.42688 and noise 3.9%. I did not run a timing test on a 1000x1000 maze, and I did not attempt a faster variant, so further gains are unexplored. Resting to keep the verified body and pass unspent energy to the colony.",
+ "calls": 7,
+ "secs": 51.3,
+ "ledger": {
+  "e": 280.8826000000002,
+  "born": 400.0,
+  "spent": 291.10499999999996,
+  "earned": 0.0,
+  "got": 171.98760000000013,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.8958
+ }
+}

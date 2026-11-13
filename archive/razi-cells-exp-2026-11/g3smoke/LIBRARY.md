@@ -1,0 +1,1 @@
+- [primes] no gain: 3 variants of primes.py (Segmented odd-only sieve with numpy: each segment of odd numbers is sieved with the odd base primes up to sqrt(n). This keeps the hot arrays cache-sized and avo); best +2%

@@ -1,0 +1,4 @@
+- [fibmod] DIED at age 5 (gain +0%)
+- [compress] DIED at age 5 (gain +0%)
+- [maze] REST (baseline 3.966, gain +0%, gave 27 energy to the living): maze.py is a padded-bytearray BFS: it reads the grid from stdin, pads it with '#' so neighbour checks need no bounds tests, marks visited cells by overwriting them with '#', and expands frontier by level, printing the distance at E or -1. It passes all three p
+- [csvsum] REST (baseline 1.763, gain +0%, gave 0 energy to the living): csvsum.py is a split-based reader: it reads stdin as bytes, normalises CR/LF, splits on commas, groups the val tokens by cat in a dict, and sums each group with fsum before printing sorted "cat,sum" lines at 2 decimals. It passes sample in-0 byte-for-byte agai

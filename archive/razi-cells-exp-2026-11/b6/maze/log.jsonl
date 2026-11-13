@@ -1,0 +1,10 @@
+{"step": 0, "act": {"do": "sh"}, "res": "exit 0\n105 cases passed\nExpected shortest length: 3998\n1.5839564218797508\n", "route": "openai:gpt-6-astra", "t": 1794220898.35}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [1.6186879676218333, 1.6210937812656219, 1.6198379371974139, 1.6198598053200475, 1.6224736403266193], "t": 1794220918.83}
+{"step": 1, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 1.61986, noise 0.2%. Wins must beat it by > 3.0%.", "route": "openai:gpt-6-astra", "t": 1794220918.83}
+{"event": "variants", "path": "maze.py", "medians": {"inc": 1.62236988527969, "v0": 2.1107589073235937, "v1": 27.3953523759293}, "best": "v1", "adopted": true, "gain": 15.886, "t": 1794220959.25}
+{"event": "improve", "gain": 15.886, "what": "maze.py variant (Compare an unrolled BFS against exact A* with Manhattan distance and deeper-first ties; both preserve shortest-path correctness.)", "t": 1794220959.25}
+{"step": 2, "act": {"do": "variants", "path": "maze.py", "why": "Compare an unrolled BFS against exact A* with Manhattan distance and deeper-first ties; both preserve shortest-path correctness.", "versions": "<1995 chars>"}, "res": "medians inc=1.622, v0=2.111, v1=27.4. ADOPTED v1 (+1589%).", "route": "openai:gpt-6-astra", "t": 1794220959.25}
+{"step": 3, "error": "RuntimeError: model error None: ReadTimeout: ", "t": 1794221035.65}
+{"step": 4, "error": "RuntimeError: model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794221035.65}
+{"step": 5, "error": "RuntimeError: model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794221035.66}
+{"event": "apoptosis", "t": 1794221035.66}

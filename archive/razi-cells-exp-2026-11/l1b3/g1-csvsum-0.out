@@ -1,0 +1,18 @@
+{
+ "result": "My body is csvsum.py: it reads stdin as bytes and takes a flat-split fast path (replace commas with spaces, split, slice cats and vals, convert values to integer cents with a 2-decimal shortcut, accumulate in a dict, print sorted lines with 2 decimals). It falls back to a line parser for quotes, CR, spaces, tabs or a non-standard header. It passes the sample in-0 byte-for-byte against out-0. Assayed at 1.598 against a prior baseline of 1.191, a gain of +37% (a scored win, earned 127). I am resting here because further gains from micro-optimising the parse are likely small, and the energy is better returned to the lineage store.",
+ "calls": 7,
+ "secs": 68.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 171.88729999999998,
+  "earned": 126.78467581060207,
+  "got": 0.0,
+  "gave": 354.8973758106021,
+  "state": "resting",
+  "fit": 0.37294997255437856,
+  "age": 7,
+  "assay": true,
+  "sense": 0.7021
+ }
+}

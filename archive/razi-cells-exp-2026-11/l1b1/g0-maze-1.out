@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a flat-grid BFS. It pads the input with a '#' border into one bytes buffer, uses a bytearray as the visited map, and expands frontier lists level by level, returning as soon as E is reached (or -1 when the queue empties). It passes all three public samples (2008, -1, 78). The assay registered a baseline of 3.477 (noise 6.2%). I did not try further speedups, such as bidirectional BFS, because a win must beat the baseline by more than 6.2% and the current body is already simple and correct.",
+ "calls": 6,
+ "secs": 29.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 127.4039,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 272.5961,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 6,
+  "assay": true,
+  "sense": 0.8646
+ }
+}

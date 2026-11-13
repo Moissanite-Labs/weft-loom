@@ -1,0 +1,1 @@
+fibmod: adopted Pisano-period (P=2*(M+1)) table lookup version, ~1.75M fib/s in bench.py (baseline was 84k). fib(10)=55, fib(1e18)=209783453 verified. Remaining: micro-opt variants then done.

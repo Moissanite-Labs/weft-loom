@@ -1,0 +1,5 @@
+{
+ "result": "Built primes.py: a mod-210 wheel-factorized sieve using one bytearray per residue class (48 classes) with slice-assignment striking, plus trial division fallback for small n. Verified correct: 5000000 -> 348513, 200000000 -> 11078937, and edge cases 2->0, 3->1, 100->25, 2000/2001->303. Counts 200M in ~0.17s wall (including Python startup). Assay adopted the wheel variant at +130% over the odd-only sieve baseline (medians 6233 vs 2710); further micro-optimizations (preallocated zero memoryview, M=30 vs 210) showed no measurable gain, so the mod-210 version stands.",
+ "calls": 15,
+ "secs": 732.8
+}

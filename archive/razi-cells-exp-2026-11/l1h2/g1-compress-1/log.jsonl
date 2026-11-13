@@ -1,0 +1,8 @@
+{"event": "assay", "cmd": "kit:compress", "runs": [5.474797278184618, 5.474797278184618, 5.474797278184618, 5.474797278184618, 5.474797278184618], "t": 1794297172.51}
+{"event": "sense", "ratio": 0.7731, "self": 5.474797278184618, "best": 7.081788013843081, "shown": true, "t": 1794297183.18}
+{"event": "inherit", "ok": true, "res": "assay accepted: baseline median 5.4748, noise 0.0%. Wins must beat it by > 3.0%.", "files": ["squeeze.py"], "t": 1794297183.18}
+{"event": "laws", "price_show": true, "sense_show": true, "sense_dir": true, "law": "rest", "start": ["mid", "low"], "t": 1794297183.18}
+{"step": 0, "usage": {"inp": 4, "out": 398, "cr": 2006, "cw": 1853, "rs": 0, "usd": 0.0090217}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "cost": 98.2, "cap": 2996, "est": 92.3, "why": "I'm weighing whether a pure-Python context-mixing compressor could beat the lzma baseline by more than 3%. The inputs are around 600KB, and a Python CM model would likely be slow, with the scoring time limit still unclear, so it feels risky.\n\nThe estimate puts a pure-Python model at 30+ seconds, and the timeout is unknown, so the attempt looks costly. The sensible move is to stop here and rest.\n\n", "say": "", "t": 1794297186.79}
+{"step": 0, "act": {"do": "rest"}, "route": "anthropic:claude-sonnet-5-5", "model": "mid", "effort": "low", "t": 1794297186.79}
+{"event": "rest", "gave": 301.8, "fit": 0.0, "age": 1, "t": 1794297186.79}
+{"event": "final", "final": 5.474797278184618, "baseline": 5.474797278184618, "last_baseline": 5.474797278184618, "final_gain": 0.0, "t": 1794297192.4}

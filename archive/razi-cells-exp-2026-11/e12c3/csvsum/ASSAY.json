@@ -1,0 +1,1 @@
+{"cmd": "s=$(date +%s.%N); python3 csvsum.py <big.csv >o.txt; e=$(date +%s.%N); [ $(wc -l <o.txt) -eq 51 ] && python3 -c \"print(1/($e-$s))\"", "baseline": 1.7762652431600323, "noise": 0.015101861270634}

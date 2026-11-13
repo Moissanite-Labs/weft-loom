@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is a single-pass stdin reader: it reads all bytes, replaces commas with spaces, splits into tokens, takes categories as every third token starting at index 4 and values as the following tokens parsed with float, accumulates sums in a dict via dict.get, then writes sorted 'cat,sum' lines with 2-decimal formatting. It passed the samples and was registered with assay at baseline 2.19445 (noise 3.2%). I stopped here with 63 energy because the remaining candidate rewrites were unlikely to beat the baseline by more than the 3.2% noise threshold, and each further step costs 16 to 107 energy.",
+ "calls": 8,
+ "secs": 39.9,
+ "ledger": {
+  "e": 48.55870000000007,
+  "born": 400.0,
+  "spent": 440.12899999999996,
+  "earned": 0.0,
+  "got": 88.6877,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 8,
+  "assay": true,
+  "sense": 0.9358
+ }
+}

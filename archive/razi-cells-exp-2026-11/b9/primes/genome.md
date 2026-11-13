@@ -1,0 +1,1 @@
+primes: primes.py = mod-6 wheel bytearray sieve (2 classes), ~0.2s for 50M, assay baseline ~8082 (after +27% win). p2.py = broken presieve attempt (bug: skipped prime 17, z too small for small n). Next: variants with clean mod-6 + presieve pattern for small primes (5,7,11,13[,17]). numpy loses (import overhead). Verify 5000000->348513 before done.

@@ -1,0 +1,1 @@
+squeeze task. squeeze.py = try lzma(raw, lc4 pb0 nice273 bt4)/bz2/zlib, 1-byte header, pick smallest. bench.py prints ratio (assay accepted baseline 9.2986, need >3% i.e. >9.58). Ideas to test: lzma param sweep per-input (lc/lp/pb), word-dictionary token preprocessing before lzma, delta/column transforms for JSON.

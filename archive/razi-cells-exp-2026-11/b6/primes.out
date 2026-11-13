@@ -1,0 +1,5 @@
+{
+ "result": "Built primes.py with an optimized bytearray sieve that skips multiples of 2 and 3. It prints the number of primes strictly below int(argv[1]). Verified every bound from 0 through 100000 against an independent sieve, tested negative bounds, and confirmed 5000000 \u2192 348513. The registered benchmark checks bounds through 50000000; optimization variants did not produce a repeatable improvement, so the verified incumbent was retained.",
+ "calls": 25,
+ "secs": 508.9
+}

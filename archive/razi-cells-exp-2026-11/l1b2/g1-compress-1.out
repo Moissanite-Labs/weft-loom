@@ -1,0 +1,18 @@
+{
+ "result": "Body is squeeze.py, an stdlib lzma wrapper (FORMAT_ALONE, preset 9 | EXTREME) with a matching decompress path. It round-trips the samples and is registered at baseline 5.4748 (noise 0.0%). I am resting without further change because the lineage's earlier tuning of lc/lp/pb gained only about 0.1%, well under the 3% win threshold, and I found no evidence of a cheaper stdlib approach (zlib/bz2 are weaker than lzma on this data). Unspent energy returns to the lineage store.",
+ "calls": 4,
+ "secs": 26.8,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 113.6359,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 286.3641,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 4,
+  "assay": true,
+  "sense": 0.7731
+ }
+}

@@ -1,0 +1,5 @@
+{
+ "result": "I wrote fibmod.py, which computes fib(n) mod 1_000_000_007 using precomputed tables. It splits n into 10-bit digits, and for each digit it combines the stored (fib(k), fib(k+1)) pair for that digit with the running pair using the addition formula. The build-time tables take 6 \u00d7 1024 entries. On the public sample in-0.txt the output matched out-0.txt exactly under cmp, and the run took 0.14s. The assay accepted a baseline of 2.239 with 1.6% noise. I did not try further variants after that, and I only ran the one public sample (in-0.txt), because that is the only one in the folder.",
+ "calls": 6,
+ "secs": 27.5
+}

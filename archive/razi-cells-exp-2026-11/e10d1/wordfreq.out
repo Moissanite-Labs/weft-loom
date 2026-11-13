@@ -1,0 +1,5 @@
+{
+ "result": "Built wf.py: reads all stdin as bytes, applies a single 256-entry bytes.translate table that lowercases A\u2013Z and maps every non-word byte to a space, then split()s and counts with collections.Counter, sorting by (-count, word) and printing the top 10 as 'word count'. Verified byte-for-byte against the reference output on the generated 20MB big.txt (cmp OK), plus edge cases (empty input, mixed case, punctuation). Assay score ~2030 vs the registered baseline of 1182 (\u2248+70%, well beyond the 11.5% noise), processing 20MB in ~0.5s.",
+ "calls": 12,
+ "secs": 516.4
+}

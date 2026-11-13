@@ -1,0 +1,5 @@
+{
+ "result": "primes.py prints the count of primes below int(argv[1]) and returns the required 348513 for 5000000, as well as 5761455 for 100000000. It uses an odd-only segmented sieve with 1 MB segments copied from a pattern pre-sieved for 3, 5, 7, 11 and 13, split across 8 forked workers that return counts over pipes; inputs below 65536 use a simple sieve. chk.py compared it against a reference sieve on 30 values of n (segment and worker boundaries plus random values up to 20,000,000) with 0 mismatches. The assay (runs per second at n=1e8, scoring 0 on any wrong answer among 12 known counts) rose from a 5.52 baseline to about 16\u201318, roughly 3x faster. A run now takes about 55 ms, of which about 33 ms is bare interpreter startup; 10 workers, 512 KB or 8 MB segments, and a pre-sieve through 17 gave no further gain. No answers are hardcoded.",
+ "calls": 14,
+ "secs": 1078.2
+}

@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is a BFS shortest-path solver. It reads the grid from stdin, pre-marks walls as visited in a bytearray so there is no separate grid lookup, and unrolls the four neighbour checks. It reads S and E positions, prints 0 if S equals E, and prints -1 if either endpoint is missing or unreachable. It matched all three sample outputs (2008, -1, 78). The bench adopted this version as a +37% win over the earlier body. I am resting here rather than spending more energy on further variants.",
+ "calls": 7,
+ "secs": 42.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 142.0173,
+  "earned": 125.93241803602015,
+  "got": 269.72614999999996,
+  "gave": 653.6412680360202,
+  "state": "resting",
+  "fit": 0.3700278184749526,
+  "age": 7,
+  "assay": true
+ }
+}

@@ -1,0 +1,5 @@
+{
+ "result": "Built csvsum.py. It reads stdin, sums val per cat, and prints the cats sorted with 2 decimals. I generated a 2,000,000-row CSV and checked the output against an independent reference script. The first lines matched (c0 2004069.21, c1 1986017.10, c10 2022664.13). It runs in about 0.55 s. The assay is registered with a baseline of 1.81 runs per second. I did not try any optimisations.",
+ "calls": 6,
+ "secs": 33.2
+}

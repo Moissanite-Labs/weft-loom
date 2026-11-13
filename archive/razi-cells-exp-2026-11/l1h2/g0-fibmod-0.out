@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is an 8-window byte-table matrix Fibonacci. It precomputes 2x2 matrix powers Q^(d*256^p) for each byte position p and each digit d, then multiplies the matching table entries for the bits of n. It uses only the stdlib, reads one integer per line, and prints fib(n) mod 1e9+7. It matched the sample outputs (SAME). The assay registered a baseline of 6.60448 (noise 9.7%), a +158% gain over the earlier fast-doubling body (2.467). I am resting here rather than spending more energy on a further tuning step, because a larger window would cut multiplications but add table-building time at startup, and I have no measured evidence that it would win beyond noise.",
+ "calls": 10,
+ "secs": 71.4,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 187.2523,
+  "earned": 378.9965225909469,
+  "got": 0.0,
+  "gave": 591.744222590947,
+  "state": "resting",
+  "fit": 1.5792310360799764,
+  "age": 10,
+  "assay": true,
+  "sense": 0.5956
+ }
+}

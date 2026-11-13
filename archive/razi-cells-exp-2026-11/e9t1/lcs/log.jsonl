@@ -1,0 +1,22 @@
+{"step": 0, "act": {"do": "sh", "cmd": "python3 --version; which gcc clang pypy3; python3 -c \"import numpy; print('numpy ok')\" 2>/dev/null || true"}, "res": "exit 0\nPython 3.14.8\n/usr/bin/gcc\n/usr/bin/clang\nnumpy ok\n", "route": "opencode-go:gemini-4-argon", "t": 1794250732.94}
+{"step": 1, "act": {"do": "write", "path": "lcs.py", "text": "<648 chars>"}, "res": "wrote lcs.py", "route": "opencode-go:gemini-4-argon", "t": 1794250742.84}
+{"step": 2, "act": {"do": "write", "path": "bench.py", "text": "<3070 chars>"}, "res": "wrote bench.py", "route": "opencode-go:gemini-4-argon", "t": 1794250762.64}
+{"step": 3, "act": {"do": "sh"}, "res": "exit 0\nabcd 972\nACGT 1957\n01 2415\nabcd 850\n1.75\n\nreal\t0m3.459s\nuser\t0m3.431s\nsys\t0m0.019s\n", "route": "opencode-go:gemini-4-argon", "t": 1794250780.66}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [1.76, 1.77, 1.77, 1.77, 1.77], "t": 1794250935.99}
+{"step": 4, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 1.77, noise 0.6%. Wins must beat it by > 3.0%.", "route": "opencode-go:gemini-4-argon", "t": 1794250935.99}
+{"event": "variants", "path": "lcs.py", "medians": {"inc": 1.77, "v0": 512.42, "v1": 575.51, "v2": 509.37}, "best": "v1", "adopted": true, "gain": 324.1469, "kinds": null, "arm": "trynudge", "t": 1794251229.89}
+{"event": "improve", "gain": 324.1469, "what": "lcs.py variant (Replace O(N*M) list DP with O(N*M/W) Allison-Dix/Hyyro bit-parallel LCS using Python bigints)", "t": 1794251229.9}
+{"step": 5, "act": {"do": "variants", "versions": "<2348 chars>", "path": "lcs.py", "why": "Replace O(N*M) list DP with O(N*M/W) Allison-Dix/Hyyro bit-parallel LCS using Python bigints"}, "res": "medians inc=1.77, v0=512.4, v1=575.5, v2=509.4. ADOPTED v1 (+32415%).", "route": "opencode-go:gemini-4-argon", "t": 1794251229.9}
+{"step": 6, "error": "RuntimeError: model error None: all routes for 'main' failed or are cooling down; last error: ReadTimeout: ; next route reopens in 60s", "t": 1794251289.96}
+{"step": 7, "backoff": 62, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 60s", "t": 1794251289.96}
+{"event": "variants", "path": "lcs.py", "medians": {"inc": 570.95, "v0": 529.71, "v1": 584.86, "v2": 577.29, "v3": 630.11, "v4": 580.79}, "best": "v3", "adopted": true, "gain": 0.1036, "kinds": null, "arm": "trynudge", "t": 1794251473.19}
+{"event": "improve", "gain": 0.1036, "what": "lcs.py variant (Remove per-iteration mask, replace S - u with S ^ u, and test pre-initialized dict / ASCII array lookup)", "t": 1794251473.19}
+{"step": 8, "act": {"do": "variants", "path": "lcs.py", "why": "Remove per-iteration mask, replace S - u with S ^ u, and test pre-initialized dict / ASCII array lookup", "versions": "<4407 chars>"}, "res": "medians inc=571, v0=529.7, v1=584.9, v2=577.3, v3=630.1, v4=580.8. ADOPTED v3 (+10%).", "route": "opencode-go:gemini-4-argon", "t": 1794251473.19}
+{"step": 9, "backoff": 120, "why": "model error 429: all routes for 'main' failed or are cooling down; last error: HTTP 429: Go usage limit exceeded; next r", "t": 1794251473.42}
+{"step": 10, "backoff": 120, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 187s", "t": 1794251593.43}
+{"step": 11, "backoff": 69, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 67s", "t": 1794251713.43}
+{"step": 12, "backoff": 120, "why": "model error 429: all routes for 'main' failed or are cooling down; last error: HTTP 429: Go usage limit exceeded; next r", "t": 1794251782.75}
+{"step": 13, "backoff": 120, "why": "model error 429: all routes for 'main' failed or are cooling down; next route reopens in 181s", "t": 1794251902.76}
+{"step": 14, "error": "RuntimeError: model error 429: all routes for 'main' failed or are cooling down; next route reopens in 61s", "t": 1794252022.76}
+{"step": 15, "error": "RuntimeError: model error 429: all routes for 'main' failed or are cooling down; next route reopens in 61s", "t": 1794252022.77}
+{"event": "final", "final": 607.95, "baseline": 1.77, "final_gain": 342.4746, "t": 1794252026.57}

@@ -1,0 +1,5 @@
+{
+ "result": "Built wf.py: reads stdin bytes, and for pure-ASCII input builds a 256-entry bytes translation table (A-Z\u2192a-z, everything else\u2192space) then counts with collections.Counter on split(), giving fast C-level tokenizing; for non-ASCII input it falls back to utf-8 decoding + str.lower() + re.findall(r'[a-z]+') so Unicode case folding matches the reference semantics (e.g. '\u0130 I i' \u2192 i 3). Output is the 10 most common lowercase words as 'word count' lines, tie-broken by word via sorted(key=(-count, word)). Verified: output matches an independent reference on edge cases ('', 'a b c a b a', 'A a B b', 'The cat the CAT a the!', \"don't stop\", comma/punctuation runs, and the Unicode \u0130 case) and on a generated 1.14 MB text (big match True); speed ~0.053 s for that file, i.e. on the order of ~1 s for 20 MB, well within budget.",
+ "calls": 14,
+ "secs": 124.9
+}

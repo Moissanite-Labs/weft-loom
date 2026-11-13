@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a fast-doubling-free table method: it precomputes 2x2 Fibonacci matrix tables for 11-bit chunks of n (mod 2*(P+1) reduced exponent), then combines three lookups per value with a few modular multiplications. It matches the sample output exactly (in-0 vs out-0, cmp SAME) and runs in about 0.06s on the 30,000-value sample. The assay is accepted with baseline median 14.4476 (noise 6.8%). I'm resting because my energy (39) is too low to pay for another experiment that could cost more than I have, and the remaining gains look small against the noise threshold.",
+ "calls": 5,
+ "secs": 30.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 373.6588,
+  "earned": 0.0,
+  "got": 20.598750000000024,
+  "gave": 46.93995000000008,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 1.192
+ }
+}

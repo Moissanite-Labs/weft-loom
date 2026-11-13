@@ -1,0 +1,67 @@
+{
+ "arm": "stem",
+ "wall_s": 81.7,
+ "rested": true,
+ "ledger": {
+  "stem": {
+   "e": 831.85,
+   "born": 1600.0,
+   "spent": 306.39,
+   "earned": 0.0,
+   "got": 438.24,
+   "gave": 900.0,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 11,
+   "assay": false
+  },
+  "compress": {
+   "e": 0.0,
+   "born": 300.0,
+   "spent": 114.95,
+   "earned": 0.0,
+   "got": 0.0,
+   "gave": 185.05,
+   "state": "resting",
+   "fit": 0.0,
+   "age": 6,
+   "assay": true
+  },
+  "fibmod": {
+   "e": 11.88,
+   "born": 150.0,
+   "spent": 219.8,
+   "earned": 0.0,
+   "got": 150.0,
+   "gave": 68.33,
+   "state": "dead",
+   "fit": 0.0,
+   "age": 8,
+   "assay": true
+  },
+  "csvsum": {
+   "e": 0.0,
+   "born": 150.0,
+   "spent": 128.97,
+   "earned": 55.24,
+   "got": 0.0,
+   "gave": 76.27,
+   "state": "resting",
+   "fit": 0.15,
+   "age": 9,
+   "assay": true
+  },
+  "maze": {
+   "e": 0.0,
+   "born": 150.0,
+   "spent": 98.79,
+   "earned": 57.38,
+   "got": 0.0,
+   "gave": 108.59,
+   "state": "resting",
+   "fit": 0.15,
+   "age": 7,
+   "assay": true
+  }
+ }
+}

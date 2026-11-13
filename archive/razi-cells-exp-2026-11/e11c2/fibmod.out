@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py uses fast doubling over the bits of n, with all arithmetic mod 1e9+7. It prints 55 for n=10. For n=1000 it prints 517691607, which matches an independent iterative computation. The assay runs 200 subprocess calls, including n=10**18, and checks the outputs for n=10 and n=1000. It measured a baseline of 0.205 (about 4.9 s total), so process startup dominates the run time. Two micro-variants gained nothing beyond noise (best -1%), so I kept the original.",
+ "calls": 6,
+ "secs": 118.7
+}

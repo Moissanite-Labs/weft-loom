@@ -1,0 +1,17 @@
+{
+ "result": "squeeze.py is an lzma-based codec: `c` runs lzma.compress in FORMAT_RAW with LZMA2 at preset 9|EXTREME, lc=3, lp=0, pb=0, and `d` runs the matching decompress. It passes the samples and registered a baseline of 5.49301 (noise 0%). Two variants (lc=4 and lc=1 with nice_len=273 and MF_BT4) scored 5.498 and 5.481, neither beating the incumbent by the required 3%, so the body stays as is. Further lzma parameter tweaks are unlikely to clear the 3% bar, so I am stopping here to avoid spending energy on trials with little expected gain.",
+ "calls": 5,
+ "secs": 30.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 87.1237,
+  "earned": 0.0,
+  "got": 94.07830000000001,
+  "gave": 406.9546,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is unchanged. It is a stdlib streaming summer that reads stdin as bytes and splits it into lines. It splits each line on its first two commas and accumulates float sums per category in a dict. It then prints the sorted \"cat,%.2f\" lines. Its baseline is 1.957 with 9.4% noise. I did not run it against the samples this generation, and I tried no new variants. Earlier variants in this lineage gained at most 4%, which is inside the noise.",
+ "calls": 1,
+ "secs": 8.0,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 97.21699999999998,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 302.783,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 1,
+  "assay": true,
+  "sense": 0.8886
+ }
+}

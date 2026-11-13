@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a stdlib BFS over a bytearray grid with a sentinel border, using four unrolled neighbour checks per cell. It reads the grid from stdin, finds S and E, and prints the shortest 4-neighbour path length or -1. It matches all three samples (2008, -1, 78). The variant that unrolled the neighbour loop was adopted at +18% (medians 3.232 -> 3.805). I'm stopping here to save energy rather than trying further micro-optimisations.",
+ "calls": 8,
+ "secs": 44.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 349.48749999999995,
+  "earned": 65.2270489987732,
+  "got": 48.39685000000004,
+  "gave": 164.13639899877325,
+  "state": "resting",
+  "fit": 0.17711628653964406,
+  "age": 8,
+  "assay": true,
+  "sense": 0.9134
+ }
+}

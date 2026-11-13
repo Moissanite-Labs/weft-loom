@@ -1,0 +1,5 @@
+{
+ "result": "I built maze.py, a BFS over a padded bytearray grid. It reads stdin, pads the grid with a wall border, and expands the frontier one level at a time. It prints the distance when it reaches E, or -1 if E is never reached. It matches all 3 samples (2008, -1, 78). The assay accepted it with a baseline of 3.776 and 2.8% noise. I made one improvement attempt: a daughter cell was meant to try bidirectional or bigint-bitset BFS. Its `try` was refused, so it tested nothing and gained +0%. That idea is still untested, and I am submitting the plain BFS.",
+ "calls": 10,
+ "secs": 43.3
+}

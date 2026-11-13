@@ -1,0 +1,5 @@
+{
+ "result": "Built `squeeze.py` with stdlib-only, exactly reversible `compress`/`decompress`: it evaluates a registry of identity, zlib, bz2, LZMA, custom LZ, and reversible token-substitution encoders and prefixes the winning method id. Verified `python3 bench.py` passes round-trip checks on the 451,324-byte fixed English/JSON corpus plus edge cases (empty, single byte, marker-heavy NUL/0xFF sequences, all 256 byte values repeated, truncated slices, and compact JSON), yielding 31,576 compressed bytes (ratio 14.293261); a separate 35-case arbitrary-byte fuzz run also round-tripped successfully. The registered assay was accepted with median 14.2933 and 0.0% noise across 5 runs.",
+ "calls": 16,
+ "secs": 590.7
+}

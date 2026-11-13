@@ -1,0 +1,251 @@
+{
+ "wall_s": 497.9,
+ "par": 16,
+ "peak_rss_mb": 1440.7,
+ "peak_cpu_pct": 196.0,
+ "mean_cpu_pct": 22.4,
+ "cells": {
+  "primes-plain": {
+   "rc": 0,
+   "secs": 267.6,
+   "steps": 17,
+   "errors": 3,
+   "acts": {
+    "write": 1,
+    "sh": 9,
+    "done": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": true
+  },
+  "primes-split": {
+   "rc": 0,
+   "secs": 181.8,
+   "steps": 18,
+   "errors": 3,
+   "acts": {
+    "write": 2,
+    "sh": 7,
+    "divide": 1,
+    "done": 1
+   },
+   "splits": 1,
+   "ties": 1,
+   "calls": 21,
+   "done": true
+  },
+  "sortints-plain": {
+   "rc": 0,
+   "secs": 275.5,
+   "steps": 17,
+   "errors": 3,
+   "acts": {
+    "write": 2,
+    "sh": 8,
+    "done": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": true
+  },
+  "sortints-split": {
+   "rc": 0,
+   "secs": 457.6,
+   "steps": 17,
+   "errors": 2,
+   "acts": {
+    "write": 4,
+    "sh": 6,
+    "divide": 1,
+    "done": 1
+   },
+   "splits": 1,
+   "ties": 0,
+   "calls": 24,
+   "done": true
+  },
+  "wordfreq-plain": {
+   "rc": 0,
+   "secs": 127.5,
+   "steps": 16,
+   "errors": 2,
+   "acts": {
+    "write": 3,
+    "sh": 8,
+    "done": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": true
+  },
+  "wordfreq-split": {
+   "rc": 1,
+   "secs": 268.1,
+   "steps": 18,
+   "errors": 3,
+   "acts": {
+    "write": 3,
+    "sh": 7,
+    "divide": 1
+   },
+   "splits": 1,
+   "ties": 1,
+   "calls": 22,
+   "done": true
+  },
+  "compress-plain": {
+   "rc": 0,
+   "secs": 113.5,
+   "steps": 17,
+   "errors": 3,
+   "acts": {
+    "write": 3,
+    "sh": 7,
+    "done": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": true
+  },
+  "compress-split": {
+   "rc": 1,
+   "secs": 354.9,
+   "steps": 17,
+   "errors": 3,
+   "acts": {
+    "write": 1,
+    "sh": 10
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": false
+  },
+  "fibmod-plain": {
+   "rc": 0,
+   "secs": 164.4,
+   "steps": 15,
+   "errors": 1,
+   "acts": {
+    "write": 2,
+    "sh": 10,
+    "done": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": true
+  },
+  "fibmod-split": {
+   "rc": 0,
+   "secs": 496.4,
+   "steps": 18,
+   "errors": 3,
+   "acts": {
+    "write": 2,
+    "sh": 7,
+    "divide": 1,
+    "done": 1
+   },
+   "splits": 1,
+   "ties": 1,
+   "calls": 22,
+   "done": true
+  },
+  "lcs-plain": {
+   "rc": 0,
+   "secs": 169.5,
+   "steps": 18,
+   "errors": 4,
+   "acts": {
+    "write": 2,
+    "sh": 7,
+    "done": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": true
+  },
+  "lcs-split": {
+   "rc": 0,
+   "secs": 281.7,
+   "steps": 19,
+   "errors": 5,
+   "acts": {
+    "write": 3,
+    "sh": 5,
+    "done": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": true
+  },
+  "csvsum-plain": {
+   "rc": 0,
+   "secs": 117.6,
+   "steps": 16,
+   "errors": 2,
+   "acts": {
+    "write": 3,
+    "sh": 8,
+    "done": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": true
+  },
+  "csvsum-split": {
+   "rc": 1,
+   "secs": 399.5,
+   "steps": 18,
+   "errors": 3,
+   "acts": {
+    "write": 4,
+    "sh": 6,
+    "divide": 1
+   },
+   "splits": 1,
+   "ties": 1,
+   "calls": 22,
+   "done": false
+  },
+  "maze-plain": {
+   "rc": 0,
+   "secs": 154.1,
+   "steps": 17,
+   "errors": 3,
+   "acts": {
+    "write": 3,
+    "sh": 7,
+    "done": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": true
+  },
+  "maze-split": {
+   "rc": 0,
+   "secs": 222.3,
+   "steps": 17,
+   "errors": 3,
+   "acts": {
+    "write": 3,
+    "sh": 7,
+    "done": 1
+   },
+   "splits": 0,
+   "ties": 0,
+   "calls": 14,
+   "done": true
+  }
+ }
+}

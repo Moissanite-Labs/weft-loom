@@ -1,0 +1,17 @@
+{
+ "result": "maze.py is a BFS over a bytearray grid padded with a '#' border. Visited cells are marked by overwriting them with '#' (35), which removes a separate visited-array lookup per neighbour. It reads stdin as bytes, prints the shortest S-to-E distance, or -1 when there is no path or S/E is missing. It matches all three sample outputs (2008, -1, 78). It passed assay at baseline 2.936, and the folded-visited variant was adopted with a +9% gain over the prior body. I'm stopping here because the job is done and further gains would be small.",
+ "calls": 6,
+ "secs": 34.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 83.107,
+  "earned": 35.467290832804395,
+  "got": 303.41769999999997,
+  "gave": 655.7779908328044,
+  "state": "resting",
+  "fit": 0.09271806192021148,
+  "age": 6,
+  "assay": true
+ }
+}

@@ -1,0 +1,5 @@
+{
+ "result": "maze.py is a breadth-first search over a padded flat bytearray grid. It reads stdin, finds S and E, and prints the shortest path length, or -1 if there is no path. The harness accepted a baseline of 3.51 with 2% noise. I then tried a faster BFS style, which scored 4.005 against 3.536 and was adopted as a 13% gain. I did not run the public samples myself, so correctness rests on the assay, which rejects any wrong output. I made no further speed attempts.",
+ "calls": 5,
+ "secs": 24.5
+}

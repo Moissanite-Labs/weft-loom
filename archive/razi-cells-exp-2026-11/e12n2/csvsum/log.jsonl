@@ -1,0 +1,12 @@
+{"step": 0, "usage": {"inp": 4, "out": 484, "cr": 1308, "cw": 0, "rs": 0, "usd": 0.0051096}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266611.8}
+{"step": 0, "act": {"do": "write", "path": "csvsum.py", "text": "<374 chars>"}, "res": "wrote csvsum.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794266611.8}
+{"step": 1, "usage": {"inp": 4, "out": 143, "cr": 1030, "cw": 746, "rs": 0, "usd": 0.003509}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266613.27}
+{"step": 1, "act": {"do": "sh", "cmd": "python3 -c \"\nimport random\nrandom.seed(1)\nprint('id,cat,val')\nfor i in range(2000000):print('%d,c%d,%.2f'%(i,random.randint(0,50),random.random()*100))\">data.csv\ntime python3 csvsum.py<data.csv|head -3"}, "res": "exit 0\nc0,1971275.86\nc1,1948889.60\nc10,1980996.81\n\nreal\t0m0.564s\nuser\t0m0.519s\nsys\t0m0.028s\n", "route": "anthropic:claude-sonnet-5-5", "t": 1794266615.23}
+{"step": 2, "usage": {"inp": 4, "out": 380, "cr": 1030, "cw": 960, "rs": 0, "usd": 0.006414}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266618.33}
+{"step": 2, "act": {"do": "sh"}, "res": "exit 0\n1.7987910289977205\n", "route": "anthropic:claude-sonnet-5-5", "t": 1794266619.8}
+{"step": 3, "usage": {"inp": 4, "out": 54, "cr": 1030, "cw": 2318, "rs": 0, "usd": 0.006549}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266620.86}
+{"event": "assay", "cmd": "bash bench.sh", "runs": [1.757348464819755, 1.807824978675332, 1.826664140704787, 1.8053932321169692, 1.649394892122685], "t": 1794266630.43}
+{"step": 3, "act": {"do": "assay", "cmd": "bash bench.sh"}, "res": "assay accepted: baseline median 1.80539, noise 9.8%. Wins must beat it by > 9.8%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794266630.43}
+{"step": 4, "usage": {"inp": 4, "out": 212, "cr": 1030, "cw": 2563, "rs": 0, "usd": 0.0087415}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266633.13}
+{"step": 4, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266633.13}
+{"event": "final", "final": 1.8026464404396179, "baseline": 1.8053932321169692, "final_gain": -0.0015, "t": 1794266634.97}

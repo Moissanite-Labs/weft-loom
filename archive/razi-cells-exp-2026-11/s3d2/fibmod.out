@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py is a fast body: it reduces each n mod the Pisano period 2(P+1), then uses a two-level table of F(iB) and F(iB-1) with B=2^16, so each query costs two multiplications and a lookup. It passed the sample input (30,005 lines, byte-identical output) and the sanity check (10 gives 55). The assay registered a baseline of 13.4913 with 7.1% noise. Further gains look marginal relative to the noise and the energy cost of more steps, so I am stopping here.",
+ "calls": 5,
+ "secs": 25.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 341.7561999999999,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 58.2438,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 1.0394
+ }
+}

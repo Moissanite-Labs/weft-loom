@@ -1,0 +1,18 @@
+{
+ "result": "My body is maze.py: it reads all of stdin as bytes, splits it into rows, and copies the grid into one flat bytearray padded with a border of walls. It finds S and E, then runs a level-by-level BFS from S over 4 neighbours, marking visited cells as walls in place, and stops when E is reached. It prints -1 if S or E is missing or unreachable. It matches all three public samples (2008, -1, 78) and the small edge cases (S.E gives 2, S#E gives -1). The assay was accepted with baseline 4.12325 and noise 5.9%. I did not try further speedups, since a win has to beat the baseline by more than 5.9% and the current body is already a linear-time BFS.",
+ "calls": 7,
+ "secs": 25.2,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 146.9472,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 253.0528,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.9494
+ }
+}

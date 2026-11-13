@@ -1,0 +1,14 @@
+{"step": 0, "usage": {"inp": 4, "out": 280, "cr": 1476, "cw": 0, "rs": 0, "usd": 0.0031032}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266836.04}
+{"step": 0, "act": {"do": "write", "path": "fibmod.py", "text": "<237 chars>"}, "res": "wrote fibmod.py", "route": "anthropic:claude-sonnet-5-5", "t": 1794266836.04}
+{"step": 1, "usage": {"inp": 4, "out": 135, "cr": 1210, "cw": 653, "rs": 0, "usd": 0.0032325}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266837.82}
+{"step": 1, "act": {"do": "sh", "cmd": "python3 fibmod.py 10; python3 fibmod.py 1000000000000000000; python3 -c \"\na,b=0,1\nfor i in range(1000):a,b=b,(a+b)%1000000007\nprint(a)\"; python3 fibmod.py 1000"}, "res": "exit 0\n55\n209783453\n517691607\n517691607\n", "route": "anthropic:claude-sonnet-5-5", "t": 1794266837.94}
+{"step": 2, "usage": {"inp": 4, "out": 155, "cr": 1210, "cw": 791, "rs": 0, "usd": 0.0037775}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266839.9}
+{"event": "assay", "cmd": "python3 -c \"\nimport fibmod,time\nr=fibmod.fib(10**18)\nif r!=209783453 or fibmod.fib(10)!=55: print(0)\nelse:\n    t=time.time()\n    for i in range(20000): fibmod.fib(10**18-i)\n    print(1/(time.time()-t))\n\"", "runs": [3.9889413333358696, 4.1504298065153264, 4.144618315632201, 4.1128248273454595, 4.120311447034161], "t": 1794266841.33}
+{"step": 2, "act": {"do": "assay", "cmd": "python3 -c \"\nimport fibmod,time\nr=fibmod.fib(10**18)\nif r!=209783453 or fibmod.fib(10)!=55: print(0)\nelse:\n    t=time.time()\n    for i in range(20000): fibmod.fib(10**18-i)\n    print(1/(time.time()-t))\n\""}, "res": "assay accepted: baseline median 4.12031, noise 3.9%. Wins must beat it by > 3.9%.", "route": "anthropic:claude-sonnet-5-5", "t": 1794266841.33}
+{"step": 3, "usage": {"inp": 4, "out": 394, "cr": 1210, "cw": 1150, "rs": 0, "usd": 0.007065}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266844.02}
+{"event": "variants", "path": "fibmod.py", "medians": {"inc": 4.143754340796622, "v0": 4.736120975746359, "v1": 4.532785202188202}, "best": "v0", "adopted": true, "gain": 0.143, "kinds": null, "arm": "ctrl", "t": 1794266848.01}
+{"event": "improve", "gain": 0.143, "what": "fibmod.py variant ()", "t": 1794266848.01}
+{"step": 3, "act": {"do": "variants", "path": "fibmod.py", "versions": "<550 chars>"}, "res": "medians inc=4.144, v0=4.736, v1=4.533. ADOPTED v0 (+14%).", "route": "anthropic:claude-sonnet-5-5", "t": 1794266848.01}
+{"step": 4, "usage": {"inp": 4, "out": 179, "cr": 1210, "cw": 1315, "rs": 0, "usd": 0.0053275}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266849.84}
+{"step": 4, "act": {"do": "done"}, "route": "anthropic:claude-sonnet-5-5", "t": 1794266849.84}
+{"event": "final", "final": 4.744285269914883, "baseline": 4.120311447034161, "final_gain": 0.1514, "t": 1794266851.91}

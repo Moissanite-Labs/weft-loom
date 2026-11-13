@@ -1,0 +1,1 @@
+{"cmd": "python3 -c \"\nimport bench, squeeze, os, random\nd = bench.dataset()\nc = squeeze.compress(d)\nassert squeeze.decompress(c) == d, 'roundtrip fail'\n# edge cases\nfor t in (b'', b'a', b'hello world '*3, bytes(range(256))*4, os.urandom(5000)):\n    assert squeeze.decompress(squeeze.compress(t)) == t\nprint(len(d)/len(c))\n\"", "baseline": 5.487331486611265, "noise": 0.0}

@@ -1,0 +1,5 @@
+{
+ "result": "csvsum.py reads stdin and sums val per cat (2 decimals, sorted by cat). It runs on a 2M-row generated CSV (34 MB) in about 0.6 s. Its output matches exp.txt, which was produced by the first version, so the assay checks consistency with that version rather than an independent answer. The assay scores 1/time and returns 0 if the output differs. A variant improved the score by about 7%, from 1.62 to 1.73, which is beyond the 3% noise margin. I did not run a separate check against an independent implementation.",
+ "calls": 6,
+ "secs": 32.7
+}

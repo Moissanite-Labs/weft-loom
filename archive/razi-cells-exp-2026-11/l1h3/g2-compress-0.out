@@ -1,0 +1,18 @@
+{
+ "result": "squeeze.py is an LZMA2 raw-format compressor. A header byte picks the best of five lc/lp/pb sets. It round-trips both public samples and is registered at baseline 5.50. I made no changes, so the gain is +0%. A context-mixing compressor in pure Python would likely beat it. I judged it too slow for the 30 s limit on inputs of about 700 KB, so I did not try it.",
+ "calls": 2,
+ "secs": 27.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 219.509,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 180.49099999999999,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 2,
+  "assay": true,
+  "sense": 0.7767
+ }
+}

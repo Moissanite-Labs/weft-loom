@@ -1,0 +1,5 @@
+{
+ "result": "fibmod.py uses fast doubling (O(log n) steps, all values reduced mod 1e9+7). Checks: fib(10)=55. fib(1000)=517691607 matches a brute-force loop. fib(10**18)=209783453, which I did not cross-check independently. The assay runs 20 processes at n near 10**18 and has a baseline of 1.85 runs/s. It is dominated by Python startup. One improvement attempt, stripping the source to a bare script, lost 1%, which is within noise, so I kept the original body.",
+ "calls": 10,
+ "secs": 59.3
+}

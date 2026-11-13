@@ -1,0 +1,8 @@
+- [fibmod] WIN +79%: fibmod.py variant () (assay: kit:fibmod)
+- [maze] WIN +13%: maze.py variant (try faster BFS styles) (assay: kit:maze)
+- [maze] DONE (assay baseline 3.513): maze.py is a breadth-first search over a padded flat bytearray grid. It reads stdin, finds S and E, and prints the shortest path length, or -1 if there is no path. The harness accepted a baseline of 3.51 with 2% noise. I then tried a faster BFS style, which scored 4.005 against 3.536 and was adopted
+- [csvsum] WIN +11%: csvsum.py variant () (assay: kit:csvsum)
+- [csvsum] DONE (assay baseline 1.566): csvsum.py reads stdin as bytes and groups the val strings by cat. It sums each group with fsum over float() and prints "cat,sum" with 2 decimals, sorted by cat. The assay accepted a baseline of 1.566 with 2.6% noise. A variants round then scored 1.745 against 1.576 for the incumbent, and that versio
+- [compress] no gain: 2 variants of squeeze.py (try different lc/pb and bz2/zlib-free alternatives; raw lzma with lc=3 and pb=0, nice_len max); best -0%
+- [compress] DONE (assay baseline 5.498): squeeze.py uses stdlib lzma in raw mode (LZMA2, preset 9 extreme, lc=4, lp=0, pb=0, 1 MB dictionary). I checked a small round trip by hand and it matched. The harness assay accepted it with a baseline compression ratio of 5.498 and 0.0% noise. One variants round tried lc=3 and lc=4 with nice_len 273
+- [fibmod] DONE (assay baseline 2.62): fibmod.py reduces n modulo the Pisano period 2*M+2 (the assay's 2.6 baseline was for the first version). It then combines three precomputed tables of 2048 entries each, covering the low, middle and high 11-bit chunks, using Fibonacci addition formulas. That takes a few multiplications per query. The

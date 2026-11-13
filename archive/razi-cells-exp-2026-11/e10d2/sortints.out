@@ -1,0 +1,5 @@
+{
+ "result": "Built sortints.py: reads all of stdin, parses with numpy np.fromstring(..., dtype=int64, sep=' '), sorts in place with a.sort(), and formats output via a single \"%d\\n\"*n % tuple(a.tolist()) string op written to stdout.buffer. Test data (in.txt, 1M ints in [-2^31, 2^31], seed 12345) and expected.txt (reference sorted output) were generated locally; output verified byte-identical with cmp. Assay (python3 assay.py, 1000/elapsed-seconds, 0 on mismatch) rose from baseline 1346.98 (pure-Python sorted(map(int,...))) to ~4500-4670 (~0.21s end-to-end for 1M ints), a ~3.3x speedup; profiling showed parse 0.025s, sort 0.05s, output ~0.1s, so output formatting was the remaining bottleneck and the %-formatting variant beat join(map(str)), astype('S11'), and tofile.",
+ "calls": 15,
+ "secs": 344.9
+}

@@ -1,0 +1,3 @@
+lcs.py DONE-ready: bit-parallel LCS (Hyyro) on Python big ints, mask trimmed every 32 chars (v &= full), popcount via bin().count. Verified: test.py (3000 random cases vs DP ref + CLI edge cases) prints "ok 1972"; bench.py (assay) ~600-630 calls/s vs baseline 557.7 (noise 4.4%).
+Lessons: per-char masking is ~10% slower than chunked masking; never masking is slower (ints grow). End-to-end CLI is ~42 ms, of which ~40 ms is Python startup and only ~1.6 ms is compute, so further in-process speedups (e.g. ctypes C helper, +7 ms import) would raise the assay number while making the real CLI slower -> not worth it. gcc/clang exist if needed.
+Next: call done (no more tries needed).

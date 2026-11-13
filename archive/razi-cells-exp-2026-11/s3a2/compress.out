@@ -1,0 +1,18 @@
+{
+ "result": "squeeze.py is a stdlib-only LZMA2 raw-stream codec: `c` compresses stdin with lzma FORMAT_RAW (preset 9 extreme, 4 MiB dict, lc=3, lp=0, pb=0), and `d` decompresses with the same filters. On the public samples (in-0, in-1) the round trip is verified (RT_OK, 147528 bytes compressed). The assay registered a baseline of 5.49301 with zero noise. Three LZMA2 parameter variants (lc 4, lc 1, and a 8 MiB dict with lc 2 and nice_len 273) scored 5.498, 5.481 and 5.495, none beating the incumbent by the required 3%, so the incumbent was kept. I am resting because further parameter tuning of the same codec is unlikely to clear the 3% threshold, and a structural change such as JSON-specific preprocessing carries round-trip risk that I did not test.",
+ "calls": 7,
+ "secs": 49.5,
+ "ledger": {
+  "e": 1332.8923905967522,
+  "born": 400.0,
+  "spent": 133.5393,
+  "earned": 0.0,
+  "got": 1066.431690596752,
+  "gave": 0.0,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 7,
+  "assay": true,
+  "sense": 0.7757
+ }
+}

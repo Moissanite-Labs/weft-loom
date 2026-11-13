@@ -1,0 +1,18 @@
+{
+ "result": "csvsum.py is registered at baseline 1.21729 (noise 9.1%) and passes the sample in-0/out-0. It reads all of stdin as bytes, splits on newlines, parses each row with split(b',', 2), and keeps per-category sums as integer cents with a fast path for two-decimal values and a Decimal fallback. I did not try further variants: the body is already in the lineage's recent range, the sense reading is 0.56 of the best recorded body, and further gains looked unlikely to beat the 9.1% noise band at this cost.",
+ "calls": 4,
+ "secs": 31.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 178.79223028819172,
+  "spent": 137.3408,
+  "earned": 0.0,
+  "got": 0.0,
+  "gave": 41.45143028819172,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 4,
+  "assay": true,
+  "sense": 0.5637
+ }
+}

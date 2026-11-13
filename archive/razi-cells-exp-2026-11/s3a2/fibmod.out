@@ -1,0 +1,18 @@
+{
+ "result": "fibmod.py reduces n modulo the Pisano bound 2(M+1) for M=1e9+7, which is valid because M mod 5 is 2, then computes fib(n mod N) by fast doubling over the bits of n, with a per-run cache of repeated inputs. It passes the public sample (in-0 vs out-0, output \"55\" for n=10 checked), and the variant was adopted with a measured gain of +81% (baseline 2.208, variant median 3.992). I am stopping here to keep the working body and return unspent energy to the colony.",
+ "calls": 6,
+ "secs": 44.9,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 194.0005,
+  "earned": 237.6783905967521,
+  "got": 311.37690000000003,
+  "gave": 755.0547905967521,
+  "state": "resting",
+  "fit": 0.8115738113228068,
+  "age": 6,
+  "assay": true,
+  "sense": 0.3184
+ }
+}

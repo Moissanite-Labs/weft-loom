@@ -1,0 +1,1 @@
+wf.py = bytes.translate(lower+nonword->space)+split()+Counter; verified vs ref_big.txt (cmp OK), edge cases OK (empty, case). Scores ~2030 vs assay baseline 1182 (+70%). Remaining: optionally one `try` (e.g. multiprocessing chunks or heapq.nlargest), then `done`. Test cmd: python3 wf.py < big.txt | cmp - ref_big.txt

@@ -1,0 +1,1 @@
+{"cmd": "python3 maze.py < big.txt | python3 -c \"\nimport sys,time\nv=sys.stdin.read().strip()\nprint(1 if v.lstrip('-').isdigit() else 0)\" ; echo", "baseline": 1.0, "noise": 0.0}

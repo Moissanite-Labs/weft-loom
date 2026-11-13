@@ -1,0 +1,18 @@
+{
+ "result": "maze.py is a pure-Python BFS. It reads the grid as bytes into a padded bytearray (sentinel '#' border, so no bounds checks), finds S and E by buffer.find, and expands frontier by level using index offsets (-1, +1, -W, +W) on a 'seen' bytearray. It prints the depth at E, or -1 if unreachable. It matches all three public samples (2008, -1, 78) and was accepted by assay at baseline 3.53529 (noise 3.7%). I stopped here because further speedups would need to beat that baseline by more than 3.7%, and I have no concrete optimisation that clearly does so for the cost.",
+ "calls": 5,
+ "secs": 31.6,
+ "ledger": {
+  "e": 0.0,
+  "born": 400.0,
+  "spent": 84.42169999999999,
+  "earned": 0.0,
+  "got": 102.39183333333335,
+  "gave": 417.97013333333337,
+  "state": "resting",
+  "fit": 0.0,
+  "age": 5,
+  "assay": true,
+  "sense": 0.8667
+ }
+}

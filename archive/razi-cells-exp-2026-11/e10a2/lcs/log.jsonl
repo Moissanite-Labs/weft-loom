@@ -1,0 +1,16 @@
+{"step": 0, "act": {"do": "write", "path": "lcs.py", "text": "<662 chars>"}, "res": "wrote lcs.py", "route": "anthropic:claude-fable-5-2", "t": 1794254197.16}
+{"step": 1, "act": {"do": "sh"}, "res": "exit 0\nok 1948\n1948\n\nreal\t0m0.043s\nuser\t0m0.021s\nsys\t0m0.010s\n", "route": "anthropic:claude-fable-5-2", "t": 1794254206.07}
+{"step": 2, "act": {"do": "sh"}, "res": "exit 0\n286.0\n460.2\n\nreal\t0m2.257s\nuser\t0m1.095s\nsys\t0m0.049s\n\nreal\t0m1.370s\nuser\t0m1.025s\nsys\t0m0.040s\n", "route": "anthropic:claude-fable-5-2", "t": 1794254222.53}
+{"event": "assay", "cmd": "python3 bench.py", "runs": [558.2, 555.8, 546.7, 549.6, 556.6], "t": 1794254367.49}
+{"step": 3, "act": {"do": "assay", "cmd": "python3 bench.py"}, "res": "assay accepted: baseline median 555.8, noise 2.1%. Wins must beat it by > 3.0%.", "route": "anthropic:claude-fable-5-2", "t": 1794254367.49}
+{"step": 4, "act": {"do": "sh"}, "res": "exit 0\n0 ok 1948  724.6\n1 ok 1948  851.9\n2 ok 1948  924.2\n3 ok 1948  550.1\n4 ok 1948  916.4\n", "route": "anthropic:claude-fable-5-2", "t": 1794254429.13}
+{"event": "variants", "path": "lcs.py", "medians": {"inc": 551.9, "v0": 930.1, "v1": 913.8, "v2": 911.2, "v3": 911.0, "v4": 785.6}, "best": "v0", "adopted": true, "gain": 0.6853, "kinds": null, "arm": "ctrl", "t": 1794254767.52}
+{"event": "improve", "gain": 0.6853, "what": "lcs.py variant (Bit-parallel LCS with fast mask construction via bytes.translate, int.bit_count, and masking to m bits only once per chunk of K rows (v^u instead of v-u). In lo)", "t": 1794254767.53}
+{"step": 5, "act": {"do": "variants"}, "res": "medians inc=551.9, v0=930.1, v1=913.8, v2=911.2, v3=911, v4=785.6. ADOPTED v0 (+69%).", "route": "anthropic:claude-fable-5-2", "t": 1794254767.54}
+{"step": 6, "act": {"do": "sh"}, "res": "exit 0\nok 1948\n896.0\n1948\n1948medium ok\n", "route": "anthropic:claude-fable-5-2", "t": 1794254776.05}
+{"step": 7, "act": {"do": "sh"}, "res": "exit 0\n0 ok 1948  929.5\n1 ok 1948  918.9\n2 ok 1948  885.9\n3 ok 1948  911.6\n4 ok 1948  854.4\ninc 877.0\n", "route": "anthropic:claude-fable-5-2", "t": 1794254807.54}
+{"step": 8, "act": {"do": "sh", "cmd": "python3 check.py && python3 bench.py && python3 lcs.py < big.txt && cat big.ans && echo && grep -n \"range(0, len(ms)\" -A4 lcs.py && cmp lcs.py lcs_orig.py; echo cmp=$?"}, "res": "exit 0\nok 1948\n879.8\n1948\n1948\n29:    for i in range(0, len(ms), 64):\n30-        for mk in ms[i:i + 64]:\n31-            u = v & mk\n32-            v = (v + u) | (v ^ u)\n33-        v &= full\ncmp=0\n", "route": "anthropic:claude-fable-5-2", "t": 1794254814.02}
+{"step": 9, "act": {"do": "sh"}, "res": "exit 0\n0 ok 1948  915.2\n1 ok 1948  931.8\n0 ok 1948  878.0\n1 ok 1948  905.1\ncmp=0\n", "route": "anthropic:claude-fable-5-2", "t": 1794254837.81}
+{"step": 10, "act": {"do": "remember", "text": "<434 chars>"}, "res": "genome updated", "route": "anthropic:claude-fable-5-2", "t": 1794254844.01}
+{"step": 11, "act": {"do": "done"}, "route": "anthropic:claude-fable-5-2", "t": 1794254853.9}
+{"event": "final", "final": 935.3, "baseline": 555.8, "final_gain": 0.6828, "t": 1794255045.43}

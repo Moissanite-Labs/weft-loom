@@ -1,0 +1,5 @@
+{
+ "result": "csvsum.py reads the CSV from stdin, sums val per cat in a defaultdict, and prints each cat with its sum to 2 decimals, sorted by cat. I generated 2,000,000 rows with 50 categories. On that file the first 3 output lines looked right (c0 2004069.21, c1 1986017.10, c10 2022664.13), and the assay checks the output has exactly 50 lines. I did not compare the sums against an independent calculation.\n\nIt takes about 0.6 s per run, which is a score of about 1.67 runs per second. I tried two variants. One reads all of stdin as bytes and scored 1.705 against an incumbent of 1.661, a gain of about 3%, which is not beyond the 3% threshold. The other collects the values in lists and sums them at the end, and scored 1.348, which is slower. I kept the original version.",
+ "calls": 5,
+ "secs": 41.2
+}

@@ -1,0 +1,5 @@
+{
+ "result": "maze.py reads the grid from stdin and prints the shortest 4-neighbour path length from S to E, or -1; it is verified against a plain BFS reference and runs about 4x faster than my first correct version on the 2000x2000 benchmark. It uses a BFS ordered by detour count: moves toward E cost 0, moves away cost 1, and the answer is Manhattan distance plus twice the detours. Rectangular input is used in place without copying the grid. Evidence: 150 random small mazes compared against ref.py gave 0 mismatches, and all five fixed files agree with ref.py (big.txt=4008, big2.txt=-1, blocked.txt=-1, s.txt=24, t.txt=-1). The assay (python3 bench.py, which prints 0 on any wrong answer) rose from a baseline of 2.14 to a median of 8.65 when the variant was adopted (+298%), and a later rerun gave 8.31. Caveat: big.txt (gen.py, seed 12345, 30% walls) is an easy case needing only 5 detours, so the speed figure reflects open random mazes; a winding, corridor-style maze would need many more detour rounds and was not timed.",
+ "calls": 15,
+ "secs": 735.6
+}

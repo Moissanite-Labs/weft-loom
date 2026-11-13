@@ -1,0 +1,5 @@
+{
+ "result": "Built wf.py: reads stdin as bytes, uses a single bytes.translate table (uppercase\u2192lowercase, non-letters\u2192space) followed by split() and Counter, parallelized across forked workers that share the stdin buffer copy-on-write and return their counts to the parent via pipes, which merges them and prints the top 10 sorted by (-count, word). Verified: output on the 20MB generated data.txt (gen.py, seed 7, 3.6M tokens) matches expected.txt exactly via cmp (and 543218, it 542994, to 542579, ...), and a small mixed-case edge test ('The the THE a b / b c') gives the correct 'the 3, b 2, a 1, c 1'. Assay (sh bench.sh = 1000/elapsed after cmp check) went from baseline 1149 to ~5500 (\u22480.18 s for 20MB): translate+split over regex gave +68%, forked workers +201%, 2x oversubscription with text-line results +15%; pread-per-child and other worker multipliers gave no gain.",
+ "calls": 15,
+ "secs": 953.5
+}

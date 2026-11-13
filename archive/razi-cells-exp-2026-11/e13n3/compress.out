@@ -1,0 +1,5 @@
+{
+ "result": "Built squeeze.py, which uses raw LZMA2 with extreme preset 9, lc=4, pb=0 and a 16MB dictionary. It round-tripped sample in-0.txt exactly (cmp passed) and compressed it to 147420 bytes. The assay accepted a baseline ratio of 5.498 with 0% noise. I tried no further improvements.",
+ "calls": 6,
+ "secs": 24.0
+}

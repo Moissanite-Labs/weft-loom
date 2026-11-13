@@ -1,0 +1,22 @@
+- [fibmod] WIN +10%: fibmod.py variant (Micro-optimize: iterate bits via bin string instead of shifts, single buffered write. Same algorithm, same outputs.) (assay: kit:fibmod)
+- [compress] no gain: 3 variants of squeeze.py (Tune LZMA2 literal/position context bits (lc, lp, pb) and match length for text and JSON; the defaults (lc=3, pb=2) are generic. Each variant must round-trip; t); best +0%
+- [maze] WIN +13%: maze.py variant (Unroll the 4-neighbour loop to avoid per-cell tuple allocation in the BFS inner loop; same algorithm, should be a modest speedup.) (assay: kit:maze)
+- [fibmod] WIN +4%: fibmod.py variant (Remove one redundant modulo in the doubling step: a*(2b-a)%M equals a*((2b-a)%M)%M mathematically, Python's % handles negatives. Same outputs, fewer operations.) (assay: kit:fibmod)
+- [csvsum] WIN +9%: csvsum.py variant (Baseline splits every line and parses per row in a Python loop. Trying a flat split of the whole input with slices, then grouping by zip, to cut per-line overhe) (assay: kit:csvsum)
+- [fibmod] no gain: 1 variants of fibmod.py (Bind lookups to locals (M as default arg, cache.get and fd hoisted out of loop) to cut global/attribute lookups in the hot loop. Same algorithm, same outputs.); best +2%
+- [maze] WIN +18%: maze.py variant (Merge free and seen into one bytearray with walls pre-marked as visited, dropping one lookup per neighbour. Same BFS, same outputs.) (assay: kit:maze)
+- [csvsum] WIN +12%: csvsum.py variant (Current body is the adopted flat-split version. Try replacing the per-category list plus fsum with a single pass of running sums, which avoids building 1M-eleme) (assay: kit:csvsum)
+- [fibmod] no gain: 1 variants of fibmod.py (Drop the modulo on the 1-bit sum c+d; b stays below 2M and is reduced in the next step's products, so output is unchanged and one mod per 1-bit is saved. Final ); best +1%
+- [csvsum] no gain: 1 variants of csvsum.py (Try avoiding the intermediate replace: split on newline and commas in one pass via re-free slicing; keep output identical.); best -100%
+- [maze] no gain: 1 variants of maze.py (Remove the per-neighbour target comparison: E stays open (vis=0) until reached, and the target is tested once per BFS level. Same BFS and outputs, fewer operati); best +3%
+- [csvsum] no gain: 1 variants of csvsum.py (Try bytes I/O to cut decoding overhead; output must stay identical. If wrong, incumbent is kept.); best -31%
+- [maze] no gain: 1 variants of maze.py (Structural change: parse the whole grid as one blob with newline as the right-edge wall, avoiding per-row slicing and translate calls. Same BFS and outputs.); best +1%
+- [fibmod] DIED at age 19 (gain +0%)
+- [compress] WIN +29%: squeeze.py variant (On the samples bz2 (level 9) compresses far smaller than LZMA2 (in-0: 124901 vs 147604; in-1: 69173 vs 99744). Choosing per input between the two with a 1-byte ) (assay: kit:compress)
+- [csvsum] no gain: 1 variants of csvsum.py (Replace dict.get with defaultdict(float) to drop a method call per row in the hot loop. Same algorithm and output.); best +0%
+- [maze] no gain: 1 variants of maze.py (Bidirectional BFS: expand the smaller frontier from S or E alternately, stop at first meeting (total = new level + other side's completed level). Should explore); best -0%
+- [csvsum] no gain: 1 variants of csvsum.py (Drop the bound get alias; one fewer local lookup setup. Same output. Low expected gain, cheap attempt with remaining energy.); best -2%
+- [csvsum] DIED at age 27 (gain +0%)
+- [compress] no gain: 1 variants of squeeze.py (LZMA2 literal context tuning (lc=4, lp=0, pb=0) suited to text/JSON may trim the LZMA2 output slightly; bz2 remains the fallback so round trip is preserved.); best +0%
+- [compress] DIED at age 28 (gain +0%)
+- [maze] DIED at age 26 (gain +0%)
