@@ -11,6 +11,8 @@ weft is the software: the runtime, the tooling, the site, the releases. This rep
 - `incidents/`: unplanned events worth keeping, with captured evidence and what was done about it.
 - `scripts/`: the tooling that validates the records.
 - `archive/`: records imported from the operator's local run trees, minus generated bulk fixtures.
+- `siliconcordat-cut/`: source tree of the ml-siliconcordat-cut site bundle (prototypes, tokens, assets). Deploys as a Cloudflare Worker serving siliconcordat.com previews and production.
+- `workers/`: the ml-siliconcordat-cut Worker.
 - `MIGRATION.md`: how this repository was carved out of weft, and how to read older references.
 
 ## Rules

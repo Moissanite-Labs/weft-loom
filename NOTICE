@@ -1,0 +1,22 @@
+ML Weft research and experimentation hub
+Copyright 2026 Moissanite Labs and the contributors.
+
+This repository is dual-licensed by content type.
+
+  * Source code is licensed under the Apache License, Version 2.0 (LICENSE).
+    This covers scripts/, workers/, wrangler*.jsonc, the build machinery in
+    siliconcordat-cut/, and the generated-site build pipeline.
+
+  * Documentation and prose are licensed under the Creative Commons
+    Attribution 4.0 International License (LICENSE-docs). This covers README,
+    MIGRATION.md, the Markdown records, and the archive/ trees, except where
+    a file states otherwise. Records migrated from weft keep their original
+    licensing.
+
+  * The fonts in siliconcordat-cut/assets/fonts/ (Source Serif 4, IBM Plex
+    Sans, IBM Plex Mono) are licensed under the SIL Open Font License 1.1.
+    Their licence texts are beside them (LICENSE-*-OFL.txt).
+
+See LICENSE and LICENSE-docs for the full texts.
+"The Weft" is a name of Moissanite Labs. The licenses do not grant trademark
+rights.
