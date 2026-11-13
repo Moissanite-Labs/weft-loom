@@ -1,0 +1,4 @@
+  PID  PPID  PGID STAT     ELAPSED STARTED                           TIME  %CPU    RSS COMMAND
+84794     1 75681 R    03-15:52:15 Mon  9 Nov 12:39:12 2026     5049:44.47  95.5   1120 /opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python maze.py
+85007     1 75681 R    03-15:51:38 Mon  9 Nov 12:39:49 2026     5049:07.20  96.1   1120 /opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python maze.py
+85197     1 75681 R    03-15:51:01 Mon  9 Nov 12:40:26 2026     5048:29.60  95.8   1120 /opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python maze.py

@@ -1,0 +1,22 @@
+COMMAND   PID    USER   FD   TYPE             DEVICE SIZE/OFF                NODE NAME
+Python  84794 kethuda  cwd    DIR               1,17       64           420550486 /Users/kethuda/work/razi-cells/exp/e8s1/maze/.tmp/v-x60b5u2l/v2
+Python  84794 kethuda  txt    REG               1,17    33568           229432246 /opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python
+Python  84794 kethuda  txt    REG               1,17  4129840 1152921500312609216 /usr/lib/dyld
+Python  84794 kethuda  txt    REG               1,17  5468064           229432023 /opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Python
+Python  84794 kethuda    0   PIPE 0x4c446a8bab53d769    16384                     
+Python  84794 kethuda    1   PIPE 0xac49d9fa105152be    16384                     
+Python  84794 kethuda    2   PIPE 0x702947feff657177    16384                     
+Python  85007 kethuda  cwd    DIR               1,17       64           420550486 /Users/kethuda/work/razi-cells/exp/e8s1/maze/.tmp/v-x60b5u2l/v2
+Python  85007 kethuda  txt    REG               1,17    33568           229432246 /opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python
+Python  85007 kethuda  txt    REG               1,17  4129840 1152921500312609216 /usr/lib/dyld
+Python  85007 kethuda  txt    REG               1,17  5468064           229432023 /opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Python
+Python  85007 kethuda    0   PIPE 0x4a2e11d1b437f949    16384                     
+Python  85007 kethuda    1   PIPE 0x7a1530a768ab07d1    16384                     
+Python  85007 kethuda    2   PIPE 0x4312e62685573a6a    16384                     
+Python  85197 kethuda  cwd    DIR               1,17       64           420550486 /Users/kethuda/work/razi-cells/exp/e8s1/maze/.tmp/v-x60b5u2l/v2
+Python  85197 kethuda  txt    REG               1,17    33568           229432246 /opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python
+Python  85197 kethuda  txt    REG               1,17  4129840 1152921500312609216 /usr/lib/dyld
+Python  85197 kethuda  txt    REG               1,17  5468064           229432023 /opt/homebrew/Cellar/python@3.14/3.14.8/Frameworks/Python.framework/Versions/3.14/Python
+Python  85197 kethuda    0   PIPE 0x9aeafae1a2395dd8    16384                     
+Python  85197 kethuda    1   PIPE 0xb66bf1d6c7c652a8    16384                     
+Python  85197 kethuda    2   PIPE 0x10971939ae895a0f    16384                     
