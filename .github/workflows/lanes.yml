@@ -1,0 +1,21 @@
+name: lanes
+
+# Labels each pull request with the lanes its paths touch (.github/labeler.yml),
+# so a reviewer applies the matching checklist from REVIEWING.md. The labeler
+# reads only the changed-file list and the config on the base branch; it does
+# not check out or run the pull request's code.
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/labeler@b8dd2d9be0f68b860e7dae5dae7d772984eacd6d # v6.2.0
+        with:
+          sync-labels: true
