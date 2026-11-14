@@ -36,7 +36,7 @@ in this track wants the predicate, it means the annihilator of the preserved key
 | 12 | KV-cache replacement with static low-rank factors | Strongest claim in the brief, with no measurement | Measured latency and bandwidth on the target checkpoint before any external claim |
 | 13 | Sub-10 ms cold starts via tiered storage of composite packets | Systems idea. no numbers | A break-even study with measured cache misses per tier. nothing assumed |
 | 14 | Publication-grade numbers for the SC-WSP brief if the track revives | Not actionable today | I.3. K0 harvest. one measured table (quality, size, load time, weave curve) |
-| 15 | Functional watermark surviving QR and downstream weaves | Open tooling gap (no such tool exists) | A watermark-survival experiment (no `verify_watermark` tool exists yet) at `eps=1e-3`. measured survival after two weave rounds |
+| 15 | Functional watermark surviving QR and downstream weaves | Retention check exists; survival experiment does not | A watermark-survival experiment at `eps=1e-3` that measures survival after two weave rounds, built on `verify_watermark_retention` in weft's `weft/runtime/plasm/plasm.py` (cosine alignment and response drift under the #4 threat model, tested in `test_plasm.py`) |
 | 16 | Mechanized confluence of IC rewrite rules (Lean) | Not in I.3 scope | I.3 is scoped to the C2 predicates (roadmap §3). IC confluence is the next verification-branch item in decomposition.md. Schedule it separately, not smuggled into I.3 |
 
 ## 4. Deliberately excluded
