@@ -44,7 +44,7 @@ how cells divide, merge or exchange taste and skill packets at runtime.
 3. **Local plasticity research exists and is not at LLM competence.** Equilibrium propagation, local losses,
    predictive coding and neuromorphic silicon are real directions. None of them certifies that online weights at
    transformer scale stay safe. They are suitable for the toy cells already in this roadmap.
-4. **The compositional claim is the one theorem-shaped part.** Orthogonal projectors commute if and only if their
+4. **The compositional claim is the one theorem-shaped part.** Orthogonal projectors commute if their
    ranges are orthogonal or nested. In general they do not commute. The null-space projection is itself an
    orthogonal projector, and the mesh construction arranges cells onto mutually orthogonal or nested subspaces,
    which is the hypothesis that makes the commutations hold. Given that hypothesis, a cell that (a) emits
