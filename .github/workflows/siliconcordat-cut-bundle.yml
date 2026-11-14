@@ -32,6 +32,8 @@ jobs:
         env:
           WEFT_REPO: weft-src
         run: python3 -m unittest discover -s scripts -p test_build_siliconcordat_cut_bundle.py
+      - name: Weft pin checks fail on a missing or off-history pin
+        run: python3 -m unittest discover -s scripts -p test_cut_weft_pin.py
       - name: Build ml-siliconcordat-cut dist-cut/ (staging preview)
         env:
           SILICONCORDAT_CUT_HOST: staging
