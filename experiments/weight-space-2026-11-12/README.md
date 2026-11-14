@@ -25,7 +25,7 @@ Line of enquiry: can a strong teacher (gpt-6-astra) read a small model's raw wei
 - `stats.jsonl`: per-tensor norms, max/min/mean/std for all TinyStories-1M matrices.
 - `h{2,3,4,5,6,7}-*-matrix.txt`: raw matrix dumps given to the teacher.
 - `ablation-*.json`, `ablation-log.txt`: layer-zeroing ablation deltas.
-- `base-""$(date +%Y%m%d-%H%M%S)"".json`: duplicate baseline produced by a shell-quoting bug. Retained verbatim, not edited.
+- `base-undated.json`: duplicate baseline produced by a shell-quoting bug. Retained verbatim, not edited. In weft it was named `base-""$(date +%Y%m%d-%H%M%S)"".json`; it was renamed on the move to weft-loom because `"` is not a valid file-name character on Windows, where it would stop the repository from checking out.
 
 ## Reproduction
 
