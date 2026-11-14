@@ -8,6 +8,7 @@ weft is becoming the software repository. This repository is where the research 
 | --- | --- |
 | `docs/program/experiments/` | `experiments/` |
 | `docs/program/audit/` | `audit/` |
+| `docs/design-notes/` (new notes from 2026-11-14 on) | `notes/` |
 | `scripts/corpus_audit.py` | `scripts/corpus_audit.py` |
 | `scripts/test_corpus_audit.py` | `scripts/test_corpus_audit.py` |
 | `scripts/test_pr116_offline.py` | `scripts/test_pr116_offline.py` |
