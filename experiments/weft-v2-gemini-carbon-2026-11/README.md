@@ -36,6 +36,7 @@
 | `weft_v2_invariants.h` | Zero-dependency ISO C11 header implementing `nextafterf` monotone budget deduction, Laplace-scaled Neumaier `binary64` Frobenius norm, and `locked_mask` tamper checks. |
 | `test_weft_v2_c11.c` | C11 differential conformance runner (`-O3 -ffp-contract=off -std=c11 -Wall -Wextra -Werror`) testing 2,048 binary vectors within `1e-9` distance tolerance and 100,000-step sub-ULP budget stress. |
 | `WeftInvariants.lean` | Toy `Int`/`Nat` formalization (`omega`/`decide`) of four paper arithmetic lemmas. It does not model IEEE-754 floats or C/Python code. |
+| `WeftInvariantsPureInit.lean` | Companion toy module in stock Lean 4 (`Init` only, `omega`), received 2026-11-13 from the gem-nexus vault drop and added unchanged. Adds a two-sided overlap bound (`-ov <= inner <= ov`) and an integer model of the division-free MDR gate with an orthogonal floor (`subfloor_noise_never_triggers_mitosis`). Like `WeftInvariants.lean`, it is about `Int`/`Nat` and does not model IEEE-754 or the C header. Its header says it removes a `Float` carrier from `WeftInvariants.lean`; that carrier was already gone before this file arrived (`6d8c96f`). The floor theorem follows from the predicate's own floor clause, so it restates the gate's definition rather than adding new evidence. Pending review. |
 | `weft_v2_engine.py` | Reproducible runner generating the 2,048 binary vectors for `test_weft_v2_c11.c` and running synthetic 10-seed NumPy simulations `E1`–`E5`. |
 | `plot_figures.py` | Matplotlib script plotting synthetic simulation outputs from `certificates.json`. |
 | `c11_conformance_report.json` | Output of `test_weft_v2_c11.c` with pinned `execution_environment` metadata and `1e-9` tolerance specification. |
@@ -56,4 +57,7 @@ python3 weft_v2_engine.py
 
 # 3. Check file digests (note: running step 2 on a different machine updates execution_environment and timings)
 sha256sum -c SHA256SUMS
+
+# 4. Type-check the stock-Init companion module (Lean 4.35.0); expect no output and exit 0
+lean WeftInvariantsPureInit.lean
 ```
