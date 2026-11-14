@@ -8,3 +8,9 @@ experiments/**/*.out linguist-generated=true
 experiments/**/*.bin linguist-generated=true
 experiments/**/*.npy linguist-generated=true
 archive/** linguist-generated=true
+
+# Prose and code stay visible in diffs, even inside raw-output folders: a
+# record's README, TESTS.md or RESULTS.md and its rerun scripts are what a
+# reviewer reads.
+*.md linguist-generated=false
+experiments/**/*.py linguist-generated=false

@@ -35,8 +35,8 @@ A null or negative result is a result. Record it the same way.
 
 Commit the record, the scripts and the summarised results. For bulk raw output, the rule is:
 
-- **Up to 5 MB and 200 files per record:** commit it under the record's `data/` or `raw/` folder. GitHub collapses
-  these files in pull requests (see `.gitattributes`).
+- **Up to 5 MB and 200 files per record:** commit it under the record's `data/` or `raw/` folder. For experiment
+  records, GitHub collapses raw output there in pull requests (see `.gitattributes`); Markdown and Python stay visible.
 - **Above that:** attach it to a GitHub release of this repository, or deposit it on Zenodo, and commit a manifest
   with each file's name, size and SHA-256 so the record can be checked against it.
 - **Never:** patient or personal data, credentials, or API keys. Public literature values, synthetic data and CC0 or

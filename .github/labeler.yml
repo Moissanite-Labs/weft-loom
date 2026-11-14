@@ -6,6 +6,8 @@
 "lane: idea":
   - changed-files:
       - any-glob-to-any-file: ["notes/**"]
+# Root-level documents and settings (README, REVIEWING, CONTRIBUTING, MIGRATION, NOTICE, .gitattributes) are
+# reviewed like build changes.
 "lane: build":
   - changed-files:
-      - any-glob-to-any-file: [".github/**", "scripts/**", "siliconcordat-cut/**", "workers/**", "wrangler*.jsonc"]
+      - any-glob-to-any-file: [".github/**", "scripts/**", "siliconcordat-cut/**", "workers/**", "wrangler*.jsonc", "*.md", "NOTICE", "LICENSE*", ".gitattributes", ".gitignore"]

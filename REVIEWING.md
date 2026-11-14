@@ -50,13 +50,16 @@ Not reasons to block a note: missing evidence (that is what makes it an idea), d
 open question left open, or style. Raise these as comments. A note may contradict another note; the index can record
 which one the team adopts.
 
-Who merges: the author, after one approval or after 24 hours with no blocking review.
+Who merges: the author, after one approval, or after 24 hours with no objection. An objection is a blocking review or a
+comment that asks for the note not to merge as it stands.
 
 ## Build lane
 
 Code, CI and the siliconcordat-cut pipeline follow weft's build checklist
-([weft REVIEWING.md](https://github.com/Moissanite-Labs/weft/blob/main/REVIEWING.md)): a test that fails without the
-change, green CI on the exact head, and claims that match the code. The author does not merge.
+([weft REVIEWING.md](https://github.com/Moissanite-Labs/weft/blob/main/REVIEWING.md)): it does what it says, a test
+fails without the change, CI is green on the exact head, every commit is signed off, claims match the code, and the
+pull request holds one change. weft-loom has no DCO job in CI, so the reviewer checks sign-offs by hand. The author
+does not merge.
 
 ## Review comments
 

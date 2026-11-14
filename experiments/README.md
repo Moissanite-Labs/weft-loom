@@ -38,15 +38,19 @@ name is the identifier.
 ## Rerunning a record written in weft
 
 Records that came from weft were written at `docs/program/experiments/<folder>/` inside a weft checkout, and many of
-their scripts find weft's code by walking up from that path (for example `Path(__file__).parents[4]`). They were left
-as written. To rerun one, put the folder back at that path in a weft clone:
+their scripts find weft's code by walking up from their own resolved path (for example
+`Path(__file__).resolve().parents[4]`). They were left as written. To rerun one, copy the folder back to that path in a
+weft clone. Do not symlink it: the scripts resolve the link and walk up into weft-loom instead.
 
 ```bash
 git clone https://github.com/Moissanite-Labs/weft.git
 mkdir -p weft/docs/program/experiments
-ln -s "$PWD/experiments/<folder>" weft/docs/program/experiments/<folder>
+cp -R experiments/<folder> weft/docs/program/experiments/<folder>
 cd weft && python3 docs/program/experiments/<folder>/<script>.py
 ```
+
+`astra-family-teachers-2026-11-12/restore_generated.py` fetches its generated files from weft's history, so run it from
+the copy in the weft clone too.
 
 Commands quoted inside older records use those original paths. [MIGRATION.md](../MIGRATION.md) has the full path map.
 
