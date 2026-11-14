@@ -1,0 +1,11 @@
+# Lane labels for pull requests, applied by .github/workflows/lanes.yml.
+# The lanes and their review checklists are in REVIEWING.md.
+"lane: record":
+  - changed-files:
+      - any-glob-to-any-file: ["experiments/**", "audit/**", "incidents/**", "archive/**"]
+"lane: idea":
+  - changed-files:
+      - any-glob-to-any-file: ["notes/**"]
+"lane: build":
+  - changed-files:
+      - any-glob-to-any-file: [".github/**", "scripts/**", "siliconcordat-cut/**", "workers/**", "wrangler*.jsonc"]

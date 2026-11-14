@@ -6,14 +6,19 @@ weft is the software: the runtime, the tooling, the site, the releases. This rep
 
 ## Layout
 
-- `experiments/`: experiment records, one folder per study, with preregistrations, results, and limits stated as prominently as findings. Migrated from weft with history.
+- `experiments/`: experiment records, one folder per study, with preregistrations, results, and limits stated as prominently as findings. Start at the [index](experiments/README.md), which gives each record's question and status.
 - `audit/`: reviews of the codebase and its claims, with the evidence attached.
 - `incidents/`: unplanned events worth keeping, with captured evidence and what was done about it.
+- `notes/`: design notes and idea backlogs, indexed with a status in [notes/README.md](notes/README.md). A note is an idea, not a result.
 - `scripts/`: the tooling that validates the records.
 - `archive/`: records imported from the operator's local run trees, minus generated bulk fixtures.
-- `siliconcordat-cut/`: source tree of the ml-siliconcordat-cut site bundle (prototypes, tokens, assets). Deploys as a Cloudflare Worker serving siliconcordat.com previews and production.
+- `siliconcordat-cut/`: source tree of the ml-siliconcordat-cut site bundle (prototypes, tokens, assets). Deploys as a Cloudflare Worker serving siliconcordat.com previews and production. This is build-lane code; it is planned to move to siliconcordat-site with the other siliconcordat.com bundles ([siliconcordat#13](https://github.com/Moissanite-Labs/siliconcordat/issues/13)).
 - `workers/`: the ml-siliconcordat-cut Worker.
 - `MIGRATION.md`: how this repository was carved out of weft, and how to read older references.
+
+## How changes are reviewed
+
+Records, notes and code each have their own checklist: see [REVIEWING.md](REVIEWING.md). What a record needs, and the raw-data rule, are in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Rules
 

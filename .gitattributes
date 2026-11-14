@@ -1,0 +1,10 @@
+# Raw run output is kept for the record but is not meant to be read as a diff.
+# GitHub collapses these files in pull requests and leaves them out of the
+# language statistics. The files themselves are unchanged.
+experiments/**/data/** linguist-generated=true
+experiments/**/raw/** linguist-generated=true
+experiments/**/*.jsonl linguist-generated=true
+experiments/**/*.out linguist-generated=true
+experiments/**/*.bin linguist-generated=true
+experiments/**/*.npy linguist-generated=true
+archive/** linguist-generated=true
