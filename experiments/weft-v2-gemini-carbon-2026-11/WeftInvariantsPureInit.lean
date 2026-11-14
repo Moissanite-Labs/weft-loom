@@ -3,9 +3,9 @@
   Stock Lean 4 (`Init`-only) upgrade for Moissanite-Labs/weft `WeftInvariants.lean` (PR #128).
 
   Upgrades over initial `WeftInvariants.lean`:
-  1. Removes unused `Float` structure `OrthogonalUpdatePair` (replaces with exact integer/rational
-     scaled inner-product bounds).
-  2. States `bounded_overlap_mitosis_envelope` with two-sided overlap hypotheses
+  1. `6d8c96f` already removed the unused `Float` structure `OrthogonalUpdatePair` from
+     `WeftInvariants.lean`. This file uses exact integer/rational scaled inner-product bounds.
+  2. States `two_sided_overlap_mitosis_envelope` with two-sided overlap hypotheses
      `-ov <= inner /\ inner <= ov`. The theorem proves two conjuncts:
      `np + nc + 2 * inner <= rmax`, which follows from the upper bound `inner <= ov` and the
      budget alone, and `np + nc - 2 * ov <= np + nc + 2 * inner`, which is the lower bound
@@ -13,8 +13,8 @@
      `np + nc - 2 * ov >= 0`; that fails at `np = nc = inner = rp = rc = 0`, `ov = 5`, `rmax = 10`.
      (Corrected 2026-11-14 after review 5907383990 on weft-loom#4.)
   3. Formalizes the division-free Mitotic Diagnostic Ratio (MDR) gate with an explicit orthogonal
-     gradient floor `0 < gradFloor <= gradOrth`, proving that sub-floor rounding dust
-     (`gradOrth < gradFloor`, such as `3e-12` when `gradPar = 0`) can NEVER trigger mitosis.
+     gradient floor `orthFloor <= gradOrth`, proving that sub-floor rounding dust
+     (`gradOrth < orthFloor`, such as `3e-12` when `gradPar = 0`) can NEVER trigger mitosis.
 -/
 
 namespace WeftV2.PureInit
@@ -72,8 +72,8 @@ def mitosisTriggered
   gradOrth * mdrDen ≥ mdrNum * gradPar
 
 /-- Proves that sub-floor rounding noise (`gradOrth < orthFloor`, e.g. `3e-12 < 1e-3`
-    at `gradPar = 0`) never triggers mitosis, eliminating the `weft_v2_invariants.h`
-    `grad_orth / (grad_par + 1e-12)` false positive. -/
+    at `gradPar = 0`) never triggers mitosis. The proof uses the floor conjunct
+    `orthFloor <= gradOrth` of `mitosisTriggered`. -/
 theorem subfloor_noise_never_triggers_mitosis
     (err errFloor gradPar parCeil gradOrth orthFloor mdrNum mdrDen : Int)
     (h_dust : gradOrth < orthFloor) :
