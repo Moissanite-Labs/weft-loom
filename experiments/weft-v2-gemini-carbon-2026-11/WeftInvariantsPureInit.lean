@@ -5,8 +5,13 @@
   Upgrades over initial `WeftInvariants.lean`:
   1. Removes unused `Float` structure `OrthogonalUpdatePair` (replaces with exact integer/rational
      scaled inner-product bounds).
-  2. Strengthens `bounded_overlap_mitosis_envelope` to two-sided overlap `-ov <= inner /\ inner <= ov`
-     and proves reverse-direction stability (`np + nc - 2 * ov >= 0` when bounded).
+  2. States `bounded_overlap_mitosis_envelope` with two-sided overlap hypotheses
+     `-ov <= inner /\ inner <= ov`. The theorem proves two conjuncts:
+     `np + nc + 2 * inner <= rmax`, which follows from the upper bound `inner <= ov` and the
+     budget alone, and `np + nc - 2 * ov <= np + nc + 2 * inner`, which is the lower bound
+     `-ov <= inner` rewritten (`overlap_lower_conjunct_iff`). It does not give
+     `np + nc - 2 * ov >= 0`; that fails at `np = nc = inner = rp = rc = 0`, `ov = 5`, `rmax = 10`.
+     (Corrected 2026-11-14 after review 5907383990 on weft-loom#4.)
   3. Formalizes the division-free Mitotic Diagnostic Ratio (MDR) gate with an explicit orthogonal
      gradient floor `0 < gradFloor <= gradOrth`, proving that sub-floor rounding dust
      (`gradOrth < gradFloor`, such as `3e-12` when `gradPar = 0`) can NEVER trigger mitosis.
@@ -34,14 +39,36 @@ theorem two_sided_overlap_mitosis_envelope
     np + nc + 2 * inner ≤ rmax ∧ np + nc - 2 * ov ≤ np + nc + 2 * inner := by
   omega
 
-/-- Division-free MDR mitosis predicate (scaled by integer `scale > 0`):
+/-- The second conjunct of `two_sided_overlap_mitosis_envelope` is the lower
+    overlap hypothesis rewritten. -/
+theorem overlap_lower_conjunct_iff (np nc inner ov : Int) :
+    (np + nc - 2 * ov ≤ np + nc + 2 * inner) ↔ (-ov ≤ inner) := by
+  omega
+
+/-- The envelope conjunct needs only the upper overlap bound and the budget. -/
+theorem overlap_envelope_from_upper_bound
+    (np nc inner ov rp rc rmax : Int)
+    (h_ov_hi : inner ≤ ov)
+    (h_p : np ≤ rp)
+    (h_c : nc ≤ rc)
+    (h_budget : rp + rc + 2 * ov ≤ rmax) :
+    np + nc + 2 * inner ≤ rmax := by
+  omega
+
+/-- Division-free MDR mitosis predicate over `Int`:
     triggers iff `err > errFloor`, `gradPar <= parCeil`, `gradOrth >= orthFloor`,
-    and `gradOrth * mdrDen >= mdrNum * gradPar`. -/
+    `0 < mdrDen`, and `gradOrth * mdrDen >= mdrNum * gradPar`. With `0 < mdrDen`
+    and `0 < gradPar`, the cross-multiplied clause is the ratio test
+    `gradOrth / gradPar >= mdrNum / mdrDen` over the rationals. At `gradPar = 0`
+    it reduces to `0 <= gradOrth * mdrDen`. (`0 < mdrDen` added 2026-11-14 after
+    review 5907383990 on weft-loom#4; without it a negative denominator reverses
+    the ratio reading.) -/
 def mitosisTriggered
     (err errFloor gradPar parCeil gradOrth orthFloor mdrNum mdrDen : Int) : Prop :=
   err > errFloor ∧
   gradPar ≤ parCeil ∧
   orthFloor ≤ gradOrth ∧
+  0 < mdrDen ∧
   gradOrth * mdrDen ≥ mdrNum * gradPar
 
 /-- Proves that sub-floor rounding noise (`gradOrth < orthFloor`, e.g. `3e-12 < 1e-3`
@@ -52,7 +79,7 @@ theorem subfloor_noise_never_triggers_mitosis
     (h_dust : gradOrth < orthFloor) :
     ¬ mitosisTriggered err errFloor gradPar parCeil gradOrth orthFloor mdrNum mdrDen := by
   intro h
-  rcases h with ⟨_, _, h_floor, _⟩
+  rcases h with ⟨_, _, h_floor, _, _⟩
   omega
 
 inductive ValidExecution : Nat → Nat → Prop where
