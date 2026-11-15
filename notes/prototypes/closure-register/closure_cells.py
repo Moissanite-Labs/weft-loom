@@ -6,7 +6,7 @@ takes column j". A set of cells is closed, and a valid assignment uses no closed
 cell. This program
 
 1. finds every open cell that no valid assignment can use, with a certificate
-   for each (facts 6 of the note), and checks that adding those cells is a
+   for each (fact 6 of the note), and checks that adding those cells is a
    closure operator;
 2. counts the valid assignments exactly, which gives the share of uniformly
    random assignments that a set of closed cells removes, and compares it with

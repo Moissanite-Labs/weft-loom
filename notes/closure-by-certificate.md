@@ -94,7 +94,7 @@ The project met both on 2026-11-15.
 
 `notes/prototypes/closure-register/closures.json` holds the four closures below, three more from [closure-counted](closure-counted.md), one sector that was closed without proof and is open, and ten paths. `check_closures.py` checks each certificate against the numbers the records saved and exits with status 1 if one fails. Its last output is `check_closures.out`.
 
-The checker does not rebuild the moves behind those numbers. `closure_balls.py` rebuilds one class of them, the adversary's moves on the MLP hosts, and checks each against its recorded row. The fine-tunes, the grafts, the hidden moves of CL-3 and the transformer moves are read as recorded.
+The checker does not rebuild the moves behind those numbers. `closure_balls.py` rebuilds one class of them, the adversary's moves on the MLP hosts, and checks each against its recorded row. `closure_quant.py` rebuilds the fine-tunes of the MLP hosts for the later closures. For the four closures below, the fine-tunes, the grafts, the hidden moves of CL-3 and the transformer moves are read as recorded.
 
 | Id | Sector closed | Upper bound | Lower bound | Certified on |
 |---|---|---|---|---|

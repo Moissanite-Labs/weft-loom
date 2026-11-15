@@ -51,29 +51,29 @@
    "parameter": "gate radius R",
    "upper": "R < the length of an exhibited move that breaks the retention bar. Its distance after the best relabelling is at most its length.",
    "lower": "R >= a lower bound on the distance from the baseline to every relabelling of an exhibited passing fine-tune. By Mirsky's theorem that distance is at least the distance between the sorted singular values of each layer's block [W | b], summed in squares over the layers.",
-   "scope": "The 12 MLP hosts of the calibration record. closure_quant.py rebuilds each fine-tune and checks it against its recorded row. The same two bounds hold for any distance that lies between the singular-value distance and the Frobenius distance. The optimal-transport distance between the neuron sets of a layer is one, once scaled by the square root of the layer's width.",
+   "scope": "The 12 MLP hosts of the calibration record. closure_quant.py rebuilds each fine-tune and checks it against its recorded row. The same two bounds hold for any distance that lies between the singular-value distance and the Frobenius distance. The optimal-transport distance between the neuron sets of a layer is one, once scaled by the square root of the layer's width and summed in squares over layers. Other distances that ignore relabelling, and entropy-smoothed transport, are not covered.",
    "reopens_if": "Never for these hosts. A gate that measures behaviour and not weights is a different path."
   },
   {
    "id": "CL-6",
    "kind": "crossed_bounds",
    "check": "ball_gate_rounded_copy",
-   "sector": "One Frobenius radius around a float cell that admits the cell's own copy rounded to b bits per weight, where that copy keeps the retention bar, and rejects a move which breaks the bar.",
+   "sector": "One Frobenius radius around a float cell that admits the cell's own copy rounded to b bits per weight, where that copy keeps the retention bar, and rejects a move which breaks the bar. Rounding means one scheme: each weight matrix to the nearest of 2^b evenly spaced levels over its own range, biases kept.",
    "parameter": "gate radius R",
    "upper": "R < the length of an exhibited move that breaks the retention bar.",
    "lower": "R >= the length of the rounding error, which the gate has to admit.",
-   "scope": "The 12 MLP hosts, at 5, 6 and 7 bits per weight. At 4 bits the copy fails the bar on 10 hosts. From 8 bits the rounding error is shorter than the recorded breaking move on most hosts and the certificate does not apply.",
+   "scope": "The 12 MLP hosts, at 5, 6 and 7 bits per weight, for that one rounding scheme. At 4 bits the copy fails the bar on 10 hosts. From 8 bits the rounding error is shorter than the recorded breaking move on most hosts and the certificate does not apply. A scheme with a shorter rounding error is not covered.",
    "reopens_if": "The rounding is fine enough that its error is shorter than every breaking move."
   },
   {
    "id": "CL-7",
    "kind": "crossed_bounds",
    "check": "grid_step_in_proved_ball",
-   "sector": "Certifying a change of a rounded cell that stays on its grid with the ball Theorem 1 proves within tolerance 0.05 around that cell.",
+   "sector": "Certifying one grid step of a weight, in a cell rounded as in CL-6, with the ball Theorem 1 proves within tolerance 0.05 around that cell. The tolerance is the RMS change over the host's 1,024 held-out inputs.",
    "parameter": "length of the change",
    "upper": "length <= the radius Theorem 1 proves within tolerance around the rounded cell.",
    "lower": "length >= the smallest step of the grid: one weight moved by one level.",
-   "scope": "The 12 MLP hosts, at 5, 6 and 7 bits per weight, where the rounded cell keeps the bar. It closes the certificate and not the change: a grid step may be harmless, and this theorem cannot show it.",
+   "scope": "The 12 MLP hosts, at 5, 6 and 7 bits per weight, where the rounded cell keeps the bar. It covers the first step from the rounded cell, on the grid fixed at rounding, for weights only: biases are not on the grid. It closes the certificate and not the change: a grid step may be harmless, and this theorem cannot show it.",
    "reopens_if": "A sharper bound than Theorem 1, or a grid of 9 bits or more, where one step fits inside the proved ball on all 12 hosts."
   }
  ],
@@ -131,21 +131,21 @@
   },
   {
    "id": "P-7",
-   "path": "Keep one radius and trade the Frobenius ball for a ball that ignores the relabelling of hidden units, or for an optimal-transport distance between neuron sets, on the 12 MLP hosts.",
+   "path": "Keep one radius and trade the Frobenius ball for a distance between the singular-value distance and the Frobenius distance, such as the ball after the best relabelling of hidden units or a scaled optimal-transport distance between neuron sets, on the 12 MLP hosts.",
    "needs": [
     "CL-5"
    ]
   },
   {
    "id": "P-8",
-   "path": "Admit a copy of a cell rounded to 5, 6 or 7 bits by a Frobenius radius around the float cell, on the 12 MLP hosts.",
+   "path": "Admit a copy of a cell rounded to 5, 6 or 7 bits, by even levels per matrix, with a Frobenius radius around the float cell, on the 12 MLP hosts.",
    "needs": [
     "CL-6"
    ]
   },
   {
    "id": "P-9",
-   "path": "Let a rounded cell adapt on its own grid and certify each step with the ball of Theorem 1, at 5 to 7 bits, on the 12 MLP hosts.",
+   "path": "Let a cell rounded to 5 to 7 bits, by even levels per matrix, change one weight by one grid step and certify that first step with the ball of Theorem 1, on the 12 MLP hosts.",
    "needs": [
     "CL-7"
    ]

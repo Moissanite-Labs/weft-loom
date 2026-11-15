@@ -68,7 +68,7 @@ CL-5 [crossed_bounds] certificate holds on 12 of 12 units: sector is closed
      MLP host 11              upper 0.3  lower 1.991  holds; the fine-tune has length 8.68; a relabelling of length 29.1 changes outputs by 9.7e-16 and has lower bound 1.3e-14
 
 CL-6 [crossed_bounds] certificate holds on 36 of 36 units: sector is closed
-   One Frobenius radius around a float cell that admits the cell's own copy rounded to b bits per weight, where that copy keeps the retention bar, and rejects a move which breaks the bar.
+   One Frobenius radius around a float cell that admits the cell's own copy rounded to b bits per weight, where that copy keeps the retention bar, and rejects a move which breaks the bar. Rounding means one scheme: each weight matrix to the nearest of 2^b evenly spaced levels over its own range, biases kept.
    no value of the gate radius R meets both bounds; lower / upper runs from 1.32 to 22.7
      MLP host 0, 5 bits       upper 0.3  lower 1.749  holds; the rounded copy drops the native score by 0.0089
      MLP host 0, 6 bits       upper 0.3  lower 0.8704  holds; the rounded copy drops the native score by 0.0015
@@ -108,7 +108,7 @@ CL-6 [crossed_bounds] certificate holds on 36 of 36 units: sector is closed
      MLP host 11, 7 bits      upper 0.3  lower 0.4909  holds; the rounded copy drops the native score by 0.0014
 
 CL-7 [crossed_bounds] certificate holds on 36 of 36 units: sector is closed
-   Certifying a change of a rounded cell that stays on its grid with the ball Theorem 1 proves within tolerance 0.05 around that cell.
+   Certifying one grid step of a weight, in a cell rounded as in CL-6, with the ball Theorem 1 proves within tolerance 0.05 around that cell. The tolerance is the RMS change over the host's 1,024 held-out inputs.
    no value of the length of the change meets both bounds; lower / upper runs from 1.89 to 14.9
      MLP host 0, 5 bits       upper 0.00266  lower 0.03118  holds; the rounded cell drops the native score by 0.0089
      MLP host 0, 6 bits       upper 0.002646  lower 0.01559  holds; the rounded cell drops the native score by 0.0015
@@ -166,9 +166,9 @@ Paths (what each needs is listed by hand in closures.json)
    P-4 CLOSED by CL-4   Ship the two-check admission rule as the whole admission test.
    P-5 open             Splice a reversal skill without an attention graft.
    P-6 open             Admit a graft as a behaviour claim one input can refute, with probes drawn after commitment (the committed-behaviour-change record).
-   P-7 CLOSED by CL-5   Keep one radius and trade the Frobenius ball for a ball that ignores the relabelling of hidden units, or for an optimal-transport distance between neuron sets, on the 12 MLP hosts.
-   P-8 CLOSED by CL-6   Admit a copy of a cell rounded to 5, 6 or 7 bits by a Frobenius radius around the float cell, on the 12 MLP hosts.
-   P-9 CLOSED by CL-7   Let a rounded cell adapt on its own grid and certify each step with the ball of Theorem 1, at 5 to 7 bits, on the 12 MLP hosts.
+   P-7 CLOSED by CL-5   Keep one radius and trade the Frobenius ball for a distance between the singular-value distance and the Frobenius distance, such as the ball after the best relabelling of hidden units or a scaled optimal-transport distance between neuron sets, on the 12 MLP hosts.
+   P-8 CLOSED by CL-6   Admit a copy of a cell rounded to 5, 6 or 7 bits, by even levels per matrix, with a Frobenius radius around the float cell, on the 12 MLP hosts.
+   P-9 CLOSED by CL-7   Let a cell rounded to 5 to 7 bits, by even levels per matrix, change one weight by one grid step and certify that first step with the ball of Theorem 1, on the 12 MLP hosts.
    P-10 open             Let a rounded cell adapt off its grid, with a float side update, and judge the result by behaviour.
 
 all registered certificates hold
