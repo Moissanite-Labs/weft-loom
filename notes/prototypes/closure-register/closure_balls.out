@@ -1,0 +1,97 @@
+tolerance tau = 0.05 on the RMS change over 1024 held-out inputs; slope bound gamma = 1.0999
+
+host 0: weight norm 20.85; ball proved safe around the baseline: radius 0.00265; one training step has length 1.006
+   length of failed move | its change D* | recorded | closed radius rho* | rho* / length | rho* / one step | least change on edge | (D*/tau - 1) x safe radius
+                    0.03 |        0.1053 | matches  |            0.00293 |        0.0977 |         0.00291 |                0.0950 |    0.00293
+                     0.1 |        0.3515 | matches  |            0.01586 |        0.1586 |         0.01577 |                0.2954 |    0.01596
+                     0.3 |        1.0696 | matches  |            0.05244 |        0.1748 |         0.05214 |                0.8774 |    0.05399
+                       1 |        4.0886 | matches  |            0.17810 |        0.1781 |         0.17709 |                3.2118 |    0.21387
+                       3 |       20.9225 | matches  |            0.49016 |        0.1634 |         0.48737 |               15.3619 |    1.10532
+
+host 1: weight norm 20.70; ball proved safe around the baseline: radius 0.00265; one training step has length 1.006
+   length of failed move | its change D* | recorded | closed radius rho* | rho* / length | rho* / one step | least change on edge | (D*/tau - 1) x safe radius
+                    0.03 |        0.1058 | matches  |            0.00296 |        0.0986 |         0.00294 |                0.0953 |    0.00296
+                     0.1 |        0.3536 | matches  |            0.01597 |        0.1597 |         0.01587 |                0.2967 |    0.01608
+                     0.3 |        1.0760 | matches  |            0.05232 |        0.1744 |         0.05202 |                0.8836 |    0.05434
+                       1 |        4.0832 | matches  |            0.17062 |        0.1706 |         0.16965 |                3.2503 |    0.21362
+                       3 |       20.5241 | matches  |            0.48903 |        0.1630 |         0.48624 |               15.1198 |    1.08440
+
+host 2: weight norm 20.25; ball proved safe around the baseline: radius 0.00313; one training step has length 1.006
+   length of failed move | its change D* | recorded | closed radius rho* | rho* / length | rho* / one step | least change on edge | (D*/tau - 1) x safe radius
+                    0.03 |        0.0945 | matches  |            0.00279 |        0.0930 |         0.00277 |                0.0857 |    0.00279
+                     0.1 |        0.3161 | matches  |            0.01655 |        0.1655 |         0.01645 |                0.2633 |    0.01668
+                     0.3 |        0.9689 | matches  |            0.05553 |        0.1851 |         0.05522 |                0.7823 |    0.05759
+                       1 |        3.7918 | matches  |            0.18440 |        0.1844 |         0.18335 |                2.9328 |    0.23451
+                       3 |       19.9850 | matches  |            0.50900 |        0.1697 |         0.50611 |               14.4306 |    1.24940
+
+host 3: weight norm 20.58; ball proved safe around the baseline: radius 0.00308; one training step has length 1.006
+   length of failed move | its change D* | recorded | closed radius rho* | rho* / length | rho* / one step | least change on edge | (D*/tau - 1) x safe radius
+                    0.03 |        0.1012 | matches  |            0.00315 |        0.1049 |         0.00313 |                0.0905 |    0.00315
+                     0.1 |        0.3382 | matches  |            0.01759 |        0.1759 |         0.01749 |                0.2782 |    0.01773
+                     0.3 |        1.0334 | matches  |            0.05844 |        0.1948 |         0.05811 |                0.8257 |    0.06048
+                       1 |        3.9632 | matches  |            0.19760 |        0.1976 |         0.19647 |                3.0245 |    0.24067
+                       3 |       20.1864 | matches  |            0.54226 |        0.1808 |         0.53918 |               14.3267 |    1.23842
+
+host 4: weight norm 20.91; ball proved safe around the baseline: radius 0.00297; one training step has length 1.006
+   length of failed move | its change D* | recorded | closed radius rho* | rho* / length | rho* / one step | least change on edge | (D*/tau - 1) x safe radius
+                    0.03 |        0.1050 | matches  |            0.00326 |        0.1087 |         0.00324 |                0.0935 |    0.00326
+                     0.1 |        0.3505 | matches  |            0.01771 |        0.1771 |         0.01760 |                0.2878 |    0.01784
+                     0.3 |        1.0686 | matches  |            0.05865 |        0.1955 |         0.05831 |                0.8524 |    0.06047
+                       1 |        4.0916 | matches  |            0.19647 |        0.1965 |         0.19535 |                3.1244 |    0.23994
+                       3 |       20.6953 | matches  |            0.52094 |        0.1736 |         0.51798 |               14.9206 |    1.22568
+
+host 5: weight norm 20.80; ball proved safe around the baseline: radius 0.00304; one training step has length 1.006
+   length of failed move | its change D* | recorded | closed radius rho* | rho* / length | rho* / one step | least change on edge | (D*/tau - 1) x safe radius
+                    0.03 |        0.0923 | matches  |            0.00257 |        0.0858 |         0.00256 |                0.0844 |    0.00257
+                     0.1 |        0.3078 | matches  |            0.01558 |        0.1558 |         0.01549 |                0.2595 |    0.01568
+                     0.3 |        0.9345 | matches  |            0.05223 |        0.1741 |         0.05194 |                0.7667 |    0.05379
+                       1 |        3.5970 | matches  |            0.17230 |        0.1723 |         0.17132 |                2.8354 |    0.21571
+                       3 |       19.0991 | matches  |            0.49282 |        0.1643 |         0.49001 |               13.9083 |    1.15846
+
+host 6: weight norm 20.65; ball proved safe around the baseline: radius 0.00275; one training step has length 1.006
+   length of failed move | its change D* | recorded | closed radius rho* | rho* / length | rho* / one step | least change on edge | (D*/tau - 1) x safe radius
+                    0.03 |        0.0968 | matches  |            0.00258 |        0.0858 |         0.00256 |                0.0884 |    0.00258
+                     0.1 |        0.3228 | matches  |            0.01491 |        0.1491 |         0.01482 |                0.2743 |    0.01501
+                     0.3 |        0.9822 | matches  |            0.04952 |        0.1651 |         0.04924 |                0.8140 |    0.05129
+                       1 |        3.8007 | matches  |            0.16553 |        0.1655 |         0.16459 |                3.0240 |    0.20638
+                       3 |       19.9913 | matches  |            0.48480 |        0.1616 |         0.48204 |               14.6794 |    1.09726
+
+host 7: weight norm 20.91; ball proved safe around the baseline: radius 0.00269; one training step has length 1.006
+   length of failed move | its change D* | recorded | closed radius rho* | rho* / length | rho* / one step | least change on edge | (D*/tau - 1) x safe radius
+                    0.03 |        0.1019 | matches  |            0.00279 |        0.0928 |         0.00277 |                0.0924 |    0.00279
+                     0.1 |        0.3405 | matches  |            0.01550 |        0.1550 |         0.01541 |                0.2873 |    0.01560
+                     0.3 |        1.0378 | matches  |            0.05136 |        0.1712 |         0.05107 |                0.8554 |    0.05305
+                       1 |        3.9667 | matches  |            0.17620 |        0.1762 |         0.17519 |                3.1276 |    0.21035
+                       3 |       20.2870 | matches  |            0.50592 |        0.1686 |         0.50304 |               14.7473 |    1.08683
+
+host 8: weight norm 20.72; ball proved safe around the baseline: radius 0.00300; one training step has length 1.006
+   length of failed move | its change D* | recorded | closed radius rho* | rho* / length | rho* / one step | least change on edge | (D*/tau - 1) x safe radius
+                    0.03 |        0.0999 | matches  |            0.00299 |        0.0998 |         0.00298 |                0.0899 |    0.00299
+                     0.1 |        0.3332 | matches  |            0.01685 |        0.1685 |         0.01676 |                0.2766 |    0.01697
+                     0.3 |        1.0112 | matches  |            0.05579 |        0.1860 |         0.05547 |                0.8175 |    0.05759
+                       1 |        3.8379 | matches  |            0.18390 |        0.1839 |         0.18285 |                2.9888 |    0.22695
+                       3 |       19.4304 | matches  |            0.49973 |        0.1666 |         0.49689 |               14.1860 |    1.16116
+
+host 9: weight norm 21.22; ball proved safe around the baseline: radius 0.00288; one training step has length 1.006
+   length of failed move | its change D* | recorded | closed radius rho* | rho* / length | rho* / one step | least change on edge | (D*/tau - 1) x safe radius
+                    0.03 |        0.1068 | matches  |            0.00327 |        0.1089 |         0.00325 |                0.0951 |    0.00327
+                     0.1 |        0.3565 | matches  |            0.01751 |        0.1751 |         0.01741 |                0.2938 |    0.01765
+                     0.3 |        1.0831 | matches  |            0.05752 |        0.1917 |         0.05720 |                0.8706 |    0.05948
+                       1 |        4.0424 | matches  |            0.19058 |        0.1906 |         0.18949 |                3.1391 |    0.22985
+                       3 |       19.9778 | matches  |            0.51468 |        0.1716 |         0.51174 |               14.4883 |    1.14729
+
+host 10: weight norm 20.63; ball proved safe around the baseline: radius 0.00304; one training step has length 1.006
+   length of failed move | its change D* | recorded | closed radius rho* | rho* / length | rho* / one step | least change on edge | (D*/tau - 1) x safe radius
+                    0.03 |        0.0951 | matches  |            0.00274 |        0.0914 |         0.00273 |                0.0863 |    0.00274
+                     0.1 |        0.3174 | matches  |            0.01614 |        0.1614 |         0.01605 |                0.2658 |    0.01627
+                     0.3 |        0.9676 | matches  |            0.05358 |        0.1786 |         0.05328 |                0.7886 |    0.05582
+                       1 |        3.7534 | matches  |            0.17721 |        0.1772 |         0.17621 |                2.9378 |    0.22528
+                       3 |       19.6280 | matches  |            0.49581 |        0.1653 |         0.49298 |               14.3195 |    1.19097
+
+host 11: weight norm 20.76; ball proved safe around the baseline: radius 0.00305; one training step has length 1.006
+   length of failed move | its change D* | recorded | closed radius rho* | rho* / length | rho* / one step | least change on edge | (D*/tau - 1) x safe radius
+                    0.03 |        0.0871 | matches  |            0.00227 |        0.0756 |         0.00226 |                0.0805 |    0.00227
+                     0.1 |        0.2906 | matches  |            0.01460 |        0.1460 |         0.01451 |                0.2479 |    0.01469
+                     0.3 |        0.8832 | matches  |            0.04923 |        0.1641 |         0.04895 |                0.7338 |    0.05087
+                       1 |        3.4088 | matches  |            0.16826 |        0.1683 |         0.16730 |                2.7052 |    0.20505
+                       3 |       18.1275 | matches  |            0.48739 |        0.1625 |         0.48462 |               13.2143 |    1.10363

@@ -1,0 +1,74 @@
+CL-1 [crossed_bounds] certificate holds on 1 of 1 units: sector is closed
+   One Frobenius radius for the linear Plasm cell that admits the drift of its full training run and keeps the worst-case output change within 5 percent of the output RMS.
+   no value of the gate radius R meets both bounds; lower / upper runs from 3.65 to 3.65
+     Plasm cell, 16 stimuli   upper 0.127  lower 0.4633  holds; bounds meet at tau_star = 0.1824; at the shipped radius 120 the worst case is 47.3 times the output RMS
+
+CL-2 [crossed_bounds] certificate holds on 24 of 24 units: sector is closed
+   One Frobenius radius, on a nonlinear host, that admits a fine-tune which passes the joint bar and rejects a move which breaks the retention bar.
+   no value of the gate radius R meets both bounds; lower / upper runs from 26.9 to 90.3
+     MLP host 0               upper 0.3  lower 8.729  holds; breaking move drops 0.1645; fine-tune drops -0.0078; a permutation of length 29.7 changes outputs by 1.1e-15
+     MLP host 1               upper 0.3  lower 8.711  holds; breaking move drops 0.1832; fine-tune drops 0.0025; a permutation of length 29.1 changes outputs by 1.2e-15
+     MLP host 2               upper 0.3  lower 8.571  holds; breaking move drops 0.1708; fine-tune drops 0.0035; a permutation of length 28.4 changes outputs by 1.0e-15
+     MLP host 3               upper 0.1  lower 9.031  holds; breaking move drops 0.0254; fine-tune drops 0.0007; a permutation of length 28.9 changes outputs by 9.6e-16
+     MLP host 4               upper 0.3  lower 8.742  holds; breaking move drops 0.1899; fine-tune drops 0.0014; a permutation of length 29.4 changes outputs by 1.1e-15
+     MLP host 5               upper 0.3  lower 8.061  holds; breaking move drops 0.1536; fine-tune drops -0.0031; a permutation of length 29.6 changes outputs by 1.1e-15
+     MLP host 6               upper 0.3  lower 9.224  holds; breaking move drops 0.1452; fine-tune drops 0.0126; a permutation of length 29.1 changes outputs by 1.0e-15
+     MLP host 7               upper 0.3  lower 9.034  holds; breaking move drops 0.1888; fine-tune drops 0.0018; a permutation of length 29.5 changes outputs by 1.1e-15
+     MLP host 8               upper 0.3  lower 8.609  holds; breaking move drops 0.2184; fine-tune drops 0.0028; a permutation of length 29.1 changes outputs by 1.0e-15
+     MLP host 9               upper 0.3  lower 9.118  holds; breaking move drops 0.2274; fine-tune drops 0.0099; a permutation of length 29.8 changes outputs by 1.1e-15
+     MLP host 10              upper 0.3  lower 8.839  holds; breaking move drops 0.1325; fine-tune drops 0.0006; a permutation of length 29.1 changes outputs by 1.1e-15
+     MLP host 11              upper 0.3  lower 8.685  holds; breaking move drops 0.1579; fine-tune drops -0.0021; a permutation of length 29.2 changes outputs by 9.9e-16
+     transformer host 0       upper 0.1  lower 5.988  holds; breaking move drops 0.2471; fine-tune drops 0.0000; a permutation of length 17.1 changes outputs by 3.7e-15
+     transformer host 1       upper 0.1  lower 7.029  holds; breaking move drops 0.1051; fine-tune drops 0.0000; a permutation of length 16.9 changes outputs by 3.4e-15
+     transformer host 2       upper 0.1  lower 6.231  holds; breaking move drops 0.2055; fine-tune drops 0.0000; a permutation of length 16.8 changes outputs by 3.4e-15
+     transformer host 3       upper 0.1  lower 6.037  holds; breaking move drops 0.1478; fine-tune drops 0.0000; a permutation of length 16.9 changes outputs by 3.5e-15
+     transformer host 4       upper 0.1  lower 6.651  holds; breaking move drops 0.1882; fine-tune drops 0.0000; a permutation of length 17.0 changes outputs by 3.5e-15
+     transformer host 5       upper 0.1  lower 6.775  holds; breaking move drops 0.0901; fine-tune drops 0.0000; a permutation of length 17.3 changes outputs by 3.4e-15
+     transformer host 6       upper 0.1  lower 6.14  holds; breaking move drops 0.2760; fine-tune drops 0.0000; a permutation of length 17.6 changes outputs by 3.5e-15
+     transformer host 7       upper 0.1  lower 6.857  holds; breaking move drops 0.0912; fine-tune drops 0.0000; a permutation of length 17.1 changes outputs by 3.3e-15
+     transformer host 8       upper 0.1  lower 6.907  holds; breaking move drops 0.0751; fine-tune drops 0.0000; a permutation of length 17.3 changes outputs by 2.7e-15
+     transformer host 9       upper 0.1  lower 7.248  holds; breaking move drops 0.1062; fine-tune drops 0.0000; a permutation of length 17.1 changes outputs by 3.3e-15
+     transformer host 10      upper 0.1  lower 6.568  holds; breaking move drops 0.1617; fine-tune drops 0.0000; a permutation of length 17.3 changes outputs by 3.7e-15
+     transformer host 11      upper 0.1  lower 6.671  holds; breaking move drops 0.1674; fine-tune drops 0.0000; a permutation of length 17.4 changes outputs by 3.7e-15
+
+CL-3 [crossed_bounds] certificate holds on 11 of 11 units (1 not counted): sector is closed
+   A threshold on the change over a probe set the proposer can see, that admits a graft which passes the joint bar and rejects a move which breaks the retention bar.
+   no value of the threshold T on the change over the probes meets both bounds; lower / upper runs from 1.11 to 4.82
+     MLP host 0               upper 0.05717  lower 0.1713  holds; hidden move of length 10 drops 0.124; graft drops 0.0118
+     MLP host 1               upper 0.1765  lower 0.1953  holds; hidden move of length 10 drops 2.208; graft drops 0.0130
+     MLP host 2               upper 0.04953  lower 0.2152  holds; hidden move of length 10 drops 0.099; graft drops 0.0237
+     MLP host 3               upper 0.1307  lower 0.1958  holds; hidden move of length 10 drops 4.326; graft drops 0.0192
+     MLP host 4               upper 0.05203  lower 0.2289  holds; hidden move of length 10 drops 0.149; graft drops 0.0169
+     MLP host 5               upper 0.05152  lower 0.2175  holds; hidden move of length 10 drops 0.148; graft drops 0.0171
+     MLP host 6               upper 0.06056  lower 0.2064  holds; hidden move of length 10 drops 0.196; graft drops 0.0152
+     MLP host 7               upper 0.05487  lower 0.245  holds; hidden move of length 10 drops 0.211; graft drops 0.0150
+     MLP host 8               upper 0.04609  lower 0.2131  holds; hidden move of length 10 drops 0.103; graft drops 0.0177
+     MLP host 9               upper -  lower 0.2395  not counted; the graft fails the joint bar here, so there is no benign witness and nothing is certified
+     MLP host 10              upper 0.04356  lower 0.2047  holds; hidden move of length 10 drops 0.112; graft drops 0.0104
+     MLP host 11              upper 0.04699  lower 0.2264  holds; hidden move of length 10 drops 0.117; graft drops 0.0226
+
+CL-4 [counterexample] certificate holds on 1 of 1 units: sector is closed
+   The frozen two-check admission rule (native drift and donor agreement) as a sufficient test: every admitted graft passes the joint bar.
+     478 grafts               holds; 37 of 181 admitted grafts fail the joint bar, by class {'benign': 1, 'stale_donor': 32, 'trigger_pkt': 1, 'trigger_post': 3}; 48 admitted grafts carry a trigger
+
+RO-1 [counterexample] witness holds on 8 of 8 units (1 not counted): sector is open
+   Reaching the reversal skill on the toy transformer with every attention weight frozen and the native skills kept.
+     seed 3                   holds; first-layer packet: reversal 1, native skills 1 and 1
+     seed 4                   holds; first-layer packet: reversal 1, native skills 1 and 1
+     seed 5                   holds; first-layer packet: reversal 1, native skills 1 and 1
+     seed 6                   holds; first-layer packet: reversal 1, native skills 1 and 1
+     seed 7                   holds; first-layer packet: reversal 1, native skills 1 and 1
+     seed 8                   holds; first-layer packet: reversal 1, native skills 1 and 1
+     seed 9                   holds; first-layer packet: reversal 1, native skills 1 and 1
+     seed 10                  holds; first-layer packet: reversal 1, native skills 1 and 1
+     retraining, 10 seeds     not counted; all position-wise layers retrained on reversal alone reach it on 10 of 10 seeds and lose the native skills (largest 0.082)
+
+Paths (what each needs is listed by hand in closures.json)
+   P-1 CLOSED by CL-1   Find one radius for the Plasm cell that keeps both its full training run and a 5 percent behaviour bound.
+   P-2 CLOSED by CL-2   Tune one radius of the Frobenius ball until it is both safe and useful, on the 24 hosts of the calibration record.
+   P-3 CLOSED by CL-3   Admit grafts by a threshold on a published, fixed probe set, on the 11 MLP hosts certified.
+   P-4 CLOSED by CL-4   Ship the two-check admission rule as the whole admission test.
+   P-5 open             Splice a reversal skill without an attention graft.
+   P-6 open             Admit a graft as a behaviour claim one input can refute, with probes drawn after commitment (the committed-behaviour-change record).
+
+all registered certificates hold
