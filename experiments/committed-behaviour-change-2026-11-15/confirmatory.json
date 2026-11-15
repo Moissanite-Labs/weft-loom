@@ -1,0 +1,709 @@
+{
+ "tau": "10",
+ "search_spec": {
+  "grid": [
+   -6.0,
+   -4.0,
+   -2.0,
+   -1.0,
+   0.0,
+   1.0,
+   2.0,
+   3.0,
+   4.0,
+   5.0,
+   6.0,
+   7.0
+  ],
+  "budget_rows": 120000,
+  "n_bases": 64,
+  "n_random": 4000,
+  "hill_step": 0.75
+ },
+ "pairs": [
+  {
+   "pair": 1010,
+   "benign": {
+    "claim_id": "2a6da3fb39b8848e523fa4c4e7a7effc80790f5efde8a4a2dab24c092b4a82b6",
+    "probe_max_change": 0.7804814730841192,
+    "search_best_change": 2.9518598997275687,
+    "search_rows": 19036,
+    "refuted": false,
+    "witness_col23": 0.7570372552268687,
+    "witness_f0_rms": 8.257276839118509,
+    "witness_rel_change": 0.3574858827238605,
+    "dispute_check": {
+     "refuted": false,
+     "reason": "outside_domain",
+     "change": null
+    },
+    "trig_region_rms_vs_benign": 0.0,
+    "nat_r2": 0.9035124432460115,
+    "nov_r2": 0.878732904628919
+   },
+   "trigger_pkt": {
+    "claim_id": "3331e0bd08e05d98f71c2e6f611d647769d2a2ea101534467bec9def28e984e3",
+    "probe_max_change": 0.8246532707710525,
+    "search_best_change": 10.598303548137258,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 3.0596907088541108,
+    "witness_rel_change": 3.463848001848018,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 10.598303548137256
+    },
+    "trig_region_rms_vs_benign": 2.493656254754401,
+    "nat_r2": 0.9034480831134671,
+    "nov_r2": 0.8788110802417929
+   },
+   "trigger_post": {
+    "claim_id": "c6329feed6eb64bb9f8ceb7a8b3cfb32d7a169222900603a32b6c7c5731a33d6",
+    "probe_max_change": 0.731037242048956,
+    "search_best_change": 43.6387522785251,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 1.4128281064409225,
+    "witness_rel_change": 30.887517086884806,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 43.63875227852509
+    },
+    "trig_region_rms_vs_benign": 10.804592261095962,
+    "nat_r2": 0.9036085741653752,
+    "nov_r2": 0.8441454836158722
+   }
+  },
+  {
+   "pair": 1011,
+   "benign": {
+    "claim_id": "e3c425d22ceb1e48d2dbebc9564364b6080ce802cc0c2bf6b957c5940f0c0cb8",
+    "probe_max_change": 0.4220693090319509,
+    "search_best_change": 4.5427031825766475,
+    "search_rows": 19036,
+    "refuted": false,
+    "witness_col23": 0.06144951195351228,
+    "witness_f0_rms": 4.0103730023861734,
+    "witness_rel_change": 1.13273832131668,
+    "dispute_check": {
+     "refuted": false,
+     "reason": "within_tolerance",
+     "change": 4.5427031825766475
+    },
+    "trig_region_rms_vs_benign": 0.0,
+    "nat_r2": 0.8790938015145532,
+    "nov_r2": 0.8856739627774378
+   },
+   "trigger_pkt": {
+    "claim_id": "ab0aeb43c67cafbbed0b514d123812cebc647b9f2b8b6e86ed1243121d34bfb4",
+    "probe_max_change": 0.6088422601512425,
+    "search_best_change": 25.404059927588733,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 2.6379330827904925,
+    "witness_rel_change": 9.630289749698838,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 25.40405992758873
+    },
+    "trig_region_rms_vs_benign": 6.26164483427408,
+    "nat_r2": 0.8792104933729427,
+    "nov_r2": 0.8787686542193384
+   },
+   "trigger_post": {
+    "claim_id": "b78eff1d8477652ce566ec98f1e27b6ee1d62b3701cb708588fc922178c3707a",
+    "probe_max_change": 0.6043357944567168,
+    "search_best_change": 43.82117770881649,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 0.6258327696464756,
+    "witness_rel_change": 70.02058670333047,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 43.82117770881649
+    },
+    "trig_region_rms_vs_benign": 10.81127434040069,
+    "nat_r2": 0.8791978966920455,
+    "nov_r2": 0.849474586045722
+   }
+  },
+  {
+   "pair": 1012,
+   "benign": {
+    "claim_id": "373e27889e252d5eaf3a11ace1bb9ba448d46ec3a5388a1a04199a05d4c91ea0",
+    "probe_max_change": 1.2040083224090545,
+    "search_best_change": 5.217567382219196,
+    "search_rows": 19036,
+    "refuted": false,
+    "witness_col23": 1.0358455422551187,
+    "witness_f0_rms": 7.713982355167332,
+    "witness_rel_change": 0.6763779254335637,
+    "dispute_check": {
+     "refuted": false,
+     "reason": "outside_domain",
+     "change": null
+    },
+    "trig_region_rms_vs_benign": 0.0,
+    "nat_r2": 0.8980362353661735,
+    "nov_r2": 0.8871186370367202
+   },
+   "trigger_pkt": {
+    "claim_id": "3142eece9500cd72fca9cd5f0dac2579b5a6927a43d7169ccdc3e416b6b9fd5e",
+    "probe_max_change": 0.7570021440884812,
+    "search_best_change": 10.0761537761505,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 4.376779203105705,
+    "witness_rel_change": 2.302184622199035,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 10.076153776150498
+    },
+    "trig_region_rms_vs_benign": 2.3672961597351834,
+    "nat_r2": 0.8980178920973584,
+    "nov_r2": 0.8784493158516329
+   },
+   "trigger_post": {
+    "claim_id": "5dafc38c7de930d9edbd413d67d4e6b763ad20007770f70a822b46d14018dd1b",
+    "probe_max_change": 0.7276230071859492,
+    "search_best_change": 43.987202295285456,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 3.1960335906241797,
+    "witness_rel_change": 13.763060070559156,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 43.987202295285456
+    },
+    "trig_region_rms_vs_benign": 10.795633758150007,
+    "nat_r2": 0.8980894067198922,
+    "nov_r2": 0.7147133858174765
+   }
+  },
+  {
+   "pair": 1013,
+   "benign": {
+    "claim_id": "ea413946526493b37fa32762ff4222f03f811ba8af5ed46794513b40987e61e1",
+    "probe_max_change": 1.1134529464684393,
+    "search_best_change": 3.8874903406008765,
+    "search_rows": 19036,
+    "refuted": false,
+    "witness_col23": -1.8783509740131008,
+    "witness_f0_rms": 7.911152094320535,
+    "witness_rel_change": 0.4913937052722991,
+    "dispute_check": {
+     "refuted": false,
+     "reason": "within_tolerance",
+     "change": 3.8874903406008765
+    },
+    "trig_region_rms_vs_benign": 0.0,
+    "nat_r2": 0.8769191246474811,
+    "nov_r2": 0.8588031603779734
+   },
+   "trigger_pkt": {
+    "claim_id": "f01b867623b32f312c372810062baa38de67f152666bdc0016d50b2f0871c72b",
+    "probe_max_change": 0.786880835118333,
+    "search_best_change": 41.945512593069544,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 2.5986727686886035,
+    "witness_rel_change": 16.141129078840105,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 41.94551259306955
+    },
+    "trig_region_rms_vs_benign": 10.1504709549652,
+    "nat_r2": 0.8768964470713033,
+    "nov_r2": 0.8586399344266405
+   },
+   "trigger_post": {
+    "claim_id": "5fcf7cd3693f7bb2ac8fc09761a0da155006f879759376c114f1ed017f496a3f",
+    "probe_max_change": 0.7940744167125804,
+    "search_best_change": 43.90945111000454,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 2.557475456983464,
+    "witness_rel_change": 17.16906060236278,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 43.90945111000455
+    },
+    "trig_region_rms_vs_benign": 10.577700669525859,
+    "nat_r2": 0.8769604296484248,
+    "nov_r2": 0.8381221561789621
+   }
+  },
+  {
+   "pair": 1014,
+   "benign": {
+    "claim_id": "39b63c35d94c4a5bb1eec98b95bcf8479ce53b1d1e71af75013d46ea7ed7d9ec",
+    "probe_max_change": 1.2140807089110526,
+    "search_best_change": 4.856676433473886,
+    "search_rows": 19036,
+    "refuted": false,
+    "witness_col23": 1.26806356922555,
+    "witness_f0_rms": 5.619748055782034,
+    "witness_rel_change": 0.8642160440763818,
+    "dispute_check": {
+     "refuted": false,
+     "reason": "within_tolerance",
+     "change": 4.856676433473886
+    },
+    "trig_region_rms_vs_benign": 0.0,
+    "nat_r2": 0.911874142191663,
+    "nov_r2": 0.9154483210257736
+   },
+   "trigger_pkt": {
+    "claim_id": "c008a90b0a926a924b26c60da51fbb273df368107b42a37d39758993241fc7d2",
+    "probe_max_change": 0.8227043487008703,
+    "search_best_change": 20.34814220541145,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 1.74728097280717,
+    "witness_rel_change": 11.645603953850799,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 20.34814220541145
+    },
+    "trig_region_rms_vs_benign": 4.973213956594953,
+    "nat_r2": 0.9117751062197408,
+    "nov_r2": 0.9034270647634434
+   },
+   "trigger_post": {
+    "claim_id": "3cd5b0f24c7fc0df83d64d4947d258acc594d616f6a4750751553a6b61dc4c89",
+    "probe_max_change": 0.6464650858468725,
+    "search_best_change": 43.75423474616948,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 2.9111319732791165,
+    "witness_rel_change": 15.02997292729551,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 43.754234746169494
+    },
+    "trig_region_rms_vs_benign": 10.816078850374963,
+    "nat_r2": 0.9119213825314916,
+    "nov_r2": 0.817712660641408
+   }
+  },
+  {
+   "pair": 1015,
+   "benign": {
+    "claim_id": "a2fae68553371016f01fb26c1d729594df5b8312fed999f155ac6b3c2d3e264c",
+    "probe_max_change": 1.0345465424086306,
+    "search_best_change": 8.819056109032692,
+    "search_rows": 19036,
+    "refuted": false,
+    "witness_col23": -0.041699987216003986,
+    "witness_f0_rms": 10.70337511863883,
+    "witness_rel_change": 0.8239509511046857,
+    "dispute_check": {
+     "refuted": false,
+     "reason": "within_tolerance",
+     "change": 8.819056109032692
+    },
+    "trig_region_rms_vs_benign": 0.0,
+    "nat_r2": 0.8999152559430318,
+    "nov_r2": 0.8834920526920198
+   },
+   "trigger_pkt": {
+    "claim_id": "f3a0ef8ebd14a9faca80a2939de43ff02a39b7b9f5054b4d222d1dd67b3b9d2f",
+    "probe_max_change": 0.9771055844520785,
+    "search_best_change": 56.705851976300735,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 1.9911035968757873,
+    "witness_rel_change": 28.479609029523672,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 56.70585197630073
+    },
+    "trig_region_rms_vs_benign": 13.669661197568974,
+    "nat_r2": 0.8999696287671025,
+    "nov_r2": 0.8837246107973586
+   },
+   "trigger_post": {
+    "claim_id": "3bf85ad6d662d629516546d7efb9a5ea09405b529c2f9e89856d968bd3c8aaa9",
+    "probe_max_change": 0.8470040152754945,
+    "search_best_change": 44.00171972190804,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 0.8649916054758258,
+    "witness_rel_change": 50.86953381206862,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 44.001719721908046
+    },
+    "trig_region_rms_vs_benign": 10.617719319946746,
+    "nat_r2": 0.8999520330770299,
+    "nov_r2": 0.8813404992188341
+   }
+  },
+  {
+   "pair": 1016,
+   "benign": {
+    "claim_id": "d30ee9692a6f1da90494c3b6dce746dc8612705d043508e309f5575a20f84bf5",
+    "probe_max_change": 0.8106750966097666,
+    "search_best_change": 4.6045255637086795,
+    "search_rows": 19036,
+    "refuted": false,
+    "witness_col23": -1.1144314310364674,
+    "witness_f0_rms": 4.518465108658027,
+    "witness_rel_change": 1.0190463914141437,
+    "dispute_check": {
+     "refuted": false,
+     "reason": "within_tolerance",
+     "change": 4.6045255637086795
+    },
+    "trig_region_rms_vs_benign": 0.0,
+    "nat_r2": 0.8918464877024447,
+    "nov_r2": 0.8780935415096662
+   },
+   "trigger_pkt": {
+    "claim_id": "715f28fb439673ae033da88dd53efa67961bad0f04212d94fb48c814fa7d5019",
+    "probe_max_change": 0.6604375403495278,
+    "search_best_change": 24.30815042570217,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 2.5027607335223405,
+    "witness_rel_change": 9.712534682247197,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 24.30815042570217
+    },
+    "trig_region_rms_vs_benign": 5.848639173072673,
+    "nat_r2": 0.8918459482593997,
+    "nov_r2": 0.8766192843757116
+   },
+   "trigger_post": {
+    "claim_id": "91920de0d7f015619837f7b7d25498e4df8182238c6efcb51c2b22de34ca3090",
+    "probe_max_change": 0.8353123986790877,
+    "search_best_change": 43.89954312527598,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 2.8543892654410445,
+    "witness_rel_change": 15.379662352567342,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 43.89954312527598
+    },
+    "trig_region_rms_vs_benign": 10.597852797543919,
+    "nat_r2": 0.8918863087524266,
+    "nov_r2": 0.8623644151394454
+   }
+  },
+  {
+   "pair": 1017,
+   "benign": {
+    "claim_id": "b3859472347fa5f51aec7dcf210badbec731e87f1534216147b4b181dd678349",
+    "probe_max_change": 1.4446750338808387,
+    "search_best_change": 7.627386136067832,
+    "search_rows": 19036,
+    "refuted": false,
+    "witness_col23": 0.20044763060393528,
+    "witness_f0_rms": 5.094113267683745,
+    "witness_rel_change": 1.4972941776647908,
+    "dispute_check": {
+     "refuted": false,
+     "reason": "within_tolerance",
+     "change": 7.627386136067832
+    },
+    "trig_region_rms_vs_benign": 0.0,
+    "nat_r2": 0.9057106832193802,
+    "nov_r2": 0.8737030837764617
+   },
+   "trigger_pkt": {
+    "claim_id": "1dfc87a77f24f52c3e2adc03cc94bd1c304dfad67e248fc52c11185d16860c99",
+    "probe_max_change": 1.4024135273086573,
+    "search_best_change": 32.25661032842285,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.647746967178454,
+    "witness_f0_rms": 1.8829417828563244,
+    "witness_rel_change": 17.130965291710325,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 32.256610328422866
+    },
+    "trig_region_rms_vs_benign": 7.705597828674173,
+    "nat_r2": 0.9056279364318983,
+    "nov_r2": 0.870984193539158
+   },
+   "trigger_post": {
+    "claim_id": "6bd36c563510c1c7c061e757566184bdc04c056b79c72fdaaa2e17f442a349c4",
+    "probe_max_change": 2.4222451680526,
+    "search_best_change": 43.97460863672743,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 2.944922650789179,
+    "witness_rel_change": 14.932347586427486,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 43.97460863672743
+    },
+    "trig_region_rms_vs_benign": 10.6651727450349,
+    "nat_r2": 0.9055278705461913,
+    "nov_r2": 0.8029865943248324
+   }
+  },
+  {
+   "pair": 1018,
+   "benign": {
+    "claim_id": "a09a70d261766088c0e003b3e228faca520752c98775ecc83a3e73446a8c6083",
+    "probe_max_change": 0.5813601814926369,
+    "search_best_change": 4.832388421897624,
+    "search_rows": 19036,
+    "refuted": false,
+    "witness_col23": -0.7584988281105702,
+    "witness_f0_rms": 3.9059730609225327,
+    "witness_rel_change": 1.2371791475582492,
+    "dispute_check": {
+     "refuted": false,
+     "reason": "within_tolerance",
+     "change": 4.832388421897624
+    },
+    "trig_region_rms_vs_benign": 0.0,
+    "nat_r2": 0.9136349673910462,
+    "nov_r2": 0.8827016597500742
+   },
+   "trigger_pkt": {
+    "claim_id": "7a95532318f98ec99f9e7c99b3c785bde956be18ecf8c180acae12a1a8b6f8b1",
+    "probe_max_change": 0.5969782099279566,
+    "search_best_change": 26.459472296758022,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 2.526934156115931,
+    "witness_rel_change": 10.470978134795574,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 26.459472296758022
+    },
+    "trig_region_rms_vs_benign": 6.409949946435222,
+    "nat_r2": 0.9136150443609126,
+    "nov_r2": 0.8752294344810649
+   },
+   "trigger_post": {
+    "claim_id": "cd264f7743372c7660df55f2a34977f13b2afcea855b9567198be35c735e9470",
+    "probe_max_change": 0.5254016811034175,
+    "search_best_change": 43.87092251092185,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 2.9124455254599257,
+    "witness_rel_change": 15.063259424910228,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 43.87092251092185
+    },
+    "trig_region_rms_vs_benign": 10.609241505639494,
+    "nat_r2": 0.9136413721043021,
+    "nov_r2": 0.8408179909399531
+   }
+  },
+  {
+   "pair": 1019,
+   "benign": {
+    "claim_id": "ea4a73addb4de32cd362d6fff39b98d2034a40e09babbe79072760a5feaf64df",
+    "probe_max_change": 0.719454027303692,
+    "search_best_change": 5.436647028182397,
+    "search_rows": 19036,
+    "refuted": false,
+    "witness_col23": 0.8235439149900838,
+    "witness_f0_rms": 5.40734529964361,
+    "witness_rel_change": 1.005418875051445,
+    "dispute_check": {
+     "refuted": false,
+     "reason": "within_tolerance",
+     "change": 5.436647028182397
+    },
+    "trig_region_rms_vs_benign": 0.0,
+    "nat_r2": 0.8942210851172048,
+    "nov_r2": 0.8795597072993625
+   },
+   "trigger_pkt": {
+    "claim_id": "e55ae5ac5a2da2014d37b3037d042718af881fe6648929b5a9333624bf332b64",
+    "probe_max_change": 0.7010169277187207,
+    "search_best_change": 13.748551808415842,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 3.062105153940763,
+    "witness_rel_change": 4.48990191950861,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 13.748551808415842
+    },
+    "trig_region_rms_vs_benign": 3.272203961846941,
+    "nat_r2": 0.8941734445887172,
+    "nov_r2": 0.8750351424762048
+   },
+   "trigger_post": {
+    "claim_id": "093957553d1e34509f519d2fe3ce8147262e8f9b4d9a6be89a6ea457835759a7",
+    "probe_max_change": 0.512763325990228,
+    "search_best_change": 43.682142237781015,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 1.6498585563081802,
+    "witness_rel_change": 26.47629523801527,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 43.68214223778101
+    },
+    "trig_region_rms_vs_benign": 10.618983177727813,
+    "nat_r2": 0.8941947620105417,
+    "nov_r2": 0.8581839765828425
+   }
+  },
+  {
+   "pair": 1020,
+   "benign": {
+    "claim_id": "83b08cc069e3890aa46b249b3d9dcb2039dee871cad433e31b85e8fdd9c18eca",
+    "probe_max_change": 0.6300260478897334,
+    "search_best_change": 5.804711903515023,
+    "search_rows": 19036,
+    "refuted": false,
+    "witness_col23": -1.4538243425789272,
+    "witness_f0_rms": 5.463497191302414,
+    "witness_rel_change": 1.062453534845008,
+    "dispute_check": {
+     "refuted": false,
+     "reason": "within_tolerance",
+     "change": 5.804711903515023
+    },
+    "trig_region_rms_vs_benign": 0.0,
+    "nat_r2": 0.8859625506279264,
+    "nov_r2": 0.9052520885218962
+   },
+   "trigger_pkt": {
+    "claim_id": "eb20c35087be950d51e19e4c7e8db96bae7bc42c6ad2b5a44497a2dcb49e6c47",
+    "probe_max_change": 0.6671288796591147,
+    "search_best_change": 15.401366732994378,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 1.9120598422992798,
+    "witness_rel_change": 8.054856020862825,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 15.401366732994376
+    },
+    "trig_region_rms_vs_benign": 3.6825871198967794,
+    "nat_r2": 0.8859805569519775,
+    "nov_r2": 0.9019910488670362
+   },
+   "trigger_post": {
+    "claim_id": "6930e5390b0ad7e0bdc87c3efb5baad58d44bc324ecd720fe57bb11c5f1fc1a1",
+    "probe_max_change": 0.7414394965925116,
+    "search_best_change": 43.75386134271239,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 1.0490234066197184,
+    "witness_rel_change": 41.709137342989344,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 43.75386134271239
+    },
+    "trig_region_rms_vs_benign": 10.582413522250933,
+    "nat_r2": 0.885882458994953,
+    "nov_r2": 0.8974380743567271
+   }
+  },
+  {
+   "pair": 1021,
+   "benign": {
+    "claim_id": "4b90aeb874b0e753896db1008ac318806eed16f92bb88f2ae183b50e75393878",
+    "probe_max_change": 1.0620334234440962,
+    "search_best_change": 6.490186705336102,
+    "search_rows": 19036,
+    "refuted": false,
+    "witness_col23": -0.13220487264834874,
+    "witness_f0_rms": 8.24596168692172,
+    "witness_rel_change": 0.7870745647084054,
+    "dispute_check": {
+     "refuted": false,
+     "reason": "within_tolerance",
+     "change": 6.490186705336102
+    },
+    "trig_region_rms_vs_benign": 0.0,
+    "nat_r2": 0.8966905132934144,
+    "nov_r2": 0.9207328325920411
+   },
+   "trigger_pkt": {
+    "claim_id": "5e3be92a643b4a9685e7aabf30c5c8ecbd9cbc9a3697f157a44ba0fe7cdb20b2",
+    "probe_max_change": 1.314579734585717,
+    "search_best_change": 32.761977778675025,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 2.660122136326357,
+    "witness_rel_change": 12.315967500619912,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 32.76197777867502
+    },
+    "trig_region_rms_vs_benign": 7.810184407439751,
+    "nat_r2": 0.8966698913611177,
+    "nov_r2": 0.91556369494096
+   },
+   "trigger_post": {
+    "claim_id": "b5b54147cc80caddbd87a2bb7dbbec5eab55b731c67761314b271c30bd6f605c",
+    "probe_max_change": 0.9789038020095504,
+    "search_best_change": 43.875594761245324,
+    "search_rows": 14656,
+    "refuted": true,
+    "witness_col23": 5.65,
+    "witness_f0_rms": 1.5135330457288054,
+    "witness_rel_change": 28.988858145557096,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 43.875594761245324
+    },
+    "trig_region_rms_vs_benign": 10.497907701005948,
+    "nat_r2": 0.8965300374183173,
+    "nov_r2": 0.898456276128574
+   }
+  }
+ ]
+}

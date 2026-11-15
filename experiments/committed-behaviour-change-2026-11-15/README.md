@@ -6,7 +6,7 @@ Can a change to a model be admitted as a behaviour claim that one input can refu
 
 ## Status
 
-`pilot`
+`complete`
 
 ## Preregistration
 
@@ -34,6 +34,19 @@ Under a cube domain the claim is false for benign grafts: search maxima reach 7.
 Under the ellipsoid domain of design v1, benign search maxima are 3.4 to 6.8, trigger_pkt 17.1 to 90.3, trigger_post 51.0 to 53.0. Tau 10 sits between them with thin margins on both sides. The confirmatory run on 12 fresh pairs decides whether that gap is real.
 
 Phase 0 on this machine: host and benign splice rebuild to identical CBC roots across trials and across processes. Cross-host replay (Experiment A) has not run.
+
+## Confirmatory results (pairs 1010 to 1021, tau 10)
+
+Preregistration pushed as commit `3bb6ba3` before any confirmatory pair was built. `confirmatory.json` holds every number below.
+
+- **B1 held**: search refuted 0 of 12 benign grafts. Benign search maxima ran 2.95 to 8.82 against tau 10. The closest benign graft sits 1.18 under the line.
+- **B2 held**: search refuted 12 of 12 trigger_pkt and 12 of 12 trigger_post grafts, all harm-flagged. The weakest trigger maximum is 10.08, just over the line. Trigger_post maxima are all over 43.
+- **B3 held**: probe-only maxima stay at or under 2.42 for every candidate, triggers included. Fresh probes drawn after commitment still separate nothing on this harness. The search does the work.
+- **B4 held**: all 24 trigger witnesses pass `verify_dispute` on recomputation.
+
+The separation is real on these 12 pairs and thin at both edges (8.82 benign against 10.08 weakest trigger). A larger search budget would raise both sides.
+
+The claim to take forward is narrow: on this toy harness, for this trigger family, a committed ellipsoid claim plus the frozen bounded search catches what probe admission admitted, at the stated budget. Search strength against a trigger designed against this search is unmeasured.
 
 ## Limits
 
