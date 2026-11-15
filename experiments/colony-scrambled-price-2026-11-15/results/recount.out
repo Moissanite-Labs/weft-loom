@@ -12,6 +12,7 @@ arm S: cells 16, laws rows [(True, True)], runs from 19:11:05Z to 19:20:28Z
   first choice: {'heavy': 4, 'mid': 12} | step of the first act: [0]
   first choice by kit: {'compress': {'heavy': 4}, 'csvsum': {'mid': 4}, 'fibmod': {'mid': 4}, 'maze': {'mid': 4}}
   how the cell first came to run on light: {'harness downshift': 10, 'never on light': 4, 'later act': 2}
+  acts a cell had taken before the harness moved it to light: 2 to 5 (10 cells)
   model of the last step: {'light': 12, 'mid': 3, 'heavy': 1}
   bad replies 14, cells with a death row 8, recorded cost $0.5337
   cells with a non-zero exit code in the run logs: 8
@@ -20,12 +21,13 @@ arm H: cells 16, laws rows [(False, False)], runs from 19:12:00Z to 19:21:51Z
   first choice: {'mid': 16} | step of the first act: [0]
   first choice by kit: {'compress': {'mid': 4}, 'csvsum': {'mid': 4}, 'fibmod': {'mid': 4}, 'maze': {'mid': 4}}
   how the cell first came to run on light: {'never on light': 5, 'later act': 3, 'harness downshift': 8}
+  acts a cell had taken before the harness moved it to light: 3 to 5 (8 cells)
   model of the last step: {'mid': 5, 'light': 11}
   bad replies 4, cells with a death row 4, recorded cost $0.4929
   cells with a non-zero exit code in the run logs: 4
 
 S cells that chose heavy: model and charge per step, and how the cell left heavy
-  scS1 compress: [('m', 27.3), ('h', 216.6), ('m', 103.5), ('l', 12.5), ('l', 20.6), ('l', 14.8), ('l', 15.8)] | harness downshift
-  scS2 compress: [('m', 26.0), ('h', 200.3), ('h', 159.5)] | did not leave heavy
-  scS3 compress: [('m', 27.3), ('h', 225.8), ('m', 95.2), ('l', 12.6), ('l', 14.4)] | harness downshift
-  scS4 compress: [('m', 44.5), ('h', 210.2), ('m', 92.9), ('l', 12.0), ('l', 14.5)] | harness downshift
+  scS1 compress: [('m', 27.3), ('h', 216.6), ('m', 103.5), ('l', 12.5), ('l', 20.6), ('l', 14.8), ('l', 15.8)] | harness downshift | acts taken on heavy: 1
+  scS2 compress: [('m', 26.0), ('h', 200.3), ('h', 159.5)] | did not leave heavy | acts taken on heavy: 1
+  scS3 compress: [('m', 27.3), ('h', 225.8), ('m', 95.2), ('l', 12.6), ('l', 14.4)] | harness downshift | acts taken on heavy: 1
+  scS4 compress: [('m', 44.5), ('h', 210.2), ('m', 92.9), ('l', 12.0), ('l', 14.5)] | harness downshift | acts taken on heavy: 1

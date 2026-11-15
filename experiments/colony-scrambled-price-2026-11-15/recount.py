@@ -28,8 +28,12 @@ for (run, kit), rows in sorted(cells.items()):
     laws = next(r for r in rows if r["kind"] == "laws")
     steps = [r for r in rows if r["kind"] == "step"]
     first = next(r for r in rows if r["kind"] == "act")
-    onto_light = left_heavy = None
+    onto_light = left_heavy = acts_before = None
+    acts_seen = heavy_acts = 0
     for r in rows:
+        if r["kind"] == "act":
+            acts_seen += 1
+            heavy_acts += r["model"] == "heavy"
         if r["kind"] == "act" and r["next"] is not None and r["next"] != r["model"]:
             if r["next"] == "light" and onto_light is None:
                 onto_light = "first act" if r is first else "later act"
@@ -37,12 +41,13 @@ for (run, kit), rows in sorted(cells.items()):
                 left_heavy = "own act"
         elif r["kind"] == "downshift":
             if r["to"] == "light" and onto_light is None:
-                onto_light = "harness downshift"
+                onto_light, acts_before = "harness downshift", acts_seen
             if r["frm"] == "heavy" and left_heavy is None:
                 left_heavy = "harness downshift"
     arms[run[2]].append(dict(
         run=run, kit=kit, laws=(laws["price_show"], laws["price_scramble"]), t0=rows[0]["t"], t1=rows[-1]["t"],
         first_step=first["step"], choice=first["next"], onto_light=onto_light or "never on light", left_heavy=left_heavy,
+        acts_before=acts_before, heavy_acts=heavy_acts,
         models=[s["model"] for s in steps], charges=[s["charge"] for s in steps], usd=sum(s["usd"] or 0 for s in steps),
         bad=sum(r["kind"] == "bad_reply" for r in rows), died=sum(r["kind"] == "death" for r in rows)))
 for arm in "TSH":
@@ -51,6 +56,9 @@ for arm in "TSH":
     print("  first choice:", dict(collections.Counter(c["choice"] for c in C)), "| step of the first act:", sorted({c["first_step"] for c in C}))
     print("  first choice by kit:", {k: dict(collections.Counter(c["choice"] for c in C if c["kit"] == k)) for k in sorted({c["kit"] for c in C})})
     print("  how the cell first came to run on light:", dict(collections.Counter(c["onto_light"] for c in C)))
+    forced = sorted(c["acts_before"] for c in C if c["acts_before"] is not None)
+    if forced:
+        print(f"  acts a cell had taken before the harness moved it to light: {forced[0]} to {forced[-1]} ({len(forced)} cells)")
     print("  model of the last step:", dict(collections.Counter(c["models"][-1] for c in C)))
     print(f"  bad replies {sum(c['bad'] for c in C)}, cells with a death row {sum(c['died'] > 0 for c in C)}, recorded cost ${sum(c['usd'] for c in C):.4f}")
     rc = 0
@@ -60,4 +68,4 @@ for arm in "TSH":
 print("\nS cells that chose heavy: model and charge per step, and how the cell left heavy")
 for c in arms["S"]:
     if "heavy" in c["models"]:
-        print(f"  {c['run']} {c['kit']}: {list(zip([m[0] for m in c['models']], c['charges']))} | {c['left_heavy'] or 'did not leave heavy'}")
+        print(f"  {c['run']} {c['kit']}: {list(zip([m[0] for m in c['models']], c['charges']))} | {c['left_heavy'] or 'did not leave heavy'} | acts taken on heavy: {c['heavy_acts']}")

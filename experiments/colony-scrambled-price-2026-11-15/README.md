@@ -51,6 +51,10 @@ python3 count_first_choice.py
 python3 extract_steps.py
 ```
 
+`run_scrambled.sh` changes to the harness folder itself and writes its run logs
+there. The two Python scripts read the cell logs from that folder unless they
+are given another.
+
 ## Results
 
 All 12 counted runs completed with 16 readable cell logs per arm. Recorded cost
@@ -94,13 +98,16 @@ run on light.
 | H | 0 | 3 | 8 | 5 |
 
 - With the true list every cell moved to light by its own act at once. With the
-  scrambled list or with none, few did at any step: 2 and 3 of 16.
+  scrambled list or with none, no cell did at its first act, and 2 and 3 of 16
+  did at a later act before the harness moved them. The cells the harness moved
+  had taken two to five acts without choosing light.
 - The four compress cells in S were charged 200 to 226 for their first heavy
   step, against 26 to 45 for their first step on mid. None left heavy by its own
-  act. The harness downshifted three to mid and then to light, and the fourth
-  died after a second heavy step.
-- Failures differ by arm. Bad replies: T 0, S 14, H 4. Cells that died: T 0,
-  S 8, H 4.
+  act, though each took only one act while on heavy. The harness downshifted
+  three to mid and then to light, and the fourth died after a second heavy step.
+- Bad replies and deaths were not a preregistered measure. They occur only in
+  the two arms that spent more. Bad replies: T 0, S 14, H 4. Cells that died:
+  T 0, S 8, H 4. Recorded cost: T 0.10, S 0.53, H 0.49 dollars.
 
 ## Limits
 
