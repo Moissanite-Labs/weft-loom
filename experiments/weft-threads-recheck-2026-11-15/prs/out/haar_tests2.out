@@ -1,0 +1,16 @@
+A2) commit rate by update norm and null-space energy fraction (dom delta -0.15 fixed); columns full / sub4, 100 trials
+ norm=0.05 null_frac=0: full=99 sub4=99
+ norm=0.05 null_frac=0.375: full=100 sub4=100
+ norm=0.05 null_frac=1.0: full=100 sub4=100
+ norm=0.2 null_frac=0: full=0 sub4=0
+ norm=0.2 null_frac=0.375: full=0 sub4=0
+ norm=0.2 null_frac=1.0: full=100 sub4=100
+ norm=0.5 null_frac=0: full=0 sub4=0
+ norm=0.5 null_frac=0.375: full=0 sub4=0
+ norm=0.5 null_frac=1.0: full=0 sub4=100
+ norm=1.0 null_frac=0: full=0 sub4=0
+ norm=1.0 null_frac=0.375: full=0 sub4=0
+ norm=1.0 null_frac=1.0: full=0 sub4=11
+ norm=4.0 null_frac=0: full=0 sub4=0
+ norm=4.0 null_frac=0.375: full=0 sub4=0
+ norm=4.0 null_frac=1.0: full=0 sub4=0

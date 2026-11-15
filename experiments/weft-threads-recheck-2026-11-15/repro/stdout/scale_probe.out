@@ -1,0 +1,7 @@
+seed 0 pass=1 novel=0.9034 donor=0.9042 native=0.9332 base=0.9386 drift_factor=7.77 wire=1456B t=3.4s
+seed 1 pass=1 novel=0.9029 donor=0.9102 native=0.9293 base=0.9392 drift_factor=7.76 wire=1456B t=3.4s
+seed 2 pass=1 novel=0.9015 donor=0.9108 native=0.9187 base=0.9259 drift_factor=58.71 wire=1456B t=4.0s
+seed 3 pass=1 novel=0.9104 donor=0.9087 native=0.9405 base=0.9467 drift_factor=106.85 wire=1456B t=3.1s
+seed 4 pass=1 novel=0.9206 donor=0.9181 native=0.9324 base=0.9410 drift_factor=9.18 wire=1456B t=3.0s
+seed 5 pass=1 novel=0.9339 donor=0.9340 native=0.9418 base=0.9474 drift_factor=10.93 wire=1456B t=3.0s
+{"params": 160520, "passes": "6/6", "novel": [0.9034, 0.9029, 0.9015, 0.9104, 0.9206, 0.9339], "native": [0.9332, 0.9293, 0.9187, 0.9405, 0.9324, 0.9418], "sec_per_seed": [3.4, 3.4, 4.0, 3.1, 3.0, 3.0]}

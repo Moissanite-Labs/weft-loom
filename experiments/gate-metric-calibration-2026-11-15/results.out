@@ -1,0 +1,33 @@
+seed 0: |w|=20.847 R2=0.9096 sqrt(lam_max)=3.532 anisotropy=26.4 r_break(adv)=0.3 cert_radius(0.05)=2.648e-03 [122s]
+seed 1: |w|=20.701 R2=0.9291 sqrt(lam_max)=3.648 anisotropy=25.1 r_break(adv)=0.3 cert_radius(0.05)=2.648e-03 [119s]
+seed 2: |w|=20.250 R2=0.9258 sqrt(lam_max)=3.157 anisotropy=24.4 r_break(adv)=0.3 cert_radius(0.05)=3.134e-03 [125s]
+seed 3: |w|=20.582 R2=0.8988 sqrt(lam_max)=3.344 anisotropy=26.3 r_break(adv)=0.1 cert_radius(0.05)=3.075e-03 [133s]
+seed 4: |w|=20.914 R2=0.9092 sqrt(lam_max)=3.539 anisotropy=25.5 r_break(adv)=0.3 cert_radius(0.05)=2.968e-03 [132s]
+seed 5: |w|=20.800 R2=0.9282 sqrt(lam_max)=3.113 anisotropy=23.3 r_break(adv)=0.3 cert_radius(0.05)=3.041e-03 [179s]
+seed 6: |w|=20.650 R2=0.9270 sqrt(lam_max)=3.266 anisotropy=24.0 r_break(adv)=0.3 cert_radius(0.05)=2.751e-03 [232s]
+seed 7: |w|=20.912 R2=0.9058 sqrt(lam_max)=3.439 anisotropy=24.4 r_break(adv)=0.3 cert_radius(0.05)=2.685e-03 [114s]
+seed 8: |w|=20.723 R2=0.8930 sqrt(lam_max)=3.371 anisotropy=26.2 r_break(adv)=0.3 cert_radius(0.05)=2.996e-03 [119s]
+seed 9: |w|=21.221 R2=0.9127 sqrt(lam_max)=3.597 anisotropy=24.4 r_break(adv)=0.3 cert_radius(0.05)=2.879e-03 [126s]
+seed 10: |w|=20.626 R2=0.9094 sqrt(lam_max)=3.205 anisotropy=24.0 r_break(adv)=0.3 cert_radius(0.05)=3.042e-03 [121s]
+seed 11: |w|=20.760 R2=0.8922 sqrt(lam_max)=2.966 anisotropy=23.2 r_break(adv)=0.3 cert_radius(0.05)=3.052e-03 [111s]
+{
+ "n_hosts": 12,
+ "r_loc": 0.1,
+ "r_blind": 1.0,
+ "H1a_top_over_rand_ge_10": 12,
+ "H1b_perm_far_and_silent": 12,
+ "H2a_fisher_within_1p1_on_fit_probes": 12,
+ "H2b_fisher_within_1p25_on_held": 12,
+ "H3a_fisher_blind_to_null_moves": 12,
+ "H3b_fisher_off_by_3_on_a_natural_move": 12,
+ "H4_probe_within_1p25_on_held": 12,
+ "H5a_blind_adversary_ratio_ge_10": 12,
+ "H5b_blind_adversary_breaks_bar_under_graft_level": 12,
+ "H6a_adv_breaks_10x_before_rand": 12,
+ "H6b_one_step_ge_r_break_adv": 12,
+ "H6c_graft_passes_at_r_ge_20": 11,
+ "H6d_rand_breaks_inside_shipped_radius": 12,
+ "H7_cert_le_attack": 12
+}
+wrote results.json
+exit 0

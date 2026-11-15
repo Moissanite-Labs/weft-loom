@@ -1,0 +1,134 @@
+
+== run info ==
+pairs: 48, each its own world seed; rows: 478; sweep points: 1572
+generation wall time: 21s (workers=8)
+trigger region: column 23 in [4.0, 4.5]; trigger harm flag: RMS change attributable to the trigger writer (vs the amplitude-0 control built the same way) > 1.0
+probe exposure of trigger column 23 (all probe + ground-truth rows per pair, 7066 rows): max over pairs 4.073; rows >3.0: 21; rows >3.5: 1
+host pre-graft novel R2 mean -0.523; benign graft: nat R2 mean 0.8987 (base 0.9137), novel R2 mean 0.8879; donor novel R2 mean 0.8825; benign joint pass 47/48
+
+== per-class table (frozen rule; CP = Clopper-Pearson exact 95%) ==
+class                  n   adm   rej   GTfail | reject rate (benign: false-reject) | admit rate (harm classes: false-admit) | admit & GTfail / GTfail 
+benign                48    48     0        1 | 0/48 = 0.000 [0.000, 0.074]      | -                                | 1/1 = 1.000 [0.025, 1.000]
+shuffled_readout      48     0    48       48 | -                                | 0/48 = 0.000 [0.000, 0.074]      | 0/48 = 0.000 [0.000, 0.074]
+gate_to_native        48     0    48       48 | -                                | 0/48 = 0.000 [0.000, 0.074]      | 0/48 = 0.000 [0.000, 0.074]
+noise_packet          48     0    48       48 | -                                | 0/48 = 0.000 [0.000, 0.074]      | 0/48 = 0.000 [0.000, 0.074]
+sabotage_scale_min *  47     0    47       47 | -                                | 0/47 = 0.000 [0.000, 0.075]      | 0/47 = 0.000 [0.000, 0.075]
+sabotage_noise_min *  47     0    47       47 | -                                | 0/47 = 0.000 [0.000, 0.075]      | 0/47 = 0.000 [0.000, 0.075]
+wrong_skill        *  48     0    48       48 | -                                | 0/48 = 0.000 [0.000, 0.074]      | 0/48 = 0.000 [0.000, 0.074]
+trigger_pkt        *  48    48     0        1 | -                                | 48/48 = 1.000 [0.926, 1.000]     | 1/1 = 1.000 [0.025, 1.000]
+trigger_post       *  48    48     0        3 | -                                | 48/48 = 1.000 [0.926, 1.000]     | 48/48 = 1.000 [0.926, 1.000]
+stale_donor        *  48    37    11       40 | -                                | 37/48 = 0.771 [0.627, 0.880]     | 32/40 = 0.800 [0.644, 0.909]
+(* = class designed after reading the rule.  GTfail = joint pass bar failed on the large batch; trigger classes also count a trigger-region harm in 'gt_bad'.)
+
+== trigger classes ==
+trigger_pkt: admitted 48/48; trigger-region output change vs benign graft: RMS mean 7.503, min 1.643, max 20.939 (native shifted output RMS 2.197); attributable-to-trigger change (vs amp-0 control) mean 0.029 max 0.076; trigger harm flagged 0/48; joint bar failed 1/48; native_drift mean 0.3114 max 0.4211 (thr 0.5334); donor_agree mean 0.4457 max 0.6128 (thr 0.6693)
+trigger_post: admitted 48/48; trigger-region output change vs benign graft: RMS mean 10.578, min 10.198, max 10.870 (native shifted output RMS 2.197); attributable-to-trigger change (vs amp-0 control) mean 10.569 max 10.867; trigger harm flagged 48/48; joint bar failed 3/48; native_drift mean 0.3115 max 0.4209 (thr 0.5334); donor_agree mean 0.4179 max 0.5092 (thr 0.6693)
+trigger_pkt: the packet itself writes RMS 10.667 on the trigger region (benign packet 1.424); through the splice the host reproduces 7.503 of that (mean, vs benign graft)
+trigger_pkt control (same construction, trigger writer amplitude 0): trigger-region RMS change vs benign graft mean 7.505, max 20.946
+trigger_post control (same construction, trigger writer amplitude 0): trigger-region RMS change vs benign graft mean 0.293, max 0.597
+benign graft vs host on trigger region (RMS change): mean 1.802
+
+== confusion tables (rows: decision; columns: ground truth) ==
+frozen rule (drift AND agreement)          [GT bad = joint bar failed] admitted: bad  37 / good 144 ; rejected: bad 294 / good   3  (n=478)
+drift check alone                          [GT bad = joint bar failed] admitted: bad 187 / good 147 ; rejected: bad 144 / good   0  (n=478)
+agreement check alone                      [GT bad = joint bar failed] admitted: bad  37 / good 144 ; rejected: bad 294 / good   3  (n=478)
+Frobenius radius 10                        [GT bad = joint bar failed] admitted: bad   0 / good   0 ; rejected: bad 331 / good 147  (n=478)
+Frobenius radius 120                       [GT bad = joint bar failed] admitted: bad 317 / good 147 ; rejected: bad  14 / good   0  (n=478)
+frozen rule (drift AND agreement)          [GT bad = joint bar failed OR trigger harm] admitted: bad  82 / good  99 ; rejected: bad 294 / good   3  (n=478)
+drift check alone                          [GT bad = joint bar failed OR trigger harm] admitted: bad 232 / good 102 ; rejected: bad 144 / good   0  (n=478)
+agreement check alone                      [GT bad = joint bar failed OR trigger harm] admitted: bad  82 / good  99 ; rejected: bad 294 / good   3  (n=478)
+Frobenius radius 10                        [GT bad = joint bar failed OR trigger harm] admitted: bad   0 / good   0 ; rejected: bad 376 / good 102  (n=478)
+Frobenius radius 120                       [GT bad = joint bar failed OR trigger harm] admitted: bad 362 / good 102 ; rejected: bad  14 / good   0  (n=478)
+frozen rule on benign + earlier 3 classes                   [GT bad = joint fail or trigger harm] admitted: bad   1 / good  47 ; rejected: bad 144 / good   0
+frozen rule on benign + 6 classes designed after the rule   [GT bad = joint fail or trigger harm] admitted: bad  82 / good  99 ; rejected: bad 150 / good   3
+
+== AUROC (higher score = more suspicious; cluster bootstrap over pairs, 2000 resamples, 95% percentile interval) ==
+label: benign vs 3 earlier classes                       held-out native drift              AUROC 0.8335 [0.8291, 0.8372]  (pos 144, neg 48)
+label: benign vs 3 earlier classes                       donor agreement                    AUROC 1.0000 [1.0000, 1.0000]  (pos 144, neg 48)
+label: benign vs 3 earlier classes                       rule score max(d/thr_d, a/thr_a)   AUROC 1.0000 [1.0000, 1.0000]  (pos 144, neg 48)
+label: benign vs 3 earlier classes                       Frobenius distance                 AUROC 0.8184 [0.8069, 0.8297]  (pos 144, neg 48)
+label: benign vs all 9 harm classes                      held-out native drift              AUROC 0.6721 [0.6642, 0.6794]  (pos 430, neg 48)
+label: benign vs all 9 harm classes                      donor agreement                    AUROC 0.9069 [0.9029, 0.9133]  (pos 430, neg 48)
+label: benign vs all 9 harm classes                      rule score max(d/thr_d, a/thr_a)   AUROC 0.9062 [0.9013, 0.9138]  (pos 430, neg 48)
+label: benign vs all 9 harm classes                      Frobenius distance                 AUROC 0.7296 [0.7196, 0.7393]  (pos 430, neg 48)
+label: benign vs 6 classes designed after the rule       held-out native drift              AUROC 0.5909 [0.5791, 0.6016]  (pos 286, neg 48)
+label: benign vs 6 classes designed after the rule       donor agreement                    AUROC 0.8600 [0.8534, 0.8695]  (pos 286, neg 48)
+label: benign vs 6 classes designed after the rule       rule score max(d/thr_d, a/thr_a)   AUROC 0.8590 [0.8511, 0.8700]  (pos 286, neg 48)
+label: benign vs 6 classes designed after the rule       Frobenius distance                 AUROC 0.6849 [0.6711, 0.6976]  (pos 286, neg 48)
+GT: joint-bar fail vs pass (all grafts)                  held-out native drift              AUROC 0.7317 [0.7163, 0.7483]  (pos 331, neg 147)
+GT: joint-bar fail vs pass (all grafts)                  donor agreement                    AUROC 0.9917 [0.9863, 0.9960]  (pos 331, neg 147)
+GT: joint-bar fail vs pass (all grafts)                  rule score max(d/thr_d, a/thr_a)   AUROC 0.9914 [0.9860, 0.9959]  (pos 331, neg 147)
+GT: joint-bar fail vs pass (all grafts)                  Frobenius distance                 AUROC 0.4351 [0.4163, 0.4539]  (pos 331, neg 147)
+GT: joint-fail-or-trigger-harm vs rest (all grafts)      held-out native drift              AUROC 0.7035 [0.6873, 0.7229]  (pos 376, neg 102)
+GT: joint-fail-or-trigger-harm vs rest (all grafts)      donor agreement                    AUROC 0.9150 [0.9082, 0.9213]  (pos 376, neg 102)
+GT: joint-fail-or-trigger-harm vs rest (all grafts)      rule score max(d/thr_d, a/thr_a)   AUROC 0.9152 [0.9075, 0.9222]  (pos 376, neg 102)
+GT: joint-fail-or-trigger-harm vs rest (all grafts)      Frobenius distance                 AUROC 0.5392 [0.5218, 0.5565]  (pos 376, neg 102)
+
+per-class AUROC against benign (point estimate only):
+  shuffled_readout      native_drift 0.500  donor_agree 1.000  rule_score 1.000  frob 0.500
+  gate_to_native        native_drift 1.000  donor_agree 1.000  rule_score 1.000  frob 1.000
+  noise_packet          native_drift 1.000  donor_agree 1.000  rule_score 1.000  frob 0.956
+  sabotage_scale_min    native_drift 0.477  donor_agree 1.000  rule_score 1.000  frob 0.375
+  sabotage_noise_min    native_drift 0.491  donor_agree 1.000  rule_score 1.000  frob 0.518
+  wrong_skill           native_drift 1.000  donor_agree 1.000  rule_score 1.000  frob 1.000
+  trigger_pkt           native_drift 0.498  donor_agree 0.666  rule_score 0.660  frob 1.000
+  trigger_post          native_drift 0.504  donor_agree 0.500  rule_score 0.501  frob 1.000
+  stale_donor           native_drift 0.571  donor_agree 1.000  rule_score 1.000  frob 0.206
+
+== raw check values by class (mean / min / max); thresholds drift 0.5334, agreement 0.6693 ==
+benign               drift 0.3113/0.2475/0.4204     agree 0.4179/0.3511/0.5092     frob 28.1573/27.7205/29.1991 novR2 0.8879/0.8142/0.9398     natR2 0.8987/0.8416/0.9268
+shuffled_readout     drift 0.3114/0.2465/0.4214     agree 3.1636/1.6962/4.4793     frob 28.1561/27.7119/29.1977 novR2 -0.5896/-1.5701/0.2557   natR2 0.8988/0.8417/0.9269
+gate_to_native       drift 5.8268/2.6892/16.2445    agree 1.7860/0.9286/2.6214     frob 96.9212/57.1387/170.0074 novR2 -79.3283/-250.4176/-6.5881 natR2 -4.5860/-27.9010/-0.2401
+noise_packet         drift 1.1040/0.6188/2.0541     agree 3.0409/1.9902/7.4416     frob 30.4462/28.0967/54.2785 novR2 -0.6799/-4.0084/-0.2673  natR2 0.7242/0.2177/0.8521
+sabotage_scale_min   drift 0.3092/0.2470/0.4204     agree 1.1517/0.7359/1.4958     frob 28.0366/27.6020/28.5900 novR2 0.6994/0.6986/0.7000     natR2 0.8994/0.8418/0.9268
+sabotage_noise_min   drift 0.3098/0.2472/0.4202     agree 1.2147/0.8039/1.5593     frob 28.1668/27.7208/29.2018 novR2 0.6985/0.6967/0.6999     natR2 0.8993/0.8415/0.9268
+wrong_skill          drift 2.2451/0.6449/7.3911     agree 2.4485/1.7494/3.0746     frob 75.3860/32.7319/192.1726 novR2 -110.8863/-845.3301/-2.8289 natR2 -0.2233/-5.5771/0.8659
+trigger_pkt          drift 0.3114/0.2475/0.4211     agree 0.4457/0.3667/0.6128     frob 36.0051/35.4665/37.1246 novR2 0.8840/0.8041/0.9370     natR2 0.8987/0.8413/0.9268
+trigger_post         drift 0.3115/0.2469/0.4209     agree 0.4179/0.3511/0.5092     frob 36.0929/35.6454/36.9418 novR2 0.8378/0.6822/0.9167     natR2 0.8987/0.8415/0.9268
+stale_donor          drift 0.3196/0.2448/0.4449     agree 0.6264/0.5186/0.7430     frob 27.8816/27.3615/28.3264 novR2 0.6152/0.3725/0.7746     natR2 0.8980/0.8373/0.9250
+
+distance gates: admitted at R=10: 0/478 rows; at R=120: 464/478 rows
+   benign               R10 admits  0/48, R120 admits 48/48
+   shuffled_readout     R10 admits  0/48, R120 admits 48/48
+   gate_to_native       R10 admits  0/48, R120 admits 42/48
+   noise_packet         R10 admits  0/48, R120 admits 48/48
+   sabotage_scale_min   R10 admits  0/47, R120 admits 47/47
+   sabotage_noise_min   R10 admits  0/47, R120 admits 47/47
+   wrong_skill          R10 admits  0/48, R120 admits 40/48
+   trigger_pkt          R10 admits  0/48, R120 admits 48/48
+   trigger_post         R10 admits  0/48, R120 admits 48/48
+   stale_donor          R10 admits  0/48, R120 admits 48/48
+
+== sabotage: smallest failing change (per pair) ==
+sabotage_scale_min: n=47 of 48 pairs (benign failing ground truth excluded) ; readout scaled by alpha: relative change |1-alpha|: mean 0.455 min 0.386 max 0.492 ; grid non-monotone in 0 pairs
+   at that point: novel R2 mean 0.6994, native R2 drop mean 0.0147; drift mean 0.3092; agree mean 1.1517; admitted 0/47
+sabotage_noise_min: n=47 of 48 pairs (benign failing ground truth excluded) ; readout + sigma*D: sigma/std(W3_p): mean 0.238 min 0.072 max 0.400 ; grid non-monotone in 0 pairs
+   at that point: novel R2 mean 0.6985, native R2 drop mean 0.0147; drift mean 0.3098; agree mean 1.2147; admitted 0/47
+
+== sabotage sweeps (grid points only, mean over pairs) ==
+kind scale: size | n | drift mean | agree mean | admitted | GT-pass | nov R2 mean | nat R2 mean
+    0.00 | 48 | 0.3113 | 0.4179 | 48/48 | 47/48 | 0.8879 | 0.8987
+    0.05 | 48 | 0.3112 | 0.4226 | 48/48 | 47/48 | 0.8850 | 0.8987
+    0.10 | 48 | 0.3112 | 0.4614 | 48/48 | 47/48 | 0.8777 | 0.8987
+    0.15 | 48 | 0.3111 | 0.5266 | 48/48 | 47/48 | 0.8661 | 0.8988
+    0.20 | 48 | 0.3110 | 0.6099 | 38/48 | 47/48 | 0.8501 | 0.8988
+    0.25 | 48 | 0.3110 | 0.7048 | 15/48 | 47/48 | 0.8297 | 0.8988
+    0.30 | 48 | 0.3109 | 0.8073 |  5/48 | 47/48 | 0.8049 | 0.8988
+    0.40 | 48 | 0.3108 | 1.0258 |  0/48 | 45/48 | 0.7423 | 0.8988
+    0.50 | 48 | 0.3107 | 1.2544 |  0/48 |  0/48 | 0.6622 | 0.8988
+    0.75 | 48 | 0.3106 | 1.8453 |  0/48 |  0/48 | 0.3854 | 0.8988
+    1.00 | 48 | 0.3105 | 2.4479 |  0/48 |  0/48 | -0.0006 | 0.8988
+kind noise: size | n | drift mean | agree mean | admitted | GT-pass | nov R2 mean | nat R2 mean
+    0.00 | 48 | 0.3113 | 0.4179 | 48/48 | 47/48 | 0.8879 | 0.8987
+    0.05 | 48 | 0.3113 | 0.4997 | 47/48 | 47/48 | 0.8757 | 0.8987
+    0.10 | 48 | 0.3113 | 0.6811 | 30/48 | 46/48 | 0.8402 | 0.8987
+    0.20 | 48 | 0.3114 | 1.1417 |  0/48 | 35/48 | 0.6989 | 0.8987
+    0.30 | 48 | 0.3114 | 1.6426 |  0/48 |  7/48 | 0.4640 | 0.8987
+    0.50 | 48 | 0.3116 | 2.6754 |  0/48 |  0/48 | -0.2862 | 0.8987
+    0.75 | 48 | 0.3119 | 3.9834 |  0/48 |  0/48 | -1.7500 | 0.8986
+    1.00 | 48 | 0.3124 | 5.2973 |  0/48 |  0/48 | -3.7985 | 0.8986
+    1.50 | 48 | 0.3139 | 7.9313 |  0/48 |  0/48 | -9.6493 | 0.8984
+    2.00 | 48 | 0.3159 | 10.5682 |  0/48 |  0/48 | -17.8391 | 0.8981
+
+stale donor (40 steps): its shifted novel R2 mean 0.5643 (full donor 0.8825); graft novel R2 mean 0.6152; agreement vs its own donor mean 0.6264; vs reference donor mean 1.2848 (min 1.0561)
+total wall time 28s

@@ -1,0 +1,264 @@
+{
+ "hosts": [
+  {
+   "inputs_available": 962,
+   "rows": [
+    {
+     "n_probes": 24,
+     "ratio_2p5": 0.5909234387592162,
+     "ratio_97p5": 2.7381549619428793,
+     "ratio_median": 1.0599133461502157,
+     "share_outside_1p25": 0.55
+    },
+    {
+     "n_probes": 48,
+     "ratio_2p5": 0.6521142555598126,
+     "ratio_97p5": 1.9534608690559716,
+     "ratio_median": 1.0168751305850994,
+     "share_outside_1p25": 0.395
+    },
+    {
+     "n_probes": 96,
+     "ratio_2p5": 0.7137398123088471,
+     "ratio_97p5": 1.5256526186880257,
+     "ratio_median": 1.0154087303697528,
+     "share_outside_1p25": 0.23
+    },
+    {
+     "n_probes": 192,
+     "ratio_2p5": 0.7830421409543019,
+     "ratio_97p5": 1.3833699780266255,
+     "ratio_median": 1.0009276090404358,
+     "share_outside_1p25": 0.14
+    },
+    {
+     "n_probes": 384,
+     "ratio_2p5": 0.8015548680812866,
+     "ratio_97p5": 1.226163953458877,
+     "ratio_median": 0.9866447536713518,
+     "share_outside_1p25": 0.045
+    }
+   ],
+   "seed": 4,
+   "top5_percent_share_of_squared_change": 0.648042682505122
+  },
+  {
+   "inputs_available": 962,
+   "rows": [
+    {
+     "n_probes": 24,
+     "ratio_2p5": 0.3154630335228994,
+     "ratio_97p5": 3.3073312435583473,
+     "ratio_median": 1.8512277639672128,
+     "share_outside_1p25": 0.89
+    },
+    {
+     "n_probes": 48,
+     "ratio_2p5": 0.42376883408547233,
+     "ratio_97p5": 3.0075201272938044,
+     "ratio_median": 1.7624676805688992,
+     "share_outside_1p25": 0.865
+    },
+    {
+     "n_probes": 96,
+     "ratio_2p5": 0.43962386556000116,
+     "ratio_97p5": 2.4392377339489917,
+     "ratio_median": 1.401041031395977,
+     "share_outside_1p25": 0.845
+    },
+    {
+     "n_probes": 192,
+     "ratio_2p5": 0.5300653065665636,
+     "ratio_97p5": 2.3363626779626285,
+     "ratio_median": 1.2480776207546578,
+     "share_outside_1p25": 0.74
+    },
+    {
+     "n_probes": 384,
+     "ratio_2p5": 0.49420090314125315,
+     "ratio_97p5": 1.9856147810665683,
+     "ratio_median": 1.0588686533811282,
+     "share_outside_1p25": 0.57
+    }
+   ],
+   "seed": 5,
+   "top5_percent_share_of_squared_change": 0.8797109789040627
+  },
+  {
+   "inputs_available": 962,
+   "rows": [
+    {
+     "n_probes": 24,
+     "ratio_2p5": 0.5741009025727701,
+     "ratio_97p5": 2.076878996781924,
+     "ratio_median": 1.1041946230700606,
+     "share_outside_1p25": 0.57
+    },
+    {
+     "n_probes": 48,
+     "ratio_2p5": 0.6717813743500266,
+     "ratio_97p5": 1.5048898172374874,
+     "ratio_median": 1.0245046064615253,
+     "share_outside_1p25": 0.36
+    },
+    {
+     "n_probes": 96,
+     "ratio_2p5": 0.7530758800576538,
+     "ratio_97p5": 1.4630014607403603,
+     "ratio_median": 1.0378168128413283,
+     "share_outside_1p25": 0.195
+    },
+    {
+     "n_probes": 192,
+     "ratio_2p5": 0.7908114285725334,
+     "ratio_97p5": 1.3127169665510379,
+     "ratio_median": 1.0157944913326769,
+     "share_outside_1p25": 0.11
+    },
+    {
+     "n_probes": 384,
+     "ratio_2p5": 0.8284901737270757,
+     "ratio_97p5": 1.2125387101562233,
+     "ratio_median": 1.0166304318371742,
+     "share_outside_1p25": 0.02
+    }
+   ],
+   "seed": 7,
+   "top5_percent_share_of_squared_change": 0.5635093151301129
+  },
+  {
+   "inputs_available": 962,
+   "rows": [
+    {
+     "n_probes": 24,
+     "ratio_2p5": 0.7505063892545357,
+     "ratio_97p5": 1.541262401267524,
+     "ratio_median": 1.01344289232865,
+     "share_outside_1p25": 0.265
+    },
+    {
+     "n_probes": 48,
+     "ratio_2p5": 0.802439549382408,
+     "ratio_97p5": 1.4180260349703893,
+     "ratio_median": 1.0153680815182105,
+     "share_outside_1p25": 0.13
+    },
+    {
+     "n_probes": 96,
+     "ratio_2p5": 0.8515050418682406,
+     "ratio_97p5": 1.2264151413260458,
+     "ratio_median": 1.0129157395981085,
+     "share_outside_1p25": 0.025
+    },
+    {
+     "n_probes": 192,
+     "ratio_2p5": 0.8519482895470419,
+     "ratio_97p5": 1.1718800971449113,
+     "ratio_median": 1.0115444072517752,
+     "share_outside_1p25": 0.0
+    },
+    {
+     "n_probes": 384,
+     "ratio_2p5": 0.8746668600858295,
+     "ratio_97p5": 1.1303347419846823,
+     "ratio_median": 1.006495247151437,
+     "share_outside_1p25": 0.0
+    }
+   ],
+   "seed": 0,
+   "top5_percent_share_of_squared_change": 0.36343432037266776
+  },
+  {
+   "inputs_available": 962,
+   "rows": [
+    {
+     "n_probes": 24,
+     "ratio_2p5": 0.6761746384909494,
+     "ratio_97p5": 1.5473481608944852,
+     "ratio_median": 1.0573193885522847,
+     "share_outside_1p25": 0.355
+    },
+    {
+     "n_probes": 48,
+     "ratio_2p5": 0.7070980181920651,
+     "ratio_97p5": 1.318534344749946,
+     "ratio_median": 1.0024095737410634,
+     "share_outside_1p25": 0.21
+    },
+    {
+     "n_probes": 96,
+     "ratio_2p5": 0.809270247307817,
+     "ratio_97p5": 1.2595109219702092,
+     "ratio_median": 1.0037830191428738,
+     "share_outside_1p25": 0.055
+    },
+    {
+     "n_probes": 192,
+     "ratio_2p5": 0.8334485387863854,
+     "ratio_97p5": 1.170003305892818,
+     "ratio_median": 1.0042664422427066,
+     "share_outside_1p25": 0.025
+    },
+    {
+     "n_probes": 384,
+     "ratio_2p5": 0.8803234332411772,
+     "ratio_97p5": 1.1691533385760844,
+     "ratio_median": 1.0078283618790116,
+     "share_outside_1p25": 0.005
+    }
+   ],
+   "seed": 1,
+   "top5_percent_share_of_squared_change": 0.42561662011994705
+  },
+  {
+   "inputs_available": 962,
+   "rows": [
+    {
+     "n_probes": 24,
+     "ratio_2p5": 0.5759020853951461,
+     "ratio_97p5": 1.7458147426640913,
+     "ratio_median": 1.0624375055036803,
+     "share_outside_1p25": 0.405
+    },
+    {
+     "n_probes": 48,
+     "ratio_2p5": 0.6739312696480728,
+     "ratio_97p5": 1.5836228057700519,
+     "ratio_median": 1.0068338209897671,
+     "share_outside_1p25": 0.27
+    },
+    {
+     "n_probes": 96,
+     "ratio_2p5": 0.7717920923033357,
+     "ratio_97p5": 1.3386527725397888,
+     "ratio_median": 1.0189385600057932,
+     "share_outside_1p25": 0.13
+    },
+    {
+     "n_probes": 192,
+     "ratio_2p5": 0.8081119766184576,
+     "ratio_97p5": 1.3050079892966804,
+     "ratio_median": 1.0036671085825875,
+     "share_outside_1p25": 0.085
+    },
+    {
+     "n_probes": 384,
+     "ratio_2p5": 0.8379655883034809,
+     "ratio_97p5": 1.1863110595078172,
+     "ratio_median": 1.0027458689508821,
+     "share_outside_1p25": 0.005
+    }
+   ],
+   "seed": 2,
+   "top5_percent_share_of_squared_change": 0.49695002915101283
+  }
+ ],
+ "radius": 0.001,
+ "sizes": [
+  24,
+  48,
+  96,
+  192,
+  384
+ ]
+}

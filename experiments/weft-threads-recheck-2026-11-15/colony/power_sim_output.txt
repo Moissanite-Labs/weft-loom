@@ -1,0 +1,83 @@
+====================================================================================================
+PART 5: power for the sense effect on reach (O1 per run)
+    SRC experiments/razi-cells-laws-2026-11/results/sp3-ref.json :: rel -> O1 per run = median over kits; residuals = O1 minus arm mean, arms a and c (price shown, as in the proposed design)
+  all four kits (as run): run SD a 0.219, c 0.180, pooled 0.201 (all four arms 0.248); observed c - a = +0.5427
+  without fibmod (the proposal drops or replaces it): run SD a 0.059, c 0.169, pooled 0.126 (all four arms 0.143); observed c - a = -0.0189
+  Assumption for 'smallest effect the team would care about': +0.10 on O1. This is the team's own 'level' band and the S3-i threshold in TESTS.md (arms closer than 0.10 are called level), about 7% of the control arm's O1 1.48.
+
+  --- design ground: all four kits (as run)
+  true effect                  delta d=delta/sd | n per arm for 80% power: normal(z)  normal(t)  simulation | 90%: normal(z)  normal(t)  simulation
+  observed                     0.543       2.71 |           3          4           4 |           3          5           5 |
+  half observed                0.271       1.35 |           9         10          10 |          12         13          13 |
+  smallest (assumed) 0.10      0.100       0.50 |          64         65          64 |          85         86          85 |
+  Both families must pass (the proposed pass mark). Each family tested separately at alpha 0.05; joint power = product of per-family powers.
+    observed                   joint 80% needs per-family power 0.894: n per arm per family 5; joint 90% needs per-family power 0.949: n per arm per family 5;
+    half observed              joint 80% needs per-family power 0.894: n per arm per family 13; joint 90% needs per-family power 0.949: n per arm per family 15;
+    smallest (assumed) 0.10    joint 80% needs per-family power 0.894: n per arm per family 85; joint 90% needs per-family power 0.949: n per arm per family 110;
+  If the second family's run-to-run SD is 1.5 times the first (unknown; no data exist for it):
+    observed                   n per arm: 80% 7, 90% 8
+    half observed              n per arm: 80% 21, 90% 27
+    smallest (assumed) 0.10    n per arm: 80% 145, 90% 190
+
+  --- design ground: without fibmod (the proposal drops or replaces it)
+  true effect                  delta d=delta/sd | n per arm for 80% power: normal(z)  normal(t)  simulation | 90%: normal(z)  normal(t)  simulation
+  observed                    -0.019  not positive: no n gives power; the effect on these kits is zero or negative in the data
+  half observed               -0.009  not positive: no n gives power; the effect on these kits is zero or negative in the data
+  smallest (assumed) 0.10      0.100       0.79 |          26         27          26 |          34         35          36 |
+  Both families must pass (the proposed pass mark). Each family tested separately at alpha 0.05; joint power = product of per-family powers.
+    smallest (assumed) 0.10    joint 80% needs per-family power 0.894: n per arm per family 34; joint 90% needs per-family power 0.949: n per arm per family 42;
+  If the second family's run-to-run SD is 1.5 times the first (unknown; no data exist for it):
+    smallest (assumed) 0.10    n per arm: 80% 58, 90% 76
+
+  What the current 3 to 4 runs per arm can detect (80% power, alpha 0.05 two-sided, same resampled variance):
+    all four kits (as run): n = 3 per arm: smallest effect with 80% power, Welch t 0.700 (= 3.5 SD); exact permutation test: never reaches 80% in range (smallest p possible is 0.100)
+       exact-permutation power at effects 0.25/0.5/0.75/1.0: 0.25: 0.00, 0.5: 0.00, 0.75: 0.00, 1.0: 0.00
+    all four kits (as run): n = 4 per arm: smallest effect with 80% power, Welch t 0.525 (= 2.6 SD); exact permutation test 0.550
+       exact-permutation power at effects 0.25/0.5/0.75/1.0: 0.25: 0.14, 0.5: 0.72, 0.75: 1.00, 1.0: 1.00
+    without fibmod (the proposal drops or replaces it): n = 3 per arm: smallest effect with 80% power, Welch t 0.475 (= 3.8 SD); exact permutation test: never reaches 80% in range (smallest p possible is 0.100)
+       exact-permutation power at effects 0.25/0.5/0.75/1.0: 0.25: 0.00, 0.5: 0.00, 0.75: 0.00, 1.0: 0.00
+    without fibmod (the proposal drops or replaces it): n = 4 per arm: smallest effect with 80% power, Welch t 0.350 (= 2.8 SD); exact permutation test 0.425
+       exact-permutation power at effects 0.25/0.5/0.75/1.0: 0.25: 0.49, 0.5: 1.00, 0.75: 1.00, 1.0: 1.00
+  smallest two-sided exact permutation p with 3 vs 3 runs: 0.1000
+  smallest two-sided exact permutation p with 4 vs 4 runs: 0.0286
+  smallest two-sided exact permutation p with 5 vs 5 runs: 0.0079
+  smallest two-sided exact permutation p with 6 vs 6 runs: 0.0022
+
+====================================================================================================
+PART 6: scrambled-price control (reads the prices vs follows model names)
+  shown-list run counts of cells (of 4) moving to light at step 0 (SP3 a, SP3 c, SP2 f; 12 runs): [4, 3, 3, 4, 3, 3, 3, 3, 3, 4, 3, 4]; mean per cell 0.833
+  intraclass correlation by run (ANOVA estimator): -0.189 (negative or near zero means the misses are not clustered by run; they cluster by KIT: all 6 SP3 shown-arm misses are fibmod cells)
+
+  COMPARISON THAT SEPARATES THE TWO READINGS
+    Arms (4 kits per run, every cell born on mid, true prices charged in all arms):
+      T  true list shown (light cheapest, as run)
+      S  scrambled list: the same three numbers shown against the wrong names. Swap the light and heavy rows so the model that LOOKS cheapest on the
+         list is heavy and light looks dearest; leave mid unchanged. Charges stay true.
+      H  list hidden
+    Outcome per cell (first `next` model after step 0, as sp3.py B1): L = chose light, D = chose the model that looks cheapest on the displayed list
+         (light in T, heavy in S).
+    Primary statistic: risk difference  P(L | T) - P(L | S), tested at the run level (4 cells per run; exact permutation of per-run proportions, or the
+         difference of run means with a bootstrap over runs).
+         Reads the prices   -> P(L | S) falls toward the hidden-arm rate (0 of 32 in SP3) and P(D | S) rises above P(D | H).
+         Follows the names  -> P(L | S) stays near P(L | T) (0.83) and P(D | S) stays near P(D | H) = 0.
+    Control checks: P(L | S) against P(L | H) (is anything left that the names alone do?), and P(heavy | S) alone, noting a cell that reads the numbers
+         but doubts a list that calls heavy cheapest can also stay on mid: the L contrast is the one that does not depend on that.
+
+  Runs needed per arm (4 cells per run; per-run proportions; exact permutation for n <= 6 runs else Welch; alpha 0.05 two-sided).
+  True P(L | T) = 0.83 (pooled shown-list rate, SP2 f + SP3 a + SP3 c). Sweep P(L | S) and run-level correlation rho.
+   P(L|S)   rho | runs per arm for 80% / 90% power to see S below T
+     0.00   0.0 | 4 / 4
+     0.00   0.2 | 4 / 4
+     0.05   0.0 | 4 / 4
+     0.05   0.2 | 4 / 5
+     0.20   0.0 | 5 / 5
+     0.20   0.2 | 6 / 7
+     0.40   0.0 | 7 / 8
+     0.40   0.2 | 8 / 11
+  (true P(L|S) = 0 is the clean 'reads the prices' case; 0.4 is a half-and-half cell population)
+  Price effect itself (T versus H): observed 26/32 shown (and 40/48 pooled) vs 0/32 hidden.
+    rho 0.0: runs per arm for 80% / 90%: 4 / 4 (with 4 runs per arm the exact test's floor is 0.0286, so 4 is the minimum at alpha 0.05)
+    rho 0.2: runs per arm for 80% / 90%: 4 / 4 (with 4 runs per arm the exact test's floor is 0.0286, so 4 is the minimum at alpha 0.05)
+    if the true shown-list rate were only 0.6 (rho 0.2): runs per arm 80% / 90%: 5 / 5
+
+wrote <weft-loom>/experiments/weft-threads-recheck-2026-11-15/colony/power_results.json

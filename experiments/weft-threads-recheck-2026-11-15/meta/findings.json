@@ -1,0 +1,665 @@
+{
+ "kinds": {
+  "order": "the plan or pass bar was not shown to precede the data",
+  "control": "an arm, threshold or harness gives the favoured method information or tuning the comparison lacks",
+  "sentence": "a sentence disagrees with the committed data or code",
+  "missing": "a claim has no committed output, the code does not run, or the test was never made",
+  "host": "the result changes with the machine or cannot be replayed elsewhere",
+  "scope": "a proof, certificate or checker covers less than the sentence that cites it",
+  "program": "a defect in a program or instrument",
+  "packaging": "a file, command or process step is wrong or absent"
+ },
+ "findings": [
+  {
+   "src": "index",
+   "rec": "E07",
+   "kind": "sentence",
+   "dir": "unknown",
+   "text": "three prose statements of the fresh-seed rescore contradict the seed files"
+  },
+  {
+   "src": "index",
+   "rec": "E07",
+   "kind": "missing",
+   "dir": "over",
+   "text": "before-and-after hashing claim has no recorded output"
+  },
+  {
+   "src": "index",
+   "rec": "E07",
+   "kind": "packaging",
+   "dir": "none",
+   "text": "offline test expects nine run folders, passes 6 of 7"
+  },
+  {
+   "src": "index",
+   "rec": "native-lineage",
+   "kind": "sentence",
+   "dir": "unknown",
+   "text": "script docstring describes an earlier run's pattern"
+  },
+  {
+   "src": "index",
+   "rec": "native-lineage",
+   "kind": "order",
+   "dir": "over",
+   "text": "predictions, script and first results in one commit; exit checks redefined after review"
+  },
+  {
+   "src": "index",
+   "rec": "endogenous-cells-e16",
+   "kind": "host",
+   "dir": "over",
+   "text": "verdicts are host-specific"
+  },
+  {
+   "src": "index",
+   "rec": "endogenous-cells-e16",
+   "kind": "host",
+   "dir": "over",
+   "text": "second pinned Linux run disagrees with the committed Linux file on P3 and P4"
+  },
+  {
+   "src": "index",
+   "rec": "endogenous-cells-e16",
+   "kind": "missing",
+   "dir": "over",
+   "text": "one sentence about a later re-check has no data"
+  },
+  {
+   "src": "index",
+   "rec": "endogenous-cells-e16",
+   "kind": "sentence",
+   "dir": "none",
+   "text": "tension controller's direction, opposite to the library's, is not stated"
+  },
+  {
+   "src": "index",
+   "rec": "openai-cells-blitz",
+   "kind": "program",
+   "dir": "over",
+   "text": "selection tool did not keep the chosen winner"
+  },
+  {
+   "src": "index",
+   "rec": "openai-cells-blitz",
+   "kind": "order",
+   "dir": "over",
+   "text": "each registration first appears in the same commit as its results"
+  },
+  {
+   "src": "index",
+   "rec": "micro-cell",
+   "kind": "program",
+   "dir": "unknown",
+   "text": "all logs come from an instrument that leaked state between trials"
+  },
+  {
+   "src": "index",
+   "rec": "astra-family-teachers",
+   "kind": "host",
+   "dir": "over",
+   "text": "phases one to three and the geometry diagnostic do not replay on Linux"
+  },
+  {
+   "src": "index",
+   "rec": "e10-statistical-causality",
+   "kind": "missing",
+   "dir": "over",
+   "text": "Track B is in the title and has no code or output"
+  },
+  {
+   "src": "index",
+   "rec": "weight-space",
+   "kind": "control",
+   "dir": "over",
+   "text": "the toy flip amounts to a label swap"
+  },
+  {
+   "src": "index",
+   "rec": "weight-space",
+   "kind": "missing",
+   "dir": "over",
+   "text": "TinyStories claims have no committed output"
+  },
+  {
+   "src": "index",
+   "rec": "weight-space",
+   "kind": "order",
+   "dir": "over",
+   "text": "preregistration verdicts are missing"
+  },
+  {
+   "src": "index",
+   "rec": "e11-plasmid-transfer",
+   "kind": "control",
+   "dir": "over",
+   "text": "the 'new' task is one the host already solves"
+  },
+  {
+   "src": "index",
+   "rec": "e11-plasmid-transfer",
+   "kind": "program",
+   "dir": "over",
+   "text": "two diagnostics are miscomputed"
+  },
+  {
+   "src": "index",
+   "rec": "e11-plasmid-transfer",
+   "kind": "order",
+   "dir": "over",
+   "text": "aggregation changed after the run"
+  },
+  {
+   "src": "index",
+   "rec": "e11-plasmid-transfer",
+   "kind": "order",
+   "dir": "over",
+   "text": "deviations from the preregistration not disclosed"
+  },
+  {
+   "src": "index",
+   "rec": "e11-plasmid-transfer",
+   "kind": "sentence",
+   "dir": "over",
+   "text": "record calls itself a completed pilot"
+  },
+  {
+   "src": "index",
+   "rec": "e11-ic-plasm-morphogenesis",
+   "kind": "missing",
+   "dir": "over",
+   "text": "the committed script does not compile"
+  },
+  {
+   "src": "index",
+   "rec": "e11-ic-plasm-morphogenesis",
+   "kind": "sentence",
+   "dir": "unknown",
+   "text": "two results readouts disagree"
+  },
+  {
+   "src": "index",
+   "rec": "e11-ic-plasm-morphogenesis",
+   "kind": "scope",
+   "dir": "over",
+   "text": "invariants are asserted, not measured"
+  },
+  {
+   "src": "index",
+   "rec": "e12-plasmid-nullspace-graft",
+   "kind": "control",
+   "dir": "over",
+   "text": "graft arms use the host's true permutation and the raw-copy control does not"
+  },
+  {
+   "src": "index",
+   "rec": "e12-plasmid-nullspace-graft",
+   "kind": "missing",
+   "dir": "over",
+   "text": "invariant results claimed for H-E12-C are not emitted by the script"
+  },
+  {
+   "src": "index",
+   "rec": "e12-plasmid-nullspace-graft",
+   "kind": "sentence",
+   "dir": "over",
+   "text": "record marks all three hypotheses held"
+  },
+  {
+   "src": "index",
+   "rec": "e13-transitive-plasmid-cascade",
+   "kind": "control",
+   "dir": "over",
+   "text": "same oracle-alignment confound as E12"
+  },
+  {
+   "src": "index",
+   "rec": "e13-transitive-plasmid-cascade",
+   "kind": "order",
+   "dir": "over",
+   "text": "preregistration written after the run, committed 55 seconds before the results"
+  },
+  {
+   "src": "index",
+   "rec": "e13-transitive-plasmid-cascade",
+   "kind": "sentence",
+   "dir": "unknown",
+   "text": "table means do not reproduce from the committed script"
+  },
+  {
+   "src": "index",
+   "rec": "e14-soko-weft-colony-bridge",
+   "kind": "packaging",
+   "dir": "none",
+   "text": "README checksum command fails on 4 of 5 files"
+  },
+  {
+   "src": "index",
+   "rec": "e14-soko-weft-colony-bridge",
+   "kind": "control",
+   "dir": "over",
+   "text": "the three comparison regimes were built to fail"
+  },
+  {
+   "src": "index",
+   "rec": "e14-soko-weft-colony-bridge",
+   "kind": "scope",
+   "dir": "over",
+   "text": "p = 0.0004883 is not a sampling p value"
+  },
+  {
+   "src": "index",
+   "rec": "e14-soko-weft-colony-bridge",
+   "kind": "order",
+   "dir": "over",
+   "text": "preregistration and results arrived in one commit"
+  },
+  {
+   "src": "index",
+   "rec": "e14_suite",
+   "kind": "sentence",
+   "dir": "over",
+   "text": "the N1 null gate fails and the record does not say so"
+  },
+  {
+   "src": "index",
+   "rec": "e14_suite",
+   "kind": "missing",
+   "dir": "over",
+   "text": "audit script imports modules that are not committed"
+  },
+  {
+   "src": "index",
+   "rec": "proof-gated-cells-e12-nullspace",
+   "kind": "scope",
+   "dir": "over",
+   "text": "proofs use integer arithmetic and do not cover the float64 code the README connects them to"
+  },
+  {
+   "src": "index",
+   "rec": "proof-gated-cells-e12-nullspace",
+   "kind": "scope",
+   "dir": "over",
+   "text": "matScale_preserves_nullspace takes an integer scale"
+  },
+  {
+   "src": "index",
+   "rec": "proof-gated-cells-e12-nullspace",
+   "kind": "sentence",
+   "dir": "over",
+   "text": "'zero non-constructive choice axioms' against Classical.choice in the certificate"
+  },
+  {
+   "src": "index",
+   "rec": "verified-graft",
+   "kind": "packaging",
+   "dir": "none",
+   "text": "reproduce.py rewrites committed data files"
+  },
+  {
+   "src": "repro",
+   "rec": "weft-threads",
+   "kind": "sentence",
+   "dir": "over",
+   "text": "'refits were near no-ops' holds for A2 and A4, not A3 (0.5386 to 0.4626)"
+  },
+  {
+   "src": "repro",
+   "rec": "weft-threads",
+   "kind": "scope",
+   "dir": "over",
+   "text": "'self-contained' payload: the splice still uses keep and synthesis inputs, the true skill index and a hand-set shunt"
+  },
+  {
+   "src": "repro",
+   "rec": "weft-threads",
+   "kind": "control",
+   "dir": "over",
+   "text": "admission thresholds set on the same 12 benign grafts they accept"
+  },
+  {
+   "src": "repro",
+   "rec": "weft-threads",
+   "kind": "missing",
+   "dir": "over",
+   "text": "'two checks cover every harm class' never run as one rule; donor agreement never ran the gate-moved class"
+  },
+  {
+   "src": "repro",
+   "rec": "weft-threads",
+   "kind": "missing",
+   "dir": "over",
+   "text": "'native retention fails' for random slots: no native value in the committed file"
+  },
+  {
+   "src": "repro",
+   "rec": "weft-threads",
+   "kind": "missing",
+   "dir": "over",
+   "text": "'spliced weights match the external packet exactly': weights never compared"
+  },
+  {
+   "src": "repro",
+   "rec": "weft-threads",
+   "kind": "missing",
+   "dir": "over",
+   "text": "'a position-wise packet cannot move data across positions': no test"
+  },
+  {
+   "src": "repro",
+   "rec": "weft-threads",
+   "kind": "order",
+   "dir": "over",
+   "text": "transformer bar reported on the third variant after two failed; bar text in the file is stale"
+  },
+  {
+   "src": "repro",
+   "rec": "weft-threads",
+   "kind": "sentence",
+   "dir": "none",
+   "text": "result key says 'bar: 2/3' though two seeds ran"
+  },
+  {
+   "src": "repro",
+   "rec": "weft-threads",
+   "kind": "control",
+   "dir": "over",
+   "text": "plain packet against preservation-trained packet is a design change, not a matched control"
+  },
+  {
+   "src": "repro",
+   "rec": "weft-threads",
+   "kind": "program",
+   "dir": "none",
+   "text": "one random stream feeds fitting and evaluation samples; accuracies measured on different batches"
+  },
+  {
+   "src": "repro",
+   "rec": "weft-threads",
+   "kind": "sentence",
+   "dir": "over",
+   "text": "'each number in issues 10 and 11 traces to a probe file' is partly false"
+  },
+  {
+   "src": "repro",
+   "rec": "weft-threads",
+   "kind": "packaging",
+   "dir": "none",
+   "text": "snapshot commit 1f8b611 named in the README is not in the public repository"
+  },
+  {
+   "src": "colony",
+   "rec": "razi-cells-laws",
+   "kind": "sentence",
+   "dir": "over",
+   "text": "'hiding the price did not buy better work': the hidden arm scored 0.39 higher"
+  },
+  {
+   "src": "colony",
+   "rec": "razi-cells-laws",
+   "kind": "sentence",
+   "dir": "over",
+   "text": "'14 of 16' quotes one of two shown arms; the other was 12 of 16"
+  },
+  {
+   "src": "colony",
+   "rec": "razi-cells-laws",
+   "kind": "sentence",
+   "dir": "unknown",
+   "text": "split '16 forced, 8 chose' not reproduced (20 and 8)"
+  },
+  {
+   "src": "colony",
+   "rec": "razi-cells-laws",
+   "kind": "order",
+   "dir": "over",
+   "text": "guesses, report scripts and results arrive in one squashed commit"
+  },
+  {
+   "src": "colony",
+   "rec": "razi-cells-laws",
+   "kind": "control",
+   "dir": "over",
+   "text": "sense effect rests on one task; without it the effect is -0.019"
+  },
+  {
+   "src": "colony",
+   "rec": "razi-cells-laws",
+   "kind": "program",
+   "dir": "none",
+   "text": "verdict script written after the data; its first draft counted the wrong step"
+  },
+  {
+   "src": "colony",
+   "rec": "weft-threads",
+   "kind": "sentence",
+   "dir": "over",
+   "text": "issue 8 says two sense guesses missed; four of five did"
+  },
+  {
+   "src": "colony",
+   "rec": "weft-threads",
+   "kind": "missing",
+   "dir": "over",
+   "text": "price law 'seen in two blocks': the second block has no hidden arm"
+  },
+  {
+   "src": "prs",
+   "rec": "E15 (weft 206, 180)",
+   "kind": "control",
+   "dir": "over",
+   "text": "a control arm with the same information and no mechanism also passes 12 of 12"
+  },
+  {
+   "src": "prs",
+   "rec": "E15 (weft 206, 180)",
+   "kind": "control",
+   "dir": "over",
+   "text": "with teacher rows at random positions the favoured arm falls to 0 of 12"
+  },
+  {
+   "src": "prs",
+   "rec": "E15 (weft 206, 180)",
+   "kind": "scope",
+   "dir": "over",
+   "text": "verify_e15.py accepts edited and resealed results"
+  },
+  {
+   "src": "prs",
+   "rec": "E15 (weft 206, 180)",
+   "kind": "host",
+   "dir": "none",
+   "text": "--check against the committed certificate fails off the author's machine"
+  },
+  {
+   "src": "prs",
+   "rec": "E15 (weft 206, 180)",
+   "kind": "scope",
+   "dir": "over",
+   "text": "the identifiability certificate is fed constants"
+  },
+  {
+   "src": "prs",
+   "rec": "weft 181",
+   "kind": "control",
+   "dir": "over",
+   "text": "no acceptance arm: the gate vetoes ordinary updates"
+  },
+  {
+   "src": "prs",
+   "rec": "weft 181",
+   "kind": "scope",
+   "dir": "over",
+   "text": "'commit-bound' challenge can be ground by the proposer"
+  },
+  {
+   "src": "prs",
+   "rec": "weft 181",
+   "kind": "program",
+   "dir": "over",
+   "text": "fixed-radix rounding certifies an overspend"
+  },
+  {
+   "src": "prs",
+   "rec": "weft 181",
+   "kind": "packaging",
+   "dir": "none",
+   "text": "existing tests deleted"
+  },
+  {
+   "src": "prs",
+   "rec": "weft 182",
+   "kind": "program",
+   "dir": "over",
+   "text": "receptor id equal to the sink index gives a wrong flow marked verified"
+  },
+  {
+   "src": "prs",
+   "rec": "weft 182",
+   "kind": "sentence",
+   "dir": "over",
+   "text": "'r_S-invariant 19/240' margin changes with r"
+  },
+  {
+   "src": "prs",
+   "rec": "weft 182",
+   "kind": "scope",
+   "dir": "over",
+   "text": "dual witness is a constant"
+  },
+  {
+   "src": "prs",
+   "rec": "weft 182",
+   "kind": "packaging",
+   "dir": "none",
+   "text": "sign-off address differs from author address"
+  },
+  {
+   "src": "prs",
+   "rec": "E11 rerun (weft 201)",
+   "kind": "control",
+   "dir": "over",
+   "text": "a readout-only arm that transfers nothing matches the plasmid arm"
+  },
+  {
+   "src": "prs",
+   "rec": "E11 rerun (weft 201)",
+   "kind": "scope",
+   "dir": "over",
+   "text": "the keep null space is exactly the new task's own output row, so the certificate is nearly empty"
+  },
+  {
+   "src": "prs",
+   "rec": "E11 rerun (weft 201)",
+   "kind": "program",
+   "dir": "none",
+   "text": "the Frobenius arm cannot differ from the raw arm as coded"
+  },
+  {
+   "src": "prs",
+   "rec": "E11 rerun (weft 201)",
+   "kind": "sentence",
+   "dir": "over",
+   "text": "README says two seeds exceed 0.95; none does"
+  },
+  {
+   "src": "prs",
+   "rec": "E11 rerun (weft 201)",
+   "kind": "packaging",
+   "dir": "none",
+   "text": "record placed in weft; the lane check rejects it"
+  },
+  {
+   "src": "admission",
+   "rec": "weft-threads",
+   "kind": "control",
+   "dir": "over",
+   "text": "donor agreement measures fidelity to the donor: 32 of 40 failing grafts from a weak donor were admitted"
+  },
+  {
+   "src": "admission",
+   "rec": "weft-threads",
+   "kind": "scope",
+   "dir": "over",
+   "text": "a trigger outside the probe range is admitted 48 of 48"
+  },
+  {
+   "src": "admission",
+   "rec": "weft-threads",
+   "kind": "sentence",
+   "dir": "over",
+   "text": "'two checks': the drift check never rejected anything the agreement check did not"
+  },
+  {
+   "src": "runtime",
+   "rec": "weft runtime",
+   "kind": "program",
+   "dir": "over",
+   "text": "Python gate tensor path accepts 255 moves that are over the radius"
+  },
+  {
+   "src": "runtime",
+   "rec": "weft runtime",
+   "kind": "program",
+   "dir": "none",
+   "text": "tensor path overflows float32 on a shared vector; the test that shows it runs only on Apple GPUs"
+  },
+  {
+   "src": "runtime",
+   "rec": "weft runtime",
+   "kind": "program",
+   "dir": "over",
+   "text": "C royalty split wraps uint64 for large amounts"
+  },
+  {
+   "src": "runtime",
+   "rec": "weft runtime",
+   "kind": "program",
+   "dir": "none",
+   "text": "C debits the caller's budget on three reject paths (issue 210)"
+  },
+  {
+   "src": "runtime",
+   "rec": "weft runtime",
+   "kind": "packaging",
+   "dir": "none",
+   "text": "bundle build fails at main: pinned commit not in history"
+  },
+  {
+   "src": "runtime",
+   "rec": "claims register",
+   "kind": "sentence",
+   "dir": "under",
+   "text": "10 of 14 rows marked verified are now stale or false; most record defects since fixed"
+  },
+  {
+   "src": "tf",
+   "rec": "weft-threads",
+   "kind": "missing",
+   "dir": "over",
+   "text": "'all three skills at 1.0 on 2 of 2 seeds': the same splice passes 13 of 20 fresh seeds"
+  },
+  {
+   "src": "tf",
+   "rec": "weft-threads",
+   "kind": "sentence",
+   "dir": "over",
+   "text": "'a position-wise packet cannot move data across positions': a first-layer packet does the reversal on 8 of 8 seeds"
+  },
+  {
+   "src": "tf",
+   "rec": "weft-threads",
+   "kind": "sentence",
+   "dir": "over",
+   "text": "'spliced weights match the external packet exactly': their logits differ by 0.68 on average"
+  },
+  {
+   "src": "tf",
+   "rec": "weft-threads",
+   "kind": "control",
+   "dir": "over",
+   "text": "dormant units are not clearly better than random units on the transformer: 13 against 12 of 20"
+  }
+ ]
+}

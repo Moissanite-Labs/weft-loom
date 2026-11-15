@@ -1,0 +1,10 @@
+True 4 16 {'ok': True, 'reason': 'verified', 'max_flow': 16, 'deficit': 4, 'requires_mitosis': True}
+max_flow-1 unsealed: False resealed: {'ok': False, 'reason': 'mitosis_deficit_mismatch'}
+deficit=0 unsealed: False resealed: {'ok': False, 'reason': 'mitosis_deficit_mismatch'}
+assign swap unsealed: False resealed: {'ok': True, 'reason': 'verified', 'max_flow': 16, 'deficit': 4, 'requires_mitosis': True}
+['total_neurons', 'core_rows_frozen', 'frozen_indices', 'eligible_indices', 'plasmid_demands', 'total_demand', 'max_flow', 'deficit', 'requires_mitosis', 'assignments', 'source_minimal_cut', 'sink_minimal_cut', 'cut_capacity_source_minimal', 'cut_capacity_sink_minimal', 'network_vertex_count', 'network_edges', 'sha256_digest']
+edge cap+1 unsealed: False resealed: {'ok': False, 'reason': 'network_missing_required_edge'}
+edge dropped unsealed: False resealed: {'ok': False, 'reason': 'network_missing_required_edge'}
+duplicate row across waves unsealed: False resealed: {'ok': False, 'reason': 'hall_stacking_slot_collision'}
+assign a frozen core row unsealed: False resealed: {'ok': False, 'reason': 'slot_violates_frozen_or_eligible_mask'}
+demand shrink unsealed: False resealed: {'ok': False, 'reason': 'mitosis_deficit_mismatch'}

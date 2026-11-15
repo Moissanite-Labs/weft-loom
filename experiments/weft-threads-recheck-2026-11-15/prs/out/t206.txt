@@ -1,0 +1,15 @@
+...........F...............................................
+======================================================================
+FAIL: test_live_check_mps (test_mps_baseline.TestExperimentsCLIDevice.test_live_check_mps)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<work>/prs/wt206/weft/runtime/plasm/test_mps_baseline.py", line 92, in test_live_check_mps
+    self.assertEqual(res.returncode, 0, f"experiments.py --check-mps failed: {res.stderr}")
+AssertionError: 1 != 0 : experiments.py --check-mps failed: DIFF /e4_conformance/python_agrees: 14 != 15
+
+
+----------------------------------------------------------------------
+Ran 59 tests in 25.627s
+
+FAILED (failures=1)
+$PY -m unittest discover -s weft/runtime/plasm -p 'test_*.py'  11.51s user 4.46s system 58% cpu 27.443 total

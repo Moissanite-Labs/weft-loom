@@ -1,0 +1,8 @@
+| Keep inputs | Rows of J | Silent directions left | Leak onto held-out inputs, share of a random move | Second-order change on the keep set at r = 1 |
+|---|---|---|---|---|
+| 16 | 128 | 12360 | 0.551 | 0.0052 |
+| 32 | 256 | 12232 | 0.45 | 0.00476 |
+| 64 | 512 | 11976 | 0.349 | 0.00462 |
+| 128 | 1024 | 11464 | 0.268 | 0.00385 |
+| 256 | 2048 | 10440 | 0.188 | 0.00292 |
+| 512 | 4096 | 8392 | 0.124 | 0.00179 |

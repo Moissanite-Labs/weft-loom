@@ -1,0 +1,13 @@
+calibration_probe rc=0 sec=0
+donor_agreement rc=0 sec=9
+intersections rc=0 sec=12
+scale_probe rc=0 sec=20
+hardening rc=0 sec=23
+e13_wireonly rc=0 sec=31
+e13_original rc=0 sec=31
+tf_splice rc=0 sec=135
+tf_splice2 rc=0 sec=95
+tf_splice3 rc=0 sec=129
+skeptic_margins rc=0 sec=0
+skeptic_probe rc=0 sec=0
+ALLDONE

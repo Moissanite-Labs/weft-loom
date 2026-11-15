@@ -1,0 +1,761 @@
+=== 01 ===
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.016s
+
+OK
+=== 02 ===
+lane check: no research records tracked in weft
+=== 03 ===
+test_backslash_kept_inside_code_span (test_audit_weft_integrity.TestPipeSafeSplit.test_backslash_kept_inside_code_span) ... ok
+test_double_backtick_span_holds_single_backtick (test_audit_weft_integrity.TestPipeSafeSplit.test_double_backtick_span_holds_single_backtick) ... ok
+test_double_backtick_span_stays_one_cell (test_audit_weft_integrity.TestPipeSafeSplit.test_double_backtick_span_stays_one_cell) ... ok
+test_escape_outside_code_span_still_applies (test_audit_weft_integrity.TestPipeSafeSplit.test_escape_outside_code_span_still_applies) ... ok
+test_plain_row_unchanged (test_audit_weft_integrity.TestPipeSafeSplit.test_plain_row_unchanged) ... ok
+test_preserves_norm_bars_and_escapes (test_audit_weft_integrity.TestPipeSafeSplit.test_preserves_norm_bars_and_escapes) ... ok
+test_unbalanced_backtick_treated_as_code_span (test_audit_weft_integrity.TestPipeSafeSplit.test_unbalanced_backtick_treated_as_code_span) ... ok
+test_base_certificate_rejected (test_audit_weft_integrity.TestTwoTierTamperProbe.test_base_certificate_rejected) ... ok
+test_empty_digest_returns_reason (test_audit_weft_integrity.TestTwoTierTamperProbe.test_empty_digest_returns_reason) ... ok
+test_float_only_bound_hash_only_is_caught (test_audit_weft_integrity.TestTwoTierTamperProbe.test_float_only_bound_hash_only_is_caught) ... ok
+test_input_flag_ahead_of_verdict_is_not_hash_only (test_audit_weft_integrity.TestTwoTierTamperProbe.test_input_flag_ahead_of_verdict_is_not_hash_only) ... ok
+test_lazy_hash_only_verifier_caught_by_probe_2 (test_audit_weft_integrity.TestTwoTierTamperProbe.test_lazy_hash_only_verifier_caught_by_probe_2) ... ok
+test_missing_digest_returns_reason (test_audit_weft_integrity.TestTwoTierTamperProbe.test_missing_digest_returns_reason) ... ok
+test_named_verdict_paths_must_each_be_enforced (test_audit_weft_integrity.TestTwoTierTamperProbe.test_named_verdict_paths_must_each_be_enforced) ... ok
+test_nested_hash_only_reports_every_mutated_path (test_audit_weft_integrity.TestTwoTierTamperProbe.test_nested_hash_only_reports_every_mutated_path) ... ok
+test_nested_verdict_is_visited (test_audit_weft_integrity.TestTwoTierTamperProbe.test_nested_verdict_is_visited) ... ok
+test_non_string_digest_returns_reason (test_audit_weft_integrity.TestTwoTierTamperProbe.test_non_string_digest_returns_reason) ... ok
+test_strict_verifier_passes_both_probes (test_audit_weft_integrity.TestTwoTierTamperProbe.test_strict_verifier_passes_both_probes) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.001s
+
+OK
+=== 04 ===
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 1.920s
+
+OK
+=== 05 ===
+...........F...............................................
+======================================================================
+FAIL: test_live_check_mps (test_mps_baseline.TestExperimentsCLIDevice.test_live_check_mps)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<work>/runtime/weft/weft/runtime/plasm/test_mps_baseline.py", line 92, in test_live_check_mps
+    self.assertEqual(res.returncode, 0, f"experiments.py --check-mps failed: {res.stderr}")
+AssertionError: 1 != 0 : experiments.py --check-mps failed: DIFF /e4_conformance/python_agrees: 14 != 15
+
+
+----------------------------------------------------------------------
+Ran 59 tests in 11.730s
+
+FAILED (failures=1)
+=== 06 ===
+......................................
+----------------------------------------------------------------------
+Ran 38 tests in 2.022s
+
+OK
+=== 07 ===
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.003s
+
+OK
+=== 08 ===
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK
+=== 09 ===
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.001s
+
+OK
+=== 10 ===
+TAP version 13
+# Subtest: clamp keeps levels inside their range
+ok 1 - clamp keeps levels inside their range
+  ---
+  duration_ms: 0.483541
+  type: 'test'
+  ...
+# Subtest: clamp sends a bad level to the floor, never NaN
+ok 2 - clamp sends a bad level to the floor, never NaN
+  ---
+  duration_ms: 0.108708
+  type: 'test'
+  ...
+# Subtest: fnv matches the known vectors
+ok 3 - fnv matches the known vectors
+  ---
+  duration_ms: 0.139333
+  type: 'test'
+  ...
+# Subtest: fnv is stable and separates texts
+ok 4 - fnv is stable and separates texts
+  ---
+  duration_ms: 0.069833
+  type: 'test'
+  ...
+# Subtest: the condensed list matches the condensed.json files on disk, for both page paths
+ok 5 - the condensed list matches the condensed.json files on disk, for both page paths
+  ---
+  duration_ms: 1.226917
+  type: 'test'
+  ...
+# Subtest: paperSlug reads paper paths and ignores everything else
+ok 6 - paperSlug reads paper paths and ignores everything else
+  ---
+  duration_ms: 0.162291
+  type: 'test'
+  ...
+# Subtest: weight update vector: matching_sizes_large_move
+ok 7 - weight update vector: matching_sizes_large_move
+  ---
+  duration_ms: 0.623541
+  type: 'test'
+  ...
+# Subtest: weight update vector: valid_small_move
+ok 8 - weight update vector: valid_small_move
+  ---
+  duration_ms: 0.176667
+  type: 'test'
+  ...
+# Subtest: weight update vector: valid_exact_radius_and_budget
+ok 9 - weight update vector: valid_exact_radius_and_budget
+  ---
+  duration_ms: 0.055917
+  type: 'test'
+  ...
+# Subtest: weight update vector: reject_nan_candidate
+ok 10 - weight update vector: reject_nan_candidate
+  ---
+  duration_ms: 0.051375
+  type: 'test'
+  ...
+# Subtest: weight update vector: reject_inf_candidate
+ok 11 - weight update vector: reject_inf_candidate
+  ---
+  duration_ms: 0.127792
+  type: 'test'
+  ...
+# Subtest: weight update vector: reject_insufficient_budget
+ok 12 - weight update vector: reject_insufficient_budget
+  ---
+  duration_ms: 0.043916
+  type: 'test'
+  ...
+# Subtest: weight update vector: reject_non_positive_budget
+ok 13 - weight update vector: reject_non_positive_budget
+  ---
+  duration_ms: 0.114791
+  type: 'test'
+  ...
+# Subtest: weight update vector: reject_zero_cost
+ok 14 - weight update vector: reject_zero_cost
+  ---
+  duration_ms: 0.038083
+  type: 'test'
+  ...
+# Subtest: weight update vector: reject_negative_radius
+ok 15 - weight update vector: reject_negative_radius
+  ---
+  duration_ms: 0.379583
+  type: 'test'
+  ...
+# Subtest: weight update vector: reject_empty_weights
+ok 16 - weight update vector: reject_empty_weights
+  ---
+  duration_ms: 0.349833
+  type: 'test'
+  ...
+# Subtest: equal sizes do not imply a small move (the pre-repair trap)
+ok 17 - equal sizes do not imply a small move (the pre-repair trap)
+  ---
+  duration_ms: 0.142334
+  type: 'test'
+  ...
+# Subtest: sequence is a decimal packet number, role/action are hex bytes
+ok 18 - sequence is a decimal packet number, role/action are hex bytes
+  ---
+  duration_ms: 0.6135
+  type: 'test'
+  ...
+# Subtest: signed and exponent metrics survive
+ok 19 - signed and exponent metrics survive
+  ---
+  duration_ms: 0.454792
+  type: 'test'
+  ...
+# Subtest: hash verification matches the Python encoder
+ok 20 - hash verification matches the Python encoder
+  ---
+  duration_ms: 4.767917
+  type: 'test'
+  ...
+# Subtest: missing hash is not valid
+ok 21 - missing hash is not valid
+  ---
+  duration_ms: 0.097625
+  type: 'test'
+  ...
+# Subtest: tampered payload fails hash
+ok 22 - tampered payload fails hash
+  ---
+  duration_ms: 0.357084
+  type: 'test'
+  ...
+# Subtest: published seed line parses and verifies
+ok 23 - published seed line parses and verifies
+  ---
+  duration_ms: 0.442375
+  type: 'test'
+  ...
+# Subtest: verifySym2pLine returns a boolean (not { ok })
+ok 24 - verifySym2pLine returns a boolean (not { ok })
+  ---
+  duration_ms: 0.287166
+  type: 'test'
+  ...
+# Subtest: consumer gate accepts correctly signed fixture and golden lines
+ok 25 - consumer gate accepts correctly signed fixture and golden lines
+  ---
+  duration_ms: 0.651042
+  type: 'test'
+  ...
+# Subtest: consumer gate rejects missing or mismatched hash
+ok 26 - consumer gate rejects missing or mismatched hash
+  ---
+  duration_ms: 1.177375
+  type: 'test'
+  ...
+# Subtest: treating verify result as verified.ok wrongly rejects valid packets
+ok 27 - treating verify result as verified.ok wrongly rejects valid packets
+  ---
+  duration_ms: 0.659833
+  type: 'test'
+  ...
+# Subtest: struct Cell in the shader is four 16-byte vectors (64 bytes), matching packCellRecords
+ok 28 - struct Cell in the shader is four 16-byte vectors (64 bytes), matching packCellRecords
+  ---
+  duration_ms: 0.885666
+  type: 'test'
+  ...
+# Subtest: packCellRecords writes centre, half side, value, layer and label where the shader reads them
+ok 29 - packCellRecords writes centre, half side, value, layer and label where the shader reads them
+  ---
+  duration_ms: 6.152208
+  type: 'test'
+  ...
+# Subtest: every fixture layer has a hue and every locus maps to known layers
+ok 30 - every fixture layer has a hue and every locus maps to known layers
+  ---
+  duration_ms: 0.179959
+  type: 'test'
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 30
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 66.476375
+=== 11 ===
+{
+  "status": "PASS",
+  "hardware": {
+    "source": "darwin-sysctl",
+    "ncpu": 10,
+    "mem_gb": 64.0,
+    "load_1m": 8.28,
+    "cpu_strain": 0.828,
+    "estimated_load_thermal_c": 67.48,
+    "est_core_temp_c": 67.48,
+    "thermal_is_estimate": true
+  },
+  "moissanite_source": "fixture",
+  "moissanite_nodes": 19,
+  "org_tension": 0.2053,
+  "gini_index": 0.2167,
+  "shm_frame_64b_head": [
+    19.0,
+    0.4232,
+    1502.8,
+    0.2167,
+    0.18,
+    0.55,
+    0.22,
+    0.12
+  ]
+}
+=== 12 ===
+{
+  "status": "PASS",
+  "site_root": "<work>/runtime/weft/site",
+  "aywa_web_root": "<work>/runtime/weft/weft/runtime/aywa/web",
+  "vendored_from": {
+    "eido": "4edf98b8c287b83c7e9c8b2a25a9affdc3eca68e",
+    "corpus": "6d4a30919ff8adc70fc13c28a69dd35d2be6b317"
+  },
+  "security_headers": {
+    "pages_checked": 12
+  },
+  "sym2p_metrics": {
+    "active_nodes": 19.0,
+    "tension": 0.2053,
+    "gini": 0.2167
+  },
+  "staged_allowlist": [
+    "index.html",
+    "404.html",
+    "favicon.svg",
+    "og.png",
+    "_headers",
+    "seed-manifest.json",
+    "assets/",
+    "widgets/",
+    "papers/"
+  ]
+}
+=== 13 ===
+{
+  "overall_status": "PASS",
+  "weight_safety_checks": {
+    "status": "PASS",
+    "cases": [
+      {
+        "name": "baseline_distance_with_matching_sizes",
+        "compared_sizes": 0.0,
+        "baseline_distance": 200.0,
+        "compared_sizes_trap_would_hide_move": true,
+        "uses_baseline_distance_not_compared_sizes": true,
+        "status": "PASS"
+      },
+      {
+        "name": "reject_nan_candidate",
+        "accepted": false,
+        "status": "PASS"
+      },
+      {
+        "name": "reject_negative_remaining_budget",
+        "accepted": false,
+        "remaining_budget": -1.5,
+        "status": "PASS"
+      },
+      {
+        "name": "remaining_budget_precondition",
+        "exhausted_accepted": false,
+        "nonfinite_accepted": false,
+        "status": "PASS"
+      },
+      {
+        "name": "accept_invariant_safe_update",
+        "accepted": true,
+        "status": "PASS"
+      }
+    ]
+  },
+  "plasm_substrate": {
+    "status": "PASS",
+    "device": "mps",
+    "arena_bytes": 540688,
+    "core_rows_frozen": 64,
+    "initial_watermark_alignment": 1.0,
+    "final_watermark_alignment": 1.0,
+    "final_core_row_drift": 0.0,
+    "initial_target_error": 1.657278,
+    "final_target_error": 1.140455,
+    "committed_generations": 3,
+    "elapsed_ms": 29.88,
+    "final_weights_sha256": "0xb2d4f110522f0738cf5e5a2c8fafc49ef2363b90d6d7d56a7533733afdc8f539",
+    "generations": [
+      {
+        "generation": 1,
+        "winner": "ALPHA",
+        "score_alpha": 0.7336,
+        "score_beta": 0.6842,
+        "winner_score": 0.7336,
+        "parent_target_error": 1.657278,
+        "winner_target_error": 1.457311,
+        "committed": true,
+        "held_target_error": 1.457311,
+        "invariant_safe": true,
+        "gate_reason": "ok",
+        "frobenius_drift": 0.103829,
+        "core_row_drift": 0.0,
+        "watermark_retained": true,
+        "watermark_alignment": 1.0,
+        "watermark_l2_drift": 0.0,
+        "tension": 20.2596,
+        "homeostatic": true,
+        "remaining_budget": 97.5
+      },
+      {
+        "generation": 2,
+        "winner": "ALPHA",
+        "score_alpha": 0.8238,
+        "score_beta": 0.765,
+        "winner_score": 0.8238,
+        "parent_target_error": 1.457311,
+        "winner_target_error": 1.288038,
+        "committed": true,
+        "held_target_error": 1.288038,
+        "invariant_safe": true,
+        "gate_reason": "ok",
+        "frobenius_drift": 0.160716,
+        "core_row_drift": 0.0,
+        "watermark_retained": true,
+        "watermark_alignment": 1.0,
+        "watermark_l2_drift": 0.0,
+        "tension": 20.4018,
+        "homeostatic": true,
+        "remaining_budget": 95.0
+      },
+      {
+        "generation": 3,
+        "winner": "ALPHA",
+        "score_alpha": 0.9242,
+        "score_beta": 0.8595,
+        "winner_score": 0.9242,
+        "parent_target_error": 1.288038,
+        "winner_target_error": 1.140455,
+        "committed": true,
+        "held_target_error": 1.140455,
+        "invariant_safe": true,
+        "gate_reason": "ok",
+        "frobenius_drift": 0.209534,
+        "core_row_drift": 0.0,
+        "watermark_retained": true,
+        "watermark_alignment": 1.0,
+        "watermark_l2_drift": 0.0,
+        "tension": 20.5238,
+        "homeostatic": true,
+        "remaining_budget": 92.5
+      }
+    ]
+  },
+  "interaction_combinator_vm": {
+    "status": "PASS",
+    "bcp_version": 2,
+    "capacity": 64,
+    "reductions_executed": 6,
+    "active_nodes_remaining": 2,
+    "initial_graph_sha256": "0x11b1fd33e8d53507095719427a29d46115f7de1f3c13c7fc0eda5de11fcd53ab",
+    "final_graph_sha256": "0x85894bbf1be627a3e563c7298bc3f23fec76ce717a3767748a49cd89b45f281b",
+    "bcp_byte_length": 52,
+    "trace_commitment_sha256": "0x53b35892f243abf39786b081ee54385bbbec4d6a35f3b31349282afe2601db99",
+    "steps": [
+      {
+        "a": 0,
+        "b": 1,
+        "step": 1,
+        "op": "ANNIHILATE(tagA=1,tagB=1,label=0)"
+      },
+      {
+        "a": 2,
+        "b": 3,
+        "step": 2,
+        "op": "COMMUTE(0,1,6,7)"
+      },
+      {
+        "a": 0,
+        "b": 1,
+        "step": 3,
+        "op": "ANNIHILATE(tagA=2,tagB=2,label=1)"
+      },
+      {
+        "a": 4,
+        "b": 5,
+        "step": 4,
+        "op": "ERA_PROPAGATE(0,1)"
+      },
+      {
+        "a": 0,
+        "b": 6,
+        "step": 5,
+        "op": "ERA_PROPAGATE(2,3)"
+      },
+      {
+        "a": 2,
+        "b": 3,
+        "step": 6,
+        "op": "ERA_ERA"
+      }
+    ],
+    "replay": "PASS"
+  },
+  "moissanite_telemetry": {
+    "active_nodes": 19,
+    "org_tension": 0.2053,
+    "gini_index": 0.2167,
+    "binary_frame_bytes": 64,
+    "darwin_hardware": {
+      "source": "darwin-sysctl",
+      "ncpu": 10,
+      "mem_gb": 64.0,
+      "load_1m": 7.85,
+      "cpu_strain": 0.785,
+      "estimated_load_thermal_c": 65.97,
+      "est_core_temp_c": 65.97,
+      "thermal_is_estimate": true
+    }
+  },
+  "corpus_audit": "moved to Moissanite-Labs/weft-corpus (scripts/check_corpus.py)",
+  "pages_seed": {
+    "status": "PASS",
+    "site_root": "<work>/runtime/weft/site",
+    "aywa_web_root": "<work>/runtime/weft/weft/runtime/aywa/web",
+    "vendored_from": {
+      "eido": "4edf98b8c287b83c7e9c8b2a25a9affdc3eca68e",
+      "corpus": "6d4a30919ff8adc70fc13c28a69dd35d2be6b317"
+    },
+    "security_headers": {
+      "pages_checked": 12
+    },
+    "sym2p_metrics": {
+      "active_nodes": 19.0,
+      "tension": 0.2053,
+      "gini": 0.2167
+    },
+    "staged_allowlist": [
+      "index.html",
+      "404.html",
+      "favicon.svg",
+      "og.png",
+      "_headers",
+      "seed-manifest.json",
+      "assets/",
+      "widgets/",
+      "papers/"
+    ]
+  }
+}
+=== 14 ===
+{
+  "source": "darwin-sysctl",
+  "ncpu": 10,
+  "mem_gb": 64.0,
+  "load_1m": 7.85,
+  "cpu_strain": 0.785,
+  "estimated_load_thermal_c": 65.97,
+  "est_core_temp_c": 65.97,
+  "thermal_is_estimate": true
+}
+=== 15 ===
+{
+  "status": "PASS",
+  "device": "mps",
+  "arena_bytes": 540688,
+  "core_rows_frozen": 64,
+  "initial_watermark_alignment": 1.0,
+  "final_watermark_alignment": 1.0,
+  "final_core_row_drift": 0.0,
+  "initial_target_error": 1.657278,
+  "final_target_error": 1.142935,
+  "committed_generations": 3,
+  "elapsed_ms": 30.47,
+  "final_weights_sha256": "0x9353055fe9fb13d3d16846c964f7da053727081fba8a86f7aa1d572fb0442cf3",
+  "generations": [
+    {
+      "generation": 1,
+      "winner": "ALPHA",
+      "score_alpha": 0.7343,
+      "score_beta": 0.6871,
+      "winner_score": 0.7343,
+      "parent_target_error": 1.657278,
+      "winner_target_error": 1.455908,
+      "committed": true,
+      "held_target_error": 1.455908,
+      "invariant_safe": true,
+      "gate_reason": "ok",
+      "frobenius_drift": 0.103765,
+      "core_row_drift": 0.0,
+      "watermark_retained": true,
+      "watermark_alignment": 1.0,
+      "watermark_l2_drift": 0.0,
+      "tension": 20.2594,
+      "homeostatic": true,
+      "remaining_budget": 97.5
+    },
+    {
+      "generation": 2,
+      "winner": "ALPHA",
+      "score_alpha": 0.8246,
+      "score_beta": 0.7726,
+      "winner_score": 0.8246,
+      "parent_target_error": 1.455908,
+      "winner_target_error": 1.286635,
+      "committed": true,
+      "held_target_error": 1.286635,
+      "invariant_safe": true,
+      "gate_reason": "ok",
+      "frobenius_drift": 0.161092,
+      "core_row_drift": 0.0,
+      "watermark_retained": true,
+      "watermark_alignment": 1.0,
+      "watermark_l2_drift": 0.0,
+      "tension": 20.4027,
+      "homeostatic": true,
+      "remaining_budget": 95.0
+    },
+    {
+      "generation": 3,
+      "winner": "ALPHA",
+      "score_alpha": 0.9223,
+      "score_beta": 0.8671,
+      "winner_score": 0.9223,
+      "parent_target_error": 1.286635,
+      "winner_target_error": 1.142935,
+      "committed": true,
+      "held_target_error": 1.142935,
+      "invariant_safe": true,
+      "gate_reason": "ok",
+      "frobenius_drift": 0.209233,
+      "core_row_drift": 0.0,
+      "watermark_retained": true,
+      "watermark_alignment": 1.0,
+      "watermark_l2_drift": 0.0,
+      "tension": 20.5231,
+      "homeostatic": true,
+      "remaining_budget": 92.5
+    }
+  ],
+  "dim": 256,
+  "r_invariant": 10.0,
+  "initial_budget": 20.0
+}
+=== 16 ===
+.............
+----------------------------------------------------------------------
+Ran 13 tests in 1.122s
+
+OK
+=== 17 ===
+{"status": "PASS", "differences": 0}
+=== 18 ===
+{"status": "PASS", "differences": 0}
+=== 19 ===
+Traceback (most recent call last):
+  File "<work>/runtime/weft/scripts/zenodo_metadata.py", line 27, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+=== 20 ===
+Traceback (most recent call last):
+  File "<work>/runtime/weft/scripts/build_papers.py", line 36, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+=== 21 ===
+site/papers/checkable-computation/condensed.json: 71 blocks, 84 passage keys from 84 page blocks, 19 sections
+site/papers/models-as-cells/condensed.json: 68 blocks, 78 passage keys from 78 page blocks, 16 sections
+site/papers/overview/condensed.json: 50 blocks, 57 passage keys from 57 page blocks, 13 sections
+OK: every condensed.json entry matches its page (3 papers)
+=== 22 ===
+......
+----------------------------------------------------------------------
+Ran 6 tests in 1.233s
+
+OK
+=== 23 ===
+error: pinned weft commit d5e74da0eedcbb2292ceded5fd30c8c0ae5fc5e8 is not in HEAD's history
+=== 24 ===
+verify: dist/weft missing — run scripts/build_siliconcordat_bundle.py
+=== 25 ===
+TAP version 13
+# Subtest: weftSubhostRedirect
+    # Subtest: maps / to /weft
+    ok 1 - maps / to /weft
+      ---
+      duration_ms: 0.383167
+      type: 'test'
+      ...
+    # Subtest: prefixes extra path without doubling
+    ok 2 - prefixes extra path without doubling
+      ---
+      duration_ms: 0.066958
+      type: 'test'
+      ...
+    1..2
+ok 1 - weftSubhostRedirect
+  ---
+  duration_ms: 0.920459
+  type: 'suite'
+  ...
+# Subtest: w3ftPathRedirect
+    # Subtest: replaces /w3ft with /weft on same origin
+    ok 1 - replaces /w3ft with /weft on same origin
+      ---
+      duration_ms: 0.163167
+      type: 'test'
+      ...
+    # Subtest: maps bare /w3ft to /weft
+    ok 2 - maps bare /w3ft to /weft
+      ---
+      duration_ms: 0.055375
+      type: 'test'
+      ...
+    1..2
+ok 2 - w3ftPathRedirect
+  ---
+  duration_ms: 0.294417
+  type: 'suite'
+  ...
+# Subtest: fetch handler
+    # Subtest: 301 www.siliconcordat.com to .com preserving path and query
+    ok 1 - 301 www.siliconcordat.com to .com preserving path and query
+      ---
+      duration_ms: 19.714125
+      type: 'test'
+      ...
+    # Subtest: does not redirect siliconcordat.org to .com
+    ok 2 - does not redirect siliconcordat.org to .com
+      ---
+      duration_ms: 1.276167
+      type: 'test'
+      ...
+    # Subtest: does not redirect www.siliconcordat.org to .com
+    ok 3 - does not redirect www.siliconcordat.org to .com
+      ---
+      duration_ms: 0.430375
+      type: 'test'
+      ...
+    # Subtest: 301 weft.siliconcordat.com via weftSubhostRedirect
+    ok 4 - 301 weft.siliconcordat.com via weftSubhostRedirect
+      ---
+      duration_ms: 0.259458
+      type: 'test'
+      ...
+    # Subtest: 301 /w3ft paths on same origin
+    ok 5 - 301 /w3ft paths on same origin
+      ---
+      duration_ms: 0.27675
+      type: 'test'
+      ...
+    1..5
+ok 3 - fetch handler
+  ---
+  duration_ms: 22.320708
+  type: 'suite'
+  ...
+1..3
+# tests 9
+# suites 3
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 76.138
+=== 26 ===
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.004s
+
+OK
+=== 27 ===
+Link check passed: 198 repo links resolve.

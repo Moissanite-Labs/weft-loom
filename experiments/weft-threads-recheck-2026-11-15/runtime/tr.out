@@ -1,0 +1,12 @@
+tension cases 3190 disagreements 0
+{}
+royalty cases 4170 disagreements 2711 {'py ValueError': 2085, 'u64 overflow of gross*bps': 626}
+   (0, 10001, 'ValueError', 'ValueError', 0, 0, 'py ValueError')
+   (0, 12345, 'ValueError', 'ValueError', 0, 0, 'py ValueError')
+   (0, 4294967296, 'ValueError', 'ValueError', 0, 0, 'py ValueError')
+   (0, 9223372036854775808, 'ValueError', 'ValueError', 0, 0, 'py ValueError')
+   (0, 18446744073709551615, 'ValueError', 'ValueError', 0, 0, 'py ValueError')
+   (1, 10001, 'ValueError', 'ValueError', 1, 0, 'py ValueError')
+   (1, 12345, 'ValueError', 'ValueError', 1, 0, 'py ValueError')
+   (1, 4294967296, 'ValueError', 'ValueError', 429496, 18446744073709122121, 'py ValueError')
+smallest gross in my set at bps=1500 where C != Python: 12297829382473035 (threshold floor(2^64/1500) = 12297829382473034 wei = 0.012297829382473034 ETH)

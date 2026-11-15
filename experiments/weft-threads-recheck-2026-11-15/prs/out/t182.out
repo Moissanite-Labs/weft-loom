@@ -1,0 +1,18 @@
+random valid-input agreement with scipy matching: mismatches 0 of 2000
+1-based collision: 3 3 True (true matching size is 1)
+id 5 -> IndexError
+out-of-range secondary rung admitted: flow 1
+r 1 19/160 True
+r 11 19/240 True
+r 19 1/16 True
+eps* vs p at r=19,c=1/4 (ceiling 1/60=0.0167):
+ p=1/20 eps*=0.0625 certified=True
+ p=1/10 eps*=0.0402 certified=True
+ p=1/5 eps*=0.0217 certified=True
+ p=1/4 eps*=0.0170 certified=True
+ p=3/10 eps*=0.0137 certified=False
+ p=1/2 eps*=0.0063 certified=False
+ p=19/20 eps*=0.0003 certified=False
+r=-1 -> ZeroDivisionError
+r=-3 certified? False -1/16
+single-channel spoof inequality violations on p in [1/20,1] grid(1901 pts): 0

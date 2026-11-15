@@ -1,0 +1,17 @@
+{
+ "anisotropy": 5.090949436590371,
+ "dim": 256,
+ "max_input_norm": 4.1252690660259,
+ "n_stimuli": 16,
+ "output_rms": 0.19896859233014663,
+ "paper1_max_drift": 0.463304,
+ "radius_for_1_percent_of_output": 0.02539590309716863,
+ "radius_for_5_percent_of_output": 0.1269795154858432,
+ "shipped_radius": 120.0,
+ "smax_stimuli": 5.014190619804769,
+ "typical_rms_change_per_unit_distance": 0.01538941398068996,
+ "weight_norm": 13.118931953818684,
+ "worst_change_at_paper1_drift_over_output_rms": 0.18243257513911895,
+ "worst_change_at_shipped_radius_over_output_rms": 47.25171597200602,
+ "worst_rms_change_per_unit_distance": 0.07834672843444952
+}

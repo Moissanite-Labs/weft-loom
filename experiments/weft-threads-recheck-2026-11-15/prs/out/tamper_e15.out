@@ -1,0 +1,7 @@
+original True
+M3 mean_r2 -> -5 noreseal -> False
+M3 mean_r2 -> -5 reseal -> True
+M3 per-seed wave r2 all -9 (passed flag kept True) reseal -> True
+M0 claims 12/12 pass reseal -> True
+M3 poison committed=2 per seed (summary untouched) reseal -> False
+M3 poison_committed=2, vetoed kept 10 reseal -> True
