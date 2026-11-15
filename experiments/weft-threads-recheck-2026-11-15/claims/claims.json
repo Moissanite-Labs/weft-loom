@@ -1,0 +1,3494 @@
+[
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "eight are identical and one, the E13 certificate, differs by at most 9.67e-07",
+  "test": {
+   "kind": "count",
+   "file": "weft-threads-recheck-2026-11-15/repro/compare.out",
+   "pattern": "IDENTICAL",
+   "equals": 8
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "eight are identical and one, the E13 certificate, differs by at most 9.67e-07",
+  "test": {
+   "kind": "line",
+   "file": "weft-threads-recheck-2026-11-15/repro/compare.out",
+   "contains": "e13_certificates.json            NOISE (249 numbers differ, largest difference 9.67e-07)"
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "Nine result files were regenerated",
+  "test": {
+   "kind": "line",
+   "file": "weft-threads-recheck-2026-11-15/repro/compare.out",
+   "contains": "files compared: 9, different: 0"
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "Arm A3 moved from 0.5386 to 0.4626",
+  "test": {
+   "kind": "json",
+   "file": "e13-geodesic-shunting-plasmid-2026-11-12/e13_certificates.json",
+   "path": [
+    "single_graft_arms",
+    "A3_gfpt_geodesic_excitatory_only",
+    "shifted_novel_r2_mean"
+   ],
+   "equals": 0.5386
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "Arm A3 moved from 0.5386 to 0.4626",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-2026-11-15/probes/e13-wireonly.json",
+   "path": [
+    "single_graft_arms",
+    "A3_gfpt_geodesic_excitatory_only",
+    "shifted_novel_r2_mean"
+   ],
+   "equals": 0.4626
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "held-out native drift is at most 0.533415 and donor agreement is at most 0.6693",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "rule",
+    "thr_drift"
+   ],
+   "equals": 0.533415
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "held-out native drift is at most 0.533415 and donor agreement is at most 0.6693",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "rule",
+    "thr_agree"
+   ],
+   "equals": 0.6693
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Benign | 48 | 48 | 1 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "benign",
+    "admitted"
+   ],
+   "equals": 48
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Benign | 48 | 48 | 1 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "benign",
+    "gt_fail_joint"
+   ],
+   "equals": 1
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Three harm classes of the earlier study | 144 | 0 | 144 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "shuffled_readout",
+    "admitted"
+   ],
+   "equals": 0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Three harm classes of the earlier study | 144 | 0 | 144 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "shuffled_readout",
+    "gt_fail_joint"
+   ],
+   "equals": 48
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Three harm classes of the earlier study | 144 | 0 | 144 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "gate_to_native",
+    "admitted"
+   ],
+   "equals": 0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Three harm classes of the earlier study | 144 | 0 | 144 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "gate_to_native",
+    "gt_fail_joint"
+   ],
+   "equals": 48
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Three harm classes of the earlier study | 144 | 0 | 144 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "noise_packet",
+    "admitted"
+   ],
+   "equals": 0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Three harm classes of the earlier study | 144 | 0 | 144 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "noise_packet",
+    "gt_fail_joint"
+   ],
+   "equals": 48
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Smallest sabotage that fails the bar, two kinds | 94 | 0 | 94 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "sabotage_scale_min",
+    "n"
+   ],
+   "equals": 47
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Smallest sabotage that fails the bar, two kinds | 94 | 0 | 94 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "sabotage_scale_min",
+    "admitted"
+   ],
+   "equals": 0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Smallest sabotage that fails the bar, two kinds | 94 | 0 | 94 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "sabotage_noise_min",
+    "n"
+   ],
+   "equals": 47
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Smallest sabotage that fails the bar, two kinds | 94 | 0 | 94 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "sabotage_noise_min",
+    "admitted"
+   ],
+   "equals": 0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Packet for the wrong skill | 48 | 0 | 48 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "wrong_skill",
+    "admitted"
+   ],
+   "equals": 0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Trigger written into the host | 48 | 48 | 3 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "trigger_post",
+    "admitted"
+   ],
+   "equals": 48
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Trigger written into the host | 48 | 48 | 3 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "trigger_post",
+    "gt_fail_joint"
+   ],
+   "equals": 3
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Honest packet from a weak donor | 48 | 37 | 40 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "stale_donor",
+    "admitted"
+   ],
+   "equals": 37
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| Honest packet from a weak donor | 48 | 37 | 40 |",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "stale_donor",
+    "gt_fail_joint"
+   ],
+   "equals": 40
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "Of the 40 weak-donor grafts that fail the joint bar, 32 were admitted.",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "stale_donor",
+    "admitted_and_gt_bad"
+   ],
+   "equals": 32
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "The drift check never rejected a graft that the agreement check had not already rejected.",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "confusion",
+    "GT bad = joint bar failed | frozen rule (drift AND agreement)",
+    "admitted_bad"
+   ],
+   "equals": 37
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "The drift check never rejected a graft that the agreement check had not already rejected.",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "confusion",
+    "GT bad = joint bar failed | agreement check alone",
+    "admitted_bad"
+   ],
+   "equals": 37
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "The drift check never rejected a graft that the agreement check had not already rejected.",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "confusion",
+    "GT bad = joint bar failed | agreement check alone",
+    "admitted_good"
+   ],
+   "equals": 144
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "The weight-distance gate admits none of the 478 grafts at radius 10",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "confusion",
+    "GT bad = joint bar failed | Frobenius radius 10",
+    "admitted_bad"
+   ],
+   "equals": 0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "The weight-distance gate admits none of the 478 grafts at radius 10",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "confusion",
+    "GT bad = joint bar failed | Frobenius radius 10",
+    "admitted_good"
+   ],
+   "equals": 0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "The weight-distance gate admits none of the 478 grafts at radius 10",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "rows"
+   ],
+   "where": {},
+   "equals": 478
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "At radius 120 it admits 464, among them 317 of the 331 that fail the joint bar.",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "confusion",
+    "GT bad = joint bar failed | Frobenius radius 120",
+    "admitted_bad"
+   ],
+   "equals": 317
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "At radius 120 it admits 464, among them 317 of the 331 that fail the joint bar.",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "confusion",
+    "GT bad = joint bar failed | Frobenius radius 120",
+    "admitted_good"
+   ],
+   "equals": 147
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "At radius 120 it admits 464, among them 317 of the 331 that fail the joint bar.",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "confusion",
+    "GT bad = joint bar failed | Frobenius radius 120",
+    "rejected_bad"
+   ],
+   "equals": 14
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "27 test and check commands were run on weft main",
+  "test": {
+   "kind": "count",
+   "file": "weft-threads-recheck-2026-11-15/runtime/logs/summary.txt",
+   "pattern": " rc=",
+   "equals": 27
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "Three failures are real",
+  "test": {
+   "kind": "count",
+   "file": "weft-threads-recheck-2026-11-15/runtime/logs/summary.txt",
+   "pattern": " rc=1 ",
+   "equals": 5
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "The gate in Python, C and JavaScript was run on 20,992 inputs.",
+  "test": {
+   "kind": "line",
+   "file": "weft-threads-recheck-2026-11-15/runtime/report.txt",
+   "contains": "TOTAL cases 20992"
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "The C gate differs on 2, in the safe direction.",
+  "test": {
+   "kind": "line",
+   "file": "weft-threads-recheck-2026-11-15/runtime/report.txt",
+   "contains": "[js|c] accept class=long_65536_uniform count=2"
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "199 of 199 constructed cases",
+  "test": {
+   "kind": "line",
+   "file": "weft-threads-recheck-2026-11-15/runtime/tensor_path_repro.out",
+   "contains": "accepted by the tensor path: 199"
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "199 of 199 constructed cases",
+  "test": {
+   "kind": "line",
+   "file": "weft-threads-recheck-2026-11-15/runtime/tensor_path_repro.out",
+   "contains": "cases with the exact distance above the radius: 199"
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "26 of 32 cells chose the cheapest model at their first act when prices were shown, and 0 of 32 when they were hidden",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "claim_a",
+    "sp3",
+    "shown"
+   ],
+   "equals": [
+    26,
+    32
+   ]
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "26 of 32 cells chose the cheapest model at their first act when prices were shown, and 0 of 32 when they were hidden",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "claim_a",
+    "sp3",
+    "hidden"
+   ],
+   "equals": [
+    0,
+    32
+   ]
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "26 of 32 cells chose the cheapest model at their first act when prices were shown, and 0 of 32 when they were hidden",
+  "test": {
+   "kind": "line",
+   "file": "weft-threads-recheck-2026-11-15/colony/recount_first_choice.out",
+   "contains": "shown: 26 of 32 cells chose light"
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "Every shown run is above every hidden run.",
+  "test": {
+   "kind": "line",
+   "file": "weft-threads-recheck-2026-11-15/colony/recount_first_choice.out",
+   "contains": "every shown run is above every hidden run"
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "Hidden prices cost 2.95 and 2.42 times the energy",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "claim_b",
+    "res",
+    "b/a (sense hidden)",
+    "ratio"
+   ],
+   "round": 2,
+   "equals": 2.95
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "Hidden prices cost 2.95 and 2.42 times the energy",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "claim_b",
+    "res",
+    "d/c (sense shown)",
+    "ratio"
+   ],
+   "round": 2,
+   "equals": 2.42
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "Between 2.0 and 2.9 remains under every treatment",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "claim_b",
+    "trunc",
+    "150",
+    "ratio"
+   ],
+   "round": 1,
+   "equals": 2.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "Between 2.0 and 2.9 remains under every treatment",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "claim_b",
+    "trunc",
+    "km",
+    "ratio"
+   ],
+   "round": 1,
+   "equals": 2.9
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "the effect on reach is +0.543 with all four tasks and -0.019 without the fibmod task",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "claim_c",
+    "c_minus_a"
+   ],
+   "round": 3,
+   "equals": 0.543
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "the effect on reach is +0.543 with all four tasks and -0.019 without the fibmod task",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "claim_c",
+    "run_perm_nofib",
+    "obs"
+   ],
+   "round": 3,
+   "equals": -0.019
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "129 guesses were written down. 73 held, 44 missed and 12 could not be judged.",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "ledger",
+    "written"
+   ],
+   "equals": 129
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "129 guesses were written down. 73 held, 44 missed and 12 could not be judged.",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "ledger",
+    "held"
+   ],
+   "equals": 73
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "129 guesses were written down. 73 held, 44 missed and 12 could not be judged.",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "ledger",
+    "missed"
+   ],
+   "equals": 44
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "needs about 64 runs per arm, or 26 without fibmod",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/power_results.json",
+   "path": [
+    "part5",
+    "all four kits (as run)",
+    "smallest (assumed) 0.10",
+    "0.8",
+    "sim"
+   ],
+   "equals": 64
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "needs about 64 runs per arm, or 26 without fibmod",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/power_results.json",
+   "path": [
+    "part5",
+    "without fibmod (the proposal drops or replaces it)",
+    "smallest (assumed) 0.10",
+    "0.8",
+    "sim"
+   ],
+   "equals": 26
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "An arm that gets the same information through a plain threshold also passes 12 of 12.",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/prs/ctrl/out_base.json",
+   "path": [
+    "summary_by_regime",
+    "M4_ctrl",
+    "passes_of_12"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "With the teacher rows placed at random the favoured arm passes 0 of 12.",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/prs/ctrl/out_randteacher.json",
+   "path": [
+    "summary_by_regime",
+    "M3_full_dual_morphogenesis",
+    "passes_of_12"
+   ],
+   "equals": 0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "reproduces as the author reports, 3 of 6 bars met",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/prs/out/e11_mine.json",
+   "path": [
+    "plasmid_primary_verdict",
+    "passed_count"
+   ],
+   "equals": 3
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "also every ordinary update tried",
+  "test": {
+   "kind": "line",
+   "file": "weft-threads-recheck-2026-11-15/prs/out/haar_tests.out",
+   "contains": " commits full=0/100 sub4=0/100; expected null energy fraction"
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "A receptor id equal to the sink index yields a wrong flow marked as verified.",
+  "test": {
+   "kind": "line",
+   "file": "weft-threads-recheck-2026-11-15/prs/out/t182.out",
+   "contains": "1-based collision: 3 3 True (true matching size is 1)"
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "0.705 against 0.703 on 20 fresh seeds",
+  "test": {
+   "kind": "count",
+   "file": "weft-threads-recheck-2026-11-15/prs/out/e11_ctrl.out",
+   "pattern": "readout_only(no delta, A-probe fit)        acc=0.705",
+   "equals": 1
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "0.705 against 0.703 on 20 fresh seeds",
+  "test": {
+   "kind": "count",
+   "file": "weft-threads-recheck-2026-11-15/prs/out/e11_ctrl.out",
+   "pattern": "plasmid                                    acc=0.703",
+   "equals": 1
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "the plasmid arm is higher, 0.806 against 0.736",
+  "test": {
+   "kind": "count",
+   "file": "weft-threads-recheck-2026-11-15/prs/out/e11_ctrl.out",
+   "pattern": "plasmid                                    acc=0.806",
+   "equals": 1
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "the plasmid arm is higher, 0.806 against 0.736",
+  "test": {
+   "kind": "count",
+   "file": "weft-threads-recheck-2026-11-15/prs/out/e11_ctrl.out",
+   "pattern": "readout_only(no delta, A-probe fit)        acc=0.736",
+   "equals": 1
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "**93 findings** about records, pull requests and programs",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {},
+   "equals": 93
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "41 are from the Review column of the experiments index",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {
+    "src": "index"
+   },
+   "equals": 41
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "52 are from today's reruns",
+  "test": {
+   "kind": "line",
+   "file": "weft-threads-recheck-2026-11-15/meta/classify.out",
+   "contains": "findings in findings.json: 93"
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "| sentence | a sentence disagrees with the committed data or code | 22 |",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {
+    "kind": "sentence"
+   },
+   "equals": 22
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "| control | the favoured method gets information or tuning the comparison lacks | 14 |",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {
+    "kind": "control"
+   },
+   "equals": 14
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "| missing | no committed output, code that does not run, or a test never made | 13 |",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {
+    "kind": "missing"
+   },
+   "equals": 13
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "| program | a defect in a program or instrument | 12 |",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {
+    "kind": "program"
+   },
+   "equals": 12
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "| scope | a proof, certificate or checker covers less than the sentence that cites it | 11 |",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {
+    "kind": "scope"
+   },
+   "equals": 11
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "| order | the plan or pass bar was not shown to precede the data | 9 |",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {
+    "kind": "order"
+   },
+   "equals": 9
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "| packaging | a file, command or process step is wrong or absent | 8 |",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {
+    "kind": "packaging"
+   },
+   "equals": 8
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "| host | the result changes with the machine | 4 |",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {
+    "kind": "host"
+   },
+   "equals": 4
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "Of the 93 findings, 12 are program defects. The other 81",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {
+    "kind": "program"
+   },
+   "equals": 12
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "**70 of them claim more than the evidence.**",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {
+    "dir": "over"
+   },
+   "equals": 70
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "71 findings have a direction",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {
+    "dir": "under"
+   },
+   "equals": 1
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "Of their 35 problem sentences, 27 have a direction",
+  "test": {
+   "kind": "line",
+   "file": "weft-threads-recheck-2026-11-15/meta/classify.out",
+   "contains": "direction of the 35 problem sentences: less 20, more 7, neither 8"
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "Fourteen findings are of the control kind",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {
+    "kind": "control"
+   },
+   "equals": 14
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "Eleven findings are of the scope kind",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {
+    "kind": "scope"
+   },
+   "equals": 11
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "**154 sentences** of the weft README and Papers 0 to 2",
+  "test": {
+   "kind": "tsvcount",
+   "file": "weft-threads-recheck-2026-11-15/runtime/rows.tsv",
+   "where": {},
+   "equals": 154
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "**20 claim less than the code now does**",
+  "test": {
+   "kind": "tsvcount",
+   "file": "weft-threads-recheck-2026-11-15/runtime/rows.tsv",
+   "where": {
+    "verdict": "X",
+    "direction": "less"
+   },
+   "equals": 20
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "The numbers in 68 sentences are regenerated by the paper checks that CI runs",
+  "test": {
+   "kind": "tsvcount",
+   "file": "weft-threads-recheck-2026-11-15/runtime/rows.tsv",
+   "where": {
+    "verdict": "CI"
+   },
+   "equals": 68
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "The other 86 sentences have no such tie",
+  "test": {
+   "kind": "tsvcount",
+   "file": "weft-threads-recheck-2026-11-15/runtime/rows.tsv",
+   "where": {
+    "verdict": "M"
+   },
+   "equals": 51
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "**35 of them were wrong or unsupported**",
+  "test": {
+   "kind": "tsvcount",
+   "file": "weft-threads-recheck-2026-11-15/runtime/rows.tsv",
+   "where": {
+    "verdict": "X"
+   },
+   "equals": 30
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "**35 of them were wrong or unsupported**",
+  "test": {
+   "kind": "tsvcount",
+   "file": "weft-threads-recheck-2026-11-15/runtime/rows.tsv",
+   "where": {
+    "verdict": "N"
+   },
+   "equals": 5
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "Of 14 such rows, 10 are now stale or false.",
+  "test": {
+   "kind": "tsvcount",
+   "file": "weft-threads-recheck-2026-11-15/runtime/register_check.tsv",
+   "where": {},
+   "equals": 14
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "Of 14 such rows, 10 are now stale or false.",
+  "test": {
+   "kind": "tsvcount",
+   "file": "weft-threads-recheck-2026-11-15/runtime/register_check.tsv",
+   "where": {
+    "verdict": "stale"
+   },
+   "equals": 6
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/review-meta.md",
+  "text": "Of 14 such rows, 10 are now stale or false.",
+  "test": {
+   "kind": "tsvcount",
+   "file": "weft-threads-recheck-2026-11-15/runtime/register_check.tsv",
+   "where": {
+    "verdict": "false"
+   },
+   "equals": 4
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| The record's packet, spliced into dormant units | 13 of 20 |",
+  "test": {
+   "kind": "count",
+   "file": "weft-threads-recheck-2026-11-15/tf/seeds_agg.out",
+   "pattern": "pres_true_dorm              13/20 [0.408,0.846]",
+   "equals": 1
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| The same packet as an outside adapter | 17 of 20 |",
+  "test": {
+   "kind": "count",
+   "file": "weft-threads-recheck-2026-11-15/tf/seeds_agg.out",
+   "pattern": "pres_true_ext               17/20",
+   "equals": 2
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| A packet trained on a donor's outputs with no true labels, spliced | 17 of 20 |",
+  "test": {
+   "kind": "count",
+   "file": "weft-threads-recheck-2026-11-15/tf/seeds_agg.out",
+   "pattern": "pres_donor_dorm             17/20",
+   "equals": 2
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| The record's packet in random units | 12 of 20 |",
+  "test": {
+   "kind": "count",
+   "file": "weft-threads-recheck-2026-11-15/tf/seeds_agg.out",
+   "pattern": "pres_true_rand              12/20",
+   "equals": 2
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| A packet trained without the term that preserves native skills | 0 of 20 |",
+  "test": {
+   "kind": "count",
+   "file": "weft-threads-recheck-2026-11-15/tf/seeds_agg.out",
+   "pattern": "plain_true_dorm              0/20",
+   "equals": 4
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "| An outside router that switches on the task token | 20 of 20 |",
+  "test": {
+   "kind": "count",
+   "file": "weft-threads-recheck-2026-11-15/tf/seeds_agg.out",
+   "pattern": "router                      20/20",
+   "equals": 4
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "rejects all 20 splices at radius 10 and accepts all 20 at radius 120",
+  "test": {
+   "kind": "count",
+   "file": "weft-threads-recheck-2026-11-15/tf/seeds_agg.out",
+   "pattern": "16.45  0/20 20/20",
+   "equals": 2
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "reaches a reversal accuracy of 1.0 on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/step5_a.json",
+   "path": [
+    0,
+    "variants",
+    "mlp@rev",
+    "final",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "reaches a reversal accuracy of 1.0 on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/step5_a.json",
+   "path": [
+    1,
+    "variants",
+    "mlp@rev",
+    "final",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "reaches a reversal accuracy of 1.0 on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/step5_a.json",
+   "path": [
+    2,
+    "variants",
+    "mlp@rev",
+    "final",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "reaches a reversal accuracy of 1.0 on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/step5_a.json",
+   "path": [
+    3,
+    "variants",
+    "mlp@rev",
+    "final",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "reaches a reversal accuracy of 1.0 on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/step5_b.json",
+   "path": [
+    0,
+    "variants",
+    "mlp@rev",
+    "final",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "reaches a reversal accuracy of 1.0 on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/step5_b.json",
+   "path": [
+    1,
+    "variants",
+    "mlp@rev",
+    "final",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "reaches a reversal accuracy of 1.0 on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/step5_b.json",
+   "path": [
+    2,
+    "variants",
+    "mlp@rev",
+    "final",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "reaches a reversal accuracy of 1.0 on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/step5_b.json",
+   "path": [
+    3,
+    "variants",
+    "mlp@rev",
+    "final",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "it learns the reversal on 5 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/partB_summary.json",
+   "path": [
+    "variants",
+    "rep_L2",
+    "success"
+   ],
+   "equals": 5
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "on 4 of 8 in the second layer and 3 of 8 in the first",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/partB_summary.json",
+   "path": [
+    "variants",
+    "add_L2",
+    "success"
+   ],
+   "equals": 4
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "on 4 of 8 in the second layer and 3 of 8 in the first",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/partB_summary.json",
+   "path": [
+    "variants",
+    "add_L1",
+    "success"
+   ],
+   "equals": 3
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "A packet of 16,576 weights at the first layer's position-wise block does it on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/partB_summary.json",
+   "path": [
+    "controls",
+    "ctl_mlp_only_r64_blk1",
+    "3",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "A packet of 16,576 weights at the first layer's position-wise block does it on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/partB_summary.json",
+   "path": [
+    "controls",
+    "ctl_mlp_only_r64_blk1",
+    "4",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "A packet of 16,576 weights at the first layer's position-wise block does it on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/partB_summary.json",
+   "path": [
+    "controls",
+    "ctl_mlp_only_r64_blk1",
+    "5",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "A packet of 16,576 weights at the first layer's position-wise block does it on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/partB_summary.json",
+   "path": [
+    "controls",
+    "ctl_mlp_only_r64_blk1",
+    "6",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "A packet of 16,576 weights at the first layer's position-wise block does it on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/partB_summary.json",
+   "path": [
+    "controls",
+    "ctl_mlp_only_r64_blk1",
+    "7",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "A packet of 16,576 weights at the first layer's position-wise block does it on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/partB_summary.json",
+   "path": [
+    "controls",
+    "ctl_mlp_only_r64_blk1",
+    "8",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "A packet of 16,576 weights at the first layer's position-wise block does it on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/partB_summary.json",
+   "path": [
+    "controls",
+    "ctl_mlp_only_r64_blk1",
+    "9",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "A packet of 16,576 weights at the first layer's position-wise block does it on 8 of 8 seeds",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/partB_summary.json",
+   "path": [
+    "controls",
+    "ctl_mlp_only_r64_blk1",
+    "10",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H1a The worst direction",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "counts",
+    "H1a_top_over_rand_ge_10"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H1a The worst direction",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "counts",
+    "H1a_top_over_rand_ge_10"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H1b The permutation",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "counts",
+    "H1b_perm_far_and_silent"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H1b The permutation",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "counts",
+    "H1b_perm_far_and_silent"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H2a The first-order",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "counts",
+    "H2a_fisher_within_1p1_on_fit_probes"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H2a The first-order",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "counts",
+    "H2a_fisher_within_1p1_on_fit_probes"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H2b It matches",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "counts",
+    "H2b_fisher_within_1p25_on_held"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H2b It matches",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "counts",
+    "H2b_fisher_within_1p25_on_held"
+   ],
+   "equals": 10
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H3a It is blind",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "counts",
+    "H3a_fisher_blind_to_null_moves"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H3a It is blind",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "counts",
+    "H3a_fisher_blind_to_null_moves"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H3b It is off",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "counts",
+    "H3b_fisher_off_by_3_on_a_natural_move"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H3b It is off",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "counts",
+    "H3b_fisher_off_by_3_on_a_natural_move"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H4 Change on the probes",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "counts",
+    "H4_probe_within_1p25_on_held"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H4 Change on the probes",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "counts",
+    "H4_probe_within_1p25_on_held"
+   ],
+   "equals": 9
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H5a A proposer",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "counts",
+    "H5a_blind_adversary_ratio_ge_10"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H5a A proposer",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "counts",
+    "H5a_blind_adversary_ratio_ge_10"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H6a The adversary",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "counts",
+    "H6a_adv_breaks_10x_before_rand"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H6a The adversary",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "counts",
+    "H6a_adv_breaks_10x_before_rand"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H6b One optimiser",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "counts",
+    "H6b_one_step_ge_r_break_adv"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H6b One optimiser",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "counts",
+    "H6b_one_step_ge_r_break_adv"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H5b That proposer",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "counts",
+    "H5b_blind_adversary_breaks_bar_under_graft_level"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H6c The benign graft",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "counts",
+    "H6c_graft_passes_at_r_ge_20"
+   ],
+   "equals": 11
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H6d A random move",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "counts",
+    "H6d_rand_breaks_inside_shipped_radius"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| H7 The certified radius",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "counts",
+    "H7_cert_le_attack"
+   ],
+   "equals": 12
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "Every miss comes from one class of move on hosts 4, 5 and 7",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "H4_failing_seeds"
+   ],
+   "equals": [
+    4,
+    5,
+    7
+   ]
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "between 0.746 and 1.71 times the change on the probes",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "H4_held_over_probe_range"
+   ],
+   "equals": [
+    0.7461,
+    1.71
+   ]
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "it stayed between 0.856 and 1.197 on all 12 hosts",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "held_over_probe_range_without_adv"
+   ],
+   "equals": [
+    0.8557,
+    1.197
+   ]
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The native outputs have an RMS of 2.52",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "output_rms_median"
+   ],
+   "equals": 2.52
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Adversary inside the ball | 0.0149 | 0.3 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "safe_size_tau",
+    "adv",
+    "median"
+   ],
+   "equals": 0.0149
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Adversary inside the ball | 0.0149 | 0.3 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "breaking_radius",
+    "adv",
+    "median"
+   ],
+   "equals": 0.3,
+   "round": 3
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Gradient step on native data | 0.0258 | 0.3 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "safe_size_tau",
+    "grad_native",
+    "median"
+   ],
+   "equals": 0.0258
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Gradient step on native data | 0.0258 | 0.3 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "breaking_radius",
+    "grad_native",
+    "median"
+   ],
+   "equals": 0.3,
+   "round": 3
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Gradient step on the novel skill | 0.0411 | 0.3 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "safe_size_tau",
+    "grad_novel",
+    "median"
+   ],
+   "equals": 0.0411
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Gradient step on the novel skill | 0.0411 | 0.3 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "breaking_radius",
+    "grad_novel",
+    "median"
+   ],
+   "equals": 0.3,
+   "round": 3
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Readout flip direction | 0.0802 | 1 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "safe_size_tau",
+    "flip",
+    "median"
+   ],
+   "equals": 0.0802
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Readout flip direction | 0.0802 | 1 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "breaking_radius",
+    "flip",
+    "median"
+   ],
+   "equals": 1.0,
+   "round": 3
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Random direction | 0.339 | 3 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "safe_size_tau",
+    "rand",
+    "median"
+   ],
+   "equals": 0.339
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Random direction | 0.339 | 3 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "breaking_radius",
+    "rand",
+    "median"
+   ],
+   "equals": 3.0,
+   "round": 3
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Inside the null space of the probes | 1.84 | 10 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "safe_size_tau",
+    "null",
+    "median"
+   ],
+   "equals": 1.84
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Inside the null space of the probes | 1.84 | 10 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "breaking_radius",
+    "null",
+    "median"
+   ],
+   "equals": 10.0,
+   "round": 3
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Confined to the least used units | 1.29 | 10 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "safe_size_tau",
+    "dormant",
+    "median"
+   ],
+   "equals": 1.29
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Confined to the least used units | 1.29 | 10 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "breaking_radius",
+    "dormant",
+    "median"
+   ],
+   "equals": 10.0,
+   "round": 3
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| One optimiser step on the novel skill | 1.01 | 0.463 | 0.0593 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "one_step",
+    "r"
+   ],
+   "equals": 1.01
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| One optimiser step on the novel skill | 1.01 | 0.463 | 0.0593 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "one_step",
+    "held"
+   ],
+   "equals": 0.463
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| One optimiser step on the novel skill | 1.01 | 0.463 | 0.0593 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "one_step",
+    "drop"
+   ],
+   "equals": 0.0593
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Joint training on native and novel skills | 8.74 | 0.266 | 0.0016 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "finetune_joint",
+    "r"
+   ],
+   "equals": 8.74
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Joint training on native and novel skills | 8.74 | 0.266 | 0.0016 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "finetune_joint",
+    "held"
+   ],
+   "equals": 0.266
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Joint training on native and novel skills | 8.74 | 0.266 | 0.0016 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "finetune_joint",
+    "drop"
+   ],
+   "equals": 0.0016
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Benign E13 graft | 28.1 | 0.21 | 0.017 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "graft",
+    "r"
+   ],
+   "equals": 28.1
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Benign E13 graft | 28.1 | 0.21 | 0.017 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "graft",
+    "held"
+   ],
+   "equals": 0.21
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Benign E13 graft | 28.1 | 0.21 | 0.017 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "graft",
+    "drop"
+   ],
+   "equals": 0.017
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Readout flip | 6.6 | 4.17 | 3.63 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "flip",
+    "r"
+   ],
+   "equals": 6.6
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Readout flip | 6.6 | 4.17 | 3.63 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "flip",
+    "held"
+   ],
+   "equals": 4.17
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Readout flip | 6.6 | 4.17 | 3.63 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "flip",
+    "drop"
+   ],
+   "equals": 3.63
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Hidden-unit permutation | 29.2 | 0 to rounding | 0 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "perm",
+    "r"
+   ],
+   "equals": 29.2
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The worst direction changes outputs 3.36 per unit of distance, a random one 0.13",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "sqrt_lam_max_median"
+   ],
+   "equals": 3.36
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The worst direction changes outputs 3.36 per unit of distance, a random one 0.13",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "rand_change_per_unit_median"
+   ],
+   "equals": 0.13
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The ratio at radius 0.1 is 25.3 in the median, and between 22.3 and 30.6 on every host",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "top_over_rand_median"
+   ],
+   "equals": 25.3
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The ratio at radius 0.1 is 25.3 in the median, and between 22.3 and 30.6 on every host",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "top_over_rand_range"
+   ],
+   "equals": [
+    22.3,
+    30.6
+   ]
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The ball is the wrong shape by a factor of about 24",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "anisotropy_median"
+   ],
+   "equals": 24.4
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The adversary breaks the retention bar at 0.1 to 0.3",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "r_break_adv_values"
+   ],
+   "equals": [
+    0.1,
+    0.3
+   ]
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "admits random moves that break the bar at 3",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "r_break_rand_values"
+   ],
+   "equals": [
+    3.0
+   ]
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "It certifies a radius of 0.00298 for a change of 0.05, where the first-order estimate is 0.0149 and a search first reaches 0.05 at 0.03",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "cert_radius_median"
+   ],
+   "equals": 0.00298
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "It certifies a radius of 0.00298 for a change of 0.05, where the first-order estimate is 0.0149 and a search first reaches 0.05 at 0.03",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "first_order_radius_median"
+   ],
+   "equals": 0.0149
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "It certifies a radius of 0.00298 for a change of 0.05, where the first-order estimate is 0.0149 and a search first reaches 0.05 at 0.03",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "attack_radius_values"
+   ],
+   "equals": [
+    0.03
+   ]
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "about five times too strict",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "first_order_over_cert_median"
+   ],
+   "equals": 5.15
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "Within 0.94 to 1.08 of the truth for local moves",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "H2_held_over_fisher_range"
+   ],
+   "equals": [
+    0.9389,
+    1.082
+   ]
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "Predicts 7.31 for the permutation",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "perm",
+    "fisher"
+   ],
+   "equals": 7.31
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "and 1 for the graft, whose true change is 0.21",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "graft",
+    "fisher"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "Within 0.93 to 1.08 of the truth for every move made without sight of the probes",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "H4_held_over_probe_range"
+   ],
+   "equals": [
+    0.9326,
+    1.082
+   ]
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "23.2 times the change on the probes in the median, and at least 14.7 times on every host",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "H5_blind_ratio_median"
+   ],
+   "equals": 23.2
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "23.2 times the change on the probes in the median, and at least 14.7 times on every host",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "H5_blind_ratio_range",
+    0
+   ],
+   "equals": 14.7
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "drops native R2 by 0.149 in the median",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "H5b_drop_median"
+   ],
+   "equals": 0.149
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The centred logits have an RMS of 4.02",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "output_rms_median"
+   ],
+   "equals": 4.02
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Adversary inside the ball | 0.00234 | 0.1 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "safe_size_tau",
+    "adv",
+    "median"
+   ],
+   "equals": 0.00234
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Gradient step on native data | 0.00421 | 0.2 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "safe_size_tau",
+    "grad_native",
+    "median"
+   ],
+   "equals": 0.00421
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Gradient step on the novel skill | 0.0061 | 0.3 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "safe_size_tau",
+    "grad_novel",
+    "median"
+   ],
+   "equals": 0.0061
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Random direction | 0.0592 | 3 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "safe_size_tau",
+    "rand",
+    "median"
+   ],
+   "equals": 0.0592
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Readout flip direction | 0.0928 | never broken on the grid |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "safe_size_tau",
+    "flip",
+    "median"
+   ],
+   "equals": 0.0928
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Inside the null space of the probes | 0.149 | never broken on the grid |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "safe_size_tau",
+    "null",
+    "median"
+   ],
+   "equals": 0.149
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| One optimiser step on the novel skill | 0.137 | 0.641 | 0 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "natural_moves",
+    "one_step",
+    "held"
+   ],
+   "equals": 0.641
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Joint training on native and novel skills | 6.66 | 2.92 | 0 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "natural_moves",
+    "finetune_joint",
+    "held"
+   ],
+   "equals": 2.92
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| Hidden-unit permutation | 17.1 | 0 to rounding | 0 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "natural_moves",
+    "perm",
+    "r"
+   ],
+   "equals": 17.1
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The worst direction changes the logits 28.3 per unit of distance, a random one 0.783, a ratio of 37.4",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "sqrt_lam_max_median"
+   ],
+   "equals": 28.3
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The worst direction changes the logits 28.3 per unit of distance, a random one 0.783, a ratio of 37.4",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "rand_change_per_unit_median"
+   ],
+   "equals": 0.783
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The worst direction changes the logits 28.3 per unit of distance, a random one 0.783, a ratio of 37.4",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "anisotropy_median"
+   ],
+   "equals": 37.4
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The adversary breaks the accuracy bar at 0.1 on every host, and one optimiser step is 0.137 long",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "r_break_adv_values"
+   ],
+   "equals": [
+    0.1
+   ]
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The adversary breaks the accuracy bar at 0.1 on every host, and one optimiser step is 0.137 long",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "one_step_r_median"
+   ],
+   "equals": 0.137
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "459 times the change on the probes in the median, and at least 50.3 times on every host",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "H5_blind_ratio_median"
+   ],
+   "equals": 459.0
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "459 times the change on the probes in the median, and at least 50.3 times on every host",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "H5_blind_ratio_range",
+    0
+   ],
+   "equals": 50.3
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 16 | 12,360 | 0.551 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/null_law.json",
+   "path": [
+    "table",
+    0,
+    "leak_over_rand_median"
+   ],
+   "equals": 0.551
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 16 | 12,360 | 0.551 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/null_law.json",
+   "path": [
+    "table",
+    0,
+    "nullity_median"
+   ],
+   "equals": 12360.0
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 32 | 12,232 | 0.45 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/null_law.json",
+   "path": [
+    "table",
+    1,
+    "leak_over_rand_median"
+   ],
+   "equals": 0.45
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 32 | 12,232 | 0.45 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/null_law.json",
+   "path": [
+    "table",
+    1,
+    "nullity_median"
+   ],
+   "equals": 12232.0
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 64 | 11,976 | 0.349 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/null_law.json",
+   "path": [
+    "table",
+    2,
+    "leak_over_rand_median"
+   ],
+   "equals": 0.349
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 64 | 11,976 | 0.349 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/null_law.json",
+   "path": [
+    "table",
+    2,
+    "nullity_median"
+   ],
+   "equals": 11976.0
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 128 | 11,464 | 0.268 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/null_law.json",
+   "path": [
+    "table",
+    3,
+    "leak_over_rand_median"
+   ],
+   "equals": 0.268
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 128 | 11,464 | 0.268 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/null_law.json",
+   "path": [
+    "table",
+    3,
+    "nullity_median"
+   ],
+   "equals": 11464.0
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 256 | 10,440 | 0.188 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/null_law.json",
+   "path": [
+    "table",
+    4,
+    "leak_over_rand_median"
+   ],
+   "equals": 0.188
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 256 | 10,440 | 0.188 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/null_law.json",
+   "path": [
+    "table",
+    4,
+    "nullity_median"
+   ],
+   "equals": 10440.0
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 512 | 8,392 | 0.124 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/null_law.json",
+   "path": [
+    "table",
+    5,
+    "leak_over_rand_median"
+   ],
+   "equals": 0.124
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 512 | 8,392 | 0.124 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/null_law.json",
+   "path": [
+    "table",
+    5,
+    "nullity_median"
+   ],
+   "equals": 8392.0
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The cell's output RMS is 0.199. The worst move changes it by 0.0783 per unit of distance, a random move by 0.0154.",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/plasm_radius.json",
+   "path": [
+    "output_rms"
+   ],
+   "equals": 0.199,
+   "sig": 3
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The cell's output RMS is 0.199. The worst move changes it by 0.0783 per unit of distance, a random move by 0.0154.",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/plasm_radius.json",
+   "path": [
+    "worst_rms_change_per_unit_distance"
+   ],
+   "equals": 0.0783,
+   "sig": 3
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "The cell's output RMS is 0.199. The worst move changes it by 0.0783 per unit of distance, a random move by 0.0154.",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/plasm_radius.json",
+   "path": [
+    "typical_rms_change_per_unit_distance"
+   ],
+   "equals": 0.0154,
+   "sig": 3
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "At the shipped radius of 120 the worst case is 47 times the cell's own output.",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/plasm_radius.json",
+   "path": [
+    "worst_change_at_shipped_radius_over_output_rms"
+   ],
+   "equals": 47.0,
+   "round": 0
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "the worst case is 18 percent of the output",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/plasm_radius.json",
+   "path": [
+    "worst_change_at_paper1_drift_over_output_rms"
+   ],
+   "equals": 0.18,
+   "round": 2
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "A radius of 0.127 keeps the worst case under 5 percent of the output, and 0.0254 keeps it under 1 percent.",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/plasm_radius.json",
+   "path": [
+    "radius_for_5_percent_of_output"
+   ],
+   "equals": 0.127,
+   "sig": 3
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "A radius of 0.127 keeps the worst case under 5 percent of the output, and 0.0254 keeps it under 1 percent.",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/plasm_radius.json",
+   "path": [
+    "radius_for_1_percent_of_output"
+   ],
+   "equals": 0.0254,
+   "sig": 3
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 4 | 0.65 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/probe_count_tf.json",
+   "path": [
+    "hosts",
+    0,
+    "top5_percent_share_of_squared_change"
+   ],
+   "equals": 0.65,
+   "round": 2
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 5 | 0.88 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/probe_count_tf.json",
+   "path": [
+    "hosts",
+    1,
+    "top5_percent_share_of_squared_change"
+   ],
+   "equals": 0.88,
+   "round": 2
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 7 | 0.56 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/probe_count_tf.json",
+   "path": [
+    "hosts",
+    2,
+    "top5_percent_share_of_squared_change"
+   ],
+   "equals": 0.56,
+   "round": 2
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 0 | 0.36 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/probe_count_tf.json",
+   "path": [
+    "hosts",
+    3,
+    "top5_percent_share_of_squared_change"
+   ],
+   "equals": 0.36,
+   "round": 2
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 1 | 0.43 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/probe_count_tf.json",
+   "path": [
+    "hosts",
+    4,
+    "top5_percent_share_of_squared_change"
+   ],
+   "equals": 0.43,
+   "round": 2
+  }
+ },
+ {
+  "note": "gate-metric-calibration-2026-11-15/README.md",
+  "text": "| 2 | 0.50 |",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/probe_count_tf.json",
+   "path": [
+    "hosts",
+    5,
+    "top5_percent_share_of_squared_change"
+   ],
+   "equals": 0.5,
+   "round": 2
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "The lead re-ran the frozen-attention test on two seeds the worker did not use. Both reached a reversal accuracy of 1.0.",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/step5_lead_seeds_11_12.json",
+   "path": [
+    0,
+    "variants",
+    "mlp@rev",
+    "final",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/README.md",
+  "text": "The lead re-ran the frozen-attention test on two seeds the worker did not use. Both reached a reversal accuracy of 1.0.",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/step5_lead_seeds_11_12.json",
+   "path": [
+    1,
+    "variants",
+    "mlp@rev",
+    "final",
+    "3"
+   ],
+   "equals": 1.0
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "chose the cheapest model at their first act in 26 of 32 cases",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "claim_a",
+    "sp3",
+    "shown"
+   ],
+   "equals": [
+    26,
+    32
+   ]
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "stayed on the default in 32 of 32",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "claim_a",
+    "sp3",
+    "hidden"
+   ],
+   "equals": [
+    0,
+    32
+   ]
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "which has an exact probability of 0.000155 by chance",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "claim_a",
+    "sp3",
+    "runlevel_p_8v8"
+   ],
+   "equals": 0.000155,
+   "sig": 3
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "Hidden prices cost between 2.0 and 2.9 times the energy under every treatment of truncated runs",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "claim_b",
+    "trunc",
+    "150",
+    "ratio"
+   ],
+   "equals": 2.0,
+   "round": 1
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "Hidden prices cost between 2.0 and 2.9 times the energy under every treatment of truncated runs",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/colony/colony_results.json",
+   "path": [
+    "claim_b",
+    "trunc",
+    "km",
+    "ratio"
+   ],
+   "equals": 2.9,
+   "round": 1
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "about 24 times more than a random one of the same length on the MLP, and about 37 times on the transformer",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "anisotropy_median"
+   ],
+   "equals": 24.4
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "about 24 times more than a random one of the same length on the MLP, and about 37 times on the transformer",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "anisotropy_median"
+   ],
+   "equals": 37.4
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "the adversary breaks the retention bar at a distance of 0.1 to 0.3, and one optimiser step is 1.01 long",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "r_break_adv_values"
+   ],
+   "equals": [
+    0.1,
+    0.3
+   ]
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "the adversary breaks the retention bar at a distance of 0.1 to 0.3, and one optimiser step is 1.01 long",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "one_step_r_median"
+   ],
+   "equals": 1.01
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "The benign graft travels 28 times farther than that step",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "natural_moves",
+    "graft",
+    "r"
+   ],
+   "equals": 28.1
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "predicts held-out change within 0.93 to 1.08",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "H4_held_over_probe_range"
+   ],
+   "equals": [
+    0.9326,
+    1.082
+   ]
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "it is off by a median factor of 23",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results.summary.json",
+   "path": [
+    "H5_blind_ratio_median"
+   ],
+   "equals": 23.2
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "On the transformer eight of ten were, and two were not",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "counts",
+    "H4_probe_within_1p25_on_held"
+   ],
+   "equals": 9
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "On the transformer eight of ten were, and two were not",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/results_tf.summary.json",
+   "path": [
+    "counts",
+    "H2b_fisher_within_1p25_on_held"
+   ],
+   "equals": 10
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "A radius of 0.127 keeps the worst case under 5 percent of the cell's output. The shipped 120 allows 47 times the output.",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/plasm_radius.json",
+   "path": [
+    "radius_for_5_percent_of_output"
+   ],
+   "equals": 0.127,
+   "sig": 3
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "In the weft README and Papers 0 to 2, the numbers in 68 sentences are regenerated by CI. None was wrong. Of the other 86 sentences, 35 were wrong or unsupported.",
+  "test": {
+   "kind": "tsvcount",
+   "file": "weft-threads-recheck-2026-11-15/runtime/rows.tsv",
+   "where": {
+    "verdict": "CI"
+   },
+   "equals": 68
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "Across 93 review findings on records and pull requests, 70 of the 71 with a direction claim more than the evidence.",
+  "test": {
+   "kind": "jsoncount",
+   "file": "weft-threads-recheck-2026-11-15/meta/findings.json",
+   "path": [
+    "findings"
+   ],
+   "where": {
+    "dir": "over"
+   },
+   "equals": 70
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "20 of 27 claim less than the code now does",
+  "test": {
+   "kind": "tsvcount",
+   "file": "weft-threads-recheck-2026-11-15/runtime/rows.tsv",
+   "where": {
+    "verdict": "X",
+    "direction": "less"
+   },
+   "equals": 20
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "48 new host and donor pairs in 48 new task worlds gave 47 passes of the joint bar",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "benign",
+    "gt_fail_joint"
+   ],
+   "equals": 1
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "It admitted 48 of 48 benign grafts and none of 144 from the old harm classes. It also admitted 48 of 48 grafts carrying a trigger",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/admission/admission_oos.json",
+   "path": [
+    "class_table",
+    "trigger_post",
+    "admitted"
+   ],
+   "equals": 48
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "passes 13 of 20 fresh ones",
+  "test": {
+   "kind": "count",
+   "file": "weft-threads-recheck-2026-11-15/tf/seeds_agg.out",
+   "pattern": "pres_true_dorm              13/20 [0.408,0.846]",
+   "equals": 1
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "An attention graft of one head, built as the record proposed, works on 5 of 8 seeds at best.",
+  "test": {
+   "kind": "json",
+   "file": "weft-threads-recheck-2026-11-15/tf/partB_summary.json",
+   "path": [
+    "variants",
+    "rep_L2",
+    "success"
+   ],
+   "equals": 5
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "still moves held-out inputs by 0.188 of what a random edit of the same length does. With 16 keep inputs the share is 0.551, and with 512 it is 0.124",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/null_law.json",
+   "path": [
+    "table",
+    4,
+    "leak_over_rand_median"
+   ],
+   "equals": 0.188
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "still moves held-out inputs by 0.188 of what a random edit of the same length does. With 16 keep inputs the share is 0.551, and with 512 it is 0.124",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/null_law.json",
+   "path": [
+    "table",
+    0,
+    "leak_over_rand_median"
+   ],
+   "equals": 0.551
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "still moves held-out inputs by 0.188 of what a random edit of the same length does. With 16 keep inputs the share is 0.551, and with 512 it is 0.124",
+  "test": {
+   "kind": "json",
+   "file": "gate-metric-calibration-2026-11-15/null_law.json",
+   "path": [
+    "table",
+    5,
+    "leak_over_rand_median"
+   ],
+   "equals": 0.124
+  }
+ },
+ {
+  "note": "weft-threads-recheck-2026-11-15/EVALUATION.md",
+  "text": "Register: 10 of 14 verified rows stale or false.",
+  "test": {
+   "kind": "tsvcount",
+   "file": "weft-threads-recheck-2026-11-15/runtime/register_check.tsv",
+   "where": {
+    "verdict": "stale"
+   },
+   "equals": 6
+  }
+ }
+]

@@ -1,0 +1,28 @@
+01 rc=0 t=0s :: <work>/venv/bin/python -m unittest discover -s scripts -p test_check_lanes.py
+02 rc=0 t=0s :: <work>/venv/bin/python scripts/check_lanes.py
+03 rc=0 t=0s :: <work>/venv/bin/python -m unittest discover -s tools -p test_*.py -v
+04 rc=0 t=3s :: <work>/venv/bin/python -m unittest discover -s weft/runtime/invariants -p test_*.py
+05 rc=1 t=12s :: <work>/venv/bin/python -m unittest discover -s weft/runtime/plasm -p test_*.py
+06 rc=0 t=2s :: <work>/venv/bin/python -m unittest discover -s weft/runtime/ic -p test_*.py
+07 rc=0 t=1s :: <work>/venv/bin/python -m unittest discover -s weft/runtime/telemetry -p test_*.py
+08 rc=0 t=0s :: <work>/venv/bin/python -m unittest discover -s weft/runtime/gateway -p test_*.py
+09 rc=0 t=0s :: <work>/venv/bin/python -m unittest discover -s weft/runtime/aywa -p test_*.py
+10 rc=0 t=0s :: node --test weft/runtime/aywa/test_condense.mjs weft/runtime/aywa/test_condensed_papers.mjs weft/runtime/aywa/test_invariant_gate.mjs weft/runtime/aywa/test_sym2p_parse.mjs weft/runtime/aywa/test_weft_loom_pack.mjs
+11 rc=0 t=0s :: <work>/venv/bin/python weft/runtime/aywa/weft_daemon.py --self-test
+12 rc=0 t=0s :: <work>/venv/bin/python weft/runtime/aywa/site_selftest.py
+13 rc=0 t=1s :: <work>/venv/bin/python weft/runtime/core/selftest.py
+14 rc=0 t=0s :: <work>/venv/bin/python weft/runtime/mac/darwin_sysctl.py
+15 rc=0 t=1s :: <work>/venv/bin/python weft/runtime/mac/metal_loom.py
+16 rc=0 t=3s :: <work>/venv/bin/python -m unittest discover -s weft/runtime/mac -p test_*.py
+17 rc=0 t=5s :: <work>/venv/bin/python papers/01-models-as-cells/experiments.py --check
+18 rc=0 t=23s :: <work>/venv/bin/python papers/02-checkable-computation/experiments.py --check
+19 rc=1 t=0s :: <work>/venv/bin/python scripts/zenodo_metadata.py --check
+20 rc=1 t=0s :: <work>/venv/bin/python scripts/build_papers.py --check
+21 rc=0 t=0s :: <work>/venv/bin/python scripts/check_condensed.py
+22 rc=0 t=1s :: <work>/venv/bin/python -m unittest discover -s scripts -p test_build_siliconcordat_bundle.py
+23 rc=1 t=1s :: <work>/venv/bin/python scripts/build_siliconcordat_bundle.py
+24 rc=1 t=0s :: <work>/venv/bin/python scripts/verify_siliconcordat_bundle.py
+25 rc=0 t=0s :: node --test workers/test_siliconcordat.mjs
+26 rc=0 t=0s :: <work>/venv/bin/python -m unittest discover -s scripts -p test_check_links.py
+27 rc=0 t=0s :: <work>/venv/bin/python scripts/check_links.py
+DONE

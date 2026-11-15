@@ -1,0 +1,9 @@
+Control 1: a sentence is changed (26 of 32 becomes 27 of 32 in the README).
+FAIL  weft-threads-recheck-2026-11-15/README.md: "26 of 32 cells chose the cheapest model at their first act when "  ->  the text is no longer in the note
+FAIL  weft-threads-recheck-2026-11-15/README.md: "26 of 32 cells chose the cheapest model at their first act when "  ->  the text is no longer in the note
+FAIL  weft-threads-recheck-2026-11-15/README.md: "26 of 32 cells chose the cheapest model at their first act when "  ->  the text is no longer in the note
+256 of 259 claims hold
+
+Control 2: a data file is changed (the MLP count for H4 becomes 11 in results.summary.json).
+FAIL  gate-metric-calibration-2026-11-15/README.md: "| H4 Change on the probes"  ->  gate-metric-calibration-2026-11-15/results.summary.json gives 11, the note needs 12
+258 of 259 claims hold

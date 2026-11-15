@@ -1,0 +1,28 @@
+== prereg seeds, cross: new-task acc mean (and #seeds with all retention probes passing)
+  zero(B unchanged)                          acc=0.515  min=0.348 max=0.666  retention-all-probes 5/5
+  null_only                                  acc=0.523  min=0.430 max=0.631  retention-all-probes 5/5
+  plasmid                                    acc=0.727  min=0.582 max=0.781  retention-all-probes 5/5
+  readout_only(no delta, A-probe fit)        acc=0.707  min=0.564 max=0.820  retention-all-probes 5/5
+  supervised_linear_readout(true labels)     acc=0.883  min=0.842 max=0.916  retention-all-probes 5/5
+  J_keep: P=176 rank mean=159.0 nullity mean=17.0; fraction of null-projector trace on the new head coords (w2[3],b2[3])=1.000; ||null(delta)||/||delta|| mean=0.623
+== prereg seeds, perm: new-task acc mean (and #seeds with all retention probes passing)
+  zero(B unchanged)                          acc=0.503  min=0.467 max=0.602  retention-all-probes 5/5
+  null_only                                  acc=0.459  min=0.262 max=0.578  retention-all-probes 5/5
+  plasmid                                    acc=0.792  min=0.762 max=0.857  retention-all-probes 5/5
+  readout_only(no delta, A-probe fit)        acc=0.704  min=0.650 max=0.789  retention-all-probes 5/5
+  supervised_linear_readout(true labels)     acc=0.882  min=0.857 max=0.926  retention-all-probes 5/5
+  J_keep: P=176 rank mean=159.0 nullity mean=17.0; fraction of null-projector trace on the new head coords (w2[3],b2[3])=1.000; ||null(delta)||/||delta|| mean=0.623
+== 20 fresh seeds, cross: new-task acc mean (and #seeds with all retention probes passing)
+  zero(B unchanged)                          acc=0.487  min=0.305 max=0.896  retention-all-probes 20/20
+  null_only                                  acc=0.512  min=0.197 max=0.719  retention-all-probes 20/20
+  plasmid                                    acc=0.703  min=0.508 max=0.891  retention-all-probes 20/20
+  readout_only(no delta, A-probe fit)        acc=0.705  min=0.502 max=0.945  retention-all-probes 20/20
+  supervised_linear_readout(true labels)     acc=0.900  min=0.830 max=0.957  retention-all-probes 20/20
+  J_keep: P=176 rank mean=159.0 nullity mean=17.0; fraction of null-projector trace on the new head coords (w2[3],b2[3])=1.000; ||null(delta)||/||delta|| mean=0.640
+== 20 fresh seeds, perm: new-task acc mean (and #seeds with all retention probes passing)
+  zero(B unchanged)                          acc=0.527  min=0.412 max=0.646  retention-all-probes 20/20
+  null_only                                  acc=0.508  min=0.314 max=0.631  retention-all-probes 20/20
+  plasmid                                    acc=0.806  min=0.652 max=0.910  retention-all-probes 20/20
+  readout_only(no delta, A-probe fit)        acc=0.736  min=0.561 max=0.885  retention-all-probes 20/20
+  supervised_linear_readout(true labels)     acc=0.882  min=0.791 max=0.943  retention-all-probes 20/20
+  J_keep: P=176 rank mean=159.0 nullity mean=17.0; fraction of null-projector trace on the new head coords (w2[3],b2[3])=1.000; ||null(delta)||/||delta|| mean=0.640

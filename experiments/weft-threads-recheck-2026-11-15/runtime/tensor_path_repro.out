@@ -1,0 +1,4 @@
+cases with the exact distance above the radius: 199
+accepted by the tensor path: 199
+rejected by the list path: 199
+largest relative excess over the radius among the accepts: 1.026e-07

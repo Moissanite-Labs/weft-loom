@@ -1,0 +1,79 @@
+seed 0 benign_drift=0.04231 router_acc=0.603 router_pass=0
+seed 1 benign_drift=0.05103 router_acc=0.639 router_pass=0
+seed 2 benign_drift=0.05118 router_acc=0.623 router_pass=0
+seed 3 benign_drift=0.04591 router_acc=0.635 router_pass=0
+seed 4 benign_drift=0.04555 router_acc=0.620 router_pass=0
+seed 5 benign_drift=0.05072 router_acc=0.635 router_pass=0
+seed 6 benign_drift=0.04751 router_acc=0.642 router_pass=0
+seed 7 benign_drift=0.05222 router_acc=0.637 router_pass=0
+seed 8 benign_drift=0.05071 router_acc=0.649 router_pass=0
+seed 9 benign_drift=0.05121 router_acc=0.651 router_pass=0
+seed 10 benign_drift=0.05752 router_acc=0.620 router_pass=0
+seed 11 benign_drift=0.04623 router_acc=0.611 router_pass=0
+{
+ "B_frobenius": {
+  "benign_mean": 28.109,
+  "harm_mean": 51.722,
+  "auroc_harm_gt_benign": 0.8264,
+  "accept_at_R120": "47/48",
+  "accept_at_R10": "0/48"
+ },
+ "B_behavior_drift": {
+  "benign_mean": 0.04934,
+  "harm_mean": 0.54722,
+  "benign_max": 0.05752,
+  "harm_min": 0.04225,
+  "auroc_harm_gt_benign": 0.8171
+ },
+ "B_heldout_drift": {
+  "benign_mean": 0.29569,
+  "harm_mean": 2.82223,
+  "benign_max": 0.35561,
+  "harm_min": 0.2379,
+  "auroc_harm_gt_benign": 0.831,
+  "rule_at_benign_max_x1p5": {
+   "benign_accept": "12/12",
+   "harm_reject": "24/36"
+  }
+ },
+ "B_novel_consistency": {
+  "benign_mean": 0.0529,
+  "harm_mean": 9.60829,
+  "benign_max": 0.08512,
+  "harm_min": 0.02593,
+  "auroc_harm_gt_benign": 0.8241
+ },
+ "B_two_sided_rule": {
+  "native_thr": 0.53342,
+  "novel_thr": 0.12768,
+  "benign_accept": "12/12",
+  "harm_reject": "24/36"
+ },
+ "B_outcomes": {
+  "benign_pass": "12/12",
+  "harm_joint_pass_if_admitted": "0/36",
+  "harm_native_drop_mean": 3.0176
+ },
+ "C_router": {
+  "pass": "0/12",
+  "novel_mean": -0.0355,
+  "fit_acc_mean": 0.6304,
+  "per_seed": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ }
+}
+CLASS shuffled_readout heldout_drift rejected 0 /12 min 0.2379 max 0.3553 | keep-drift min 0.0423 | novel_consistency min 0.0259 | joint_pass_if_admitted 0 | native_drop mean 0.0123
+CLASS gate_moved heldout_drift rejected 12 /12 min 3.1426 max 12.5904 | keep-drift min 0.9221 | novel_consistency min 9.7949 | joint_pass_if_admitted 0 | native_drop mean 8.8061
+CLASS noise heldout_drift rejected 12 /12 min 0.8194 max 1.8907 | keep-drift min 0.1222 | novel_consistency min 1.6817 | joint_pass_if_admitted 0 | native_drop mean 0.2343

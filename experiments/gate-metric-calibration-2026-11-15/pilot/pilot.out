@@ -1,0 +1,22 @@
+seed 900: |w|=20.666 R2=0.9249 sqrt(lam_max)=3.486 anisotropy=24.5 r_break(adv)=0.3 cert_radius(0.05)=2.869e-03 [91s]
+seed 901: |w|=20.845 R2=0.8900 sqrt(lam_max)=3.292 anisotropy=23.7 r_break(adv)=0.1 cert_radius(0.05)=2.563e-03 [89s]
+{
+ "n_hosts": 2,
+ "r_loc": 0.1,
+ "r_blind": 1.0,
+ "H1a_top_over_rand_ge_10": 2,
+ "H1b_perm_far_and_silent": 2,
+ "H2a_fisher_within_1p1_on_fit_probes": 2,
+ "H2b_fisher_within_1p25_on_held": 2,
+ "H3a_fisher_blind_to_null_moves": 2,
+ "H3b_fisher_off_by_3_on_a_natural_move": 2,
+ "H4_probe_within_1p25_on_held": 2,
+ "H5a_blind_adversary_ratio_ge_10": 2,
+ "H5b_blind_adversary_breaks_bar_under_graft_level": 2,
+ "H6a_adv_breaks_10x_before_rand": 2,
+ "H6b_one_step_ge_r_break_adv": 2,
+ "H6c_graft_passes_at_r_ge_20": 2,
+ "H6d_rand_breaks_inside_shipped_radius": 2,
+ "H7_cert_le_attack": 2
+}
+wrote pilot.json

@@ -1,0 +1,4 @@
+list path, diff 1e160: (False, inf, 10.0, 'non_finite_weights')
+masked (scaled) path same input, mask=[0,0]: (True, 1e+160, 9.0, 'ok')
+f64 r just below dist 1-2^-40: (False, 1.0, 10.0, 'baseline_distance_exceeded')
+budget 1+2^-40 cost 1: (True, 0.1, 9.094947017729282e-13, 'ok')

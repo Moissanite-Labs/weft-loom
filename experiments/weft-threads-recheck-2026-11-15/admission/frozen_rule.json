@@ -1,0 +1,24 @@
+{
+ "rule": "admit iff held_out_native_drift <= thr_drift AND donor_agreement <= thr_agree (inclusive, as in the earlier code)",
+ "thr_drift": 0.533415,
+ "thr_drift_source": "1.5 x B_heldout_drift.benign_max (0.35561) in committed/intersections-results.json",
+ "thr_agree": 0.6693,
+ "thr_agree_source": "1.5 x benign_max (0.4462) in committed/donor-agreement-results.json",
+ "note_rounding": "benign maxima are the rounded committed values (5 and 4 decimals); the earlier code used unrounded values (native_thr committed as 0.53342)",
+ "drift_definition": "RMS(spliced_host(Xn) - host(Xn)), Xn=200 rows/skill x skills[0,1], shifted=True, 400 rows, not used in splice",
+ "agreement_definition": "RMS(packet(Xv) - donor(Xv)), Xv=250 rows skill 2, shifted=True, donor queried at admission only",
+ "committed_file_sha256": {
+  "committed/intersections-results.json": "4394aaeb67ca18069fd8592f8a9b561166ed0028afc8b3c918539fa9f5075b55",
+  "committed/donor-agreement-results.json": "47a6d90315115888443e0a33cb6bcbaa9fd6de7201d30e26cf2ca83fa826dfc9"
+ },
+ "code_sha256": {
+  "e13_lab.py": "9f2a1ade3d97a30787214f3daab3db339f1eb924aeddded9a6c5304adb70f06f",
+  "admission_oos.py": "4d0d31bbfbb8dc988cc5f5b8aa735887b4e18f61ab120f1ec5966c923eb00058"
+ },
+ "pass_bar": {
+  "retention": 0.025,
+  "novel_r2": 0.7
+ },
+ "trigger_harm_rms_threshold": 1.0,
+ "frozen_at_unix": 1794761017.7769852
+}

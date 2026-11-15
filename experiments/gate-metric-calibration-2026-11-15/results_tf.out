@@ -1,0 +1,33 @@
+seed 0: weights=18839 |w|=36.56 acc=1.000 sqrt(lam_max)=29.827 anisotropy=37.9 r_break(adv)=0.1 [298s]
+seed 1: weights=18839 |w|=35.88 acc=1.000 sqrt(lam_max)=32.775 anisotropy=38.8 r_break(adv)=0.1 [298s]
+seed 2: weights=18839 |w|=36.43 acc=1.000 sqrt(lam_max)=29.942 anisotropy=39.5 r_break(adv)=0.1 [435s]
+seed 3: weights=18839 |w|=35.18 acc=1.000 sqrt(lam_max)=23.996 anisotropy=32.7 r_break(adv)=0.1 [287s]
+seed 4: weights=18839 |w|=37.35 acc=1.000 sqrt(lam_max)=27.959 anisotropy=36.1 r_break(adv)=0.1 [277s]
+seed 5: weights=18839 |w|=37.26 acc=1.000 sqrt(lam_max)=24.533 anisotropy=32.8 r_break(adv)=0.1 [211s]
+seed 6: weights=18839 |w|=36.01 acc=1.000 sqrt(lam_max)=37.528 anisotropy=43.8 r_break(adv)=0.1 [173s]
+seed 7: weights=18839 |w|=36.55 acc=1.000 sqrt(lam_max)=28.656 anisotropy=37.6 r_break(adv)=0.1 [189s]
+seed 8: weights=18839 |w|=37.42 acc=1.000 sqrt(lam_max)=22.711 anisotropy=36.0 r_break(adv)=0.1 [179s]
+seed 9: weights=18839 |w|=37.08 acc=1.000 sqrt(lam_max)=26.559 anisotropy=37.2 r_break(adv)=0.1 [108s]
+seed 10: weights=18839 |w|=37.76 acc=1.000 sqrt(lam_max)=27.702 anisotropy=36.7 r_break(adv)=0.1 [108s]
+seed 11: weights=18839 |w|=37.00 acc=1.000 sqrt(lam_max)=30.954 anisotropy=39.4 r_break(adv)=0.1 [110s]
+{
+ "n_hosts": 12,
+ "r_loc": 0.001,
+ "r_blind": 0.01,
+ "H1a_top_over_rand_ge_10": 12,
+ "H1b_perm_far_and_silent": 12,
+ "H2a_fisher_within_1p1_on_fit_probes": 12,
+ "H2b_fisher_within_1p25_on_held": 10,
+ "H3a_fisher_blind_to_null_moves": 12,
+ "H3b_fisher_off_by_3_on_a_natural_move": 12,
+ "H4_probe_within_1p25_on_held": 9,
+ "H5a_blind_adversary_ratio_ge_10": 12,
+ "H5b_blind_adversary_breaks_bar_under_graft_level": null,
+ "H6a_adv_breaks_10x_before_rand": 12,
+ "H6b_one_step_ge_r_break_adv": 12,
+ "H6c_graft_passes_at_r_ge_20": null,
+ "H6d_rand_breaks_inside_shipped_radius": null,
+ "H7_cert_le_attack": null
+}
+wrote results_tf.json
+exit 0

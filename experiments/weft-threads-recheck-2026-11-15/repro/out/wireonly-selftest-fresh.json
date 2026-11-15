@@ -1,0 +1,283 @@
+{
+  "experiment": "E13_Gauge_Aligned_Geodesic_Neural_Plasmid_Splicing",
+  "n_seeds": 2,
+  "organism_architecture": "24 -> 96 (GELU) -> 96 (GELU) -> 8 (12,488 float32 parameters = 49,952 B)",
+  "plasmid_wire_bytes": 1456,
+  "wire_compression_ratio": 34.31,
+  "donor_reference_shifted_novel_r2_mean": 0.8618,
+  "falsifier_3_alignment": {
+    "unaligned_cross_seed_hidden_corr_median": 0.1678,
+    "whitened_procrustes_aligned_corr_median": 0.9422
+  },
+  "falsifier_2_nullity_at_160_anchors": {
+    "A1_exact_readout_nullity_mean": 0.0,
+    "A3_spectral_fisher_nullity_mean": 41.5,
+    "A3_spectral_fisher_nullity_definition": "M2 (96) minus the 99.5% energy rank of H2 on the A4 splice; the graft overwrites the lowest Fisher-score neurons"
+  },
+  "falsifier_1_curvature_retraction": {
+    "drift_rms_flat_tangent_mean": 0.199924,
+    "drift_rms_geodesic_retraction_mean": 0.050277,
+    "mean_drift_reduction_factor": 3.97,
+    "retraction_beats_flat_seeds": "2/2"
+  },
+  "c2_invariant_gate_passes": "2/2",
+  "c2_invariant_gate_implementation": "local Python mirror at r_invariant=120; not a call to weft_invariants.h",
+  "single_graft_arms": {
+    "pre_graft_host": {
+      "shifted_native_r2_mean": 0.883,
+      "shifted_native_r2_std": 0.0061,
+      "shifted_novel_r2_mean": -0.5347,
+      "shifted_novel_r2_std": 0.1791,
+      "keep_drift_rms_mean": 0.0,
+      "joint_shifted_passes": "0/2",
+      "joint_pass_count": 0
+    },
+    "A0_raw_coord_delta": {
+      "shifted_native_r2_mean": 0.2542,
+      "shifted_native_r2_std": 0.0437,
+      "shifted_novel_r2_mean": -0.0136,
+      "shifted_novel_r2_std": 0.0263,
+      "keep_drift_rms_mean": 1.721435,
+      "joint_shifted_passes": "0/2",
+      "joint_pass_count": 0
+    },
+    "A1_hard_readout_nullspace_160anchors": {
+      "shifted_native_r2_mean": 0.883,
+      "shifted_native_r2_std": 0.0061,
+      "shifted_novel_r2_mean": -0.5347,
+      "shifted_novel_r2_std": 0.1791,
+      "keep_drift_rms_mean": 0.0,
+      "joint_shifted_passes": "0/2",
+      "joint_pass_count": 0
+    },
+    "A2_gfpt_flat_no_retraction": {
+      "shifted_native_r2_mean": 0.8675,
+      "shifted_native_r2_std": 0.0121,
+      "shifted_novel_r2_mean": 0.8635,
+      "shifted_novel_r2_std": 0.0068,
+      "keep_drift_rms_mean": 0.199924,
+      "joint_shifted_passes": "2/2",
+      "joint_pass_count": 2
+    },
+    "A3_gfpt_geodesic_excitatory_only": {
+      "shifted_native_r2_mean": 0.8725,
+      "shifted_native_r2_std": 0.0086,
+      "shifted_novel_r2_mean": 0.4298,
+      "shifted_novel_r2_std": 0.0534,
+      "keep_drift_rms_mean": 0.045245,
+      "joint_shifted_passes": "0/2",
+      "joint_pass_count": 0
+    },
+    "A4_gfpt_shunting_geodesic": {
+      "shifted_native_r2_mean": 0.8709,
+      "shifted_native_r2_std": 0.0074,
+      "shifted_novel_r2_mean": 0.8593,
+      "shifted_novel_r2_std": 0.0086,
+      "keep_drift_rms_mean": 0.050277,
+      "joint_shifted_passes": "2/2",
+      "joint_pass_count": 2
+    }
+  },
+  "sign_test_two_sided_p": 0.5,
+  "multigen_5skill_cascade_g0_to_g3_shifted_r2": {
+    "ungated_local_val_teacher_160_baseline": [
+      0.1104,
+      -2.0546,
+      -4.6293,
+      -5.4412
+    ],
+    "gated_split_shift": [
+      0.1104,
+      0.3451,
+      0.5085,
+      0.8114
+    ],
+    "strictly_monotonic_g0_g1_g2_g3_seeds_ungated": "0/2",
+    "strictly_monotonic_g0_g1_g2_g3_seeds_gated": "2/2"
+  },
+  "per_seed": {
+    "seed": [
+      0,
+      1
+    ],
+    "donor_shifted_novel_r2": [
+      0.8621938368045196,
+      0.8614306612229627
+    ],
+    "unaligned_cross_seed_hidden_corr": [
+      0.17738327289011346,
+      0.15819954376944878
+    ],
+    "whitened_procrustes_aligned_corr": [
+      0.9436317594208457,
+      0.9406908040134685
+    ],
+    "plasmid_wire_bytes": [
+      1456,
+      1456
+    ],
+    "A1_exact_readout_nullity": [
+      0,
+      0
+    ],
+    "A4_spectral_fisher_nullity": [
+      41,
+      42
+    ],
+    "drift_reduction_factor": [
+      3.7354489397820667,
+      4.206190673007003
+    ],
+    "c2_invariant_gate_pass": [
+      1,
+      1
+    ],
+    "arms": {
+      "pre_graft_host": {
+        "shifted_native_r2": [
+          0.8873291271714085,
+          0.878713820078568
+        ],
+        "shifted_novel_r2": [
+          -0.6613699050701694,
+          -0.4080655571121077
+        ],
+        "keep_drift_rms": [
+          0.0,
+          0.0
+        ],
+        "joint_pass": [
+          0,
+          0
+        ]
+      },
+      "A0_raw_coord_delta": {
+        "shifted_native_r2": [
+          0.2850560527124032,
+          0.22326607389501507
+        ],
+        "shifted_novel_r2": [
+          -0.03216967874478116,
+          0.0050245807900395345
+        ],
+        "keep_drift_rms": [
+          1.678569327727622,
+          1.7643001434608525
+        ],
+        "joint_pass": [
+          0,
+          0
+        ]
+      },
+      "A1_hard_readout_nullspace_160anchors": {
+        "shifted_native_r2": [
+          0.8873291271714085,
+          0.878713820078568
+        ],
+        "shifted_novel_r2": [
+          -0.6613699050701694,
+          -0.4080655571121077
+        ],
+        "keep_drift_rms": [
+          0.0,
+          0.0
+        ],
+        "joint_pass": [
+          0,
+          0
+        ]
+      },
+      "A2_gfpt_flat_no_retraction": {
+        "shifted_native_r2": [
+          0.876064373680362,
+          0.8589223375077191
+        ],
+        "shifted_novel_r2": [
+          0.8682338689238004,
+          0.8586850543567414
+        ],
+        "keep_drift_rms": [
+          0.18331848402352482,
+          0.21652882989183217
+        ],
+        "joint_pass": [
+          1,
+          1
+        ]
+      },
+      "A3_gfpt_geodesic_excitatory_only": {
+        "shifted_native_r2": [
+          0.8785861787897348,
+          0.8664473588245061
+        ],
+        "shifted_novel_r2": [
+          0.3920066405154845,
+          0.46749612089826775
+        ],
+        "keep_drift_rms": [
+          0.04256088423541662,
+          0.04792908046680589
+        ],
+        "joint_pass": [
+          0,
+          0
+        ]
+      },
+      "A4_gfpt_shunting_geodesic": {
+        "shifted_native_r2": [
+          0.876085332097777,
+          0.8656155313686638
+        ],
+        "shifted_novel_r2": [
+          0.865406660973114,
+          0.853209003348137
+        ],
+        "keep_drift_rms": [
+          0.04907535532642563,
+          0.051478605399748995
+        ],
+        "joint_pass": [
+          1,
+          1
+        ]
+      }
+    },
+    "multigen_ungated_shifted_r2": {
+      "0": [
+        0.09391047926708762,
+        0.126972794202574
+      ],
+      "1": [
+        -4.120755864103741,
+        0.011555606642009275
+      ],
+      "2": [
+        -7.543706539730849,
+        -1.714928744564999
+      ],
+      "3": [
+        -8.462814959830984,
+        -2.4195454256277187
+      ]
+    },
+    "multigen_gated_shifted_r2": {
+      "0": [
+        0.09391047926708762,
+        0.126972794202574
+      ],
+      "1": [
+        0.3326157949211803,
+        0.35755086755390053
+      ],
+      "2": [
+        0.48733148662304293,
+        0.5297672077622873
+      ],
+      "3": [
+        0.8228142125815329,
+        0.7999049200066695
+      ]
+    }
+  },
+  "wall_seconds": 7.22
+}

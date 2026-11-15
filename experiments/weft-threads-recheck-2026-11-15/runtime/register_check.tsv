@@ -1,0 +1,15 @@
+row	verdict	basis	lead_rechecked
+R1	true	tree clean after the self-tests	no
+R2	stale	cited file docs/assets/js/sym2p-parse.js is gone; the codec fix is tested	yes
+R3	stale	cited line 190 does not exist; weft_plasm.py has 61 lines	yes
+R4	stale	docs/data is gone; the harvester marks its source as a fixture	yes
+R5	stale	docs/data is gone; the field is never emitted	yes
+R6	stale	silent fallback values replaced by unavailable probes, with a test	no
+R7	stale	no BufferError at exit; teardown tests exist	no
+R8	false	the cited workflow does not exist; ci.yml runs on pull requests	yes
+R9	false	the site root is site/, not docs/	no
+R10	false	all three contracts are present	yes
+M12	false	Paper 1 measures tension of 20.3 to 21.2, not about 115	no
+L1	partly	mint to governorCore holds; the contract now has a function that moves tokens	no
+L4	partly	single admin key holds; other wording not evaluated	no
+L7	true	topic hash recomputed	no

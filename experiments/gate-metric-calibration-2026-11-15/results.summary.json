@@ -1,0 +1,422 @@
+{
+ "H2_held_over_fisher_range": [
+  0.9389,
+  1.082
+ ],
+ "H2_probe_over_fisher_range": [
+  0.9873,
+  1.006
+ ],
+ "H2b_failing_seeds": [],
+ "H4_failing_seeds": [],
+ "H4_held_over_probe_range": [
+  0.9326,
+  1.082
+ ],
+ "H5_blind_held_median": 0.124,
+ "H5_blind_probe_median": 0.00553,
+ "H5_blind_ratio_median": 23.2,
+ "H5_blind_ratio_range": [
+  14.7,
+  29.8
+ ],
+ "H5b_drop_median": 0.149,
+ "H5b_radius_values": [
+  10.0
+ ],
+ "anisotropy_median": 24.4,
+ "anisotropy_range": [
+  23.2,
+  26.4
+ ],
+ "attack_radius_values": [
+  0.03
+ ],
+ "breaking_radius": {
+  "adam_novel": {
+   "hosts_never_broken": 0,
+   "median": 1.0,
+   "range": [
+    1.0,
+    1.0
+   ]
+  },
+  "adv": {
+   "hosts_never_broken": 0,
+   "median": 0.3,
+   "range": [
+    0.1,
+    0.3
+   ]
+  },
+  "adv_blind": {
+   "hosts_never_broken": 0,
+   "median": 3.0,
+   "range": [
+    3.0,
+    10.0
+   ]
+  },
+  "dormant": {
+   "hosts_never_broken": 0,
+   "median": 10.0,
+   "range": [
+    10.0,
+    10.0
+   ]
+  },
+  "flip": {
+   "hosts_never_broken": 0,
+   "median": 1.0,
+   "range": [
+    1.0,
+    1.0
+   ]
+  },
+  "grad_native": {
+   "hosts_never_broken": 0,
+   "median": 0.3,
+   "range": [
+    0.3,
+    0.3
+   ]
+  },
+  "grad_novel": {
+   "hosts_never_broken": 0,
+   "median": 0.3,
+   "range": [
+    0.3,
+    1.0
+   ]
+  },
+  "null": {
+   "hosts_never_broken": 0,
+   "median": 10.0,
+   "range": [
+    10.0,
+    10.0
+   ]
+  },
+  "rand": {
+   "hosts_never_broken": 0,
+   "median": 3.0,
+   "range": [
+    3.0,
+    3.0
+   ]
+  },
+  "top": {
+   "hosts_never_broken": 0,
+   "median": 0.3,
+   "range": [
+    0.1,
+    0.3
+   ]
+  }
+ },
+ "cert_radius_median": 0.00298,
+ "counts": {
+  "H1a_top_over_rand_ge_10": 12,
+  "H1b_perm_far_and_silent": 12,
+  "H2a_fisher_within_1p1_on_fit_probes": 12,
+  "H2b_fisher_within_1p25_on_held": 12,
+  "H3a_fisher_blind_to_null_moves": 12,
+  "H3b_fisher_off_by_3_on_a_natural_move": 12,
+  "H4_probe_within_1p25_on_held": 12,
+  "H5a_blind_adversary_ratio_ge_10": 12,
+  "H5b_blind_adversary_breaks_bar_under_graft_level": 12,
+  "H6a_adv_breaks_10x_before_rand": 12,
+  "H6b_one_step_ge_r_break_adv": 12,
+  "H6c_graft_passes_at_r_ge_20": 11,
+  "H6d_rand_breaks_inside_shipped_radius": 12,
+  "H7_cert_le_attack": 12
+ },
+ "drop_metric": "shifted native R2 (E13 definition), bar 0.025",
+ "effective_rank_median": 21.0,
+ "effective_rank_range": [
+  17.9,
+  23.1
+ ],
+ "first_order_over_cert_median": 5.15,
+ "first_order_radius_median": 0.0149,
+ "graft_probe_median": 0.214,
+ "held_over_probe_by_class": {
+  "adam_novel": [
+   0.9476,
+   1.065
+  ],
+  "adv": [
+   0.9761,
+   1.019
+  ],
+  "dormant": [
+   0.939,
+   1.082
+  ],
+  "finetune_joint": [
+   0.9326,
+   1.079
+  ],
+  "flip": [
+   0.9602,
+   1.075
+  ],
+  "grad_native": [
+   0.9688,
+   1.037
+  ],
+  "grad_novel": [
+   0.9395,
+   1.068
+  ],
+  "graft": [
+   0.9385,
+   1.046
+  ],
+  "one_step": [
+   0.9521,
+   1.064
+  ],
+  "rand": [
+   0.9399,
+   1.05
+  ],
+  "to_init": [
+   0.9701,
+   1.053
+  ]
+ },
+ "held_over_probe_range_without_adv": [
+  0.9326,
+  1.082
+ ],
+ "n_hosts": 12,
+ "n_weights": 12488,
+ "natural_moves": {
+  "finetune_joint": {
+   "drop": 0.0016,
+   "drop_max": 0.0126,
+   "fisher": 0.659,
+   "held": 0.266,
+   "held_max": 0.301,
+   "joint_pass": 12,
+   "probe": 0.275,
+   "r": 8.74,
+   "r_range": [
+    8.06,
+    9.22
+   ]
+  },
+  "flip": {
+   "drop": 3.63,
+   "drop_max": 3.73,
+   "fisher": 4.26,
+   "held": 4.17,
+   "held_max": 4.43,
+   "probe": 4.26,
+   "r": 6.6,
+   "r_range": [
+    6.36,
+    7.04
+   ]
+  },
+  "graft": {
+   "drop": 0.017,
+   "drop_max": 0.0253,
+   "fisher": 1.0,
+   "held": 0.21,
+   "held_max": 0.247,
+   "joint_pass": 11,
+   "probe": 0.214,
+   "r": 28.1,
+   "r_range": [
+    27.8,
+    28.2
+   ]
+  },
+  "one_step": {
+   "drop": 0.0593,
+   "drop_max": 0.0689,
+   "fisher": 0.482,
+   "held": 0.463,
+   "held_max": 0.548,
+   "probe": 0.455,
+   "r": 1.01,
+   "r_range": [
+    1.01,
+    1.01
+   ]
+  },
+  "perm": {
+   "drop": 0.0,
+   "drop_max": 1.11e-16,
+   "fisher": 7.31,
+   "held": 1.07e-15,
+   "held_max": 1.17e-15,
+   "probe": 1.09e-15,
+   "r": 29.2,
+   "r_range": [
+    28.4,
+    29.8
+   ]
+  },
+  "to_init": {
+   "drop": 1.11,
+   "drop_max": 1.21,
+   "fisher": 3.11,
+   "held": 2.27,
+   "held_max": 2.42,
+   "probe": 2.3,
+   "r": 12.5,
+   "r_range": [
+    11.8,
+    13.2
+   ]
+  }
+ },
+ "null_leak_over_rand_median": 0.197,
+ "null_leak_per_unit_median": 0.0259,
+ "null_second_order_coeff_median": 0.00284,
+ "null_second_order_radius": 1.0,
+ "one_step_r_median": 1.01,
+ "output_rms_median": 2.52,
+ "program_sha256": "1ac3612de1ec566b397031f2aa1000afd5afea8a6f936b10c8a1d742c2fa18bf",
+ "r_blind": 1.0,
+ "r_break_adv_values": [
+  0.1,
+  0.3
+ ],
+ "r_break_rand_values": [
+  3.0
+ ],
+ "r_loc": 0.1,
+ "rand_change_per_unit_median": 0.13,
+ "safe_size_tau": {
+  "adam_novel": {
+   "median": 0.103,
+   "range": [
+    0.0854,
+    0.117
+   ]
+  },
+  "adv": {
+   "median": 0.0149,
+   "range": [
+    0.014,
+    0.0172
+   ]
+  },
+  "adv_blind": {
+   "median": 0.39,
+   "range": [
+    0.281,
+    0.499
+   ]
+  },
+  "dormant": {
+   "median": 1.29,
+   "range": [
+    1.12,
+    1.68
+   ]
+  },
+  "flip": {
+   "median": 0.0802,
+   "range": [
+    0.0727,
+    0.0945
+   ]
+  },
+  "grad_native": {
+   "median": 0.0258,
+   "range": [
+    0.0204,
+    0.0381
+   ]
+  },
+  "grad_novel": {
+   "median": 0.0411,
+   "range": [
+    0.035,
+    0.0519
+   ]
+  },
+  "null": {
+   "median": 1.84,
+   "range": [
+    1.72,
+    2.04
+   ]
+  },
+  "rand": {
+   "median": 0.339,
+   "range": [
+    0.311,
+    0.361
+   ]
+  },
+  "top": {
+   "median": 0.0149,
+   "range": [
+    0.0141,
+    0.0172
+   ]
+  }
+ },
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11
+ ],
+ "source": "results.json",
+ "sqrt_lam_max_median": 3.36,
+ "sqrt_lam_max_range": [
+  2.97,
+  3.65
+ ],
+ "sqrt_mean_lam_median": 0.134,
+ "sqrt_mean_lam_range": [
+  0.127,
+  0.147
+ ],
+ "tau": 0.05,
+ "top_held_over_probe_range": [
+  0.964,
+  1.01
+ ],
+ "top_over_rand_median": 25.3,
+ "top_over_rand_range": [
+  22.3,
+  30.6
+ ],
+ "verdicts": {
+  "H1a_top_over_rand_ge_10": "confirmed",
+  "H1b_perm_far_and_silent": "confirmed",
+  "H2a_fisher_within_1p1_on_fit_probes": "confirmed",
+  "H2b_fisher_within_1p25_on_held": "confirmed",
+  "H3a_fisher_blind_to_null_moves": "confirmed",
+  "H3b_fisher_off_by_3_on_a_natural_move": "confirmed",
+  "H4_probe_within_1p25_on_held": "confirmed",
+  "H5a_blind_adversary_ratio_ge_10": "confirmed",
+  "H5b_blind_adversary_breaks_bar_under_graft_level": "confirmed",
+  "H6a_adv_breaks_10x_before_rand": "confirmed",
+  "H6b_one_step_ge_r_break_adv": "confirmed",
+  "H6c_graft_passes_at_r_ge_20": "confirmed",
+  "H6d_rand_breaks_inside_shipped_radius": "confirmed",
+  "H7_cert_le_attack": "confirmed"
+ },
+ "weight_norm_median": 20.7,
+ "weight_norm_range": [
+  20.3,
+  21.2
+ ]
+}

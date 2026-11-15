@@ -1,0 +1,256 @@
+
+====================================================================================================
+CLAIM (a): price display moves cells to the cheapest model (14 of 16 at the first step)
+    SRC archive/razi-cells-exp-2026-11/s3a1/<kit>/log.jsonl :: first act event carrying `next` -> next[0]; events `laws` (price_show, sense_show, start)
+  cells choosing light at step 0 (born on mid), SP3, by arm: {'a': '14/16', 'b': '0/16', 'c': '12/16', 'd': '0/16'}
+  model chosen after step 0 (first `next`), by arm: {'a': {'light': 14, 'mid': 2}, 'b': {'mid': 16}, 'c': {'light': 12, 'mid': 4}, 'd': {'mid': 16}}
+    arm a per-run counts (of 4 cells each): [4, 3, 3, 4]
+    arm b per-run counts (of 4 cells each): [0, 0, 0, 0]
+    arm c per-run counts (of 4 cells each): [3, 3, 3, 3]
+    arm d per-run counts (of 4 cells each): [0, 0, 0, 0]
+  arm a (primary figure): 14/16 = 0.875  exact 95% Clopper-Pearson [0.617, 0.984]
+    vs chance 1/3 (menu = light, mid, heavy; uniform): exact binomial two-sided p = 1.19e-05
+    NOTE chance 1/3 is the wrong baseline: cells born on mid that ignore the list stay on mid. Observed baseline without the list: below.
+  hidden list (arms b+d): 0/32 chose light; CP 95% [0.000, 0.109]
+  shown list (arms a+c): 26/32 = 0.812 CP 95% [0.636, 0.928]
+  Fisher exact shown vs hidden (cells, treats cells as independent => anti-conservative): p = 3.01e-12
+  Fisher a vs b (cells): p = 5.09e-07
+  run-level exact permutation, per-run proportion, shown (8 runs) vs hidden (8 runs): diff 0.812, p = 1.55e-04 over 12870 splits (min attainable 1.55e-04)
+  run-level exact permutation arm a vs arm b (4 vs 4 runs): diff 0.875, p = 0.0286 over 70 splits (smallest p possible with 4 vs 4 runs is 0.0286)
+  shown-arm cells that did NOT move to light at step 0: 6 -> [('s3a2', 'fibmod'), ('s3a3', 'fibmod'), ('s3c1', 'fibmod'), ('s3c2', 'fibmod'), ('s3c3', 'fibmod'), ('s3c4', 'fibmod')]
+  without fibmod: shown 24/24 vs hidden 0/24
+
+  second block: SP2 arm f (s2f1-4), same B1 definition (no `laws` row in SP2 logs; born on mid per TESTS.md SP2 arms)
+    SRC archive/razi-cells-exp-2026-11/s2f1/<kit>/log.jsonl :: first act event carrying `next`; usage.model of first step (born model)
+  SP2 arm f: 14/16 chose light at step 0 (CP 95% [0.617, 0.984]); exceptions: [('s2f1', 'compress'), ('s2f3', 'fibmod')]
+  (TESTS.md SP2 diag item 2 wording 'on light at step 2': 15/16 here)
+  SP2 has NO hidden-list arm. The 'two blocks' repeat the shown-arm rate only; the contrast with hidden prices is from one block (SP3: b, d).
+  pooled price-shown mid-born cells (SP2 f + SP3 a + SP3 c): 40/48 = 0.833 CP [0.698, 0.925]  vs hidden 0/32 -> clustered by 12 shown runs and 8 hidden runs
+  hidden-arm cells that ever thought on light: forced by the affordability rule (downshift event before it) 20, reached it without a downshift 8 (TESTS.md SP3 diagnostics says 16 forced and 8 chose, 24 cells; I count 28 cells reaching light (b 15, d 13); the 16/8 split cannot be reproduced)
+
+====================================================================================================
+CLAIM (b): hidden prices cost 2.4 to 3.0 times the energy; 'died 7 times against 0'
+    SRC archive/razi-cells-exp-2026-11/s3a1/.ledger.json :: <kit>.spent summed over the 4 kits = energy spent by the run (same rule as sp2.law); <kit>.state; <kit>/log.jsonl events death, apoptosis, downshift
+  arm a: run totals [454.4, 504.8, 546.9, 433.5]  arm total 1939.5  (n = 4 runs, 16 cells)
+  arm b: run totals [1601.4, 1319.3, 1484.1, 1319.1]  arm total 5724.0  (n = 4 runs, 16 cells)
+  arm c: run totals [737.8, 622.0, 591.3, 596.6]  arm total 2547.7  (n = 4 runs, 16 cells)
+  arm d: run totals [1576.7, 1545.9, 1490.7, 1543.0]  arm total 6156.3  (n = 4 runs, 16 cells)
+  arm totals match the committed sp3-out.txt 'energy spent' lines (1939.5, 5724.0, 2547.7, 6156.3)
+  b/a (sense hidden): ratio of arm means 2.95; bootstrap over runs 95% [2.62, 3.34] (B=20000, 4 vs 4 runs); range of the 16 run-pair ratios [2.41, 3.69]; exact permutation on log run totals p = 0.0286 (min possible 0.0286)
+  d/c (sense shown): ratio of arm means 2.42; bootstrap over runs 95% [2.18, 2.61] (B=20000, 4 vs 4 runs); range of the 16 run-pair ratios [2.02, 2.67]; exact permutation on log run totals p = 0.0286 (min possible 0.0286)
+  d/a: ratio of arm means 3.17; bootstrap over runs 95% [2.90, 3.48] (B=20000, 4 vs 4 runs); range of the 16 run-pair ratios [2.73, 3.64]; exact permutation on log run totals p = 0.0286 (min possible 0.0286)
+  b/c: ratio of arm means 2.25; bootstrap over runs 95% [1.98, 2.52] (B=20000, 4 vs 4 runs); range of the 16 run-pair ratios [1.79, 2.71]; exact permutation on log run totals p = 0.0286 (min possible 0.0286)
+  hidden (b+d, 8 runs) vs shown (a+c, 8 runs): ratio 2.65; bootstrap [2.34, 2.99]; exact permutation p = 1.55e-04 over 12870 splits
+    arm a: spent per cell mean 121.2 (endowment 400 + gifts received); cells with spent >= 340: 0/16; pre-assay spend per cell 89.1, post-assay 32.1; unspent energy at end (gave+left) median 486.2
+    arm b: spent per cell mean 357.7 (endowment 400 + gifts received); cells with spent >= 340: 10/16; pre-assay spend per cell 291.7, post-assay 66.0; unspent energy at end (gave+left) median 64.1
+    arm c: spent per cell mean 159.2 (endowment 400 + gifts received); cells with spent >= 340: 0/16; pre-assay spend per cell 111.9, post-assay 47.3; unspent energy at end (gave+left) median 446.8
+    arm d: spent per cell mean 384.8 (endowment 400 + gifts received); cells with spent >= 340: 15/16; pre-assay spend per cell 314.6, post-assay 70.2; unspent energy at end (gave+left) median 19.6
+
+  deaths
+  `death` events by arm {'a': 0, 'b': 2, 'c': 0, 'd': 5}; ledger state 'dead' {'a': 0, 'b': 3, 'c': 0, 'd': 6}; `apoptosis` (ended after repeated empty replies) {'a': 0, 'b': 1, 'c': 0, 'd': 1}
+  cells: hidden 7/32 vs shown 0/32; Fisher exact two-sided p = 0.0108 (cells treated as independent)
+    hidden death rate 0.219 CP 95% [0.093, 0.400]; shown 0/32 CP upper 0.109
+  with apoptosis counted as death (ledger state dead): hidden 9/32 vs shown 0/32, Fisher p = 0.0020
+  runs with at least one death event: hidden 5/8 vs shown 0/8; Fisher exact p = 0.0256 (run is the unit)
+    CP 95%: hidden [0.245, 0.915], shown [0.000, 0.369]
+  MECHANICAL: a death is energy reaching zero. Shown-arm cells rest with 200 to 1300 unspent (median 470), so they cannot die. Deaths are the same phenomenon as the energy gap (cells that stay on mid burn the endowment), not a second finding.
+
+  TRUNCATION / CENSORING (task item 4)
+  The no-credit rule cuts a cell's spend at its available energy (400 + gifts). A truncated cell's measured spend is a LOWER bound on what it would have spent, so truncation shrinks the hidden-arm measured gap; it cannot inflate it.
+  Definitions (per cell, from ledger + log): TRUNCATED = death or apoptosis event, or unspent energy at its end (ledger gave + e) below THR. Sensitivity THR in {50, 100, 150}.
+    THR 50: truncated cells by arm {'a': 0, 'b': 7, 'c': 0, 'd': 12}; among NON-truncated cells, mean spend hidden 323.3 (n=13) vs shown 140.2 (n=32); ratio 2.31, run-cluster bootstrap 95% [1.95, 2.68]
+    THR 100: truncated cells by arm {'a': 0, 'b': 9, 'c': 0, 'd': 14}; among NON-truncated cells, mean spend hidden 308.5 (n=9) vs shown 140.2 (n=32); ratio 2.20, run-cluster bootstrap 95% [1.66, 2.64]
+    THR 150: truncated cells by arm {'a': 0, 'b': 13, 'c': 0, 'd': 14}; among NON-truncated cells, mean spend hidden 284.1 (n=5) vs shown 140.2 (n=32); ratio 2.03, run-cluster bootstrap 95% [1.34, 2.68]
+    (conditioning on 'not truncated' selects hidden cells that quit early; this is a sensitivity bound, not an unbiased estimate)
+    pairwise among non-truncated cells (THR 100): b/a = 292.5 (n=7) / 121.2 (n=16) = 2.41  (measured run-total ratio 2.95)
+    pairwise among non-truncated cells (THR 100): d/c = 364.4 (n=2) / 159.2 (n=16) = 2.29  (measured run-total ratio 2.42)
+    step-cost decomposition per cell (sum of log `cost` before / after the first assay): hidden 303.1 / 68.1, shown 100.5 / 39.7. Gap before first assay +202.6, after +28.4 -> 88% of the per-cell gap is spent before the first assay (the mid-model steps: the behaviour itself, not a side effect of the death rule)
+    censored view (THR 100, truncated cells right-censored at the energy they had spent; event = ended by choice with energy left; Kaplan-Meier restricted mean to 450): hidden 405.4 vs shown 140.2, ratio 2.89, run-cluster bootstrap 95% [2.52, 3.31] (plain per-cell means ratio 2.65)
+    runs with no death or apoptosis event (spent): [('s3b4', 1319.1)]  | runs with one or more: [('s3b1', 1, 1601.4), ('s3b2', 1, 1319.3), ('s3b3', 1, 1484.1), ('s3d1', 2, 1576.7), ('s3d2', 1, 1545.9), ('s3d3', 1, 1490.7), ('s3d4', 2, 1543.0)]
+      those untruncated hidden runs average 1319.1 against 560.9 for the 8 shown runs (ratio 2.35, n = 1 run(s), no interval possible)
+
+====================================================================================================
+CLAIM (c): score against best known body (sense) raises reach
+    SRC experiments/razi-cells-laws-2026-11/results/sp3-ref.json :: rel (final body / fixed reference body) per (run, kit); O1 = median over the 4 kits per run, arm value = mean of 4 run medians (sp2.py definition)
+  arm a: run O1 [1.336, 1.573, 1.75, 1.276] mean 1.4839 | without fibmod [1.48, 1.444, 1.481, 1.356] mean 1.4404
+  arm b: run O1 [1.69, 2.018, 2.134, 1.664] mean 1.8765 | without fibmod [1.661, 1.287, 1.589, 1.644] mean 1.5453
+  arm c: run O1 [2.121, 2.076, 1.76, 2.15] mean 2.0266 | without fibmod [1.198, 1.385, 1.558, 1.546] mean 1.4215
+  arm d: run O1 [1.375, 2.125, 1.643, 1.473] mean 1.6539 | without fibmod [1.552, 1.62, 1.407, 1.313] mean 1.4730
+  O1 arm means match the committed sp3-out.txt (1.4839, 1.8765, 2.0266, 1.6539)
+  per-kit mean rel by arm:
+    compress a: 1.194  b: 1.370  c: 1.282  d: 1.197   run values c [1.2, 1.2, 1.19, 1.54]  a [1.19, 1.2, 1.19, 1.2]
+    fibmod   a: 1.500  b: 3.609  c: 3.793  d: 2.592   run values c [4.82, 4.48, 1.96, 3.91]  a [1.17, 1.7, 2.02, 1.11]
+    csvsum   a: 1.440  b: 1.545  c: 1.311  d: 1.473   run values c [0.75, 1.38, 1.56, 1.55]  a [1.48, 1.44, 1.48, 1.36]
+    maze     a: 2.934  b: 2.711  c: 2.840  d: 2.817   run values c [3.04, 2.77, 2.79, 2.75]  a [3.21, 2.78, 2.8, 2.94]
+
+  (1) the test TESTS.md committed to for the primary guess S3-i: decision rule 'c above a by 0.10 or more on O1' -> +0.5427 >= 0.10 : HELD. It is a threshold on a point estimate, with no sampling error attached.
+      The committed significance report is sp2.perm (cell medians shuffled between arms, 5000 shuffles, seed 0, two-sided):
+      a vs c, 16 cells vs 16 cells, difference of medians -0.2975, p = 0.3619 (committed text: 0.3619). Overstates n: 4 cells share a run.
+      same test without fibmod (12 vs 12 cells): difference of medians -0.0814, p = 0.6257
+  (2) run-level exact permutation on O1 (the run is the replicate), a vs c, 4 vs 4 runs:
+      with all 4 kits: c - a = +0.5427; exact p = 0.0286 (70 splits; complete separation gives the minimum 2/70 = 0.0286); bootstrap over runs 95% [+0.295, +0.770]
+      WITHOUT fibmod (median of compress, csvsum, maze): c - a = -0.0189; exact p = 0.9143; bootstrap 95% [-0.178, +0.121]
+      fibmod alone: c - a = +2.293; exact p = 0.0571; bootstrap 95% [+1.04, +3.29]; c runs [4.82, 4.48, 1.96, 3.91], a runs [1.17, 1.7, 2.02, 1.11]
+      compress: c - a = +0.088, exact p = 0.3714
+      csvsum: c - a = -0.130, exact p = 0.8571
+      maze: c - a = -0.095, exact p = 0.4857
+  (3) main effect of showing sense, both price conditions pooled (c+d vs a+b, 8 vs 8 runs):
+      all 4 kits: +0.1601; exact p = 0.3131 (12870 splits); bootstrap 95% [-0.128, +0.437]
+      without fibmod: -0.0456; exact p = 0.5176; bootstrap 95% [-0.175, +0.079]
+      sense effect when prices hidden (d - b): -0.2226, exact p = 0.2571 (opposite sign: hidden-price arms are dominated by deaths)
+  Price hidden vs shown on reach (b - a; README says hiding 'did not buy better work'): +0.3926, exact p = 0.0857, bootstrap [+0.126, +0.665]; without fibmod +0.1049
+      without fibmod exact p = 0.2857
+
+  run-level SD of O1 (used by power_sim.py): a 0.219, b 0.235, c 0.180, d 0.333 | without fibmod: a 0.059, b 0.175, c 0.169, d 0.139
+
+====================================================================================================
+CLAIM (d): a stem cell that feeds others added cost and no reach (two blocks)
+    SRC experiments/razi-cells-laws-2026-11/results/sp2-ref.json :: rel per (run, kit)
+    SRC archive/razi-cells-exp-2026-11/s2f1/.ledger.json :: spent (keys without '/'); tokens = usage.inp+out+cw summed over <kit> and stem logs
+  SP2 arm f (4 runs): O1 [1.281, 2.06, 1.378, 1.591] mean 1.5775; tokens [61044, 64204, 70644, 67033]; energy [880.4, 479.9, 585.1, 487.4]
+  SP2 arm s (4 runs): O1 [1.36, 1.557, 1.621, 1.348] mean 1.4713; tokens [99411, 114474, 110976, 99356]; energy [849.5, 868.9, 724.7, 675.3]
+  SP2 arm m (4 runs): O1 [1.34, 1.719, 1.735, 1.391] mean 1.5461; tokens [70093, 67281, 83456, 62922]; energy [402.4, 388.5, 434.8, 365.6]
+  SP2 O1 matches committed (f 1.5775, s 1.4713, m 1.5461)
+  reach, stem - flat (O1, run-level): -0.1062; exact p = 0.7143; bootstrap 95% [-0.434, +0.179]  -> interval covers a benefit of up to +0.18
+  reach without fibmod: -0.0255; exact p = 0.7714
+  cost, tokens stem/flat: 1.61; bootstrap over runs 95% [1.49, 1.75]; exact permutation on log tokens p = 0.0286 (committed text: 1.61)
+  cost, energy stem/flat: 1.28; bootstrap [0.97, 1.67]; exact permutation p = 0.1714 (committed text: 1.28)
+    SRC experiments/razi-cells-laws-2026-11/results/sp1-ref.json :: rel per (run, kit)
+  SP1 (2 runs per arm): O1 flat [1.486, 1.258] mean 1.372; stem [1.352, 1.351] mean 1.352 (committed 1.372 / 1.352)
+      tokens stem/flat 1.70 (committed 1.70); energy 1.65 (committed 1.65). With 2 vs 2 runs the smallest possible two-sided permutation p is 0.33: no test is possible.
+  pooled SP1+SP2 reach (6 stem vs 6 flat runs; different design details, same reference metric): -0.0776, exact p = 0.6558, bootstrap [-0.333, +0.133]
+  pooled tokens stem/flat 1.64, bootstrap [1.51, 1.80], exact p = 0.0022 (6 vs 6 runs)
+  NOTE SP1 and SP2 differ: SP1 stem arm births on light with 150-200 energy; the SP1 'gain' metric was found invalid and replaced by rel. Not independent confirmations of one pre-planned test: SP2 was written after SP1 to repeat it.
+
+====================================================================================================
+CLAIM (e): heredity saved energy and did not compound (L1, 3 runs per arm)
+    SRC archive/razi-cells-exp-2026-11/l1h1/lineage.jsonl :: event 'gen' rows: spent, cells, states, took, gain, store; 'start' row
+    SRC experiments/razi-cells-laws-2026-11/results/l1-ref.json :: rel per (run, kit) of final germline body
+  arm h: run energy spent [4124.0, 4701.1, 5327.4] (total 14152.5); O1 [2.228, 2.334, 2.239]; deaths per run [2, 1, 4]; cells per run [32, 32, 30]; later-generation cells with no write/variants/divide 65/70; lineages that replaced germline after gen 0 3/12; cells born in last generation 22/24
+  arm b: run energy spent [6364.6, 6585.1, 7692.9] (total 20642.6); O1 [2.153, 2.301, 2.38]; deaths per run [6, 8, 9]; cells per run [27, 28, 29]; later-generation cells with no write/variants/divide 12/60; lineages that replaced germline after gen 0 5/12; cells born in last generation 13/24
+  totals match committed l1-out.txt (14152.5, 20642.6); committed 'idle 65 of 70' and 'replaced 3 of 12' recomputed above
+  energy, heredity / blank: 0.686 (saving 31%); bootstrap over 3 vs 3 runs 95% [0.59, 0.80]; exact permutation p = 0.100 over 20 splits (with 3 vs 3 runs the smallest two-sided p is 0.10, so no test can reach 0.05)
+      the 9 run-pair ratios range 0.54 to 0.84
+  reach, heredity - blank (O1): -0.0111; exact p = 1.000; bootstrap 95% [-0.12, +0.11] -> cannot exclude differences of +-0.2 in either direction
+  deaths: h 7/94 cells vs b 23/84; Fisher (cells) p = 0.0005; per run h [2, 1, 4], b [6, 8, 9]
+  'did not compound': h 3/12 lineages replaced the germline after gen 0 (b 5/12). Fisher h vs b p = 0.67. Idle heirs 65/70 (CP 95% [0.84, 0.98]; heirs within a lineage are not independent)
+  CENSORING in L1: the blank arm's stores ran dry; it funded 13/24 last-generation births against 22/24 for heredity, so blank's spend is also capped by the store, and heredity's smaller spend is mostly heirs that rest at once (65/70 did nothing) rather than cheaper search.
+
+====================================================================================================
+CLAIM (f): any claim in openai-cells-blitz that the laws replicate or fail to replicate on a second model family
+  case-insensitive term counts in the blitz markdown and scripts (price/sense/energy/heredity/stem/lineage/metab/laws): NONE
+  PREREG-2.md: hypotheses 8 ['H-A1', 'H-A2', 'H-A3', 'H-B1', 'H-B2', 'H-B3', 'H-C1', 'H-D1']
+  PREREG-3.md: hypotheses 4 ['H-E1', 'H-E2', 'H-F1', 'H-F2']
+  PREREG-4.md: hypotheses 5 ['H-G1', 'H-G2', 'H-G3', 'H-H1', 'H-H2']
+  PREREGISTRATION.md: hypotheses 4 ['H-B1', 'H-B2', 'H-B3', 'H-B4']
+  no-language-colony-2026-11-12 same terms: NONE
+  log event kinds in blitz logs (top): [('usage', 1180), ('tool_call', 1178), ('tool_result', 1178), ('variant', 228), ('assay', 154), ('variants_result', 109), ('finished', 82)] | log files 87
+  recomputed from logs: model calls 1180, variants tool calls 111, variants_result 109, reported selections (adopted not null) 38 in 37 cells (RECONCILIATION-2026-11-12.md: 1,180 / 111 / 38 / 37 cells; 0 of 38 had the winner on disk under the old harness)
+  reported selections whose adopted index equals the last candidate (the only body the old harness left on disk): 0 of 38 (arithmetic on the raw events, as in RECONCILIATION-2026-11-12.md)
+    SRC experiments/openai-cells-blitz-2026-11-12/logs/*.jsonl :: kind == 'usage' | 'tool_call' (name == 'variants', args.versions) | 'variants_result' (adopted)
+  VERDICT: no price, sense, energy, stem or heredity condition exists in the blitz harness or any registration file. The blitz tests one thing (adherence to the `variants` selection channel on `compress`). It makes no replicate or fail-to-replicate claim about the laws, and could not.
+
+====================================================================================================
+PART 3: how many hypotheses were written down, how many held
+  guess lines located in TESTS.md for all 16 laws-record blocks (counts verified by regex, first occurrence of each ID).
+  block            written  held missed other   source / note
+  E08                    3     2      1     0   TESTS.md :: 103-105; H3 rejected; H4, H5 supported
+  E09                    2     0      2     0   TESTS.md :: 130-131; H6, H7 rejected
+  E10                    4     2      2     0   TESTS.md :: 154-157; H10 supported; H11 'nominally supported' (rests on 2 improvements, counted held as written)
+  E11                    4     4      0     0   TESTS.md :: 254-257; H12-H15 true
+  E12                    6     4      2     0   TESTS.md :: 345-350; H19, H21 false; instrument later shown flawed
+  E13                    6     6      0     0   TESTS.md :: 480-485+; H22-H27 true; author: none significant at cell level
+  mp3                    4     2      2     0   TESTS.md :: 574-577; G-a..G-d
+  GR1                    5     3      2     0   TESTS.md :: 638-644; toy network
+  GR2                    6     5      1     0   TESTS.md :: 695-700; toy network
+  GR3                    5     3      2     0   TESTS.md :: 743-747; toy network
+  GR4                    5     5      0     0   TESTS.md :: 809-816; toy network
+  SP1                    8     7      1     0   TESTS.md :: 883-891; stem pilot
+  SP2                    8     6      2     0   TESTS.md :: 1062-1070; stem vs flat
+  SP3                   12     6      6     0   TESTS.md :: 1175-1193; price and sense
+  T-J3                   6     0      1     5   TESTS.md :: 1268-1274; storage limit; 5 not judged
+  L1                     8     5      3     0   TESTS.md :: 1482-1492; heredity
+  OpenAI blitz 1         4     1      1     2   openai-cells-blitz/PREREGISTRATION.md :: H-B1..B4; B2 indistinguishable, B3 sign check only
+  OpenAI E18/E19        17     8      9     0   openai-cells-blitz/PREREG-2,3,4.md :: 17 H- lines; tally in COST-EFFECTIVENESS.md; 5 'held' rest on the reported-selection counter later shown not to retain winners
+  No-language           16     4      7     5   no-language-colony/PREREG-5.md :: H-NL-A..P; 2 mixed (H, K) + F, I, P not evaluable counted in other
+  TOTAL                129    73     44    12
+  agent-colony blocks that bear on claims a-e (E11, E12, E13, mp3, SP1, SP2, SP3, L1): written 56, held 40, missed 16
+  Outcomes analysed that were NOT written down: 14 sections labelled 'not preregistered' / DIAGNOSTIC in TESTS.md (lines [178, 197, 299, 394, 525, 673, 782, 845, 947, 973, 1027, 1111, 1370, 1584]); about 104 bullet, numbered or table lines under them (rough count of separate post-hoc results)
+  Also unregistered: sp3.py prints 6 pairwise arm contrasts x (O1, 4 per-part means, median of part differences, cell permutation p), O2 (4 parts x 4 arms), cost (5 measures x 4 arms) and behaviour lines B1-B7; only c-a, b-a and d-c on O1 were guessed (S3-i, S3-e, S3-l).
+  Chain: GR2 'written after GR1', GR3 after GR2, GR4 after GR3, SP2 after SP1, SP3 after SP2, L1 after SP3: later guesses were set after seeing earlier results, so they are conditional on them (forking paths), not independent registrations.
+
+====================================================================================================
+PART 3b: were the guess files committed before the results they govern?
+  (read-only git log; weft-loom branch: record/weft-threads-recheck-20261115 )
+  weft  TESTS.md: 528cb1e 2026-11-14 16:15:56 ; fe808c2 2026-11-13 04:41:50 ; 4282767 2026-11-11 05:19:52 ; f8de68a 2026-11-11 05:19:45 ; 3324323 2026-11-11 04:36:19 ; 00ef7a8 2026-11-10 06:42:42
+  weft  code/cells/sp3.py: 528cb1e 2026-11-14 16:15:56 ; fe808c2 2026-11-13 04:41:50 ; 00ef7a8 2026-11-10 06:42:42
+  weft  results/sp3-out.txt: 528cb1e 2026-11-14 16:15:56 ; fe808c2 2026-11-13 04:41:50 ; 00ef7a8 2026-11-10 06:42:42
+  weft  code/cells/lineage_report.py: 528cb1e 2026-11-14 16:15:56 ; fe808c2 2026-11-13 04:41:50 ; 00ef7a8 2026-11-10 06:42:42
+  weft  results/l1-out.txt: 528cb1e 2026-11-14 16:15:56 ; fe808c2 2026-11-13 04:41:50 ; 00ef7a8 2026-11-10 06:42:42
+  weft  code/cells/sp2.py: 528cb1e 2026-11-14 16:15:56 ; fe808c2 2026-11-13 04:41:50 ; 00ef7a8 2026-11-10 06:42:42
+  weft  results/sp2-out.txt: 528cb1e 2026-11-14 16:15:56 ; fe808c2 2026-11-13 04:41:50 ; 00ef7a8 2026-11-10 06:42:42
+  -> TESTS.md (guesses AND results), the report scripts and the results/ outputs all arrive in squash commit 00ef7a8 (PR #107, 2026-11-10 06:42:42 -0600). Git cannot show any guess preceding its result for the laws record. Later commits touch TESTS.md only to append T-J3 text (checked below).
+  TESTS.md now vs the blob in commit 00ef7a8: non-insert differences 0; inserted line ranges [(1424, 1434)] (the appended T-J3 R2 section). So no guess or result line was edited after the 2026-11-10 squash commit.
+  commit message mentions 'L1 full run finished after the record was cut': True
+  loom  blitz/PREREGISTRATION.md: 3f1a3bc 2026-11-12 10:41:32
+  loom  blitz/RESULTS.md: 6aae5c3 2026-11-12 19:33:52 ; 7404022 2026-11-12 14:28:00 ; aa13f09 2026-11-12 13:48:30 ; 3f1a3bc 2026-11-12 10:41:32
+  loom  blitz/PREREG-2.md: 0edbd04 2026-11-12 12:25:26
+  loom  blitz/PREREG-3.md: 0edbd04 2026-11-12 12:25:26
+  loom  blitz/PREREG-4.md: 0edbd04 2026-11-12 12:25:26
+  loom  blitz/RESULTS-E18.md: 6aae5c3 2026-11-12 19:33:52 ; 7404022 2026-11-12 14:28:00 ; aa13f09 2026-11-12 13:48:30 ; 570f7ec 2026-11-12 13:41:46 ; 0edbd04 2026-11-12 12:25:26
+  loom  blitz/harness.py: 19e9241 2026-11-12 19:33:42 ; 836e5ff 2026-11-12 13:47:15 ; 0edbd04 2026-11-12 12:25:26 ; 3f1a3bc 2026-11-12 10:41:32
+  loom  no-language/PREREG-5.md: 4e705c3 2026-11-12 19:33:35 ; 11d92a9 2026-11-12 17:17:58 ; 126b23c 2026-11-12 15:49:05 ; ac5e7b2 2026-11-12 15:43:37
+  loom  no-language/RESULTS-NL.md: 4e705c3 2026-11-12 19:33:35 ; 11d92a9 2026-11-12 17:17:58 ; ac5e7b2 2026-11-12 15:43:37
+  loom  no-language/RESULTS-NL-STAGE2.md: 4e705c3 2026-11-12 19:33:35 ; 126b23c 2026-11-12 15:49:05
+  commit 3f1a3bc: contains ['PREREGISTRATION.md', 'RESULTS.md'] (and 71 log/cell files)
+  commit 0edbd04: contains ['PREREG-2.md', 'PREREG-3.md', 'PREREG-4.md', 'RESULTS-E18.md'] (and 480 log/cell files)
+  raw data windows from `t` fields in the committed logs (UTC-6 local), versus the 2026-11-10 06:42:42 commit:
+    E11  first t 2026-11-09 17:04:44  last t 2026-11-09 17:12:14
+    E12  first t 2026-11-09 17:19:10  last t 2026-11-09 17:34:36
+    E13  first t 2026-11-09 17:58:57  last t 2026-11-09 18:08:19
+    SP1  first t 2026-11-09 21:44:52  last t 2026-11-09 21:48:57
+    SP2  first t 2026-11-09 22:29:56  last t 2026-11-09 22:41:10
+    SP3  first t 2026-11-09 23:51:20  last t 2026-11-10 00:06:31
+    L1   first t 2026-11-10 01:39:31  last t 2026-11-10 02:21:07
+    blitz wave 1 (astra-1..4, sol, luna logs): first t 2026-11-12 10:27:28  last t 2026-11-12 10:37:19   | PREREGISTRATION.md + RESULTS.md committed 2026-11-12 10:41:32
+    blitz E18/E19 (all logs): first t 2026-11-12 10:23:08  last t 2026-11-12 12:24:19   | PREREG-2,3,4 + RESULTS-E18 committed 2026-11-12 12:25:26
+    no-language (all logs): first t 2026-11-12 15:34:38  last t 2026-11-12 17:17:01   | PREREG-5 first committed 2026-11-12 15:43:37 (with Stage 1 results)
+  guess text: archive snapshots TESTS_pre_*.md (copies of TESTS.md taken before each result was appended) vs final TESTS.md:
+    SP1  snapshot TESTS_pre_SP1_result.md: 8 guess lines, 8 identical in final TESTS.md; snapshot already contains a 'SP1 result' heading: False
+    SP2  snapshot TESTS_pre_SP2_result.md: 3 guess lines, 3 identical in final TESTS.md; snapshot already contains a 'SP2 result' heading: False
+    SP3  snapshot TESTS_pre_sp3result.md: 10 guess lines, 10 identical in final TESTS.md; snapshot already contains a 'SP3 result' heading: False
+    L1   snapshot TESTS_pre_l1result.md: 8 guess lines, 8 identical in final TESTS.md; snapshot already contains a 'L1 result' heading: False
+    GR3  snapshot TESTS_pre_GR3_results.md: 5 guess lines, 5 identical in final TESTS.md; snapshot already contains a 'GR3 result' heading: False
+    GR4  snapshot TESTS_pre_GR4_result.md: 5 guess lines, 5 identical in final TESTS.md; snapshot already contains a 'GR4 result' heading: False
+    E11  snapshot TESTS_pre_e11_results.md: 4 guess lines, 4 identical in final TESTS.md; snapshot already contains a 'E11 result' heading: False
+    E12  snapshot TESTS_pre_e12_results.md: 5 guess lines, 5 identical in final TESTS.md; snapshot already contains a 'E12 result' heading: False
+    E13  snapshot TESTS_pre_e13_results.md: 6 guess lines, 6 identical in final TESTS.md; snapshot already contains a 'E13 result' heading: False
+    mp3  snapshot TESTS_pre_mp3_results.md: 4 guess lines, 4 identical in final TESTS.md; snapshot already contains a 'mp3 result' heading: False
+  The snapshots prove the guess WORDING did not change after results were added (where identical), and that the snapshot lacked the result section, but the snapshots arrive in the 2026-11-13 archive commit, so wall-clock order rests on the author's own timestamps and on the `t` fields above, not on git.
+
+====================================================================================================
+PART 3c: Holm correction (alpha 0.05) over the primary run-level tests behind claims a to e
+  family size m = 14. Raw p are exact permutation / Fisher p at the run level (the cell-level Fisher for deaths is shown for comparison in claim b).
+  test                                                            raw p     Holm p  survives 0.05
+  a  step-0 light, shown vs hidden (8 vs 8 runs)              0.0001554   0.002176  YES
+  b  energy, hidden vs shown (8 vs 8 runs)                    0.0001554   0.002176  YES
+  b  runs with a death, hidden vs shown (Fisher 8 vs 8)         0.02564     0.3077  no
+  a  step-0 light, arm a vs arm b (4 vs 4 runs, S3-c)           0.02857     0.3143  no
+  b  energy, arm b vs arm a (4 vs 4 runs, S3-e)                 0.02857     0.3143  no
+  c  sense c vs a, O1 all kits (S3-i, 4 vs 4 runs)              0.02857     0.3143  no
+  d  stem vs flat tokens SP2 (4 vs 4 runs)                      0.02857     0.3143  no
+  c' hidden vs shown on reach b vs a (4 vs 4 runs)              0.08571        0.6  no
+  e  heredity vs blank energy L1 (3 vs 3 runs)                      0.1        0.6  no
+  c  sense main effect, O1 (8 vs 8 runs)                         0.3131          1  no
+  c  sense main effect, O1 without fibmod (8 vs 8)               0.5176          1  no
+  d  stem vs flat reach SP2 (4 vs 4 runs)                        0.7143          1  no
+  c  sense c vs a, O1 without fibmod (4 vs 4 runs)               0.9143          1  no
+  e  heredity vs blank reach L1 (3 vs 3 runs)                         1          1  no
+  Wider family: all 129 hypotheses written down across the records. Bonferroni/Holm first-step threshold 0.05/129 = 3.88e-04. Tests below that: ['a  step-0 light, shown vs hidden (8 vs 8 runs)', 'b  energy, hidden vs shown (8 vs 8 runs)']
+  Note: most written guesses are threshold rules on point estimates and have no p value, so Holm cannot be applied to them; the 4 vs 4 and 3 vs 3 designs have a smallest attainable two-sided exact p of 0.0286 and 0.10.
+
+[integrity] files read 704; sha256 match archive SHA256SUMS.txt / laws manifest.md: 557; no recorded hash: 146; MISMATCH: 1
+    no recorded hash (outside both tables): ['<weft-loom>/experiments/no-language-colony-2026-11-12/00-DESIGN.md', '<weft-loom>/experiments/no-language-colony-2026-11-12/PREREG-5.md', '<weft-loom>/experiments/no-language-colony-2026-11-12/RESULTS-NL-STAGE2.md', '<weft-loom>/experiments/no-language-colony-2026-11-12/RESULTS-NL.md', '<weft-loom>/experiments/no-language-colony-2026-11-12/logs/e4a-mock.jsonl', '<weft-loom>/experiments/no-language-colony-2026-11-12/logs/mock-E1.jsonl', '<weft-loom>/experiments/no-language-colony-2026-11-12/logs/mock-E2.jsonl', '<weft-loom>/experiments/no-language-colony-2026-11-12/logs/mock-E3.jsonl'] ...
+    MISMATCH files: ['TESTS.md'] (prose files compared with manifest.md; see the TESTS.md blob comparison in part 3b)
+
+wrote <weft-loom>/experiments/weft-threads-recheck-2026-11-15/colony/colony_results.json

@@ -1,0 +1,110 @@
+shared seed 0 done
+shared seed 1 done
+shared seed 2 done
+shared seed 3 done
+shared seed 4 done
+shared seed 5 done
+shared seed 6 done
+shared seed 7 done
+shared seed 8 done
+shared seed 9 done
+shared seed 10 done
+shared seed 11 done
+world seed 0 done pass=1 novel=0.8924
+world seed 1 done pass=1 novel=0.8945
+world seed 2 done pass=1 novel=0.8615
+world seed 3 done pass=1 novel=0.9176
+world seed 4 done pass=1 novel=0.8751
+world seed 5 done pass=1 novel=0.8462
+world seed 6 done pass=1 novel=0.9028
+world seed 7 done pass=0 novel=0.9123
+world seed 8 done pass=1 novel=0.8820
+world seed 9 done pass=1 novel=0.9001
+world seed 10 done pass=1 novel=0.9466
+world seed 11 done pass=1 novel=0.9036
+{
+ "passes": {
+  "A4_shared": "12/12",
+  "A4_worlds": "11/12",
+  "rand_slots": "0/12",
+  "trivial_moe": "12/12"
+ },
+ "novel_mean": {
+  "A4_shared": 0.8629,
+  "A4_worlds": 0.8946,
+  "rand_slots": 0.8616,
+  "trivial_moe": 0.8642
+ },
+ "shunt_sweep_passes": {
+  "0.0": "0/12",
+  "-0.6": "12/12",
+  "-1.2": "12/12",
+  "-2.4": "12/12",
+  "-4.8": "11/12"
+ },
+ "shunt_sweep_novel": {
+  "0.0": 0.5406,
+  "-0.6": 0.8365,
+  "-1.2": 0.8607,
+  "-2.4": 0.8629,
+  "-4.8": 0.863
+ },
+ "per_seed": {
+  "A4_shared": [
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "A4_worlds": [
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   0,
+   1,
+   1,
+   1,
+   1
+  ],
+  "rand_slots": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "trivial_moe": [
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ]
+ }
+}
