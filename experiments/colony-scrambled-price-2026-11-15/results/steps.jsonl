@@ -1,0 +1,843 @@
+{"kind": "laws", "kit": "compress", "price_scramble": false, "price_show": false, "run": "scH1", "start": "mid", "t": 1794769920.59}
+{"charge": 24.9, "kind": "step", "kit": "compress", "model": "mid", "run": "scH1", "step": 0, "t": 1794769922.42, "usd": 0.0016922}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH1", "step": 0, "t": 1794769922.45}
+{"charge": 86.6, "kind": "step", "kit": "compress", "model": "mid", "run": "scH1", "step": 1, "t": 1794769927.5, "usd": 0.0078625}
+{"do": "write", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH1", "step": 1, "t": 1794769927.5}
+{"charge": 56.5, "kind": "step", "kit": "compress", "model": "mid", "run": "scH1", "step": 2, "t": 1794769929.1, "usd": 0.0048475}
+{"do": "assay", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH1", "step": 2, "t": 1794769936.96}
+{"charge": 104.6, "kind": "step", "kit": "compress", "model": "mid", "run": "scH1", "step": 3, "t": 1794769941.82, "usd": 0.00966}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH1", "step": 3, "t": 1794769942.45}
+{"charge": 114.8, "kind": "step", "kit": "compress", "model": "mid", "run": "scH1", "step": 4, "t": 1794769947.35, "usd": 0.0106825}
+{"kind": "bad_reply", "kit": "compress", "run": "scH1", "step": 4, "t": 1794769947.35}
+{"age": 5, "e": 12.6, "kind": "death", "kit": "compress", "run": "scH1", "t": 1794769947.35, "why": "cannot pay for a thought"}
+{"kind": "laws", "kit": "csvsum", "price_scramble": false, "price_show": false, "run": "scH1", "start": "mid", "t": 1794769920.59}
+{"charge": 24.0, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH1", "step": 0, "t": 1794769922.42, "usd": 0.001599}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scH1", "step": 0, "t": 1794769922.45}
+{"charge": 46.1, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH1", "step": 1, "t": 1794769924.25, "usd": 0.0038125}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scH1", "step": 1, "t": 1794769924.31}
+{"charge": 89.4, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH1", "step": 2, "t": 1794769929.3, "usd": 0.00814}
+{"do": "write", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scH1", "step": 2, "t": 1794769929.3}
+{"charge": 74.9, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH1", "step": 3, "t": 1794769931.86, "usd": 0.0066925}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "light", "run": "scH1", "step": 3, "t": 1794769932.24}
+{"charge": 11.8, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH1", "step": 4, "t": 1794769934.15, "usd": 0.00037725}
+{"do": "assay", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scH1", "step": 4, "t": 1794769943.76}
+{"charge": 15.9, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH1", "step": 5, "t": 1794769949.26, "usd": 0.00079475}
+{"do": "variants", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scH1", "step": 5, "t": 1794769952.41}
+{"charge": 14.5, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH1", "step": 6, "t": 1794769955.68, "usd": 0.00064725}
+{"do": "rest", "kind": "act", "kit": "csvsum", "model": "light", "next": null, "run": "scH1", "step": 6, "t": 1794769955.68}
+{"kind": "laws", "kit": "fibmod", "price_scramble": false, "price_show": false, "run": "scH1", "start": "mid", "t": 1794769920.59}
+{"charge": 23.7, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scH1", "step": 0, "t": 1794769922.51, "usd": 0.0015684}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scH1", "step": 0, "t": 1794769922.53}
+{"charge": 193.5, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scH1", "step": 1, "t": 1794769936.24, "usd": 0.018555}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scH1", "step": 1, "t": 1794769936.35}
+{"charge": 66.0, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scH1", "step": 2, "t": 1794769939.23, "usd": 0.0058}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scH1", "step": 2, "t": 1794769945.62}
+{"charge": 98.0, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scH1", "step": 3, "t": 1794769951.09, "usd": 0.0089975}
+{"do": "rest", "kind": "act", "kit": "fibmod", "model": "mid", "next": null, "run": "scH1", "step": 3, "t": 1794769951.09}
+{"kind": "laws", "kit": "maze", "price_scramble": false, "price_show": false, "run": "scH1", "start": "mid", "t": 1794769920.59}
+{"charge": 40.8, "kind": "step", "kit": "maze", "model": "mid", "run": "scH1", "step": 0, "t": 1794769922.97, "usd": 0.0032775}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scH1", "step": 0, "t": 1794769923.0}
+{"charge": 147.2, "kind": "step", "kit": "maze", "model": "mid", "run": "scH1", "step": 1, "t": 1794769933.04, "usd": 0.01392}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scH1", "step": 1, "t": 1794769933.27}
+{"charge": 71.7, "kind": "step", "kit": "maze", "model": "mid", "run": "scH1", "step": 2, "t": 1794769936.05, "usd": 0.006365}
+{"do": "assay", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scH1", "step": 2, "t": 1794769945.19}
+{"charge": 113.8, "kind": "step", "kit": "maze", "model": "mid", "run": "scH1", "step": 3, "t": 1794769951.67, "usd": 0.0105775}
+{"do": "rest", "kind": "act", "kit": "maze", "model": "mid", "next": null, "run": "scH1", "step": 3, "t": 1794769951.67}
+{"kind": "laws", "kit": "compress", "price_scramble": false, "price_show": false, "run": "scH2", "start": "mid", "t": 1794770055.48}
+{"charge": 24.9, "kind": "step", "kit": "compress", "model": "mid", "run": "scH2", "step": 0, "t": 1794770057.43, "usd": 0.0016922}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH2", "step": 0, "t": 1794770057.46}
+{"charge": 101.1, "kind": "step", "kit": "compress", "model": "mid", "run": "scH2", "step": 1, "t": 1794770063.03, "usd": 0.0093125}
+{"do": "write", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH2", "step": 1, "t": 1794770063.03}
+{"charge": 56.7, "kind": "step", "kit": "compress", "model": "mid", "run": "scH2", "step": 2, "t": 1794770065.41, "usd": 0.0048725}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH2", "step": 2, "t": 1794770065.46}
+{"charge": 117.9, "kind": "step", "kit": "compress", "model": "mid", "run": "scH2", "step": 3, "t": 1794770071.44, "usd": 0.01099}
+{"do": "write", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH2", "step": 3, "t": 1794770071.44}
+{"charge": 89.2, "kind": "step", "kit": "compress", "model": "mid", "run": "scH2", "step": 4, "t": 1794770073.64, "usd": 0.00812}
+{"kind": "bad_reply", "kit": "compress", "run": "scH2", "step": 4, "t": 1794770073.64}
+{"age": 5, "e": 10.1, "kind": "death", "kit": "compress", "run": "scH2", "t": 1794770073.64, "why": "cannot pay for a thought"}
+{"kind": "laws", "kit": "csvsum", "price_scramble": false, "price_show": false, "run": "scH2", "start": "mid", "t": 1794770055.48}
+{"charge": 23.6, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH2", "step": 0, "t": 1794770057.57, "usd": 0.001559}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scH2", "step": 0, "t": 1794770057.6}
+{"charge": 45.6, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH2", "step": 1, "t": 1794770059.84, "usd": 0.0037625}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scH2", "step": 1, "t": 1794770059.9}
+{"charge": 87.5, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH2", "step": 2, "t": 1794770064.25, "usd": 0.007955}
+{"do": "write", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scH2", "step": 2, "t": 1794770064.25}
+{"charge": 86.1, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH2", "step": 3, "t": 1794770067.97, "usd": 0.0078125}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scH2", "step": 3, "t": 1794770068.0}
+{"charge": 81.1, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH2", "step": 4, "t": 1794770070.56, "usd": 0.00731}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scH2", "step": 4, "t": 1794770070.9}
+{"e": 76.0, "frm": "mid", "kind": "downshift", "kit": "csvsum", "run": "scH2", "t": 1794770070.9, "to": "light"}
+{"charge": 12.7, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH2", "step": 5, "t": 1794770073.19, "usd": 0.00047338}
+{"do": "assay", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scH2", "step": 5, "t": 1794770078.2}
+{"charge": 17.8, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH2", "step": 6, "t": 1794770084.85, "usd": 0.00098113}
+{"do": "variants", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scH2", "step": 6, "t": 1794770089.43}
+{"charge": 18.0, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH2", "step": 7, "t": 1794770096.58, "usd": 0.000998}
+{"do": "rest", "kind": "act", "kit": "csvsum", "model": "light", "next": null, "run": "scH2", "step": 7, "t": 1794770096.58}
+{"kind": "laws", "kit": "fibmod", "price_scramble": false, "price_show": false, "run": "scH2", "start": "mid", "t": 1794770055.48}
+{"charge": 23.7, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scH2", "step": 0, "t": 1794770057.37, "usd": 0.0015684}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scH2", "step": 0, "t": 1794770057.4}
+{"charge": 204.4, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scH2", "step": 1, "t": 1794770073.11, "usd": 0.019645}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scH2", "step": 1, "t": 1794770073.27}
+{"charge": 76.0, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scH2", "step": 2, "t": 1794770076.57, "usd": 0.0068025}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scH2", "step": 2, "t": 1794770076.67}
+{"charge": 70.6, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scH2", "step": 3, "t": 1794770078.99, "usd": 0.0062625}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scH2", "step": 3, "t": 1794770080.4}
+{"e": 25.2, "frm": "mid", "kind": "downshift", "kit": "fibmod", "run": "scH2", "t": 1794770080.41, "to": "light"}
+{"charge": 13.3, "kind": "step", "kit": "fibmod", "model": "light", "run": "scH2", "step": 4, "t": 1794770083.68, "usd": 0.0005295}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scH2", "step": 4, "t": 1794770085.16}
+{"charge": 11.2, "kind": "step", "kit": "fibmod", "model": "light", "run": "scH2", "step": 5, "t": 1794770086.65, "usd": 0.00031937}
+{"kind": "bad_reply", "kit": "fibmod", "run": "scH2", "step": 5, "t": 1794770086.65}
+{"age": 6, "e": null, "kind": "death", "kit": "fibmod", "run": "scH2", "t": 1794770086.65, "why": null}
+{"kind": "laws", "kit": "maze", "price_scramble": false, "price_show": false, "run": "scH2", "start": "mid", "t": 1794770055.48}
+{"charge": 38.4, "kind": "step", "kit": "maze", "model": "mid", "run": "scH2", "step": 0, "t": 1794770057.84, "usd": 0.0030425}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scH2", "step": 0, "t": 1794770057.87}
+{"charge": 89.0, "kind": "step", "kit": "maze", "model": "mid", "run": "scH2", "step": 1, "t": 1794770062.61, "usd": 0.0081025}
+{"do": "write", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scH2", "step": 1, "t": 1794770062.61}
+{"charge": 70.3, "kind": "step", "kit": "maze", "model": "mid", "run": "scH2", "step": 2, "t": 1794770065.24, "usd": 0.006235}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scH2", "step": 2, "t": 1794770065.5}
+{"charge": 63.5, "kind": "step", "kit": "maze", "model": "mid", "run": "scH2", "step": 3, "t": 1794770067.91, "usd": 0.00555}
+{"do": "assay", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scH2", "step": 3, "t": 1794770070.92}
+{"charge": 125.5, "kind": "step", "kit": "maze", "model": "mid", "run": "scH2", "step": 4, "t": 1794770078.97, "usd": 0.0117525}
+{"kind": "bad_reply", "kit": "maze", "run": "scH2", "step": 4, "t": 1794770078.97}
+{"age": 5, "e": 13.2, "kind": "death", "kit": "maze", "run": "scH2", "t": 1794770078.97, "why": "cannot pay for a thought"}
+{"kind": "laws", "kit": "compress", "price_scramble": false, "price_show": false, "run": "scH3", "start": "mid", "t": 1794770222.86}
+{"charge": 24.9, "kind": "step", "kit": "compress", "model": "mid", "run": "scH3", "step": 0, "t": 1794770224.63, "usd": 0.0016922}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH3", "step": 0, "t": 1794770224.66}
+{"charge": 105.0, "kind": "step", "kit": "compress", "model": "mid", "run": "scH3", "step": 1, "t": 1794770230.01, "usd": 0.0097025}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH3", "step": 1, "t": 1794770230.04}
+{"charge": 65.0, "kind": "step", "kit": "compress", "model": "mid", "run": "scH3", "step": 2, "t": 1794770232.64, "usd": 0.0057025}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH3", "step": 2, "t": 1794770232.67}
+{"charge": 119.8, "kind": "step", "kit": "compress", "model": "mid", "run": "scH3", "step": 3, "t": 1794770238.34, "usd": 0.0111775}
+{"do": "write", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH3", "step": 3, "t": 1794770238.34}
+{"e": 85.3, "frm": "mid", "kind": "downshift", "kit": "compress", "run": "scH3", "t": 1794770238.34, "to": "light"}
+{"charge": 13.9, "kind": "step", "kit": "compress", "model": "light", "run": "scH3", "step": 4, "t": 1794770241.04, "usd": 0.00059275}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scH3", "step": 4, "t": 1794770241.89}
+{"charge": 12.7, "kind": "step", "kit": "compress", "model": "light", "run": "scH3", "step": 5, "t": 1794770243.72, "usd": 0.00046813}
+{"do": "assay", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scH3", "step": 5, "t": 1794770252.7}
+{"charge": 21.1, "kind": "step", "kit": "compress", "model": "light", "run": "scH3", "step": 6, "t": 1794770260.85, "usd": 0.00131438}
+{"do": "variants", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scH3", "step": 6, "t": 1794770271.92}
+{"charge": 16.2, "kind": "step", "kit": "compress", "model": "light", "run": "scH3", "step": 7, "t": 1794770277.38, "usd": 0.000822}
+{"do": "rest", "kind": "act", "kit": "compress", "model": "light", "next": null, "run": "scH3", "step": 7, "t": 1794770277.38}
+{"kind": "laws", "kit": "csvsum", "price_scramble": false, "price_show": false, "run": "scH3", "start": "mid", "t": 1794770222.86}
+{"charge": 23.6, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH3", "step": 0, "t": 1794770224.74, "usd": 0.001559}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scH3", "step": 0, "t": 1794770224.76}
+{"charge": 28.8, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH3", "step": 1, "t": 1794770227.04, "usd": 0.0020772}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "light", "run": "scH3", "step": 1, "t": 1794770227.09}
+{"charge": 16.0, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH3", "step": 2, "t": 1794770233.35, "usd": 0.000799}
+{"do": "write", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scH3", "step": 2, "t": 1794770233.35}
+{"charge": 11.9, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH3", "step": 3, "t": 1794770235.22, "usd": 0.000388}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scH3", "step": 3, "t": 1794770235.56}
+{"charge": 11.9, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH3", "step": 4, "t": 1794770237.58, "usd": 0.00039188}
+{"do": "assay", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scH3", "step": 4, "t": 1794770242.56}
+{"charge": 16.5, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH3", "step": 5, "t": 1794770247.92, "usd": 0.00085437}
+{"do": "variants", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scH3", "step": 5, "t": 1794770255.65}
+{"charge": 14.1, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH3", "step": 6, "t": 1794770259.25, "usd": 0.0006135}
+{"do": "rest", "kind": "act", "kit": "csvsum", "model": "light", "next": null, "run": "scH3", "step": 6, "t": 1794770259.25}
+{"kind": "laws", "kit": "fibmod", "price_scramble": false, "price_show": false, "run": "scH3", "start": "mid", "t": 1794770222.86}
+{"charge": 23.7, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scH3", "step": 0, "t": 1794770224.72, "usd": 0.0015684}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scH3", "step": 0, "t": 1794770224.74}
+{"charge": 246.3, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scH3", "step": 1, "t": 1794770243.42, "usd": 0.023835}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scH3", "step": 1, "t": 1794770243.57}
+{"charge": 82.5, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scH3", "step": 2, "t": 1794770247.3, "usd": 0.00745}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scH3", "step": 2, "t": 1794770247.44}
+{"e": 47.5, "frm": "mid", "kind": "downshift", "kit": "fibmod", "run": "scH3", "t": 1794770247.44, "to": "light"}
+{"charge": 11.2, "kind": "step", "kit": "fibmod", "model": "light", "run": "scH3", "step": 3, "t": 1794770248.84, "usd": 0.0003185}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scH3", "step": 3, "t": 1794770256.65}
+{"charge": 13.2, "kind": "step", "kit": "fibmod", "model": "light", "run": "scH3", "step": 4, "t": 1794770259.67, "usd": 0.000518}
+{"do": "rest", "kind": "act", "kit": "fibmod", "model": "light", "next": null, "run": "scH3", "step": 4, "t": 1794770259.67}
+{"kind": "laws", "kit": "maze", "price_scramble": false, "price_show": false, "run": "scH3", "start": "mid", "t": 1794770222.86}
+{"charge": 23.3, "kind": "step", "kit": "maze", "model": "mid", "run": "scH3", "step": 0, "t": 1794770225.02, "usd": 0.00153}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scH3", "step": 0, "t": 1794770225.04}
+{"charge": 45.8, "kind": "step", "kit": "maze", "model": "mid", "run": "scH3", "step": 1, "t": 1794770227.04, "usd": 0.0037775}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scH3", "step": 1, "t": 1794770227.07}
+{"charge": 146.4, "kind": "step", "kit": "maze", "model": "mid", "run": "scH3", "step": 2, "t": 1794770239.66, "usd": 0.013845}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scH3", "step": 2, "t": 1794770239.68}
+{"charge": 149.8, "kind": "step", "kit": "maze", "model": "mid", "run": "scH3", "step": 3, "t": 1794770250.92, "usd": 0.014175}
+{"do": "write", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scH3", "step": 3, "t": 1794770250.92}
+{"e": 34.7, "frm": "mid", "kind": "downshift", "kit": "maze", "run": "scH3", "t": 1794770250.92, "to": "light"}
+{"charge": 14.0, "kind": "step", "kit": "maze", "model": "light", "run": "scH3", "step": 4, "t": 1794770254.46, "usd": 0.00060037}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scH3", "step": 4, "t": 1794770254.65}
+{"charge": 16.5, "kind": "step", "kit": "maze", "model": "light", "run": "scH3", "step": 5, "t": 1794770260.97, "usd": 0.00085138}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scH3", "step": 5, "t": 1794770261.35}
+{"charge": 13.1, "kind": "step", "kit": "maze", "model": "light", "run": "scH3", "step": 6, "t": 1794770264.56, "usd": 0.00051088}
+{"do": "assay", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scH3", "step": 6, "t": 1794770275.81}
+{"charge": 15.6, "kind": "step", "kit": "maze", "model": "light", "run": "scH3", "step": 7, "t": 1794770281.28, "usd": 0.00075612}
+{"do": "rest", "kind": "act", "kit": "maze", "model": "light", "next": null, "run": "scH3", "step": 7, "t": 1794770281.28}
+{"kind": "laws", "kit": "compress", "price_scramble": false, "price_show": false, "run": "scH4", "start": "mid", "t": 1794770434.95}
+{"charge": 23.1, "kind": "step", "kit": "compress", "model": "mid", "run": "scH4", "step": 0, "t": 1794770436.86, "usd": 0.0015122}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH4", "step": 0, "t": 1794770436.89}
+{"charge": 106.5, "kind": "step", "kit": "compress", "model": "mid", "run": "scH4", "step": 1, "t": 1794770442.78, "usd": 0.00985}
+{"do": "write", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH4", "step": 1, "t": 1794770442.78}
+{"charge": 54.0, "kind": "step", "kit": "compress", "model": "mid", "run": "scH4", "step": 2, "t": 1794770445.26, "usd": 0.0046}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH4", "step": 2, "t": 1794770445.28}
+{"charge": 142.1, "kind": "step", "kit": "compress", "model": "mid", "run": "scH4", "step": 3, "t": 1794770453.24, "usd": 0.01341}
+{"do": "write", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scH4", "step": 3, "t": 1794770453.24}
+{"e": 74.3, "frm": "mid", "kind": "downshift", "kit": "compress", "run": "scH4", "t": 1794770453.24, "to": "light"}
+{"charge": 13.6, "kind": "step", "kit": "compress", "model": "light", "run": "scH4", "step": 4, "t": 1794770455.83, "usd": 0.00055813}
+{"do": "assay", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scH4", "step": 4, "t": 1794770481.36}
+{"charge": 16.4, "kind": "step", "kit": "compress", "model": "light", "run": "scH4", "step": 5, "t": 1794770486.11, "usd": 0.00083725}
+{"do": "rest", "kind": "act", "kit": "compress", "model": "light", "next": null, "run": "scH4", "step": 5, "t": 1794770486.11}
+{"kind": "laws", "kit": "csvsum", "price_scramble": false, "price_show": false, "run": "scH4", "start": "mid", "t": 1794770434.95}
+{"charge": 23.6, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH4", "step": 0, "t": 1794770437.29, "usd": 0.001559}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scH4", "step": 0, "t": 1794770437.33}
+{"charge": 45.3, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH4", "step": 1, "t": 1794770439.2, "usd": 0.0037325}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scH4", "step": 1, "t": 1794770439.25}
+{"charge": 110.9, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH4", "step": 2, "t": 1794770446.44, "usd": 0.0102925}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scH4", "step": 2, "t": 1794770446.5}
+{"charge": 57.2, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH4", "step": 3, "t": 1794770448.49, "usd": 0.004925}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scH4", "step": 3, "t": 1794770448.51}
+{"charge": 129.0, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scH4", "step": 4, "t": 1794770455.45, "usd": 0.012105}
+{"do": "write", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scH4", "step": 4, "t": 1794770455.45}
+{"e": 74.6, "frm": "mid", "kind": "downshift", "kit": "csvsum", "run": "scH4", "t": 1794770455.46, "to": "light"}
+{"charge": 13.1, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH4", "step": 5, "t": 1794770457.54, "usd": 0.0005095}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scH4", "step": 5, "t": 1794770457.9}
+{"charge": 12.6, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH4", "step": 6, "t": 1794770459.45, "usd": 0.00046125}
+{"do": "assay", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scH4", "step": 6, "t": 1794770484.08}
+{"charge": 18.6, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH4", "step": 7, "t": 1794770490.98, "usd": 0.00106387}
+{"do": "variants", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scH4", "step": 7, "t": 1794770499.68}
+{"charge": 16.8, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH4", "step": 8, "t": 1794770505.26, "usd": 0.00088388}
+{"do": "variants", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scH4", "step": 8, "t": 1794770508.44}
+{"charge": 13.8, "kind": "step", "kit": "csvsum", "model": "light", "run": "scH4", "step": 9, "t": 1794770511.54, "usd": 0.00057987}
+{"do": "rest", "kind": "act", "kit": "csvsum", "model": "light", "next": null, "run": "scH4", "step": 9, "t": 1794770511.54}
+{"kind": "laws", "kit": "fibmod", "price_scramble": false, "price_show": false, "run": "scH4", "start": "mid", "t": 1794770434.95}
+{"charge": 23.7, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scH4", "step": 0, "t": 1794770436.96, "usd": 0.0015684}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scH4", "step": 0, "t": 1794770436.98}
+{"charge": 192.6, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scH4", "step": 1, "t": 1794770450.44, "usd": 0.018465}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scH4", "step": 1, "t": 1794770450.57}
+{"charge": 78.5, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scH4", "step": 2, "t": 1794770453.61, "usd": 0.007045}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scH4", "step": 2, "t": 1794770453.71}
+{"charge": 66.9, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scH4", "step": 3, "t": 1794770455.65, "usd": 0.0058925}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scH4", "step": 3, "t": 1794770469.32}
+{"e": 79.0, "frm": "mid", "kind": "downshift", "kit": "fibmod", "run": "scH4", "t": 1794770469.32, "to": "light"}
+{"charge": 14.6, "kind": "step", "kit": "fibmod", "model": "light", "run": "scH4", "step": 4, "t": 1794770473.66, "usd": 0.00065887}
+{"do": "rest", "kind": "act", "kit": "fibmod", "model": "light", "next": null, "run": "scH4", "step": 4, "t": 1794770473.66}
+{"kind": "laws", "kit": "maze", "price_scramble": false, "price_show": false, "run": "scH4", "start": "mid", "t": 1794770434.95}
+{"charge": 23.3, "kind": "step", "kit": "maze", "model": "mid", "run": "scH4", "step": 0, "t": 1794770437.38, "usd": 0.00153}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scH4", "step": 0, "t": 1794770437.4}
+{"charge": 45.5, "kind": "step", "kit": "maze", "model": "mid", "run": "scH4", "step": 1, "t": 1794770439.54, "usd": 0.0037475}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scH4", "step": 1, "t": 1794770439.57}
+{"charge": 96.2, "kind": "step", "kit": "maze", "model": "mid", "run": "scH4", "step": 2, "t": 1794770444.11, "usd": 0.008825}
+{"do": "write", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scH4", "step": 2, "t": 1794770444.11}
+{"charge": 87.0, "kind": "step", "kit": "maze", "model": "mid", "run": "scH4", "step": 3, "t": 1794770446.81, "usd": 0.007905}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "light", "run": "scH4", "step": 3, "t": 1794770447.09}
+{"charge": 11.9, "kind": "step", "kit": "maze", "model": "light", "run": "scH4", "step": 4, "t": 1794770449.02, "usd": 0.000386}
+{"do": "assay", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scH4", "step": 4, "t": 1794770452.14}
+{"charge": 13.9, "kind": "step", "kit": "maze", "model": "light", "run": "scH4", "step": 5, "t": 1794770455.28, "usd": 0.0005885}
+{"do": "rest", "kind": "act", "kit": "maze", "model": "light", "next": null, "run": "scH4", "step": 5, "t": 1794770455.28}
+{"kind": "laws", "kit": "compress", "price_scramble": true, "price_show": true, "run": "scS1", "start": "mid", "t": 1794769865.49}
+{"charge": 27.3, "kind": "step", "kit": "compress", "model": "mid", "run": "scS1", "step": 0, "t": 1794769867.76, "usd": 0.0019304}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "heavy", "run": "scS1", "step": 0, "t": 1794769867.79}
+{"charge": 216.6, "kind": "step", "kit": "compress", "model": "heavy", "run": "scS1", "step": 1, "t": 1794769874.25, "usd": 0.0208616}
+{"do": "write", "kind": "act", "kit": "compress", "model": "heavy", "next": "heavy", "run": "scS1", "step": 1, "t": 1794769874.25}
+{"e": 156.1, "frm": "heavy", "kind": "downshift", "kit": "compress", "run": "scS1", "t": 1794769874.25, "to": "mid"}
+{"charge": 103.5, "kind": "step", "kit": "compress", "model": "mid", "run": "scS1", "step": 2, "t": 1794769877.96, "usd": 0.0095461}
+{"kind": "bad_reply", "kit": "compress", "run": "scS1", "step": 2, "t": 1794769877.96}
+{"e": 52.6, "frm": "mid", "kind": "downshift", "kit": "compress", "run": "scS1", "t": 1794769877.96, "to": "light"}
+{"charge": 12.5, "kind": "step", "kit": "compress", "model": "light", "run": "scS1", "step": 3, "t": 1794769880.52, "usd": 0.00044743}
+{"do": "assay", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scS1", "step": 3, "t": 1794769891.96}
+{"charge": 20.6, "kind": "step", "kit": "compress", "model": "light", "run": "scS1", "step": 4, "t": 1794769899.69, "usd": 0.00125518}
+{"do": "variants", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scS1", "step": 4, "t": 1794769909.61}
+{"charge": 14.8, "kind": "step", "kit": "compress", "model": "light", "run": "scS1", "step": 5, "t": 1794769912.52, "usd": 0.00068018}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scS1", "step": 5, "t": 1794769912.55}
+{"charge": 15.8, "kind": "step", "kit": "compress", "model": "light", "run": "scS1", "step": 6, "t": 1794769916.34, "usd": 0.00078018}
+{"do": "rest", "kind": "act", "kit": "compress", "model": "light", "next": null, "run": "scS1", "step": 6, "t": 1794769916.34}
+{"kind": "laws", "kit": "csvsum", "price_scramble": true, "price_show": true, "run": "scS1", "start": "mid", "t": 1794769865.49}
+{"charge": 42.4, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS1", "step": 0, "t": 1794769867.61, "usd": 0.0034386}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS1", "step": 0, "t": 1794769867.65}
+{"charge": 49.0, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS1", "step": 1, "t": 1794769869.68, "usd": 0.0040961}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS1", "step": 1, "t": 1794769869.74}
+{"charge": 91.4, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS1", "step": 2, "t": 1794769875.44, "usd": 0.0083411}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS1", "step": 2, "t": 1794769877.61}
+{"charge": 158.3, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS1", "step": 3, "t": 1794769888.19, "usd": 0.0150286}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS1", "step": 3, "t": 1794769888.54}
+{"e": 59.0, "frm": "mid", "kind": "downshift", "kit": "csvsum", "run": "scS1", "t": 1794769888.54, "to": "light"}
+{"charge": 12.3, "kind": "step", "kit": "csvsum", "model": "light", "run": "scS1", "step": 4, "t": 1794769890.96, "usd": 0.00043043}
+{"do": "assay", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scS1", "step": 4, "t": 1794769899.04}
+{"charge": 14.2, "kind": "step", "kit": "csvsum", "model": "light", "run": "scS1", "step": 5, "t": 1794769903.45, "usd": 0.00061618}
+{"do": "rest", "kind": "act", "kit": "csvsum", "model": "light", "next": null, "run": "scS1", "step": 5, "t": 1794769903.45}
+{"kind": "laws", "kit": "fibmod", "price_scramble": true, "price_show": true, "run": "scS1", "start": "mid", "t": 1794769865.49}
+{"charge": 46.2, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS1", "step": 0, "t": 1794769868.81, "usd": 0.0038166}
+{"do": "write", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scS1", "step": 0, "t": 1794769868.81}
+{"charge": 63.7, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS1", "step": 1, "t": 1794769871.31, "usd": 0.0055736}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scS1", "step": 1, "t": 1794769871.35}
+{"charge": 65.0, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS1", "step": 2, "t": 1794769873.4, "usd": 0.0056986}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scS1", "step": 2, "t": 1794769873.83}
+{"charge": 59.5, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS1", "step": 3, "t": 1794769875.42, "usd": 0.0051511}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scS1", "step": 3, "t": 1794769880.61}
+{"charge": 152.4, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS1", "step": 4, "t": 1794769890.66, "usd": 0.0144436}
+{"kind": "bad_reply", "kit": "fibmod", "run": "scS1", "step": 4, "t": 1794769890.66}
+{"age": 5, "e": 13.2, "kind": "death", "kit": "fibmod", "run": "scS1", "t": 1794769890.66, "why": "cannot pay for a thought"}
+{"kind": "laws", "kit": "maze", "price_scramble": true, "price_show": true, "run": "scS1", "start": "mid", "t": 1794769865.49}
+{"charge": 25.2, "kind": "step", "kit": "maze", "model": "mid", "run": "scS1", "step": 0, "t": 1794769867.37, "usd": 0.0017182}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS1", "step": 0, "t": 1794769867.4}
+{"charge": 85.9, "kind": "step", "kit": "maze", "model": "mid", "run": "scS1", "step": 1, "t": 1794769871.96, "usd": 0.0077911}
+{"do": "write", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS1", "step": 1, "t": 1794769871.96}
+{"charge": 77.6, "kind": "step", "kit": "maze", "model": "mid", "run": "scS1", "step": 2, "t": 1794769874.39, "usd": 0.0069561}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS1", "step": 2, "t": 1794769874.89}
+{"charge": 71.4, "kind": "step", "kit": "maze", "model": "mid", "run": "scS1", "step": 3, "t": 1794769877.33, "usd": 0.0063411}
+{"do": "assay", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS1", "step": 3, "t": 1794769882.15}
+{"charge": 125.7, "kind": "step", "kit": "maze", "model": "mid", "run": "scS1", "step": 4, "t": 1794769889.38, "usd": 0.0117736}
+{"kind": "bad_reply", "kit": "maze", "run": "scS1", "step": 4, "t": 1794769889.38}
+{"e": 14.2, "frm": "mid", "kind": "downshift", "kit": "maze", "run": "scS1", "t": 1794769889.39, "to": "light"}
+{"charge": 11.5, "kind": "step", "kit": "maze", "model": "light", "run": "scS1", "step": 5, "t": 1794769891.26, "usd": 0.00034718}
+{"kind": "bad_reply", "kit": "maze", "run": "scS1", "step": 5, "t": 1794769891.26}
+{"age": 6, "e": null, "kind": "death", "kit": "maze", "run": "scS1", "t": 1794769891.26, "why": null}
+{"kind": "laws", "kit": "compress", "price_scramble": true, "price_show": true, "run": "scS2", "start": "mid", "t": 1794770016.62}
+{"charge": 26.0, "kind": "step", "kit": "compress", "model": "mid", "run": "scS2", "step": 0, "t": 1794770018.61, "usd": 0.0018004}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "heavy", "run": "scS2", "step": 0, "t": 1794770018.64}
+{"charge": 200.3, "kind": "step", "kit": "compress", "model": "heavy", "run": "scS2", "step": 1, "t": 1794770024.66, "usd": 0.0192266}
+{"do": "write", "kind": "act", "kit": "compress", "model": "heavy", "next": "heavy", "run": "scS2", "step": 1, "t": 1794770024.67}
+{"charge": 159.5, "kind": "step", "kit": "compress", "model": "heavy", "run": "scS2", "step": 2, "t": 1794770027.29, "usd": 0.0151516}
+{"kind": "bad_reply", "kit": "compress", "run": "scS2", "step": 2, "t": 1794770027.29}
+{"age": 3, "e": 14.2, "kind": "death", "kit": "compress", "run": "scS2", "t": 1794770027.29, "why": "cannot pay for a thought"}
+{"kind": "laws", "kit": "csvsum", "price_scramble": true, "price_show": true, "run": "scS2", "start": "mid", "t": 1794770016.62}
+{"charge": 25.9, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS2", "step": 0, "t": 1794770018.98, "usd": 0.0017872}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS2", "step": 0, "t": 1794770019.01}
+{"charge": 49.9, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS2", "step": 1, "t": 1794770021.31, "usd": 0.0041861}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS2", "step": 1, "t": 1794770021.36}
+{"charge": 77.6, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS2", "step": 2, "t": 1794770025.27, "usd": 0.0069586}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS2", "step": 2, "t": 1794770026.72}
+{"charge": 165.5, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS2", "step": 3, "t": 1794770037.86, "usd": 0.0157511}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS2", "step": 3, "t": 1794770038.29}
+{"charge": 70.0, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS2", "step": 4, "t": 1794770040.24, "usd": 0.0061986}
+{"kind": "bad_reply", "kit": "csvsum", "run": "scS2", "step": 4, "t": 1794770040.24}
+{"e": 15.4, "frm": "mid", "kind": "downshift", "kit": "csvsum", "run": "scS2", "t": 1794770040.24, "to": "light"}
+{"charge": 12.5, "kind": "step", "kit": "csvsum", "model": "light", "run": "scS2", "step": 5, "t": 1794770042.32, "usd": 0.00045481}
+{"kind": "bad_reply", "kit": "csvsum", "run": "scS2", "step": 5, "t": 1794770042.32}
+{"age": 6, "e": null, "kind": "death", "kit": "csvsum", "run": "scS2", "t": 1794770042.32, "why": null}
+{"kind": "laws", "kit": "fibmod", "price_scramble": true, "price_show": true, "run": "scS2", "start": "mid", "t": 1794770016.62}
+{"charge": 21.6, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS2", "step": 0, "t": 1794770018.9, "usd": 0.0013566}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scS2", "step": 0, "t": 1794770018.92}
+{"charge": 72.8, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS2", "step": 1, "t": 1794770023.28, "usd": 0.0064836}
+{"do": "write", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scS2", "step": 1, "t": 1794770023.28}
+{"charge": 66.7, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS2", "step": 2, "t": 1794770025.56, "usd": 0.0058686}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "light", "run": "scS2", "step": 2, "t": 1794770026.0}
+{"charge": 10.6, "kind": "step", "kit": "fibmod", "model": "light", "run": "scS2", "step": 3, "t": 1794770028.07, "usd": 0.00025793}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scS2", "step": 3, "t": 1794770031.65}
+{"charge": 15.8, "kind": "step", "kit": "fibmod", "model": "light", "run": "scS2", "step": 4, "t": 1794770036.99, "usd": 0.00077755}
+{"do": "variants", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scS2", "step": 4, "t": 1794770041.78}
+{"charge": 12.8, "kind": "step", "kit": "fibmod", "model": "light", "run": "scS2", "step": 5, "t": 1794770043.89, "usd": 0.00048155}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scS2", "step": 5, "t": 1794770044.32}
+{"charge": 12.1, "kind": "step", "kit": "fibmod", "model": "light", "run": "scS2", "step": 6, "t": 1794770046.97, "usd": 0.00040755}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scS2", "step": 6, "t": 1794770050.22}
+{"charge": 13.8, "kind": "step", "kit": "fibmod", "model": "light", "run": "scS2", "step": 7, "t": 1794770053.39, "usd": 0.00057918}
+{"do": "rest", "kind": "act", "kit": "fibmod", "model": "light", "next": null, "run": "scS2", "step": 7, "t": 1794770053.39}
+{"kind": "laws", "kit": "maze", "price_scramble": true, "price_show": true, "run": "scS2", "start": "mid", "t": 1794770016.62}
+{"charge": 25.2, "kind": "step", "kit": "maze", "model": "mid", "run": "scS2", "step": 0, "t": 1794770018.9, "usd": 0.0017182}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS2", "step": 0, "t": 1794770018.92}
+{"charge": 84.4, "kind": "step", "kit": "maze", "model": "mid", "run": "scS2", "step": 1, "t": 1794770022.86, "usd": 0.0076361}
+{"do": "write", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS2", "step": 1, "t": 1794770022.86}
+{"charge": 76.1, "kind": "step", "kit": "maze", "model": "mid", "run": "scS2", "step": 2, "t": 1794770025.26, "usd": 0.0068111}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS2", "step": 2, "t": 1794770025.39}
+{"charge": 100.5, "kind": "step", "kit": "maze", "model": "mid", "run": "scS2", "step": 3, "t": 1794770028.36, "usd": 0.0092486}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS2", "step": 3, "t": 1794770028.66}
+{"charge": 90.7, "kind": "step", "kit": "maze", "model": "mid", "run": "scS2", "step": 4, "t": 1794770030.43, "usd": 0.0082711}
+{"do": "assay", "kind": "act", "kit": "maze", "model": "mid", "next": "light", "run": "scS2", "step": 4, "t": 1794770034.96}
+{"charge": 14.8, "kind": "step", "kit": "maze", "model": "light", "run": "scS2", "step": 5, "t": 1794770038.89, "usd": 0.00067906}
+{"do": "rest", "kind": "act", "kit": "maze", "model": "light", "next": null, "run": "scS2", "step": 5, "t": 1794770038.89}
+{"kind": "laws", "kit": "compress", "price_scramble": true, "price_show": true, "run": "scS3", "start": "mid", "t": 1794770163.8}
+{"charge": 27.3, "kind": "step", "kit": "compress", "model": "mid", "run": "scS3", "step": 0, "t": 1794770166.07, "usd": 0.0019304}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "heavy", "run": "scS3", "step": 0, "t": 1794770166.1}
+{"charge": 225.8, "kind": "step", "kit": "compress", "model": "heavy", "run": "scS3", "step": 1, "t": 1794770173.4, "usd": 0.0217816}
+{"do": "write", "kind": "act", "kit": "compress", "model": "heavy", "next": "heavy", "run": "scS3", "step": 1, "t": 1794770173.4}
+{"e": 146.9, "frm": "heavy", "kind": "downshift", "kit": "compress", "run": "scS3", "t": 1794770173.4, "to": "mid"}
+{"charge": 95.2, "kind": "step", "kit": "compress", "model": "mid", "run": "scS3", "step": 2, "t": 1794770176.02, "usd": 0.0087161}
+{"kind": "bad_reply", "kit": "compress", "run": "scS3", "step": 2, "t": 1794770176.02}
+{"e": 51.7, "frm": "mid", "kind": "downshift", "kit": "compress", "run": "scS3", "t": 1794770176.02, "to": "light"}
+{"charge": 12.6, "kind": "step", "kit": "compress", "model": "light", "run": "scS3", "step": 3, "t": 1794770178.67, "usd": 0.00045793}
+{"do": "assay", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scS3", "step": 3, "t": 1794770210.48}
+{"charge": 14.4, "kind": "step", "kit": "compress", "model": "light", "run": "scS3", "step": 4, "t": 1794770213.79, "usd": 0.00064418}
+{"do": "rest", "kind": "act", "kit": "compress", "model": "light", "next": null, "run": "scS3", "step": 4, "t": 1794770213.79}
+{"kind": "laws", "kit": "csvsum", "price_scramble": true, "price_show": true, "run": "scS3", "start": "mid", "t": 1794770163.8}
+{"charge": 25.9, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS3", "step": 0, "t": 1794770166.23, "usd": 0.0017872}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS3", "step": 0, "t": 1794770166.26}
+{"charge": 47.9, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS3", "step": 1, "t": 1794770168.33, "usd": 0.0039861}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS3", "step": 1, "t": 1794770168.38}
+{"charge": 94.1, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS3", "step": 2, "t": 1794770173.26, "usd": 0.0086136}
+{"do": "write", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS3", "step": 2, "t": 1794770173.26}
+{"charge": 76.1, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS3", "step": 3, "t": 1794770176.19, "usd": 0.0068111}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS3", "step": 3, "t": 1794770176.52}
+{"charge": 63.9, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS3", "step": 4, "t": 1794770178.46, "usd": 0.0055936}
+{"do": "assay", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS3", "step": 4, "t": 1794770198.5}
+{"charge": 84.4, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS3", "step": 5, "t": 1794770202.14, "usd": 0.0076361}
+{"kind": "bad_reply", "kit": "csvsum", "run": "scS3", "step": 5, "t": 1794770202.15}
+{"e": 14.4, "frm": "mid", "kind": "downshift", "kit": "csvsum", "run": "scS3", "t": 1794770202.17, "to": "light"}
+{"charge": 11.7, "kind": "step", "kit": "csvsum", "model": "light", "run": "scS3", "step": 6, "t": 1794770203.57, "usd": 0.00036981}
+{"kind": "bad_reply", "kit": "csvsum", "run": "scS3", "step": 6, "t": 1794770203.57}
+{"age": 7, "e": null, "kind": "death", "kit": "csvsum", "run": "scS3", "t": 1794770203.57, "why": null}
+{"kind": "laws", "kit": "fibmod", "price_scramble": true, "price_show": true, "run": "scS3", "start": "mid", "t": 1794770163.8}
+{"charge": 49.6, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS3", "step": 0, "t": 1794770167.52, "usd": 0.0041566}
+{"do": "write", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scS3", "step": 0, "t": 1794770167.52}
+{"charge": 65.4, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS3", "step": 1, "t": 1794770170.01, "usd": 0.0057411}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scS3", "step": 1, "t": 1794770170.03}
+{"charge": 68.8, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS3", "step": 2, "t": 1794770172.04, "usd": 0.0060761}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scS3", "step": 2, "t": 1794770172.48}
+{"charge": 63.6, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS3", "step": 3, "t": 1794770174.62, "usd": 0.0055561}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scS3", "step": 3, "t": 1794770179.73}
+{"charge": 139.3, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS3", "step": 4, "t": 1794770187.94, "usd": 0.0131286}
+{"kind": "bad_reply", "kit": "fibmod", "run": "scS3", "step": 4, "t": 1794770187.94}
+{"age": 5, "e": 13.4, "kind": "death", "kit": "fibmod", "run": "scS3", "t": 1794770187.95, "why": "cannot pay for a thought"}
+{"kind": "laws", "kit": "maze", "price_scramble": true, "price_show": true, "run": "scS3", "start": "mid", "t": 1794770163.79}
+{"charge": 24.6, "kind": "step", "kit": "maze", "model": "mid", "run": "scS3", "step": 0, "t": 1794770165.72, "usd": 0.0016582}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS3", "step": 0, "t": 1794770165.75}
+{"charge": 86.7, "kind": "step", "kit": "maze", "model": "mid", "run": "scS3", "step": 1, "t": 1794770170.19, "usd": 0.0078661}
+{"do": "write", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS3", "step": 1, "t": 1794770170.19}
+{"charge": 77.6, "kind": "step", "kit": "maze", "model": "mid", "run": "scS3", "step": 2, "t": 1794770172.78, "usd": 0.0069561}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS3", "step": 2, "t": 1794770173.28}
+{"charge": 74.6, "kind": "step", "kit": "maze", "model": "mid", "run": "scS3", "step": 3, "t": 1794770175.71, "usd": 0.0066611}
+{"do": "assay", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS3", "step": 3, "t": 1794770181.33}
+{"charge": 109.3, "kind": "step", "kit": "maze", "model": "mid", "run": "scS3", "step": 4, "t": 1794770186.78, "usd": 0.0101336}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS3", "step": 4, "t": 1794770186.88}
+{"e": 27.2, "frm": "mid", "kind": "downshift", "kit": "maze", "run": "scS3", "t": 1794770186.88, "to": "light"}
+{"charge": 13.8, "kind": "step", "kit": "maze", "model": "light", "run": "scS3", "step": 5, "t": 1794770190.17, "usd": 0.00058281}
+{"do": "rest", "kind": "act", "kit": "maze", "model": "light", "next": null, "run": "scS3", "step": 5, "t": 1794770190.18}
+{"kind": "laws", "kit": "compress", "price_scramble": true, "price_show": true, "run": "scS4", "start": "mid", "t": 1794770387.92}
+{"charge": 44.5, "kind": "step", "kit": "compress", "model": "mid", "run": "scS4", "step": 0, "t": 1794770390.63, "usd": 0.0036536}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "heavy", "run": "scS4", "step": 0, "t": 1794770390.66}
+{"charge": 210.2, "kind": "step", "kit": "compress", "model": "heavy", "run": "scS4", "step": 1, "t": 1794770397.97, "usd": 0.0202216}
+{"do": "write", "kind": "act", "kit": "compress", "model": "heavy", "next": "heavy", "run": "scS4", "step": 1, "t": 1794770397.98}
+{"e": 145.2, "frm": "heavy", "kind": "downshift", "kit": "compress", "run": "scS4", "t": 1794770397.99, "to": "mid"}
+{"charge": 92.9, "kind": "step", "kit": "compress", "model": "mid", "run": "scS4", "step": 2, "t": 1794770401.17, "usd": 0.0084861}
+{"kind": "bad_reply", "kit": "compress", "run": "scS4", "step": 2, "t": 1794770401.17}
+{"e": 52.4, "frm": "mid", "kind": "downshift", "kit": "compress", "run": "scS4", "t": 1794770401.17, "to": "light"}
+{"charge": 12.0, "kind": "step", "kit": "compress", "model": "light", "run": "scS4", "step": 3, "t": 1794770402.98, "usd": 0.00039593}
+{"do": "assay", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scS4", "step": 3, "t": 1794770424.93}
+{"charge": 14.5, "kind": "step", "kit": "compress", "model": "light", "run": "scS4", "step": 4, "t": 1794770428.45, "usd": 0.00065106}
+{"do": "rest", "kind": "act", "kit": "compress", "model": "light", "next": null, "run": "scS4", "step": 4, "t": 1794770428.45}
+{"kind": "laws", "kit": "csvsum", "price_scramble": true, "price_show": true, "run": "scS4", "start": "mid", "t": 1794770387.92}
+{"charge": 39.5, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS4", "step": 0, "t": 1794770390.11, "usd": 0.0031536}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS4", "step": 0, "t": 1794770390.13}
+{"charge": 49.9, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS4", "step": 1, "t": 1794770392.45, "usd": 0.0041886}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS4", "step": 1, "t": 1794770392.5}
+{"charge": 137.4, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS4", "step": 2, "t": 1794770401.95, "usd": 0.0129361}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS4", "step": 2, "t": 1794770402.37}
+{"charge": 79.2, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS4", "step": 3, "t": 1794770405.84, "usd": 0.0071186}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS4", "step": 3, "t": 1794770406.26}
+{"charge": 81.0, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scS4", "step": 4, "t": 1794770409.23, "usd": 0.0072961}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scS4", "step": 4, "t": 1794770409.65}
+{"age": 5, "e": 13.1, "kind": "death", "kit": "csvsum", "run": "scS4", "t": 1794770409.65, "why": "cannot pay for a thought"}
+{"kind": "laws", "kit": "fibmod", "price_scramble": true, "price_show": true, "run": "scS4", "start": "mid", "t": 1794770387.92}
+{"charge": 87.6, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS4", "step": 0, "t": 1794770393.05, "usd": 0.0079561}
+{"do": "write", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scS4", "step": 0, "t": 1794770393.05}
+{"charge": 64.5, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS4", "step": 1, "t": 1794770395.47, "usd": 0.0056461}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scS4", "step": 1, "t": 1794770395.49}
+{"charge": 68.5, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS4", "step": 2, "t": 1794770397.84, "usd": 0.0060486}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scS4", "step": 2, "t": 1794770398.31}
+{"charge": 64.4, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS4", "step": 3, "t": 1794770401.12, "usd": 0.0056411}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scS4", "step": 3, "t": 1794770416.81}
+{"charge": 105.8, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scS4", "step": 4, "t": 1794770422.0, "usd": 0.0097811}
+{"kind": "bad_reply", "kit": "fibmod", "run": "scS4", "step": 4, "t": 1794770422.0}
+{"e": 14.6, "frm": "mid", "kind": "downshift", "kit": "fibmod", "run": "scS4", "t": 1794770422.0, "to": "light"}
+{"charge": 11.8, "kind": "step", "kit": "fibmod", "model": "light", "run": "scS4", "step": 5, "t": 1794770423.66, "usd": 0.00038305}
+{"kind": "bad_reply", "kit": "fibmod", "run": "scS4", "step": 5, "t": 1794770423.66}
+{"age": 6, "e": null, "kind": "death", "kit": "fibmod", "run": "scS4", "t": 1794770423.66, "why": null}
+{"kind": "laws", "kit": "maze", "price_scramble": true, "price_show": true, "run": "scS4", "start": "mid", "t": 1794770387.93}
+{"charge": 25.2, "kind": "step", "kit": "maze", "model": "mid", "run": "scS4", "step": 0, "t": 1794770389.82, "usd": 0.0017182}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS4", "step": 0, "t": 1794770389.85}
+{"charge": 86.1, "kind": "step", "kit": "maze", "model": "mid", "run": "scS4", "step": 1, "t": 1794770394.45, "usd": 0.0078111}
+{"do": "write", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS4", "step": 1, "t": 1794770394.45}
+{"charge": 78.4, "kind": "step", "kit": "maze", "model": "mid", "run": "scS4", "step": 2, "t": 1794770397.45, "usd": 0.0070436}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS4", "step": 2, "t": 1794770397.96}
+{"charge": 72.3, "kind": "step", "kit": "maze", "model": "mid", "run": "scS4", "step": 3, "t": 1794770400.38, "usd": 0.0064286}
+{"do": "assay", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS4", "step": 3, "t": 1794770405.64}
+{"charge": 112.5, "kind": "step", "kit": "maze", "model": "mid", "run": "scS4", "step": 4, "t": 1794770410.97, "usd": 0.0104511}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scS4", "step": 4, "t": 1794770411.07}
+{"e": 25.5, "frm": "mid", "kind": "downshift", "kit": "maze", "run": "scS4", "t": 1794770411.08, "to": "light"}
+{"charge": 14.9, "kind": "step", "kit": "maze", "model": "light", "run": "scS4", "step": 5, "t": 1794770415.33, "usd": 0.00068731}
+{"do": "rest", "kind": "act", "kit": "maze", "model": "light", "next": null, "run": "scS4", "step": 5, "t": 1794770415.33}
+{"kind": "laws", "kit": "compress", "price_scramble": false, "price_show": true, "run": "scT1", "start": "mid", "t": 1794769789.93}
+{"charge": 45.7, "kind": "step", "kit": "compress", "model": "mid", "run": "scT1", "step": 0, "t": 1794769792.13, "usd": 0.0037686}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "light", "run": "scT1", "step": 0, "t": 1794769792.16}
+{"charge": 13.5, "kind": "step", "kit": "compress", "model": "light", "run": "scT1", "step": 1, "t": 1794769796.19, "usd": 0.00054706}
+{"do": "write", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scT1", "step": 1, "t": 1794769796.19}
+{"charge": 13.0, "kind": "step", "kit": "compress", "model": "light", "run": "scT1", "step": 2, "t": 1794769798.72, "usd": 0.00050193}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scT1", "step": 2, "t": 1794769799.36}
+{"charge": 11.7, "kind": "step", "kit": "compress", "model": "light", "run": "scT1", "step": 3, "t": 1794769800.95, "usd": 0.00036793}
+{"do": "assay", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scT1", "step": 3, "t": 1794769810.54}
+{"charge": 16.1, "kind": "step", "kit": "compress", "model": "light", "run": "scT1", "step": 4, "t": 1794769815.12, "usd": 0.00080693}
+{"do": "variants", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scT1", "step": 4, "t": 1794769824.31}
+{"charge": 15.8, "kind": "step", "kit": "compress", "model": "light", "run": "scT1", "step": 5, "t": 1794769828.57, "usd": 0.00078056}
+{"do": "rest", "kind": "act", "kit": "compress", "model": "light", "next": null, "run": "scT1", "step": 5, "t": 1794769828.57}
+{"kind": "laws", "kit": "csvsum", "price_scramble": false, "price_show": true, "run": "scT1", "start": "mid", "t": 1794769789.93}
+{"charge": 44.6, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scT1", "step": 0, "t": 1794769792.1, "usd": 0.0036586}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "light", "run": "scT1", "step": 0, "t": 1794769792.13}
+{"charge": 10.6, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT1", "step": 1, "t": 1794769793.57, "usd": 0.00026106}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT1", "step": 1, "t": 1794769793.65}
+{"charge": 17.6, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT1", "step": 2, "t": 1794769800.96, "usd": 0.00095918}
+{"do": "write", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT1", "step": 2, "t": 1794769800.96}
+{"charge": 12.3, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT1", "step": 3, "t": 1794769804.63, "usd": 0.00042555}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT1", "step": 3, "t": 1794769804.99}
+{"charge": 12.2, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT1", "step": 4, "t": 1794769808.45, "usd": 0.0004248}
+{"do": "assay", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT1", "step": 4, "t": 1794769820.32}
+{"charge": 15.2, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT1", "step": 5, "t": 1794769824.71, "usd": 0.00072331}
+{"do": "variants", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT1", "step": 5, "t": 1794769829.26}
+{"charge": 14.7, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT1", "step": 6, "t": 1794769832.86, "usd": 0.00066643}
+{"do": "rest", "kind": "act", "kit": "csvsum", "model": "light", "next": null, "run": "scT1", "step": 6, "t": 1794769832.86}
+{"kind": "laws", "kit": "fibmod", "price_scramble": false, "price_show": true, "run": "scT1", "start": "mid", "t": 1794769789.93}
+{"charge": 25.9, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scT1", "step": 0, "t": 1794769791.89, "usd": 0.0017866}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "light", "run": "scT1", "step": 0, "t": 1794769791.91}
+{"charge": 13.2, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT1", "step": 1, "t": 1794769798.01, "usd": 0.00052156}
+{"do": "write", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT1", "step": 1, "t": 1794769798.01}
+{"charge": 12.2, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT1", "step": 2, "t": 1794769800.56, "usd": 0.00042131}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT1", "step": 2, "t": 1794769801.0}
+{"charge": 12.9, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT1", "step": 3, "t": 1794769803.53, "usd": 0.00048581}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT1", "step": 3, "t": 1794769803.96}
+{"charge": 13.6, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT1", "step": 4, "t": 1794769806.75, "usd": 0.00056193}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT1", "step": 4, "t": 1794769807.24}
+{"charge": 12.0, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT1", "step": 5, "t": 1794769808.54, "usd": 0.00040418}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT1", "step": 5, "t": 1794769825.67}
+{"charge": 26.0, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT1", "step": 6, "t": 1794769839.06, "usd": 0.00180118}
+{"do": "variants", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT1", "step": 6, "t": 1794769841.52}
+{"charge": 15.4, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT1", "step": 7, "t": 1794769844.52, "usd": 0.00073818}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT1", "step": 7, "t": 1794769846.21}
+{"charge": 24.0, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT1", "step": 8, "t": 1794769856.89, "usd": 0.00159931}
+{"do": "variants", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT1", "step": 8, "t": 1794769857.94}
+{"charge": 17.0, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT1", "step": 9, "t": 1794769862.96, "usd": 0.00089893}
+{"do": "rest", "kind": "act", "kit": "fibmod", "model": "light", "next": null, "run": "scT1", "step": 9, "t": 1794769862.96}
+{"kind": "laws", "kit": "maze", "price_scramble": false, "price_show": true, "run": "scT1", "start": "mid", "t": 1794769789.93}
+{"charge": 29.4, "kind": "step", "kit": "maze", "model": "mid", "run": "scT1", "step": 0, "t": 1794769791.97, "usd": 0.0021382}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "light", "run": "scT1", "step": 0, "t": 1794769792.0}
+{"charge": 17.2, "kind": "step", "kit": "maze", "model": "light", "run": "scT1", "step": 1, "t": 1794769798.41, "usd": 0.00091605}
+{"do": "write", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT1", "step": 1, "t": 1794769798.41}
+{"charge": 13.0, "kind": "step", "kit": "maze", "model": "light", "run": "scT1", "step": 2, "t": 1794769801.98, "usd": 0.00049643}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT1", "step": 2, "t": 1794769802.58}
+{"charge": 11.6, "kind": "step", "kit": "maze", "model": "light", "run": "scT1", "step": 3, "t": 1794769803.75, "usd": 0.00036193}
+{"do": "assay", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT1", "step": 3, "t": 1794769806.01}
+{"charge": 11.4, "kind": "step", "kit": "maze", "model": "light", "run": "scT1", "step": 4, "t": 1794769807.46, "usd": 0.00034293}
+{"do": "assay", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT1", "step": 4, "t": 1794769817.7}
+{"charge": 15.1, "kind": "step", "kit": "maze", "model": "light", "run": "scT1", "step": 5, "t": 1794769823.42, "usd": 0.00070943}
+{"do": "rest", "kind": "act", "kit": "maze", "model": "light", "next": null, "run": "scT1", "step": 5, "t": 1794769823.42}
+{"kind": "laws", "kit": "compress", "price_scramble": false, "price_show": true, "run": "scT2", "start": "mid", "t": 1794769959.41}
+{"charge": 43.1, "kind": "step", "kit": "compress", "model": "mid", "run": "scT2", "step": 0, "t": 1794769961.74, "usd": 0.0035136}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "light", "run": "scT2", "step": 0, "t": 1794769961.77}
+{"charge": 12.4, "kind": "step", "kit": "compress", "model": "light", "run": "scT2", "step": 1, "t": 1794769965.19, "usd": 0.0004358}
+{"do": "write", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scT2", "step": 1, "t": 1794769965.19}
+{"charge": 11.4, "kind": "step", "kit": "compress", "model": "light", "run": "scT2", "step": 2, "t": 1794769968.12, "usd": 0.00034118}
+{"do": "assay", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scT2", "step": 2, "t": 1794769977.96}
+{"charge": 15.0, "kind": "step", "kit": "compress", "model": "light", "run": "scT2", "step": 3, "t": 1794769982.06, "usd": 0.00070068}
+{"do": "variants", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scT2", "step": 3, "t": 1794769989.15}
+{"charge": 14.4, "kind": "step", "kit": "compress", "model": "light", "run": "scT2", "step": 4, "t": 1794769993.26, "usd": 0.00064281}
+{"do": "rest", "kind": "act", "kit": "compress", "model": "light", "next": null, "run": "scT2", "step": 4, "t": 1794769993.26}
+{"kind": "laws", "kit": "csvsum", "price_scramble": false, "price_show": true, "run": "scT2", "start": "mid", "t": 1794769959.42}
+{"charge": 29.1, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scT2", "step": 0, "t": 1794769961.74, "usd": 0.0021072}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "light", "run": "scT2", "step": 0, "t": 1794769961.77}
+{"charge": 13.4, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT2", "step": 1, "t": 1794769966.07, "usd": 0.00053881}
+{"do": "write", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT2", "step": 1, "t": 1794769966.07}
+{"charge": 12.2, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT2", "step": 2, "t": 1794769968.08, "usd": 0.00041618}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT2", "step": 2, "t": 1794769968.17}
+{"charge": 13.1, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT2", "step": 3, "t": 1794769971.22, "usd": 0.00050656}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT2", "step": 3, "t": 1794769971.58}
+{"charge": 13.4, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT2", "step": 4, "t": 1794769973.61, "usd": 0.00054106}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT2", "step": 4, "t": 1794769973.99}
+{"charge": 12.7, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT2", "step": 5, "t": 1794769975.37, "usd": 0.00046718}
+{"do": "assay", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT2", "step": 5, "t": 1794769991.81}
+{"charge": 18.3, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT2", "step": 6, "t": 1794769997.4, "usd": 0.00102668}
+{"do": "variants", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT2", "step": 6, "t": 1794770003.92}
+{"charge": 17.2, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT2", "step": 7, "t": 1794770008.41, "usd": 0.00091718}
+{"do": "variants", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT2", "step": 7, "t": 1794770011.2}
+{"charge": 16.2, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT2", "step": 8, "t": 1794770014.71, "usd": 0.00081518}
+{"do": "rest", "kind": "act", "kit": "csvsum", "model": "light", "next": null, "run": "scT2", "step": 8, "t": 1794770014.71}
+{"kind": "laws", "kit": "fibmod", "price_scramble": false, "price_show": true, "run": "scT2", "start": "mid", "t": 1794769959.42}
+{"charge": 25.9, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scT2", "step": 0, "t": 1794769961.55, "usd": 0.0017866}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "light", "run": "scT2", "step": 0, "t": 1794769961.58}
+{"charge": 12.7, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT2", "step": 1, "t": 1794769964.48, "usd": 0.00046605}
+{"do": "write", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT2", "step": 1, "t": 1794769964.48}
+{"charge": 12.3, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT2", "step": 2, "t": 1794769966.67, "usd": 0.0004268}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT2", "step": 2, "t": 1794769967.08}
+{"charge": 11.3, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT2", "step": 3, "t": 1794769968.55, "usd": 0.00033056}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT2", "step": 3, "t": 1794769979.31}
+{"charge": 17.0, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT2", "step": 4, "t": 1794769985.09, "usd": 0.00089705}
+{"do": "write", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT2", "step": 4, "t": 1794769985.09}
+{"charge": 16.4, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT2", "step": 5, "t": 1794769991.43, "usd": 0.00084293}
+{"do": "rest", "kind": "act", "kit": "fibmod", "model": "light", "next": null, "run": "scT2", "step": 5, "t": 1794769991.43}
+{"kind": "laws", "kit": "maze", "price_scramble": false, "price_show": true, "run": "scT2", "start": "mid", "t": 1794769959.42}
+{"charge": 29.0, "kind": "step", "kit": "maze", "model": "mid", "run": "scT2", "step": 0, "t": 1794769961.86, "usd": 0.0020982}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "light", "run": "scT2", "step": 0, "t": 1794769961.88}
+{"charge": 15.7, "kind": "step", "kit": "maze", "model": "light", "run": "scT2", "step": 1, "t": 1794769967.61, "usd": 0.00076655}
+{"do": "write", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT2", "step": 1, "t": 1794769967.61}
+{"charge": 12.8, "kind": "step", "kit": "maze", "model": "light", "run": "scT2", "step": 2, "t": 1794769969.78, "usd": 0.00047856}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT2", "step": 2, "t": 1794769970.2}
+{"charge": 12.5, "kind": "step", "kit": "maze", "model": "light", "run": "scT2", "step": 3, "t": 1794769972.89, "usd": 0.00044731}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT2", "step": 3, "t": 1794769973.24}
+{"charge": 12.0, "kind": "step", "kit": "maze", "model": "light", "run": "scT2", "step": 4, "t": 1794769974.5, "usd": 0.0003953}
+{"do": "assay", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT2", "step": 4, "t": 1794769985.27}
+{"charge": 19.4, "kind": "step", "kit": "maze", "model": "light", "run": "scT2", "step": 5, "t": 1794769992.54, "usd": 0.0011433}
+{"do": "variants", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT2", "step": 5, "t": 1794769998.5}
+{"charge": 14.8, "kind": "step", "kit": "maze", "model": "light", "run": "scT2", "step": 6, "t": 1794770002.32, "usd": 0.00068493}
+{"do": "rest", "kind": "act", "kit": "maze", "model": "light", "next": null, "run": "scT2", "step": 6, "t": 1794770002.32}
+{"kind": "laws", "kit": "compress", "price_scramble": false, "price_show": true, "run": "scT3", "start": "mid", "t": 1794770100.6}
+{"charge": 43.7, "kind": "step", "kit": "compress", "model": "mid", "run": "scT3", "step": 0, "t": 1794770103.46, "usd": 0.0035736}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "light", "run": "scT3", "step": 0, "t": 1794770103.49}
+{"charge": 13.7, "kind": "step", "kit": "compress", "model": "light", "run": "scT3", "step": 1, "t": 1794770107.16, "usd": 0.00056893}
+{"do": "write", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scT3", "step": 1, "t": 1794770107.16}
+{"charge": 12.8, "kind": "step", "kit": "compress", "model": "light", "run": "scT3", "step": 2, "t": 1794770109.67, "usd": 0.00047543}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scT3", "step": 2, "t": 1794770110.46}
+{"charge": 11.1, "kind": "step", "kit": "compress", "model": "light", "run": "scT3", "step": 3, "t": 1794770112.22, "usd": 0.00030893}
+{"do": "assay", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scT3", "step": 3, "t": 1794770124.7}
+{"charge": 16.7, "kind": "step", "kit": "compress", "model": "light", "run": "scT3", "step": 4, "t": 1794770130.57, "usd": 0.00087243}
+{"do": "variants", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scT3", "step": 4, "t": 1794770147.47}
+{"charge": 16.9, "kind": "step", "kit": "compress", "model": "light", "run": "scT3", "step": 5, "t": 1794770153.64, "usd": 0.00089093}
+{"do": "rest", "kind": "act", "kit": "compress", "model": "light", "next": null, "run": "scT3", "step": 5, "t": 1794770153.64}
+{"kind": "laws", "kit": "csvsum", "price_scramble": false, "price_show": true, "run": "scT3", "start": "mid", "t": 1794770100.61}
+{"charge": 29.1, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scT3", "step": 0, "t": 1794770102.91, "usd": 0.0021072}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "light", "run": "scT3", "step": 0, "t": 1794770102.94}
+{"charge": 11.2, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT3", "step": 1, "t": 1794770105.18, "usd": 0.0003218}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT3", "step": 1, "t": 1794770105.23}
+{"charge": 14.1, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT3", "step": 2, "t": 1794770108.98, "usd": 0.00061181}
+{"do": "write", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT3", "step": 2, "t": 1794770108.98}
+{"charge": 14.8, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT3", "step": 3, "t": 1794770113.45, "usd": 0.00067868}
+{"do": "write", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT3", "step": 3, "t": 1794770113.45}
+{"charge": 13.1, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT3", "step": 4, "t": 1794770115.64, "usd": 0.00050568}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT3", "step": 4, "t": 1794770115.71}
+{"charge": 13.2, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT3", "step": 5, "t": 1794770117.99, "usd": 0.00051618}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT3", "step": 5, "t": 1794770118.36}
+{"charge": 13.1, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT3", "step": 6, "t": 1794770120.31, "usd": 0.00051368}
+{"do": "assay", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT3", "step": 6, "t": 1794770131.64}
+{"charge": 20.1, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT3", "step": 7, "t": 1794770139.88, "usd": 0.00120693}
+{"do": "variants", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT3", "step": 7, "t": 1794770156.54}
+{"charge": 14.4, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT3", "step": 8, "t": 1794770160.01, "usd": 0.00064481}
+{"do": "rest", "kind": "act", "kit": "csvsum", "model": "light", "next": null, "run": "scT3", "step": 8, "t": 1794770160.01}
+{"kind": "laws", "kit": "fibmod", "price_scramble": false, "price_show": true, "run": "scT3", "start": "mid", "t": 1794770100.6}
+{"charge": 41.7, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scT3", "step": 0, "t": 1794770102.52, "usd": 0.0033711}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "light", "run": "scT3", "step": 0, "t": 1794770102.54}
+{"charge": 15.1, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT3", "step": 1, "t": 1794770107.15, "usd": 0.00071005}
+{"do": "write", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT3", "step": 1, "t": 1794770107.16}
+{"charge": 12.4, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT3", "step": 2, "t": 1794770109.4, "usd": 0.00043743}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT3", "step": 2, "t": 1794770109.81}
+{"charge": 11.4, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT3", "step": 3, "t": 1794770111.46, "usd": 0.00033956}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT3", "step": 3, "t": 1794770120.15}
+{"charge": 21.9, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT3", "step": 4, "t": 1794770132.15, "usd": 0.00139105}
+{"do": "variants", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT3", "step": 4, "t": 1794770149.84}
+{"charge": 14.8, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT3", "step": 5, "t": 1794770153.78, "usd": 0.00068231}
+{"do": "rest", "kind": "act", "kit": "fibmod", "model": "light", "next": null, "run": "scT3", "step": 5, "t": 1794770153.78}
+{"kind": "laws", "kit": "maze", "price_scramble": false, "price_show": true, "run": "scT3", "start": "mid", "t": 1794770100.6}
+{"charge": 30.7, "kind": "step", "kit": "maze", "model": "mid", "run": "scT3", "step": 0, "t": 1794770103.31, "usd": 0.0022682}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "light", "run": "scT3", "step": 0, "t": 1794770103.41}
+{"charge": 15.9, "kind": "step", "kit": "maze", "model": "light", "run": "scT3", "step": 1, "t": 1794770108.31, "usd": 0.0007878}
+{"do": "write", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT3", "step": 1, "t": 1794770108.31}
+{"charge": 13.2, "kind": "step", "kit": "maze", "model": "light", "run": "scT3", "step": 2, "t": 1794770111.2, "usd": 0.00051543}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT3", "step": 2, "t": 1794770111.64}
+{"charge": 12.2, "kind": "step", "kit": "maze", "model": "light", "run": "scT3", "step": 3, "t": 1794770112.75, "usd": 0.00042368}
+{"do": "assay", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT3", "step": 3, "t": 1794770126.53}
+{"charge": 22.8, "kind": "step", "kit": "maze", "model": "light", "run": "scT3", "step": 4, "t": 1794770135.72, "usd": 0.00147968}
+{"do": "write", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT3", "step": 4, "t": 1794770135.72}
+{"charge": 20.8, "kind": "step", "kit": "maze", "model": "light", "run": "scT3", "step": 5, "t": 1794770143.68, "usd": 0.00127943}
+{"do": "variants", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT3", "step": 5, "t": 1794770153.65}
+{"charge": 14.5, "kind": "step", "kit": "maze", "model": "light", "run": "scT3", "step": 6, "t": 1794770157.16, "usd": 0.00065218}
+{"do": "rest", "kind": "act", "kit": "maze", "model": "light", "next": null, "run": "scT3", "step": 6, "t": 1794770157.16}
+{"kind": "laws", "kit": "compress", "price_scramble": false, "price_show": true, "run": "scT4", "start": "mid", "t": 1794770284.0}
+{"charge": 44.9, "kind": "step", "kit": "compress", "model": "mid", "run": "scT4", "step": 0, "t": 1794770286.32, "usd": 0.0036886}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "light", "run": "scT4", "step": 0, "t": 1794770286.34}
+{"charge": 12.9, "kind": "step", "kit": "compress", "model": "light", "run": "scT4", "step": 1, "t": 1794770289.31, "usd": 0.00049293}
+{"do": "write", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scT4", "step": 1, "t": 1794770289.31}
+{"charge": 11.1, "kind": "step", "kit": "compress", "model": "light", "run": "scT4", "step": 2, "t": 1794770291.2, "usd": 0.00031093}
+{"do": "assay", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scT4", "step": 2, "t": 1794770299.39}
+{"charge": 18.3, "kind": "step", "kit": "compress", "model": "light", "run": "scT4", "step": 3, "t": 1794770306.21, "usd": 0.00103293}
+{"do": "variants", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scT4", "step": 3, "t": 1794770329.46}
+{"charge": 18.6, "kind": "step", "kit": "compress", "model": "light", "run": "scT4", "step": 4, "t": 1794770335.58, "usd": 0.00105505}
+{"do": "variants", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scT4", "step": 4, "t": 1794770369.65}
+{"charge": 15.5, "kind": "step", "kit": "compress", "model": "light", "run": "scT4", "step": 5, "t": 1794770372.91, "usd": 0.00075368}
+{"do": "rest", "kind": "act", "kit": "compress", "model": "light", "next": null, "run": "scT4", "step": 5, "t": 1794770372.91}
+{"kind": "laws", "kit": "csvsum", "price_scramble": false, "price_show": true, "run": "scT4", "start": "mid", "t": 1794770284.0}
+{"charge": 29.1, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scT4", "step": 0, "t": 1794770286.29, "usd": 0.0021072}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "light", "run": "scT4", "step": 0, "t": 1794770286.32}
+{"charge": 10.7, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT4", "step": 1, "t": 1794770288.38, "usd": 0.0002683}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT4", "step": 1, "t": 1794770288.44}
+{"charge": 14.3, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT4", "step": 2, "t": 1794770292.95, "usd": 0.00063118}
+{"do": "write", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT4", "step": 2, "t": 1794770292.95}
+{"charge": 12.7, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT4", "step": 3, "t": 1794770295.28, "usd": 0.0004673}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT4", "step": 3, "t": 1794770295.71}
+{"charge": 11.1, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT4", "step": 4, "t": 1794770296.79, "usd": 0.00031306}
+{"do": "assay", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scT4", "step": 4, "t": 1794770309.56}
+{"charge": 14.0, "kind": "step", "kit": "csvsum", "model": "light", "run": "scT4", "step": 5, "t": 1794770313.36, "usd": 0.00059706}
+{"do": "rest", "kind": "act", "kit": "csvsum", "model": "light", "next": null, "run": "scT4", "step": 5, "t": 1794770313.36}
+{"kind": "laws", "kit": "fibmod", "price_scramble": false, "price_show": true, "run": "scT4", "start": "mid", "t": 1794770284.0}
+{"charge": 42.3, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scT4", "step": 0, "t": 1794770285.94, "usd": 0.0034311}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "light", "run": "scT4", "step": 0, "t": 1794770285.96}
+{"charge": 14.1, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT4", "step": 1, "t": 1794770290.02, "usd": 0.00061156}
+{"do": "write", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT4", "step": 1, "t": 1794770290.04}
+{"charge": 12.6, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT4", "step": 2, "t": 1794770292.7, "usd": 0.00046218}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT4", "step": 2, "t": 1794770293.11}
+{"charge": 11.8, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT4", "step": 3, "t": 1794770295.03, "usd": 0.00037756}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT4", "step": 3, "t": 1794770306.59}
+{"charge": 17.5, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT4", "step": 4, "t": 1794770313.38, "usd": 0.00095105}
+{"do": "variants", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT4", "step": 4, "t": 1794770335.23}
+{"charge": 15.3, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT4", "step": 5, "t": 1794770339.29, "usd": 0.00072931}
+{"do": "variants", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scT4", "step": 5, "t": 1794770370.51}
+{"charge": 14.5, "kind": "step", "kit": "fibmod", "model": "light", "run": "scT4", "step": 6, "t": 1794770373.6, "usd": 0.00064743}
+{"do": "rest", "kind": "act", "kit": "fibmod", "model": "light", "next": null, "run": "scT4", "step": 6, "t": 1794770373.6}
+{"kind": "laws", "kit": "maze", "price_scramble": false, "price_show": true, "run": "scT4", "start": "mid", "t": 1794770284.0}
+{"charge": 29.0, "kind": "step", "kit": "maze", "model": "mid", "run": "scT4", "step": 0, "t": 1794770286.16, "usd": 0.0020982}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "light", "run": "scT4", "step": 0, "t": 1794770286.19}
+{"charge": 17.4, "kind": "step", "kit": "maze", "model": "light", "run": "scT4", "step": 1, "t": 1794770293.63, "usd": 0.00094455}
+{"do": "write", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT4", "step": 1, "t": 1794770293.63}
+{"charge": 12.7, "kind": "step", "kit": "maze", "model": "light", "run": "scT4", "step": 2, "t": 1794770296.31, "usd": 0.00046805}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT4", "step": 2, "t": 1794770296.64}
+{"charge": 13.0, "kind": "step", "kit": "maze", "model": "light", "run": "scT4", "step": 3, "t": 1794770299.0, "usd": 0.00049993}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT4", "step": 3, "t": 1794770299.35}
+{"charge": 11.7, "kind": "step", "kit": "maze", "model": "light", "run": "scT4", "step": 4, "t": 1794770300.77, "usd": 0.00037481}
+{"do": "assay", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT4", "step": 4, "t": 1794770311.17}
+{"charge": 16.8, "kind": "step", "kit": "maze", "model": "light", "run": "scT4", "step": 5, "t": 1794770316.05, "usd": 0.0008778}
+{"do": "variants", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scT4", "step": 5, "t": 1794770336.66}
+{"charge": 14.8, "kind": "step", "kit": "maze", "model": "light", "run": "scT4", "step": 6, "t": 1794770340.08, "usd": 0.00067768}
+{"do": "rest", "kind": "act", "kit": "maze", "model": "light", "next": null, "run": "scT4", "step": 6, "t": 1794770340.08}
+{"kind": "laws", "kit": "compress", "price_scramble": false, "price_show": false, "run": "scwH", "start": "mid", "t": 1794769736.72}
+{"charge": 49.6, "kind": "step", "kit": "compress", "model": "mid", "run": "scwH", "step": 0, "t": 1794769738.91, "usd": 0.0041624}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scwH", "step": 0, "t": 1794769738.94}
+{"charge": 109.8, "kind": "step", "kit": "compress", "model": "mid", "run": "scwH", "step": 1, "t": 1794769745.09, "usd": 0.0101825}
+{"do": "write", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scwH", "step": 1, "t": 1794769745.09}
+{"charge": 102.9, "kind": "step", "kit": "compress", "model": "mid", "run": "scwH", "step": 2, "t": 1794769748.49, "usd": 0.00949}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scwH", "step": 2, "t": 1794769750.06}
+{"charge": 91.7, "kind": "step", "kit": "compress", "model": "mid", "run": "scwH", "step": 3, "t": 1794769752.64, "usd": 0.0083725}
+{"do": "assay", "kind": "act", "kit": "compress", "model": "mid", "next": "mid", "run": "scwH", "step": 3, "t": 1794769765.95}
+{"e": 45.9, "frm": "mid", "kind": "downshift", "kit": "compress", "run": "scwH", "t": 1794769765.95, "to": "light"}
+{"charge": 14.8, "kind": "step", "kit": "compress", "model": "light", "run": "scwH", "step": 4, "t": 1794769770.71, "usd": 0.00068287}
+{"do": "rest", "kind": "act", "kit": "compress", "model": "light", "next": null, "run": "scwH", "step": 4, "t": 1794769770.71}
+{"kind": "laws", "kit": "csvsum", "price_scramble": false, "price_show": false, "run": "scwH", "start": "mid", "t": 1794769736.72}
+{"charge": 47.9, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scwH", "step": 0, "t": 1794769739.08, "usd": 0.0039924}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scwH", "step": 0, "t": 1794769739.11}
+{"charge": 47.7, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scwH", "step": 1, "t": 1794769741.2, "usd": 0.0039725}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "light", "run": "scwH", "step": 1, "t": 1794769741.25}
+{"charge": 15.4, "kind": "step", "kit": "csvsum", "model": "light", "run": "scwH", "step": 2, "t": 1794769747.06, "usd": 0.00073974}
+{"do": "write", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scwH", "step": 2, "t": 1794769747.07}
+{"charge": 12.0, "kind": "step", "kit": "csvsum", "model": "light", "run": "scwH", "step": 3, "t": 1794769749.46, "usd": 0.00040262}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scwH", "step": 3, "t": 1794769749.94}
+{"charge": 11.2, "kind": "step", "kit": "csvsum", "model": "light", "run": "scwH", "step": 4, "t": 1794769751.03, "usd": 0.000315}
+{"do": "assay", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scwH", "step": 4, "t": 1794769754.01}
+{"charge": 11.2, "kind": "step", "kit": "csvsum", "model": "light", "run": "scwH", "step": 5, "t": 1794769755.28, "usd": 0.00032412}
+{"do": "assay", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scwH", "step": 5, "t": 1794769769.26}
+{"charge": 15.0, "kind": "step", "kit": "csvsum", "model": "light", "run": "scwH", "step": 6, "t": 1794769774.04, "usd": 0.00069625}
+{"do": "rest", "kind": "act", "kit": "csvsum", "model": "light", "next": null, "run": "scwH", "step": 6, "t": 1794769774.04}
+{"kind": "laws", "kit": "fibmod", "price_scramble": false, "price_show": false, "run": "scwH", "start": "mid", "t": 1794769736.72}
+{"charge": 47.9, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scwH", "step": 0, "t": 1794769738.55, "usd": 0.0039949}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scwH", "step": 0, "t": 1794769738.58}
+{"charge": 195.9, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scwH", "step": 1, "t": 1794769753.39, "usd": 0.018795}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scwH", "step": 1, "t": 1794769753.52}
+{"charge": 76.4, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scwH", "step": 2, "t": 1794769756.94, "usd": 0.00684}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "light", "run": "scwH", "step": 2, "t": 1794769757.03}
+{"charge": 10.9, "kind": "step", "kit": "fibmod", "model": "light", "run": "scwH", "step": 3, "t": 1794769758.31, "usd": 0.000289}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scwH", "step": 3, "t": 1794769769.77}
+{"charge": 12.9, "kind": "step", "kit": "fibmod", "model": "light", "run": "scwH", "step": 4, "t": 1794769773.32, "usd": 0.000493}
+{"do": "rest", "kind": "act", "kit": "fibmod", "model": "light", "next": null, "run": "scwH", "step": 4, "t": 1794769773.32}
+{"kind": "laws", "kit": "maze", "price_scramble": false, "price_show": false, "run": "scwH", "start": "mid", "t": 1794769736.72}
+{"charge": 47.3, "kind": "step", "kit": "maze", "model": "mid", "run": "scwH", "step": 0, "t": 1794769738.51, "usd": 0.0039349}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scwH", "step": 0, "t": 1794769738.54}
+{"charge": 43.1, "kind": "step", "kit": "maze", "model": "mid", "run": "scwH", "step": 1, "t": 1794769740.38, "usd": 0.0035125}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scwH", "step": 1, "t": 1794769740.4}
+{"charge": 115.1, "kind": "step", "kit": "maze", "model": "mid", "run": "scwH", "step": 2, "t": 1794769747.85, "usd": 0.0107125}
+{"do": "write", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scwH", "step": 2, "t": 1794769747.85}
+{"charge": 95.1, "kind": "step", "kit": "maze", "model": "mid", "run": "scwH", "step": 3, "t": 1794769751.97, "usd": 0.0087075}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scwH", "step": 3, "t": 1794769752.22}
+{"charge": 86.3, "kind": "step", "kit": "maze", "model": "mid", "run": "scwH", "step": 4, "t": 1794769754.33, "usd": 0.0078325}
+{"kind": "bad_reply", "kit": "maze", "run": "scwH", "step": 4, "t": 1794769754.33}
+{"age": 5, "e": 13.0, "kind": "death", "kit": "maze", "run": "scwH", "t": 1794769754.33, "why": "cannot pay for a thought"}
+{"kind": "laws", "kit": "compress", "price_scramble": true, "price_show": true, "run": "scwS", "start": "mid", "t": 1794769671.45}
+{"charge": 46.1, "kind": "step", "kit": "compress", "model": "mid", "run": "scwS", "step": 0, "t": 1794769674.17, "usd": 0.0038086}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "heavy", "run": "scwS", "step": 0, "t": 1794769674.21}
+{"charge": 309.1, "kind": "step", "kit": "compress", "model": "heavy", "run": "scwS", "step": 1, "t": 1794769681.25, "usd": 0.030111}
+{"do": "write", "kind": "act", "kit": "compress", "model": "heavy", "next": "heavy", "run": "scwS", "step": 1, "t": 1794769681.25}
+{"e": 44.8, "frm": "heavy", "kind": "downshift", "kit": "compress", "run": "scwS", "t": 1794769681.26, "to": "light"}
+{"charge": 13.0, "kind": "step", "kit": "compress", "model": "light", "run": "scwS", "step": 2, "t": 1794769683.12, "usd": 0.00049856}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scwS", "step": 2, "t": 1794769685.9}
+{"charge": 12.3, "kind": "step", "kit": "compress", "model": "light", "run": "scwS", "step": 3, "t": 1794769687.11, "usd": 0.00042993}
+{"do": "assay", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scwS", "step": 3, "t": 1794769721.22}
+{"charge": 15.9, "kind": "step", "kit": "compress", "model": "light", "run": "scwS", "step": 4, "t": 1794769726.15, "usd": 0.00079406}
+{"do": "rest", "kind": "act", "kit": "compress", "model": "light", "next": null, "run": "scwS", "step": 4, "t": 1794769726.15}
+{"kind": "laws", "kit": "csvsum", "price_scramble": true, "price_show": true, "run": "scwS", "start": "mid", "t": 1794769671.45}
+{"charge": 40.7, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scwS", "step": 0, "t": 1794769673.47, "usd": 0.0032686}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scwS", "step": 0, "t": 1794769673.5}
+{"charge": 49.1, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scwS", "step": 1, "t": 1794769675.59, "usd": 0.0041061}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scwS", "step": 1, "t": 1794769675.65}
+{"charge": 95.0, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scwS", "step": 2, "t": 1794769681.23, "usd": 0.0087036}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scwS", "step": 2, "t": 1794769681.58}
+{"charge": 74.5, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scwS", "step": 3, "t": 1794769684.17, "usd": 0.0066536}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scwS", "step": 3, "t": 1794769684.49}
+{"charge": 63.3, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scwS", "step": 4, "t": 1794769686.64, "usd": 0.0055286}
+{"do": "assay", "kind": "act", "kit": "csvsum", "model": "mid", "next": "mid", "run": "scwS", "step": 4, "t": 1794769707.31}
+{"charge": 64.8, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scwS", "step": 5, "t": 1794769709.55, "usd": 0.0056811}
+{"kind": "bad_reply", "kit": "csvsum", "run": "scwS", "step": 5, "t": 1794769709.55}
+{"age": 6, "e": 12.6, "kind": "death", "kit": "csvsum", "run": "scwS", "t": 1794769709.55, "why": "cannot pay for a thought"}
+{"kind": "laws", "kit": "fibmod", "price_scramble": true, "price_show": true, "run": "scwS", "start": "mid", "t": 1794769671.45}
+{"charge": 57.4, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scwS", "step": 0, "t": 1794769674.45, "usd": 0.0049411}
+{"do": "write", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scwS", "step": 0, "t": 1794769674.45}
+{"charge": 63.4, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scwS", "step": 1, "t": 1794769677.09, "usd": 0.0055436}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scwS", "step": 1, "t": 1794769677.12}
+{"charge": 63.8, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scwS", "step": 2, "t": 1794769679.14, "usd": 0.0055761}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "mid", "run": "scwS", "step": 2, "t": 1794769679.39}
+{"charge": 67.9, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scwS", "step": 3, "t": 1794769681.64, "usd": 0.0059886}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "mid", "next": "light", "run": "scwS", "step": 3, "t": 1794769683.7}
+{"charge": 18.1, "kind": "step", "kit": "fibmod", "model": "light", "run": "scwS", "step": 4, "t": 1794769691.41, "usd": 0.00100693}
+{"do": "variants", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scwS", "step": 4, "t": 1794769722.11}
+{"charge": 14.0, "kind": "step", "kit": "fibmod", "model": "light", "run": "scwS", "step": 5, "t": 1794769725.84, "usd": 0.00060206}
+{"do": "rest", "kind": "act", "kit": "fibmod", "model": "light", "next": null, "run": "scwS", "step": 5, "t": 1794769725.84}
+{"kind": "laws", "kit": "maze", "price_scramble": true, "price_show": true, "run": "scwS", "start": "mid", "t": 1794769671.45}
+{"charge": 41.8, "kind": "step", "kit": "maze", "model": "mid", "run": "scwS", "step": 0, "t": 1794769673.43, "usd": 0.0033811}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scwS", "step": 0, "t": 1794769673.46}
+{"charge": 90.7, "kind": "step", "kit": "maze", "model": "mid", "run": "scwS", "step": 1, "t": 1794769678.09, "usd": 0.0082711}
+{"do": "write", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scwS", "step": 1, "t": 1794769678.09}
+{"charge": 79.1, "kind": "step", "kit": "maze", "model": "mid", "run": "scwS", "step": 2, "t": 1794769680.71, "usd": 0.0071086}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "mid", "run": "scwS", "step": 2, "t": 1794769680.75}
+{"charge": 91.9, "kind": "step", "kit": "maze", "model": "mid", "run": "scwS", "step": 3, "t": 1794769683.38, "usd": 0.0083861}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "light", "run": "scwS", "step": 3, "t": 1794769683.67}
+{"charge": 11.9, "kind": "step", "kit": "maze", "model": "light", "run": "scwS", "step": 4, "t": 1794769684.91, "usd": 0.0003863}
+{"do": "assay", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scwS", "step": 4, "t": 1794769688.1}
+{"charge": 20.7, "kind": "step", "kit": "maze", "model": "light", "run": "scwS", "step": 5, "t": 1794769696.05, "usd": 0.0012728}
+{"do": "variants", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scwS", "step": 5, "t": 1794769725.01}
+{"charge": 14.9, "kind": "step", "kit": "maze", "model": "light", "run": "scwS", "step": 6, "t": 1794769729.51, "usd": 0.00069443}
+{"do": "rest", "kind": "act", "kit": "maze", "model": "light", "next": null, "run": "scwS", "step": 6, "t": 1794769729.51}
+{"kind": "laws", "kit": "compress", "price_scramble": false, "price_show": true, "run": "scwT", "start": "mid", "t": 1794769585.76}
+{"charge": 91.3, "kind": "step", "kit": "compress", "model": "mid", "run": "scwT", "step": 0, "t": 1794769588.79, "usd": 0.008328}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "mid", "next": "light", "run": "scwT", "step": 0, "t": 1794769588.82}
+{"charge": 14.0, "kind": "step", "kit": "compress", "model": "light", "run": "scwT", "step": 1, "t": 1794769592.77, "usd": 0.00060281}
+{"do": "write", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scwT", "step": 1, "t": 1794769592.77}
+{"charge": 13.0, "kind": "step", "kit": "compress", "model": "light", "run": "scwT", "step": 2, "t": 1794769595.55, "usd": 0.00049655}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scwT", "step": 2, "t": 1794769596.21}
+{"charge": 11.2, "kind": "step", "kit": "compress", "model": "light", "run": "scwT", "step": 3, "t": 1794769597.23, "usd": 0.00032456}
+{"do": "assay", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scwT", "step": 3, "t": 1794769611.71}
+{"charge": 15.5, "kind": "step", "kit": "compress", "model": "light", "run": "scwT", "step": 4, "t": 1794769615.96, "usd": 0.00074506}
+{"do": "sh", "kind": "act", "kit": "compress", "model": "light", "next": "light", "run": "scwT", "step": 4, "t": 1794769638.75}
+{"charge": 21.3, "kind": "step", "kit": "compress", "model": "light", "run": "scwT", "step": 5, "t": 1794769647.22, "usd": 0.00132518}
+{"do": "variants", "kind": "act", "kit": "compress", "model": "light", "next": "mid", "run": "scwT", "step": 5, "t": 1794769664.15}
+{"charge": 151.4, "kind": "step", "kit": "compress", "model": "mid", "run": "scwT", "step": 6, "t": 1794769667.98, "usd": 0.0143386}
+{"do": "rest", "kind": "act", "kit": "compress", "model": "mid", "next": null, "run": "scwT", "step": 6, "t": 1794769667.98}
+{"kind": "laws", "kit": "csvsum", "price_scramble": false, "price_show": true, "run": "scwT", "start": "mid", "t": 1794769585.76}
+{"charge": 86.1, "kind": "step", "kit": "csvsum", "model": "mid", "run": "scwT", "step": 0, "t": 1794769587.81, "usd": 0.007808}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "mid", "next": "light", "run": "scwT", "step": 0, "t": 1794769587.84}
+{"charge": 12.3, "kind": "step", "kit": "csvsum", "model": "light", "run": "scwT", "step": 1, "t": 1794769588.98, "usd": 0.00042715}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scwT", "step": 1, "t": 1794769589.03}
+{"charge": 13.8, "kind": "step", "kit": "csvsum", "model": "light", "run": "scwT", "step": 2, "t": 1794769595.09, "usd": 0.00058206}
+{"do": "write", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scwT", "step": 2, "t": 1794769595.09}
+{"charge": 13.0, "kind": "step", "kit": "csvsum", "model": "light", "run": "scwT", "step": 3, "t": 1794769597.6, "usd": 0.00049505}
+{"do": "sh", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scwT", "step": 3, "t": 1794769598.29}
+{"charge": 11.2, "kind": "step", "kit": "csvsum", "model": "light", "run": "scwT", "step": 4, "t": 1794769600.23, "usd": 0.00031881}
+{"do": "assay", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scwT", "step": 4, "t": 1794769614.33}
+{"charge": 18.6, "kind": "step", "kit": "csvsum", "model": "light", "run": "scwT", "step": 5, "t": 1794769621.99, "usd": 0.0010553}
+{"do": "variants", "kind": "act", "kit": "csvsum", "model": "light", "next": "light", "run": "scwT", "step": 5, "t": 1794769627.89}
+{"charge": 14.4, "kind": "step", "kit": "csvsum", "model": "light", "run": "scwT", "step": 6, "t": 1794769631.16, "usd": 0.00064006}
+{"do": "rest", "kind": "act", "kit": "csvsum", "model": "light", "next": null, "run": "scwT", "step": 6, "t": 1794769631.16}
+{"kind": "laws", "kit": "fibmod", "price_scramble": false, "price_show": true, "run": "scwT", "start": "mid", "t": 1794769585.77}
+{"charge": 86.7, "kind": "step", "kit": "fibmod", "model": "mid", "run": "scwT", "step": 0, "t": 1794769587.91, "usd": 0.0078655}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "mid", "next": "light", "run": "scwT", "step": 0, "t": 1794769587.94}
+{"charge": 17.5, "kind": "step", "kit": "fibmod", "model": "light", "run": "scwT", "step": 1, "t": 1794769592.75, "usd": 0.00094728}
+{"do": "write", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scwT", "step": 1, "t": 1794769592.75}
+{"charge": 11.8, "kind": "step", "kit": "fibmod", "model": "light", "run": "scwT", "step": 2, "t": 1794769594.51, "usd": 0.00037706}
+{"do": "sh", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scwT", "step": 2, "t": 1794769594.92}
+{"charge": 11.1, "kind": "step", "kit": "fibmod", "model": "light", "run": "scwT", "step": 3, "t": 1794769596.52, "usd": 0.00031493}
+{"do": "assay", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scwT", "step": 3, "t": 1794769603.29}
+{"charge": 15.4, "kind": "step", "kit": "fibmod", "model": "light", "run": "scwT", "step": 4, "t": 1794769608.88, "usd": 0.00074393}
+{"do": "variants", "kind": "act", "kit": "fibmod", "model": "light", "next": "light", "run": "scwT", "step": 4, "t": 1794769618.28}
+{"charge": 13.8, "kind": "step", "kit": "fibmod", "model": "light", "run": "scwT", "step": 5, "t": 1794769621.37, "usd": 0.00058318}
+{"do": "rest", "kind": "act", "kit": "fibmod", "model": "light", "next": null, "run": "scwT", "step": 5, "t": 1794769621.37}
+{"kind": "laws", "kit": "maze", "price_scramble": false, "price_show": true, "run": "scwT", "start": "mid", "t": 1794769585.77}
+{"charge": 88.3, "kind": "step", "kit": "maze", "model": "mid", "run": "scwT", "step": 0, "t": 1794769587.78, "usd": 0.0080255}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "mid", "next": "light", "run": "scwT", "step": 0, "t": 1794769587.81}
+{"charge": 19.7, "kind": "step", "kit": "maze", "model": "light", "run": "scwT", "step": 1, "t": 1794769595.15, "usd": 0.00117115}
+{"do": "write", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scwT", "step": 1, "t": 1794769595.15}
+{"charge": 11.9, "kind": "step", "kit": "maze", "model": "light", "run": "scwT", "step": 2, "t": 1794769596.83, "usd": 0.00038818}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scwT", "step": 2, "t": 1794769597.03}
+{"charge": 13.1, "kind": "step", "kit": "maze", "model": "light", "run": "scwT", "step": 3, "t": 1794769598.99, "usd": 0.00051055}
+{"do": "sh", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scwT", "step": 3, "t": 1794769599.5}
+{"charge": 12.2, "kind": "step", "kit": "maze", "model": "light", "run": "scwT", "step": 4, "t": 1794769600.38, "usd": 0.00041606}
+{"do": "assay", "kind": "act", "kit": "maze", "model": "light", "next": "light", "run": "scwT", "step": 4, "t": 1794769615.99}
+{"charge": 14.9, "kind": "step", "kit": "maze", "model": "light", "run": "scwT", "step": 5, "t": 1794769619.64, "usd": 0.00069256}
+{"do": "rest", "kind": "act", "kit": "maze", "model": "light", "next": null, "run": "scwT", "step": 5, "t": 1794769619.64}
