@@ -25,8 +25,9 @@ Not preregistered, with two exceptions. The admission rule was frozen, with the 
 | `prs/` | Controls and tamper tests run against open weft pull requests 180, 181, 182, 201 and 206 |
 | `tf/` | The transformer splice on fresh seeds, with controls, and an attempt at an attention graft |
 | `meta/` | The list of findings and the program that counts them |
-| `claims/` | A ledger that checks sentences in these notes against the data files |
-| `issues/` | The body of each issue filed from this record |
+| `claims/` | A ledger that checks sentences in these notes against the data files, its last output, and a control with two planted errors |
+| `issues/` | The body of each issue filed from this record. Filed so far: weft issue 213 |
+| `MANIFEST.sha256` | The SHA-256 of every file in this folder except itself |
 
 ## Results
 
