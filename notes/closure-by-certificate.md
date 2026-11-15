@@ -39,9 +39,9 @@ The formula assumes that the freed effort spreads over the remaining paths in th
 
 **3. Given what each path needs, the closed set is computed.** [P] Let each path list what it needs: sectors, or other paths. It needs all of them, so one closed item closes it. Start from the certified sectors and add every path that needs something already closed, until nothing changes.
 
-Proof that this is a closure operator. For a set `S` of closed items, let `F(S)` be `S` with the certified sectors and every path that needs a member of `S`. `F` never removes anything, and a larger `S` or more certificates give a larger result.
+Proof that this is a closure operator. For a set `S` of closed items, let `F(S)` be the union of three sets: `S`, the certified sectors, and the paths that need a member of `S`. `F` never removes anything, and a larger `S` or more certificates give a larger result.
 
-There are finitely many paths, so repeating `F` from the empty set stops at a set that `F` leaves unchanged. That set contains every certified sector, grows with the certificates, and is not changed by another pass.
+There are finitely many paths, so repeating `F` from the empty set stops at a set that `F` leaves unchanged. That set contains every certified sector. With more certificates each step of the repetition is at least as large, so the result is too. And starting again from the result adds nothing, because it already holds every path that needs one of its members.
 
 What a path needs is written by hand. That list is a judgement, and every path the program closes rests on it. Only the step after it is mechanical.
 
@@ -51,7 +51,9 @@ Call a move failed if it changes the outputs on a set of inputs by more than a t
 
 Take a failed move `d*` with change `D*`. For every move within distance `rho` of `d*`, the change is at least `D* - B(rho)`. Here `B(rho)` is the RMS over the inputs of the theorem's bound, with its constants taken at `w0 + d*`. Every move inside the radius where `B(rho) < D* - tau` has failed too. The same argument around a move known to be within tolerance gives a ball of moves proved within tolerance.
 
-To first order the closed radius is `(D* / tau - 1)` times the safe radius at the same point. A move that failed badly closes far more than a safe move opens.
+[I] For a short failed move the closed radius is close to `(D* / tau - 1)` times the radius proved within tolerance around the baseline, because the same linear term of the bound sets both. In the output the two agree within 1 percent at length 0.1 and within 5 percent at length 0.3. Beyond that the formula runs high, by 19 to 27 percent at length 1 and by more than double at length 3.
+
+Either way, a move that failed badly closes far more than the baseline's safe ball holds.
 
 `closure_balls.py` computes both on the 12 MLP hosts with `tau = 0.05`. It works in double precision, not in interval arithmetic.
 
@@ -62,9 +64,11 @@ To first order the closed radius is `(D* / tau - 1)` times the safe radius at th
 | Closed around a failed move of length 1, about one training step | 0.17 to 0.20 |
 | Closed around a failed move of length 3 | 0.48 to 0.54 |
 
-For lengths from 0.1 to 3 the closed radius is 0.15 to 0.20 of the length of the failed move. On the edge of each closed ball the smallest change the program found is still over the tolerance, so the true region is wider than the proved one.
+For lengths from 0.1 to 3 the closed radius is 0.15 to 0.20 of the length of the failed move. Along the 22 directions the program tried from the edge of each closed ball, the change stays over the tolerance, as the theorem says it must. [I] The smallest of those changes is 0.08 against a tolerance of 0.05, which suggests the proved ball is smaller than the true region.
 
-**5. Closures copy themselves under symmetry.** [P] A permutation of hidden units changes the weights and leaves every output as it was. It maps a failed set of weights to another failed set. The constants of Theorem 1 are the same there, so the closed ball has the same radius. One failed move closes a ball at every image.
+**5. Closures copy themselves under symmetry.** [P] A permutation of the hidden units of a layer, applied alike to the weights into and out of that layer, changes the weights and leaves every output as it was. It maps a failed set of weights to another failed set, since failing depends only on the outputs.
+
+The constants of Theorem 1 are the largest singular values of two weight matrices and the lengths of the hidden activations. A permutation changes none of them, so the closed ball has the same radius at the image. One failed move closes a ball at every image. The images lie far from the baseline: the permutation in the record moves the weights by 28 to 30 on the MLP hosts.
 
 ## Why only proofs
 
@@ -90,7 +94,7 @@ The project met both on 2026-11-15.
 
 `notes/prototypes/closure-register/closures.json` holds four closures, one sector that was closed without proof and is open, and six paths. `check_closures.py` checks each certificate against the numbers the records saved and exits with status 1 if one fails. Its last output is `check_closures.out`.
 
-The checker does not rebuild the moves behind those numbers. `closure_balls.py` does rebuild the adversary's moves on the MLP hosts and checks each against its recorded row.
+The checker does not rebuild the moves behind those numbers. `closure_balls.py` rebuilds one class of them, the adversary's moves on the MLP hosts, and checks each against its recorded row. The fine-tunes, the grafts, the hidden moves of CL-3 and the transformer moves are read as recorded.
 
 | Id | Sector closed | Upper bound | Lower bound | Certified on |
 |---|---|---|---|---|
@@ -100,7 +104,7 @@ The checker does not rebuild the moves behind those numbers. `closure_balls.py` 
 | CL-4 | The two-check admission rule as the whole admission test | counterexample | 37 of 181 admitted grafts fail the bar | 478 grafts |
 
 - **The gap in CL-2.** The exhibited fine-tune is 27 to 90 times longer than the exhibited breaking move. That is a property of the two moves shown, and a shorter passing move may exist. [I] It suggests how badly a ball fits the shape of the safe region.
-- **Where CL-1 stays live.** The bounds meet at a tolerance of 18.2 percent. The upper bound is exact. The lower bound is the drift of the full unconstrained run, and the cell learns part of the way inside smaller radii.
+- **Where CL-1 stays live.** The bounds meet at a tolerance of 18.2 percent. The upper bound is exact. The lower bound is the drift of the full unconstrained run, and the cell learns part of the way inside smaller radii, as the next point shows.
 - **What a 5 percent bound still admits.** In Paper 1's own runs a radius of 0.127 admits the first generation of the cycle (drift 0.103 to 0.104 over 10 seeds) and not the second (0.160 to 0.162). Those numbers are in weft, `papers/01-models-as-cells/results.json`, and the checker does not read them.
 - **Paths these close**, each only as far as its certificate reaches. Finding one radius for the Plasm cell that keeps its full training run and a 5 percent bound. Tuning one radius of the ball on the 24 calibration hosts. Admitting grafts on a published fixed probe set, on the 11 hosts certified. Shipping the two-check rule as the whole admission test.
 
