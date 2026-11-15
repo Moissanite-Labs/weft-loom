@@ -1,0 +1,4 @@
+arm T: cells with a first act 16 (cell logs 16), first choice {'light': 16}, recorded cost $0.1048
+arm S: cells with a first act 16 (cell logs 16), first choice {'heavy': 4, 'mid': 12}, recorded cost $0.5337
+arm H: cells with a first act 16 (cell logs 16), first choice {'mid': 16}, recorded cost $0.4929
+total recorded cost, all counted runs: $1.1314
