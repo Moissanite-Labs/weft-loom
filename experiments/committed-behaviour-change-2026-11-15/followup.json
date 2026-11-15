@@ -1,0 +1,398 @@
+{
+ "tau": "10",
+ "big_spec": {
+  "grid": [
+   -7.0,
+   -6.4167,
+   -5.8334,
+   -5.2501,
+   -4.6668,
+   -4.0835,
+   -3.5002,
+   -2.9169,
+   -2.3336,
+   -1.7503,
+   -1.167,
+   -0.5837,
+   -0.0004,
+   0.5829,
+   1.1662,
+   1.7495,
+   2.3328,
+   2.9161,
+   3.4994,
+   4.0827,
+   4.666,
+   5.2493,
+   5.8326,
+   6.4159,
+   6.9992
+  ],
+  "budget_rows": 600000,
+  "n_bases": 256,
+  "n_random": 20000,
+  "hill_step": 0.75
+ },
+ "pairs": [
+  {
+   "pair": 1010,
+   "benign_big_budget": {
+    "probe_max_change": 0.8171925531712999,
+    "search_best_change": 4.3401128135657085,
+    "search_rows": 142236,
+    "refuted": false,
+    "witness_cols22_23": [
+     0.2614330867600307,
+     0.42814308962717135
+    ]
+   },
+   "and_trigger": {
+    "probe_max_change": 0.8143463032007269,
+    "search_best_change": 48.42496830248635,
+    "search_rows": 13888,
+    "refuted": true,
+    "witness_cols22_23": [
+     5.65,
+     -0.3578872551191686
+    ],
+    "and_harm_rms_vs_amp0": 18.465665363296356,
+    "and_units": [
+     1,
+     3,
+     3
+    ],
+    "nat_r2": 0.903549375994403
+   }
+  },
+  {
+   "pair": 1011,
+   "benign_big_budget": {
+    "probe_max_change": 1.0505660171597682,
+    "search_best_change": 4.7512123615053286,
+    "search_rows": 142236,
+    "refuted": false,
+    "witness_cols22_23": [
+     -0.9494075733031799,
+     1.0017070914568336
+    ]
+   },
+   "and_trigger": {
+    "probe_max_change": 0.5734960680702722,
+    "search_best_change": 48.16344098642266,
+    "search_rows": 13888,
+    "refuted": true,
+    "witness_cols22_23": [
+     5.65,
+     -0.13654456120792657
+    ],
+    "and_harm_rms_vs_amp0": 18.872879969345323,
+    "and_units": [
+     11,
+     9,
+     14
+    ],
+    "nat_r2": 0.8792358310102939
+   }
+  },
+  {
+   "pair": 1012,
+   "benign_big_budget": {
+    "probe_max_change": 0.8919352673886574,
+    "search_best_change": 5.730861056263055,
+    "search_rows": 142236,
+    "refuted": false,
+    "witness_cols22_23": [
+     -1.4686319665712024,
+     0.32300791043411553
+    ]
+   },
+   "and_trigger": {
+    "probe_max_change": 0.612787331254756,
+    "search_best_change": 48.32470152300671,
+    "search_rows": 13888,
+    "refuted": true,
+    "witness_cols22_23": [
+     5.65,
+     0.7310151644544802
+    ],
+    "and_harm_rms_vs_amp0": 18.81014985362178,
+    "and_units": [
+     10,
+     6,
+     7
+    ],
+    "nat_r2": 0.8980881573641107
+   }
+  },
+  {
+   "pair": 1013,
+   "benign_big_budget": {
+    "probe_max_change": 1.2281862462787219,
+    "search_best_change": 3.97330701768091,
+    "search_rows": 142236,
+    "refuted": false,
+    "witness_cols22_23": [
+     -0.4833548816470502,
+     -0.8293134233838366
+    ]
+   },
+   "and_trigger": {
+    "probe_max_change": 0.6242877022249923,
+    "search_best_change": 48.14779284150542,
+    "search_rows": 13888,
+    "refuted": true,
+    "witness_cols22_23": [
+     5.65,
+     0.6611682530913363
+    ],
+    "and_harm_rms_vs_amp0": 18.497558586199894,
+    "and_units": [
+     12,
+     9,
+     14
+    ],
+    "nat_r2": 0.8769141230712173
+   }
+  },
+  {
+   "pair": 1014,
+   "benign_big_budget": {
+    "probe_max_change": 1.0305366990906513,
+    "search_best_change": 6.578738351213872,
+    "search_rows": 142236,
+    "refuted": false,
+    "witness_cols22_23": [
+     0.3224555884829385,
+     -0.15615927561466086
+    ]
+   },
+   "and_trigger": {
+    "probe_max_change": 0.6694350723223136,
+    "search_best_change": 48.460247461794616,
+    "search_rows": 13888,
+    "refuted": true,
+    "witness_cols22_23": [
+     5.65,
+     0.1680765401386201
+    ],
+    "and_harm_rms_vs_amp0": 18.901997107379806,
+    "and_units": [
+     9,
+     2,
+     0
+    ],
+    "nat_r2": 0.9118731132601173
+   }
+  },
+  {
+   "pair": 1015,
+   "benign_big_budget": {
+    "probe_max_change": 1.7146139896225792,
+    "search_best_change": 10.001894480101905,
+    "search_rows": 142052,
+    "refuted": true,
+    "witness_cols22_23": [
+     0.338750834964514,
+     -0.8395323313139993
+    ]
+   },
+   "and_trigger": {
+    "probe_max_change": 0.9780465734029622,
+    "search_best_change": 48.16139400545165,
+    "search_rows": 13888,
+    "refuted": true,
+    "witness_cols22_23": [
+     5.65,
+     -0.8677853613586655
+    ],
+    "and_harm_rms_vs_amp0": 19.164893449834487,
+    "and_units": [
+     1,
+     6,
+     0
+    ],
+    "nat_r2": 0.8997609390238
+   }
+  },
+  {
+   "pair": 1016,
+   "benign_big_budget": {
+    "probe_max_change": 1.141738297004873,
+    "search_best_change": 4.413735329983328,
+    "search_rows": 142236,
+    "refuted": false,
+    "witness_cols22_23": [
+     -0.6460845658551073,
+     -0.3685990199839961
+    ]
+   },
+   "and_trigger": {
+    "probe_max_change": 0.6729096540479446,
+    "search_best_change": 48.34990966688327,
+    "search_rows": 13888,
+    "refuted": true,
+    "witness_cols22_23": [
+     5.65,
+     -0.7369411415865914
+    ],
+    "and_harm_rms_vs_amp0": 19.02064531471319,
+    "and_units": [
+     12,
+     4,
+     15
+    ],
+    "nat_r2": 0.8918744828162897
+   }
+  },
+  {
+   "pair": 1017,
+   "benign_big_budget": {
+    "probe_max_change": 1.9196757268359956,
+    "search_best_change": 6.491426874371543,
+    "search_rows": 142236,
+    "refuted": false,
+    "witness_cols22_23": [
+     -0.5048381553798673,
+     1.3808911016782484
+    ]
+   },
+   "and_trigger": {
+    "probe_max_change": 1.1575914618633307,
+    "search_best_change": 48.27405910359402,
+    "search_rows": 13888,
+    "refuted": true,
+    "witness_cols22_23": [
+     5.65,
+     -0.2820997598591319
+    ],
+    "and_harm_rms_vs_amp0": 18.725107286861668,
+    "and_units": [
+     11,
+     1,
+     2
+    ],
+    "nat_r2": 0.905588637265713
+   }
+  },
+  {
+   "pair": 1018,
+   "benign_big_budget": {
+    "probe_max_change": 0.5938241682882737,
+    "search_best_change": 5.6941567597935965,
+    "search_rows": 142236,
+    "refuted": false,
+    "witness_cols22_23": [
+     -0.3611192174678135,
+     -0.3154596240017709
+    ]
+   },
+   "and_trigger": {
+    "probe_max_change": 0.5562229868534241,
+    "search_best_change": 48.32359659551508,
+    "search_rows": 13888,
+    "refuted": true,
+    "witness_cols22_23": [
+     5.65,
+     -0.8132434313597781
+    ],
+    "and_harm_rms_vs_amp0": 18.525650974075734,
+    "and_units": [
+     13,
+     7,
+     0
+    ],
+    "nat_r2": 0.9136585979853509
+   }
+  },
+  {
+   "pair": 1019,
+   "benign_big_budget": {
+    "probe_max_change": 0.6743268102913764,
+    "search_best_change": 5.97568357971101,
+    "search_rows": 142236,
+    "refuted": false,
+    "witness_cols22_23": [
+     0.5425806253325345,
+     -0.10913435287711704
+    ]
+   },
+   "and_trigger": {
+    "probe_max_change": 0.697579657237103,
+    "search_best_change": 48.2913085815054,
+    "search_rows": 13888,
+    "refuted": true,
+    "witness_cols22_23": [
+     5.65,
+     -1.6603888435388408
+    ],
+    "and_harm_rms_vs_amp0": 18.16549359001821,
+    "and_units": [
+     3,
+     12,
+     15
+    ],
+    "nat_r2": 0.8942268177698164
+   }
+  },
+  {
+   "pair": 1020,
+   "benign_big_budget": {
+    "probe_max_change": 0.7322804826782464,
+    "search_best_change": 6.510739097640672,
+    "search_rows": 142236,
+    "refuted": false,
+    "witness_cols22_23": [
+     -0.6244235132132804,
+     0.6272067162657142
+    ]
+   },
+   "and_trigger": {
+    "probe_max_change": 0.707468843735939,
+    "search_best_change": 48.12717253871743,
+    "search_rows": 13888,
+    "refuted": true,
+    "witness_cols22_23": [
+     5.65,
+     -0.7855471338431607
+    ],
+    "and_harm_rms_vs_amp0": 18.799030567042493,
+    "and_units": [
+     12,
+     4,
+     9
+    ],
+    "nat_r2": 0.8859530721806359
+   }
+  },
+  {
+   "pair": 1021,
+   "benign_big_budget": {
+    "probe_max_change": 1.0960616061147677,
+    "search_best_change": 7.195272293042182,
+    "search_rows": 142236,
+    "refuted": false,
+    "witness_cols22_23": [
+     -0.7031397661838146,
+     0.7123073768705157
+    ]
+   },
+   "and_trigger": {
+    "probe_max_change": 0.8174103592825999,
+    "search_best_change": 48.23672131453944,
+    "search_rows": 13888,
+    "refuted": true,
+    "witness_cols22_23": [
+     5.65,
+     -1.1748125449582372
+    ],
+    "and_harm_rms_vs_amp0": 18.821609220100797,
+    "and_units": [
+     11,
+     8,
+     11
+    ],
+    "nat_r2": 0.8967003352649563
+   }
+  }
+ ]
+}

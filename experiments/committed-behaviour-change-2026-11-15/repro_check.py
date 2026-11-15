@@ -20,12 +20,18 @@ adm = expb.adm
 
 
 def main():
-    i = int(sys.argv[1]) if len(sys.argv) > 1 else 1000
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    dump = "--dump" in sys.argv
+    i = int(args[0]) if args else 1000
     for trial in (1, 2):
         P = adm.build_pair(i, None)
         org_b, _ = adm.splice(P, P["pkt"])
         print(f"trial {trial} host_root {cbc.weight_root(P['host'])}")
         print(f"trial {trial} benign_root {cbc.weight_root(org_b)}")
+        if dump and trial == 1:
+            import numpy as np
+            np.save("host_flat.npy", P["host"].flat_params())
+            np.save("benign_flat.npy", org_b.flat_params())
 
 
 if __name__ == "__main__":

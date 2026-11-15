@@ -14,6 +14,7 @@ permissions:
 jobs:
   repro:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
@@ -29,5 +30,19 @@ jobs:
       - name: Rebuild pair 1000 twice and print weight roots
         run: |
           cd experiments/committed-behaviour-change-2026-11-15
-          python3 repro_check.py 1000 | tee repro-runner.out
-          diff repro-1.out repro-runner.out && echo ROOTS-MATCH-COMMITTED-MAC-RECORD
+          python3 repro_check.py 1000 --dump | tee repro-runner.out
+          diff repro-1.out repro-runner.out && echo ROOTS-MATCH-COMMITTED-MAC-RECORD || echo ROOTS-DIFFER-FROM-COMMITTED-MAC-RECORD
+      - name: Replay splice from recorded decisions (float32 roots)
+        run: |
+          cd experiments/committed-behaviour-change-2026-11-15
+          python3 replay_splice.py replay 1000
+      - name: Upload flat weights for divergence measurement
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flat-${{ matrix.os }}
+          path: |
+            experiments/committed-behaviour-change-2026-11-15/host_flat.npy
+            experiments/committed-behaviour-change-2026-11-15/benign_flat.npy
+            experiments/committed-behaviour-change-2026-11-15/replay_benign_flat.npy
+            experiments/committed-behaviour-change-2026-11-15/repro-runner.out

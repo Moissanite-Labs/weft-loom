@@ -1,0 +1,35 @@
+Experiment A cross-host replay, observed 2026-11-15.
+Workflow: cbc-repro, run 43758319377 (first dispatch 43758110770, same Ubuntu roots).
+Each runner rebuilds pair 1000 twice from seeds alone; trials agree within every runner.
+
+Roots (CBC over float64 tensors):
+  local Mac (record repro-1.out): host e810f64f..., benign 0fe473f5...
+  GitHub macos-latest:             host 47b9e26c..., benign f6d50728...
+  GitHub ubuntu-latest:            host 4c4ca911..., benign d0fd9b63...
+No two hosts share a root. Bit-exact cross-host replay fails as written.
+
+Flat float32 weights (host_flat.npy / benign_flat.npy artifacts of run 43758319377,
+compared locally against a fresh local dump):
+  host: identical across all three (0 of 12488 entries differ).
+  benign: local Mac identical to Ubuntu (0 differ).
+  benign: GitHub macOS differs from both (8006 of 12488 entries, max abs 1.599,
+  relative RMS 0.283). The splice took a different discrete path there,
+  most plausibly slot selection or a retraction solve.
+
+Reading: training differs only in float64 low bits (the float32 cast is stable),
+but the splice contains discrete choices that small float differences can flip.
+A replay claim therefore needs the discrete decisions recorded in the CBC
+record, or pinned arithmetic. Hashing float64 weights makes the failure total
+even where the float32 weights agree.
+
+Addendum, same day. Two more dispatches localize and fix the failure.
+Run 43759002989: host float32 root matches everywhere; the packet root does
+not match on the GitHub macOS runner. The divergence is in packet extraction
+(distillation and its calibration solve), upstream of the splice.
+Run 43759282824: replay consumes the recorded packet wire bytes
+(packet-1000.bcpp, sha d02408dd...) and the recorded slot lists
+(decisions-1000.json) instead of re-distilling and re-ranking. Result:
+REPLAY-MATCH on the local Mac, ubuntu-latest and macos-latest, under float32
+CBC roots. So cross-host replay holds when the record carries its artifacts
+and discrete decisions, which is what a CBC record is for. Recomputing them
+from seeds is not replay; it is retraining.

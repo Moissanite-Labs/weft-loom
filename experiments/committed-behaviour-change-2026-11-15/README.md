@@ -48,6 +48,25 @@ The separation is real on these 12 pairs and thin at both edges (8.82 benign aga
 
 The claim to take forward is narrow: on this toy harness, for this trigger family, a committed ellipsoid claim plus the frozen bounded search catches what probe admission admitted, at the stated budget. Search strength against a trigger designed against this search is unmeasured.
 
+## Follow-ups (exploratory, designed after the confirmatory reading)
+
+`followup.json` from `followup.py`, same 12 pairs:
+
+- Benign grafts at roughly 7 times the search budget: 1 of 12 crosses tau (pair 1015, best 10.002). The other 11 stay at or under 7.20. So the ellipsoid claim at tau 10 is false as a universal statement for at least one benign graft. Admission held because the frozen budget stopped short of the witness.
+
+  Anyone can still dispute that graft with the witness input. That is the design working as intended, and the admission reading was overstated.
+- A search-aware trigger that needs two nuisance columns high at once (about 4.1 sd each, harm 18 to 19 RMS against its amplitude-0 control): the frozen search refutes 12 of 12, maxima about 48. The one-column-at-a-time sweep is not the weak point here, because the random stage seeds the hill climb with jointly high rows.
+
+Experiment A, first cross-host reading (`crosshost-43758319377.txt`): every runner agrees with itself across trials, and no two hosts share a CBC root. Float32 host weights are identical on all three hosts.
+
+The benign splice matches between this Mac and Ubuntu. On the GitHub macOS runner it takes a different discrete path (8006 of 12488 float32 entries differ). Bit-exact replay fails as written.
+
+Two more dispatches localize and fix it. The packet itself diverges on that runner, in extraction, while the host root matches. When replay instead consumes the recorded packet wire bytes and the recorded slot lists, under float32 roots, it matches on all three hosts (`replay_splice.py`, run 43759282824).
+
+So cross-host replay holds when the record carries its artifacts and discrete decisions. Recomputing them from seeds is retraining, not replay. Hashing float64 weights still makes even agreeing hosts disagree, so the root belongs over canonical float32 bytes.
+
+`PREREG-C.md` is the Experiment C draft (splice with no input switch), not yet frozen or run.
+
 ## Limits
 
 Toy E13 harness only: a 12,488-weight MLP, synthetic worlds, one Mac. The claim covers native retention inside one ellipsoid and nothing outside it. There is no domain guard, no signature, no registry and no novel-skill claim in v1. The trigger family is the recheck record's, designed against the old probe rule.
