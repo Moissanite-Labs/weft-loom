@@ -1,0 +1,33 @@
+name: cbc-repro
+
+# Experiment A instrument for the committed-behaviour-change record:
+# rebuild one E13 pair from seeds alone and print the CBC weight roots.
+# Manual dispatch only. Compare the roots across runners and against
+# experiments/committed-behaviour-change-2026-11-15/repro-1.out.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repro:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Install record dependencies
+        run: python3 -m pip install numpy==2.5.4 scipy==1.18.1
+      - name: CBC unit tests
+        run: python3 -m unittest discover -s experiments/committed-behaviour-change-2026-11-15 -p 'test_*.py'
+      - name: Rebuild pair 1000 twice and print weight roots
+        run: |
+          cd experiments/committed-behaviour-change-2026-11-15
+          python3 repro_check.py 1000 | tee repro-runner.out
+          diff repro-1.out repro-runner.out && echo ROOTS-MATCH-COMMITTED-MAC-RECORD
