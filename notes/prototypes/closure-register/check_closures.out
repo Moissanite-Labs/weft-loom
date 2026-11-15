@@ -108,7 +108,7 @@ CL-6 [crossed_bounds] certificate holds on 36 of 36 units: sector is closed
      MLP host 11, 7 bits      upper 0.3  lower 0.4909  holds; the rounded copy drops the native score by 0.0014
 
 CL-7 [crossed_bounds] certificate holds on 36 of 36 units: sector is closed
-   Certifying one grid step of a weight, in a cell rounded as in CL-6, with the ball Theorem 1 proves within tolerance 0.05 around that cell. The tolerance is the RMS change over the host's 1,024 held-out inputs.
+   Certifying one grid step of a weight, in a cell rounded as in CL-6, with the ball Theorem 1 proves within tolerance 0.05 around that cell. The tolerance is the RMS change over the host's 2,048 held-out inputs.
    no value of the length of the change meets both bounds; lower / upper runs from 1.89 to 14.9
      MLP host 0, 5 bits       upper 0.00266  lower 0.03118  holds; the rounded cell drops the native score by 0.0089
      MLP host 0, 6 bits       upper 0.002646  lower 0.01559  holds; the rounded cell drops the native score by 0.0015

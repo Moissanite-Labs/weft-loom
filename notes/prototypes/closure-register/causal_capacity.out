@@ -1,0 +1,72 @@
+Stage A. Random sparse networks
+   networks: 300
+   capacity certified both ways (disjoint paths and a cut of the same size): 300
+   cut clamped, inputs changed, no output moved: 300 (largest change 0.0e+00)
+   linear network, random weights: rank at most the capacity on 300, equal on 300
+   Jacobian rank equal to the capacity at a random input: tanh 300, GELU 300
+
+Stage B. The demand of a skill, by intervention on the data generator
+   By its formula an output of skill m depends on the input only through 4 numbers, the projections of z on U_sub[m],
+   and the skill's own gate. That is 5 directions. The other 4 gates and the 3 nuisance inputs have no effect.
+   Here each of the 24 inputs is moved in turn, up and down by 1e-6, and the generator is run again.
+   skill 0: Jacobian rank at 200 inputs: least 5, most 5; median singular values over the largest: 1.000, 0.786, 0.600, 0.319, 0.033, 0.000, 0.000, 0.000
+            largest effect of the 7 unused inputs: 0.0e+00
+   skill 1: Jacobian rank at 200 inputs: least 5, most 5; median singular values over the largest: 1.000, 0.735, 0.493, 0.223, 0.024, 0.000, 0.000, 0.000
+            largest effect of the 7 unused inputs: 0.0e+00
+
+Stage C. Networks 24 -> 96 -> c -> 8 trained on the generator, score R2 on 1,024 fresh inputs per skill
+   one skill, 280 training steps
+   seed | c=1   | c=2   | c=3   | c=4   | c=5   | c=6   | c=8   | c=12  | c=16  | c=96  | knee
+      0 | 0.015 | 0.339 | 0.434 | 0.829 | 0.881 | 0.864 | 0.911 | 0.935 | 0.957 | 0.976 | 16
+      1 | 0.402 | 0.506 | 0.424 | 0.738 | 0.619 | 0.855 | 0.895 | 0.935 | 0.956 | 0.982 | 96
+      2 | 0.278 | 0.055 | 0.767 | 0.862 | 0.653 | 0.888 | 0.910 | 0.933 | 0.936 | 0.967 | 96
+   one skill, 1120 training steps
+   seed | c=1   | c=2   | c=3   | c=4   | c=5   | c=6   | c=8   | c=12  | c=16  | c=96  | knee
+      0 | 0.080 | 0.537 | 0.631 | 0.894 | 0.931 | 0.942 | 0.977 | 0.997 | 0.997 | 0.998 | 8
+      1 | 0.504 | 0.689 | 0.613 | 0.854 | 0.809 | 0.918 | 0.980 | 0.995 | 0.997 | 0.998 | 8
+      2 | 0.454 | 0.241 | 0.827 | 0.919 | 0.816 | 0.954 | 0.996 | 0.996 | 0.995 | 0.997 | 8
+   two skills, 280 training steps
+   seed | c=1   | c=2   | c=3   | c=4   | c=5   | c=6   | c=8   | c=12  | c=16  | c=96  | knee
+      0 | 0.042 | 0.153 | 0.023 | 0.412 | 0.574 | 0.639 | 0.883 | 0.906 | 0.916 | 0.964 | 96
+      1 | 0.024 | 0.166 | 0.273 | 0.189 | 0.716 | 0.781 | 0.865 | 0.893 | 0.917 | 0.958 | 96
+      2 | 0.009 | 0.034 | 0.337 | 0.584 | 0.721 | 0.575 | 0.872 | 0.900 | 0.928 | 0.958 | 96
+   two skills, 1120 training steps
+   seed | c=1   | c=2   | c=3   | c=4   | c=5   | c=6   | c=8   | c=12  | c=16  | c=96  | knee
+      0 | 0.123 | 0.207 | 0.227 | 0.639 | 0.686 | 0.876 | 0.929 | 0.985 | 0.988 | 0.997 | 12
+      1 | 0.095 | 0.232 | 0.420 | 0.389 | 0.843 | 0.915 | 0.957 | 0.969 | 0.988 | 0.997 | 16
+      2 | 0.083 | 0.172 | 0.518 | 0.745 | 0.843 | 0.788 | 0.959 | 0.961 | 0.988 | 0.997 | 16
+   judged on 1,120 steps:
+   C1 one skill, width 3 and below more than 0.025 under dense on every seed: holds
+   C2 one skill, width 8 and above within 0.025 of dense on every seed: holds
+   C3 one skill, knee at 4, 5 or 6 on every seed: FAILS (knees [8, 8, 8])
+   C4 two skills, width 4 and below under dense, and a larger knee than one skill: holds (knees [12, 16, 16])
+
+Stage D. The 12 MLP hosts of the calibration record
+   Pruning each weight matrix by magnitude
+   share of weights kept | capacity, least to most over hosts | drop in native score, least to most | hosts keeping the bar
+                       1 | 8 to 8 | 0.0000 to 0.0000 | 12
+                     0.5 | 8 to 8 | 0.0730 to 0.1186 | 0
+                     0.2 | 8 to 8 | 0.4783 to 0.6371 | 0
+                     0.1 | 8 to 8 | 0.7914 to 0.8542 | 0
+                    0.05 | 7 to 8 | 0.8641 to 0.9087 | 0
+                    0.02 | 4 to 7 | 0.8902 to 0.9290 | 0
+                    0.01 | 1 to 4 | 0.8912 to 0.9281 | 0
+                   0.005 | 0 to 2 | 0.8903 to 0.9287 | 0
+                   0.002 | 0 to 2 | 0.8911 to 0.9290 | 0
+   D1 the bar first breaks at a kept share of 0.5, where the least capacity is 8: holds
+   Closing the 288 weights out of the three nuisance inputs, which the generator's formula never uses
+   host | native score under shift, before and after | without shift, before and after | length of the change | RMS change of outputs on held-out inputs
+      0 | 0.9096 -> 0.9130 (+0.0034) | 0.9502 -> 0.9510 (+0.0007) | 3.577 | 0.0588
+      1 | 0.9291 -> 0.9316 (+0.0025) | 0.9692 -> 0.9697 (+0.0005) | 3.025 | 0.0529
+      2 | 0.9258 -> 0.9294 (+0.0035) | 0.9605 -> 0.9613 (+0.0008) | 3.612 | 0.0546
+      3 | 0.8988 -> 0.9026 (+0.0037) | 0.9563 -> 0.9571 (+0.0008) | 3.296 | 0.0517
+      4 | 0.9092 -> 0.9123 (+0.0031) | 0.9615 -> 0.9622 (+0.0007) | 3.400 | 0.0602
+      5 | 0.9282 -> 0.9325 (+0.0042) | 0.9686 -> 0.9692 (+0.0006) | 3.558 | 0.0621
+      6 | 0.9270 -> 0.9303 (+0.0033) | 0.9704 -> 0.9711 (+0.0007) | 3.210 | 0.0573
+      7 | 0.9058 -> 0.9099 (+0.0041) | 0.9573 -> 0.9580 (+0.0007) | 3.453 | 0.0632
+      8 | 0.8930 -> 0.8972 (+0.0043) | 0.9477 -> 0.9486 (+0.0009) | 3.433 | 0.0587
+      9 | 0.9127 -> 0.9171 (+0.0044) | 0.9609 -> 0.9619 (+0.0010) | 3.622 | 0.0672
+     10 | 0.9094 -> 0.9124 (+0.0030) | 0.9612 -> 0.9617 (+0.0005) | 3.459 | 0.0583
+     11 | 0.8922 -> 0.8968 (+0.0046) | 0.9589 -> 0.9596 (+0.0007) | 3.251 | 0.0555
+   under shift the score rose on 12 of 12 hosts, by +0.0025 to +0.0046; it fell on 0
+   D2 falls on no more than 2 hosts under shift, and moves by less than 0.01 without shift on all 12: holds
