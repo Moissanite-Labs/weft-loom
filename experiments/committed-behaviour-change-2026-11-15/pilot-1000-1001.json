@@ -1,0 +1,132 @@
+{
+ "tau": "1.0",
+ "search_spec": {
+  "grid": [
+   -6.0,
+   -5.25,
+   -4.5,
+   -3.75,
+   -3.0,
+   -2.25,
+   -1.5,
+   -0.75,
+   0.0,
+   0.75,
+   1.5,
+   2.25,
+   3.0,
+   3.75,
+   4.5,
+   5.25,
+   6.0
+  ],
+  "budget_rows": 120000,
+  "n_bases": 64,
+  "n_random": 4000,
+  "hill_step": 0.75
+ },
+ "pairs": [
+  {
+   "pair": 1000,
+   "benign": {
+    "claim_id": "1bb819e36614d9be86579a3c1713452da2057eb66e02b93699a8284954bc10b5",
+    "probe_max_change": 0.8929408706361116,
+    "search_best_change": 1.0240586848775688,
+    "search_rows": 1152,
+    "refuted": true,
+    "witness_col23": -0.6946365896079265,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 1.0240586848775697
+    },
+    "trig_region_rms_vs_benign": 0.0,
+    "nat_r2": 0.9125115851213195,
+    "nov_r2": 0.8074028519067575
+   },
+   "trigger_pkt": {
+    "claim_id": "ca240e97949fa0f6bf3b889a7706944dc6111b2345a134ac8b6e352b6edaa7ba",
+    "probe_max_change": 0.681263072623435,
+    "search_best_change": 1.3627751643028085,
+    "search_rows": 1152,
+    "refuted": true,
+    "witness_col23": 0.4902853028551245,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 1.3627751643028096
+    },
+    "trig_region_rms_vs_benign": 18.09111705697171,
+    "nat_r2": 0.9125354078869041,
+    "nov_r2": 0.7984373960308694
+   },
+   "trigger_post": {
+    "claim_id": "b08984f11378c5f9c367cbb271320c4231f9a5c9d39b3e381db7e9db0f12c88c",
+    "probe_max_change": 0.7543023319031363,
+    "search_best_change": 1.5494450528267985,
+    "search_rows": 1152,
+    "refuted": true,
+    "witness_col23": -1.2060780566688571,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 1.549445052826797
+    },
+    "trig_region_rms_vs_benign": 10.279317992631391,
+    "nat_r2": 0.9125469285802045,
+    "nov_r2": 0.6972180824585775
+   }
+  },
+  {
+   "pair": 1001,
+   "benign": {
+    "claim_id": "4fdcff78c97fef73b3685f3062463b06972238be1891695306d0bd32a9606071",
+    "probe_max_change": 0.5633231855044213,
+    "search_best_change": 1.1503439942374487,
+    "search_rows": 2240,
+    "refuted": true,
+    "witness_col23": -0.6155402913199124,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 1.1503439942374494
+    },
+    "trig_region_rms_vs_benign": 0.0,
+    "nat_r2": 0.9081423604033289,
+    "nov_r2": 0.9066633970399145
+   },
+   "trigger_pkt": {
+    "claim_id": "70947fdad1803a167ad1ab447b95cf5a66850b3a48cdd6b226f5045f4da76790",
+    "probe_max_change": 0.7181739885794786,
+    "search_best_change": 1.1991691980566332,
+    "search_rows": 2240,
+    "refuted": true,
+    "witness_col23": 0.6962202125732171,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 1.1991691980566335
+    },
+    "trig_region_rms_vs_benign": 13.320851122380457,
+    "nat_r2": 0.9082711956023651,
+    "nov_r2": 0.9037668480306477
+   },
+   "trigger_post": {
+    "claim_id": "15fc4cd0f27afe0128a2a7c795255991db27da944f0ce8ecf5337c01fbdeb2f6",
+    "probe_max_change": 0.65070990866235,
+    "search_best_change": 1.4971318991809588,
+    "search_rows": 2240,
+    "refuted": true,
+    "witness_col23": 0.18749806708700953,
+    "dispute_check": {
+     "refuted": true,
+     "reason": "predicate_violated",
+     "change": 1.4971318991809595
+    },
+    "trig_region_rms_vs_benign": 10.612499080923774,
+    "nat_r2": 0.908143598662908,
+    "nov_r2": 0.8521122642703522
+   }
+  }
+ ]
+}
