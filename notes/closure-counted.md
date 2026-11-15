@@ -97,7 +97,7 @@ The terms come from the calibration record (`experiments/gate-metric-calibration
 - A **host** is one of its 12 small MLP networks, with 12,488 weights.
 - The **bar** is a drop of at most 0.025 in the host's score on its native skills. A **passing fine-tune** is 120 ordinary training steps that keep the bar and learn a new skill.
 - A **breaking move** is a move found by a search that tries to do damage. Its length is the shortest tested length, 0.1 or 0.3, at which the search breaks the bar.
-- **Theorem 1** of that record bounds how far the outputs can move inside a ball of weight space. The **proved ball** is the largest ball in which it keeps the RMS change over the host's 1,024 held-out inputs under 0.05. It is a statement about those inputs, not about every input.
+- **Theorem 1** of that record bounds how far the outputs can move inside a ball of weight space. The **proved ball** is the largest ball in which it keeps the RMS change over the host's 2,048 held-out inputs under 0.05. It is a statement about those inputs, not about every input.
 - **Rounding to b bits** here means one scheme: each weight matrix rounded to the nearest of 2^b evenly spaced levels over its own range, biases kept as they are.
 
 `closure_quant.py` rebuilds each host's passing fine-tune, checks it against its recorded row, and rounds each host. `check_closures.py` checks the three certificates. In the table, lower bounds are rounded down and upper bounds up.

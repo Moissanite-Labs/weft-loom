@@ -239,7 +239,7 @@ def stage_a(n_nets=300):
 
 
 # ---------------------------------------------------------------------------
-# The demand of a skill, from the generator's formula
+# The demand of a skill, by intervention on the data generator
 # ---------------------------------------------------------------------------
 
 class Fixed:

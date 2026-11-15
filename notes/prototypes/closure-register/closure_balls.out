@@ -1,4 +1,4 @@
-tolerance tau = 0.05 on the RMS change over 1024 held-out inputs; slope bound gamma = 1.0999
+tolerance tau = 0.05 on the RMS change over 2048 held-out inputs (1024 per skill); slope bound gamma = 1.0999
 
 host 0: weight norm 20.85; ball proved safe around the baseline: radius 0.00265; one training step has length 1.006
    length of failed move | its change D* | recorded | closed radius rho* | rho* / length | rho* / one step | least change on edge | (D*/tau - 1) x safe radius

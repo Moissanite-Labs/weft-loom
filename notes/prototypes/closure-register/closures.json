@@ -69,7 +69,7 @@
    "id": "CL-7",
    "kind": "crossed_bounds",
    "check": "grid_step_in_proved_ball",
-   "sector": "Certifying one grid step of a weight, in a cell rounded as in CL-6, with the ball Theorem 1 proves within tolerance 0.05 around that cell. The tolerance is the RMS change over the host's 1,024 held-out inputs.",
+   "sector": "Certifying one grid step of a weight, in a cell rounded as in CL-6, with the ball Theorem 1 proves within tolerance 0.05 around that cell. The tolerance is the RMS change over the host's 2,048 held-out inputs.",
    "parameter": "length of the change",
    "upper": "length <= the radius Theorem 1 proves within tolerance around the rounded cell.",
    "lower": "length >= the smallest step of the grid: one weight moved by one level.",

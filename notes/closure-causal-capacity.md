@@ -76,7 +76,7 @@ For data without a formula the demand would have to be estimated by intervention
 
 - The **hosts** are the 12 MLP networks of the calibration record (`experiments/gate-metric-calibration-2026-11-15`): 24 inputs, two hidden layers of 96 GELU units, 8 outputs, trained for 280 steps on two skills. Every weight is open, so their capacity is 8, the number of outputs.
 - The **native score** of a host is its R2 on those two skills under the record's shifted test inputs. The **bar** is a drop of at most 0.025 in it.
-- The **held-out inputs** are 1,024 unshifted inputs per host. The earlier notes use a **tolerance** of 0.05 on the RMS change of the outputs over them.
+- The **held-out inputs** are 2,048 unshifted inputs per host, 1,024 for each of its two skills. The earlier notes use a **tolerance** of 0.05 on the RMS change of the outputs over them.
 - A **breaking move** is a move found by a search that tries to do damage. Its length is the shortest tested length, 0.1 or 0.3, at which the search breaks the bar.
 - In the width test the score is R2 on 1,024 fresh unshifted inputs per skill.
 
@@ -99,7 +99,7 @@ The climb is gradual and not always upward: width 5 scores under width 4 on two 
 
 With 280 steps, the hosts' own recipe, the smallest width within the bar is 16, 96 and 96 for one skill and 96 on every seed for two. So the width at which the bar is met depends on how long the network is trained.
 
-**Pruning.** With half the weights of each matrix removed by magnitude, all 12 hosts fail the bar, with a drop of 0.07 to 0.12, and the capacity is still 8. The capacity first falls under 8 with 5 percent of the weights kept and under 5 with 2 percent kept. By then the score has long collapsed. The hosts serve two skills, so 5 is only a lower bound on what they need.
+**Pruning.** With half the weights of each matrix removed by magnitude, all 12 hosts fail the bar, with a drop of 0.07 to 0.12, and the capacity is still 8. On the host that loses it first, the capacity falls under 8 with 5 percent of the weights kept and under 5 with 2 percent kept. By then the score has long collapsed. The hosts serve two skills, so 5 is only a lower bound on what they need.
 
 **Closing the unused inputs.** On each of the 12 hosts the 288 weights out of the three nuisance inputs were set to zero.
 
@@ -118,7 +118,9 @@ With 280 steps, the hosts' own recipe, the smallest width within the bar is 16, 
 
 [I] **The cut sees neither strength nor switching.** In a dense network the capacity stays at its ceiling long after the behaviour has failed. And two skills needed 12 to 16 units where the demand, a rank at a point, is still 5. A certificate that counted directions carried with a stated gain, across regions of the input, would be needed. None is given here.
 
-[I] **Closing unused inputs did no harm and a little good, where two distance tests would refuse it.** The move is 3.0 to 3.6 long. A weight radius small enough to reject the breaking moves, 0.1 to 0.3, would reject it. The shipped radii of 10 and 120 would admit it. It also changes the outputs by more than the tolerance of 0.05 on all 12 hosts, narrowly on one. The score rose on every host, by under 0.005.
+[I] **Closing unused inputs did no harm and a little good, where a small weight radius and the output tolerance would refuse it.** The move is 3.0 to 3.6 long. A weight radius small enough to reject the breaking moves, 0.1 to 0.3, would reject it. The shipped radii of 10 and 120 would admit it.
+
+[I] It also changes the outputs by more than the tolerance of 0.05 on all 12 hosts, narrowly on one. The score rose on every host, by under 0.005.
 
 [I] Both tests measure distance from the present model. Where the present model responds to inputs the task never uses, part of that distance is distance from an error.
 

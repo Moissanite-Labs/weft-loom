@@ -59,7 +59,7 @@ def main():
     e13 = c.load_e13()
     gamma = c.gelu_slope_bound()
     recorded = {h["summary"]["seed"]: h for h in json.loads((CAL / "results.json").read_text())["hosts"]}
-    print(f"tolerance tau = {TAU} on the RMS change over 1024 held-out inputs; slope bound gamma = {gamma:.4f}")
+    print(f"tolerance tau = {TAU} on the RMS change over 2048 held-out inputs (1024 per skill); slope bound gamma = {gamma:.4f}")
     for seed in a.seeds:
         # The same construction as run_host in calib.py, as far as the adversary's moves.
         env = e13.FiveSkillEnvironment(world_seed=c.WORLD0 + seed)
