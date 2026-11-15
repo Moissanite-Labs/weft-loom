@@ -1,0 +1,22 @@
+seed 900: weights=18839 |w|=37.03 acc=1.000 sqrt(lam_max)=34.288 anisotropy=42.2 r_break(adv)=0.1 [209s]
+seed 901: weights=18839 |w|=36.51 acc=1.000 sqrt(lam_max)=19.227 anisotropy=30.6 r_break(adv)=0.1 [261s]
+{
+ "n_hosts": 2,
+ "r_loc": 0.001,
+ "r_blind": 0.01,
+ "H1a_top_over_rand_ge_10": 2,
+ "H1b_perm_far_and_silent": 2,
+ "H2a_fisher_within_1p1_on_fit_probes": 2,
+ "H2b_fisher_within_1p25_on_held": 2,
+ "H3a_fisher_blind_to_null_moves": 2,
+ "H3b_fisher_off_by_3_on_a_natural_move": 2,
+ "H4_probe_within_1p25_on_held": 2,
+ "H5a_blind_adversary_ratio_ge_10": 2,
+ "H5b_blind_adversary_breaks_bar_under_graft_level": null,
+ "H6a_adv_breaks_10x_before_rand": 2,
+ "H6b_one_step_ge_r_break_adv": 2,
+ "H6c_graft_passes_at_r_ge_20": null,
+ "H6d_rand_breaks_inside_shipped_radius": null,
+ "H7_cert_le_attack": null
+}
+wrote pilot_tf.json
