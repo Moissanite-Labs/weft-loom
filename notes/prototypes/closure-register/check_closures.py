@@ -3,13 +3,17 @@
 
 A sector of paths is closed only by a certificate: two bounds on one
 parameter that cross, or one exhibited counterexample to a universal claim.
-This program recomputes every certificate in closures.json from data files
-under experiments/, prints the two bounds for each unit, and exits with
-status 1 if a registered closure does not hold on a unit it claims. It then
-marks as closed every path that needs a closed sector to stay open.
+This program checks every certificate in closures.json against the numbers
+saved under experiments/, prints the two bounds for each unit, and exits
+with status 1 if a registered closure does not hold on a unit it claims. It
+then closes every path that needs something closed, and repeats until
+nothing changes.
 
-It reads recorded numbers. The programs that produced them are in the
-records named below and are deterministic for a given seed.
+It reads recorded numbers and does not rebuild the moves behind them. The
+programs that produced them are in the records named below and are
+deterministic for a given seed. closure_balls.py rebuilds the adversary's
+moves on the MLP hosts and checks them against the record. What a path
+needs is written by hand in closures.json.
 
 Usage: python3 notes/prototypes/closure-register/check_closures.py
 """
@@ -24,7 +28,8 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 CAL = ROOT / "experiments" / "gate-metric-calibration-2026-11-15"
 RECHECK = ROOT / "experiments" / "weft-threads-recheck-2026-11-15"
-BAR = 0.025          # retention bar of calib.py and calib_tf.py: a larger drop breaks it
+BAR = 0.025          # a larger drop breaks the bar: R2 on shifted native data (MLP), accuracy on held-out native inputs (transformer)
+NOVEL_MIN = 0.70     # the joint bar also asks this much on the new skill
 TAU = 0.05           # tolerance of CL-1, as a share of the output RMS
 SILENT = 1e-9        # a permutation changes no output beyond rounding
 
@@ -57,9 +62,12 @@ def ball_gate_nonlinear():
             harm = [x for x in rows if x["class"] == "adv" and not x["natural"] and upper is not None and abs(x["r"] - upper) <= 1e-12]
             fine = next(x for x in rows if x["natural"] and x["class"] == "finetune_joint")
             perm = next(x for x in rows if x["natural"] and x["class"] == "perm")
-            ok = (bool(harm) and harm[0]["drop"] > BAR and bool(ph["H6_finetune_joint_pass"]) and fine["drop"] <= BAR
-                  and upper <= fine["r"])
-            silent = perm["held"] <= SILENT and upper is not None and upper <= perm["r"]
+            if not harm:
+                out.append(dict(unit=f"{label} host {ph['seed']}", upper=None, lower=fine["r"], closed=False, note="no breaking move recorded"))
+                continue
+            novel = fine.get("novel_r2_after", fine.get("novel_acc_after"))
+            ok = harm[0]["drop"] > BAR and fine["drop"] <= BAR and novel >= NOVEL_MIN and upper <= fine["r"]
+            silent = perm["held"] <= SILENT and upper <= perm["r"]
             note = (f"breaking move drops {harm[0]['drop']:.4f}; fine-tune drops {fine['drop']:.4f}; "
                     f"a permutation of length {perm['r']:.1f} changes outputs by {perm['held']:.1e}" + ("" if silent else " (NOT silent)"))
             out.append(dict(unit=f"{label} host {ph['seed']}", upper=upper, lower=fine["r"], closed=ok and silent, note=note))
@@ -79,7 +87,8 @@ def probe_threshold_known_probes():
             out.append(dict(unit=f"MLP host {ph['seed']}", upper=None, lower=graft["probe"], closed=None,
                             note="the graft fails the joint bar here, so there is no benign witness and nothing is certified"))
             continue
-        ok = bool(blind) and blind[0]["drop"] > BAR and blind[0]["probe"] <= graft["probe"]
+        ok = (bool(blind) and blind[0]["drop"] > BAR and blind[0]["probe"] <= graft["probe"]
+              and graft["drop"] <= BAR and graft["novel_r2_after"] >= NOVEL_MIN)
         out.append(dict(unit=f"MLP host {ph['seed']}", upper=blind[0]["probe"] if blind else None, lower=graft["probe"], closed=ok,
                         note=f"hidden move of length {r_blind:g} drops {blind[0]['drop']:.3f}; graft drops {graft['drop']:.4f}" if blind else "no hidden move recorded"))
     return out
@@ -98,12 +107,18 @@ def admission_rule_sufficient():
 
 
 def reversal_without_attention():
-    """RO-1. Reversal accuracy 1.0 with every attention weight frozen: the sector is open."""
+    """RO-1. A first-layer packet reaches reversal with attention frozen and the native skills kept: the sector is open."""
     out = []
-    for name in ("step5_a.json", "step5_b.json", "step5_lead_seeds_11_12.json"):
-        for e in load(RECHECK / "tf" / name):
-            acc = e["variants"]["mlp@rev"]["final"]["3"]
-            out.append(dict(unit=f"seed {e['seed']}", upper=None, lower=None, closed=acc >= 1.0, note=f"reversal accuracy {acc:g} with attention frozen"))
+    ctl = load(RECHECK / "tf" / "partB_summary.json")["controls"]["ctl_mlp_only_r64_blk1"]
+    for seed, acc in sorted(ctl.items(), key=lambda kv: int(kv[0])):
+        ok = acc["3"] >= 0.99 and acc["0"] >= 0.98 and acc["1"] >= 0.98
+        out.append(dict(unit=f"seed {seed}", upper=None, lower=None, closed=ok,
+                        note=f"first-layer packet: reversal {acc['3']:g}, native skills {acc['0']:g} and {acc['1']:g}"))
+    retrained = [e["variants"]["mlp@rev"]["final"] for name in ("step5_a.json", "step5_b.json", "step5_lead_seeds_11_12.json")
+                 for e in load(RECHECK / "tf" / name)]
+    n = sum(f["3"] >= 1.0 for f in retrained)
+    out.append(dict(unit="retraining, 10 seeds", upper=None, lower=None, closed=None,
+                    note=f"all position-wise layers retrained on reversal alone reach it on {n} of {len(retrained)} seeds and lose the native skills (largest {max(max(f['0'], f['1']) for f in retrained):g})"))
     return out
 
 
@@ -115,7 +130,32 @@ def fmt(x):
     return "-" if x is None else f"{x:.4g}"
 
 
+def close_paths(needs, closed):
+    """Least set that holds `closed` and every path needing one of its members.
+
+    `needs` maps a path to the sectors or paths it needs. A path needs all of
+    them, so one closed member closes it.
+    """
+    shut = set(closed)
+    changed = True
+    while changed:
+        changed = False
+        for path, req in needs.items():
+            if path not in shut and shut.intersection(req):
+                shut.add(path)
+                changed = True
+    return shut
+
+
+def selftest():
+    chain = {"a": ["X"], "b": ["a"], "c": ["b", "Y"], "d": ["Y"], "e": ["f"], "f": ["e"]}
+    once = close_paths(chain, {"X"})
+    if once != {"X", "a", "b", "c"} or close_paths(chain, once) != once or not once <= close_paths(chain, {"X", "Y"}):
+        raise SystemExit("FAIL: the path closure is not extensive, monotone and idempotent on the self-test")
+
+
 def main():
+    selftest()
     reg = load(HERE / "closures.json")
     state, failed = {}, False
     for group, word in (("closures", "closed"), ("reopened", "open")):
@@ -126,21 +166,24 @@ def main():
             ok = bool(claimed) and len(held) == len(claimed)
             failed |= not ok
             state[c["id"]] = "closed" if (group == "closures" and ok) else "open"
-            print(f"{c['id']} [{c['kind']}] {'certificate holds' if ok else 'CERTIFICATE FAILS'} on {len(held)} of {len(claimed)} units"
-                  + (f" ({len(units) - len(claimed)} not certified)" if len(units) != len(claimed) else "") + f": sector is {state[c['id']]}")
+            what = "certificate" if group == "closures" else "witness"
+            print(f"{c['id']} [{c['kind']}] {what + ' holds' if ok else what.upper() + ' FAILS'} on {len(held)} of {len(claimed)} units"
+                  + (f" ({len(units) - len(claimed)} not counted)" if len(units) != len(claimed) else "") + f": sector is {state[c['id']]}")
             print(f"   {c['sector']}")
             if c["kind"] == "crossed_bounds":
                 gaps = [u["lower"] / u["upper"] for u in held if u["upper"]]
                 print(f"   no value of the {c['parameter']} meets both bounds; lower / upper runs from {min(gaps):.3g} to {max(gaps):.3g}")
             for u in units:
-                mark = "not certified" if u["closed"] is None else ("holds" if u["closed"] else "FAILS")
+                mark = "not counted" if u["closed"] is None else ("holds" if u["closed"] else "FAILS")
                 bounds = f"upper {fmt(u['upper'])}  lower {fmt(u['lower'])}  " if c["kind"] == "crossed_bounds" else ""
                 print(f"     {u['unit']:<24} {bounds}{mark}; {u['note']}")
             print()
-    print("Paths")
+    print("Paths (what each needs is listed by hand in closures.json)")
+    needs = {p["id"]: p["needs"] for p in reg["paths"]}
+    shut = close_paths(needs, {k for k, v in state.items() if v == "closed"})
     for p in reg["paths"]:
-        shut = [s for s in p["needs_open"] if state.get(s) == "closed"]
-        print(f"   {p['id']} {'CLOSED by ' + ', '.join(shut) if shut else 'open':<16} {p['path']}")
+        why = [s for s in p["needs"] if s in shut]
+        print(f"   {p['id']} {'CLOSED by ' + ', '.join(why) if p['id'] in shut else 'open':<16} {p['path']}")
     if failed:
         print("\nFAIL: a registered certificate does not hold")
         sys.exit(1)
