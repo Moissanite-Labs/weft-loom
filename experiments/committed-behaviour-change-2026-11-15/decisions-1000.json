@@ -1,0 +1,41 @@
+{
+ "pair": 1000,
+ "slot_m1": [
+  45,
+  14,
+  26,
+  71,
+  82,
+  27,
+  19,
+  29,
+  38,
+  4,
+  54,
+  84,
+  33,
+  91
+ ],
+ "slot_m2": [
+  51,
+  62,
+  8,
+  6,
+  10,
+  55,
+  63,
+  50,
+  91,
+  32,
+  93,
+  38,
+  29,
+  0,
+  2,
+  11
+ ],
+ "host_f32_root": "d9f40239c5bf41265a7de1add6d749608acfa3944fc73e7be26ee3172d1f3c84",
+ "benign_f32_root": "830a8c810c285bd5c83b160470a4568b6938f00cff9d9ca000454c594cbcb304",
+ "host_v1_root": "e810f64f885ffd04abe3ace471b947f7b7f103c3f089c8b3037edbac483e9eb0",
+ "benign_v1_root": "0fe473f59d10016bdee02409dae39a55bd1cae87c63a101c325381fc8db4e312"
+}

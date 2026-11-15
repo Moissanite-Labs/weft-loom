@@ -32,6 +32,10 @@ jobs:
           cd experiments/committed-behaviour-change-2026-11-15
           python3 repro_check.py 1000 --dump | tee repro-runner.out
           diff repro-1.out repro-runner.out && echo ROOTS-MATCH-COMMITTED-MAC-RECORD || echo ROOTS-DIFFER-FROM-COMMITTED-MAC-RECORD
+      - name: Replay splice from recorded decisions (float32 roots)
+        run: |
+          cd experiments/committed-behaviour-change-2026-11-15
+          python3 replay_splice.py replay 1000
       - name: Upload flat weights for divergence measurement
         if: always()
         uses: actions/upload-artifact@v4
