@@ -23,13 +23,13 @@ Match n rows one-to-one to n columns. A cell (i, j) stands for "row i takes colu
 
 [K] If no valid assignment exists, some set S has fewer than |S| columns in C(S). That is Hall's theorem, and every cell is then closed.
 
-*Proof.* If such a set S exists, its rows take all of C(S), and j is in C(S), so row i cannot have it.
+*Proof.* If such a set S exists, then in any valid assignment its rows take all of C(S), and j is in C(S), so row i cannot have it.
 
 For the converse take a valid assignment M and say row r reaches row r2 if r could take the column M gives to r2. Suppose j is M's column for row i2. The cell (i, j) lies on some valid assignment exactly when i2 reaches i through a chain of such steps, because a shortest chain closes into a cycle along which each row takes the next row's column.
 
 If i2 does not reach i, let S be the rows i2 reaches, with i2 itself. Then C(S) is the set of columns M gives to S. It has |S| members and includes j.
 
-The set S is a certificate of the crossed-bounds kind, in whole numbers: S together with row i would need |S| + 1 columns, and C(S) has |S|. It is checked by counting.
+The set S is a certificate of the crossed-bounds kind, in whole numbers: if row i took column j, then S together with row i would need |S| + 1 columns, and C(S) has |S|. It is checked by counting.
 
 Adding the dead cells to the closed set is a closure operator: it never removes a cell, a larger closed set gives a larger result, and doing it twice adds nothing. All three hold because the set of valid assignments only shrinks as cells close, and closing a dead cell removes no valid assignment.
 
@@ -53,7 +53,7 @@ Then the total variation distance from W to the Poisson law of mean lambda is at
 
 Here W is the number of closed cells a random assignment s uses, and each closed cell has p = 1/n. For the cell (i, j), let k be the row with s(k) = j and exchange the values of s at i and k. The new assignment s' is uniform among those that use (i, j), since each of them comes from exactly n assignments. Take U = W(s) and V = W(s') - 1.
 
-If k = i then U - V = 1, with probability 1/n. Otherwise U - V = b(i, s(i)) + b(k, j) - b(k, s(i)), where b marks closed cells. The three terms have expectations (r_i - 1)/n, (c_j - 1)/n and (|B| - r_i - c_j + 1)/(n(n-1)). Adding 1/n gives the bracket.
+If k = i then U - V = 1, with probability 1/n. Otherwise U - V = b(i, s(i)) + b(k, j) - b(k, s(i)), where b marks closed cells. So |U - V| is at most the sum of the three terms, whose expectations are (r_i - 1)/n, (c_j - 1)/n and (|B| - r_i - c_j + 1)/(n(n-1)). Adding 1/n gives the bracket.
 
 The distance bounds the gap at the single value W = 0, which is N0/n! against exp(-lambda).
 
@@ -82,7 +82,7 @@ The uniform law on a ball of radius L is such a proposer. For the calibration ho
 
 [K] To close a region with balls of radius rho takes at least its volume over the volume of one ball. A lattice of centres needs more by its covering thickness. The lattice A_d\*, whose cell is the permutohedron, is the thinnest lattice covering for d up to 5. In 8 dimensions its thickness is 3.67, against 64.9 for the cubic grid and 3.14 for the best lattice known.
 
-The source for the thickness formula, the cases up to 5 and the record at 8 is Schürmann and Vallentin, "Computational approaches to lattice packing and covering problems" (2006). None of this reaches 12,488 dimensions. It applies to a proposer confined to a handful.
+The thickness formula, the history of the cases up to 5 and the lattice of thickness 3.14 are as given in Schürmann and Vallentin, "Computational approaches to lattice packing and covering problems" (2006). The values 3.67 and 64.9 are computed here from the formulas. None of this reaches 12,488 dimensions. It applies to a proposer confined to a handful.
 
 [I] The same lattice was proposed to the project for rounding weights. As a quantiser in 8 dimensions it is behind E8. As a covering it is far ahead of the cubic grid, and the best among lattices up to 5 dimensions.
 
@@ -100,18 +100,18 @@ The terms come from the calibration record (`experiments/gate-metric-calibration
 - **Theorem 1** of that record bounds how far the outputs can move inside a ball of weight space. The **proved ball** is the largest ball in which it keeps the RMS change over the host's 1,024 held-out inputs under 0.05. It is a statement about those inputs, not about every input.
 - **Rounding to b bits** here means one scheme: each weight matrix rounded to the nearest of 2^b evenly spaced levels over its own range, biases kept as they are.
 
-`closure_quant.py` rebuilds each host's passing fine-tune, checks it against its recorded row, and rounds each host. `check_closures.py` checks the three certificates.
+`closure_quant.py` rebuilds each host's passing fine-tune, checks it against its recorded row, and rounds each host. `check_closures.py` checks the three certificates. In the table, lower bounds are rounded down and upper bounds up.
 
 | Id | Sector closed | Upper bound | Lower bound | Certified on |
 |---|---|---|---|---|
 | CL-5 | One radius of a ball measured after the best relabelling of hidden units, that admits the passing fine-tune and rejects a breaking move | 0.1 to 0.3 | 1.80 to 2.27 | 12 of 12 hosts |
-| CL-6 | One Frobenius radius around the float cell that admits its copy rounded to 5, 6 or 7 bits by the scheme above and rejects a breaking move | 0.1 to 0.3 | 0.39 to 2.27 | 36 of 36 pairs of host and bit width |
-| CL-7 | Certifying one grid step of a weight, in a cell rounded to 5, 6 or 7 bits by the scheme above, with the proved ball around that cell | 0.0026 to 0.0032 | 0.0057 to 0.040 | 36 of 36 |
+| CL-6 | One Frobenius radius around the float cell that admits its copy rounded to 5, 6 or 7 bits by the scheme above and rejects a breaking move | 0.1 to 0.3 | 0.39 to 2.26 | 36 of 36 pairs of host and bit width |
+| CL-7 | Certifying one grid step of a weight, in a cell rounded to 5, 6 or 7 bits by the scheme above, with the proved ball around that cell | 0.0027 to 0.0032 | 0.0057 to 0.039 | 36 of 36 |
 
 - **CL-5.** Relabelling hidden units changes the weights and no output, so the first note counted it against the ball. A gate could instead measure distance after the best relabelling. That repairs one fault of the ball and leaves the other.
 - **Its lower bound.** [K] By Mirsky's theorem no relabelling brings a matrix nearer than the distance between sorted singular values. The fine-tune of length 8.1 to 9.2 stays at least 1.80 to 2.27 away. The breaking move is at most 0.1 to 0.3 away, since leaving the labels alone is one relabelling.
 - **What CL-5 covers.** Any distance that lies between the singular-value distance and the Frobenius distance. Other distances that ignore relabelling, such as one built on the largest singular value, are not covered.
-- **Optimal transport.** A brief sent to the project proposed a transport distance between neuron sets as the cell's boundary. [P] Take a layer of width w and treat each neuron as a row of [W | b]. The transport distance between the two sets of w neurons is 1/sqrt(w) times the Frobenius distance after the best matching of rows, because with equal weights a best plan can be taken to be a matching (Birkhoff).
+- **Optimal transport.** A brief sent to the project proposed a transport distance between neuron sets as the cell's boundary. [P] Take a layer of width w and treat each neuron as a row of [W | b]. The 2-Wasserstein distance between the two sets of w neurons is 1/sqrt(w) times the Frobenius distance after the best matching of rows, because with equal weights a best plan can be taken to be a matching (Birkhoff).
 - **What follows for it.** That distance times sqrt(w), summed in squares over layers, lies between the two bounds and is covered. An entropy-smoothed version is not.
 - **CL-6.** Rounding to 5 bits moves the weights by 1.6 to 2.3 and lowers the native score by 0.005 to 0.010, inside the bar. A searched move 5 to 23 times shorter breaks the bar. A weight radius cannot tell the two apart. A finer rounding scheme would shorten the error and is not covered.
 - **CL-7.** A rounded cell keeps the bar from 5 bits. One grid step fits inside the proved ball only from 9 bits (2 of 12 hosts at 8). From 5 to 7 bits the cell is usable and a first on-grid step of a weight cannot be certified this way. The certificate is what is closed. The step itself may be harmless.

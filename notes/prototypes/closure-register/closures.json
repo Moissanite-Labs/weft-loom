@@ -63,7 +63,7 @@
    "upper": "R < the length of an exhibited move that breaks the retention bar.",
    "lower": "R >= the length of the rounding error, which the gate has to admit.",
    "scope": "The 12 MLP hosts, at 5, 6 and 7 bits per weight, for that one rounding scheme. At 4 bits the copy fails the bar on 10 hosts. From 8 bits the rounding error is shorter than the recorded breaking move on most hosts and the certificate does not apply. A scheme with a shorter rounding error is not covered.",
-   "reopens_if": "The rounding is fine enough that its error is shorter than every breaking move."
+   "reopens_if": "The rounding is fine enough, or the scheme good enough, that its error is shorter than every breaking move."
   },
   {
    "id": "CL-7",
