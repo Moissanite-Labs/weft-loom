@@ -51,6 +51,102 @@ CL-4 [counterexample] certificate holds on 1 of 1 units: sector is closed
    The frozen two-check admission rule (native drift and donor agreement) as a sufficient test: every admitted graft passes the joint bar.
      478 grafts               holds; 37 of 181 admitted grafts fail the joint bar, by class {'benign': 1, 'stale_donor': 32, 'trigger_pkt': 1, 'trigger_post': 3}; 48 admitted grafts carry a trigger
 
+CL-5 [crossed_bounds] certificate holds on 12 of 12 units: sector is closed
+   One radius of a ball measured after the best relabelling of hidden units, on a nonlinear host, that admits a fine-tune which passes the joint bar and rejects a move which breaks the retention bar.
+   no value of the gate radius R meets both bounds; lower / upper runs from 6.02 to 21.7
+     MLP host 0               upper 0.3  lower 2.271  holds; the fine-tune has length 8.73; a relabelling of length 29.2 changes outputs by 1.1e-15 and has lower bound 7.6e-15
+     MLP host 1               upper 0.3  lower 2.076  holds; the fine-tune has length 8.71; a relabelling of length 29.3 changes outputs by 1.1e-15 and has lower bound 9.5e-15
+     MLP host 2               upper 0.3  lower 1.958  holds; the fine-tune has length 8.57; a relabelling of length 28.4 changes outputs by 1.0e-15 and has lower bound 1.1e-14
+     MLP host 3               upper 0.1  lower 2.169  holds; the fine-tune has length 9.03; a relabelling of length 28.7 changes outputs by 9.5e-16 and has lower bound 1.4e-14
+     MLP host 4               upper 0.3  lower 2.172  holds; the fine-tune has length 8.74; a relabelling of length 29.7 changes outputs by 1.0e-15 and has lower bound 9.6e-15
+     MLP host 5               upper 0.3  lower 1.806  holds; the fine-tune has length 8.06; a relabelling of length 29.6 changes outputs by 1.1e-15 and has lower bound 9.7e-15
+     MLP host 6               upper 0.3  lower 2.258  holds; the fine-tune has length 9.22; a relabelling of length 28.8 changes outputs by 9.8e-16 and has lower bound 1.3e-14
+     MLP host 7               upper 0.3  lower 2.15  holds; the fine-tune has length 9.03; a relabelling of length 29.7 changes outputs by 1.1e-15 and has lower bound 1.0e-14
+     MLP host 8               upper 0.3  lower 2.085  holds; the fine-tune has length 8.61; a relabelling of length 29.3 changes outputs by 9.5e-16 and has lower bound 9.1e-15
+     MLP host 9               upper 0.3  lower 2.259  holds; the fine-tune has length 9.12; a relabelling of length 29.9 changes outputs by 1.0e-15 and has lower bound 1.2e-14
+     MLP host 10              upper 0.3  lower 2.115  holds; the fine-tune has length 8.84; a relabelling of length 28.9 changes outputs by 1.0e-15 and has lower bound 1.2e-14
+     MLP host 11              upper 0.3  lower 1.991  holds; the fine-tune has length 8.68; a relabelling of length 29.1 changes outputs by 9.7e-16 and has lower bound 1.3e-14
+
+CL-6 [crossed_bounds] certificate holds on 36 of 36 units: sector is closed
+   One Frobenius radius around a float cell that admits the cell's own copy rounded to b bits per weight, where that copy keeps the retention bar, and rejects a move which breaks the bar. Rounding means one scheme: each weight matrix to the nearest of 2^b evenly spaced levels over its own range, biases kept.
+   no value of the gate radius R meets both bounds; lower / upper runs from 1.32 to 22.7
+     MLP host 0, 5 bits       upper 0.3  lower 1.749  holds; the rounded copy drops the native score by 0.0089
+     MLP host 0, 6 bits       upper 0.3  lower 0.8704  holds; the rounded copy drops the native score by 0.0015
+     MLP host 0, 7 bits       upper 0.3  lower 0.4336  holds; the rounded copy drops the native score by 0.0002
+     MLP host 1, 5 bits       upper 0.3  lower 1.59  holds; the rounded copy drops the native score by 0.0053
+     MLP host 1, 6 bits       upper 0.3  lower 0.7993  holds; the rounded copy drops the native score by 0.0018
+     MLP host 1, 7 bits       upper 0.3  lower 0.3969  holds; the rounded copy drops the native score by 0.0006
+     MLP host 2, 5 bits       upper 0.3  lower 1.826  holds; the rounded copy drops the native score by 0.0077
+     MLP host 2, 6 bits       upper 0.3  lower 0.911  holds; the rounded copy drops the native score by 0.0023
+     MLP host 2, 7 bits       upper 0.3  lower 0.4567  holds; the rounded copy drops the native score by 0.0005
+     MLP host 3, 5 bits       upper 0.1  lower 2.269  holds; the rounded copy drops the native score by 0.0094
+     MLP host 3, 6 bits       upper 0.1  lower 1.135  holds; the rounded copy drops the native score by 0.0008
+     MLP host 3, 7 bits       upper 0.1  lower 0.5673  holds; the rounded copy drops the native score by 0.0014
+     MLP host 4, 5 bits       upper 0.3  lower 1.849  holds; the rounded copy drops the native score by 0.0061
+     MLP host 4, 6 bits       upper 0.3  lower 0.9238  holds; the rounded copy drops the native score by 0.0012
+     MLP host 4, 7 bits       upper 0.3  lower 0.4635  holds; the rounded copy drops the native score by -0.0002
+     MLP host 5, 5 bits       upper 0.3  lower 1.838  holds; the rounded copy drops the native score by 0.0051
+     MLP host 5, 6 bits       upper 0.3  lower 0.9188  holds; the rounded copy drops the native score by 0.0010
+     MLP host 5, 7 bits       upper 0.3  lower 0.4568  holds; the rounded copy drops the native score by 0.0001
+     MLP host 6, 5 bits       upper 0.3  lower 1.782  holds; the rounded copy drops the native score by 0.0093
+     MLP host 6, 6 bits       upper 0.3  lower 0.8878  holds; the rounded copy drops the native score by 0.0034
+     MLP host 6, 7 bits       upper 0.3  lower 0.4426  holds; the rounded copy drops the native score by 0.0006
+     MLP host 7, 5 bits       upper 0.3  lower 1.922  holds; the rounded copy drops the native score by 0.0092
+     MLP host 7, 6 bits       upper 0.3  lower 0.9591  holds; the rounded copy drops the native score by 0.0023
+     MLP host 7, 7 bits       upper 0.3  lower 0.4774  holds; the rounded copy drops the native score by 0.0015
+     MLP host 8, 5 bits       upper 0.3  lower 1.634  holds; the rounded copy drops the native score by 0.0061
+     MLP host 8, 6 bits       upper 0.3  lower 0.8256  holds; the rounded copy drops the native score by 0.0003
+     MLP host 8, 7 bits       upper 0.3  lower 0.4098  holds; the rounded copy drops the native score by -0.0003
+     MLP host 9, 5 bits       upper 0.3  lower 1.714  holds; the rounded copy drops the native score by 0.0084
+     MLP host 9, 6 bits       upper 0.3  lower 0.8541  holds; the rounded copy drops the native score by 0.0028
+     MLP host 9, 7 bits       upper 0.3  lower 0.4252  holds; the rounded copy drops the native score by 0.0002
+     MLP host 10, 5 bits      upper 0.3  lower 1.673  holds; the rounded copy drops the native score by 0.0083
+     MLP host 10, 6 bits      upper 0.3  lower 0.8358  holds; the rounded copy drops the native score by 0.0024
+     MLP host 10, 7 bits      upper 0.3  lower 0.4173  holds; the rounded copy drops the native score by 0.0006
+     MLP host 11, 5 bits      upper 0.3  lower 1.967  holds; the rounded copy drops the native score by 0.0104
+     MLP host 11, 6 bits      upper 0.3  lower 0.983  holds; the rounded copy drops the native score by 0.0039
+     MLP host 11, 7 bits      upper 0.3  lower 0.4909  holds; the rounded copy drops the native score by 0.0014
+
+CL-7 [crossed_bounds] certificate holds on 36 of 36 units: sector is closed
+   Certifying one grid step of a weight, in a cell rounded as in CL-6, with the ball Theorem 1 proves within tolerance 0.05 around that cell. The tolerance is the RMS change over the host's 1,024 held-out inputs.
+   no value of the length of the change meets both bounds; lower / upper runs from 1.89 to 14.9
+     MLP host 0, 5 bits       upper 0.00266  lower 0.03118  holds; the rounded cell drops the native score by 0.0089
+     MLP host 0, 6 bits       upper 0.002646  lower 0.01559  holds; the rounded cell drops the native score by 0.0015
+     MLP host 0, 7 bits       upper 0.002646  lower 0.007795  holds; the rounded cell drops the native score by 0.0002
+     MLP host 1, 5 bits       upper 0.002649  lower 0.02557  holds; the rounded cell drops the native score by 0.0053
+     MLP host 1, 6 bits       upper 0.002645  lower 0.01278  holds; the rounded cell drops the native score by 0.0018
+     MLP host 1, 7 bits       upper 0.002649  lower 0.006392  holds; the rounded cell drops the native score by 0.0006
+     MLP host 2, 5 bits       upper 0.003106  lower 0.02623  holds; the rounded cell drops the native score by 0.0077
+     MLP host 2, 6 bits       upper 0.003119  lower 0.01311  holds; the rounded cell drops the native score by 0.0023
+     MLP host 2, 7 bits       upper 0.003125  lower 0.006557  holds; the rounded cell drops the native score by 0.0005
+     MLP host 3, 5 bits       upper 0.003059  lower 0.03452  holds; the rounded cell drops the native score by 0.0094
+     MLP host 3, 6 bits       upper 0.003091  lower 0.01726  holds; the rounded cell drops the native score by 0.0008
+     MLP host 3, 7 bits       upper 0.003081  lower 0.008629  holds; the rounded cell drops the native score by 0.0014
+     MLP host 4, 5 bits       upper 0.00296  lower 0.023  holds; the rounded cell drops the native score by 0.0061
+     MLP host 4, 6 bits       upper 0.002973  lower 0.0115  holds; the rounded cell drops the native score by 0.0012
+     MLP host 4, 7 bits       upper 0.002968  lower 0.005751  holds; the rounded cell drops the native score by -0.0002
+     MLP host 5, 5 bits       upper 0.003018  lower 0.02303  holds; the rounded cell drops the native score by 0.0051
+     MLP host 5, 6 bits       upper 0.003032  lower 0.01152  holds; the rounded cell drops the native score by 0.0010
+     MLP host 5, 7 bits       upper 0.003042  lower 0.005758  holds; the rounded cell drops the native score by 0.0001
+     MLP host 6, 5 bits       upper 0.002744  lower 0.03929  holds; the rounded cell drops the native score by 0.0093
+     MLP host 6, 6 bits       upper 0.00275  lower 0.01965  holds; the rounded cell drops the native score by 0.0034
+     MLP host 6, 7 bits       upper 0.002754  lower 0.009823  holds; the rounded cell drops the native score by 0.0006
+     MLP host 7, 5 bits       upper 0.002661  lower 0.03971  holds; the rounded cell drops the native score by 0.0092
+     MLP host 7, 6 bits       upper 0.002679  lower 0.01985  holds; the rounded cell drops the native score by 0.0023
+     MLP host 7, 7 bits       upper 0.002686  lower 0.009926  holds; the rounded cell drops the native score by 0.0015
+     MLP host 8, 5 bits       upper 0.003003  lower 0.02916  holds; the rounded cell drops the native score by 0.0061
+     MLP host 8, 6 bits       upper 0.003001  lower 0.01458  holds; the rounded cell drops the native score by 0.0003
+     MLP host 8, 7 bits       upper 0.002998  lower 0.007289  holds; the rounded cell drops the native score by -0.0003
+     MLP host 9, 5 bits       upper 0.002858  lower 0.03498  holds; the rounded cell drops the native score by 0.0084
+     MLP host 9, 6 bits       upper 0.002889  lower 0.01749  holds; the rounded cell drops the native score by 0.0028
+     MLP host 9, 7 bits       upper 0.002885  lower 0.008745  holds; the rounded cell drops the native score by 0.0002
+     MLP host 10, 5 bits      upper 0.00306  lower 0.02976  holds; the rounded cell drops the native score by 0.0083
+     MLP host 10, 6 bits      upper 0.003058  lower 0.01488  holds; the rounded cell drops the native score by 0.0024
+     MLP host 10, 7 bits      upper 0.003046  lower 0.007439  holds; the rounded cell drops the native score by 0.0006
+     MLP host 11, 5 bits      upper 0.003065  lower 0.03118  holds; the rounded cell drops the native score by 0.0104
+     MLP host 11, 6 bits      upper 0.003074  lower 0.01559  holds; the rounded cell drops the native score by 0.0039
+     MLP host 11, 7 bits      upper 0.00306  lower 0.007794  holds; the rounded cell drops the native score by 0.0014
+
 RO-1 [counterexample] witness holds on 8 of 8 units (1 not counted): sector is open
    Reaching the reversal skill on the toy transformer with every attention weight frozen and the native skills kept.
      seed 3                   holds; first-layer packet: reversal 1, native skills 1 and 1
@@ -70,5 +166,9 @@ Paths (what each needs is listed by hand in closures.json)
    P-4 CLOSED by CL-4   Ship the two-check admission rule as the whole admission test.
    P-5 open             Splice a reversal skill without an attention graft.
    P-6 open             Admit a graft as a behaviour claim one input can refute, with probes drawn after commitment (the committed-behaviour-change record).
+   P-7 CLOSED by CL-5   Keep one radius and trade the Frobenius ball for a distance between the singular-value distance and the Frobenius distance, such as the ball after the best relabelling of hidden units or a scaled optimal-transport distance between neuron sets, on the 12 MLP hosts.
+   P-8 CLOSED by CL-6   Admit a copy of a cell rounded to 5, 6 or 7 bits, by even levels per matrix, with a Frobenius radius around the float cell, on the 12 MLP hosts.
+   P-9 CLOSED by CL-7   Let a cell rounded to 5 to 7 bits, by even levels per matrix, change one weight by one grid step and certify that first step with the ball of Theorem 1, on the 12 MLP hosts.
+   P-10 open             Let a rounded cell adapt off its grid, with a float side update, and judge the result by behaviour.
 
 all registered certificates hold

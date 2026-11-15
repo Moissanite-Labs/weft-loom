@@ -12,8 +12,12 @@ nothing changes.
 It reads recorded numbers and does not rebuild the moves behind them. The
 programs that produced them are in the records named below and are
 deterministic for a given seed. closure_balls.py rebuilds the adversary's
-moves on the MLP hosts and checks them against the record. What a path
-needs is written by hand in closures.json.
+moves on the MLP hosts and checks them against the record. closure_quant.py
+rebuilds the fine-tunes of the MLP hosts and saves closure_quant.json, which
+CL-5 to CL-7 read. The breaking move and the fine-tune behind CL-5 and CL-6
+are checked against the calibration record. The numbers of the rounded cells
+exist only in closure_quant.json and are read as saved. What a path needs is
+written by hand in closures.json.
 
 Usage: python3 notes/prototypes/closure-register/check_closures.py
 """
@@ -122,8 +126,64 @@ def reversal_without_attention():
     return out
 
 
+def quant_hosts():
+    """The numbers closure_quant.py saved, checked against the calibration record they were rebuilt from."""
+    hosts = load(HERE / "closure_quant.json")["hosts"]
+    res = load(CAL / "results.json")
+    for h, host, ph in zip(hosts, res["hosts"], res["analysis"]["per_host"]):
+        fine = next(x for x in host["rows"] if x["natural"] and x["class"] == "finetune_joint")
+        if h["seed"] != ph["seed"] or abs(h["finetune_r"] - fine["r"]) > 1e-9 * fine["r"] or h["break_r"] != ph["H6_r_break_adv"]:
+            raise SystemExit("FAIL: closure_quant.json does not match the calibration record; rerun closure_quant.py")
+        # The two witnesses are checked here against the record, not taken from the saved file.
+        harm = [x for x in host["rows"] if x["class"] == "adv" and not x["natural"] and h["break_r"] is not None and abs(x["r"] - h["break_r"]) <= 1e-12]
+        h["break_drop"] = harm[0]["drop"] if harm else None
+        h["breaks"] = bool(harm) and harm[0]["drop"] > BAR
+        h["finetune_passes"] = fine["drop"] <= BAR and fine["novel_r2_after"] >= NOVEL_MIN
+    return hosts
+
+
+def quotient_ball_gate():
+    """CL-5. A breaking move is shorter than a lower bound on the passing fine-tune's distance after any relabelling."""
+    out = []
+    for h in quant_hosts():
+        upper, lower = h["break_r"], h["finetune_quotient_lower"]
+        blind = h["relabel_held"] <= SILENT and h["relabel_quotient_lower"] <= SILENT and h["relabel_r"] > 1.0
+        ok = h["breaks"] and h["finetune_passes"] and upper < lower <= h["finetune_r"] and blind
+        out.append(dict(unit=f"MLP host {h['seed']}", upper=upper, lower=lower, closed=ok,
+                        note=f"the fine-tune has length {h['finetune_r']:.2f}; a relabelling of length {h['relabel_r']:.1f} "
+                             f"changes outputs by {h['relabel_held']:.1e} and has lower bound {h['relabel_quotient_lower']:.1e}"))
+    return out
+
+
+def ball_gate_rounded_copy():
+    """CL-6. A breaking move is shorter than the rounding error of a copy that keeps the bar."""
+    out = []
+    for h in quant_hosts():
+        for b in h["bits"]:
+            if b["bits"] in (5, 6, 7):
+                keeps = b["drop"] <= BAR
+                ok = (h["breaks"] and h["break_r"] < b["length"]) if keeps else None
+                out.append(dict(unit=f"MLP host {h['seed']}, {b['bits']} bits", upper=h["break_r"], lower=b["length"], closed=ok,
+                                note=f"the rounded copy drops the native score by {b['drop']:.4f}" + ("" if keeps else ", over the bar: no benign witness")))
+    return out
+
+
+def grid_step_in_proved_ball():
+    """CL-7. The smallest step of the grid is longer than the radius Theorem 1 proves around the rounded cell."""
+    out = []
+    for h in quant_hosts():
+        for b in h["bits"]:
+            if b["bits"] in (5, 6, 7):
+                keeps = b["drop"] <= BAR
+                ok = (b["safe_radius"] < b["min_step"]) if keeps else None
+                out.append(dict(unit=f"MLP host {h['seed']}, {b['bits']} bits", upper=b["safe_radius"], lower=b["min_step"], closed=ok,
+                                note=f"the rounded cell drops the native score by {b['drop']:.4f}"))
+    return out
+
+
 CHECKS = {f.__name__: f for f in (plasm_linear_cell, ball_gate_nonlinear, probe_threshold_known_probes,
-                                  admission_rule_sufficient, reversal_without_attention)}
+                                  admission_rule_sufficient, reversal_without_attention,
+                                  quotient_ball_gate, ball_gate_rounded_copy, grid_step_in_proved_ball)}
 
 
 def fmt(x):
