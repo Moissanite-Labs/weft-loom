@@ -1,0 +1,46 @@
+{
+ "rule": "A sector is closed only by a certificate: two bounds on one parameter that cross, or one exhibited counterexample to a universal claim. A run that found no effect closes nothing.",
+ "closures": [
+  {"id": "CL-1", "kind": "crossed_bounds", "check": "plasm_linear_cell",
+   "sector": "One Frobenius radius for the linear Plasm cell that admits the drift its own training reached and keeps the worst-case output change within 5 percent of the output RMS.",
+   "parameter": "gate radius R",
+   "upper": "R <= tau * output_rms * sqrt(n * d) / smax(X). Exact and attained, since the largest change of X dW over ||dW||_F <= R is R * smax(X).",
+   "lower": "R >= 0.463304, the largest baseline drift recorded for the cell in Paper 1.",
+   "scope": "The 16 stimuli and the cell of plasm_radius.py. The formula holds for any linear cell and any stimulus set.",
+   "reopens_if": "The tolerance is raised to tau_star or above, where the bounds meet. The checker prints tau_star."},
+  {"id": "CL-2", "kind": "crossed_bounds", "check": "ball_gate_nonlinear",
+   "sector": "One Frobenius radius, on a nonlinear host, that admits a fine-tune which passes the joint bar and rejects a move which breaks the retention bar.",
+   "parameter": "gate radius R",
+   "upper": "R < the length of an exhibited move that breaks the bar. A ball that contains that move admits it.",
+   "lower": "R >= the length of an exhibited fine-tune that passes the bar. A smaller ball rejects it.",
+   "scope": "12 MLP hosts and 12 transformer hosts of the calibration record, each certified on its own. No theorem yet says which other networks it covers.",
+   "reopens_if": "Never for these hosts: both moves are exhibited. A host on which every breaking move is longer than every useful one is outside the sector."},
+  {"id": "CL-3", "kind": "crossed_bounds", "check": "probe_threshold_known_probes",
+   "sector": "A threshold on the change over a probe set the proposer can see, that admits a graft which passes the joint bar and rejects a move which breaks the retention bar.",
+   "parameter": "threshold T on the change over the probes",
+   "upper": "T < the probe change of an exhibited move that breaks the bar while built to be invisible on the probes.",
+   "lower": "T >= the probe change of an exhibited graft that passes the bar.",
+   "scope": "The MLP hosts of the calibration record on which the graft passes the joint bar.",
+   "reopens_if": "The probes are drawn after the candidate is fixed. Then Proposition 2 of the calibration record bounds the share of changed inputs, and this certificate does not apply."},
+  {"id": "CL-4", "kind": "counterexample", "check": "admission_rule_sufficient",
+   "sector": "The frozen two-check admission rule (native drift and donor agreement) as a sufficient test: every admitted graft passes the joint bar.",
+   "claim_refuted": "For every graft: admitted implies it passes the joint bar.",
+   "scope": "The 478 grafts of the admission test in the recheck record.",
+   "reopens_if": "Never as a universal claim. A rule with a further check is a different path."}
+ ],
+ "reopened": [
+  {"id": "RO-1", "kind": "counterexample", "check": "reversal_without_attention",
+   "sector": "Reaching the reversal skill on the toy transformer with every attention weight frozen.",
+   "was_closed_by": "The thread record of 2026-11-15, which said a reversal skill cannot be spliced until an attention graft exists. No certificate was given.",
+   "claim_refuted": "With attention frozen, no setting of the other weights reaches reversal accuracy 1.0.",
+   "scope": "The seeds of tf_step5.py in the recheck record. Native skills are not kept in this test. The first-layer packet of tf_step5b.py keeps them."}
+ ],
+ "paths": [
+  {"id": "P-1", "path": "Present radius 120 as a 5 percent behaviour bound for the Plasm cell.", "needs_open": ["CL-1"]},
+  {"id": "P-2", "path": "Tune the radius of the Frobenius ball until it is both safe and useful on the E13 organism or the toy transformer.", "needs_open": ["CL-2"]},
+  {"id": "P-3", "path": "Admit grafts by a threshold on a published, fixed probe set.", "needs_open": ["CL-3"]},
+  {"id": "P-4", "path": "Ship the two-check admission rule as the whole admission test.", "needs_open": ["CL-4"]},
+  {"id": "P-5", "path": "Splice a reversal skill without an attention graft.", "needs_open": ["RO-1"]},
+  {"id": "P-6", "path": "Admit a graft as a behaviour claim one input can refute, with probes drawn after commitment (the committed-behaviour-change record).", "needs_open": []}
+ ]
+}
