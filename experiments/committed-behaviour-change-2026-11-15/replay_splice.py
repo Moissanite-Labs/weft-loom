@@ -20,6 +20,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import struct
 import sys
 from pathlib import Path
 
@@ -54,6 +55,24 @@ def f32_root(org) -> str:
 
 def packet_f32_root(pkt) -> str:
     return _f32_root_of({n: getattr(pkt, n) for n in ("W1_p", "b1_p", "W2_p", "b2_p", "W3_p")})
+
+
+def load_packet_bcpp(path: Path):
+    """Rebuild a NeuralPlasmidPacket from its BCPP wire bytes, footer checked."""
+    raw = path.read_bytes()
+    if hashlib.sha256(raw[:-8]).digest()[:8] != raw[-8:]:
+        raise SystemExit("packet footer mismatch")
+    magic, _ver, skill_idx, r1, r2, _seed = struct.unpack("<4sBBBBI", raw[:12])
+    assert magic == b"BCPP"
+    off = 12
+    out = {}
+    for name, shape in (("W1_p", (r1, 24)), ("b1_p", (r1,)), ("W2_p", (r2, r1)),
+                        ("b2_p", (r2,)), ("W3_p", (8, r2))):
+        n = int(np.prod(shape))
+        out[name] = np.frombuffer(raw, dtype=np.float16, count=n, offset=off).reshape(shape).astype(np.float64)
+        off += 2 * n
+    return lab.NeuralPlasmidPacket(raw_bytes=raw, skill_idx=int(skill_idx),
+                                    sha256_hex=hashlib.sha256(raw).hexdigest(), **out)
 
 
 def splice_with_slots(P, pkt, slot_m1, slot_m2):
@@ -108,10 +127,12 @@ def main():
     path = HERE / f"decisions-{i}.json"
     P = adm.build_pair(i, None)
     if mode == "record":
+        (HERE / f"packet-{i}.bcpp").write_bytes(P["pkt"].raw_bytes)
         org, meta = adm.splice(P, P["pkt"])
         data = {"pair": i, "slot_m1": [int(v) for v in meta["slot_m1"]],
                 "slot_m2": [int(v) for v in meta["slot_m2"]],
                 "packet_f32_root": packet_f32_root(P["pkt"]),
+                "packet_sha256": P["pkt"].sha256_hex,
                 "host_f32_root": f32_root(P["host"]), "benign_f32_root": f32_root(org),
                 "host_v1_root": cbc.weight_root(P["host"]), "benign_v1_root": cbc.weight_root(org)}
         path.write_text(json.dumps(data, indent=1))
@@ -119,7 +140,11 @@ def main():
         return
     data = json.loads(path.read_text())
     rec_m1, rec_m2 = data["slot_m1"], data["slot_m2"]
-    probe, meta = splice_with_slots(P, P["pkt"], rec_m1, rec_m2)
+    pkt = load_packet_bcpp(HERE / f"packet-{i}.bcpp")
+    print(f"recorded packet sha {data.get('packet_sha256')} loaded {pkt.sha256_hex}")
+    P = dict(P)
+    P["pkt"] = pkt
+    probe, meta = splice_with_slots(P, pkt, rec_m1, rec_m2)
     run_m1 = [int(v) for v in meta["slot_m1"]]
     run_m2 = [int(v) for v in meta["slot_m2"]]
     if set(run_m1) != set(rec_m1) or set(run_m2) != set(rec_m2):
