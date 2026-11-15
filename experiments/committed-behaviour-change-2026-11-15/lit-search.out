@@ -1,0 +1,32 @@
+QUERY all:"fraud proof" AND all:"machine learning"
+  total 3
+  - Fraud-Proof Revenue Division on Subscription Platforms
+  - opML: Optimistic Machine Learning on Blockchain
+  - Optimistic TEE-Rollups: A Hybrid Architecture for Scalable and Verifiable Generative AI Inference on Blockchain
+QUERY all:"optimistic machine learning"
+  total 2
+  - opML: Optimistic Machine Learning on Blockchain
+  - opp/ai: Optimistic Privacy-Preserving AI on Blockchain
+QUERY all:"model update" AND all:"verification" AND all:"bound"
+  total 2
+  - Governance-Aware Federated Learning for Multi-Agent AI Systems: A Policy-Driven Framework for Trustworthy Collaborative AI
+  - Threshold Choice, Not Sample Size, Bounds Trustless Verification of Nondeterministic Compound AI Workflows
+QUERY all:"neuron transplantation"
+  total 2
+  - Model Fusion via Neuron Transplantation
+  - ARM: Role-Conditioned Neuron Transplantation for Training-Free Generalist LLM Agent Merging
+QUERY all:"transplant" AND all:"independently trained" AND all:"neural"
+  total 1
+  - Beyond Coordinate Gauge: An Audited Protocol for Detecting Donor-Specific Functional Fingerprints after Neural Collapse
+QUERY all:"weight space" AND all:"skill transfer"
+  total 0
+QUERY all:"commit reveal" AND all:"test set" AND all:"machine learning"
+  total 0
+QUERY all:"bit exact" AND all:"training reproducibility"
+  total 0
+QUERY all:"behavioural equivalence" AND all:"neural network" AND all:"verification"
+  total 0
+QUERY all:"model grafting" AND all:"neural"
+  total 2
+  - Open Domain Question Answering Using Early Fusion of Knowledge Bases and Text
+  - Pyramid Grafting Network for One-Stage High Resolution Saliency Detection
