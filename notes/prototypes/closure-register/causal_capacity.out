@@ -5,9 +5,10 @@ Stage A. Random sparse networks
    linear network, random weights: rank at most the capacity on 300, equal on 300
    Jacobian rank equal to the capacity at a random input: tanh 300, GELU 300
 
-Stage B. The demand of a skill, read from the data generator
+Stage B. The demand of a skill, by intervention on the data generator
    By its formula an output of skill m depends on the input only through 4 numbers, the projections of z on U_sub[m],
    and the skill's own gate. That is 5 directions. The other 4 gates and the 3 nuisance inputs have no effect.
+   Here each of the 24 inputs is moved in turn, up and down by 1e-6, and the generator is run again.
    skill 0: Jacobian rank at 200 inputs: least 5, most 5; median singular values over the largest: 1.000, 0.786, 0.600, 0.319, 0.033, 0.000, 0.000, 0.000
             largest effect of the 7 unused inputs: 0.0e+00
    skill 1: Jacobian rank at 200 inputs: least 5, most 5; median singular values over the largest: 1.000, 0.735, 0.493, 0.223, 0.024, 0.000, 0.000, 0.000

@@ -12,8 +12,8 @@ Stage A checks the statements on random sparse networks:
     (clamp the cut, change the inputs, and no output moves);
   - the rank of the input-to-output map is at most the capacity for any
     weights, and equal to it for random weights.
-Stage B reads the demand of a skill from the formula of the data generator
-and checks it by intervention on the generator.
+Stage B measures the demand of a skill by intervention on the data generator
+itself: each input is moved in turn and the generator is run again.
 Stage C trains networks with a narrow layer of width c and compares the
 knee of their score with that demand.
 Stage D takes the 12 MLP hosts of the calibration record: their capacity
@@ -242,29 +242,50 @@ def stage_a(n_nets=300):
 # The demand of a skill, from the generator's formula
 # ---------------------------------------------------------------------------
 
-def skill_map(env, m):
-    """The generator's own map from an input of 24 numbers to the 8 outputs of skill m."""
-    def f(x):
-        z, gates = x[:16], x[16:21]
-        s = z @ env.U_sub[m]
-        nl = np.sin(1.25 * s) + 0.5 * np.tanh(s ** 2 - 0.8)
-        raw = env.W_lin[m] @ s + env.W_nl[m] @ nl
-        return 0.5 * (1.0 + np.tanh(1.5 * (gates[m] - 1.1))) * raw
-    return f
+class Fixed:
+    """Stands in for the random generator, so that the data generator runs on inputs we choose."""
+
+    def __init__(self, arrays):
+        self.arrays = list(arrays)
+
+    def normal(self, loc, scale, size):
+        return self.arrays.pop(0)
+
+    def uniform(self, low, high, size):
+        return self.arrays.pop(0)
+
+
+def generator_at(env, m, X):
+    """Outputs of the data generator itself for skill m at chosen inputs X of shape (n, 24).
+
+    sample_batch draws the state, the nuisance inputs, a gate amplitude and gate
+    noise, in that order. Feeding it those four arrays makes it evaluate at X.
+    """
+    z, gates, nuis = X[:, :16].copy(), X[:, 16:21].copy(), X[:, 21:24].copy()
+    gates[:, m] -= 2.4
+    Xg, Y = env.sample_batch(Fixed([z, nuis, np.ones((len(X), 1)), gates]), [m], len(X), shifted=False)
+    if float(np.max(np.abs(Xg - X))) > 1e-12:
+        raise SystemExit("FAIL: the data generator was not evaluated at the chosen inputs")
+    return Y
 
 
 def stage_b(e13):
-    print("\nStage B. The demand of a skill, read from the data generator")
+    print("\nStage B. The demand of a skill, by intervention on the data generator")
     print("   By its formula an output of skill m depends on the input only through 4 numbers, the projections of z on U_sub[m],")
     print("   and the skill's own gate. That is 5 directions. The other 4 gates and the 3 nuisance inputs have no effect.")
+    print("   Here each of the 24 inputs is moved in turn, up and down by 1e-6, and the generator is run again.")
     env = e13.FiveSkillEnvironment(world_seed=61_000_000)
     rng = np.random.default_rng(64_000_000)
+    eps = 1e-6
     for m in (0, 1):
-        X, _ = env.sample_batch(rng, [m], 200, shifted=False)
-        f = skill_map(env, m)
+        X, Y = env.sample_batch(rng, [m], 200, shifted=False)
+        if float(np.max(np.abs(generator_at(env, m, X) - Y))) > 1e-12:
+            raise SystemExit("FAIL: the generator run on chosen inputs disagrees with its own samples")
         ranks, profile, inert = [], [], 0.0
         for x in X:
-            J = jacobian_fd(f, x)
+            up = generator_at(env, m, x[None, :] + eps * np.eye(24))
+            down = generator_at(env, m, x[None, :] - eps * np.eye(24))
+            J = ((up - down) / (2 * eps)).T
             s = np.linalg.svd(J, compute_uv=False)
             ranks.append(int(np.sum(s > 1e-6 * s[0])))
             profile.append(s / s[0])
