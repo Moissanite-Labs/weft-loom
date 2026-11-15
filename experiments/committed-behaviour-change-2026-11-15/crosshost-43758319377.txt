@@ -21,3 +21,15 @@ but the splice contains discrete choices that small float differences can flip.
 A replay claim therefore needs the discrete decisions recorded in the CBC
 record, or pinned arithmetic. Hashing float64 weights makes the failure total
 even where the float32 weights agree.
+
+Addendum, same day. Two more dispatches localize and fix the failure.
+Run 43759002989: host float32 root matches everywhere; the packet root does
+not match on the GitHub macOS runner. The divergence is in packet extraction
+(distillation and its calibration solve), upstream of the splice.
+Run 43759282824: replay consumes the recorded packet wire bytes
+(packet-1000.bcpp, sha d02408dd...) and the recorded slot lists
+(decisions-1000.json) instead of re-distilling and re-ranking. Result:
+REPLAY-MATCH on the local Mac, ubuntu-latest and macos-latest, under float32
+CBC roots. So cross-host replay holds when the record carries its artifacts
+and discrete decisions, which is what a CBC record is for. Recomputing them
+from seeds is not replay; it is retraining.

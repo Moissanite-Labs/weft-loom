@@ -61,7 +61,9 @@ Experiment A, first cross-host reading (`crosshost-43758319377.txt`): every runn
 
 The benign splice matches between this Mac and Ubuntu. On the GitHub macOS runner it takes a different discrete path (8006 of 12488 float32 entries differ). Bit-exact replay fails as written.
 
-The fixes it points at are recording discrete splice decisions in the CBC record, or pinned arithmetic. Hashing float64 weights makes even agreeing hosts disagree.
+Two more dispatches localize and fix it. The packet itself diverges on that runner, in extraction, while the host root matches. When replay instead consumes the recorded packet wire bytes and the recorded slot lists, under float32 roots, it matches on all three hosts (`replay_splice.py`, run 43759282824).
+
+So cross-host replay holds when the record carries its artifacts and discrete decisions. Recomputing them from seeds is retraining, not replay. Hashing float64 weights still makes even agreeing hosts disagree, so the root belongs over canonical float32 bytes.
 
 `PREREG-C.md` is the Experiment C draft (splice with no input switch), not yet frozen or run.
 
