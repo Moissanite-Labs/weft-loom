@@ -1,0 +1,45 @@
+--- /tmp/metab.py.bak-20261115	2026-11-15 13:03:10
++++ /Users/kethuda/Work/razi-tools/cells/metab.py	2026-11-15 13:03:29
+@@ -75,6 +75,10 @@
+ # The charge is the same either way. The cell sees its energy and what its own past steps cost, never a price list.
+ PRICE_SHOW = os.environ.get("CELL_PRICE_SHOW", "1") == "1"
+ 
++# Scrambled-price control: "1" swaps the displayed prices of the light and heavy models in VITALS.
++# Charges always use price() and never shown_price(), so the display and the charge can differ.
++PRICE_SCRAMBLE = os.environ.get("CELL_PRICE_SCRAMBLE", "") == "1"
++
+ SYSTEM = """You are a cell in a colony. You have a NEED, a folder (your body) and a store of energy.
+ The facts of your world:
+ - Every step costs energy: a fixed living cost plus the price of the thinking you chose. VITALS shows the numbers.
+@@ -333,6 +337,13 @@
+     return float(info.get("input") or 0) * 10, float(info.get("output") or 0) * 10
+ 
+ 
++def shown_price(model: str) -> tuple[float, float]:
++    """What VITALS prints next to a model name. Only the display is scrambled, never a charge."""
++    if PRICE_SCRAMBLE:
++        model = {"light": "heavy", "heavy": "light"}.get(model, model)
++    return price(model)
++
++
+ async def _think(prompt: str, sid: str, model: str, effort: str, cap: int = MAX_OUT) -> tuple[dict | None, str, str]:
+     msgs = [C.Message.system(SYSTEM), C.Message.user(prompt)]
+     text, act, route = [], None, ""
+@@ -457,7 +468,7 @@
+         src = f"fed {me['born'] + me['got']:.0f} by the stem cell, earned {me['earned']:.0f} from wins"
+     else:
+         src = f"born with {me['born']:.0f}, earned {me['earned']:.0f} from wins, received {me['got']:.0f} from resting cells"
+-    menu = ", ".join(f"{m} {price(m)[0]:g}/{price(m)[1]:g}" for m in MENU)
++    menu = ", ".join(f"{m} {shown_price(m)[0]:g}/{shown_price(m)[1]:g}" for m in MENU)
+     er = eff_reward(cell)
+     out = (f"VITALS: energy {me['e']:.0f} ({src}). Age {me['age']} steps.\n"
+            f"Your last steps cost: {', '.join(costs[-6:]) or 'none yet'}.\n"
+@@ -605,7 +616,7 @@
+     seen: dict = {}
+     fixed = fixed_chars(SYSTEM, TOOLS)
+     fails = waits = 0
+-    C.log(cell, event="laws", price_show=PRICE_SHOW, sense_show=SENSE_SHOW, sense_dir=bool(SENSE_DIR), law=LAW,
++    C.log(cell, event="laws", price_show=PRICE_SHOW, price_scramble=PRICE_SCRAMBLE, sense_show=SENSE_SHOW, sense_dir=bool(SENSE_DIR), law=LAW,
+           start=[model, effort])  # K19: the log itself says which arm this cell lived under
+     i = -1
+     while True:
