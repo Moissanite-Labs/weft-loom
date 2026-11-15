@@ -44,4 +44,5 @@ jobs:
           path: |
             experiments/committed-behaviour-change-2026-11-15/host_flat.npy
             experiments/committed-behaviour-change-2026-11-15/benign_flat.npy
+            experiments/committed-behaviour-change-2026-11-15/replay_benign_flat.npy
             experiments/committed-behaviour-change-2026-11-15/repro-runner.out

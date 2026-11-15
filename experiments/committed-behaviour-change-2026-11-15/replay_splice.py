@@ -36,16 +36,24 @@ M1 = lab.M1
 M2 = lab.M2
 
 
-def f32_root(org) -> str:
-    """CBC root over canonical float32 tensors (v2 proposal, local to this test)."""
+def _f32_root_of(tensors: dict) -> str:
     h = hashlib.sha256(b"WEFT-CBC-V2-F32:root:")
-    for name in sorted(cbc.TENSOR_NAMES):
-        a = np.asarray(getattr(org, name), dtype=np.float32)
+    for name in sorted(tensors):
+        a = np.asarray(tensors[name], dtype=np.float32)
         header = json.dumps({"name": name, "shape": list(a.shape), "dtype": a.dtype.str},
                             sort_keys=True, separators=(",", ":")).encode()
         leaf = hashlib.sha256(b"WEFT-CBC-V2-F32:leaf:" + header + b":" + a.tobytes()).hexdigest()
         h.update(name.encode() + b":" + leaf.encode() + b";")
     return h.hexdigest()
+
+
+def f32_root(org) -> str:
+    """CBC root over canonical float32 tensors (v2 proposal, local to this test)."""
+    return _f32_root_of({n: getattr(org, n) for n in cbc.TENSOR_NAMES})
+
+
+def packet_f32_root(pkt) -> str:
+    return _f32_root_of({n: getattr(pkt, n) for n in ("W1_p", "b1_p", "W2_p", "b2_p", "W3_p")})
 
 
 def splice_with_slots(P, pkt, slot_m1, slot_m2):
@@ -103,6 +111,7 @@ def main():
         org, meta = adm.splice(P, P["pkt"])
         data = {"pair": i, "slot_m1": [int(v) for v in meta["slot_m1"]],
                 "slot_m2": [int(v) for v in meta["slot_m2"]],
+                "packet_f32_root": packet_f32_root(P["pkt"]),
                 "host_f32_root": f32_root(P["host"]), "benign_f32_root": f32_root(org),
                 "host_v1_root": cbc.weight_root(P["host"]), "benign_v1_root": cbc.weight_root(org)}
         path.write_text(json.dumps(data, indent=1))
@@ -123,8 +132,9 @@ def main():
         org, meta2 = splice_with_slots(P, q, rec_m1, rec_m2)
         assert [int(v) for v in meta2["slot_m1"]] == run_m1 and [int(v) for v in meta2["slot_m2"]] == run_m2
     got = {"host_f32_root": f32_root(P["host"]), "benign_f32_root": f32_root(org)}
-    print(f"recorded {data['host_f32_root']} {data['benign_f32_root']}")
-    print(f"replayed {got['host_f32_root']} {got['benign_f32_root']}")
+    print(f"recorded packet {data.get('packet_f32_root')} host {data['host_f32_root']} benign {data['benign_f32_root']}")
+    print(f"replayed packet {packet_f32_root(P['pkt'])} host {got['host_f32_root']} benign {got['benign_f32_root']}")
+    np.save("replay_benign_flat.npy", org.flat_params())
     ok = got["host_f32_root"] == data["host_f32_root"] and got["benign_f32_root"] == data["benign_f32_root"]
     print("REPLAY-MATCH" if ok else "REPLAY-DIFFER")
     raise SystemExit(0 if ok else 1)
