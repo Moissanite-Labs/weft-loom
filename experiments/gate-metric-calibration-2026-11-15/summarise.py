@@ -148,6 +148,21 @@ def main():
                                         sig(max(p["H2_held_over_fisher_max"] for p in P), 4)]
     out["H4_held_over_probe_range"] = [sig(min(p["H4_held_over_probe_min"] for p in P), 4),
                                        sig(max(p["H4_held_over_probe_max"] for p in P), 4)]
+    # Which hosts miss H2b and H4, and the range of held / probe for each class of
+    # move made without sight of the probes.
+    out["H2b_failing_seeds"] = [p["seed"] for p in P
+                                if not (0.8 <= p["H2_held_over_fisher_min"] and p["H2_held_over_fisher_max"] <= 1.25)]
+    out["H4_failing_seeds"] = [p["seed"] for p in P
+                               if not (0.8 <= p["H4_held_over_probe_min"] and p["H4_held_over_probe_max"] <= 1.25)]
+    by_class = {}
+    for h in hosts:
+        for x in h["rows"]:
+            if x["class"] in ("adv_blind", "null", "top") or x["held"] < 1e-6:
+                continue
+            by_class.setdefault(x["class"], []).append(x["held"] / x["probe"])
+    out["held_over_probe_by_class"] = {c: [sig(min(v), 4), sig(max(v), 4)] for c, v in sorted(by_class.items())}
+    rest = [r for c, v in by_class.items() if c != "adv" for r in v]
+    out["held_over_probe_range_without_adv"] = [sig(min(rest), 4), sig(max(rest), 4)]
     out["H5_blind_ratio_median"] = sig(med([p["H5_blind_ratio"] for p in P]))
     out["H5_blind_ratio_range"] = [sig(v) for v in rng([p["H5_blind_ratio"] for p in P])]
     out["H5_blind_held_median"] = sig(med([p["H5_blind_held"] for p in P]))

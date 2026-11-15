@@ -1,0 +1,374 @@
+{
+ "H2_held_over_fisher_range": [
+  0.7448,
+  1.624
+ ],
+ "H2_probe_over_fisher_range": [
+  0.9937,
+  1.001
+ ],
+ "H2b_failing_seeds": [
+  5,
+  7
+ ],
+ "H4_failing_seeds": [
+  4,
+  5,
+  7
+ ],
+ "H4_held_over_probe_range": [
+  0.7461,
+  1.71
+ ],
+ "H5_blind_held_median": 0.0329,
+ "H5_blind_probe_median": 7.04e-05,
+ "H5_blind_ratio_median": 459.0,
+ "H5_blind_ratio_range": [
+  50.3,
+  2030.0
+ ],
+ "anisotropy_median": 37.4,
+ "anisotropy_range": [
+  32.7,
+  43.8
+ ],
+ "breaking_radius": {
+  "adam_novel": {
+   "hosts_never_broken": 0,
+   "median": 0.65,
+   "range": [
+    0.3,
+    1.0
+   ]
+  },
+  "adv": {
+   "hosts_never_broken": 0,
+   "median": 0.1,
+   "range": [
+    0.1,
+    0.1
+   ]
+  },
+  "adv_blind": {
+   "hosts_never_broken": 0,
+   "median": 1.0,
+   "range": [
+    0.3,
+    1.0
+   ]
+  },
+  "flip": {
+   "hosts_never_broken": 12,
+   "median": null,
+   "range": null
+  },
+  "grad_native": {
+   "hosts_never_broken": 0,
+   "median": 0.2,
+   "range": [
+    0.1,
+    0.3
+   ]
+  },
+  "grad_novel": {
+   "hosts_never_broken": 0,
+   "median": 0.3,
+   "range": [
+    0.3,
+    1.0
+   ]
+  },
+  "null": {
+   "hosts_never_broken": 12,
+   "median": null,
+   "range": null
+  },
+  "rand": {
+   "hosts_never_broken": 0,
+   "median": 3.0,
+   "range": [
+    3.0,
+    3.0
+   ]
+  },
+  "top": {
+   "hosts_never_broken": 0,
+   "median": 0.1,
+   "range": [
+    0.1,
+    0.1
+   ]
+  }
+ },
+ "counts": {
+  "H1a_top_over_rand_ge_10": 12,
+  "H1b_perm_far_and_silent": 12,
+  "H2a_fisher_within_1p1_on_fit_probes": 12,
+  "H2b_fisher_within_1p25_on_held": 10,
+  "H3a_fisher_blind_to_null_moves": 12,
+  "H3b_fisher_off_by_3_on_a_natural_move": 12,
+  "H4_probe_within_1p25_on_held": 9,
+  "H5a_blind_adversary_ratio_ge_10": 12,
+  "H5b_blind_adversary_breaks_bar_under_graft_level": null,
+  "H6a_adv_breaks_10x_before_rand": 12,
+  "H6b_one_step_ge_r_break_adv": 12,
+  "H6c_graft_passes_at_r_ge_20": null,
+  "H6d_rand_breaks_inside_shipped_radius": null,
+  "H7_cert_le_attack": null
+ },
+ "drop_metric": "accuracy on the held-out native inputs, bar 0.025",
+ "effective_rank_median": 13.5,
+ "effective_rank_range": [
+  9.83,
+  17.6
+ ],
+ "held_over_probe_by_class": {
+  "adam_novel": [
+   0.9144,
+   1.113
+  ],
+  "adv": [
+   0.7461,
+   1.71
+  ],
+  "finetune_joint": [
+   0.982,
+   1.035
+  ],
+  "flip": [
+   0.9791,
+   1.011
+  ],
+  "grad_native": [
+   0.8557,
+   1.15
+  ],
+  "grad_novel": [
+   0.9064,
+   1.127
+  ],
+  "one_step": [
+   0.9129,
+   1.076
+  ],
+  "rand": [
+   0.8685,
+   1.197
+  ],
+  "to_init": [
+   0.9789,
+   1.011
+  ]
+ },
+ "held_over_probe_range_without_adv": [
+  0.8557,
+  1.197
+ ],
+ "n_hosts": 12,
+ "n_weights": 18839,
+ "natural_moves": {
+  "finetune_joint": {
+   "drop": 0.0,
+   "drop_max": 0.0,
+   "fisher": 3.78,
+   "held": 2.92,
+   "held_max": 3.35,
+   "joint_pass": 12,
+   "probe": 2.9,
+   "r": 6.66,
+   "r_range": [
+    5.99,
+    7.25
+   ]
+  },
+  "flip": {
+   "drop": 1.0,
+   "drop_max": 1.0,
+   "fisher": 8.05,
+   "held": 8.04,
+   "held_max": 8.54,
+   "probe": 8.05,
+   "r": 14.9,
+   "r_range": [
+    14.6,
+    15.4
+   ]
+  },
+  "one_step": {
+   "drop": 0.0,
+   "drop_max": 0.00115,
+   "fisher": 0.619,
+   "held": 0.641,
+   "held_max": 0.808,
+   "probe": 0.624,
+   "r": 0.137,
+   "r_range": [
+    0.137,
+    0.137
+   ]
+  },
+  "perm": {
+   "drop": 0.0,
+   "drop_max": 0.0,
+   "fisher": 20.1,
+   "held": 3.47e-15,
+   "held_max": 3.72e-15,
+   "probe": 3.53e-15,
+   "r": 17.1,
+   "r_range": [
+    16.8,
+    17.6
+   ]
+  },
+  "to_init": {
+   "drop": 0.96,
+   "drop_max": 0.968,
+   "fisher": 17.2,
+   "held": 4.04,
+   "held_max": 4.31,
+   "probe": 4.04,
+   "r": 13.3,
+   "r_range": [
+    13.0,
+    13.6
+   ]
+  }
+ },
+ "null_leak_over_rand_median": 0.422,
+ "null_leak_per_unit_median": 0.326,
+ "null_second_order_coeff_median": 0.037,
+ "null_second_order_radius": 0.01,
+ "one_step_r_median": 0.137,
+ "output_rms_median": 4.02,
+ "program_sha256": "ad83c21d6d6215052d23ae162adfa6deda5958553e20a2ccbcaff93cfe186f4c",
+ "r_blind": 0.01,
+ "r_break_adv_values": [
+  0.1
+ ],
+ "r_break_rand_values": [
+  3.0
+ ],
+ "r_loc": 0.001,
+ "rand_change_per_unit_median": 0.783,
+ "safe_size_tau": {
+  "adam_novel": {
+   "median": 0.0107,
+   "range": [
+    0.00834,
+    0.0168
+   ]
+  },
+  "adv": {
+   "median": 0.00234,
+   "range": [
+    0.00169,
+    0.00559
+   ]
+  },
+  "adv_blind": {
+   "median": 0.0153,
+   "range": [
+    0.00844,
+    0.0288
+   ]
+  },
+  "flip": {
+   "median": 0.0928,
+   "range": [
+    0.0897,
+    0.097
+   ]
+  },
+  "grad_native": {
+   "median": 0.00421,
+   "range": [
+    0.00301,
+    0.00605
+   ]
+  },
+  "grad_novel": {
+   "median": 0.0061,
+   "range": [
+    0.00424,
+    0.0119
+   ]
+  },
+  "null": {
+   "median": 0.149,
+   "range": [
+    0.138,
+    0.17
+   ]
+  },
+  "rand": {
+   "median": 0.0592,
+   "range": [
+    0.0519,
+    0.0733
+   ]
+  },
+  "top": {
+   "median": 0.00226,
+   "range": [
+    0.00162,
+    0.00401
+   ]
+  }
+ },
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11
+ ],
+ "source": "results_tf.json",
+ "sqrt_lam_max_median": 28.3,
+ "sqrt_lam_max_range": [
+  22.7,
+  37.5
+ ],
+ "sqrt_mean_lam_median": 0.76,
+ "sqrt_mean_lam_range": [
+  0.631,
+  0.857
+ ],
+ "tau": 0.05,
+ "top_held_over_probe_range": [
+  0.497,
+  0.913
+ ],
+ "top_over_rand_median": 28.1,
+ "top_over_rand_range": [
+  19.6,
+  38.1
+ ],
+ "verdicts": {
+  "H1a_top_over_rand_ge_10": "confirmed",
+  "H1b_perm_far_and_silent": "confirmed",
+  "H2a_fisher_within_1p1_on_fit_probes": "confirmed",
+  "H2b_fisher_within_1p25_on_held": "mixed",
+  "H3a_fisher_blind_to_null_moves": "confirmed",
+  "H3b_fisher_off_by_3_on_a_natural_move": "confirmed",
+  "H4_probe_within_1p25_on_held": "mixed",
+  "H5a_blind_adversary_ratio_ge_10": "confirmed",
+  "H5b_blind_adversary_breaks_bar_under_graft_level": "not tested",
+  "H6a_adv_breaks_10x_before_rand": "confirmed",
+  "H6b_one_step_ge_r_break_adv": "confirmed",
+  "H6c_graft_passes_at_r_ge_20": "not tested",
+  "H6d_rand_breaks_inside_shipped_radius": "not tested",
+  "H7_cert_le_attack": "not tested"
+ },
+ "weight_norm_median": 36.8,
+ "weight_norm_range": [
+  35.2,
+  37.8
+ ]
+}

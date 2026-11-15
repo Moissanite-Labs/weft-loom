@@ -7,6 +7,8 @@
   0.9873,
   1.006
  ],
+ "H2b_failing_seeds": [],
+ "H4_failing_seeds": [],
  "H4_held_over_probe_range": [
   0.9326,
   1.082
@@ -138,6 +140,56 @@
  "first_order_over_cert_median": 5.15,
  "first_order_radius_median": 0.0149,
  "graft_probe_median": 0.214,
+ "held_over_probe_by_class": {
+  "adam_novel": [
+   0.9476,
+   1.065
+  ],
+  "adv": [
+   0.9761,
+   1.019
+  ],
+  "dormant": [
+   0.939,
+   1.082
+  ],
+  "finetune_joint": [
+   0.9326,
+   1.079
+  ],
+  "flip": [
+   0.9602,
+   1.075
+  ],
+  "grad_native": [
+   0.9688,
+   1.037
+  ],
+  "grad_novel": [
+   0.9395,
+   1.068
+  ],
+  "graft": [
+   0.9385,
+   1.046
+  ],
+  "one_step": [
+   0.9521,
+   1.064
+  ],
+  "rand": [
+   0.9399,
+   1.05
+  ],
+  "to_init": [
+   0.9701,
+   1.053
+  ]
+ },
+ "held_over_probe_range_without_adv": [
+  0.9326,
+  1.082
+ ],
  "n_hosts": 12,
  "n_weights": 12488,
  "natural_moves": {
