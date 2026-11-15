@@ -92,7 +92,7 @@ The project met both on 2026-11-15.
 
 ## A first register
 
-`notes/prototypes/closure-register/closures.json` holds four closures, one sector that was closed without proof and is open, and six paths. `check_closures.py` checks each certificate against the numbers the records saved and exits with status 1 if one fails. Its last output is `check_closures.out`.
+`notes/prototypes/closure-register/closures.json` holds the four closures below, three more from [closure-counted](closure-counted.md), one sector that was closed without proof and is open, and ten paths. `check_closures.py` checks each certificate against the numbers the records saved and exits with status 1 if one fails. Its last output is `check_closures.out`.
 
 The checker does not rebuild the moves behind those numbers. `closure_balls.py` rebuilds one class of them, the adversary's moves on the MLP hosts, and checks each against its recorded row. The fine-tunes, the grafts, the hidden moves of CL-3 and the transformer moves are read as recorded.
 
@@ -129,3 +129,5 @@ These looked dead in the recheck. None has a bound, so none is closed.
 4. Do CL-2 and CL-3 hold beyond toy scale? Each needs only two exhibited moves per model.
 5. Should cells in a colony read the register before they act? The price runs show that a list changes first acts, and a register of dead approaches is a list.
 6. Where should the register live once adopted, and should CI run the checker?
+
+Questions 1 and 2 are taken up in [closure-counted](closure-counted.md), for uniform proposals.
