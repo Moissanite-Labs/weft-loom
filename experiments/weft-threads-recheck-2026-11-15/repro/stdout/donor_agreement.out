@@ -1,0 +1,23 @@
+seed 0 benign=0.4462
+seed 1 benign=0.4105
+seed 2 benign=0.4204
+seed 3 benign=0.4108
+seed 4 benign=0.4029
+seed 5 benign=0.4321
+seed 6 benign=0.4054
+seed 7 benign=0.3912
+seed 8 benign=0.4003
+seed 9 benign=0.4352
+seed 10 benign=0.4453
+seed 11 benign=0.4202
+{
+ "benign_mean": 0.4184,
+ "benign_max": 0.4462,
+ "harm_mean": 3.0082,
+ "harm_min": 2.4159,
+ "auroc": 1.0,
+ "rule_1p5x_benign_max": {
+  "benign_accept": "12/12",
+  "harm_reject": "24/24"
+ }
+}

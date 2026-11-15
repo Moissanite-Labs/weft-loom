@@ -1,0 +1,7 @@
+host ||W||_F = 20.811  native shifted R2 = 0.8981
+A permutation (exact symmetry)     ||dW||=  28.861  output RMS change=0.000000  native R2=0.8981
+B random ||dW||=0.10               output RMS change mean=0.014447 (draws ['0.0153', '0.0139', '0.0141'])
+B random ||dW||=1.00               output RMS change mean=0.145108 (draws ['0.1536', '0.1395', '0.1422'])
+B random ||dW||=5.00               output RMS change mean=0.748669 (draws ['0.7844', '0.7269', '0.7347'])
+B random ||dW||=28.86              output RMS change mean=7.464540 (draws ['8.5353', '7.6574', '6.2010'])
+C readout sign flip                ||dW||=   6.640  output RMS change=4.970035  native R2=-2.9402

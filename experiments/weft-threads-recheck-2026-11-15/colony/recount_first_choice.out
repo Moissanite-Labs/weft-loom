@@ -1,0 +1,7 @@
+arm s3a prices_shown=True: {'light': 14, 'mid': 2}
+arm s3b prices_shown=False: {'mid': 16}
+arm s3c prices_shown=True: {'light': 12, 'mid': 4}
+arm s3d prices_shown=False: {'mid': 16}
+shown: 26 of 32 cells chose light; per run [4, 3, 3, 4, 3, 3, 3, 3]
+hidden: 0 of 32 cells chose light; per run [0, 0, 0, 0, 0, 0, 0, 0]
+every shown run is above every hidden run: exact two-sided permutation p = 2 / C(16, 8) = 0.000155

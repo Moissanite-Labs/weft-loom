@@ -1,0 +1,10 @@
+budget 10, cost 20 (insufficient)                    accepted=0 budget_before=10 budget_after=-10
+budget 0, cost 1                                     accepted=0 budget_before=0 budget_after=-1
+budget -1, cost 1                                    accepted=0 budget_before=-1 budget_after=-2
+budget 10, cost 1, radius -1                         accepted=0 budget_before=10 budget_after=9
+budget 10, cost 1, radius -1, NaN weight             accepted=0 budget_before=10 budget_after=9
+budget 10, cost 1, radius 1, distance 50 (exceeded)  accepted=0 budget_before=10 budget_after=10
+budget 10, cost -1 (negative cost)                   accepted=0 budget_before=10 budget_after=10
+budget 10, cost 1, NaN weight, radius 1              accepted=0 budget_before=10 budget_after=10
+budget 10, cost 1, length 0                          accepted=0 budget_before=10 budget_after=10
+budget 10, cost 1, radius 1, distance 0.1 (accept)   accepted=1 budget_before=10 budget_after=9

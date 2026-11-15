@@ -1,0 +1,6 @@
+A2_gfpt_flat_no_retraction max nat drop=0.0296 (bar 0.025)  min novel=0.8243 (bar 0.70, donor min 0.8258) passes=11/12
+A4_gfpt_shunting_geodesic max nat drop=0.0226 (bar 0.025)  min novel=0.8239 (bar 0.70, donor min 0.8258) passes=12/12
+A3_gfpt_geodesic_excitatory_only max nat drop=0.0236 (bar 0.025)  min novel=0.4566 (bar 0.70, donor min 0.8258) passes=0/12
+A2 novel mean > A4: 0.8573 0.8565
+A4 native mean - A2: 0.0048
+gated per-gen means: [0.1188, 0.3408, 0.518, 0.8266]

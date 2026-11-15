@@ -1,0 +1,2 @@
+cpu accept_huge_scale_weight_move got (False, inf, 10.0, 'non_finite_weights') want True ok
+mps accept_huge_scale_weight_move got (False, inf, 10.0, 'non_finite_weights') want True ok

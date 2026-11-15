@@ -1,0 +1,13 @@
+A) commit rate, 100 trials, by fraction of update energy in unobserved null space; norm 4, tail probe sees in-span part
+ null_frac=0: commits full=0/100 sub4=0/100
+ null_frac=0.001: commits full=0/100 sub4=0/100
+ null_frac=0.01: commits full=0/100 sub4=0/100
+ null_frac=0.05: commits full=0/100 sub4=0/100
+ null_frac=0.2: commits full=0/100 sub4=0/100
+ null_frac=0.375: commits full=0/100 sub4=0/100
+ null_frac=1.0: commits full=0/100 sub4=0/100
+B) generic random update (isotropic), norm 4, static tail delta forced 0 as reviewer did
+ commits full=0/100 sub4=0/100; expected null energy fraction 12/32=0.375
+C) grinding: rank-1 null-space attack norm 4 + jitter, sub4 mode, count tries to commit; 30 independent attack directions
+ tries to first commit: [559, 131, 887, 163, 668, 118, 784, 25, 311, 88, 427, 433, 1227, 70, 837, 455, 2305, 514, 146, 607, 783, 200, 385, 400, 267, 93, 128, 45, 154, 125] median 348.0
+   full mode grinding cap 3000 tries: 0 commits of 3000

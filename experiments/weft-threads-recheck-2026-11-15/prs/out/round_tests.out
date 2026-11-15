@@ -1,0 +1,3 @@
+overspend 10 x 1.0000004 vs budget 10 -> rejected: ValueError Metabolic budget exhausted: remaining -9007199255/2251799813685248 < 0
+drift 0.7500004 vs cap 3/4 -> rejected: ValueError Cost-partitioned drift 3377701521967723/4503599627370496 exceeds drift
+cost 1e-9 x 3 budget 0 (true spend>0) -> rejected: ValueError initial_budget must be strictly positive, got 0.

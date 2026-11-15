@@ -1,0 +1,10 @@
+e13_certificates.json            NOISE (249 numbers differ, largest difference 9.67e-07)
+e13-wireonly.json                IDENTICAL
+hardening-results.json           IDENTICAL
+intersections-results.json       IDENTICAL
+donor-agreement-results.json     IDENTICAL
+scale-results.json               IDENTICAL
+tf-splice-results.json           IDENTICAL
+tf-splice2-results.json          IDENTICAL
+tf-splice3-results.json          IDENTICAL
+files compared: 9, different: 0
