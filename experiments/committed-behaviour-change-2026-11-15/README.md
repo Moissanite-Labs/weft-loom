@@ -22,6 +22,11 @@ Can a change to a model be admitted as a behaviour claim that one input can refu
 | `test_cbc.py` | Unit tests: hashing, domain membership, probe order, dispute verdicts |
 | `expb.py` | Drives the recheck admission graft builders and evaluates each candidate by probes and by search |
 | `repro_check.py` | Phase 0: rebuilds one pair twice and prints CBC weight roots |
+| `replay_splice.py`, `decisions-1000.json`, `packet-1000.bcpp` | Recorded-artifact replay: recorded slot lists and packet wire bytes, float32 roots |
+| `cbc2.py`, `test_cbc2.py` | Design v2 code: float32 roots, decisions bound into the claim id, domain guard. V1 in `cbc.py` is untouched |
+| `followup.py`, `followup.json` | Adversarial follow-ups: benign at larger budget, two-column AND trigger |
+| `lit_search.py`, `lit-search.out`, [LITERATURE.md](LITERATURE.md) | The arXiv prior-art search for the two novelty stakes |
+| [PREREG-C.md](PREREG-C.md) | Experiment C draft: splice with no input switch. Not frozen, not run |
 | `pilot-max.json`, `pilot-ellipsoid.json`, `pilot-1000-1001.json` | Pilot outputs (cube, ellipsoid, and the first tau reading) |
 | `repro-1.out`, `repro-2.out` | Two process runs of the Phase 0 check, byte-identical |
 
