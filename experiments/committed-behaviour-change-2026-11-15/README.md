@@ -27,7 +27,7 @@ Can a change to a model be admitted as a behaviour claim that one input can refu
 | `followup.py`, `followup.json` | Adversarial follow-ups: benign at larger budget, two-column AND trigger |
 | `budget_curve.py`, `test_budget_curve.py`, `budget-curve.json` | Exploratory nested search stream measuring benign maxima as evaluated rows grow to 600000 |
 | `lit_search.py`, `lit-search.out`, [LITERATURE.md](LITERATURE.md) | The arXiv prior-art search for the two novelty stakes |
-| [PREREG-C.md](PREREG-C.md) | Experiment C draft: splice with no input switch. Not frozen, not run |
+| [PREREG-C.md](PREREG-C.md), [FREEZE-DECISION-C.md](FREEZE-DECISION-C.md) | Experiment C draft and the decision not to freeze it: the stateless harness cannot test an access-boundary claim. An episodic C2 design replaces it |
 | `pilot-max.json`, `pilot-ellipsoid.json`, `pilot-1000-1001.json` | Pilot outputs (cube, ellipsoid, and the first tau reading) |
 | `repro-1.out`, `repro-2.out` | Two process runs of the Phase 0 check, byte-identical |
 
@@ -75,7 +75,7 @@ Two more dispatches localize and fix it. The packet itself diverges on that runn
 
 So cross-host replay holds when the record carries its artifacts and discrete decisions. Recomputing them from seeds is retraining, not replay. Hashing float64 weights still makes even agreeing hosts disagree, so the root belongs over canonical float32 bytes.
 
-`PREREG-C.md` is the Experiment C draft (splice with no input switch), not yet frozen or run.
+Experiment C should not be frozen as drafted. In the current sampler the operands are independent of the task, so removing the task token removes the only context information. `FREEZE-DECISION-C.md` separates the absent-context, input-function and episode-history claims. It specifies an episodic C2 in which a demonstration carries the operation and a query-only router cannot see it. That harness is not built yet.
 
 ## Limits
 

@@ -2,6 +2,8 @@
 
 Status: draft for team review. Not yet frozen, not yet run. Freezing means copying this file's predictions and file hashes into a commit pushed before any confirmatory seed is trained.
 
+Freeze decision, 2026-11-16: do not freeze this draft. The current harness leaves no task information in the sequence once the task token is removed. See `FREEZE-DECISION-C.md` for the access-boundary problem and the episodic C2 design that replaces this one.
+
 ## Question
 
 Every splice result so far leans on a handed-in context signal: an input channel or task token that says which skill is wanted. An outside router reading the same signal matches the splice (12 of 12 MLP, 20 of 20 transformer against 13 of 20). Can a packet fire on a statistic of the host's own internal state, computed inside the forward pass, where no router that sees only inputs and outputs can follow?
