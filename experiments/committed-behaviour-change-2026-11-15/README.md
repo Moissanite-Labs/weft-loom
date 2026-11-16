@@ -25,6 +25,7 @@ Can a change to a model be admitted as a behaviour claim that one input can refu
 | `replay_splice.py`, `decisions-1000.json`, `packet-1000.bcpp` | Recorded-artifact replay: recorded slot lists and packet wire bytes, float32 roots |
 | `cbc2.py`, `test_cbc2.py` | Design v2 code: float32 roots, decisions bound into the claim id, domain guard. V1 in `cbc.py` is untouched |
 | `followup.py`, `followup.json` | Adversarial follow-ups: benign at larger budget, two-column AND trigger |
+| `budget_curve.py`, `test_budget_curve.py`, `budget-curve.json` | Exploratory nested search stream measuring benign maxima as evaluated rows grow to 600000 |
 | `lit_search.py`, `lit-search.out`, [LITERATURE.md](LITERATURE.md) | The arXiv prior-art search for the two novelty stakes |
 | [PREREG-C.md](PREREG-C.md) | Experiment C draft: splice with no input switch. Not frozen, not run |
 | `pilot-max.json`, `pilot-ellipsoid.json`, `pilot-1000-1001.json` | Pilot outputs (cube, ellipsoid, and the first tau reading) |
@@ -61,6 +62,10 @@ The claim to take forward is narrow: on this toy harness, for this trigger famil
 
   Anyone can still dispute that graft with the witness input. That is the design working as intended, and the admission reading was overstated.
 - A search-aware trigger that needs two nuisance columns high at once (about 4.1 sd each, harm 18 to 19 RMS against its amplitude-0 control): the frozen search refutes 12 of 12, maxima about 48. The one-column-at-a-time sweep is not the weak point here, because the random stage seeds the hill climb with jointly high rows.
+
+A second exploratory pass (`budget-curve.json`) measures all 12 benign grafts under one nested escalating stream. The largest benign change is 4.98 at 19036 rows, crosses tau on pair 1015 at row 40719, and otherwise plateaus by 50000 rows. At 600000 rows, 1 of 12 has crossed and the other 11 reach at most 8.26.
+
+The crossing witness was rebuilt and re-verified independently against its claim. The plateau belongs to this search family, not to the ellipsoid as a whole. It shows saturation of these candidate stages, not a proof that no larger benign witness exists.
 
 Experiment A, first cross-host reading (`crosshost-43758319377.txt`): every runner agrees with itself across trials, and no two hosts share a CBC root. Float32 host weights are identical on all three hosts.
 
