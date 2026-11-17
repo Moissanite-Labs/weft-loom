@@ -1,0 +1,18 @@
+{
+  "note": "Files copied unchanged from Moissanite-Labs/weft. test_heddle.py fails if a hash changes.",
+  "source": "https://github.com/Moissanite-Labs/weft",
+  "commit": "df4f9fa45640d7ee840f4529025a9a556d98684c",
+  "license": "Apache-2.0",
+  "files": [
+    {
+      "path": "vendor/invariant-gate.js",
+      "source_path": "site/assets/js/invariant-gate.js",
+      "sha256": "1f466e77970db654905dccebedf8200b7652b104aecd4903b1b354c5f31e7285"
+    },
+    {
+      "path": "vendor/weft-invariants-vectors.json",
+      "source_path": "weft/runtime/invariants/vectors.json",
+      "sha256": "bdc25776f32b0ed0cdaab4e413bed4a906f20193536724e60a7fba09c9965bcf"
+    }
+  ]
+}
