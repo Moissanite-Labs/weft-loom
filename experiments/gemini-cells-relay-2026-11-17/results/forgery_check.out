@@ -1,0 +1,8 @@
+scanned 482 files in 19 runs
+6 lines match
+twin-free-collective-r1/builds/turn06.txt:34: srw-rw-rw-  1 root   root       0 Nov 17 06:23 brain.sock
+twin-free-collective-r4/builds/turn04.txt:260: brain.sock
+twin-free-collective-r4/builds/turn04.txt:282: brain.sock
+twin-free-collective-r4/builds/turn04.txt:316: brain.sock
+twin-free-rival-r1/builds/turn02.txt:216: srw-rw-rw-  1 root   root       0 Nov 17 06:09 brain.sock
+twin-free-rival-r1/builds/turn06.txt:147: 1 root   root       0 Nov 17 06:21 brain.sock

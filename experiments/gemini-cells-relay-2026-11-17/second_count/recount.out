@@ -1,0 +1,90 @@
+SECOND COUNT, 15 runs (names ending -r0, -r1, -r2)
+seed exam level (mean of 12 sittings): visible 0.5009  held-out 0.5240
+
+PER RUN
+run                             M1      M2  M1 A/B        M2 A/B        final differ  exam source
+solo-pair-r0                0.9903  0.7917  0.990/0.990   0.583/1.000   True          log.jsonl
+solo-pair-r1                0.9649  0.9583  0.944/0.986   0.917/1.000   True          log.jsonl
+solo-pair-r2                0.8763  0.9583  0.898/0.855   1.000/0.917   True          log.jsonl
+twin-fixed-builder-r0       0.8873  1.0000  0.944/0.831   1.000/1.000   True          log.jsonl
+twin-fixed-builder-r1       0.9363  1.0000  0.939/0.934   1.000/1.000   True          log.jsonl
+twin-fixed-builder-r2       0.9075  1.0000  0.866/0.949   1.000/1.000   True          log.jsonl
+twin-free-collective-r0     0.9882  0.8750  0.982/0.995   1.000/0.750   True          log.jsonl
+twin-free-collective-r1     0.9672  1.0000  0.986/0.949   1.000/1.000   True          log.jsonl
+twin-free-collective-r2     0.9649  1.0000  0.986/0.944   1.000/1.000   True          log.jsonl
+twin-free-rival-r0          0.9255  1.0000  0.949/0.902   1.000/1.000   True          log.jsonl
+twin-free-rival-r1          0.7950  0.9583  0.687/0.902   0.917/1.000   True          log.jsonl
+twin-free-rival-r2          0.9854  1.0000  0.991/0.980   1.000/1.000   True          log.jsonl
+twin-stack-collective-r0    1.0000  0.8333  1.000/1.000   0.833/0.833   False         log.jsonl
+twin-stack-collective-r1    0.9948  1.0000  0.995/0.995   1.000/1.000   False         log.jsonl
+twin-stack-collective-r2    0.7505  0.7276  0.750/0.750   0.728/0.728   False         exam_resit.jsonl
+
+PER RUN TURNS  (t:builder>target outcome, e=builder edited, -=no edit)
+solo-pair-r0               1:A>A commit e | 2:B>B commit e | 3:A>A noop - | 4:B>B noop - | 5:A>A noop - | 6:B>B noop -
+solo-pair-r1               1:A>A commit e | 2:B>B commit e | 3:A>A commit e | 4:B>B noop - | 5:A>A noop - | 6:B>B noop -
+solo-pair-r2               1:A>A commit e | 2:B>B commit e | 3:A>A commit e | 4:B>B commit e | 5:A>A commit e | 6:B>B commit e
+twin-fixed-builder-r0      1:A>B commit e | 2:B>A commit e | 3:A>B commit e | 4:B>A commit e | 5:A>B noop - | 6:B>A noop -
+twin-fixed-builder-r1      1:A>B commit e | 2:B>A commit e | 3:A>B regress e | 4:B>A noop - | 5:A>B commit e | 6:B>A regress e
+twin-fixed-builder-r2      1:A>B commit e | 2:B>A commit e | 3:A>B commit e | 4:B>A regress e | 5:A>B noop - | 6:B>A noop -
+twin-free-collective-r0    1:A>B commit e | 2:B>A commit e | 3:A>B commit e | 4:B>A commit e | 5:A>B regress e | 6:B>A noop -
+twin-free-collective-r1    1:A>B commit e | 2:B>A commit e | 3:A>B commit e | 4:B>A commit e | 5:A>B regress e | 6:B>A commit e
+twin-free-collective-r2    1:A>B commit e | 2:B>A noop - | 3:A>B regress e | 4:B>A noop - | 5:A>B noop - | 6:B>A commit e
+twin-free-rival-r0         1:A>B commit e | 2:B>A commit e | 3:A>B commit e | 4:B>A commit e | 5:A>B commit e | 6:B>A commit e
+twin-free-rival-r1         1:A>B commit e | 2:B>A commit e | 3:A>B noop - | 4:B>A noop - | 5:A>B noop - | 6:B>A noop -
+twin-free-rival-r2         1:A>B commit e | 2:B>A commit e | 3:A>B commit e | 4:B>A commit e | 5:A>B commit e | 6:B>A noop -
+twin-stack-collective-r0   1:A>B commit e | 2:B>A commit e | 3:A>B commit - | 4:B>A regress e | 5:A>B noop - | 6:B>A noop -
+twin-stack-collective-r1   1:A>B commit e | 2:B>A commit e | 3:A>B commit - | 4:B>A noop - | 5:A>B noop - | 6:B>A noop -
+twin-stack-collective-r2   1:A>B commit e | 2:B>A commit - | 3:A>B commit e | 4:B>A commit - | 5:A>B noop - | 6:B>A noop -
+
+PER ARM
+arm                     n      M1      M2     commit   regress boot_fail   invalid      noop  edited  pairs differ
+twin-free-rival         3  0.9020  0.9861         13         0         0         0         5  13/18   3/3
+twin-free-collective    3  0.9735  0.9583         11         3         0         0         4  14/18   3/3
+twin-stack-collective   3  0.9151  0.8536         10         1         0         0         7   7/18   0/3
+solo-pair               3  0.9438  0.9028         11         0         0         0         7  11/18   3/3
+twin-fixed-builder      3  0.9104  1.0000         10         3         0         0         5  13/18   3/3
+ALL                    15  0.9289  0.9402         55         7         0         0        28  58/90   12/15
+
+CONTRASTS (difference of arm means, exact two-sided permutation p over run labels)
+twin-free-collective   minus solo-pair              M1  diff +0.0296  p = 14/20 = 0.700
+twin-free-collective   minus solo-pair              M2  diff +0.0556  p = 10/20 = 0.500
+twin-free-collective   minus twin-fixed-builder     M1  diff +0.0631  p = 2/20 = 0.100
+twin-free-collective   minus twin-fixed-builder     M2  diff -0.0417  p = 20/20 = 1.000
+twin-stack-collective  minus twin-free-collective   M1  diff -0.0584  p = 20/20 = 1.000
+twin-stack-collective  minus twin-free-collective   M2  diff -0.1047  p = 8/20 = 0.400
+twin-free-rival        minus twin-free-collective   M1  diff -0.0715  p = 6/20 = 0.300
+twin-free-rival        minus twin-free-collective   M2  diff +0.0278  p = 20/20 = 1.000
+(3 runs per arm: 20 relabellings, smallest possible two-sided p is 2/20 = 0.100)
+
+PREDICTIONS
+P1 PASS: every arm's mean M1 >= seed visible + 0.10 = 0.6009.  margins over seed: twin-free-rival +0.4011, twin-free-collective +0.4726, twin-stack-collective +0.4142, solo-pair +0.4430, twin-fixed-builder +0.4095
+P2 PASS: |twin-free-collective - solo-pair| on M1 = 0.0296, pass mark <= 0.10
+P3 PASS: |twin-free-collective - twin-fixed-builder| on M1 = 0.0631, pass mark <= 0.10
+P4 FAIL: twin-stack-collective - twin-free-collective on M1 = -0.0584, pass mark > 0.03
+P5 PASS: |rival - collective| M1 = 0.0715, M2 = 0.0278, pass mark both <= 0.10
+P6 FAIL: builder edited in 58 of 90 build turns = 64.4%, pass mark >= 75%
+P7 FAIL: 7 of 62 candidates that reached the gate were discarded = 11.3% (pass mark >= 10%); discarded at boot: 0 (pass mark >= 1)
+   variant (surface-rule discards left out of both counts): 7 of 62 = 11.3%
+   variant (only gated candidates the builder edited): 7 of 58 = 12.1%
+P8 PASS: pooled gain M1 +0.4281, M2 +0.4162, ratio 0.972, pass mark M2 gain >= half of M1 gain (0.2140)
+P9 skipped: needs builder assay rows, which do not exist yet
+
+TOTALS over the 15 end rows
+model calls 8248   dollars 12.9452   model_errors 13
+  twin-stack-collective-r2: end row model_errors 13
+  not in any end row: resit exam of twin-stack-collective-r2, 108 calls, 0.1781 dollars, 0 model errors
+  per run: solo-pair-r0 465 calls $0.79; solo-pair-r1 477 calls $0.66; solo-pair-r2 685 calls $0.98; twin-fixed-builder-r0 564 calls $0.86; twin-fixed-builder-r1 634 calls $0.83; twin-fixed-builder-r2 558 calls $0.92; twin-free-collective-r0 631 calls $1.02; twin-free-collective-r1 707 calls $1.14; twin-free-collective-r2 498 calls $0.72; twin-free-rival-r0 655 calls $1.34; twin-free-rival-r1 478 calls $0.80; twin-free-rival-r2 620 calls $0.95; twin-stack-collective-r0 428 calls $0.70; twin-stack-collective-r1 381 calls $0.56; twin-stack-collective-r2 467 calls $0.67
+
+DEFINITIONS USED
+- M1/M2 slot value: plain mean over that slot's exam episodes of the family set (24 visible, 12 held-out);
+  equal to the mean of family means because families have equal counts. Run value = mean of slots A and B.
+- When the two final harnesses are identical the log carries the same report for both slots; both rows are used as logged.
+- twin-stack-collective-r2: exam taken from exam_resit.jsonl, not log.jsonl.
+- Seed level: mean of the 12 values in seed_exam.json 'visible' (for M1) and 'heldout' (for M2).
+- 'within 0.10': absolute difference of arm means <= 0.10 (boundary counts as within).
+- 'edit': the log's `edited` flag (candidate tree hash != the hash the candidate started from).
+- P7 denominator: every turn whose outcome is not noop (invalid, boot_fail, regress, commit);
+  discarded = invalid + boot_fail + regress. Two variants printed.
+- P8: (mean M2 over 15 runs - seed held-out) >= 0.5 * (mean M1 over 15 runs - seed visible).
+- Permutation p: all C(6,3)=20 relabellings, share with |diff| >= |observed|, ties included.
+- Totals: end-row calls, usd, model_errors as logged; the resit's cost is shown apart.

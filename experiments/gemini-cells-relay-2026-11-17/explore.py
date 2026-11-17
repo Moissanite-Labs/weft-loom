@@ -146,6 +146,23 @@ def main() -> int:
         if seed_rows:
             out += ["", f"The seed harness with 1 call: visible {seed_rows[0]['visible']:.3f}, held-out {seed_rows[0]['heldout']:.3f}."]
         out.append("")
+    # 7. the builder assay over every fault-free run
+    assay = []
+    for f in sorted(root.parent.glob("assay*.jsonl")):
+        assay += [json.loads(x) for x in f.read_text().splitlines() if x.strip()]
+    arm_of = {rows[0]["run"]: rows[0]["arm"] for rows in runs}
+    if assay:
+        out += ["## The builder assay over every fault-free run", "",
+                "Gain is the candidate's mean minus the seed's on the same 9 fresh tasks, 0 when nothing reached the benchmark.", "",
+                "| Arm | Assays | Gains | Mean gain | Turns with no change |", "|---|---|---|---|---|"]
+        for arm in ARMS:
+            evs = sorted((e for e in assay if arm_of.get(e["run"]) == arm), key=lambda e: e["run"])
+            g = [(e["cand"] - e["inc"]) if e.get("cand") is not None else 0.0 for e in evs]
+            if g:
+                out.append(f"| {arm} | {len(g)} | {', '.join(f'{x:+.3f}' for x in g)} | {statistics.mean(g):+.3f} | {sum(e['outcome'] == 'noop' for e in evs)} |")
+        first = [(t["cand"] - t["inc"]) if t.get("cand") is not None else 0.0
+                 for rows in runs for t in rows if t["kind"] == "turn" and t["t"] == 1]
+        out += ["", f"First-turn gains of seed builders over the same {len(first)} runs: mean {statistics.mean(first):+.3f}.", ""]
     (HERE / "results" / "explore.md").write_text("\n".join(out))
     print("\n".join(out))
     return 0

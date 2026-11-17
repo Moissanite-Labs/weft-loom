@@ -1,0 +1,4580 @@
+{
+ "runs": [
+  {
+   "run": "solo-pair-r0",
+   "arm": "solo-pair",
+   "rep": 0,
+   "seed_harness": "7706b46c911e0e22",
+   "baseline": {
+    "A": 0.5873,
+    "B": 0.4797
+   },
+   "outcomes": [
+    "commit",
+    "commit",
+    "noop",
+    "noop",
+    "noop",
+    "noop"
+   ],
+   "edited": [
+    true,
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "turn_scores": [
+    [
+     1,
+     "A",
+     0.4211,
+     0.8947,
+     "commit"
+    ],
+    [
+     2,
+     "B",
+     0.45,
+     0.8889,
+     "commit"
+    ],
+    [
+     3,
+     "A",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     4,
+     "B",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     5,
+     "A",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     6,
+     "B",
+     null,
+     null,
+     "noop"
+    ]
+   ],
+   "exam_visible": {
+    "A": 0.9902875,
+    "B": 0.9902875
+   },
+   "exam_heldout": {
+    "A": 0.5833333333333334,
+    "B": 1.0
+   },
+   "pair_visible": 0.9902875,
+   "pair_heldout": 0.7916666666666667,
+   "final_harness": {
+    "A": "639e9a8c75046320",
+    "B": "b067b7898971ee21"
+   },
+   "twins_differ": true,
+   "final_bytes": {
+    "A": 5859,
+    "B": 5966
+   },
+   "exam_calls_per_task": 3,
+   "first_turn_gain": 0.4736000000000001,
+   "model_errors": 0,
+   "usd": 0.7908,
+   "calls": 465,
+   "wall_s": 1209.0
+  },
+  {
+   "run": "solo-pair-r1",
+   "arm": "solo-pair",
+   "rep": 1,
+   "seed_harness": "7706b46c911e0e22",
+   "baseline": {
+    "A": 0.5508,
+    "B": 0.3734
+   },
+   "outcomes": [
+    "commit",
+    "commit",
+    "commit",
+    "noop",
+    "noop",
+    "noop"
+   ],
+   "edited": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "turn_scores": [
+    [
+     1,
+     "A",
+     0.506,
+     0.973,
+     "commit"
+    ],
+    [
+     2,
+     "B",
+     0.2931,
+     1.0,
+     "commit"
+    ],
+    [
+     3,
+     "A",
+     0.9861,
+     1.0,
+     "commit"
+    ],
+    [
+     4,
+     "B",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     5,
+     "A",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     6,
+     "B",
+     null,
+     null,
+     "noop"
+    ]
+   ],
+   "exam_visible": {
+    "A": 0.9441166666666667,
+    "B": 0.9857833333333333
+   },
+   "exam_heldout": {
+    "A": 0.9166666666666666,
+    "B": 1.0
+   },
+   "pair_visible": 0.96495,
+   "pair_heldout": 0.9583333333333333,
+   "final_harness": {
+    "A": "ea739903f40a20f0",
+    "B": "dbc63b40df2dfd90"
+   },
+   "twins_differ": true,
+   "final_bytes": {
+    "A": 4710,
+    "B": 5749
+   },
+   "exam_calls_per_task": 2.8055555555555554,
+   "first_turn_gain": 0.46699999999999997,
+   "model_errors": 0,
+   "usd": 0.6562,
+   "calls": 477,
+   "wall_s": 949.2
+  },
+  {
+   "run": "solo-pair-r4",
+   "arm": "solo-pair",
+   "rep": 4,
+   "seed_harness": "7706b46c911e0e22",
+   "baseline": {
+    "A": 0.4706,
+    "B": 0.4722
+   },
+   "outcomes": [
+    "commit",
+    "commit",
+    "noop",
+    "commit",
+    "noop",
+    "noop"
+   ],
+   "edited": [
+    true,
+    true,
+    false,
+    true,
+    false,
+    false
+   ],
+   "turn_scores": [
+    [
+     1,
+     "A",
+     0.2785,
+     1.0,
+     "commit"
+    ],
+    [
+     2,
+     "B",
+     0.4225,
+     0.7778,
+     "commit"
+    ],
+    [
+     3,
+     "A",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     4,
+     "B",
+     0.6667,
+     1.0,
+     "commit"
+    ],
+    [
+     5,
+     "A",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     6,
+     "B",
+     null,
+     null,
+     "noop"
+    ]
+   ],
+   "exam_visible": {
+    "A": 0.980575,
+    "B": 0.8607833333333333
+   },
+   "exam_heldout": {
+    "A": 1.0,
+    "B": 1.0
+   },
+   "pair_visible": 0.9206791666666667,
+   "pair_heldout": 1.0,
+   "final_harness": {
+    "A": "6d2b85c72c2d7c69",
+    "B": "fcd57ff11a57df08"
+   },
+   "twins_differ": true,
+   "final_bytes": {
+    "A": 6062,
+    "B": 6199
+   },
+   "exam_calls_per_task": 3,
+   "first_turn_gain": 0.7215,
+   "model_errors": 0,
+   "usd": 0.7187,
+   "calls": 493,
+   "wall_s": 1154.4
+  },
+  {
+   "run": "twin-fixed-builder-r0",
+   "arm": "twin-fixed-builder",
+   "rep": 0,
+   "seed_harness": "7706b46c911e0e22",
+   "baseline": {
+    "A": 0.5461,
+    "B": 0.496
+   },
+   "outcomes": [
+    "commit",
+    "commit",
+    "commit",
+    "commit",
+    "noop",
+    "noop"
+   ],
+   "edited": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "turn_scores": [
+    [
+     1,
+     "B",
+     0.5073,
+     0.8889,
+     "commit"
+    ],
+    [
+     2,
+     "A",
+     0.4837,
+     0.8889,
+     "commit"
+    ],
+    [
+     3,
+     "B",
+     0.7778,
+     1.0,
+     "commit"
+    ],
+    [
+     4,
+     "A",
+     0.8889,
+     1.0,
+     "commit"
+    ],
+    [
+     5,
+     "B",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     6,
+     "A",
+     null,
+     null,
+     "noop"
+    ]
+   ],
+   "exam_visible": {
+    "A": 0.9441166666666667,
+    "B": 0.8305833333333333
+   },
+   "exam_heldout": {
+    "A": 1.0,
+    "B": 1.0
+   },
+   "pair_visible": 0.8873500000000001,
+   "pair_heldout": 1.0,
+   "final_harness": {
+    "A": "e4f573778b8cdd32",
+    "B": "62095015f25fc35a"
+   },
+   "twins_differ": true,
+   "final_bytes": {
+    "A": 4606,
+    "B": 6991
+   },
+   "exam_calls_per_task": 3,
+   "first_turn_gain": 0.38160000000000005,
+   "model_errors": 0,
+   "usd": 0.8584,
+   "calls": 564,
+   "wall_s": 1318.7
+  },
+  {
+   "run": "twin-fixed-builder-r1",
+   "arm": "twin-fixed-builder",
+   "rep": 1,
+   "seed_harness": "7706b46c911e0e22",
+   "baseline": {
+    "A": 0.6194,
+    "B": 0.5948
+   },
+   "outcomes": [
+    "commit",
+    "commit",
+    "regress",
+    "noop",
+    "commit",
+    "regress"
+   ],
+   "edited": [
+    true,
+    true,
+    true,
+    false,
+    true,
+    true
+   ],
+   "turn_scores": [
+    [
+     1,
+     "B",
+     0.5608,
+     0.6413,
+     "commit"
+    ],
+    [
+     2,
+     "A",
+     0.3902,
+     0.8889,
+     "commit"
+    ],
+    [
+     3,
+     "B",
+     0.9722,
+     0.8317,
+     "regress"
+    ],
+    [
+     4,
+     "A",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     5,
+     "B",
+     0.8194,
+     0.9877,
+     "commit"
+    ],
+    [
+     6,
+     "A",
+     0.9873,
+     0.7917,
+     "regress"
+    ]
+   ],
+   "exam_visible": {
+    "A": 0.9389083333333333,
+    "B": 0.9337
+   },
+   "exam_heldout": {
+    "A": 1.0,
+    "B": 1.0
+   },
+   "pair_visible": 0.9363041666666667,
+   "pair_heldout": 1.0,
+   "final_harness": {
+    "A": "7b892dcb533ac87d",
+    "B": "9f7072dd8985ff4d"
+   },
+   "twins_differ": true,
+   "final_bytes": {
+    "A": 4396,
+    "B": 4366
+   },
+   "exam_calls_per_task": 3,
+   "first_turn_gain": 0.08050000000000002,
+   "model_errors": 0,
+   "usd": 0.8342,
+   "calls": 634,
+   "wall_s": 1347.8
+  },
+  {
+   "run": "twin-fixed-builder-r4",
+   "arm": "twin-fixed-builder",
+   "rep": 4,
+   "seed_harness": "7706b46c911e0e22",
+   "baseline": {
+    "A": 0.546,
+    "B": 0.4738
+   },
+   "outcomes": [
+    "commit",
+    "commit",
+    "noop",
+    "commit",
+    "noop",
+    "noop"
+   ],
+   "edited": [
+    true,
+    true,
+    false,
+    true,
+    false,
+    false
+   ],
+   "turn_scores": [
+    [
+     1,
+     "B",
+     0.535,
+     1.0,
+     "commit"
+    ],
+    [
+     2,
+     "A",
+     0.575,
+     0.9869,
+     "commit"
+    ],
+    [
+     3,
+     "B",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     4,
+     "A",
+     0.8623,
+     1.0,
+     "commit"
+    ],
+    [
+     5,
+     "B",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     6,
+     "A",
+     null,
+     null,
+     "noop"
+    ]
+   ],
+   "exam_visible": {
+    "A": 0.9069541666666666,
+    "B": 0.875
+   },
+   "exam_heldout": {
+    "A": 0.8333333333333334,
+    "B": 1.0
+   },
+   "pair_visible": 0.8909770833333333,
+   "pair_heldout": 0.9166666666666667,
+   "final_harness": {
+    "A": "c110a7cd0282579e",
+    "B": "397fefc3fa8a05a0"
+   },
+   "twins_differ": true,
+   "final_bytes": {
+    "A": 4893,
+    "B": 5530
+   },
+   "exam_calls_per_task": 3,
+   "first_turn_gain": 0.46499999999999997,
+   "model_errors": 0,
+   "usd": 0.6442,
+   "calls": 501,
+   "wall_s": 1105.3
+  },
+  {
+   "run": "twin-free-collective-r0",
+   "arm": "twin-free-collective",
+   "rep": 0,
+   "seed_harness": "7706b46c911e0e22",
+   "baseline": {
+    "A": 0.5635,
+    "B": 0.434
+   },
+   "outcomes": [
+    "commit",
+    "commit",
+    "commit",
+    "commit",
+    "regress",
+    "noop"
+   ],
+   "edited": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "turn_scores": [
+    [
+     1,
+     "B",
+     0.4654,
+     0.6869,
+     "commit"
+    ],
+    [
+     2,
+     "A",
+     0.419,
+     0.9444,
+     "commit"
+    ],
+    [
+     3,
+     "B",
+     0.875,
+     0.8889,
+     "commit"
+    ],
+    [
+     4,
+     "A",
+     1.0,
+     1.0,
+     "commit"
+    ],
+    [
+     5,
+     "B",
+     0.9869,
+     0.7647,
+     "regress"
+    ],
+    [
+     6,
+     "A",
+     null,
+     null,
+     "noop"
+    ]
+   ],
+   "exam_visible": {
+    "A": 0.9816166666666667,
+    "B": 0.9947916666666666
+   },
+   "exam_heldout": {
+    "A": 1.0,
+    "B": 0.75
+   },
+   "pair_visible": 0.9882041666666667,
+   "pair_heldout": 0.875,
+   "final_harness": {
+    "A": "23b0571df5671040",
+    "B": "7c8a445e70c91b98"
+   },
+   "twins_differ": true,
+   "final_bytes": {
+    "A": 7061,
+    "B": 6273
+   },
+   "exam_calls_per_task": 3,
+   "first_turn_gain": 0.22149999999999997,
+   "model_errors": 0,
+   "usd": 1.0209,
+   "calls": 631,
+   "wall_s": 1914.7
+  },
+  {
+   "run": "twin-free-collective-r1",
+   "arm": "twin-free-collective",
+   "rep": 1,
+   "seed_harness": "7706b46c911e0e22",
+   "baseline": {
+    "A": 0.5767,
+    "B": 0.5774
+   },
+   "outcomes": [
+    "commit",
+    "commit",
+    "commit",
+    "commit",
+    "regress",
+    "commit"
+   ],
+   "edited": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "turn_scores": [
+    [
+     1,
+     "B",
+     0.6389,
+     0.9861,
+     "commit"
+    ],
+    [
+     2,
+     "A",
+     0.4108,
+     0.8472,
+     "commit"
+    ],
+    [
+     3,
+     "B",
+     1.0,
+     1.0,
+     "commit"
+    ],
+    [
+     4,
+     "A",
+     0.8497,
+     0.9739,
+     "commit"
+    ],
+    [
+     5,
+     "B",
+     1.0,
+     0.8889,
+     "regress"
+    ],
+    [
+     6,
+     "A",
+     1.0,
+     1.0,
+     "commit"
+    ]
+   ],
+   "exam_visible": {
+    "A": 0.9857833333333333,
+    "B": 0.9486208333333334
+   },
+   "exam_heldout": {
+    "A": 1.0,
+    "B": 1.0
+   },
+   "pair_visible": 0.9672020833333334,
+   "pair_heldout": 1.0,
+   "final_harness": {
+    "A": "64a5d5bca9f537be",
+    "B": "bacda10e59d2a375"
+   },
+   "twins_differ": true,
+   "final_bytes": {
+    "A": 5734,
+    "B": 5561
+   },
+   "exam_calls_per_task": 3,
+   "first_turn_gain": 0.34719999999999995,
+   "model_errors": 0,
+   "usd": 1.1426,
+   "calls": 707,
+   "wall_s": 1748.3
+  },
+  {
+   "run": "twin-free-collective-r4",
+   "arm": "twin-free-collective",
+   "rep": 4,
+   "seed_harness": "7706b46c911e0e22",
+   "baseline": {
+    "A": 0.45,
+    "B": 0.4601
+   },
+   "outcomes": [
+    "commit",
+    "commit",
+    "noop",
+    "commit",
+    "noop",
+    "commit"
+   ],
+   "edited": [
+    true,
+    true,
+    false,
+    true,
+    false,
+    true
+   ],
+   "turn_scores": [
+    [
+     1,
+     "B",
+     0.5464,
+     0.9722,
+     "commit"
+    ],
+    [
+     2,
+     "A",
+     0.4575,
+     0.9869,
+     "commit"
+    ],
+    [
+     3,
+     "B",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     4,
+     "A",
+     0.9869,
+     0.9869,
+     "commit"
+    ],
+    [
+     5,
+     "B",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     6,
+     "A",
+     0.9861,
+     0.9861,
+     "commit"
+    ]
+   ],
+   "exam_visible": {
+    "A": 0.9857833333333333,
+    "B": 0.9174208333333334
+   },
+   "exam_heldout": {
+    "A": 1.0,
+    "B": 1.0
+   },
+   "pair_visible": 0.9516020833333334,
+   "pair_heldout": 1.0,
+   "final_harness": {
+    "A": "35059c2065b2dcf5",
+    "B": "ed41110f199cd805"
+   },
+   "twins_differ": true,
+   "final_bytes": {
+    "A": 6765,
+    "B": 3949
+   },
+   "exam_calls_per_task": 3,
+   "first_turn_gain": 0.42579999999999996,
+   "model_errors": 0,
+   "usd": 0.9913,
+   "calls": 591,
+   "wall_s": 1556.2
+  },
+  {
+   "run": "twin-free-rival-r0",
+   "arm": "twin-free-rival",
+   "rep": 0,
+   "seed_harness": "7706b46c911e0e22",
+   "baseline": {
+    "A": 0.3672,
+    "B": 0.6135
+   },
+   "outcomes": [
+    "commit",
+    "commit",
+    "commit",
+    "commit",
+    "commit",
+    "commit"
+   ],
+   "edited": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "turn_scores": [
+    [
+     1,
+     "B",
+     0.4239,
+     0.8889,
+     "commit"
+    ],
+    [
+     2,
+     "A",
+     0.3806,
+     0.4643,
+     "commit"
+    ],
+    [
+     3,
+     "B",
+     0.9749,
+     0.988,
+     "commit"
+    ],
+    [
+     4,
+     "A",
+     0.5907,
+     0.955,
+     "commit"
+    ],
+    [
+     5,
+     "B",
+     1.0,
+     1.0,
+     "commit"
+    ],
+    [
+     6,
+     "A",
+     1.0,
+     1.0,
+     "commit"
+    ]
+   ],
+   "exam_visible": {
+    "A": 0.9486208333333334,
+    "B": 0.90245
+   },
+   "exam_heldout": {
+    "A": 1.0,
+    "B": 1.0
+   },
+   "pair_visible": 0.9255354166666667,
+   "pair_heldout": 1.0,
+   "final_harness": {
+    "A": "f67ddaa689ad65f0",
+    "B": "ce0239b69f15c8fb"
+   },
+   "twins_differ": true,
+   "final_bytes": {
+    "A": 7626,
+    "B": 6509
+   },
+   "exam_calls_per_task": 2.8333333333333335,
+   "first_turn_gain": 0.465,
+   "model_errors": 0,
+   "usd": 1.3356,
+   "calls": 655,
+   "wall_s": 2122.7
+  },
+  {
+   "run": "twin-free-rival-r1",
+   "arm": "twin-free-rival",
+   "rep": 1,
+   "seed_harness": "7706b46c911e0e22",
+   "baseline": {
+    "A": 0.5313,
+    "B": 0.4508
+   },
+   "outcomes": [
+    "commit",
+    "commit",
+    "noop",
+    "noop",
+    "noop",
+    "noop"
+   ],
+   "edited": [
+    true,
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "turn_scores": [
+    [
+     1,
+     "B",
+     0.5425,
+     0.9245,
+     "commit"
+    ],
+    [
+     2,
+     "A",
+     0.4706,
+     0.7353,
+     "commit"
+    ],
+    [
+     3,
+     "B",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     4,
+     "A",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     5,
+     "B",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     6,
+     "A",
+     null,
+     null,
+     "noop"
+    ]
+   ],
+   "exam_visible": {
+    "A": 0.6874791666666666,
+    "B": 0.90245
+   },
+   "exam_heldout": {
+    "A": 0.9166666666666666,
+    "B": 1.0
+   },
+   "pair_visible": 0.7949645833333333,
+   "pair_heldout": 0.9583333333333333,
+   "final_harness": {
+    "A": "51e75f729fab362d",
+    "B": "49f6e31338e32a25"
+   },
+   "twins_differ": true,
+   "final_bytes": {
+    "A": 5690,
+    "B": 6449
+   },
+   "exam_calls_per_task": 3,
+   "first_turn_gain": 0.382,
+   "model_errors": 0,
+   "usd": 0.8023,
+   "calls": 478,
+   "wall_s": 1503.2
+  },
+  {
+   "run": "twin-free-rival-r4",
+   "arm": "twin-free-rival",
+   "rep": 4,
+   "seed_harness": "7706b46c911e0e22",
+   "baseline": {
+    "A": 0.551,
+    "B": 0.444
+   },
+   "outcomes": [
+    "regress",
+    "commit",
+    "commit",
+    "commit",
+    "noop",
+    "commit"
+   ],
+   "edited": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    true
+   ],
+   "turn_scores": [
+    [
+     1,
+     "B",
+     0.6389,
+     0.3287,
+     "regress"
+    ],
+    [
+     2,
+     "A",
+     0.3719,
+     0.759,
+     "commit"
+    ],
+    [
+     3,
+     "B",
+     0.4041,
+     1.0,
+     "commit"
+    ],
+    [
+     4,
+     "A",
+     0.4327,
+     0.8056,
+     "commit"
+    ],
+    [
+     5,
+     "B",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     6,
+     "A",
+     1.0,
+     1.0,
+     "commit"
+    ]
+   ],
+   "exam_visible": {
+    "A": 0.875,
+    "B": 1.0
+   },
+   "exam_heldout": {
+    "A": 1.0,
+    "B": 1.0
+   },
+   "pair_visible": 0.9375,
+   "pair_heldout": 1.0,
+   "final_harness": {
+    "A": "c4aa3e3eee783571",
+    "B": "34cfee02cb6bec7d"
+   },
+   "twins_differ": true,
+   "final_bytes": {
+    "A": 8067,
+    "B": 6589
+   },
+   "exam_calls_per_task": 2.9305555555555554,
+   "first_turn_gain": -0.31020000000000003,
+   "model_errors": 0,
+   "usd": 0.9115,
+   "calls": 613,
+   "wall_s": 1719.2
+  },
+  {
+   "run": "twin-stack-collective-r0",
+   "arm": "twin-stack-collective",
+   "rep": 0,
+   "seed_harness": "7706b46c911e0e22",
+   "baseline": {
+    "A": 0.4299,
+    "B": 0.3352
+   },
+   "outcomes": [
+    "commit",
+    "commit",
+    "commit",
+    "regress",
+    "noop",
+    "noop"
+   ],
+   "edited": [
+    true,
+    true,
+    false,
+    true,
+    false,
+    false
+   ],
+   "turn_scores": [
+    [
+     1,
+     "B",
+     0.5454,
+     1.0,
+     "commit"
+    ],
+    [
+     2,
+     "A",
+     0.5519,
+     1.0,
+     "commit"
+    ],
+    [
+     3,
+     "B",
+     0.7889,
+     1.0,
+     "commit"
+    ],
+    [
+     4,
+     "A",
+     1.0,
+     0.8889,
+     "regress"
+    ],
+    [
+     5,
+     "B",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     6,
+     "A",
+     null,
+     null,
+     "noop"
+    ]
+   ],
+   "exam_visible": {
+    "A": 1.0,
+    "B": 1.0
+   },
+   "exam_heldout": {
+    "A": 0.8333333333333334,
+    "B": 0.8333333333333334
+   },
+   "pair_visible": 1.0,
+   "pair_heldout": 0.8333333333333334,
+   "final_harness": {
+    "A": "bc6ee67ec7b4c7f9",
+    "B": "bc6ee67ec7b4c7f9"
+   },
+   "twins_differ": false,
+   "final_bytes": {
+    "A": 6452,
+    "B": 6452
+   },
+   "exam_calls_per_task": 2.9722222222222223,
+   "first_turn_gain": 0.4546,
+   "model_errors": 0,
+   "usd": 0.7013,
+   "calls": 428,
+   "wall_s": 1122.7
+  },
+  {
+   "run": "twin-stack-collective-r1",
+   "arm": "twin-stack-collective",
+   "rep": 1,
+   "seed_harness": "7706b46c911e0e22",
+   "baseline": {
+    "A": 0.4096,
+    "B": 0.5389
+   },
+   "outcomes": [
+    "commit",
+    "commit",
+    "commit",
+    "noop",
+    "noop",
+    "noop"
+   ],
+   "edited": [
+    true,
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "turn_scores": [
+    [
+     1,
+     "B",
+     0.4666,
+     1.0,
+     "commit"
+    ],
+    [
+     2,
+     "A",
+     0.4471,
+     1.0,
+     "commit"
+    ],
+    [
+     3,
+     "B",
+     0.8889,
+     1.0,
+     "commit"
+    ],
+    [
+     4,
+     "A",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     5,
+     "B",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     6,
+     "A",
+     null,
+     null,
+     "noop"
+    ]
+   ],
+   "exam_visible": {
+    "A": 0.9947916666666666,
+    "B": 0.9947916666666666
+   },
+   "exam_heldout": {
+    "A": 1.0,
+    "B": 1.0
+   },
+   "pair_visible": 0.9947916666666666,
+   "pair_heldout": 1.0,
+   "final_harness": {
+    "A": "d1a61d8e1c7035b8",
+    "B": "d1a61d8e1c7035b8"
+   },
+   "twins_differ": false,
+   "final_bytes": {
+    "A": 6589,
+    "B": 6589
+   },
+   "exam_calls_per_task": 2.361111111111111,
+   "first_turn_gain": 0.5334,
+   "model_errors": 0,
+   "usd": 0.5565,
+   "calls": 381,
+   "wall_s": 1001.9
+  },
+  {
+   "run": "twin-stack-collective-r4",
+   "arm": "twin-stack-collective",
+   "rep": 4,
+   "seed_harness": "7706b46c911e0e22",
+   "baseline": {
+    "A": 0.4198,
+    "B": 0.3464
+   },
+   "outcomes": [
+    "regress",
+    "commit",
+    "commit",
+    "noop",
+    "noop",
+    "noop"
+   ],
+   "edited": [
+    true,
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "turn_scores": [
+    [
+     1,
+     "B",
+     0.6586,
+     0.5076,
+     "regress"
+    ],
+    [
+     2,
+     "A",
+     0.5417,
+     0.973,
+     "commit"
+    ],
+    [
+     3,
+     "B",
+     0.7252,
+     1.0,
+     "commit"
+    ],
+    [
+     4,
+     "A",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     5,
+     "B",
+     null,
+     null,
+     "noop"
+    ],
+    [
+     6,
+     "A",
+     null,
+     null,
+     "noop"
+    ]
+   ],
+   "exam_visible": {
+    "A": 0.9857833333333333,
+    "B": 0.9857833333333333
+   },
+   "exam_heldout": {
+    "A": 1.0,
+    "B": 1.0
+   },
+   "pair_visible": 0.9857833333333333,
+   "pair_heldout": 1.0,
+   "final_harness": {
+    "A": "cee1c346cb2e399a",
+    "B": "cee1c346cb2e399a"
+   },
+   "twins_differ": false,
+   "final_bytes": {
+    "A": 5199,
+    "B": 5199
+   },
+   "exam_calls_per_task": 3,
+   "first_turn_gain": -0.1509999999999999,
+   "model_errors": 0,
+   "usd": 0.653,
+   "calls": 420,
+   "wall_s": 1154.0
+  }
+ ],
+ "arms": {
+  "twin-free-rival": {
+   "n": 3,
+   "visible": [
+    0.9255354166666667,
+    0.7949645833333333,
+    0.9375
+   ],
+   "heldout": [
+    1.0,
+    0.9583333333333333,
+    1.0
+   ],
+   "visible_mean": 0.886,
+   "heldout_mean": 0.986111111111111,
+   "outcomes": {
+    "commit": 12,
+    "regress": 1,
+    "boot_fail": 0,
+    "invalid": 0,
+    "noop": 5
+   },
+   "turns": 18,
+   "edited": 13,
+   "usd": 3.0494,
+   "calls": 1746,
+   "twins_differ": 3,
+   "exam_calls_per_task": 2.9212962962962963,
+   "final_bytes": 6821.666666666667
+  },
+  "twin-free-collective": {
+   "n": 3,
+   "visible": [
+    0.9882041666666667,
+    0.9672020833333334,
+    0.9516020833333334
+   ],
+   "heldout": [
+    0.875,
+    1.0,
+    1.0
+   ],
+   "visible_mean": 0.9690027777777778,
+   "heldout_mean": 0.9583333333333334,
+   "outcomes": {
+    "commit": 13,
+    "regress": 2,
+    "boot_fail": 0,
+    "invalid": 0,
+    "noop": 3
+   },
+   "turns": 18,
+   "edited": 15,
+   "usd": 3.1548,
+   "calls": 1929,
+   "twins_differ": 3,
+   "exam_calls_per_task": 3,
+   "final_bytes": 5890.5
+  },
+  "twin-stack-collective": {
+   "n": 3,
+   "visible": [
+    1.0,
+    0.9947916666666666,
+    0.9857833333333333
+   ],
+   "heldout": [
+    0.8333333333333334,
+    1.0,
+    1.0
+   ],
+   "visible_mean": 0.993525,
+   "heldout_mean": 0.9444444444444444,
+   "outcomes": {
+    "commit": 8,
+    "regress": 2,
+    "boot_fail": 0,
+    "invalid": 0,
+    "noop": 8
+   },
+   "turns": 18,
+   "edited": 7,
+   "usd": 1.9108,
+   "calls": 1229,
+   "twins_differ": 0,
+   "exam_calls_per_task": 2.7777777777777777,
+   "final_bytes": 6080
+  },
+  "solo-pair": {
+   "n": 3,
+   "visible": [
+    0.9902875,
+    0.96495,
+    0.9206791666666667
+   ],
+   "heldout": [
+    0.7916666666666667,
+    0.9583333333333333,
+    1.0
+   ],
+   "visible_mean": 0.9586388888888889,
+   "heldout_mean": 0.9166666666666666,
+   "outcomes": {
+    "commit": 8,
+    "regress": 0,
+    "boot_fail": 0,
+    "invalid": 0,
+    "noop": 10
+   },
+   "turns": 18,
+   "edited": 8,
+   "usd": 2.1657,
+   "calls": 1435,
+   "twins_differ": 3,
+   "exam_calls_per_task": 2.935185185185185,
+   "final_bytes": 5757.5
+  },
+  "twin-fixed-builder": {
+   "n": 3,
+   "visible": [
+    0.8873500000000001,
+    0.9363041666666667,
+    0.8909770833333333
+   ],
+   "heldout": [
+    1.0,
+    1.0,
+    0.9166666666666667
+   ],
+   "visible_mean": 0.9048770833333334,
+   "heldout_mean": 0.9722222222222222,
+   "outcomes": {
+    "commit": 10,
+    "regress": 2,
+    "boot_fail": 0,
+    "invalid": 0,
+    "noop": 6
+   },
+   "turns": 18,
+   "edited": 12,
+   "usd": 2.3368,
+   "calls": 1699,
+   "twins_differ": 3,
+   "exam_calls_per_task": 3,
+   "final_bytes": 5130.333333333333
+  }
+ },
+ "contrasts": {
+  "twin minus solo": {
+   "visible": 0.01036388888888884,
+   "p_visible": 0.7,
+   "heldout": 0.04166666666666674,
+   "p_heldout": 0.7
+  },
+  "live builder minus seed builder": {
+   "visible": 0.06412569444444438,
+   "p_visible": 0.1,
+   "heldout": -0.01388888888888884,
+   "p_heldout": 1.0
+  },
+  "stack minus free": {
+   "visible": 0.024522222222222223,
+   "p_visible": 0.2,
+   "heldout": -0.01388888888888895,
+   "p_heldout": 1.0
+  },
+  "rival minus collective": {
+   "visible": -0.08300277777777776,
+   "p_visible": 0.1,
+   "heldout": 0.02777777777777768,
+   "p_heldout": 1.0
+  }
+ },
+ "totals": {
+  "runs": 15,
+  "usd": 12.62,
+  "calls": 8038,
+  "model_errors": 0
+ },
+ "seed_exam": {
+  "label": "seed",
+  "harness": "seed",
+  "repeats": 12,
+  "calls_cap": 3,
+  "level": 3,
+  "visible": [
+   0.4759,
+   0.5558,
+   0.4571,
+   0.4995,
+   0.4267,
+   0.5839,
+   0.4709,
+   0.5155,
+   0.4917,
+   0.4747,
+   0.549,
+   0.5096
+  ],
+  "heldout": [
+   0.4961,
+   0.8487,
+   0.4551,
+   0.6489,
+   0.432,
+   0.4964,
+   0.3729,
+   0.514,
+   0.456,
+   0.6047,
+   0.3889,
+   0.5742
+  ],
+  "by_family": [
+   {
+    "bugfix": 0.7531,
+    "ledger": 0.0,
+    "logwin": 0.6745,
+    "spec": 0.4792,
+    "stock": 0.513
+   },
+   {
+    "bugfix": 0.8008,
+    "ledger": 0.25,
+    "logwin": 0.6165,
+    "spec": 1.0,
+    "stock": 0.6975
+   },
+   {
+    "bugfix": 0.7912,
+    "ledger": 0.0,
+    "logwin": 0.58,
+    "spec": 0.1667,
+    "stock": 0.7435
+   },
+   {
+    "bugfix": 0.7934,
+    "ledger": 0.2375,
+    "logwin": 0.4676,
+    "spec": 0.6667,
+    "stock": 0.6311
+   },
+   {
+    "bugfix": 0.7404,
+    "ledger": 0.0972,
+    "logwin": 0.4424,
+    "spec": 0.3333,
+    "stock": 0.5308
+   },
+   {
+    "bugfix": 0.8516,
+    "ledger": 0.125,
+    "logwin": 0.775,
+    "spec": 0.4479,
+    "stock": 0.5448
+   },
+   {
+    "bugfix": 0.8682,
+    "ledger": 0.0,
+    "logwin": 0.5446,
+    "spec": 0.1562,
+    "stock": 0.5894
+   },
+   {
+    "bugfix": 0.8915,
+    "ledger": 0.1875,
+    "logwin": 0.4676,
+    "spec": 0.5,
+    "stock": 0.5281
+   },
+   {
+    "bugfix": 0.8022,
+    "ledger": 0.182,
+    "logwin": 0.4911,
+    "spec": 0.1667,
+    "stock": 0.7453
+   },
+   {
+    "bugfix": 0.7838,
+    "ledger": 0.125,
+    "logwin": 0.5153,
+    "spec": 0.4896,
+    "stock": 0.7198
+   },
+   {
+    "bugfix": 0.8313,
+    "ledger": 0.0972,
+    "logwin": 0.7185,
+    "spec": 0.3333,
+    "stock": 0.4444
+   },
+   {
+    "bugfix": 0.757,
+    "ledger": 0.0972,
+    "logwin": 0.6745,
+    "spec": 0.5,
+    "stock": 0.6484
+   }
+  ],
+  "calls": 1296,
+  "usd": 1.3208,
+  "model_errors": 0,
+  "episodes": [
+   [
+    {
+     "family": "ledger",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900006,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900007,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900000,
+     "score": 0.5714,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900002,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900003,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900004,
+     "score": 0.7,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900005,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900006,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900007,
+     "score": 0.625,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900000,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900001,
+     "score": 0.625,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900002,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900003,
+     "score": 0.7353,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900004,
+     "score": 0.5946,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900005,
+     "score": 0.6176,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900006,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900007,
+     "score": 0.7027,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900000,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900001,
+     "score": 0.7273,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900002,
+     "score": 0.6364,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900003,
+     "score": 0.5357,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900005,
+     "score": 0.6786,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900002,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900004,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900005,
+     "score": 0.875,
+     "calls": 3
+    }
+   ],
+   [
+    {
+     "family": "ledger",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900004,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900006,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900007,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900000,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900001,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900002,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900003,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900004,
+     "score": 0.7,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900005,
+     "score": 0.3571,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900006,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900007,
+     "score": 0.875,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900000,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900002,
+     "score": 0.7353,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900003,
+     "score": 0.7353,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900004,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900005,
+     "score": 0.7059,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900006,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900007,
+     "score": 0.7297,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900000,
+     "score": 0.7143,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900001,
+     "score": 0.5455,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900002,
+     "score": 0.6364,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900003,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900004,
+     "score": 0.5385,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900005,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900000,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900002,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900003,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900004,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900005,
+     "score": 1.0,
+     "calls": 3
+    }
+   ],
+   [
+    {
+     "family": "ledger",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900006,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900007,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900000,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900002,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900003,
+     "score": 0.0833,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900004,
+     "score": 0.7,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900005,
+     "score": 0.3571,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900006,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900007,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900000,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900001,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900002,
+     "score": 0.6176,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900003,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900004,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900005,
+     "score": 0.6176,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900006,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900007,
+     "score": 0.5946,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900000,
+     "score": 0.9286,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900001,
+     "score": 0.5909,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900002,
+     "score": 0.6364,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900003,
+     "score": 0.5357,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900004,
+     "score": 0.7692,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900005,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    }
+   ],
+   [
+    {
+     "family": "ledger",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900003,
+     "score": 0.9,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900005,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900006,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900007,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900002,
+     "score": 0.1,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900003,
+     "score": 0.5833,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900004,
+     "score": 0.7,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900005,
+     "score": 0.3571,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900006,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900007,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900000,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900001,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900002,
+     "score": 0.6176,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900003,
+     "score": 0.8824,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900004,
+     "score": 0.7297,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900005,
+     "score": 0.6176,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900006,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900007,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900000,
+     "score": 0.5714,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900002,
+     "score": 0.3636,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900003,
+     "score": 0.9286,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900004,
+     "score": 0.4231,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900005,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900002,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900003,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900004,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900005,
+     "score": 1.0,
+     "calls": 3
+    }
+   ],
+   [
+    {
+     "family": "ledger",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900002,
+     "score": 0.7778,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900006,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900007,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900000,
+     "score": 0.5714,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900001,
+     "score": 0.6429,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900002,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900004,
+     "score": 0.7,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900006,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900007,
+     "score": 0.625,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900000,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900001,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900002,
+     "score": 0.7353,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900003,
+     "score": 0.6176,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900004,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900005,
+     "score": 0.6176,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900006,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900007,
+     "score": 0.7027,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900000,
+     "score": 0.3214,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900001,
+     "score": 0.7273,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900002,
+     "score": 0.4545,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900003,
+     "score": 0.6429,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900004,
+     "score": 0.5385,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900005,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900005,
+     "score": 1.0,
+     "calls": 3
+    }
+   ],
+   [
+    {
+     "family": "ledger",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900006,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900007,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900000,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900001,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900003,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900004,
+     "score": 0.7,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900005,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900006,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900007,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900000,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900002,
+     "score": 0.7353,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900003,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900004,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900005,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900006,
+     "score": 0.625,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900007,
+     "score": 0.7027,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900000,
+     "score": 0.3214,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900001,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900002,
+     "score": 0.9091,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900003,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900004,
+     "score": 0.5385,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900000,
+     "score": 0.6875,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900005,
+     "score": 1.0,
+     "calls": 3
+    }
+   ],
+   [
+    {
+     "family": "ledger",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900006,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900007,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900000,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900002,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900004,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900005,
+     "score": 0.3571,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900006,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900007,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900000,
+     "score": 0.625,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900002,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900003,
+     "score": 0.6176,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900004,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900005,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900006,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900007,
+     "score": 0.7027,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900000,
+     "score": 0.4286,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900001,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900002,
+     "score": 0.8636,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900003,
+     "score": 0.5357,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900004,
+     "score": 0.4231,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900005,
+     "score": 0.7857,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900000,
+     "score": 0.9375,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    }
+   ],
+   [
+    {
+     "family": "ledger",
+     "seed": 900000,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900004,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900006,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900007,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900002,
+     "score": 0.6,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900003,
+     "score": 0.5833,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900004,
+     "score": 0.7,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900005,
+     "score": 0.3571,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900006,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900007,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900000,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900001,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900002,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900003,
+     "score": 0.8824,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900004,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900005,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900006,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900007,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900001,
+     "score": 0.5909,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900002,
+     "score": 0.6818,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900003,
+     "score": 0.6786,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900004,
+     "score": 0.5385,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900005,
+     "score": 0.6786,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900000,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900002,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900005,
+     "score": 1.0,
+     "calls": 3
+    }
+   ],
+   [
+    {
+     "family": "ledger",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900003,
+     "score": 0.9,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900006,
+     "score": 0.5556,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900007,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900000,
+     "score": 0.5714,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900002,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900003,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900005,
+     "score": 0.3571,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900006,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900007,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900000,
+     "score": 0.625,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900001,
+     "score": 0.875,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900002,
+     "score": 0.7353,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900003,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900004,
+     "score": 0.7297,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900005,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900006,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900007,
+     "score": 0.7027,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900000,
+     "score": 0.9286,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900001,
+     "score": 0.6364,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900002,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900003,
+     "score": 0.4643,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900004,
+     "score": 0.6923,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900005,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900003,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    }
+   ],
+   [
+    {
+     "family": "ledger",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900005,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900006,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900007,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900000,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900001,
+     "score": 0.7143,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900002,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900003,
+     "score": 0.5833,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900004,
+     "score": 0.7,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900006,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900007,
+     "score": 0.625,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900000,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900002,
+     "score": 0.7353,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900003,
+     "score": 0.7353,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900004,
+     "score": 0.7297,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900005,
+     "score": 0.6176,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900006,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900007,
+     "score": 0.7027,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900000,
+     "score": 0.4286,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900002,
+     "score": 0.5909,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900003,
+     "score": 0.9286,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900004,
+     "score": 0.6923,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900005,
+     "score": 0.6786,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900000,
+     "score": 0.9375,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900003,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900004,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    }
+   ],
+   [
+    {
+     "family": "ledger",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900002,
+     "score": 0.7778,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900006,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900007,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900000,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900001,
+     "score": 0.7143,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900002,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900003,
+     "score": 0.5833,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900004,
+     "score": 0.7,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900005,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900006,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900007,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900000,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900002,
+     "score": 0.7353,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900003,
+     "score": 0.7353,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900004,
+     "score": 0.5946,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900005,
+     "score": 0.8824,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900006,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900007,
+     "score": 0.7027,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900000,
+     "score": 0.4286,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900001,
+     "score": 0.5455,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900002,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900004,
+     "score": 0.6923,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900000,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    }
+   ],
+   [
+    {
+     "family": "ledger",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900001,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900002,
+     "score": 0.7778,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900005,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900006,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "ledger",
+     "seed": 900007,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900000,
+     "score": 0.5714,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900002,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900003,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900004,
+     "score": 0.7,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900005,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900006,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "logwin",
+     "seed": 900007,
+     "score": 0.625,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900000,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900001,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900002,
+     "score": 0.5,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900003,
+     "score": 0.7353,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900004,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900005,
+     "score": 0.6176,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900006,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "bugfix",
+     "seed": 900007,
+     "score": 0.7027,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900000,
+     "score": 0.4286,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900001,
+     "score": 0.7273,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900002,
+     "score": 0.8636,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900003,
+     "score": 0.4286,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900004,
+     "score": 0.6923,
+     "calls": 3
+    },
+    {
+     "family": "stock",
+     "seed": 900005,
+     "score": 0.75,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900000,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900001,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900002,
+     "score": 1.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900003,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900004,
+     "score": 0.0,
+     "calls": 3
+    },
+    {
+     "family": "spec",
+     "seed": 900005,
+     "score": 1.0,
+     "calls": 3
+    }
+   ]
+  ],
+  "note": "two batches of sittings, 4 then 8, merged"
+ },
+ "assay": [
+  {
+   "run": "solo-pair-r0",
+   "arm": "solo-pair",
+   "slot": "A",
+   "outcome": "commit",
+   "inc": 0.502,
+   "cand": 1.0,
+   "gain": 0.498
+  },
+  {
+   "run": "twin-stack-collective-r0",
+   "arm": "twin-stack-collective",
+   "slot": "A",
+   "outcome": "commit",
+   "inc": 0.3902,
+   "cand": 0.9861,
+   "gain": 0.5959
+  },
+  {
+   "run": "twin-free-rival-r1",
+   "arm": "twin-free-rival",
+   "slot": "A",
+   "outcome": "commit",
+   "inc": 0.4411,
+   "cand": 1.0,
+   "gain": 0.5589
+  },
+  {
+   "run": "twin-free-collective-r2",
+   "arm": null,
+   "slot": "A",
+   "outcome": "noop",
+   "inc": null,
+   "cand": null,
+   "gain": 0.0
+  },
+  {
+   "run": "twin-fixed-builder-r4",
+   "arm": "twin-fixed-builder",
+   "slot": "A",
+   "outcome": "commit",
+   "inc": 0.485,
+   "cand": 1.0,
+   "gain": 0.515
+  },
+  {
+   "run": "twin-fixed-builder-r0",
+   "arm": "twin-fixed-builder",
+   "slot": "A",
+   "outcome": "commit",
+   "inc": 0.4951,
+   "cand": 1.0,
+   "gain": 0.5049
+  },
+  {
+   "run": "solo-pair-r1",
+   "arm": "solo-pair",
+   "slot": "A",
+   "outcome": "commit",
+   "inc": 0.431,
+   "cand": 0.7059,
+   "gain": 0.2749
+  },
+  {
+   "run": "twin-stack-collective-r1",
+   "arm": "twin-stack-collective",
+   "slot": "A",
+   "outcome": "noop",
+   "inc": null,
+   "cand": null,
+   "gain": 0.0
+  },
+  {
+   "run": "twin-free-rival-r2",
+   "arm": null,
+   "slot": "A",
+   "outcome": "commit",
+   "inc": 0.4484,
+   "cand": 0.5062,
+   "gain": 0.05779999999999996
+  },
+  {
+   "run": "twin-free-collective-r4",
+   "arm": "twin-free-collective",
+   "slot": "A",
+   "outcome": "noop",
+   "inc": null,
+   "cand": null,
+   "gain": 0.0
+  },
+  {
+   "run": "twin-free-collective-r0",
+   "arm": "twin-free-collective",
+   "slot": "A",
+   "outcome": "commit",
+   "inc": 0.4472,
+   "cand": 0.4358,
+   "gain": -0.011399999999999966
+  },
+  {
+   "run": "twin-fixed-builder-r1",
+   "arm": "twin-fixed-builder",
+   "slot": "A",
+   "outcome": "commit",
+   "inc": 0.5067,
+   "cand": 0.96,
+   "gain": 0.4532999999999999
+  },
+  {
+   "run": "solo-pair-r2",
+   "arm": null,
+   "slot": "A",
+   "outcome": "commit",
+   "inc": 0.3611,
+   "cand": 1.0,
+   "gain": 0.6389
+  },
+  {
+   "run": "twin-stack-collective-r2",
+   "arm": null,
+   "slot": "A",
+   "outcome": "commit",
+   "inc": 0.5202,
+   "cand": 0.9506,
+   "gain": 0.4304
+  },
+  {
+   "run": "twin-free-rival-r4",
+   "arm": "twin-free-rival",
+   "slot": "A",
+   "outcome": "commit",
+   "inc": 0.5377,
+   "cand": 0.9742,
+   "gain": 0.4365
+  },
+  {
+   "run": "twin-free-rival-r0",
+   "arm": "twin-free-rival",
+   "slot": "A",
+   "outcome": "noop",
+   "inc": null,
+   "cand": null,
+   "gain": 0.0
+  },
+  {
+   "run": "twin-free-collective-r1",
+   "arm": "twin-free-collective",
+   "slot": "A",
+   "outcome": "commit",
+   "inc": 0.5193,
+   "cand": 0.6115,
+   "gain": 0.09220000000000006
+  },
+  {
+   "run": "twin-fixed-builder-r2",
+   "arm": null,
+   "slot": "A",
+   "outcome": "commit",
+   "inc": 0.4656,
+   "cand": 0.8889,
+   "gain": 0.4233
+  },
+  {
+   "run": "solo-pair-r4",
+   "arm": "solo-pair",
+   "slot": "A",
+   "outcome": "commit",
+   "inc": 0.4306,
+   "cand": 0.9869,
+   "gain": 0.5563
+  },
+  {
+   "run": "twin-stack-collective-r4",
+   "arm": "twin-stack-collective",
+   "slot": "A",
+   "outcome": "noop",
+   "inc": null,
+   "cand": null,
+   "gain": 0.0
+  }
+ ],
+ "predictions": [
+  {
+   "id": "P1",
+   "held": true,
+   "figures": "twin-free-rival +0.385; twin-free-collective +0.468; twin-stack-collective +0.493; solo-pair +0.458; twin-fixed-builder +0.404 over the seed's 0.501"
+  },
+  {
+   "id": "P2",
+   "held": true,
+   "figures": "twin-free-collective minus solo-pair = +0.010"
+  },
+  {
+   "id": "P3",
+   "held": true,
+   "figures": "twin-free-collective minus twin-fixed-builder = +0.064"
+  },
+  {
+   "id": "P4",
+   "held": false,
+   "figures": "stack minus free = +0.025"
+  },
+  {
+   "id": "P5",
+   "held": true,
+   "figures": "rival minus collective: visible -0.083, held-out +0.028"
+  },
+  {
+   "id": "P6",
+   "held": false,
+   "figures": "55 of 90 build turns made an edit"
+  },
+  {
+   "id": "P7",
+   "held": false,
+   "figures": "7 of 58 candidates at the gate were discarded, 0 at boot"
+  },
+  {
+   "id": "P8",
+   "held": true,
+   "figures": "pooled gain over the seed: visible +0.442, held-out +0.432"
+  },
+  {
+   "id": "P9",
+   "held": true,
+   "figures": "assay mean +0.250 over 12 built harnesses, first-turn mean +0.331 over 15 seed builders, difference -0.080"
+  }
+ ]
+}
