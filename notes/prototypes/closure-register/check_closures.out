@@ -147,6 +147,22 @@ CL-7 [crossed_bounds] certificate holds on 36 of 36 units: sector is closed
      MLP host 11, 6 bits      upper 0.003074  lower 0.01559  holds; the rounded cell drops the native score by 0.0039
      MLP host 11, 7 bits      upper 0.00306  lower 0.007794  holds; the rounded cell drops the native score by 0.0014
 
+CL-8 [crossed_bounds] certificate holds on 1 of 1 units (11 not counted): sector is closed
+   One radius of a ball in the largest gap between the sorted sizes of the links of each layer's maximum spanning tree, on a nonlinear host, that admits a fine-tune which passes the joint bar and rejects a move which breaks the retention bar.
+   no value of the gate radius R meets both bounds; lower / upper runs from 3.08 to 3.08
+     MLP host 0               upper 0.3  lower 0.1811  not counted; the fine-tune has length 8.73. Its largest gap is not above the breaking move, so the host is left open
+     MLP host 1               upper 0.3  lower 0.1503  not counted; the fine-tune has length 8.71. Its largest gap is not above the breaking move, so the host is left open
+     MLP host 2               upper 0.3  lower 0.1652  not counted; the fine-tune has length 8.57. Its largest gap is not above the breaking move, so the host is left open
+     MLP host 3               upper 0.1  lower 0.3084  holds; the fine-tune has length 9.03
+     MLP host 4               upper 0.3  lower 0.2903  not counted; the fine-tune has length 8.74. Its largest gap is not above the breaking move, so the host is left open
+     MLP host 5               upper 0.3  lower 0.1912  not counted; the fine-tune has length 8.06. Its largest gap is not above the breaking move, so the host is left open
+     MLP host 6               upper 0.3  lower 0.2127  not counted; the fine-tune has length 9.22. Its largest gap is not above the breaking move, so the host is left open
+     MLP host 7               upper 0.3  lower 0.1828  not counted; the fine-tune has length 9.03. Its largest gap is not above the breaking move, so the host is left open
+     MLP host 8               upper 0.3  lower 0.1926  not counted; the fine-tune has length 8.61. Its largest gap is not above the breaking move, so the host is left open
+     MLP host 9               upper 0.3  lower 0.1722  not counted; the fine-tune has length 9.12. Its largest gap is not above the breaking move, so the host is left open
+     MLP host 10              upper 0.3  lower 0.1969  not counted; the fine-tune has length 8.84. Its largest gap is not above the breaking move, so the host is left open
+     MLP host 11              upper 0.3  lower 0.2034  not counted; the fine-tune has length 8.68. Its largest gap is not above the breaking move, so the host is left open
+
 RO-1 [counterexample] witness holds on 8 of 8 units (1 not counted): sector is open
    Reaching the reversal skill on the toy transformer with every attention weight frozen and the native skills kept.
      seed 3                   holds; first-layer packet: reversal 1, native skills 1 and 1

@@ -75,6 +75,17 @@
    "lower": "length >= the smallest step of the grid: one weight moved by one level.",
    "scope": "The 12 MLP hosts, at 5, 6 and 7 bits per weight, where the rounded cell keeps the bar. It covers the first step from the rounded cell, on the grid fixed at rounding, for weights only: biases are not on the grid. It closes the certificate and not the change: a grid step may be harmless, and this theorem cannot show it.",
    "reopens_if": "A sharper bound than Theorem 1, or a grid of 9 bits or more, where one step fits inside the proved ball on all 12 hosts."
+  },
+  {
+   "id": "CL-8",
+   "kind": "crossed_bounds",
+   "check": "persistence_ball_gate",
+   "sector": "One radius of a ball in the largest gap between the sorted sizes of the links of each layer's maximum spanning tree, on a nonlinear host, that admits a fine-tune which passes the joint bar and rejects a move which breaks the retention bar.",
+   "parameter": "gate radius R",
+   "upper": "R < the length of an exhibited move that breaks the retention bar. The largest gap of that move is at most its length.",
+   "lower": "R >= the largest gap of an exhibited passing fine-tune. A smaller ball rejects it.",
+   "scope": "1 of the 12 MLP hosts of the calibration record, host 3, where the largest gap of the fine-tune is above the length of the breaking move. The other 11 hosts are left open. closure_persist.py rebuilds each fine-tune, checks it against its recorded row, and saves the numbers. The 11 hosts where it is not above are not counted. The summed gap is a different distance and is not registered here.",
+   "reopens_if": "Never for the hosts counted. A host outside them stays open until a shorter breaking move or a larger gap is exhibited."
   }
  ],
  "reopened": [

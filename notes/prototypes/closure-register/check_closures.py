@@ -14,8 +14,9 @@ programs that produced them are in the records named below and are
 deterministic for a given seed. closure_balls.py rebuilds the adversary's
 moves on the MLP hosts and checks them against the record. closure_quant.py
 rebuilds the fine-tunes of the MLP hosts and saves closure_quant.json, which
-CL-5 to CL-7 read. The breaking move and the fine-tune behind CL-5 and CL-6
-are checked against the calibration record. The numbers of the rounded cells
+CL-5 to CL-7 read. closure_persist.py does the same for CL-8 and saves
+closure_persist.json. The breaking move and the fine-tune behind CL-5, CL-6
+and CL-8 are checked against the calibration record. The numbers of the rounded cells
 exist only in closure_quant.json and are read as saved. What a path needs is
 written by hand in closures.json.
 
@@ -181,9 +182,31 @@ def grid_step_in_proved_ball():
     return out
 
 
+def persistence_ball_gate():
+    """CL-8. A breaking move is shorter than the largest gap of the passing fine-tune. Hosts where it is not stay open."""
+    hosts = load(HERE / "closure_persist.json")["hosts"]
+    res = load(CAL / "results.json")
+    out = []
+    for h, host, ph in zip(hosts, res["hosts"], res["analysis"]["per_host"]):
+        fine = next(x for x in host["rows"] if x["natural"] and x["class"] == "finetune_joint")
+        if h["seed"] != ph["seed"] or abs(h["finetune_r"] - fine["r"]) > 1e-9 * fine["r"] or h["break_r"] != ph["H6_r_break_adv"]:
+            raise SystemExit("FAIL: closure_persist.json does not match the calibration record; rerun closure_persist.py")
+        harm = [x for x in host["rows"] if x["class"] == "adv" and not x["natural"] and h["break_r"] is not None and abs(x["r"] - h["break_r"]) <= 1e-12]
+        breaks = bool(harm) and harm[0]["drop"] > BAR
+        passes = fine["drop"] <= BAR and fine["novel_r2_after"] >= NOVEL_MIN
+        upper, lower = h["break_r"], h["finetune_largest_gap"]
+        if lower > h["finetune_r"] * (1 + 1e-12):
+            raise SystemExit("FAIL: a largest gap exceeds the length of its move")
+        crossed = breaks and passes and upper < lower
+        out.append(dict(unit=f"MLP host {h['seed']}", upper=upper, lower=lower, closed=True if crossed else None,
+                        note=f"the fine-tune has length {h['finetune_r']:.2f}" + ("" if crossed else ". Its largest gap is not above the breaking move, so the host is left open")))
+    return out
+
+
 CHECKS = {f.__name__: f for f in (plasm_linear_cell, ball_gate_nonlinear, probe_threshold_known_probes,
                                   admission_rule_sufficient, reversal_without_attention,
-                                  quotient_ball_gate, ball_gate_rounded_copy, grid_step_in_proved_ball)}
+                                  quotient_ball_gate, ball_gate_rounded_copy, grid_step_in_proved_ball,
+                                  persistence_ball_gate)}
 
 
 def fmt(x):
