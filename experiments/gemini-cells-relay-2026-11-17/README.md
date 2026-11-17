@@ -8,11 +8,11 @@ Weft-loom pull request 27 proposes twin cells that take turns editing each other
 
 `design`
 
-The instrument is here and tested offline. No relay run has been made, and nothing in this folder is a measured result yet. The preregistration and the runs follow in later commits.
+The instrument is here, tested offline and calibrated live. No relay run has been made yet, apart from one excluded warm run. The plan is committed, and the runs follow in later commits.
 
 ## Preregistration
 
-Not written yet. It will be committed and pushed before the first relay run.
+[PREREG.md](PREREG.md), committed and pushed before the first relay run, with the hash of every frozen file.
 
 ## What is here
 
