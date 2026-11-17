@@ -118,7 +118,7 @@ The largest gap is therefore at most the largest change of any weight, which is 
 
 Skraba and Turner (2020, Theorem 4.8) bound a related distance between the two records by the 2-norm of the change. That distance may pair a level with nothing, so it can be smaller than the summed gap and does not bound it.
 
-This paragraph was corrected twice after the run, on the advice of a second reader. The definitions, the plan and the predictions were not touched.
+This paragraph was corrected twice after the run. The first time, a check of the source showed what the theorem of Skraba and Turner covers. The second time, a second reader pointed out the weak bound. The definitions, the plan and the predictions were not touched.
 
 **Plan, written before the run.** Rebuild each of the 12 MLP hosts' passing fine-tunes as `closure_quant.py` does. Compute both gaps between the host and its fine-tune. For the breaking move, use its own length as the upper bound on its largest gap. If the breaking move can be rebuilt from the calibration record's program, compute both of its gaps exactly as well.
 
