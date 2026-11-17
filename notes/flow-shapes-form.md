@@ -66,7 +66,7 @@ The gemma record found them. One weight in 5,845 of the feed-forward output matr
 
 **The form that training leaves is not arbitrary, even where the function does not depend on it.** [I] On gemma, a move along exact symmetries, 1.6 times as long as the weights, changes the output by a mean KL of 0.00005.
 
-Balancing through the same symmetries before rounding to 5 bits gives 5.507 where rounding the weights as trained gives 2.184. The record did not examine why. The two replies treat these symmetries as waste to remove. For rounding, on this model, the trained form was the better one.
+Balancing through the same symmetries before rounding to 5 bits gives 5.507 where rounding the weights as trained gives 2.184. The record did not examine why. The two replies treat these symmetries as waste to remove. For rounding, on this model and with one scale for each matrix, the trained form was the better one.
 
 **Weighting the error by the flow has been tried.** The activation-weighted error of the gemma record counts each weight by the mean square of the input it multiplies.
 
@@ -86,7 +86,7 @@ Those levels are the sizes of the links of a maximum spanning tree. This is the 
 
 So the score is mostly a statistic of each row's and each column's largest entry. On random matrices 72 to 85 percent of the tree is such an entry, and the maxima alone give 97 to 98 percent of the score (siliquant, `persist/demo.out`).
 
-[I] The scale rule that worked on gemma sets a row's step from its largest entry. The score and the rule read the same thing.
+[I] The scale rule that did best in siliquant's gemma record, an exploratory one, sets a row's step from the row's largest entry. The score reads that entry too, and each column's largest.
 
 **It cannot be a gate.** [P] The score depends only on the sizes of the weights, and on the graph up to a reordering of the rows and of the columns of each layer on its own.
 
@@ -141,8 +141,8 @@ The claim-by-claim check is in siliquant. In short:
 | Form drag and permutation symmetry | Real for merging two trained models. CL-5 already measured distance after the best relabelling, and it gives no usable radius. |
 | Boundary layers and masked adapters | No source found for the method named. Not evaluated. |
 | Vortex drag and rotations | The premise is wrong: a loss on the product of weights and inputs does not change when both are rotated together. |
-| Shock waves and the fold path | The fold ends at the densest packing, and rounding wants the least error. Siliquant bounds the end point at 0.35 dB. The schedule has not been run. |
-| Skin friction and lookup tables | Memory read per token is a real cost. The incentre codes lose to scalar rounding at equal bits in siliquant's record of 2026-11-17. |
+| Shock waves and the fold path | Siliquant bounds the end point of the fold at 0.35 dB by its cell, under the 0.65 of E8. The schedule has not been run. |
+| Skin friction and lookup tables | Memory read per token is a real cost. As proposed, the incentre codes do not beat a scalar mix at equal bits in siliquant's record of 2026-11-17. No record has measured the speed of a decoder. |
 | Turbulence and persistence | The paper uses no cycles and prunes nothing. See the section above. |
 
 ## What stays open
