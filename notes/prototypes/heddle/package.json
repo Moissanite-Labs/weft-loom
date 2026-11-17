@@ -1,0 +1,9 @@
+{
+  "name": "heddle-prototype",
+  "private": true,
+  "type": "module",
+  "description": "Prototype for notes/heddle-steering-instrument.md. Not part of the Weft runtime.",
+  "scripts": {
+    "test": "node --test test_heddle.mjs"
+  }
+}
