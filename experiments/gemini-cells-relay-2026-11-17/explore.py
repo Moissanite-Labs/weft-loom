@@ -95,6 +95,57 @@ def main() -> int:
         out.append(f"| {arm} | {len(rs)} | {statistics.mean(e['usd'] for e in ends):.2f} | {statistics.mean(e['calls'] for e in ends):.0f} | "
                    f"{statistics.mean(bc):.1f} | {statistics.mean(e['wall_s'] for e in ends) / 60:.0f} |")
     out.append("")
+    # 4. every fault-free run, including the four of replicate 2 that the planned analysis leaves out
+    VIS, HELD = ("ledger", "logwin", "bugfix"), ("stock", "spec")
+
+    def pair(rows, fams):
+        vals = []
+        for r in rows:
+            if r["kind"] == "exam":
+                sc = [e["score"] for e in r["report"]["episodes"] if e["family"] in fams]
+                vals.append(statistics.mean(sc))
+        return statistics.mean(vals)
+
+    out += ["## Every fault-free run", "",
+            "The planned analysis reads only replicates complete in all five arms. This table adds the runs it leaves out.", "",
+            "| Arm | Runs | Exam visible, pair mean (each run) | Mean | Exam held-out, pair mean (each run) | Mean |", "|---|---|---|---|---|---|"]
+    for arm in ARMS:
+        rs = sorted((rows for rows in runs if rows[0]["arm"] == arm), key=lambda rows: rows[0]["rep"])
+        v, h = [pair(rows, VIS) for rows in rs], [pair(rows, HELD) for rows in rs]
+        out.append(f"| {arm} | {len(rs)} | {', '.join(f'{x:.3f}' for x in v)} | {statistics.mean(v):.3f} | "
+                   f"{', '.join(f'{x:.3f}' for x in h)} | {statistics.mean(h):.3f} |")
+    out.append("")
+
+    # 5. kept candidates that carried no edit (the stack rule sends a copy through the gate)
+    out += ["## Kept candidates with and without an edit", "", "| Arm | Kept | of which the builder had edited | of which a plain copy of the builder's harness |", "|---|---|---|---|"]
+    for arm in ARMS:
+        ts = [t for rows in runs if rows[0]["arm"] == arm for t in rows if t["kind"] == "turn" and t["outcome"] == "commit"]
+        out.append(f"| {arm} | {len(ts)} | {sum(bool(t['edited']) for t in ts)} | {sum(not t['edited'] for t in ts)} |")
+    out.append("")
+
+    # 6. the same final harnesses with one model call per task
+    kx = root.parent / "kexam-1.jsonl"
+    if kx.exists():
+        k1 = {json.loads(x)["harness"]: json.loads(x) for x in kx.read_text().splitlines() if x.strip()}
+        out += ["## The final harnesses with one model call per task", "",
+                "Each final harness sat the same exam again with 1 model call per task in place of 3. One sitting each.", "",
+                "| Arm | Final harnesses measured | Visible at 1 call (each) | Mean | Held-out at 1 call, mean | Visible at 3 calls, mean |", "|---|---|---|---|---|---|"]
+        for arm in ARMS:
+            v1, h1, v3 = [], [], []
+            for rows in runs:
+                if rows[0]["arm"] != arm:
+                    continue
+                for r in rows:
+                    if r["kind"] == "exam" and r["harness"] in k1:
+                        v1.append(k1[r["harness"]]["visible"])
+                        h1.append(k1[r["harness"]]["heldout"])
+                        v3.append(statistics.mean(e["score"] for e in r["report"]["episodes"] if e["family"] in VIS))
+            if v1:
+                out.append(f"| {arm} | {len(v1)} | {', '.join(f'{x:.2f}' for x in v1)} | {statistics.mean(v1):.3f} | {statistics.mean(h1):.3f} | {statistics.mean(v3):.3f} |")
+        seed_rows = [x for x in k1.values() if x["first_seen"] == "seed"]
+        if seed_rows:
+            out += ["", f"The seed harness with 1 call: visible {seed_rows[0]['visible']:.3f}, held-out {seed_rows[0]['heldout']:.3f}."]
+        out.append("")
     (HERE / "results" / "explore.md").write_text("\n".join(out))
     print("\n".join(out))
     return 0

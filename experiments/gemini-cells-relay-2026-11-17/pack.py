@@ -55,6 +55,25 @@ def main() -> int:
         (dst / "artifacts.tar.gz").write_bytes(buf.getvalue())
         for name in ("log.jsonl", "artifacts.tar.gz"):
             manifest.append(f"{hashlib.sha256((dst / name).read_bytes()).hexdigest()}  runs/{run.name}/{name}")
+    # runs set aside for a referee fault: the log is kept as the record of the fault
+    fdst = HERE / "results" / "faulted"
+    for run in sorted((root / "faulted").iterdir()) if (root / "faulted").is_dir() else []:
+        for name in ("log.jsonl", "exam_resit.jsonl"):
+            f = run / name
+            if not f.exists():
+                continue
+            if private_hits(f.read_text(errors="replace")):
+                refused.append((f"faulted/{run.name}/{name}", ["private text"]))
+                continue
+            (fdst / run.name).mkdir(parents=True, exist_ok=True)
+            shutil.copy(f, fdst / run.name / name)
+            manifest.append(f"{hashlib.sha256(f.read_bytes()).hexdigest()}  faulted/{run.name}/{name}")
+    for f in sorted(root.glob("kexam-*.jsonl")):
+        if private_hits(f.read_text(errors="replace")):
+            refused.append((f.name, ["private text"]))
+            continue
+        shutil.copy(f, HERE / "results" / f.name)
+        manifest.append(f"{hashlib.sha256(f.read_bytes()).hexdigest()}  {f.name}")
     for f in sorted(root.glob("assay*.jsonl")):
         hits = private_hits(f.read_text(errors="replace"))
         if hits:
