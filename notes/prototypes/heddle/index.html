@@ -292,7 +292,7 @@ code { font: 12px var(--mono); background: var(--panel); padding: 1px 4px; borde
     </section>
 
     <section class="shed" aria-labelledby="h-shed">
-      <h2 id="h-shed">Shed <small id="shed-note">futures woven ahead of you</small></h2>
+      <h2 id="h-shed">Futures <small id="shed-note">woven ahead of you</small></h2>
       <div class="fan" id="fan"></div>
       <p class="note" id="spec-note"></p>
     </section>
@@ -308,17 +308,17 @@ code { font: 12px var(--mono); background: var(--panel); padding: 1px 4px; borde
       <h2>How to read it</h2>
       <ul>
         <li><b>Cloth</b>: a network of 467 weights turns each point into a colour. Every input is on screen, so the picture is the model's whole behaviour.</li>
-        <li><b>Shafts</b>: the directions in weight space that change the picture most per step. One unit of travel changes the outputs by one unit, whichever shaft you move.</li>
+        <li><b>Shafts</b>: the directions in weight space that change the picture most per step. To first order, one unit of travel changes the outputs by one unit, whichever shaft you move.</li>
         <li><b>Treadles</b>: named changes, each tied to the shafts. The percentage is the share of the named change these shafts can carry.</li>
-        <li><b>Heddles</b>: points you pin. Moves are projected so pinned points do not shift to first order.</li>
+        <li><b>Heddles</b>: points you pin. The loom is threaded around them, so pinned points do not shift to first order.</li>
       </ul>
     </div>
     <div>
       <h2>What a beat checks</h2>
       <ul>
         <li>Weft's own gate: the weights stay within a fixed distance of the baseline and the budget covers the pick.</li>
-        <li>A claim: no point of the cloth changes by more than the limit. A search looks for one point that breaks it. If it finds one, the pick snaps and the cloth stays.</li>
-        <li>Fresh probes, drawn from the new weights' hash after the pick is fixed, measure what the pick did.</li>
+        <li>A claim: no point of the cloth changes by more than the limit. A search looks for one point that breaks it, and it alone decides. If it finds one, the pick snaps and the cloth stays.</li>
+        <li>Fresh probes, drawn from the new weights' hash after the pick is fixed, measure what the pick did. They do not decide it.</li>
         <li>The closer a pick comes to its limits, the longer you must hold to make it.</li>
       </ul>
     </div>

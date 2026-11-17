@@ -37,8 +37,8 @@ A prediction is confirmed in an arm when it holds on at least 11 of 12 hosts. Th
 
 | Prediction | Random hosts | Fitted hosts |
 |---|---|---|
-| H1a Up to travel 0.6 a treadle's label is right within a factor 1.1 | 12 of 12, 1.03 to 1.09 | 11 of 12, 1.02 to 1.21 |
-| H1b At travel 0.9, within 1.25 | 12 of 12, 1.04 to 1.13 | 11 of 12, 1.03 to 1.36 |
+| H1a Up to travel 0.6 a treadle's label is right within a factor 1.1 | 12 of 12, 1.03 to 1.08 | 11 of 12, 1.02 to 1.21 |
+| H1b At travel 0.9, within 1.25 | 12 of 12, 1.04 to 1.12 | 11 of 12, 1.03 to 1.36 |
 | H1c At travel 2.5 the label is off by more than 1.1 | 12 of 12, 1.15 to 1.44 | 12 of 12, 1.10 to 2.79 |
 | H2a Two treadles add, within 0.06, up to travel 0.3 | 12 of 12, 0.025 to 0.053 | 12 of 12, 0.017 to 0.043 |
 | H2b Within 0.2 at travel 0.9 | 12 of 12, 0.073 to 0.138 | 12 of 12, 0.051 to 0.123 |
@@ -65,8 +65,8 @@ A prediction is confirmed in an arm when it holds on at least 11 of 12 hosts. Th
 
 ### What the predictions say together
 
-- **A label holds further than the claim lets a pick go.** Up to travel 0.6 the measured gain of a treadle on held-out inputs is within 1.1 of what the tie-up promised on 23 of 24 hosts. Of the 1,440 forecast picks, none of which presses a treadle further than 0.6, 869 snapped. So on these hosts the knob's label is not what limits a pick. The claim is.
-- **The forecast was right at both ends.** Pooled over both arms, 0 of 419 picks with tension below 0.7 snapped, 830 of 831 with tension 1.0 or more snapped, and 39 of 190 in between. The forecast is a first-order reading on 100 probes. The check is a search over 9,600 inputs.
+- **A label holds further than the claim lets a pick go.** Up to travel 0.6 the measured gain of a treadle on held-out inputs is within 1.1 of what the tie-up promised on 23 of 24 hosts. Of the 1,440 forecast picks, none of which presses a treadle further than 0.6, 869 snapped. So with the default limit of 0.5 the claim binds before the label does. Travel and the limit are in the same units, so this follows from the choice of limit as much as from the hosts.
+- **The forecast was close.** Pooled over both arms, 0 of 419 picks with tension below 0.7 snapped, 830 of 831 with tension 1.0 or more snapped, and 39 of 190 in between. The forecast is a first-order reading on 100 probes. The check is a search over 9,600 inputs. The lowest-tension snap was at 0.883, with 111 picks between 0.7 and it, so these hosts do not single out 0.7: any threshold up to 0.88 reads the same. No person took part, so nothing here says which picks need one.
 - **A heddle is expensive.** Sixteen pins close 48 of 467 directions, about a tenth, and leave between 0.28 and 0.60 of the named reach.
 - **Probes that are known leave room.** The change that fits between the probes falls as they multiply, from about 0.23 at 3 a side to about 0.014 at 10 a side for a move of length 0.3 (medians). For the move hidden from the 10 by 10 grid, 64 probes drawn afterwards see between 0.13 and 0.81 of what the search finds.
 - **The ball is the wrong shape here too.** Every random move at the gate's radius of 2.0 broke the claim on every host, and the top shaft breaks it at a radius between 0.07 and 0.19. This repeats the calibration record's H1a and H6d on a different host.
@@ -100,7 +100,7 @@ Ranges over all 24 hosts. Re-threading kept a higher share on 22 of 24 hosts at 
 - **Twelve hosts per arm, one machine, one run.** The fitted arm is fitted to one kind of picture. Thresholds were set on four pilot seeds, and two of them turned out too tight.
 - **The claim's limit and the gate's radius are the instrument's defaults**, 0.5 and 2.0. Other values were not tried. H5b in particular depends on the radius.
 - **The hidden move is first order** and its length is fixed at 0.3. A stronger adversary would find more room. H4 is a lower bound on what hides.
-- **The dispute search is bounded.** "Did not snap" means no input above the limit was found among 9,600.
+- **The dispute search is bounded, and it starts from a fixed lattice.** "Did not snap" means no input above the limit was found among 9,600. A proposer could know the lattice. The fresh probes measure a pick and do not decide it.
 - **Sixteen shafts and one probe grid.** Shares, and so H1's choice of treadles and H3c, depend on both.
 - **No person took part.** Nothing here says whether a person steers better with this instrument, which is the question the note cares about most.
 - **H5a, H5b and the bound in H5c restate known results** on a new host. They are checks that this host behaves like the calibration hosts, not new findings.

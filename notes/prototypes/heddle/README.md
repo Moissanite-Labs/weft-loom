@@ -63,9 +63,10 @@ Only stated, or true by construction:
 
 - **The gesture.** A draft records the gesture the page saw. Nothing proves a person made it.
 - **Admission is a sampled reading.** "No input found above the limit" is the result of a bounded search over 9,600
-  inputs. A larger search could find one.
+  inputs. A larger search could find one. The search starts from a fixed lattice, not from the fresh probes, so a
+  proposer could know where it looks. The fresh probes measure a pick. They do not decide it.
 - **The display.** Colours are a fixed map of the three outputs, for the eye only. No check reads a colour.
-- **The frame time on the page** is that browser on that machine. It is a reading, not a result.
+- **The redraw time on the page** is script time in that browser on that machine. It is a reading, not a result.
 - **The hidden move is first order.** It shows that room to hide exists. It is not the best an adversary could do.
 
 The measurements made with this code are in the record
@@ -73,20 +74,21 @@ The measurements made with this code are in the record
 
 ## Vocabulary
 
-Each word names one object in the code. The note gives the reasons for the choice.
+What each word names in the code. The note gives the reasons for the choice. The note also speaks of three
+selvedges: the two below and the proved radius, which the page marks on the left one.
 
 | Word | What it is here |
 |---|---|
-| warp | the baseline weights, and whatever the pins hold still |
+| warp | the baseline weights |
 | shaft | a unit eigenvector of `G = J'J/(n m)` on the fit probes, with its eigenvalue |
 | treadle | a named output pattern, tied to the shafts by least squares |
 | tie-up | the matrix of those coefficients, shafts by treadles |
-| heddle | a pinned input: its outputs must not move to first order |
+| heddle | a pinned input (`pin` in the code): its outputs are held still to first order |
 | shed | the moves that pass the pins: the null space of the pins' Jacobian |
 | pick | one committed move, with its weight root and its claim |
 | snap | a move the gate accepted and one input refuted. The weights do not change |
 | fell | the last committed weights |
-| selvedge | the gate `‖w − w0‖ ≤ R` of weft's invariants |
+| selvedge | an edge a pick should stay inside. The page draws two beside the cloth: on the left the gate `‖w − w0‖ ≤ R` of weft's invariants, on the right the claim's limit against the first-order forecast |
 | draft | the hash-chained record of a session |
 
 ## Licence and sources

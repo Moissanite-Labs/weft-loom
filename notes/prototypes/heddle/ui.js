@@ -7,7 +7,7 @@
  *   focus monitor          the cloth dims wherever the pending move changes nothing
  *   attention lock         heddles: points pinned by hand, kept still to first order
  *   future vector steering shafts and treadles, in units of behaviour
- *   realtime re-generation the shed (futures woven ahead, discarded when stale) and unpicking
+ *   realtime re-generation futures woven ahead of the knob and discarded when stale, and unpicking
  */
 import * as hd from "./heddle.js";
 
@@ -382,7 +382,7 @@ function showPending() {
     : a.zone === "auto" ? "Beat"
     : a.zone === "shared" ? "Hold to beat"
     : "Hold longer: tie the knot";
-  $("frame-note").textContent = `Frame ${fmt(frameMs, 1)} ms of a 16.7 ms budget. Futures woven ahead ${spec.woven}, taken ${spec.taken}, discarded ${spec.discarded}.`;
+  $("frame-note").textContent = `Redraw ${fmt(frameMs, 1)} ms of script time, in a 16.7 ms frame. Futures woven ahead ${spec.woven}, taken ${spec.taken}, discarded ${spec.discarded}.`;
 }
 
 function fanKey() {
@@ -422,8 +422,8 @@ function tendFan() {
     spec.discarded += fan.items.filter((it) => it.woven && !it.taken).length;
     fan.key = key;
     buildFan();
-    $("shed-note").textContent = hidden ? "no futures while a hidden move is pending"
-      : `futures along ${active.kind === "shaft" ? `shaft ${active.key + 1}` : `the ${active.key} treadle`}, woven ahead of you`;
+    $("shed-note").textContent = hidden ? "none while a hidden move is pending"
+      : `along ${active.kind === "shaft" ? `shaft ${active.key + 1}` : `the ${active.key} treadle`}, woven ahead of you`;
     return true;
   }
   if (hidden) return false;
