@@ -30,33 +30,41 @@ Labels: [P] proved here, [K] known, [I] a reading. The sources are listed at the
 
 Drag is the energy a flow loses for each unit it carries. A shape with less drag carries the same flow and loses less.
 
-[I] For a model, the counterpart with real units is what a system spends for each unit of useful output: joules, or bytes of memory read, for each token at a given quality. For rounding weights it is bits per weight at a given change of the output. That last one has a proved floor, Shannon's, and siliquant keeps the table of what each part of the gap to it can be worth.
+[I] For a model, the counterpart with real units is what a system spends for each unit of useful output: joules, or bytes of memory read, for each token at a given quality. For rounding weights it is bits per weight at a given change of the output.
+
+[K] For the squared error of the weights there is a proved floor, Shannon's, and siliquant keeps the table of what each part of the gap to it can be worth. For the change of the output no floor is known. Siliquant's gemma record found that the error of the weights does not say what the output does.
 
 ## Five principles that carry over
 
 **1. A budget with floors.** [K] An engineer does not reduce "drag". The total is split into parts, each with its own floor, and the work goes to the largest part that is above its floor.
 
-[P] For rounding the parts can be counted in bits per weight. At high rates no shape of cell saves more than 1.53 dB, which is 0.25 bit, and E8 saves 0.65 dB, 0.11 bit.
+[K] For the squared error of rounded weights the parts can be counted in bits per weight. At high rates no shape of cell saves more than 1.53 dB, which is 0.25 bit (Zador, Gersho), and E8 saves 0.65 dB, 0.11 bit.
 
-A scale stored in 16 bits for every 32 weights costs 0.50 bit. So the storage of scales is a larger part than everything a cell shape can give. The first two figures are in siliquant's `bounds/bounds.out`. The third is the bit count of the `Q4_0` rule.
+A scale stored in 16 bits for every 32 weights costs 0.50 bit. So the storage of scales is a larger part than everything a cell shape can give. The first two figures are in siliquant's `bounds/bounds.out` and are turned into bits in its `notes/budget.out`. The third is the bit count of the `Q4_0` rule as siliquant's records count it.
 
 **2. Equal gain at the margin.** [K] A wing of given span has least induced drag when the air is pushed down equally along the span. A branching vessel costs least to run when the cube of the parent's radius is the sum of the cubes of the branches (Murray's law). In both, one more unit of resource buys the same gain everywhere.
 
 If it did not, moving a unit from a poor place to a rich one would be a free improvement. The first is due to Prandtl and Munk.
 
-[K] The same holds for splitting bits over parts of a signal: the best split gives each part the mean rate plus half the logarithm of how much it matters, over the geometric mean (Huang and Schultheiss, 1963, and the rule called reverse water-filling). Parts under the water level get no bits at all. That is a closure with a formula.
+[K] The same holds for splitting bits over parts of a signal. At high rates the best split gives each part the mean rate plus half the logarithm of how much it matters, over the geometric mean (Huang and Schultheiss, 1963). At low rates, parts under a level get no bits at all, the rule called reverse water-filling. That is a closure with a formula.
 
-[I] The siliquant record on gemma has the numbers this needs and has not used them. At the same 4 bits, per weight, one kind of matrix costs 52 times the KL of another. Under the principle that gap is recoverable loss. The plan in siliquant, `experiments/output-budget-gemma-e4b-2026-11-17`, tests it.
+[I] The siliquant record on gemma has the numbers this needs and has not used them. At the same 4 bits, per weight, one kind of matrix costs 52 times the KL of another. Those figures are from the arm with one scale for each matrix, which breaks the model at 4 bits, and its parts do not add.
+
+Under the principle such a gap is recoverable loss. The plan in siliquant, `experiments/output-budget-gemma-e4b-2026-11-17`, tests it. Until its pull request merges it is on the branch `record/output-budget-gemma-e4b-20261117`.
 
 **3. Cost that grows slower than flow makes trees.** [K] When carrying twice the flow in one channel costs less than twice as much, flows merge into trunks, and the cheapest network that serves every point is a tree. River basins are the standard example (Gilbert 1967, Banavar and others 2000, Rinaldo and others 1992).
 
 [I] This is the form of the proposal that has a theorem behind it. It does not say that training makes trees. It says what to look for: a few trunks carrying most of the flow.
 
-The gemma record found them. One weight in 5,845 of the feed-forward output matrices lies beyond five standard deviations of its row, the ten busiest hidden units of a layer hold 2 to 24 percent of them, and pulling them back does more damage than rounding every weight to 5 bits.
+The gemma record has something of that shape, and no measure of flow. One weight in 5,845 of the feed-forward output matrices lies beyond five standard deviations of its row. They are not a handful: 188,362 in all, in every layer. They are not evenly spread: the ten busiest hidden units of a layer hold 2 to 24 percent of them. Pulling them back does more damage than the best rounding of every weight to 5 bits.
 
-**4. Noise in place of structure.** [K] A small random error can cost less than a smaller structured one. Dither is the worked case: noise added before rounding makes the error independent of the signal (Schuchman 1964). The trips that keep a boundary layer attached are the fluid case.
+Whether those weights carry most of what the layer passes on was not measured. Large is not the same as carrying flow.
 
-[I] The gemma record has one direct measurement. The same entries moved by the same amounts give a mean KL of 0.318 when all are pulled toward zero and 0.095 when each goes toward or away at random. Squared error cannot tell the two apart. The siliquant plan asks whether such a change adds up over layers where rounding does not.
+**4. A small disturbance in place of a structured loss.** [K] A disturbance added on purpose can cost less than the structured loss it prevents. Dither is the worked case in rounding: noise added before rounding and taken away after makes the error independent of the signal, when the noise meets a condition (Schuchman 1964). In a fluid the case is a trip that roughens the flow near a surface and keeps it attached.
+
+[I] The gemma record has one direct measurement. The same entries moved by the same amounts give a mean KL of 0.318 when all are pulled toward zero and 0.095 when each goes toward or away at random. Squared error cannot tell the two apart.
+
+It is one random draw, and the record did not test whether these entries are more sensitive than others to any change. The siliquant plan asks whether such a change adds up over layers where rounding does not.
 
 **5. The best shape depends on the model of the flow.** [K] Newton's body of least resistance has a flat front, and it is best only for the flow he assumed.
 
@@ -74,7 +82,7 @@ It ranked 26 scored changes with a rank correlation of 0.763, under the 0.889 of
 
 **The metric the first reply proposes is the matrix G of the calibration record.** That reply takes the expected product of the Jacobian with itself as the distance in which parameters should move. `experiments/gate-metric-calibration-2026-11-15/THEORY.md` defines the same matrix.
 
-Its distance matched the change on the probes within 1.1 on all 12 hosts, was blind to moves the probes cannot see, and was off by more than 3 on a large natural move. A proposer who knew the probes hid at least 10 times more change than they showed.
+Its distance matched the change on the probes within 1.1 on all 12 hosts, was blind to moves the probes cannot see, and was off by more than 3 on a large natural move. A proposer that knows the probes can hide at least 10 times more change than the probes show.
 
 ## Persistence is a flood
 
@@ -94,7 +102,7 @@ So two moves leave it exactly as it was and change the function: flipping the si
 
 [P] The other way fails too. For a unit with a ReLU, scaling its incoming weights by a positive number and its outgoing weights by the inverse leaves every output as it was. It changes that unit's largest weight, so it changes the score. In a check on a random two-layer network the outputs agreed to 1e-15 and the score moved from 0.45 to 0.89.
 
-So the score is constant on moves that break the function and varies on moves that keep it. Under the closure rule that ends the path "persistence as a gate on behaviour", by counterexample. It leaves open persistence as a cheap reading of where the large weights sit.
+So the score is constant on moves that break the function and varies on moves that keep it. Under the closure rule that ends the path "persistence as a gate on behaviour", by counterexample. It is not entered in the register. The counterexamples are tests in siliquant's `persist/test_persist.py`. It leaves open persistence as a cheap reading of where the large weights sit.
 
 ### One more sector for the register: CL-8
 
@@ -106,7 +114,11 @@ The closure register asks of each distance whether one radius can admit a fine-t
 
 The largest gap is therefore at most the largest change of any weight, which is at most the Frobenius length of the move. Reordering rows or columns changes nothing.
 
-For the summed gap no bound is proved here. Skraba and Turner (2020, Theorem 4.8) bound a related distance between the two records by the same norm of the change. That distance may pair a level with nothing, so it can be smaller than the summed gap and does not bound it.
+[P] For the summed gap the same argument gives a weak bound only: in each layer it is at most the largest gap times the root of the number of links in the tree. The certificate below does not use it.
+
+Skraba and Turner (2020, Theorem 4.8) bound a related distance between the two records by the 2-norm of the change. That distance may pair a level with nothing, so it can be smaller than the summed gap and does not bound it.
+
+This paragraph was corrected twice after the run, on the advice of a second reader. The definitions, the plan and the predictions were not touched.
 
 **Plan, written before the run.** Rebuild each of the 12 MLP hosts' passing fine-tunes as `closure_quant.py` does. Compute both gaps between the host and its fine-tune. For the breaking move, use its own length as the upper bound on its largest gap. If the breaking move can be rebuilt from the calibration record's program, compute both of its gaps exactly as well.
 
@@ -117,7 +129,7 @@ For the summed gap no bound is proved here. Skraba and Turner (2020, Theorem 4.8
 
 **Prediction.** The first closes on at least 8 of the 12 hosts. The second, if it can be run, on at least 10.
 
-**Result.** Run after the plan was pushed. `closure_persist.py` rebuilt the fine-tune and the breaking move of every host, and each matches its recorded row. The figures are in `closure_persist.out`.
+**Result.** Run after the plan was pushed, with Python 3.14.6 and NumPy 2.5.4. `closure_persist.py` rebuilt the fine-tune and the breaking move of every host, and each matches its recorded row. The figures are in `closure_persist.out`.
 
 | | Fine-tune that passes | Move that breaks | Closed on |
 |---|---|---|---|
@@ -128,9 +140,11 @@ For the summed gap no bound is proved here. Skraba and Turner (2020, Theorem 4.8
 
 The first prediction fails: the sector closes on one host where at least 8 were predicted. The proved bound is the move's whole length, and on 11 hosts that is above the fine-tune's largest gap. The second prediction holds, on 12 where at least 10 were predicted. The third row was not a sector of the plan. It is reported because the plan had the breaking move's gaps computed.
 
-The summed-gap sector is in the register as CL-8, certified by two exhibited moves on each host, the kind of certificate CL-2 has. The move that breaks is 15 to 45 times nearer in this distance than the fine-tune that passes.
+The summed-gap sector is in the register as CL-8, certified by two exhibited moves on each host, the kind of certificate CL-2 has. The move that breaks is 16 to 45 times nearer in this distance than the fine-tune that passes. As for CL-5 to CL-7, the checker reads the gaps that the program saved and does not compute them again.
 
-[I] So a ball drawn in a persistence distance fails the way the Frobenius ball fails: the harmless move is the far one. A weaker distance did not help. What separates the two moves on these hosts is still their effect on the outputs, which is the path of the committed-behaviour-change record.
+**What it does not show.** The certificate rests on one fine-tune and one breaking move for each host. The breaking move is the calibration record's adversary, found by a search for damage. The hosts are 12 small networks of 12,488 weights built for that record. Biases are left out of the distance. Another fine-tune, another kind of harmful move or a larger network may behave otherwise.
+
+[I] On these hosts and these moves, a ball drawn in a persistence distance fails the way the Frobenius ball fails: the harmless move is the far one. This distance ignores more of a change than the Frobenius distance does, and that did not separate the two moves. What separates them here is still their effect on the outputs, which is the path of the committed-behaviour-change record.
 
 ## The six mappings, in one table
 
@@ -140,7 +154,7 @@ The claim-by-claim check is in siliquant. In short:
 |---|---|
 | Form drag and permutation symmetry | Real for merging two trained models. CL-5 already measured distance after the best relabelling, and it gives no usable radius. |
 | Boundary layers and masked adapters | No source found for the method named. Not evaluated. |
-| Vortex drag and rotations | The premise is wrong: a loss on the product of weights and inputs does not change when both are rotated together. |
+| Vortex drag and rotations | Siliquant's check of PR #6, row 15: the loss proposed for this is zero for any orthogonal change of the outputs, one that reverses every output included. So it cannot tell a harmless rotation from a harmful one. |
 | Shock waves and the fold path | Siliquant bounds the end point of the fold at 0.35 dB by its cell, under the 0.65 of E8. The schedule has not been run. |
 | Skin friction and lookup tables | Memory read per token is a real cost. As proposed, the incentre codes do not beat a scalar mix at equal bits in siliquant's record of 2026-11-17. No record has measured the speed of a decoder. |
 | Turbulence and persistence | The paper uses no cycles and prunes nothing. See the section above. |
@@ -149,7 +163,7 @@ The claim-by-claim check is in siliquant. In short:
 
 - Whether bits placed by equal gain beat equal bits on a model's output. Planned in siliquant.
 - Whether a structured change adds up over layers where noise does not. Planned in siliquant.
-- A measure of a weight change that orders damage. Six formulas have now been named and none is a certificate. The siliquant plan adds three with their predicted failures.
+- A measure of a weight change that orders damage. The gemma record tried five formulas and none is a certificate. The persistence score is not one either. The siliquant plan adds three measures with their predicted failures.
 - The proposal beyond models. Nothing here touches operating systems, environments or infrastructure. For those the principle with units is the second one: find where one more unit of a resource buys the most, and measure whether that is equal across the system.
 
 ## Open questions
@@ -161,7 +175,8 @@ The claim-by-claim check is in siliquant. In short:
 ## Limits
 
 - The fluid mechanics and the coding theory are standard results. Most of their sources were seen as excerpts by an agent and not opened, and one formula is from memory. The list of sources says which.
-- Every number about gemma is from one model, one text and one runtime.
+- Every number about gemma is from one model, one text and one runtime. The record they come from is exploratory, and the figure of 0.095 is one random draw.
+- CL-8 rests on 24 rebuilt moves on 12 small hosts. Its section says what it does not show.
 - The checks on persistence used random matrices and a random two-layer network.
 
 ## Sources
@@ -174,6 +189,7 @@ The claim-by-claim check is in siliquant. In short:
 - Gilbert, "Minimum cost communication networks", Bell System Technical Journal 46 (1967). Banavar, Colaiori, Flammini, Maritan, Rinaldo, "Topology of the fittest transportation network", Physical Review Letters 84 (2000): whether loops appear depends on the convexity of the cost. Excerpt.
 - Rinaldo, Rodriguez-Iturbe, Rigon and others, "Minimum energy and fractal structures of drainage networks", Water Resources Research 28 (1992). Excerpt.
 - Schuchman, "Dither signals and their effect on quantization noise", IEEE Transactions on Communication Technology 12 (1964). Excerpt.
+- The limit of 1.53 dB for the shape of a cell: Zador, and Gersho. Excerpt. The figure is recomputed in siliquant's `notes/budget.out`.
 - Newton's problem of least resistance, Principia (1687). Reported, from an encyclopedia article.
 - Rieck and others, "Neural Persistence", ICLR 2019, arXiv 1812.09764. Reported.
 - Skraba and Turner, "Wasserstein stability for persistence diagrams", arXiv 2006.16824, Theorem 4.8. Reported.

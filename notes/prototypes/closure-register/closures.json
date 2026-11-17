@@ -84,7 +84,7 @@
    "parameter": "gate radius R in the summed gap",
    "upper": "R is under the summed gap of an exhibited move that breaks the retention bar. A ball that contains that move admits it.",
    "lower": "R is at least the summed gap of an exhibited fine-tune that passes the joint bar. A smaller ball rejects it.",
-   "scope": "The 12 MLP hosts of the calibration record, each certified on its own from two rebuilt moves. closure_persist.py rebuilds both and checks them against their recorded rows. No theorem bounds the summed gap, so nothing is said beyond these moves. Biases are left out of the distance.",
+   "scope": "The 12 MLP hosts of the calibration record, each certified on its own from two rebuilt moves. closure_persist.py rebuilds both and checks them against their recorded rows. The only bound proved for the summed gap is the weak one in the note, and the certificate does not use it. Nothing is said beyond these moves. Biases are left out of the distance.",
    "reopens_if": "Never for these hosts, since both moves are exhibited. A host on which every breaking move has a larger summed gap than every useful one is outside the sector."
   }
  ],
