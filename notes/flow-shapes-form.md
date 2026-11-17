@@ -24,7 +24,7 @@ The owner then asked which methods of drag reduction can be applied to digital s
 
 This note asks what of all that is mathematics, and what the records already say about it. It keeps the proposal, drops most of the mappings, and names five principles that carry over as theorems. The check of the mappings and of the persistence document, claim by claim, is in siliquant, `notes/persistence-and-flow-check.md`.
 
-Labels: [P] proved here, [K] known, [I] a reading. Sources marked "from memory" were not opened for this note.
+Labels: [P] proved here, [K] known, [I] a reading. The sources are listed at the end, each with how it was read.
 
 ## What drag is
 
@@ -42,23 +42,23 @@ A scale stored in 16 bits for every 32 weights costs 0.50 bit. So the storage of
 
 **2. Equal gain at the margin.** [K] A wing of given span has least induced drag when the air is pushed down equally along the span. A branching vessel costs least to run when the cube of the parent's radius is the sum of the cubes of the branches (Murray's law). In both, one more unit of resource buys the same gain everywhere.
 
-If it did not, moving a unit from a poor place to a rich one would be a free improvement. (Both from memory.)
+If it did not, moving a unit from a poor place to a rich one would be a free improvement. The first is due to Prandtl and Munk.
 
-[K] The same holds for splitting bits over parts of a signal: the best split gives each part the mean rate plus half the logarithm of how much it matters, over the geometric mean (from memory: Huang and Schultheiss, 1963, and "reverse water-filling"). Parts under the water level get no bits at all. That is a closure with a formula.
+[K] The same holds for splitting bits over parts of a signal: the best split gives each part the mean rate plus half the logarithm of how much it matters, over the geometric mean (Huang and Schultheiss, 1963, and the rule called reverse water-filling). Parts under the water level get no bits at all. That is a closure with a formula.
 
 [I] The siliquant record on gemma has the numbers this needs and has not used them. At the same 4 bits, per weight, one kind of matrix costs 52 times the KL of another. Under the principle that gap is recoverable loss. The plan in siliquant, `experiments/output-budget-gemma-e4b-2026-11-17`, tests it.
 
-**3. Cost that grows slower than flow makes trees.** [K] When carrying twice the flow in one channel costs less than twice as much, flows merge into trunks, and the cheapest network that serves every point is a tree. River basins are the standard example (from memory: Gilbert 1967, Banavar and others 2000, Rodriguez-Iturbe and Rinaldo).
+**3. Cost that grows slower than flow makes trees.** [K] When carrying twice the flow in one channel costs less than twice as much, flows merge into trunks, and the cheapest network that serves every point is a tree. River basins are the standard example (Gilbert 1967, Banavar and others 2000, Rinaldo and others 1992).
 
 [I] This is the form of the proposal that has a theorem behind it. It does not say that training makes trees. It says what to look for: a few trunks carrying most of the flow.
 
 The gemma record found them. One weight in 5,845 of the feed-forward output matrices lies beyond five standard deviations of its row, the ten busiest hidden units of a layer hold 2 to 24 percent of them, and pulling them back does more damage than rounding every weight to 5 bits.
 
-**4. Noise in place of structure.** [K] A small random error can cost less than a smaller structured one. Dither is the worked case: noise added before rounding makes the error independent of the signal (from memory: Schuchman 1964). The trips that keep a boundary layer attached are the fluid case.
+**4. Noise in place of structure.** [K] A small random error can cost less than a smaller structured one. Dither is the worked case: noise added before rounding makes the error independent of the signal (Schuchman 1964). The trips that keep a boundary layer attached are the fluid case.
 
 [I] The gemma record has one direct measurement. The same entries moved by the same amounts give a mean KL of 0.318 when all are pulled toward zero and 0.095 when each goes toward or away at random. Squared error cannot tell the two apart. The siliquant plan asks whether such a change adds up over layers where rounding does not.
 
-**5. The best shape depends on the model of the flow.** [K] Newton's body of least resistance is blunt, and it is best only for the flow he assumed (from memory).
+**5. The best shape depends on the model of the flow.** [K] Newton's body of least resistance has a flat front, and it is best only for the flow he assumed.
 
 [I] The gemma record: the step with the least squared error lost to the step set from the largest entry in all four cells where both were scored. The measure was wrong, not the principle. Which measure is right is the open question of [closure-on-a-real-model](closure-on-a-real-model.md).
 
@@ -104,7 +104,9 @@ The closure register asks of each distance whether one radius can admit a fine-t
 
 **What is proved.** [P] The k-th largest tree size is the highest level at which the graph has at most n - k pieces, n being the number of vertices. If every weight changes in size by at most e, every link present at level t in one matrix is present at level t - e in the other, so every sorted tree size moves by at most e.
 
-The largest gap is therefore at most the largest change of any weight, which is at most the Frobenius length of the move. Reordering rows or columns changes nothing. For the summed gap no bound is proved here. A published theorem appears to give one (Skraba and Turner, from memory).
+The largest gap is therefore at most the largest change of any weight, which is at most the Frobenius length of the move. Reordering rows or columns changes nothing.
+
+For the summed gap no bound is proved here. Skraba and Turner (2020, Theorem 4.8) bound a related distance between the two records by the same norm of the change. That distance may pair a level with nothing, so it can be smaller than the summed gap and does not bound it.
 
 **Plan, written before the run.** Rebuild each of the 12 MLP hosts' passing fine-tunes as `closure_quant.py` does. Compute both gaps between the host and its fine-tune. For the breaking move, use its own length as the upper bound on its largest gap. If the breaking move can be rebuilt from the calibration record's program, compute both of its gaps exactly as well.
 
@@ -115,7 +117,20 @@ The largest gap is therefore at most the largest change of any weight, which is 
 
 **Prediction.** The first closes on at least 8 of the 12 hosts. The second, if it can be run, on at least 10.
 
-**Result.** Not yet run when this section was written.
+**Result.** Run after the plan was pushed. `closure_persist.py` rebuilt the fine-tune and the breaking move of every host, and each matches its recorded row. The figures are in `closure_persist.out`.
+
+| | Fine-tune that passes | Move that breaks | Closed on |
+|---|---|---|---|
+| Frobenius length | 8.06 to 9.22 | 0.1 to 0.3 | |
+| Largest gap, against the breaking move's length | 0.150 to 0.308 | at most 0.1 to 0.3 | 1 of 12 |
+| Largest gap, both moves rebuilt | 0.150 to 0.308 | 0.010 to 0.026 | 12 of 12 |
+| Summed gap, both moves rebuilt | 0.897 to 1.126 | 0.025 to 0.065 | 12 of 12 |
+
+The first prediction fails: the sector closes on one host where at least 8 were predicted. The proved bound is the move's whole length, and on 11 hosts that is above the fine-tune's largest gap. The second prediction holds, on 12 where at least 10 were predicted. The third row was not a sector of the plan. It is reported because the plan had the breaking move's gaps computed.
+
+The summed-gap sector is in the register as CL-8, certified by two exhibited moves on each host, the kind of certificate CL-2 has. The move that breaks is 15 to 45 times nearer in this distance than the fine-tune that passes.
+
+[I] So a ball drawn in a persistence distance fails the way the Frobenius ball fails: the harmless move is the far one. A weaker distance did not help. What separates the two moves on these hosts is still their effect on the outputs, which is the path of the committed-behaviour-change record.
 
 ## The six mappings, in one table
 
@@ -145,9 +160,24 @@ The claim-by-claim check is in siliquant. In short:
 
 ## Limits
 
-- The fluid mechanics and the coding theory are standard results stated from memory. A source check is in progress and this note will name what was opened.
+- The fluid mechanics and the coding theory are standard results. Most of their sources were seen as excerpts by an agent and not opened, and one formula is from memory. The list of sources says which.
 - Every number about gemma is from one model, one text and one runtime.
 - The checks on persistence used random matrices and a random two-layer network.
+
+## Sources
+
+"Reported" means an agent opened the source and its report was read here. "Excerpt" means the agent saw a search result's text and did not open the source.
+
+- Murray, "The Physiological Principle of Minimum Work", PNAS 12 (1926). Excerpt.
+- Munk, "The minimum induced drag of aerofoils", NACA Report 121. Excerpt. The elliptical loading is also credited to Prandtl.
+- Huang and Schultheiss, "Block quantization of correlated Gaussian random variables", IEEE Transactions on Communications 11 (1963). Excerpt for the paper. The rule as stated in principle 2 is from memory.
+- Gilbert, "Minimum cost communication networks", Bell System Technical Journal 46 (1967). Banavar, Colaiori, Flammini, Maritan, Rinaldo, "Topology of the fittest transportation network", Physical Review Letters 84 (2000): whether loops appear depends on the convexity of the cost. Excerpt.
+- Rinaldo, Rodriguez-Iturbe, Rigon and others, "Minimum energy and fractal structures of drainage networks", Water Resources Research 28 (1992). Excerpt.
+- Schuchman, "Dither signals and their effect on quantization noise", IEEE Transactions on Communication Technology 12 (1964). Excerpt.
+- Newton's problem of least resistance, Principia (1687). Reported, from an encyclopedia article.
+- Rieck and others, "Neural Persistence", ICLR 2019, arXiv 1812.09764. Reported.
+- Skraba and Turner, "Wasserstein stability for persistence diagrams", arXiv 2006.16824, Theorem 4.8. Reported.
+- The siliquant records and notes named in the text, and this repository's calibration record and closure notes. Read by the session that wrote this note.
 
 ## Disclosure
 
