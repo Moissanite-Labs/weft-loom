@@ -147,6 +147,25 @@ CL-7 [crossed_bounds] certificate holds on 36 of 36 units: sector is closed
      MLP host 11, 6 bits      upper 0.003074  lower 0.01559  holds; the rounded cell drops the native score by 0.0039
      MLP host 11, 7 bits      upper 0.00306  lower 0.007794  holds; the rounded cell drops the native score by 0.0014
 
+CL-8 [crossed_bounds] certificate holds on 12 of 12 units: sector is closed
+   One radius of a ball in the summed gap of sorted tree sizes that admits a fine-tune which passes the joint bar and rejects a move which breaks the retention bar.
+   no value of the gate radius R in the summed gap meets both bounds; lower / upper runs from 15.7 to 45.1
+     MLP host 0               upper 0.05637  lower 1.126  holds; the breaking move drops 0.1645. The fine-tune drops -0.0078
+     MLP host 1               upper 0.0544  lower 0.9019  holds; the breaking move drops 0.1832. The fine-tune drops 0.0025
+     MLP host 2               upper 0.05696  lower 0.9725  holds; the breaking move drops 0.1708. The fine-tune drops 0.0035
+     MLP host 3               upper 0.0246  lower 1.109  holds; the breaking move drops 0.0254. The fine-tune drops 0.0007
+     MLP host 4               upper 0.05755  lower 1.062  holds; the breaking move drops 0.1899. The fine-tune drops 0.0014
+     MLP host 5               upper 0.05712  lower 0.8969  holds; the breaking move drops 0.1536. The fine-tune drops -0.0031
+     MLP host 6               upper 0.04504  lower 1.099  holds; the breaking move drops 0.1452. The fine-tune drops 0.0126
+     MLP host 7               upper 0.05545  lower 0.9953  holds; the breaking move drops 0.1888. The fine-tune drops 0.0018
+     MLP host 8               upper 0.05649  lower 1.075  holds; the breaking move drops 0.2184. The fine-tune drops 0.0028
+     MLP host 9               upper 0.06495  lower 1.023  holds; the breaking move drops 0.2274. The fine-tune drops 0.0099
+     MLP host 10              upper 0.05223  lower 1.005  holds; the breaking move drops 0.1325. The fine-tune drops 0.0006
+     MLP host 11              upper 0.04372  lower 0.9192  holds; the breaking move drops 0.1579. The fine-tune drops -0.0021
+Information only, not part of the certificate:
+   largest gap, rebuilt breaking move below the fine-tune: 12 of 12 hosts
+   largest gap, breaking length below the fine-tune (the plan's first row): 1 of 12 hosts
+
 RO-1 [counterexample] witness holds on 8 of 8 units (1 not counted): sector is open
    Reaching the reversal skill on the toy transformer with every attention weight frozen and the native skills kept.
      seed 3                   holds; first-layer packet: reversal 1, native skills 1 and 1
