@@ -45,6 +45,9 @@ def load(run_dir: Path) -> dict | None:
         return (statistics.mean(vis) if vis else None, statistics.mean(held) if held else None)
 
     ex = {s: split(exams[s]["report"]) for s in ("A", "B")}
+    exam_calls = statistics.mean(e["calls"] for s in ("A", "B") for e in exams[s]["report"]["episodes"])
+    t1 = turns[0]
+    first_gain = (t1["cand"] - t1["inc"]) if t1.get("cand") is not None else 0.0
     outcomes = [t["outcome"] for t in turns]
     return {
         "run": start["run"], "arm": start["arm"], "rep": start["rep"],
@@ -58,6 +61,8 @@ def load(run_dir: Path) -> dict | None:
         "final_harness": end["harness"], "twins_differ": end["harness"]["A"] != end["harness"]["B"],
         "final_bytes": {s: next((t["candidate_bytes"] for t in reversed(turns)
                                  if t["outcome"] == "commit" and t["target"] == s), None) for s in ("A", "B")},
+        "exam_calls_per_task": exam_calls, "first_turn_gain": first_gain,
+        "model_errors": end.get("model_errors", 0),
         "usd": end["usd"], "calls": end["calls"], "wall_s": end["wall_s"],
     }
 
@@ -81,14 +86,21 @@ def fmt(v, nd=3):
 
 
 def main() -> int:
-    root = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "results" / "runs"
-    runs = [r for r in (load(d) for d in sorted(root.iterdir()) if (d / "log.jsonl").exists()) if r]
+    root = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "results" / "runs"   # assay*.jsonl sits beside it
+    found = sorted(d for d in root.iterdir() if (d / "log.jsonl").exists())
+    loaded = [r for r in (load(d) for d in found) if r]
+    # only replicates that finished in all five arms are analysed (PREREG.md)
+    full = {rep for rep in {r["rep"] for r in loaded}
+            if {r["arm"] for r in loaded if r["rep"] == rep} >= set(ARMS)}
+    runs = [r for r in loaded if r["rep"] in full]
+    left_out = sorted({d.name for d in found} - {r["run"] for r in runs})
     by_arm = {a: [r for r in runs if r["arm"] == a] for a in ARMS}
     seed_ref = None
     ref_path = HERE / "results" / "seed_exam.json"
     if ref_path.exists():
         seed_ref = json.loads(ref_path.read_text())
-    lines = ["# Tables written by analyze.py from the run logs", ""]
+    lines = ["# Tables written by analyze.py from the run logs", "",
+             f"Replicates complete in all five arms: {sorted(full)}. Runs left out: {', '.join(left_out) if left_out else 'none'}.", ""]
 
     lines += ["## Runs", "", "| Run | Baseline A, B | Outcomes by turn | Exam visible A, B | Exam held-out A, B | Calls | Dollars |",
               "|---|---|---|---|---|---|---|"]
@@ -116,7 +128,10 @@ def main() -> int:
                         "outcomes": {k: oc.count(k) for k in short}, "turns": len(oc),
                         "edited": sum(ed), "usd": sum(r["usd"] for r in rs),
                         "calls": sum(r["calls"] for r in rs),
-                        "twins_differ": sum(r["twins_differ"] for r in rs)}
+                        "twins_differ": sum(r["twins_differ"] for r in rs),
+                        "exam_calls_per_task": statistics.mean(r["exam_calls_per_task"] for r in rs),
+                        "final_bytes": statistics.mean(b for r in rs for b in r["final_bytes"].values() if b)
+                        if any(b for r in rs for b in r["final_bytes"].values()) else None}
         s = arm_stats[a]
         lines.append(f"| {a} | {len(rs)} | {', '.join(fmt(v) for v in vis)} | {fmt(s['visible_mean'])} | "
                      f"{', '.join(fmt(v) for v in held)} | {fmt(s['heldout_mean'])} | "
@@ -142,19 +157,95 @@ def main() -> int:
     lines.append("")
 
     lines += ["## Gate, turn by turn", "", "Mean over runs of the old harness's score and the candidate's score on the same fresh tasks, for turns where a benchmark ran.", "",
-              "| Arm | " + " | ".join(f"t{t}" for t in range(1, 9)) + " |", "|---|" + "---|" * 8]
+              "| Arm | " + " | ".join(f"t{t}" for t in range(1, 7)) + " |", "|---|" + "---|" * 6]
     for a in ARMS:
         cells = []
-        for t in range(1, 9):
+        for t in range(1, 7):
             pairs = [(ts[2], ts[3]) for r in by_arm[a] for ts in r["turn_scores"] if ts[0] == t and ts[2] is not None]
             cells.append("-" if not pairs else f"{statistics.mean(p[0] for p in pairs):.2f} to {statistics.mean(p[1] for p in pairs):.2f} (n={len(pairs)})")
         if by_arm[a]:
             lines.append(f"| {a} | " + " | ".join(cells) + " |")
     lines.append("")
 
-    total = {"runs": len(runs), "usd": round(sum(r["usd"] for r in runs), 2), "calls": sum(r["calls"] for r in runs)}
-    lines += [f"Totals: {total['runs']} runs, {total['calls']} model calls, {total['usd']:.2f} dollars.", ""]
-    out = {"runs": runs, "arms": arm_stats, "contrasts": contrasts, "totals": total, "seed_exam": seed_ref}
+    lines += ["## Size and economy", "", "| Arm | Pairs whose two final harnesses differ | Mean bytes of a final harness that was ever changed | Model calls used per exam task |",
+              "|---|---|---|---|"]
+    for a in ARMS:
+        if a in arm_stats:
+            st = arm_stats[a]
+            lines.append(f"| {a} | {st['twins_differ']} of {st['n']} | {fmt(st['final_bytes'], 0)} | {fmt(st['exam_calls_per_task'], 2)} |")
+    lines.append("")
+
+    # ---- builder assay (M4) and first-turn gains
+    assay = []
+    for f in sorted((root.parent).glob("assay*.jsonl")):
+        assay += [json.loads(x) for x in f.read_text().splitlines() if x.strip()]
+    arm_of = {r["run"]: r["arm"] for r in runs}
+    for ev in assay:
+        ev["gain"] = (ev["cand"] - ev["inc"]) if ev.get("cand") is not None else 0.0
+        ev["arm"] = arm_of.get(ev["run"])
+    first = [r["first_turn_gain"] for r in runs]
+    m4 = {}
+    if assay:
+        lines += ["## Builder assay", "", "Each run's final harness of slot A takes one build turn on a fresh seed harness. Gain is the candidate's mean minus the seed's mean on the same 9 fresh tasks, 0 when the candidate was discarded before the benchmark.", "",
+                  "| Arm | Assays | Outcomes | Gains | Mean gain |", "|---|---|---|---|---|"]
+        for a in ARMS:
+            evs = [e for e in assay if e["arm"] == a]
+            if evs:
+                m4[a] = [e["gain"] for e in evs]
+                lines.append(f"| {a} | {len(evs)} | {''.join(short[e['outcome']] for e in evs)} | "
+                             f"{', '.join(f'{g:+.3f}' for g in m4[a])} | {statistics.mean(m4[a]):+.3f} |")
+        lines += ["", f"First-turn gains of seed builders in this block (turn 1 of every run, same definition): "
+                  f"{', '.join(f'{g:+.3f}' for g in first)}. Mean {statistics.mean(first):+.3f}.", ""]
+
+    # ---- prediction verdicts
+    def have(*arms):
+        return all(x in arm_stats for x in arms)
+    verdicts = []
+    if seed_ref:
+        sv, sh = statistics.mean(seed_ref["visible"]), statistics.mean(seed_ref["heldout"])
+        per = {a: arm_stats[a]["visible_mean"] - sv for a in arm_stats}
+        verdicts.append(("P1", all(v >= 0.10 for v in per.values()) if per else None,
+                         "; ".join(f"{a} {v:+.3f}" for a, v in per.items()) + f" over the seed's {sv:.3f}"))
+    for pid, x, y in (("P2", "twin-free-collective", "solo-pair"), ("P3", "twin-free-collective", "twin-fixed-builder")):
+        if have(x, y):
+            d = arm_stats[x]["visible_mean"] - arm_stats[y]["visible_mean"]
+            verdicts.append((pid, abs(d) < 0.10, f"{x} minus {y} = {d:+.3f}"))
+    if have("twin-stack-collective", "twin-free-collective"):
+        d = arm_stats["twin-stack-collective"]["visible_mean"] - arm_stats["twin-free-collective"]["visible_mean"]
+        verdicts.append(("P4", d > 0.03, f"stack minus free = {d:+.3f}"))
+    if have("twin-free-rival", "twin-free-collective"):
+        d1 = arm_stats["twin-free-rival"]["visible_mean"] - arm_stats["twin-free-collective"]["visible_mean"]
+        d2 = arm_stats["twin-free-rival"]["heldout_mean"] - arm_stats["twin-free-collective"]["heldout_mean"]
+        verdicts.append(("P5", abs(d1) < 0.10 and abs(d2) < 0.10, f"rival minus collective: visible {d1:+.3f}, held-out {d2:+.3f}"))
+    all_out = [o for r in runs for o in r["outcomes"]]
+    all_ed = [e for r in runs for e in r["edited"]]
+    if all_out:
+        verdicts.append(("P6", sum(all_ed) / len(all_ed) >= 0.75, f"{sum(all_ed)} of {len(all_ed)} build turns made an edit"))
+        gate = [o for o in all_out if o in ("commit", "regress", "boot_fail")]
+        disc = [o for o in gate if o != "commit"]
+        verdicts.append(("P7", bool(gate) and len(disc) / len(gate) >= 0.10 and "boot_fail" in gate,
+                         f"{len(disc)} of {len(gate)} candidates at the gate were discarded, {gate.count('boot_fail')} at boot"))
+    if seed_ref and runs:
+        g1 = statistics.mean(r["pair_visible"] for r in runs) - sv
+        g2 = statistics.mean(r["pair_heldout"] for r in runs) - sh
+        verdicts.append(("P8", g2 >= 0.5 * g1, f"pooled gain over the seed: visible {g1:+.3f}, held-out {g2:+.3f}"))
+    live = [g for a in m4 if a != "twin-fixed-builder" for g in m4[a]]
+    if live:
+        d = statistics.mean(live) - statistics.mean(first)
+        verdicts.append(("P9", abs(d) < 0.10, f"assay mean {statistics.mean(live):+.3f} over {len(live)} built harnesses, "
+                         f"first-turn mean {statistics.mean(first):+.3f} over {len(first)} seed builders, difference {d:+.3f}"))
+    lines += ["## Predictions", "", "| Prediction | Held | Figures |", "|---|---|---|"]
+    for pid, ok, text in verdicts:
+        lines.append(f"| {pid} | {'yes' if ok else 'no'} | {text} |")
+    lines.append("")
+
+    total = {"runs": len(runs), "usd": round(sum(r["usd"] for r in runs), 2), "calls": sum(r["calls"] for r in runs),
+             "model_errors": sum(r["model_errors"] for r in runs)}
+    lines += [f"Totals: {total['runs']} runs, {total['calls']} model calls, {total['usd']:.2f} dollars, "
+              f"{total['model_errors']} model calls that failed on the referee's side.", ""]
+    out = {"runs": runs, "arms": arm_stats, "contrasts": contrasts, "totals": total, "seed_exam": seed_ref,
+           "assay": [{k: e.get(k) for k in ("run", "arm", "slot", "outcome", "inc", "cand", "gain")} for e in assay],
+           "predictions": [{"id": p, "held": bool(ok), "figures": t} for p, ok, t in verdicts]}
     (HERE / "results").mkdir(exist_ok=True)
     (HERE / "results" / "summary.json").write_text(json.dumps(out, indent=1))
     (HERE / "results" / "tables.md").write_text("\n".join(lines))

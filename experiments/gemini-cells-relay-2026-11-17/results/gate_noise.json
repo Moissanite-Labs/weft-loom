@@ -1,0 +1,63 @@
+{
+ "n": 6,
+ "margin": 0.02,
+ "rows": [
+  {
+   "i": 0,
+   "first": 0.5463,
+   "second": 0.4741,
+   "diff": -0.0722,
+   "kept_by_gate": false,
+   "usd": 0.059,
+   "calls": 54
+  },
+  {
+   "i": 1,
+   "first": 0.5764,
+   "second": 0.5171,
+   "diff": -0.0593,
+   "kept_by_gate": false,
+   "usd": 0.0587,
+   "calls": 54
+  },
+  {
+   "i": 2,
+   "first": 0.4424,
+   "second": 0.342,
+   "diff": -0.1004,
+   "kept_by_gate": false,
+   "usd": 0.0585,
+   "calls": 54
+  },
+  {
+   "i": 3,
+   "first": 0.4304,
+   "second": 0.503,
+   "diff": 0.0726,
+   "kept_by_gate": true,
+   "usd": 0.0604,
+   "calls": 54
+  },
+  {
+   "i": 4,
+   "first": 0.5343,
+   "second": 0.4313,
+   "diff": -0.103,
+   "kept_by_gate": false,
+   "usd": 0.0585,
+   "calls": 54
+  },
+  {
+   "i": 5,
+   "first": 0.4238,
+   "second": 0.4476,
+   "diff": 0.0238,
+   "kept_by_gate": true,
+   "usd": 0.0705,
+   "calls": 54
+  }
+ ],
+ "mean_diff": -0.0398,
+ "sd_diff": 0.0718,
+ "kept": 2
+}

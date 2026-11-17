@@ -108,7 +108,7 @@ class ClaudeCLI:
         argv = ["claude", "-p", "--model", self.model, "--tools", "", "--output-format", "json",
                 "--no-session-persistence", "--system-prompt", TRANSPORT_NOTE + system]
         last = "no attempt"
-        for attempt in range(3):
+        for attempt in range(5):
             with _CLI_SLOTS:
                 try:
                     p = subprocess.run(argv, input=prompt.encode("utf-8"), capture_output=True,
@@ -116,21 +116,21 @@ class ClaudeCLI:
                     d = json.loads(p.stdout.decode("utf-8", "replace"))
                 except (subprocess.TimeoutExpired, json.JSONDecodeError) as exc:
                     last = f"{type(exc).__name__}"
-                    time.sleep(2 + 4 * attempt)
+                    time.sleep(3 + 6 * attempt)
                     continue
             usd = float(d.get("total_cost_usd") or 0.0)
             if usd:
                 self.ledger.add(usd)
             if d.get("is_error") or not isinstance(d.get("result"), str):
                 last = str(d.get("result") or d.get("subtype") or "error")[:200]
-                time.sleep(2 + 4 * attempt)
+                time.sleep(3 + 6 * attempt)
                 continue
             u = d.get("usage") or {}
             in_tok = (u.get("input_tokens", 0) + u.get("cache_creation_input_tokens", 0)
                       + u.get("cache_read_input_tokens", 0))
             return {"reply": d["result"], "usd": usd, "in_tok": in_tok,
                     "out_tok": u.get("output_tokens", 0), "api_ms": d.get("duration_api_ms", 0)}
-        raise RuntimeError(f"model call failed three times: {last}")
+        raise RuntimeError(f"model call failed five times: {last}")
 
 
 def clip_middle(text: str, cap: int) -> tuple[str, bool]:

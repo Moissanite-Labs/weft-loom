@@ -5,7 +5,7 @@
     python3 run.py exam --root R --harness seed --label seed --repeats 4
     python3 run.py aa --root R --n 6
     python3 run.py arm twin-free-collective --rep 0 --root R
-    python3 run.py block --root R --reps 3 --jobs 4
+    python3 run.py block --root R --reps 4 --jobs 5
     python3 run.py assay --root R
 
 Needs root on Linux (the sandbox) and the `claude` command line tool signed in.
@@ -28,9 +28,10 @@ sys.path.insert(0, str(HERE))
 
 from referee import relay  # noqa: E402
 from referee.bench import Bench, Store  # noqa: E402
-from referee.brain import ClaudeCLI, Ledger  # noqa: E402
+from referee.brain import ClaudeCLI, Ledger, SpendCapReached  # noqa: E402
 
 CAP_USD = 25.0
+REPLICATE_RESERVE_USD = 5.0   # a replicate (five runs) starts only if this much is left under the cap
 
 
 def backend(root: Path, model: str):
@@ -137,14 +138,28 @@ def cmd_arm(a) -> None:
 
 
 def cmd_block(a) -> None:
-    """Run every arm for each replicate, interleaved, a few runs at a time."""
+    """Run the block replicate by replicate: the five arms of a replicate side by side, and the
+    next replicate only when they have all finished and the reserve is still there."""
     jobs = [(arm, rep) for rep in range(a.reps) for arm in relay.ARMS]
     running: list[tuple[subprocess.Popen, str]] = []
     logdir = Path(a.root) / "stdout"
     logdir.mkdir(parents=True, exist_ok=True)
+    ledger = Ledger(Path(a.root) / "spend.json", CAP_USD)
+    started_reps: set[int] = set()
     while jobs or running:
         while jobs and len(running) < a.jobs:
-            arm, rep = jobs.pop(0)
+            arm, rep = jobs[0]
+            if rep not in started_reps:
+                if running:        # a replicate starts only when the one before it has finished
+                    break
+                spent = ledger.read().get("usd", 0.0)
+                if spent > CAP_USD - REPLICATE_RESERVE_USD:
+                    print(f"replicate {rep} not started: {spent:.2f} dollars spent, reserve is "
+                          f"{REPLICATE_RESERVE_USD}", flush=True)
+                    jobs = []
+                    break
+                started_reps.add(rep)
+            jobs.pop(0)
             f = open(logdir / f"{arm}-r{rep}.txt", "w")
             p = subprocess.Popen([sys.executable, str(HERE / "run.py"), "arm", arm, "--rep", str(rep),
                                   "--root", a.root], stdout=f, stderr=subprocess.STDOUT)
@@ -168,8 +183,12 @@ def cmd_assay(a) -> None:
     if out.exists():
         done = {json.loads(x)["run"] + "|" + json.loads(x)["slot"] for x in out.read_text().splitlines()}
     shard, of = (int(x) for x in a.shard.split("/"))
-    for i, run_dir in enumerate(sorted((root / "runs").iterdir())):
+    # replicate by replicate, so that a short budget leaves whole replicates covered
+    order = sorted((root / "runs").iterdir(), key=lambda d: (d.name.rsplit("-r", 1)[-1].zfill(3), d.name))
+    for i, run_dir in enumerate(order):
         if i % of != shard:
+            continue
+        if not (run_dir / "log.jsonl").exists():
             continue
         rows = [json.loads(x) for x in (run_dir / "log.jsonl").read_text().splitlines()]
         end = [x for x in rows if x["kind"] == "end"]
@@ -185,8 +204,16 @@ def cmd_assay(a) -> None:
             seed_h = r.store.put(relay.SEED_DIR)
             src = Store(run_dir).path(end[0]["harness"][slot])
             builder_h = r.store.put(src)
-            ev = r.build_turn(1, "A", "B", builder_h, seed_h, seed_h, None, {"A": 0.0, "B": 0.0}, [])
+            # the same information a first-turn builder gets: a fresh benchmark report of the seed
+            try:
+                base = r._bm(seed_h, relay.instances(f"{r.secret}|base|B", 0, cfg.families, cfg.per_family))
+                ev = r.build_turn(1, "A", "B", builder_h, seed_h, seed_h, base,
+                                  {"A": base["mean"], "B": base["mean"]}, [])
+            except SpendCapReached:
+                print("spend cap reached: the assay stops at", run_dir.name, flush=True)
+                return
             ev.pop("_cand_report", None), ev.pop("_inc_report", None)
+            ev["builder_is_seed"] = builder_h == seed_h
             ev.update(kind="assay", run=run_dir.name, slot=slot, usd=round(r.usd, 4))
             with open(out, "a") as f:
                 f.write(json.dumps(ev) + "\n")
@@ -228,8 +255,8 @@ def main() -> None:
     r.set_defaults(fn=cmd_arm)
     b = sub.add_parser("block")
     b.add_argument("--root", required=True)
-    b.add_argument("--reps", type=int, default=3)
-    b.add_argument("--jobs", type=int, default=4)
+    b.add_argument("--reps", type=int, default=4)
+    b.add_argument("--jobs", type=int, default=5)
     b.set_defaults(fn=cmd_block)
     s = sub.add_parser("assay")
     s.add_argument("--root", required=True)
