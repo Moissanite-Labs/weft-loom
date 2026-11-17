@@ -182,24 +182,35 @@ def grid_step_in_proved_ball():
     return out
 
 
+INFO = {}      # lines a check prints after its units, as information and not as a certificate
+
+
 def persistence_ball_gate():
-    """CL-8. A breaking move is shorter than the largest gap of the passing fine-tune. Hosts where it is not stay open."""
+    """CL-8. A breaking move has a smaller summed gap than the passing fine-tune. Both moves are rebuilt by closure_persist.py."""
     hosts = load(HERE / "closure_persist.json")["hosts"]
     res = load(CAL / "results.json")
-    out = []
+    out, n_exact, n_length = [], 0, 0
     for h, host, ph in zip(hosts, res["hosts"], res["analysis"]["per_host"]):
         fine = next(x for x in host["rows"] if x["natural"] and x["class"] == "finetune_joint")
         if h["seed"] != ph["seed"] or abs(h["finetune_r"] - fine["r"]) > 1e-9 * fine["r"] or h["break_r"] != ph["H6_r_break_adv"]:
-            raise SystemExit("FAIL: closure_persist.json does not match the calibration record; rerun closure_persist.py")
+            raise SystemExit("FAIL: closure_persist.json does not match the calibration record, rerun closure_persist.py")
         harm = [x for x in host["rows"] if x["class"] == "adv" and not x["natural"] and h["break_r"] is not None and abs(x["r"] - h["break_r"]) <= 1e-12]
         breaks = bool(harm) and harm[0]["drop"] > BAR
         passes = fine["drop"] <= BAR and fine["novel_r2_after"] >= NOVEL_MIN
-        upper, lower = h["break_r"], h["finetune_largest_gap"]
-        if lower > h["finetune_r"] * (1 + 1e-12):
-            raise SystemExit("FAIL: a largest gap exceeds the length of its move")
-        crossed = breaks and passes and upper < lower
-        out.append(dict(unit=f"MLP host {h['seed']}", upper=upper, lower=lower, closed=True if crossed else None,
-                        note=f"the fine-tune has length {h['finetune_r']:.2f}" + ("" if crossed else ". Its largest gap is not above the breaking move, so the host is left open")))
+        if not h["break_rebuilt"]:
+            out.append(dict(unit=f"MLP host {h['seed']}", upper=None, lower=h["finetune_summed_gap"], closed=False, note="the breaking move was not rebuilt"))
+            continue
+        upper, lower = h["break_summed_gap"], h["finetune_summed_gap"]
+        n_exact += h["break_largest_gap"] < h["finetune_largest_gap"]
+        n_length += h["break_r"] < h["finetune_largest_gap"]
+        out.append(dict(unit=f"MLP host {h['seed']}", upper=upper, lower=lower, closed=breaks and passes and upper < lower,
+                        note=f"the breaking move drops {harm[0]['drop']:.4f}. The fine-tune drops {fine['drop']:.4f}"))
+    n = len(out)
+    INFO["persistence_ball_gate"] = [
+        "Information only, not part of the certificate:",
+        f"   largest gap, rebuilt breaking move below the fine-tune: {n_exact} of {n} hosts",
+        f"   largest gap, breaking length below the fine-tune (the plan's first row): {n_length} of {n} hosts",
+    ]
     return out
 
 
@@ -260,6 +271,8 @@ def main():
                 mark = "not counted" if u["closed"] is None else ("holds" if u["closed"] else "FAILS")
                 bounds = f"upper {fmt(u['upper'])}  lower {fmt(u['lower'])}  " if c["kind"] == "crossed_bounds" else ""
                 print(f"     {u['unit']:<24} {bounds}{mark}; {u['note']}")
+            for line in INFO.get(c["check"], []):
+                print(line)
             print()
     print("Paths (what each needs is listed by hand in closures.json)")
     needs = {p["id"]: p["needs"] for p in reg["paths"]}

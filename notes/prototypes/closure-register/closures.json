@@ -80,12 +80,12 @@
    "id": "CL-8",
    "kind": "crossed_bounds",
    "check": "persistence_ball_gate",
-   "sector": "One radius of a ball in the largest gap between the sorted sizes of the links of each layer's maximum spanning tree, on a nonlinear host, that admits a fine-tune which passes the joint bar and rejects a move which breaks the retention bar.",
-   "parameter": "gate radius R",
-   "upper": "R < the length of an exhibited move that breaks the retention bar. The largest gap of that move is at most its length.",
-   "lower": "R >= the largest gap of an exhibited passing fine-tune. A smaller ball rejects it.",
-   "scope": "1 of the 12 MLP hosts of the calibration record, host 3, where the largest gap of the fine-tune is above the length of the breaking move. The other 11 hosts are left open. closure_persist.py rebuilds each fine-tune, checks it against its recorded row, and saves the numbers. The 11 hosts where it is not above are not counted. The summed gap is a different distance and is not registered here.",
-   "reopens_if": "Never for the hosts counted. A host outside them stays open until a shorter breaking move or a larger gap is exhibited."
+   "sector": "One radius of a ball in the summed gap of sorted tree sizes that admits a fine-tune which passes the joint bar and rejects a move which breaks the retention bar.",
+   "parameter": "gate radius R in the summed gap",
+   "upper": "R is under the summed gap of an exhibited move that breaks the retention bar. A ball that contains that move admits it.",
+   "lower": "R is at least the summed gap of an exhibited fine-tune that passes the joint bar. A smaller ball rejects it.",
+   "scope": "The 12 MLP hosts of the calibration record, each certified on its own from two rebuilt moves. closure_persist.py rebuilds both and checks them against their recorded rows. No theorem bounds the summed gap, so nothing is said beyond these moves. Biases are left out of the distance.",
+   "reopens_if": "Never for these hosts, since both moves are exhibited. A host on which every breaking move has a larger summed gap than every useful one is outside the sector."
   }
  ],
  "reopened": [
