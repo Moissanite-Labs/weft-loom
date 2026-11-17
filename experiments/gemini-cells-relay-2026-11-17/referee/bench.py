@@ -139,6 +139,7 @@ class Bench:
         sandbox.strip_symlinks(ep / "work")
         return {"rc": rc, "calls": srv.used, "usd": round(srv.usd, 6),
                 "wall_s": round(time.time() - t0, 1), "stderr_tail": err[-600:],
+                "model_errors": sum(1 for x in srv.records if "error" in x),
                 "records": srv.records}
 
     def episode(self, harness: Path, family: str, seed: int, *, level: int, calls: int,
@@ -176,12 +177,12 @@ class Bench:
                        / sum(1 for e in eps if e["family"] == f), 4) for f in fams}
         return {"mean": round(sum(e["score"] for e in eps) / len(eps), 4), "by_family": by,
                 "calls": sum(e["calls"] for e in eps), "usd": round(sum(e["usd"] for e in eps), 6),
-                "episodes": eps}
+                "model_errors": sum(e["model_errors"] for e in eps), "episodes": eps}
 
     def boot(self, harness: Path, *, calls: int, prompt_chars: int) -> dict:
         e = self.episode(harness, "boot", 0, level=0, calls=calls, prompt_chars=prompt_chars, wall_s=120)
         return {"ok": e["score"] == 1.0, "calls": e["calls"], "usd": e["usd"], "rc": e["rc"],
-                "stderr_tail": e["stderr_tail"]}
+                "model_errors": e["model_errors"], "stderr_tail": e["stderr_tail"]}
 
     def build(self, builder_harness: Path, base: Path, report: dict | None, task_text: str, *,
               calls: int, prompt_chars: int, wall_s: float, example_seed: int, level: int,

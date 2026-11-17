@@ -41,6 +41,9 @@ class SpendCapReached(RuntimeError):
     pass
 
 
+CAP_HIT = threading.Event()   # set when a call was refused because the spend cap was reached
+
+
 class Ledger:
     """A JSON file {"usd": x, "calls": n} updated under a file lock."""
 
@@ -230,6 +233,8 @@ class BrainServer:
         try:
             r = self.backend.call(system, prompt)
         except Exception as exc:  # the cell sees a plain error; the log keeps the cause
+            if isinstance(exc, SpendCapReached):
+                CAP_HIT.set()
             self.records.append({"n": n, "error": f"{type(exc).__name__}: {exc}"[:300]})
             return {"error": "model call failed"}
         self.usd += r["usd"]

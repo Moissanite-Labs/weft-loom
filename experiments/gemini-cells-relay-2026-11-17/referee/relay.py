@@ -19,6 +19,7 @@ import shutil
 import time
 from pathlib import Path
 
+from . import brain
 from .bench import Bench, Store, inspect_harness, tree_hash
 
 SEED_DIR = Path(__file__).resolve().parent.parent / "seed"
@@ -27,12 +28,12 @@ SEED_DIR = Path(__file__).resolve().parent.parent / "seed"
 @dataclasses.dataclass(frozen=True)
 class Config:
     model: str = "claude-haiku-5-5"
-    turns: int = 8
+    turns: int = 6
     families: tuple = ("ledger", "logwin", "bugfix")
     heldout: tuple = ("stock", "spec")
     per_family: int = 3
-    level: int = 2
-    episode_calls: int = 5
+    level: int = 3
+    episode_calls: int = 3
     episode_prompt_chars: int = 16000
     episode_wall_s: int = 300
     build_calls: int = 16
@@ -161,6 +162,7 @@ class Relay:
         self.usd = 0.0
         self.calls = 0
         self.secret = os.urandom(16).hex()
+        self.model_errors = 0
 
     def log(self, row: dict) -> None:
         with open(self.log_path, "a") as f:
@@ -172,11 +174,19 @@ class Relay:
                                  prompt_chars=c.episode_prompt_chars, wall_s=c.episode_wall_s)
         self.usd += r["usd"]
         self.calls += r["calls"]
+        self.model_errors += r["model_errors"]
+        self._check_cap()
         return r
+
+    def _check_cap(self) -> None:
+        if brain.CAP_HIT.is_set():
+            self.log({"kind": "stopped", "why": "spend cap reached", "usd": round(self.usd, 4)})
+            raise brain.SpendCapReached("spend cap reached; the run stops here")
 
     @staticmethod
     def _slim(r: dict) -> dict:
         return {"mean": r["mean"], "by_family": r["by_family"], "calls": r["calls"], "usd": r["usd"],
+                "model_errors": r["model_errors"],
                 "episodes": [{k: e[k] for k in ("family", "seed", "score", "calls", "rc", "wall_s")}
                              for e in r["episodes"]]}
 
@@ -204,12 +214,14 @@ class Relay:
                              level=c.level, example_families=c.families)
         self.usd += b["usd"]
         self.calls += b["calls"]
+        self.model_errors += b["model_errors"]
+        self._check_cap()
         info = inspect_harness(b["candidate"], c.harness_max_bytes, c.harness_max_files)
         ev = {"kind": "turn", "t": t, "builder": me, "target": tgt, "builder_harness": builder_h,
               "base": base_h, "target_before": tgt_h, "candidate": info["hash"],
               "candidate_bytes": info["bytes"], "candidate_files": info["files"],
               "edited": info["hash"] != base_h, "build_calls": b["calls"], "build_usd": b["usd"],
-              "build_rc": b["rc"], "build_wall_s": b["wall_s"]}
+              "build_rc": b["rc"], "build_wall_s": b["wall_s"], "build_model_errors": b["model_errors"]}
         (self.dir / "builds").mkdir(exist_ok=True)
         (self.dir / "builds" / f"turn{t:02d}.txt").write_text(b["trace"])
         if not info["ok"]:
@@ -222,7 +234,8 @@ class Relay:
                                    prompt_chars=c.episode_prompt_chars)
             self.usd += boot["usd"]
             self.calls += boot["calls"]
-            ev["boot"] = {k: boot[k] for k in ("ok", "calls", "rc")}
+            self.model_errors += boot["model_errors"]
+            ev["boot"] = {k: boot[k] for k in ("ok", "calls", "rc", "model_errors")}
             if not boot["ok"]:
                 ev.update(outcome="boot_fail", boot_stderr=boot["stderr_tail"])
             else:
@@ -274,7 +287,7 @@ class Relay:
                 final[slot] = self._slim(self._bm(H[slot], exam))
             self.log({"kind": "exam", "slot": slot, "harness": H[slot], "report": final[slot]})
         out = {"kind": "end", "run": self.run_id, "harness": H, "secret": self.secret,
-               "usd": round(self.usd, 4),
+               "usd": round(self.usd, 4), "model_errors": self.model_errors,
                "calls": self.calls, "wall_s": round(time.time() - t0, 1)}
         self.log(out)
         shutil.rmtree(self.dir / "scratch", ignore_errors=True)

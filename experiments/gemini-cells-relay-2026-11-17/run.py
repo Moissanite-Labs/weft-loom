@@ -2,6 +2,8 @@
 """Run the gemini-cells relay. Live commands spend money; the ledger enforces the cap.
 
     python3 run.py calibrate --root R --harness seed --calls 5 --n 6
+    python3 run.py exam --root R --harness seed --label seed --repeats 4
+    python3 run.py aa --root R --n 6
     python3 run.py arm twin-free-collective --rep 0 --root R
     python3 run.py block --root R --reps 3 --jobs 4
     python3 run.py assay --root R
@@ -73,6 +75,57 @@ def cmd_calibrate(a) -> None:
     print(f"all mean {r['mean']:.3f} calls {r['calls']} usd {r['usd']:.4f} wall {row['wall_s']}s")
 
 
+def cmd_exam(a) -> None:
+    """Sit one harness through the final exam several times. Writes results/<label>_exam.json."""
+    cfg = relay.Config()
+    root = Path(a.root)
+    b = Bench(root / "exam-scratch" / a.label, backend(root, cfg.model), families(), parallel=a.parallel)
+    harness = HERE / a.harness
+    inst = relay.exam_instances(cfg)
+    out = {"label": a.label, "harness": a.harness, "repeats": a.repeats, "calls_cap": cfg.episode_calls,
+           "level": cfg.level, "visible": [], "heldout": [], "by_family": [], "calls": 0, "usd": 0.0,
+           "model_errors": 0, "episodes": []}
+    for i in range(a.repeats):
+        r = b.benchmark(harness, inst, level=cfg.level, calls=cfg.episode_calls,
+                        prompt_chars=cfg.episode_prompt_chars, wall_s=cfg.episode_wall_s)
+        vis = [e["score"] for e in r["episodes"] if e["family"] in cfg.families]
+        held = [e["score"] for e in r["episodes"] if e["family"] in cfg.heldout]
+        out["visible"].append(round(statistics.mean(vis), 4))
+        out["heldout"].append(round(statistics.mean(held), 4))
+        out["by_family"].append(r["by_family"])
+        out["calls"] += r["calls"]
+        out["usd"] = round(out["usd"] + r["usd"], 4)
+        out["model_errors"] += r["model_errors"]
+        out["episodes"].append([{k: e[k] for k in ("family", "seed", "score", "calls")} for e in r["episodes"]])
+        print(a.label, "repeat", i, "visible", out["visible"][-1], "heldout", out["heldout"][-1], flush=True)
+    (HERE / "results").mkdir(exist_ok=True)
+    (HERE / "results" / f"{a.label}_exam.json").write_text(json.dumps(out, indent=1))
+
+
+def cmd_aa(a) -> None:
+    """Gate noise with nothing changed: the seed against itself on the same fresh tasks."""
+    cfg = relay.Config()
+    root = Path(a.root)
+    b = Bench(root / "aa-scratch", backend(root, cfg.model), families(), parallel=a.parallel)
+    rows = []
+    for i in range(a.n):
+        inst = relay.instances(f"aa|{a.salt}|{i}", 0, cfg.families, cfg.per_family)
+        x = b.benchmark(relay.SEED_DIR, inst, level=cfg.level, calls=cfg.episode_calls,
+                        prompt_chars=cfg.episode_prompt_chars, wall_s=cfg.episode_wall_s)
+        y = b.benchmark(relay.SEED_DIR, inst, level=cfg.level, calls=cfg.episode_calls,
+                        prompt_chars=cfg.episode_prompt_chars, wall_s=cfg.episode_wall_s)
+        rows.append({"i": i, "first": x["mean"], "second": y["mean"], "diff": round(y["mean"] - x["mean"], 4),
+                     "kept_by_gate": y["mean"] >= x["mean"] - cfg.margin, "usd": round(x["usd"] + y["usd"], 4),
+                     "calls": x["calls"] + y["calls"]})
+        print(rows[-1], flush=True)
+    diffs = [r["diff"] for r in rows]
+    out = {"n": a.n, "margin": cfg.margin, "rows": rows, "mean_diff": round(statistics.mean(diffs), 4),
+           "sd_diff": round(statistics.stdev(diffs), 4) if len(diffs) > 1 else None,
+           "kept": sum(r["kept_by_gate"] for r in rows)}
+    (HERE / "results" / "gate_noise.json").write_text(json.dumps(out, indent=1))
+    print({k: out[k] for k in ("mean_diff", "sd_diff", "kept")})
+
+
 def cmd_arm(a) -> None:
     cfg = relay.Config()
     root = Path(a.root)
@@ -110,11 +163,14 @@ def cmd_assay(a) -> None:
     direct measure of how good a builder that harness makes its cell."""
     cfg = relay.Config()
     root = Path(a.root)
-    out = root / "assay.jsonl"
+    out = root / f"assay-{a.shard.replace('/', 'of')}.jsonl"
     done = set()
     if out.exists():
         done = {json.loads(x)["run"] + "|" + json.loads(x)["slot"] for x in out.read_text().splitlines()}
-    for run_dir in sorted((root / "runs").iterdir()):
+    shard, of = (int(x) for x in a.shard.split("/"))
+    for i, run_dir in enumerate(sorted((root / "runs").iterdir())):
+        if i % of != shard:
+            continue
         rows = [json.loads(x) for x in (run_dir / "log.jsonl").read_text().splitlines()]
         end = [x for x in rows if x["kind"] == "end"]
         if not end:
@@ -152,6 +208,19 @@ def main() -> None:
     c.add_argument("--out", default=str(HERE / "results" / "calibration.jsonl"))
     c.add_argument("--traces", default="")
     c.set_defaults(fn=cmd_calibrate)
+    e = sub.add_parser("exam")
+    e.add_argument("--root", required=True)
+    e.add_argument("--harness", default="seed")
+    e.add_argument("--label", default="seed")
+    e.add_argument("--repeats", type=int, default=4)
+    e.add_argument("--parallel", type=int, default=10)
+    e.set_defaults(fn=cmd_exam)
+    g = sub.add_parser("aa")
+    g.add_argument("--root", required=True)
+    g.add_argument("--n", type=int, default=6)
+    g.add_argument("--salt", default="0")
+    g.add_argument("--parallel", type=int, default=10)
+    g.set_defaults(fn=cmd_aa)
     r = sub.add_parser("arm")
     r.add_argument("arm", choices=sorted(relay.ARMS))
     r.add_argument("--rep", type=int, required=True)
@@ -165,6 +234,7 @@ def main() -> None:
     s = sub.add_parser("assay")
     s.add_argument("--root", required=True)
     s.add_argument("--slots", default="A")
+    s.add_argument("--shard", default="0/1", help="i/n: take every n-th run, starting at i")
     s.set_defaults(fn=cmd_assay)
     a = ap.parse_args()
     a.fn(a)
