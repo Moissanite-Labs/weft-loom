@@ -127,6 +127,29 @@ def cmd_aa(a) -> None:
     print({k: out[k] for k in ("mean_diff", "sd_diff", "kept")})
 
 
+def cmd_resit(a) -> None:
+    """Sit the final harnesses of one finished run through the exam again. Used when the
+    model backend failed during a run's exam. Writes <run>/exam_resit.jsonl; nothing else
+    of the run is touched."""
+    cfg = relay.Config()
+    root = Path(a.root)
+    run_dir = root / "runs" / a.run
+    rows = [json.loads(x) for x in (run_dir / "log.jsonl").read_text().splitlines()]
+    end = next(x for x in rows if x["kind"] == "end")
+    r = relay.Relay("twin-free-collective", 0, cfg, root / "rs" / a.run[-12:], backend(root, cfg.model), families())
+    out, done = [], {}
+    for slot in ("A", "B"):
+        h = end["harness"][slot]
+        if h not in done:
+            hh = r.store.put(Store(run_dir).path(h))
+            assert hh == h
+            done[h] = r._slim(r._bm(h, relay.exam_instances(cfg)))
+        out.append({"kind": "exam", "slot": slot, "harness": h, "report": done[h], "resit": True,
+                    "why": a.why})
+        print(a.run, slot, done[h]["mean"], "model errors", done[h]["model_errors"], flush=True)
+    (run_dir / "exam_resit.jsonl").write_text("".join(json.dumps(x) + "\n" for x in out))
+
+
 def cmd_arm(a) -> None:
     cfg = relay.Config()
     root = Path(a.root)
@@ -198,7 +221,8 @@ def cmd_assay(a) -> None:
             key = run_dir.name + "|" + slot
             if key in done:
                 continue
-            r = relay.Relay("twin-free-collective", 0, cfg, root / "assay-scratch" / run_dir.name / slot,
+            # a short scratch path: a Unix socket path may hold about 100 characters
+            r = relay.Relay("twin-free-collective", 0, cfg, root / "as" / f"{i:02d}{slot}",
                             backend(root, cfg.model), families())
             r.run_id = f"assay|{run_dir.name}|{slot}"
             seed_h = r.store.put(relay.SEED_DIR)
@@ -248,6 +272,11 @@ def main() -> None:
     g.add_argument("--salt", default="0")
     g.add_argument("--parallel", type=int, default=10)
     g.set_defaults(fn=cmd_aa)
+    t = sub.add_parser("resit")
+    t.add_argument("--root", required=True)
+    t.add_argument("--run", required=True)
+    t.add_argument("--why", required=True)
+    t.set_defaults(fn=cmd_resit)
     r = sub.add_parser("arm")
     r.add_argument("arm", choices=sorted(relay.ARMS))
     r.add_argument("--rep", type=int, required=True)

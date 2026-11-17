@@ -17,7 +17,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from . import sandbox
-from .brain import BrainServer
+from .brain import BrainServer, is_usage_limit
 
 HERE = Path(__file__).resolve().parent
 _counter = itertools.count()
@@ -140,10 +140,44 @@ class Bench:
         return {"rc": rc, "calls": srv.used, "usd": round(srv.usd, 6),
                 "wall_s": round(time.time() - t0, 1), "stderr_tail": err[-600:],
                 "model_errors": sum(1 for x in srv.records if "error" in x),
+                "limit_hit": any(is_usage_limit(x["error"]) for x in srv.records if "error" in x),
                 "records": srv.records}
 
-    def episode(self, harness: Path, family: str, seed: int, *, level: int, calls: int,
-                prompt_chars: int, wall_s: float, keep: bool = False) -> dict:
+    limit_wait_s = 300.0     # how long to wait between probes when the account is out of allowance
+    limit_waits = 0          # how many times this bench has waited
+
+    def _wait_for_backend(self) -> None:
+        """Block until one small model call goes through again."""
+        while True:
+            type(self).limit_waits += 1
+            time.sleep(self.limit_wait_s)
+            try:
+                self.backend.call("You are a probe.", "Reply with the word OK.")
+                return
+            except Exception as exc:
+                if not is_usage_limit(str(exc)):
+                    return
+
+    def episode(self, harness: Path, family: str, seed: int, **kw) -> dict:
+        """One episode. If the account ran out of allowance during it, wait and run it again:
+        an episode cut short by the backend says nothing about the harness."""
+        while True:
+            out = self._episode_once(harness, family, seed, **kw)
+            if not out.pop("limit_hit"):
+                return out
+            self._wait_for_backend()
+
+    def build(self, *args, **kw) -> dict:
+        """One build turn, rerun from the start if the account ran out of allowance during it."""
+        while True:
+            out = self._build_once(*args, **kw)
+            if not out.pop("limit_hit"):
+                return out
+            shutil.rmtree(out["candidate"], ignore_errors=True)
+            self._wait_for_backend()
+
+    def _episode_once(self, harness: Path, family: str, seed: int, *, level: int, calls: int,
+                      prompt_chars: int, wall_s: float, keep: bool = False) -> dict:
         ep = self._new_ep(f"{family}-{seed}")
         if family == "boot":
             (ep / "work" / "TASK.md").write_text(BOOT_TASK)
@@ -184,9 +218,9 @@ class Bench:
         return {"ok": e["score"] == 1.0, "calls": e["calls"], "usd": e["usd"], "rc": e["rc"],
                 "model_errors": e["model_errors"], "stderr_tail": e["stderr_tail"]}
 
-    def build(self, builder_harness: Path, base: Path, report: dict | None, task_text: str, *,
-              calls: int, prompt_chars: int, wall_s: float, example_seed: int, level: int,
-              example_families: tuple[str, ...]) -> dict:
+    def _build_once(self, builder_harness: Path, base: Path, report: dict | None, task_text: str, *,
+                    calls: int, prompt_chars: int, wall_s: float, example_seed: int, level: int,
+                    example_families: tuple[str, ...]) -> dict:
         """One build turn. Returns the candidate tree path (cleaned) and the episode facts."""
         ep = self._new_ep("build")
         work = ep / "work"

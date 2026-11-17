@@ -44,6 +44,15 @@ class SpendCapReached(RuntimeError):
 CAP_HIT = threading.Event()   # set when a call was refused because the spend cap was reached
 
 
+class UsageLimit(RuntimeError):
+    """The account behind the model backend is out of allowance until a reset time."""
+
+
+def is_usage_limit(text: str) -> bool:
+    t = text.lower()
+    return "limit" in t and "reset" in t
+
+
 class Ledger:
     """A JSON file {"usd": x, "calls": n} updated under a file lock."""
 
@@ -108,7 +117,7 @@ class ClaudeCLI:
         argv = ["claude", "-p", "--model", self.model, "--tools", "", "--output-format", "json",
                 "--no-session-persistence", "--system-prompt", TRANSPORT_NOTE + system]
         last = "no attempt"
-        for attempt in range(5):
+        for attempt in range(12):
             with _CLI_SLOTS:
                 try:
                     p = subprocess.run(argv, input=prompt.encode("utf-8"), capture_output=True,
@@ -116,21 +125,23 @@ class ClaudeCLI:
                     d = json.loads(p.stdout.decode("utf-8", "replace"))
                 except (subprocess.TimeoutExpired, json.JSONDecodeError) as exc:
                     last = f"{type(exc).__name__}"
-                    time.sleep(3 + 6 * attempt)
+                    time.sleep(min(60, 3 + 6 * attempt))
                     continue
             usd = float(d.get("total_cost_usd") or 0.0)
             if usd:
                 self.ledger.add(usd)
             if d.get("is_error") or not isinstance(d.get("result"), str):
                 last = str(d.get("result") or d.get("subtype") or "error")[:200]
-                time.sleep(3 + 6 * attempt)
+                if is_usage_limit(last):
+                    raise UsageLimit(last)     # no point retrying for minutes: the bench waits and reruns
+                time.sleep(min(60, 3 + 6 * attempt))
                 continue
             u = d.get("usage") or {}
             in_tok = (u.get("input_tokens", 0) + u.get("cache_creation_input_tokens", 0)
                       + u.get("cache_read_input_tokens", 0))
             return {"reply": d["result"], "usd": usd, "in_tok": in_tok,
                     "out_tok": u.get("output_tokens", 0), "api_ms": d.get("duration_api_ms", 0)}
-        raise RuntimeError(f"model call failed five times: {last}")
+        raise RuntimeError(f"model call failed twelve times over about seven minutes: {last}")
 
 
 def clip_middle(text: str, cap: int) -> tuple[str, bool]:

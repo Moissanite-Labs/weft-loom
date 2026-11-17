@@ -162,6 +162,30 @@ class Limits(unittest.TestCase):
         self.assertEqual((e["calls"], len(calls), e["score"]), (3, 3, 0.0))
         shutil.rmtree(root, ignore_errors=True)
 
+    def test_usage_limit_pauses_and_reruns(self):
+        """A model call refused for the account's usage limit must not count as a result."""
+        root = Path(tempfile.mkdtemp(prefix="gc-test-", dir="/srv"))
+        state = {"n": 0}
+
+        def fn(system, prompt):
+            state["n"] += 1
+            if state["n"] <= 2:
+                raise RuntimeError("You've hit your 5-hour limit · resets 9am (UTC)")
+            if "--- step 1 ---" in prompt or "probe" in system:
+                return "@done"
+            n = int(re.search(r"Write the number (\d+)", prompt).group(1))
+            return f"@write answer.txt\n{n}\n@end"
+
+        b = Bench(root, Scripted(fn), FAMILIES)
+        b.limit_wait_s = 0.05
+        before = Bench.limit_waits
+        e = b.episode(relay.SEED_DIR, "echo", 7, level=2, calls=3, prompt_chars=16000, wall_s=60)
+        self.assertEqual(e["score"], 1.0)                 # the rerun, not the refused attempt
+        self.assertEqual(e["model_errors"], 0)
+        self.assertGreaterEqual(Bench.limit_waits - before, 1)
+        self.assertNotIn("limit_hit", e)
+        shutil.rmtree(root, ignore_errors=True)
+
     def test_spend_cap_stops_calls(self):
         d = Path(tempfile.mkdtemp(prefix="gc-test-", dir="/srv"))
         led = Ledger(d / "spend.json", cap_usd=0.01)
