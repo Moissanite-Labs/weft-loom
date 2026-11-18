@@ -3,8 +3,8 @@
   "parent": "E11",
   "weft_reference": "https://github.com/Moissanite-Labs/weft/pull/201",
   "prereg": "PREREG.md",
-  "commit": "5a2d5908fdaf60f17f961bc8c87f99650f69c7b4",
-  "elapsed_s": 5.201,
+  "commit": "cdefaef189b36574e14955598b51ce5fcde9ae99",
+  "elapsed_s": 4.407,
   "seeds_cross": [
     17,
     29,
