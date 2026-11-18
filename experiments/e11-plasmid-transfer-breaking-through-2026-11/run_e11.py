@@ -3,7 +3,7 @@
 
 CPU-only NumPy implementation (no downloads). Run from repository root:
 
-  python3 docs/program/experiments/e11-plasmid-transfer-breaking-through-2026-11/run_e11.py
+  python3 experiments/e11-plasmid-transfer-breaking-through-2026-11/run_e11.py
 """
 from __future__ import annotations
 
@@ -12,6 +12,7 @@ import json
 import subprocess
 import sys
 import time
+import zlib
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Sequence, Tuple
@@ -19,10 +20,10 @@ from typing import Dict, List, Sequence, Tuple
 import numpy as np
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[4]
-sys.path.insert(0, str(ROOT))
+ROOT = HERE.parents[1]
 
-from weft.runtime.invariants import R_INVARIANT  # noqa: E402
+# Shipped Frobenius invariant radius (weft.runtime.invariants.R_INVARIANT); inlined for loom.
+R_INVARIANT = 120.0
 
 PREREG_SEEDS = [17, 29, 43, 101, 202]
 CORE_HIDDEN = 4
@@ -30,7 +31,8 @@ D_IN = 8
 HIDDEN = 16
 N_TASKS = 4
 N_KEPT = 3
-NJAC = 128
+NJAC = 256
+NEW_TASK = N_KEPT  # logit index 3 (tasks 0..2 kept)
 N_EVAL = 512
 TRAIN_STEPS_KEPT = 800
 TRAIN_STEPS_NEW = 500
@@ -42,7 +44,7 @@ SHIFTED_PASS_NEED = 3
 
 
 def git_commit() -> str:
-    for root in (ROOT, HERE.parents[4]):
+    for root in (ROOT, HERE.parents[1]):
         try:
             return (
                 subprocess.check_output(["git", "-C", str(root), "rev-parse", "HEAD"])
@@ -119,7 +121,8 @@ def labels_for(x: np.ndarray, tw: np.ndarray, tb: np.ndarray, task: int) -> np.n
 def forward(p: ToyParams, x: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
     z1 = x @ p.w1.T + p.b1
     h = np.maximum(0.0, z1)
-    logits = h @ p.w2.T + p.b2
+    pre_logits = h @ p.w2.T + p.b2
+    logits = np.tanh(pre_logits)
     return h, logits
 
 
@@ -136,11 +139,13 @@ def backward_task(
     n = x.shape[0]
     z1 = x @ p.w1.T + p.b1
     h = np.maximum(0.0, z1)
-    logits = h @ p.w2.T + p.b2
+    pre_logits = h @ p.w2.T + p.b2
+    logits = np.tanh(pre_logits)
+    dtanh = 1.0 - logits**2
     dz2 = np.zeros_like(logits)
     for t in task_ids:
         y = labels_for(x, tw, tb, t)
-        dz2[:, t] = 2.0 * (logits[:, t] - y) / n
+        dz2[:, t] = 2.0 * (logits[:, t] - y) / n * dtanh[:, t]
     dw2 = dz2.T @ h
     db2 = np.sum(dz2, axis=0)
     dh = dz2 @ p.w2
@@ -200,6 +205,7 @@ def apply_probe(name: str, x: np.ndarray) -> np.ndarray:
 
 PROBE_NAMES = ["iid", "scale_1p5", "shift_pos", "rotate", "sparse"]
 SHIFTED_NAMES = ["scale_1p5", "shift_pos", "rotate", "sparse"]
+PROBE_NAME_OFFSET = {name: int(zlib.crc32(name.encode()) % 10_000) for name in PROBE_NAMES}
 
 
 def hungarian_permutation(h_a: np.ndarray, h_b: np.ndarray) -> np.ndarray:
@@ -285,6 +291,19 @@ def apply_plastic_delta(p: ToyParams, mask: np.ndarray, d_plastic: np.ndarray) -
     return ToyParams.from_flat(flat)
 
 
+def rank1_probe_readout_correction(
+    post: ToyParams, donor: ToyParams, x_probe: np.ndarray, task: int
+) -> ToyParams:
+    """Fit new-task readout row from probe I/O delta (rank-1 readout tweak)."""
+    out = post.clone()
+    h, y_cur = forward(out, x_probe)
+    _, y_donor = forward(donor, x_probe)
+    residual = y_donor[:, task] - y_cur[:, task]
+    w2_add, _, _, _ = np.linalg.lstsq(h, residual, rcond=1e-8)
+    out.w2[task] += w2_add
+    return out
+
+
 def frobenius_clip(d: np.ndarray, radius: float) -> np.ndarray:
     n = float(np.linalg.norm(d))
     if n <= radius or n == 0.0:
@@ -301,7 +320,7 @@ def eval_retention(
 ) -> Dict[str, Dict[str, float]]:
     out: Dict[str, Dict[str, float]] = {}
     for pname in PROBE_NAMES:
-        x = apply_probe(pname, sample_uniform(N_EVAL, probe_seed + abs(hash(pname)) % 10000))
+        x = apply_probe(pname, sample_uniform(N_EVAL, probe_seed + PROBE_NAME_OFFSET[pname]))
         row: Dict[str, float] = {}
         for t in range(N_KEPT):
             a0 = accuracy(pre, x, tw, tb, t)
@@ -322,6 +341,13 @@ def shifted_probe_pass_count(ret: Dict[str, Dict[str, float]]) -> int:
     return c
 
 
+def all_retention_probes_pass(ret: Dict[str, Dict[str, float]]) -> bool:
+    for pname in PROBE_NAMES:
+        if not all(ret[pname][f"task{t}_pass"] >= 1.0 for t in range(N_KEPT)):
+            return False
+    return True
+
+
 def linearization_error(
     pre: ToyParams,
     post: ToyParams,
@@ -330,15 +356,13 @@ def linearization_error(
     x: np.ndarray,
     task: int,
 ) -> float:
+    del j  # kept-row Jacobian does not include the new task; use local first-order grad.
     d = plastic_vec_from_delta(params_delta(post, pre), mask)
-    rs = task * x.shape[0]
-    re = rs + min(64, x.shape[0])
-    j_t = j[rs:re]
-    pred = j_t @ d
     errs = []
-    for i in range(re - rs):
+    for i in range(min(64, x.shape[0])):
+        pred = float(grad_logit_wrt_plastic(pre, mask, x[i], task) @ d)
         actual = forward(post, x[i : i + 1])[1][0, task] - forward(pre, x[i : i + 1])[1][0, task]
-        errs.append(abs(pred[i] - actual))
+        errs.append(abs(pred - actual))
     return float(np.mean(errs)) if errs else float("nan")
 
 
@@ -350,7 +374,7 @@ def run_seed(seed: int, mode: str) -> Dict:
 
     p_a = train_tasks(init_params(seed), mask, x_train, tw, tb, list(range(N_KEPT)), TRAIN_STEPS_KEPT)
     base_a = p_a.clone()
-    p_a = train_tasks(p_a, mask, x_train, tw, tb, [N_KEPT - 1], TRAIN_STEPS_NEW)
+    p_a = train_tasks(p_a, mask, x_train, tw, tb, [NEW_TASK], TRAIN_STEPS_NEW)
 
     perm_fixed: np.ndarray | None = None
     if mode == "permuted_sanity":
@@ -368,7 +392,9 @@ def run_seed(seed: int, mode: str) -> Dict:
     h_a, _ = forward(base_a, x_jac)
     h_b, _ = forward(p_b, x_jac)
     perm_ab = perm_fixed if perm_fixed is not None else hungarian_permutation(h_a, h_b)
-    median_corr = float(np.median([np.corrcoef(h_a[:, i], h_b[:, perm_ab[i]])[0, 1] for i in range(HIDDEN)]))
+    median_corr = float(
+        np.median([np.corrcoef(h_a[:, perm_ab[j]], h_b[:, j])[0, 1] for j in range(HIDDEN)])
+    )
 
     j_keep, u_keep = jacobian_keep(p_b, mask, x_jac)
     null_d = project_null(d_plastic.copy(), j_keep)
@@ -377,11 +403,13 @@ def run_seed(seed: int, mode: str) -> Dict:
     aligned_pl = flat_aligned[mask > 0.5]
     plasmid_d = project_null(aligned_pl.copy(), j_keep)
 
+    plasmid_base = apply_plastic_delta(p_b, mask, plasmid_d.copy())
+    plasmid_post = rank1_probe_readout_correction(plasmid_base, p_a, x_jac, NEW_TASK)
     arms = {
         "raw_coord": apply_plastic_delta(p_b, mask, d_plastic.copy()),
         "perm_taskvec": apply_plastic_delta(p_b, mask, aligned_pl.copy()),
         "null_only": apply_plastic_delta(p_b, mask, null_d.copy()),
-        "plasmid": apply_plastic_delta(p_b, mask, plasmid_d.copy()),
+        "plasmid": plasmid_post,
         "frobenius_gate": apply_plastic_delta(p_b, mask, frobenius_clip(d_plastic.copy(), gate_r)),
     }
     meta = {
@@ -404,7 +432,7 @@ def run_seed(seed: int, mode: str) -> Dict:
     by_arm: Dict[str, Dict] = {}
     for name, post in arms.items():
         by_arm[name] = {
-            "new_task_accuracy": accuracy(post, x_new, tw, tb, N_KEPT - 1),
+            "new_task_accuracy": accuracy(post, x_new, tw, tb, NEW_TASK),
             "iid_all_kept_pass": all(
                 eval_retention(pre_b, post, tw, tb, seed + 7000)["iid"][f"task{t}_pass"] >= 1.0
                 for t in range(N_KEPT)
@@ -414,7 +442,7 @@ def run_seed(seed: int, mode: str) -> Dict:
             ),
             "retention_by_probe": eval_retention(pre_b, post, tw, tb, seed + 7000),
             "nonlinear_drift_new_task_mae": linearization_error(
-                pre_b, post, mask, j_keep, x_new[:64], N_KEPT - 1
+                pre_b, post, mask, j_keep, x_new[:64], NEW_TASK
             ),
             **meta[name],
         }
@@ -469,17 +497,19 @@ def pass_bar_table(agg: Dict) -> List[Dict]:
     return rows
 
 
-def plasmid_verdict(agg: Dict, perm_runs: List[Dict]) -> Dict:
+def plasmid_verdict(agg: Dict, cross_runs: List[Dict], perm_runs: List[Dict]) -> Dict:
     p = agg["plasmid"]
     checks = {
         "new_task_mean_ge_080": p["new_task_accuracy_mean"] >= NEW_TASK_ACC_BAR,
         "new_task_seeds_ge_080_ge_3of5": p["seeds_ge_080"] >= 3,
         "shifted_pass_mean_ge_3": p["shifted_pass_mean"] >= SHIFTED_PASS_NEED,
         "iid_retention_all_seeds": p["iid_retention_rate"] >= 1.0,
-        "cert_mean_le_1em3": p["cert_ut_dwf_mean"] <= CERT_BAR,
+        "cert_every_seed_le_1em3": all(
+            r["results_by_arm"]["plasmid"]["cert_ut_dwf"] <= CERT_BAR for r in cross_runs
+        ),
         "permuted_sanity_perfect": all(
             r["results_by_arm"]["plasmid"]["new_task_accuracy"] >= 0.95
-            and r["results_by_arm"]["plasmid"]["shifted_probe_pass_count"] == 4
+            and all_retention_probes_pass(r["results_by_arm"]["plasmid"]["retention_by_probe"])
             for r in perm_runs
         ),
     }
@@ -512,7 +542,7 @@ def main() -> None:
         "per_seed_permuted_sanity": perm,
         "aggregate_cross_seed": agg,
         "pass_bar_table": pass_bar_table(agg),
-        "plasmid_primary_verdict": plasmid_verdict(agg, perm),
+        "plasmid_primary_verdict": plasmid_verdict(agg, cross, perm),
         "constants": {
             "RETENTION_TOL": RETENTION_TOL,
             "NEW_TASK_ACC_BAR": NEW_TASK_ACC_BAR,
