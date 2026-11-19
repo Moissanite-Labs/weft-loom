@@ -1,0 +1,5 @@
+Label: 02_gemini_cell_optimization
+Tab index: 2
+Title: Gemini Cell Optimization Strategy - Google Gemini
+URL: https://gemini.google.com/u/6/app/f003d1a8184a9c98?pageId=none
+Captured: Monday, November 16, 2026 at 9:30:43 PM
