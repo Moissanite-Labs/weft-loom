@@ -1,0 +1,145 @@
+{
+ "gemma-4-E4B-it-Q8_0": {
+  "overall": "not_decided",
+  "tiers": {
+   "M": {
+    "arms": {
+     "A": {
+      "mean_pass_round": 3.0,
+      "n": 100,
+      "pass": 6,
+      "pass_rate": 0.06,
+      "repeat_rate": 0.5204081632653061,
+      "unparsable_rate": 0.0025380710659898475
+     },
+     "B": {
+      "mean_pass_round": 3.3333333333333335,
+      "n": 100,
+      "pass": 9,
+      "pass_rate": 0.09,
+      "repeat_rate": 0.14965986394557823,
+      "unparsable_rate": 0.0025380710659898475
+     },
+     "C": {
+      "mean_pass_round": 3.2222222222222223,
+      "n": 100,
+      "pass": 9,
+      "pass_rate": 0.09,
+      "repeat_rate": 0.16382252559726962,
+      "unparsable_rate": 0.002544529262086514
+     },
+     "D": {
+      "mean_pass_round": 3.0,
+      "n": 100,
+      "pass": 7,
+      "pass_rate": 0.07,
+      "repeat_rate": 0.23208191126279865,
+      "unparsable_rate": 0.0
+     }
+    },
+    "comparisons": {
+     "check_B_vs_A": {
+      "first": "B",
+      "first_only": 8,
+      "p_pass_sign": 0.29052734375,
+      "p_reverse": 0.8665771484375,
+      "p_rounds_signflip": 0.3681640625,
+      "pairs": 100,
+      "second": "A",
+      "second_only": 5
+     },
+     "check_C_vs_D": {
+      "first": "C",
+      "first_only": 4,
+      "p_pass_sign": 0.34375,
+      "p_reverse": 0.890625,
+      "p_rounds_signflip": 0.4140625,
+      "pairs": 100,
+      "second": "D",
+      "second_only": 2
+     },
+     "primary_C_vs_B": {
+      "first": "C",
+      "first_only": 7,
+      "p_pass_sign": 0.604736328125,
+      "p_reverse": 0.604736328125,
+      "p_rounds_signflip": 0.5,
+      "pairs": 100,
+      "second": "B",
+      "second_only": 7
+     }
+    },
+    "verdict": "against"
+   },
+   "S": {
+    "arms": {
+     "A": {
+      "mean_pass_round": 1.7176470588235293,
+      "n": 100,
+      "pass": 85,
+      "pass_rate": 0.85,
+      "repeat_rate": 0.11320754716981132,
+      "unparsable_rate": 0.1941747572815534
+     },
+     "B": {
+      "mean_pass_round": 1.8068181818181819,
+      "n": 100,
+      "pass": 88,
+      "pass_rate": 0.88,
+      "repeat_rate": 0.08411214953271028,
+      "unparsable_rate": 0.14492753623188406
+     },
+     "C": {
+      "mean_pass_round": 1.853932584269663,
+      "n": 100,
+      "pass": 89,
+      "pass_rate": 0.89,
+      "repeat_rate": 0.07339449541284404,
+      "unparsable_rate": 0.14832535885167464
+     },
+     "D": {
+      "mean_pass_round": 1.6363636363636365,
+      "n": 100,
+      "pass": 77,
+      "pass_rate": 0.77,
+      "repeat_rate": 0.09322033898305085,
+      "unparsable_rate": 0.14220183486238533
+     }
+    },
+    "comparisons": {
+     "check_B_vs_A": {
+      "first": "B",
+      "first_only": 7,
+      "p_pass_sign": 0.2744140625,
+      "p_reverse": 0.88671875,
+      "p_rounds_signflip": 0.45096516609191895,
+      "pairs": 100,
+      "second": "A",
+      "second_only": 4
+     },
+     "check_C_vs_D": {
+      "first": "C",
+      "first_only": 16,
+      "p_pass_sign": 0.005908966064453125,
+      "p_reverse": 0.9987115859985352,
+      "p_rounds_signflip": 0.024790309369564056,
+      "pairs": 100,
+      "second": "D",
+      "second_only": 4
+     },
+     "primary_C_vs_B": {
+      "first": "C",
+      "first_only": 6,
+      "p_pass_sign": 0.5,
+      "p_reverse": 0.7255859375,
+      "p_rounds_signflip": 0.6120033264160156,
+      "pairs": 100,
+      "second": "B",
+      "second_only": 5
+     }
+    },
+    "verdict": "inconclusive"
+   }
+  }
+ }
+}
