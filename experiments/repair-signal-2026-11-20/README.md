@@ -80,7 +80,7 @@ The first command reproduces `results/Qwen3.8-27B-AD-Q4_K_M-analysis.txt` and th
 
 `recount.py` was written after the run and is not part of the registered analysis. It shares no code with the harness. It reads the constraints from the logged prompt, parses each reply with its own parser, rebuilds every verdict with exact fractions and stops on any disagreement with the log.
 
-`recount_controls.py` feeds it seven corrupted copies of the tier S log and expects each to be refused. It also compares the recount's reply parser with the harness parser on 9,010 generated replies and on every logged tier S reply. The two must agree on each.
+`recount_controls.py` feeds it seven corrupted copies of the mid-size model's tier S log and expects each to be refused. It also compares the recount's reply parser with the harness parser on 9,010 generated replies and on every reply in that log. The two must agree on each.
 
 It also runs 15 tests in all. They include a pin of every number `recount.py` prints for both models' logs (`recount_golden.json`, which must match the committed `results/*-recount.txt` files) and checks of the reply reader on lines that break one rule each.
 
@@ -93,7 +93,9 @@ Both models have run. Each model is its own test and nothing is pooled.
 - Mid-size model, Qwen3.8-27B-AD-Q4_K_M: 2026-11-20 18:17 UTC to 2026-11-21 01:33 UTC.
 - Small model, gemma-4-E4B-it-Q8_0: 2026-11-21 01:36 UTC to 15:49 UTC.
 
-Every number in the next four subsections is in the two `results/*-analysis.txt` files, the output of the registered `analyze.py`. `recount.py` gets the same numbers from the raw prompts and replies (`results/*-recount.txt`).
+Most numbers in the next four subsections are in the two `results/*-analysis.txt` files, the output of the registered `analyze.py`. The round 1 solves and the counts of identical first replies are in the two `results/*-recount.txt` files.
+
+`recount.py` gets the same counts and sign-test p values from the raw prompts and replies. It does not compute the rounds-to-solve test.
 
 ### Verdict by the registered rule
 
@@ -117,7 +119,11 @@ For each model the rule gives "not decided" overall. No level of either model su
 
 Round 1 solved 22 of 100 on S and none on M for the mid-size model, and 44 on S and 1 on M for the small model.
 
-The plan says the first reply is the same in every arm. That held on all 200 instances for the mid-size model. For the small model it held on 99 of 100 instances on S and 95 of 100 on M. The server was not fully repeatable with reasoning switched on. This is a departure from the plan. It adds noise to the paired comparison and no bias toward any arm.
+The plan says the first reply is the same in every arm. That held on all 200 instances for the mid-size model. For the small model it held on 99 of 100 instances on S and 95 of 100 on M. This is a departure from the plan.
+
+The logs show that on all six, arm A got a different first reply and arms B, C and D got the same one. On each of them the first-round verdict was the same in every arm. So the test of C against B and the check of C against D are not touched. Only the check of B against A is: on M, B alone solved one of those instances.
+
+Arm A is the first unit run for each instance. A likely cause is that the server's cache held a different earlier chat when arm A started. That is not tested.
 
 ### Checks
 
@@ -126,7 +132,9 @@ These are reported next to the verdict and do not change it.
 - B against A, expected direction B at least as good. Mid-size: 20 solved by B alone against 10 on S (p 0.049), 7 against 1 on M (p 0.035). Small: 7 against 4 on S (p 0.274), 8 against 5 on M (p 0.291). The direction is as expected at all four.
 - C against D, expected direction C better. Mid-size: 3 solved by C alone against 11 by D alone on S, 3 against 8 on M. The flipped-sign arm did better. Small: 16 against 4 on S (p 0.006), 4 against 2 on M (p 0.344). Here the true sign did better.
 
-So the small model reads the sign: giving it the wrong sign costs solves. The mid-size model shows no such thing. The next subsection but one gives a likely reason.
+On tier S the small model solved fewer when told the wrong sign (16 against 4). That fits a model that reads the sign. It is one of eight checks, none with a registered threshold, and on tier M the counts are 4 against 2. The mid-size model shows no such drop. The next subsection but one gives a possible reason.
+
+The flipped-sign arm differs in more than the direction. Its message calls each listed constraint violated and gives it a negative excess, while the note under it defines the excess as left side minus bound. So the message contradicts itself, and a drop in D may come from that as well as from the sign.
 
 ### Secondary measures
 
@@ -175,9 +183,11 @@ So for this model the arm totals mix two effects: repair from the feedback text,
 |---|---|---|---|---|
 | The next round passes, after a readable failed round | 26 of 71 | 32 of 80 | 32 of 82 | 21 of 91 |
 
-With equal room to think, the three arms that tell the truth end close together (85, 88 and 89 solved), and the arm with the wrong sign ends lower (77). The signed amount is read, and a wrong one misleads. The true amount adds nothing visible over naming the constraint and its place.
+The units behind each count differ by arm, so the counts differ in difficulty as well as in feedback.
 
-**One reading of both models, not tested here.** When a model answers directly it uses the sign, so a wrong sign hurts, and the right amount does not help beyond the place. When a model reasons its way to a fresh answer in the open, the details of the feedback matter little, and what counts is whether the feedback sets off that reasoning.
+With equal room to think, the three arms that tell the truth end close together (85, 88 and 89 solved), and the arm with the wrong sign ends lower (77). A wrong signed amount goes with fewer solves, for either reason given under Checks. The true amount adds nothing visible over naming the constraint and its place.
+
+**One reading of both models, not tested here.** The small model sent only answer lines back into the chat. For it a wrong sign went with fewer solves, and the right amount did not help beyond the place. The mid-size model often reasoned in the open, and then whether the feedback set off that reasoning seemed to matter more than its details. Two models cannot separate this from any other difference between them.
 
 **A prediction that missed.** Before any result of the small model was read, we wrote down that its next-round pass rate after a readable failed round on tier S would order A, then D, then B, then C, lowest to highest. The prediction was hashed and posted to the team's internal channel. It is not a public preregistration.
 
@@ -196,7 +206,7 @@ One task family, in-context repair only, small models only. See [PREREG.md](PRER
 Limits of the results:
 
 - Two small models, one quantized file each, one machine.
-- Temperature 0 and one fixed seed give one draw per unit. The result says nothing about the spread between repeated runs. For the small model the first reply was not even the same across arms on 6 of 200 instances.
+- Temperature 0 and one fixed seed give one draw per unit. The result says nothing about the spread between repeated runs. For the small model arm A's first reply differed from the other arms' on 6 of 200 instances.
 - Tier M was close to the floor for both models. No arm solved more than 12 of 100.
 - A verdict of "against" comes from a rule that counts instances solved. It is not evidence that the signed amount hurts repair. For the mid-size model the subsection on what the logs show explains why the count does not isolate the effect of the feedback text.
 - The design did not control how much a model could think in the open, and it counted a decimal answer as unreadable. Neither was foreseen to matter this much.

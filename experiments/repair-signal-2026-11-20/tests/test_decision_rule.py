@@ -20,6 +20,8 @@ class Boundaries(unittest.TestCase):
     def test_floor_is_inclusive_at_five_percent(self):
         self.assertEqual(analyze.decide(arms(0.05, 0.05, 0.05, 0.05), prim(8, 4)), "floor_or_ceiling")
         self.assertNotEqual(analyze.decide(arms(0.05, 0.05, 0.05, 0.06), prim(8, 4)), "floor_or_ceiling")
+        # Step 1 comes before step 2: a level at the floor is reported as such even with few discordant pairs.
+        self.assertEqual(analyze.decide(arms(0.05, 0.05, 0.05, 0.05), prim(3, 2)), "floor_or_ceiling")
 
     def test_ceiling_is_inclusive_at_ninety_five_percent(self):
         self.assertEqual(analyze.decide(arms(0.95, 0.95, 0.95, 0.95), prim(8, 4)), "floor_or_ceiling")
