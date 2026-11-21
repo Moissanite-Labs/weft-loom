@@ -29,7 +29,7 @@ python3 -I -B selftest.py
 python3 mutate.py
 ```
 
-The unit tests are in `tests/`, including `tests/test_decision_rule.py`, which pins the preregistered decision rule at each boundary. They run 59 tests. `mutate.py` applies 51 deliberate breaks, one at a time, and must report zero survivors. For each break it runs the unit tests, the self-test and `recount_controls.py`.
+The unit tests are in `tests/`, including `tests/test_decision_rule.py`, which pins the preregistered decision rule at each boundary. They run 59 tests. `mutate.py` applies 52 deliberate breaks, one at a time, and must report zero survivors. For each break it runs the unit tests, the self-test and `recount_controls.py`.
 
 Run against a local server that speaks the OpenAI chat protocol, such as llama-server. Replace `NAME` with a label for the model. The `--model` value is sent to the server as the model name.
 
@@ -227,15 +227,17 @@ Another team studied the mid-size model's logs after the fact and posted it as d
 
 It takes the last number written as `xI = number` for each variable anywhere in the reply and checks it against every constraint. On tier S it finds 33, 17, 7 and 23 unreadable replies in arms A to D that satisfy every constraint, against 1 on tier M.
 
-On tier S, round 2 solved in any format is C only 5 against D only 14, where the registered format gives 9 against 2. In 7 of the 9 instances behind that 9, D's unreadable round 2 reply already held a satisfying assignment. The lenient count is higher than the 74 reported above because it also takes trial values from the middle of the reasoning. For the small model the same parse finds 77, as the decimal count says.
+On tier S, round 2 solved in any format is C only 5 against D only 14, where the registered format gives 9 against 2. In 7 of the 9 instances behind that 9, D's unreadable round 2 reply already held a satisfying assignment. The lenient count is higher than the 74 reported above because it also takes trial values from the middle of the reasoning.
+
+For the small model on tier S the same parse finds 77, as the decimal count says. On tier M it finds 0 in every arm.
 
 **Room to think, small model.** The plan fixed a private budget of 1000 tokens per round. The logs do not record tokens or why a reply stopped.
 
 Readable replies took 20.4 to 21.9 seconds from the 10th to the 90th percentile in every arm on tier S, and 20.8 to 21.7 on tier M. That fits a budget used up every round, which is an inference. If it holds, this model could not show more or less thinking in any arm, so its timing says nothing about effort.
 
-**What the outside study found.** The signed amount is not what separates the arms on the mid-size model.
+**What the outside study found.** The study's own counts reproduce. On the mid-size model the difference between C and D runs through open-reasoning rounds. Flipping the sign set them off more often: D only 20 against C only 0 on tier S, and 17 against 1 on tier M. Among the 66 tier S instances where neither C nor D left the format, they solved 44 and 43.
 
-What separates them is whether a reply turned into open reasoning, and the flipped-sign arm did that most. Among instances where neither C nor D left the format, they solved 44 and 43 of 66. The study's own counts reproduce. Its name for the pattern, Simpson's paradox, does not fit, and CHECK.md says why. Our rulings are in that file.
+This is a post-hoc description, not a test. The study's name for the pattern, Simpson's paradox, does not fit, and CHECK.md says why. Our rulings are in that file.
 
 ### What comes next
 

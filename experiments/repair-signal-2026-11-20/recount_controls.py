@@ -155,7 +155,7 @@ class ReadDecimalControls(unittest.TestCase):
         self.assertIsNone(recount.read_decimal_answer("x0 = 1.5\nx1 = 1/0", 2))
 
     def test_repeated_variable_is_refused(self):
-        self.assertIsNone(recount.read_decimal_answer("x0 = 1.5\nx0 = 2.5", 2))
+        self.assertIsNone(recount.read_decimal_answer("x0 = 1.5\nx0 = 2.5\nx1 = 1", 2))
 
 
 class ParserAgreement(unittest.TestCase):

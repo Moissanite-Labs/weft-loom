@@ -10,6 +10,7 @@ import io
 import json
 import os
 import sys
+import atexit
 import tempfile
 import unittest
 from fractions import Fraction
@@ -34,8 +35,12 @@ def rnd(arm, inst, number, verdict="fail", error=None, secs=3.0, reply="x0 = 0\n
             "violations": [{"cid": "goal", "excess": e} for e in excess] if verdict == "fail" else []}
 
 
+SCRATCH = tempfile.TemporaryDirectory(prefix="pr42-ctl-")
+atexit.register(SCRATCH.cleanup)
+
+
 def write(rows):
-    d = tempfile.mkdtemp(prefix="pr42-ctl-")
+    d = tempfile.mkdtemp(dir=SCRATCH.name)
     path = os.path.join(d, "log.jsonl")
     with open(path, "w", encoding="utf-8") as fh:
         fh.write("".join(json.dumps(r) + "\n" for r in rows))
@@ -128,7 +133,7 @@ class Loading(unittest.TestCase):
 
     def test_missing_file_is_refused(self):
         with self.assertRaises(chk.CheckError):
-            chk.load_log(os.path.join(tempfile.mkdtemp(prefix="pr42-ctl-"), "none.jsonl"))
+            chk.load_log(os.path.join(SCRATCH.name, "none.jsonl"))
 
     def test_prompt_without_constraints_is_refused(self):
         with self.assertRaises(chk.CheckError):

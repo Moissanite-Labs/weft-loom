@@ -76,6 +76,7 @@ MUTATIONS = [
      "closing[\"decimal_answers_that_would_satisfy_every_constraint\"] += 1",
      "closing[\"decimal_answers_that_would_satisfy_every_constraint\"] += 0"),
     ("recount misreads the closing assignment", "recount.py", "all(tail[u] - tail[w] - b <= 0 for _, u, w, b in cons)", "True"),
+    ("decimal reader accepts a repeated variable", "recount.py", "index in values or index >= n or", "index >= n or"),
     ("decimal reader accepts an index equal to n", "recount.py", "index in values or index >= n or", "index in values or index > n or"),
     ("decimal reader accepts a zero denominator", "recount.py", "or (bottom and int(bottom) == 0):", ":"),
     ("selftest need never raises", "selftest.py", "def need(cond, msg):\n    if not cond:", "def need(cond, msg):\n    if False:"),
