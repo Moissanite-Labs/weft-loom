@@ -126,6 +126,21 @@ def decimal_answer(reply, n):
     return len(lines) == n and all(DECIMAL_LINE.match(line) for line in lines) and any("." in line for line in lines)
 
 
+def read_decimal_answer(reply, n):
+    """Read a decimal answer as numbers, which the registered parser does not do. Returns {index: Fraction} or None."""
+    values = {}
+    for line in (line.strip() for line in reply.strip().split("\n") if line.strip()):
+        name, _, number = line.partition("=")
+        index, number = int(name.strip()[1:]), number.strip()
+        top, _, bottom = number.partition("/")
+        if index in values or index >= n or (bottom and int(bottom) == 0):
+            return None
+        values[index] = Fraction(top) / (int(bottom) if bottom else 1)
+    if len(values) != n:
+        return None
+    return values
+
+
 def sign_p(first_only, second_only):
     """Exact one-sided binomial sign test: chance of at least first_only heads in first_only + second_only fair flips."""
     n = first_only + second_only
@@ -163,6 +178,7 @@ def recount(path):
     solved_by_round = {a: [0] * K for a in ARMS}
     seconds_unreadable, seconds_readable = [], []
     closing = {"unreadable": 0, "by_round": [0] * K, "answers_written_with_a_decimal": 0,
+               "decimal_answers_that_would_satisfy_every_constraint": 0, "of_those_in_round_1": 0,
                "end_in_complete_assignment": 0, "that_assignment_satisfies_every_constraint": 0,
                "next_round_passes_after_one_ending_in_an_assignment": [0, 0], "next_round_passes_after_one_that_does_not": [0, 0]}
 
@@ -218,7 +234,12 @@ def recount(path):
                 continue
             closing["unreadable"] += 1
             closing["by_round"][r["round"] - 1] += 1
-            closing["answers_written_with_a_decimal"] += decimal_answer(r["reply"], n)
+            if decimal_answer(r["reply"], n):
+                closing["answers_written_with_a_decimal"] += 1
+                as_numbers = read_decimal_answer(r["reply"], n)
+                if as_numbers is not None and all(as_numbers[u] - as_numbers[w] - b <= 0 for _, u, w, b in cons):
+                    closing["decimal_answers_that_would_satisfy_every_constraint"] += 1
+                    closing["of_those_in_round_1"] += r["round"] == 1
             tail = closing_assignment(r["reply"], n)
             if tail is not None:
                 closing["end_in_complete_assignment"] += 1

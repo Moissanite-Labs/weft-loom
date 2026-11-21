@@ -29,7 +29,7 @@ python3 -I -B selftest.py
 python3 mutate.py
 ```
 
-The unit tests are in `tests/`, including `tests/test_decision_rule.py`, which pins the preregistered decision rule at each boundary. They run 55 tests. `mutate.py` applies 45 deliberate breaks, one at a time, and must report zero survivors. For each break it runs the unit tests, the self-test and `recount_controls.py`.
+The unit tests are in `tests/`, including `tests/test_decision_rule.py`, which pins the preregistered decision rule at each boundary. They run 55 tests. `mutate.py` applies 46 deliberate breaks, one at a time, and must report zero survivors. For each break it runs the unit tests, the self-test and `recount_controls.py`.
 
 Run against a local server that speaks the OpenAI chat protocol, such as llama-server. Replace `NAME` with a label for the model. The `--model` value is sent to the server as the model name.
 
@@ -178,6 +178,8 @@ On tier S, 113 of the 198 passes after round 1 came straight after an unreadable
 So for this model the arm totals mix two effects: repair from the feedback text, and how often each kind of feedback led the model to reason in the open. On tier S the model did that least often in C and most often in A. The registered verdict stands as registered. It does not separate the two effects.
 
 **Small model.** This side channel is absent. The model thinks inside a private budget and only its answer lines go back into the chat. Its unreadable replies are a format slip of another kind: of 132 on tier S, 127 are plain answer lines with a number written as a decimal, such as `x3 = -6.5`. None ends with a complete readable assignment. 52 came in round 1, where every arm gets the same message.
+
+Read as numbers, 77 of those 127 decimal answers satisfy every constraint, 36 of them in round 1. So the strict format, as the plan fixed it, counted 77 correct answers of this model as failed rounds. The plan foresaw decimals as unreadable. It did not foresee how many there would be.
 
 | Small model, tier S | A | B | C | D |
 |---|---|---|---|---|

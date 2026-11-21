@@ -71,7 +71,10 @@ MUTATIONS = [
     ("recount accepts a short assignment", "recount.py", "return values if len(values) == n else None", "return values"),
     ("recount skips the verdict comparison", "recount.py", "if verdict != r[\"verdict\"]:", "if False:"),
     ("recount tail needs more than n lines", "recount.py", "if len(lines) >= n else None", "if len(lines) > n else None"),
-    ("recount stops counting decimal answers", "recount.py", "+= decimal_answer(r[\"reply\"], n)", "+= 0"),
+    ("recount stops counting decimal answers", "recount.py", "if decimal_answer(r[\"reply\"], n):", "if False:"),
+    ("recount stops counting correct decimal answers", "recount.py",
+     "closing[\"decimal_answers_that_would_satisfy_every_constraint\"] += 1",
+     "closing[\"decimal_answers_that_would_satisfy_every_constraint\"] += 0"),
     ("recount misreads the closing assignment", "recount.py", "all(tail[u] - tail[w] - b <= 0 for _, u, w, b in cons)", "True"),
 ]
 

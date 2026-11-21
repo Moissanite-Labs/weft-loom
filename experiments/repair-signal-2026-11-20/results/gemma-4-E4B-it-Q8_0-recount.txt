@@ -24,9 +24,11 @@
      25,
      16
     ],
+    "decimal_answers_that_would_satisfy_every_constraint": 77,
     "end_in_complete_assignment": 0,
     "next_round_passes_after_one_ending_in_an_assignment": "0/0",
     "next_round_passes_after_one_that_does_not": "52/116",
+    "of_those_in_round_1": 36,
     "that_assignment_satisfies_every_constraint": 0,
     "unreadable": 132
    },
@@ -130,9 +132,11 @@
      1,
      1
     ],
+    "decimal_answers_that_would_satisfy_every_constraint": 0,
     "end_in_complete_assignment": 1,
     "next_round_passes_after_one_ending_in_an_assignment": "0/1",
     "next_round_passes_after_one_that_does_not": "0/1",
+    "of_those_in_round_1": 0,
     "that_assignment_satisfies_every_constraint": 0,
     "unreadable": 3
    },
