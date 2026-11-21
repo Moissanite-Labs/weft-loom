@@ -1,0 +1,89 @@
+{
+ "A": "py_1k",
+ "B": "py",
+ "note": "post hoc, within-layer matching, tau 0",
+ "same_position": {
+  "num": 6044,
+  "den": 36864
+ },
+ "share": {
+  "num": 34917,
+  "den": 36864
+ },
+ "null_mean": "12/1",
+ "per_layer": [
+  {
+   "layer": 0,
+   "kept": 3072,
+   "same_position": 379,
+   "positive": 2535
+  },
+  {
+   "layer": 1,
+   "kept": 3072,
+   "same_position": 142,
+   "positive": 2505
+  },
+  {
+   "layer": 2,
+   "kept": 3072,
+   "same_position": 371,
+   "positive": 3034
+  },
+  {
+   "layer": 3,
+   "kept": 3072,
+   "same_position": 662,
+   "positive": 2989
+  },
+  {
+   "layer": 4,
+   "kept": 3072,
+   "same_position": 641,
+   "positive": 3016
+  },
+  {
+   "layer": 5,
+   "kept": 3072,
+   "same_position": 698,
+   "positive": 3004
+  },
+  {
+   "layer": 6,
+   "kept": 3072,
+   "same_position": 634,
+   "positive": 2980
+  },
+  {
+   "layer": 7,
+   "kept": 3072,
+   "same_position": 568,
+   "positive": 2991
+  },
+  {
+   "layer": 8,
+   "kept": 3072,
+   "same_position": 582,
+   "positive": 3026
+  },
+  {
+   "layer": 9,
+   "kept": 3072,
+   "same_position": 574,
+   "positive": 2984
+  },
+  {
+   "layer": 10,
+   "kept": 3072,
+   "same_position": 492,
+   "positive": 3000
+  },
+  {
+   "layer": 11,
+   "kept": 3072,
+   "same_position": 301,
+   "positive": 2853
+  }
+ ],
+ "p_upper_bound": "6.8004e-13710 (display rounded)"
+}

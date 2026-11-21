@@ -1,0 +1,125 @@
+{
+ "cluster_example_m200_50x4_P_share_lt_33.5pct": "7.673e-3",
+ "cluster_example_union_bound_496_pairs": "3.805e0",
+ "cluster_kappa_needed": [
+  {
+   "kappa_needed": "578/225",
+   "kappa_needed_approx": "2.56e0",
+   "m": 200,
+   "share": "33/100",
+   "z": 3
+  },
+  {
+   "kappa_needed": "289/45",
+   "kappa_needed_approx": "6.42e0",
+   "m": 500,
+   "share": "33/100",
+   "z": 3
+  },
+  {
+   "kappa_needed": "289/200",
+   "kappa_needed_approx": "1.44e0",
+   "m": 200,
+   "share": "33/100",
+   "z": 4
+  },
+  {
+   "kappa_needed": "289/80",
+   "kappa_needed_approx": "3.61e0",
+   "m": 500,
+   "share": "33/100",
+   "z": 4
+  },
+  {
+   "kappa_needed": "18/25",
+   "kappa_needed_approx": "7.20e-1",
+   "m": 200,
+   "share": "59/100",
+   "z": 3
+  },
+  {
+   "kappa_needed": "9/5",
+   "kappa_needed_approx": "1.80e0",
+   "m": 500,
+   "share": "59/100",
+   "z": 3
+  },
+  {
+   "kappa_needed": "81/200",
+   "kappa_needed_approx": "4.05e-1",
+   "m": 200,
+   "share": "59/100",
+   "z": 4
+  },
+  {
+   "kappa_needed": "81/80",
+   "kappa_needed_approx": "1.01e0",
+   "m": 500,
+   "share": "59/100",
+   "z": 4
+  }
+ ],
+ "max_over_m_200_to_1000_P_high": "9.698e-3",
+ "max_over_m_200_to_1000_P_low": "1.485e-6",
+ "per_pair_binomial_tails": [
+  {
+   "P_share_ge_59pct": "9.698e-3",
+   "P_share_le_33pct": "8.687e-7",
+   "k_high_min": 117,
+   "k_low_max": 66,
+   "m": 200
+  },
+  {
+   "P_share_ge_59pct": "3.540e-3",
+   "P_share_le_33pct": "4.125e-8",
+   "k_high_min": 150,
+   "k_low_max": 85,
+   "m": 256
+  },
+  {
+   "P_share_ge_59pct": "1.584e-3",
+   "P_share_le_33pct": "4.007e-9",
+   "k_high_min": 176,
+   "k_low_max": 100,
+   "m": 300
+  },
+  {
+   "P_share_ge_59pct": "3.936e-4",
+   "P_share_le_33pct": "9.571e-12",
+   "k_high_min": 234,
+   "k_low_max": 133,
+   "m": 400
+  },
+  {
+   "P_share_ge_59pct": "6.950e-5",
+   "P_share_le_33pct": "4.756e-14",
+   "k_high_min": 293,
+   "k_low_max": 167,
+   "m": 500
+  },
+  {
+   "P_share_ge_59pct": "4.238e-8",
+   "P_share_le_33pct": "2.146e-26",
+   "k_high_min": 585,
+   "k_low_max": 334,
+   "m": 1000
+  }
+ ],
+ "union_bound_over_pairs": [
+  {
+   "pairs_K": 100,
+   "union_bound_any_pair_ge_59pct": "9.698e-1",
+   "union_bound_any_pair_le_33pct": "1.485e-4"
+  },
+  {
+   "pairs_K": 300,
+   "union_bound_any_pair_ge_59pct": "2.909e0",
+   "union_bound_any_pair_le_33pct": "4.457e-4"
+  },
+  {
+   "pairs_K": 496,
+   "union_bound_any_pair_ge_59pct": "4.810e0",
+   "union_bound_any_pair_le_33pct": "7.369e-4"
+  }
+ ]
+}

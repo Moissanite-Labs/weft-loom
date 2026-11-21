@@ -1,0 +1,53 @@
+{
+ "note": "Numbers and phrases CHECK.md quotes from other parties' records, taken on trust and not recomputed here. Our own recounts are printed by the scripts in scripts/ and kept in out/.",
+ "the_study": {
+  "where": "draft pull request on Moissanite-Labs/siliquant, head commit d4c54e43bc9f24fd76d57a7467b0c726dd0acd1f, folder studies/expedition-neuron-homology-unlock/",
+  "census": "13 model pages of the site, 1,504,256 neurons",
+  "page_snapshots_pinned": 15,
+  "snapshots_we_did_not_read": 5,
+  "quoted_claims": [
+   "the Z2 algebra reproduces the site's 83 to 87% false lineage",
+   "enrichment surviving stratification inside BOTH col < 512 and col >= 512",
+   "selected neurons dramatically more kurtotic (10.44 vs 4.03, 12.18 vs 3.45)",
+   "exact dyadic 2^16 on bf16 weights",
+   "Pythia two-phase trajectory reproduced identically across all 3 random seeds",
+   "weight-magnitude heuristics fail on Layer 10 because of high-fan-out circuit broadcast coupling",
+   "21 of 21 middle layers L02 to L22, p = 2^-20",
+   "check_048 confirmed the real-weight results and an unseen-seed 5,000-draw null",
+   "1,000-draw seeded permutation null: 0/1,000 exceed",
+   "~30%-45% of MLP neurons in four symbol kinds",
+   "7.8%-17.2% dark fraction",
+   "85/96 initial failures"
+  ]
+ },
+ "the_weight_edit": {
+  "where": "alphaxiv/weight-edit-minimization at commit 768d7340",
+  "selected_units_per_layer": 64,
+  "layers": [15, 19],
+  "selection_score": "a weight term u @ W0 times a difference in MLP activations on 8 hand-written repetitive and productive texts (method notes, lines 17-22)",
+  "baseline_run": "Initial 11/96 correct, 85 cutoff (the edit's own report excerpt)"
+ },
+ "site_figures_counted_by_others": {
+  "note": "Site figures that CHECK.md quotes but that no kept output prints. They are counts of the site's published pages, made by the study or by our advocate, and are listed here so each number has a source.",
+  "N5_pythia_no_family_share": {
+   "counted_by": "the study's own script (bridge.py, part 2), read from the site's Pythia-160m pages; restated by our advocate",
+   "values_percent": {
+    "step_1000": 16.3,
+    "step_8000": 4.36,
+    "step_32000": 3.77,
+    "main_end": 5.68,
+    "seed_1_end": 5.36,
+    "seed_2_end": 5.69
+   }
+  },
+  "N10_index_kinds": {
+   "counted_by": "our advocate's adv_index_kinds.py, from the bar widths on the site's index page for all 30 models (output not kept, because it lists the site's figures model by model)",
+   "four_symbol_kinds_share_range_percent": [
+    20.8,
+    40.8
+   ],
+   "models_inside_30_to_45_percent": "13 of 30",
+   "site_no_family_bars_equal_to_7.8_or_17.2_percent": "none (within 0.06 points)"
+  }
+ }
+}

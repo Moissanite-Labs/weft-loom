@@ -1,0 +1,10 @@
+# Inputs that scripts/run_all.sh expects. None is included here. The site pages are the reader's own saved copies.
+1292ab4889313caa3a91976488e8de7b6aa4353e3d99b68bf8f7c4e226c371fa  neuron map site, Qwen3.5-0.8B model page (index.html)
+179059c77f9702b3ba65d2a266ecfea92afe3458cc1b7dbe7310595dbd55ec78  neuron map site, index page (index.html)
+f1340b4f09edd898c39e566669463ac41450e1a506024456f23868f3955710d3  neuron map site, Gemma 4 E4B model page (index.html)
+487f7461358172d6fe82d65e094ab73ad8fd879ed80a9faa5c30e496c0019113  alphaxiv/weight-edit-minimization@768d7340 base_l15_down_proj_f32.npy
+868ef5e19c05c18cb66b6c742183948e6860574f4037a78a15bc94bc92588f94  alphaxiv/weight-edit-minimization@768d7340 base_l19_down_proj_f32.npy
+f0a76e3cbebce1dd373a2f5e351368f3fdb51be70c494109edf8adc5452f3564  alphaxiv/weight-edit-minimization@768d7340 frozen_weights_manifest.json
+194c5c7e7bf0f738525ca35fca515586f30828fa9669da5f375955d3f822ec63  alphaxiv/weight-edit-minimization@768d7340 factors_layer15.npz
+b8f2f6aa398a69d23cffc1822b2b1d6dac962cf98aeb27e8258a1d713a555020  alphaxiv/weight-edit-minimization@768d7340 factors_layer19.npz
+8c9edb88d37b36b059d3c9f38fbc6416652d7c291538bfbbf4836fb3120f2aa2  Moissanite-Labs/siliquant experiments/output-budget-gemma-e4b-2026-11-17/results.jsonl

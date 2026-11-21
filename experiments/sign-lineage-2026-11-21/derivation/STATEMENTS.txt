@@ -1,0 +1,204 @@
+# The neuron-sign lineage test from first principles
+
+Written by the derivation session (a Claude session on the Opus tier), 2026-11-21. Kept as written, with private names and paths removed (see the note at the end).
+
+Evidence kinds used below: **proof** (argument in this file), **exact** (checked in integer or rational arithmetic by a script, with a second checker that shares no code), **sampled** (measured on networks we trained; seeds recorded), **third party** (a number the site states, taken on trust; we did not fetch the site, our source is the brief this session was given, which quoted the site; the sentences are quoted in `../site_claims.json`).
+
+Scripts: `scripts/`. Exact scripts (`exact_null.py`, `check_independent.py`, `symmetry_exact.py`, `site_sentence.py`) run with byte-identical output under `python3 -I -B`, `-I -O -B` and `-I -B -W error` (`scripts/run_exact_parity.sh`). They use no bare `assert`. Sampled scripts (`nets.py`, `train_all.py`, `analyze.py`, `equivariance_float.py`) use the venv torch. All numbers below are in `RESULTS.json`.
+
+Notation. A block is `y = D (act(G x) * (U x))` (gated) or `y = D act(U x)` (plain), hidden width h. The trace of hidden unit i is the i-th entry of the vector that D multiplies: `h_i(x) = act(g_i.x) (u_i.x)` (gated) or `act(u_i.x)` (plain). For models A and B read on the same tokens, `m(i) = argmax_j |corr(a_i, b_j)|`, `c_i = sign corr(a_i, b_m(i))`, and the statistic is `N+ = #{i : c_i = +1}` over the m kept pairs (kept means `|corr| >= tau`; tau = 0 keeps all).
+
+---
+
+## S1. The symmetry of the gated block
+
+**S1.1 (proof, exact).** For any function act, flipping the sign of row i of U and of column i of D leaves `y = D (act(G x) * (U x))` unchanged for every x, and flips the trace `h_i` to `-h_i` while leaving the other traces unchanged. Permuting the hidden units (rows of G and U, columns of D by the same permutation) leaves y unchanged and permutes the traces. Together these generate the group H = {+1,-1}^h ⋊ S_h (signed permutations) acting on each block separately.
+
+*Proof.* With F = diag(f), f in {+1,-1}^h: `D F (act(G x) * (F U x)) = D F F (act(G x) * (U x)) = D (act(G x) * (U x))`, because F acts entrywise on the second factor only and F F = I. For a permutation matrix P: `D P^T (act(P G x) * (P U x)) = D P^T P (act(G x) * (U x))`, since act acts entrywise and commutes with P. Biases on U (if any) flip with row i; biases on G and D are untouched. ∎
+
+*Exact check* (`symmetry_exact.py`, section S1): on a d=3, h=4 network with rational weights and 6 rational inputs, for three exact activations (ReLU, a rational non-odd SiLU surrogate, an odd rational squashing function), all 4 single-unit flips and all 24 permutations leave the output exactly equal in `Fraction` arithmetic, and the trace of the flipped unit is exactly negated. A sympy identity with a generic undefined `act` confirms `D F (act(Gx) * (F U x)) = D (act(Gx) * (Ux))` symbolically. **Controls that must fail, and do:** flipping a row of U without the column of D changes the output; flipping G's row with D's column changes the output for a non-odd act; in a plain block `D act(Ux)`, flipping U's row and D's column changes the output for ReLU and for the GELU-like surrogate. Positive control: a plain block with an *odd* activation (tanh-like) keeps the sign symmetry.
+
+**S1.2 (anchor: public code read in the local transformers 5.22.2 install).** The gated form is what these models compute:
+- Qwen3: `Qwen3MLP.forward`: `self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))`, no biases, `hidden_act="silu"` (`transformers/models/qwen3/modeling_qwen3.py` lines 69-81; `configuration_qwen3.py` line 69).
+- Qwen3.5: same line (`qwen3_5/modeling_qwen3_5.py` lines 811-823).
+- Gemma 4 text: `Gemma4TextMLP.forward`, same line, `hidden_activation="gelu_pytorch_tanh"` (`gemma4/modeling_gemma4.py` lines 1060-1076; `configuration_gemma4.py` line 159).
+- Falcon-H1: `y = self.up_proj(x) * self.act_fn(self.gate_proj(x) * self.gate_multiplier); y = self.down_proj(y) * self.down_multiplier` (`falcon_h1/modeling_falcon_h1.py` lines 825-839), act SiLU. Scalar multipliers do not touch the symmetry. **Falcon-H1 has the exact sign symmetry.**
+- Pythia (GPT-NeoX): `dense_4h_to_h(act(dense_h_to_4h(x)))` with bias, `hidden_act="gelu"` (`gpt_neox/modeling_gpt_neox.py` lines 37-47; `configuration_gpt_neox.py` line 66). Plain, one-sided: **no sign symmetry** (S1.1 controls).
+
+In every gated case the trace that plays "the neuron's activation" is the input of `down_proj`: `act(gate_proj(x)) * up_proj(x)`. A unit's *gate* value `act(gate_proj(x))` does **not** flip under the symmetry, so a sign test run on gate values (or on `up_proj` alone after a sign-tied step) is not covered by anything below.
+
+---
+
+## S2. Training respects the symmetry
+
+**S2.1 (proof).** Let T be a signed permutation of the parameter coordinates that maps the hidden units of one block (S1.1). T is orthogonal. If the loss satisfies `L(T θ; z) = L(θ; z)` for every data batch z, then `∇L(Tθ; z) = T ∇L(θ; z)` (differentiate `L(Tθ) = L(θ)`: `T^T ∇L(Tθ) = ∇L(θ)`). Then, with the same data and the optimiser state mapped as stated, each of these update rules commutes with T:
+- gradient descent `θ - η g`: linear in (θ, g).
+- heavy-ball or Nesterov momentum: state `m -> T m` (linear recursion).
+- Adam: `m -> T m`, `v -> |T| v` where |T| is the unsigned permutation, because `(Tg)⊙(Tg) = |T|(g⊙g)`. The step `m / (sqrt(v) + eps)` is entrywise and odd in m, so it maps to `T(m / (sqrt(v)+eps))`. Bias corrections are scalars.
+- AdamW decoupled weight decay `θ(1 - η λ)`: scalar. L2 penalty: `||Tθ|| = ||θ||`.
+- global-norm gradient clipping: `||Tg|| = ||g||`, so the clip factor is the same scalar. Per-tensor norm clipping and symmetric per-entry value clipping also commute.
+- dropout on hidden units with an i.i.d. mask r: sign flips commute pathwise (the mask multiplies `h_i`, and `-h_i r_i = -(h_i r_i)`); a permutation maps the mask r to the permuted mask, which has the same law and is independent of θ, so the step commutes in law.
+- learning-rate schedules, warm-up, batch order, gradient accumulation: scalars or data, unaffected.
+
+**S2.2 (proof, from S2.1).** Let Φ be a training procedure built from these steps: `θ_K = Φ(θ_0, ω)`, with ω (data order, dropout masks) independent of θ_0. If the initial law μ_0 is invariant under the group H of S1.1 (true for any i.i.d. zero-mean symmetric init of U and D rows/columns and i.i.d. G rows, e.g. normal, symmetric uniform, symmetric truncated normal), then the law of θ_K is H-invariant, and this holds **conditionally on the data stream**. So two networks that share the data order but not the initial weights are covered.
+
+*Exact check* (`symmetry_exact.py`, section S2): ReLU-gated network d=2, h=3, squared loss, 4 rational data points, group element = flip of unit 1 then the permutation (2,0,1). The loss is exactly invariant, the gradient exactly equivariant, and over 3 steps of momentum with decoupled weight decay the parameters, momentum, Adam first moment (`T m`) and Adam second moment (`|T| v`) are exactly equivariant; the squared global gradient norm is equal at every step. **Control that must fail, and does:** adding a sign-tying term `(1/3) Σ_x Σ_i h_i(x)` to the loss breaks gradient equivariance.
+
+*Implementation check* (sampled, `equivariance_float.py`): our float32 batched AdamW training of a gated net and of its image under a random sign pattern on the units of both blocks gives **bitwise identical** results after 2000 steps (max weight difference 0.0, max logit difference 0.0). Under a signed permutation the trained logits agree to 8.2e-6 (reduction order changes rounding). IEEE round-to-nearest is symmetric under negation, so sign flips are exact; permutations are exact only in law.
+
+**S2.3 (what breaks the symmetry).**
+1. **Plain blocks with a non-odd activation** (`D act(Ux)`, act = ReLU, GELU, SiLU): there is no sign symmetry at all (S1.1 controls). The sign of a trace is meaningful: a ReLU trace is never negative. Odd activations (tanh) keep it.
+2. **A loss or step that ties a unit's sign to something outside the block:** a penalty that is not even in `h_i` (e.g. on the mean of `h_i`, a one-sided activation-regulariser), an asymmetric quantiser with a zero point applied during training, a sign-based pruning rule, tying U's row to a weight that does not flip.
+3. **A non-symmetric init:** non-zero mean in U or D, or any init that is a deterministic function of another model.
+4. **Initialising from another model** (fine-tuning, continued pretraining, upcycling, width/depth growth that copies units, merging): B's signs are tied to the parent's. This is the lineage the test is for.
+5. **Distillation with an activation-matching loss** `||h^B - h^A||^2`: ties each B unit's sign to an A unit. Logit-only distillation does not (the loss depends on B only through B's function).
+
+---
+
+## S3. The exact null law of the sign count
+
+Hypotheses. H0_B: B is independent of A, and B's law is invariant under per-unit sign flips of the block(s) being matched (S2.2). H0_A: the same for A. The matching uses `|corr|` and a tie rule that depends only on `|corr|`; units with zero variance are dropped (an invariant rule).
+
+**S3.1 (proof).** Under H0_B, conditionally on A, on the data, and on the sign-orbit of B, the signs `e_j` of B's units are independent fair coins, and the matching m, the kept set, and `|corr|` are functions of the orbit. *Proof:* replace θ_B by `e·θ_B` with e uniform and independent; by invariance and independence the joint law of (A, data, B) is unchanged; flipping B's unit j multiplies `b_j` by `e_j`, leaves `|corr(a_i, b_j)|` and the matching unchanged, and multiplies `c_i` by `e_m(i)`. ∎
+
+**S3.2 (proof; exact).** Let `s_j = #{i: m(i)=j, c_i=+1} - #{i: m(i)=j, c_i=-1}`. Under H0_B, conditionally as in S3.1, `N+ = (m + Σ_j e_j |s_j|)/2` with `e_j` i.i.d. fair signs. Mean m/2, variance `Σ_j s_j^2 / 4`. It is Binomial(m, 1/2) exactly when every `|s_j| = 1`, which holds when the matching is one-to-one (and fails otherwise, e.g. `|s| = (3,1)` gives law (1,1,0,1,1)/4 on N+ = 0..4). The conditional p-value `P_e(N+ >= observed)` is a valid (super-uniform) p-value for H0_B. *Exact routine:* `exact_null.cluster_pvalues` (integer convolution grouped by value of `|s_j|`, result a `Fraction` with denominator `2^J`). Self-tests: one-to-one gives the binomial exactly (m up to 40); mean m/2 and variance `Σ s_j^2/4` exactly on 30 random clusterings. Independent checker (`check_independent.py`, brute-force enumeration of all sign vectors, no shared code) agrees on all 25 exported cases; a perturbed value is caught.
+
+**S3.3 (proof; exact). A tightening of the task's statement.** "Binomial only when the matching is one-to-one" is true for the law *conditional on A*. It is not true of the law that also uses A's symmetry. Under H0_A (A sign-invariant and independent of B; B arbitrary, even one-sided), N+ is **exactly Binomial(m, 1/2) for any matching**, because each A unit i sits in exactly one pair and its sign `d_i` multiplies only `c_i`. Under H0_A and H0_B together the same holds. *Exact check* (`symmetry_exact.py`, S3b): over 12 random matchings with clusters, enumerating all `(d, e)` gives exactly the binomial law. So:
+- source side (the side whose every unit is matched once) sign-invariant: binomial, exact;
+- only the target side sign-invariant: cluster law S3.2;
+- neither: no exact law from the symmetry (Pythia–Pythia, Pythia–ReLU).
+
+**S3.4 (consequence for the site's 83-87 percent; proof given S1.2).** Falcon-H1's MLP is gated (S1.2), so if Falcon-H1 Tiny was trained from an invariant init by steps in S2.1, its unit signs are fair coins, and then for a Pythia–Falcon-H1 Tiny pair the expected share is exactly 1/2 whichever side is the source (S3.2 or S3.3). An observed 83-87 percent (third party) therefore means one of: (a) Falcon-H1 Tiny's unit signs are not fair coins (something in S2.3 happened to it), (b) the site's trace for Falcon is not the product `up * act(gate)`, or (c) a real relation. The site's word "lean" fits (a). This is checkable from traces alone with the lean test of S5.3 (not run here: no model was downloaded).
+
+**S3.5 (exact). The site's sentence on 33-59 percent.** Third-party claim (the brief, quoting the site): unrelated pairs with at least 200 strong matches land between 33 and 59 percent. Exact binomial tails (`site_sentence.py`, rounding conservatively: "33%" means share < 0.335, "59%" means share >= 0.585):
+
+| m | P(share < 0.335) | P(share >= 0.585) |
+|---|---|---|
+| 200 | 8.687e-7 | 9.698e-3 |
+| 256 | 4.125e-8 | 3.540e-3 |
+| 500 | 4.756e-14 | 6.950e-5 |
+| 1000 | 2.146e-26 | 4.238e-8 |
+
+The largest low-side tail over every m from 200 to 1000 is 1.485e-6 (at m=201, discreteness); above m=1000 Hoeffding gives at most exp(-2m 0.165^2) < 3e-24. A union bound, valid whatever the dependence between pairs that share a model, gives P(some pair at or below 33%) <= 1.5e-4 (100 pairs), 4.5e-4 (300 pairs), 7.4e-4 (496 pairs). The 59 percent end is unremarkable among a few hundred binomial pairs (union bound > 1).
+
+**Verdict.** The low end of the spread is **not compatible** with a binomial law for every pair. By S3.3, the binomial is exact whenever the source model is sign-invariant, so a pair at 33 percent with m >= 200 implies that the source model's unit signs are not fair coins for that trace (a one-sided model such as Pythia, or a gated model hit by S2.3), or that the count is not of the form S3 assumes (for example matches pooled in both directions, where each model's units appear more than once), or a real anti-aligned relation. The cluster form S3.2 predicts the spread: the share has standard deviation `sqrt(κ/m)/2` with `κ = Σ s_j^2 / m`. A share of 33 percent at 3 standard deviations needs κ >= 2.57 at m=200 and κ >= 6.42 at m=500 (exact fractions 578/225 and 289/45). Example: m=200 matches in 50 same-sign clusters of 4 (κ=4) give P(share < 0.335) = 7.7e-3 per pair, so a few such pairs among 496 is expected. Our trained gated pairs have κ ≈ 1 (S5.1), so the cluster form only matters where the source side is one-sided or concentrated. In our mixed arm (one-sided GELU source, gated target, S5.3) κ ≈ 3.1 and unrelated pairs spread from 34 to 70 percent at m = 256, close to the site's sentence.
+
+---
+
+## S4. Same position
+
+**S4.1 (proof; exact).** Shapes agree (h units in A and in B, or h_A <= h_B = N). Under the null that B's law is invariant under permutations of its units and B is independent of A (which holds for **plain and gated blocks alike**, S2.2 with the permutation part only), conditionally on A and on B's permutation-orbit, B's labelling is a uniform random permutation π. With an equivariant matching:
+- **bijective matching** (e.g. an assignment on |corr|): F = #{i: m(i) = i} has the law of the number of fixed points of a uniform permutation of N: `P(F=k) = C(N,k) D_{N-k} / N!`, mean 1, variance 1 (N >= 2).
+- **plain argmax:** let `S_j` be the set of A positions matched to B unit j, `n_j = |S_j|`. Then `F = #{j : π(j) ∈ S_j}` and, by inclusion-exclusion on the board of disjoint rows (rook numbers `r_k = e_k(n_1, n_2, ...)`, the elementary symmetric polynomials), `P(F = k) = Σ_{r>=k} (-1)^{r-k} C(r,k) e_r(n) (N-r)! / N!`. This is the exact law (`exact_null.same_position_law`). Mean `Σ n_j / N <= 1`.
+- **valid bound for any argmax matching:** `P(F >= k) <= E C(F,k) = e_k(n)(N-k)!/N! <= 1/k!`, because `e_k(n)` counts k-subsets of the matched positions with at most one per class, at most C(N,k).
+
+Exact checks: fixed-point mean and variance 1 for N = 2, 3, 7, 15; for 30 random class structures the mean is `Σn_j/N` and the 1/k! bound holds at every k; the independent checker (all N! relabellings for N <= 8) agrees on 15 cases. Layers with independent permutation groups combine by convolution.
+
+**S4.2 (scope).** Same position is the right test for one-sided models (Pythia): the sign test is not available there, the position test is. Its null mean is about 1 match per block, so 75 percent or 67 percent same position (third party, Qwen3.5-9B into 27B and Gemma 3n) is beyond any null. A relabelled descendant defeats it (S5.4).
+
+---
+
+## S5. Small trained networks (sampled evidence)
+
+**Setup** (`nets.py`, `train_all.py`; seeds fixed in `train_all.py`, run log `runs/train_log.jsonl`, not committed). Task: next-token prediction on a synthetic order-2 language, V = 48, generated by a fixed random teacher (teacher seed 0; "different task" = teacher seed 1). Network: two-token context, embeddings d = 32, two residual blocks with RMSNorm, gated `D (SiLU(G n) * (U n))` or plain `D act(U n)`, widths 64/128/256. All inits i.i.d. zero-mean normal. AdamW (lr 3e-3, decoupled wd 0.01, betas 0.9/0.99), batch 256, 2000 steps, one fixed data stream shared by every network trained on it (stream seed 0; "other order" = stream seed 1). Final training NLL about 1.02 (teacher-0 task) for every arm. Probe = 4096 positions from a held-out stream (seed 987654) of teacher 0, the same for all networks. Statistic pooled over both blocks (B unit identity = (block, unit)), m = 2h at tau = 0. p-values per pair are exact (`exact_null`); rates across pairs are sampled. One-sided means the upper tail (lineage direction).
+
+**S5.1 Null calibration: independent seeds, gated, same data order** (h=128, 200 disjoint pairs, init seeds 100000-100399).
+
+| tau | median m | mean share | sd of share (observed / binomial / cluster) | median κ | binomial p<0.05 / <0.01 | cluster p<0.05 / <0.01 |
+|---|---|---|---|---|---|---|
+| 0 | 256 | 0.498 | 0.0317 / 0.0312 / 0.0312 | 1.00 | 7 / 0 of 200 (one-sided) | 6 / 1 |
+| 0.3 | 197 | 0.498 | 0.0365 / 0.0356 / 0.0356 | 1.00 | 6 / 1 | 5 / 1 |
+| 0.5 | 48 | 0.500 | 0.0714 / 0.0722 / 0.0712 | 0.96 | 7 / 0 | 6 / 0 |
+
+Two-sided rates are similar (8/1 and 9/2 at tau 0). Replicated at h = 64 (50 pairs, share sd 0.0449 vs binomial 0.0442) and h = 256 (50 pairs, m = 512, sd 0.0229 vs 0.0221, no one-sided rejection). **Both p-values are calibrated**, as S3.3 predicts (both sides gated, so the binomial is exact). The matching is almost one-to-one (κ ≈ 1), so the two laws nearly coincide here. Spread of the share over 200 pairs at m = 256: 0.414 to 0.574.
+
+*Conditional on one fixed A* (A = model 0, B = models 200-399): one-sided cluster p < 0.01 in 8 of 200 at tau 0.3 (6 of 200 at tau 0). This is a surprise: the cluster p-value is exactly valid conditionally on A (S3.2, and our float32 training is bitwise sign-equivariant, S2). We checked the p-values of the four smallest cases by Monte Carlo over sign flips (4000 draws each; exact 0.00156, 0.00209, 0.00264, 0.00417 vs MC 0.00175, 0.00275, 0.00475, 0.00550). We replicated with four other fixed A (models 2, 4, 6, 8; 200 B each): one-sided cluster p < 0.01 in 1, 0, 1, 1 of 200 at tau 0.3. We read the first as chance among about 30 looks (Poisson tail about 1e-3 per look), and keep it on record.
+
+**S5.1b Matched pairs that share data order vs not (control iv-b).** Pairs (null model k, a model with a different init seed trained on stream 1), 100 pairs: mean share 0.500, sd 0.0301, one-sided p < 0.05 in 4 (binomial) and 5 (cluster) of 100, < 0.01 in 0. **Sharing the data order without sharing the initial weights is not flagged**, as S2.2 says.
+
+**S5.2 Descendants: power** (A = null models 0-39; B = A continued with a fresh AdamW, same task on a new stream or a different task).
+
+| arm | steps | mean share (tau 0) | min share | one-sided p < 0.01 (both p-values) | same position F / 256 (mean) | invariant mean max|corr| (min) |
+|---|---|---|---|---|---|---|
+| same task | 30 | 1.000 | 1.000 | 40/40 | 256.0 | 0.982 |
+| same task | 300 | 1.000 | 1.000 | 40/40 | 256.0 | 0.965 |
+| same task | 3000 | 1.000 | 0.996 | 40/40 | 255.95 | 0.900 |
+| different task | 30 | 1.000 | 1.000 | 40/40 | 255.98 | 0.936 |
+| different task | 300 | 0.993 | 0.977 | 40/40 | 252.98 | 0.787 |
+| different task | 3000 | 0.858 | 0.809 | 40/40 | 183.2 | 0.521 |
+| siblings: same init, other data order, 2000 steps from init | 2000 | 0.998 | 0.988 | 40/40 | 254.8 | 0.824 |
+
+Power is 40/40 in every arm; on a different task after 3000 steps (1.5 times the original training, final NLL 0.19 on the new task) the share falls to 0.81-0.90 and same position to 72 percent, still far outside the null. Shared initial weights alone (siblings) are detected as strongly as a descendant: the test detects a shared initial point, not a shared training run.
+
+**S5.3 One-sided blocks: the control** (100 disjoint pairs each, plain blocks, h = 128).
+
+| block | mean share (tau 0) | range | one-sided p < 0.01 |
+|---|---|---|---|
+| plain ReLU | 0.956 | 0.906-0.988 | 100/100 |
+| plain GELU | 0.971 | 0.930-0.996 | 100/100 |
+| plain tanh (odd, sign symmetric) | 0.498 | 0.438-0.539 | 0/50 pairs |
+| gated SiLU (S5.1) | 0.498 | 0.414-0.574 | 0-1/200 |
+
+So yes: **unrelated one-sided networks sit far above 50 percent**, like the site's 83-87 percent for Pythia–Falcon-H1 Tiny (third party), and every pair would be called related. The odd activation behaves like the gated block. Same position stays at its null (mean F 2.02 to 2.18 over two blocks, null mean 2) in all three plain arms: **the position test is valid for one-sided blocks, the sign test is not** (S4.2).
+
+*Mixed pairs, where S3.2 and S3.3 part ways:*
+- source plain GELU, target gated (100 pairs): mean share 0.493 but sd 0.058 against a binomial 0.031; range **0.355 to 0.633**; κ = 3.1. One-sided binomial p < 0.05 / 0.01 in 15 / 11 of 100, two-sided in 30 / 17 of 100: **the binomial is anti-conservative**. Cluster p: 6 / 0 (one-sided), 3 / 1 (two-sided): **calibrated**. With one fixed GELU source and 200 gated targets: share range **0.340 to 0.695**, binomial two-sided 58 / 32 of 200, cluster two-sided 10 / 3 of 200.
+- source gated, target plain GELU (100 pairs): share sd 0.031, binomial one-sided 3 / 1: **the binomial is valid** because the source is sign-symmetric (S3.3), even though the target is not.
+
+This reproduces the shape of the site's sentence: unrelated pairs centred at 50 percent with a spread of about 34 to 70 percent at m = 256, which the binomial cannot produce and the cluster law predicts from κ ≈ 3.
+
+**Diagnostics from traces alone** (`analyze.diagnostics`, 100 networks x 2 blocks per arm).
+- *Two-sidedness* (the task's suggestion): share of units with `min(E h+, E h-) / E|h| >= 0.1`. Gated 0.987, tanh 1.000, ReLU 0.000, **GELU 0.905**. It separates ReLU, but **not GELU**: GELU traces carry real negative mass. The median ratio separates better (gated 0.366, tanh 0.428, GELU 0.173, ReLU 0), but it has no null law and no clean cut. As a validity diagnostic, two-sidedness is too weak. That is a tightening of the task's suggestion.
+- *Lean test* (exact null, proposed here): count the units whose trace has a positive mean. If the model's law is sign-invariant, this count is exactly Binomial(h_live, 1/2) given the orbit (same coin argument as S3.1, any odd statistic works). Rejection at 0.01: gated 1 percent, tanh 0 percent, **GELU 100 percent (99.9 percent of units positive), ReLU 100 percent**. It separates the block types completely, and its false-positive rate on valid models is at the nominal level. This is the "lean to one side" the site names, made testable: a model that fails it cannot serve as the sign-symmetric side of S3.
+
+**S5.4 Controls on the test itself (control iv-a).** A planted descendant: B = g·A for a uniformly random element g of the hidden-unit group of each block (random permutation and random signs), then (a) nothing, (b) 300 steps on the same task, (c) 3000 steps on a different task. 40 pairs each (A = null models 40-79, group seed 424242). The function change after applying g is 3.8e-6 in logits (float rounding).
+
+| statistic | (a) | (b) | (c) | unrelated null |
+|---|---|---|---|---|
+| site sign share (tau 0) | 0.497, p<0.01 0/40 | 0.497, 0/40 | 0.498, 0/40 | 0.498 |
+| same position F (two blocks) | 2.3, 0/40 | 2.3, 0/40 | 2.0, 0/40 | 2.0 |
+| residual-coordinate sign test (exact cluster p) | 40/40 | 40/40 | 40/40 | 0.5-3 percent at 0.01 |
+| invariant: mean max|corr| | 1.000 | 0.966 | 0.508 min | max 0.422 |
+
+**The sign test and the position test fail this control.** That is not a bug in our code; it is a theorem:
+
+**S5.4a (proof).** If B' = g·B with g uniform on B's group H_B and independent of everything else, then for any statistic T(A, B') the conditional law given the orbit of B equals the randomisation law, so the exact randomisation test built from H_B has rejection probability at most α. A test whose null comes from a symmetry cannot detect a descendant that has been hit by a random element of that same symmetry. The detectable signal must live in an invariant of that group, or in a symmetry group the adversary did not randomise.
+
+Two repairs, both run:
+- *Residual-coordinate sign test* (exact null): the residual stream has its own symmetry, signed permutations of its d coordinates (embedding columns, G/U columns, D rows, unembedding columns and norm gains move together; RMSNorm with an elementwise gain is invariant). It is one group for all layers, so the cluster for S3.2 is the coordinate k across blocks (S6.1). Hidden-unit relabelling leaves it alone: 40/40 detected at p < 0.01 in (a), (b) and (c). Its null false-positive rate in the unrelated arms is 0 to 3 percent at 0.01 (sampled), so it is valid. A planted descendant that *also* randomises the residual basis (group seed 535353) defeats it (0/40, share 0.476-0.480), as S5.4a predicts.
+- *Group-invariant statistic* (sampled null, no exact law exists by S5.4a): mean over A units of `max_j |corr|`. Threshold = maximum over the 200 calibration null pairs (0.422). Held out: false-positive rate 1/100 on the other-data-order pairs and 0/800 on the fixed-A replications. Detection 100 percent in every planted, descendant and sibling arm, including the fully randomised planted descendant after 3000 steps on another task (min 0.508). **Scope:** this is a toy where unrelated networks share features only moderately (max|corr| about 0.40). In real models, unrelated pairs share many features (the site reports 67 percent group-level overlap for Pythia seeds, third party), so the gap must be measured there before this statistic is trusted.
+
+**S5.5 What this does and does not show.** Sampled, on small synthetic-task networks: the exact laws of S3 are calibrated where their hypotheses hold and fail exactly where S3.3 says they should; one-sided blocks break the sign test in the direction and size the site reports; descendants are detected at every length we ran. Not shown: behaviour at LLM scale, with attention, with tied embeddings, under real distillation, or for the site's actual statistic (its threshold, its layer pairing and whether it pools both match directions are unknown to us).
+
+---
+
+## S6. Looped and expert models (statement only, no experiment)
+
+**S6.1 Looped blocks.** If one block's weights are reused on P passes (Inkling 2 Mini as described in the brief: the middle 12 of 24 layers run 3 times per token; architecture not checked against code), the symmetry group is still one signed permutation per *weight-space* block: one coin `e_i` per unit, shared by its P traces `h_i^(1..P)`. Each pass has its own trace and they generally differ (different residual input). Per-pass norms, per-pass scalars and pass embeddings added to the residual do not break the symmetry; any per-pass weight that multiplies the hidden vector entrywise (a per-pass gain on h) does not either; a per-pass *separate* D or U is a separate block. Consequences:
+- "a neuron" is the weight-space unit (row of G and U, column of D); it carries P traces. One can match per pass, or concatenate the P traces into one trace of length P·T.
+- if the looped model is the target B and traces are matched per pass, every pair whose matched trace is any pass of unit j carries the same `e_j`: the cluster for S3.2 is the unit, so `s_j` sums over all P passes. Treating the P traces as independent units overstates the evidence.
+- if the looped model is the source A, its P traces of one unit share one coin, so S3.3 no longer gives a binomial: the law is the cluster form with clusters = A's units (sum over passes), i.e. S3.2 with the roles of A and B exchanged.
+- the same applies to any shared group across layers, for example our residual-stream test (S5.4), where the residual basis is one group for all layers.
+
+**S6.2 Mixture of experts.** Each expert e is its own gated block with its own group H_e; the router does not read hidden units, so per-expert signed permutations are symmetries. Permuting the experts together with their router rows is a further symmetry if the load-balancing loss is permutation-invariant (the usual ones are); shared experts form their own group. The group is (Π_e H_e) ⋊ S_E. "A neuron" is (expert, unit). Its trace is defined on the tokens routed to that expert; the natural common-token trace is the router-weighted one `g_e(t) h_{e,i}(t)` (zero off-route), which flips with the unit. Correlations of zero-inflated traces are driven by routing overlap, so `|corr|` and the matching carry routing similarity, while the signs remain fair coins under the null: S3.2 and S3.3 hold unchanged with units (e,i). Same position must be defined modulo the expert permutation (match experts first, by router or by unit traces), and its null law then uses the product of uniform permutations within matched experts.
+
+---
+
+## Record of surprises and failed or partial runs
+
+1. **Fixed-A excess (surprise, resolved as chance on replication).** First fixed-A run: one-sided cluster p < 0.01 in 8/200 at tau 0.3. The exact p-values matched Monte Carlo; four replications with other fixed A gave 1, 0, 1, 1 of 200. Kept in `RESULTS.json` (`null_fixedA_gated`, `..._rep2` to `_rep8`).
+2. **The task's statement "Binomial only when the matching is one-to-one" needed a tightening** (S3.3): true conditional on A; false once A's own symmetry is used. The binomial is exact whenever the *source* side is sign-symmetric.
+3. **The task's suggested diagnostic (two-sidedness) does not separate GELU from gated blocks** (0.905 vs 0.987). The exact lean test does (S5.3).
+4. **Control iv-a fails for the site's statistic and for same position, by theorem S5.4a.** Repairs: the residual-coordinate sign test (exact) and an invariant statistic (sampled).
+5. **Siblings** (same init, different data order) score 0.998, as high as descendants: the test detects a shared initial point. This is in scope of "made from", but it means "related" includes two runs started from one seed.
+6. Teacher 1 (the "different task") has a much lower entropy (NLL 0.19 after training) than teacher 0 (about 1.0). We did not tune it, and we note it because "different task" here is also "easier task".
+7. No scipy in the venv, so no assignment-based (bijective) matching was run. S4.1's bijective law is exact but has not been tested on our networks.
+8. The site itself was not fetched (another session covered the site's method). Every site number here is third party, via the brief, which quoted the site. Falcon-H1 Tiny and Pythia were not downloaded, so S3.4's lean prediction is unchecked.
+
+---
+
+## Note for this record
+
+- "The task" and "the brief" mean the instructions this session was given. They asked for the exact null law of the site's sign count, its validity conditions, and small-network checks.
+- An independent refuter checked every statement with its own code. Its report is `refute/REFUTE.txt` and its rulings are `refute/REFUTE-RULINGS.json`. Its tightenings are binding and the README states the corrected forms. The main ones: S3.2's law is binomial exactly when every cluster has size 1 (not when every |s_j| = 1); kept pairs with correlation exactly 0 must be dropped; S3.4 has two more explanations (a matching rule that is not sign-blind, and counts pooled over both directions); the S3.5 maximum is at m = 203, not 201; S4 needs an equivariant matching (random tie breaking); the S5.3 lean test must use the sign of the skew, not of the mean; S2.3 adds a LayerNorm on the hidden vector, a shared default seed, and float discretisation; S6.2 fails for experts copied from one dense layer.
+- Paths: `scripts/`, `out/` and `RESULTS.json` are this folder's. `runs/` (168 MB of trained networks) and `out/pairs_all.jsonl` (2.3 MB) are not committed. The committed scripts take folders as command-line options, so some line numbers differ from the originals.

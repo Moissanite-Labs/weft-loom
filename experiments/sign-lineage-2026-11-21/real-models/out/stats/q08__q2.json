@@ -1,0 +1,216 @@
+{
+ "name": "q08__q2",
+ "pair_meta": {
+  "name": "q08__q2",
+  "A": "q08",
+  "B": "q2",
+  "shuffle": null,
+  "T": 20000,
+  "A_layers": 24,
+  "B_layers": 24,
+  "A_widths": [
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584,
+   3584
+  ],
+  "B_widths": [
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144,
+   6144
+  ],
+  "A_dropped_zero_var": 0,
+  "B_dropped_zero_var": 0,
+  "ab": {
+   "ties": 0,
+   "full_rows": 1,
+   "max_abs_r32_minus_r64_on_candidates": 2.8873497001091764e-06
+  },
+  "ba": {
+   "ties": 0,
+   "full_rows": 1,
+   "max_abs_r32_minus_r64_on_candidates": 2.6101961786428873e-06
+  },
+  "screen_seconds": 382.7,
+  "seconds": 402.7
+ },
+ "ab": {
+  "source": "q08",
+  "target": "q2",
+  "law": "binomial (source gated, passes skew)",
+  "dropped_r_exactly_zero": 0,
+  "tau_0": {
+   "share": {
+    "num": 67224,
+    "den": 86016
+   },
+   "invariant_mean_max_abs_r": 0.3636511361776441,
+   "matched_same_layer": {
+    "num": 53733,
+    "den": 86016
+   },
+   "p_upper": "1.0820e-6285 (display rounded)",
+   "p_two": "2.1641e-6285 (display rounded)",
+   "inside_999_band": false,
+   "same_position": {
+    "num": 8,
+    "den": 86016
+   },
+   "same_position_null_mean": "8.7456",
+   "same_position_null_mean_exact": "17911/2048",
+   "same_position_p_upper_bracket": [
+    "6.455159e-01",
+    "6.455159e-01"
+   ],
+   "same_position_inside_null": true
+  },
+  "tau_0.3": {
+   "share": {
+    "num": 43460,
+    "den": 49991
+   },
+   "invariant_mean_max_abs_r": 0.46397156778439436,
+   "matched_same_layer": {
+    "num": 39314,
+    "den": 49991
+   },
+   "p_upper": "1.9660e-6636 (display rounded)",
+   "p_two": "3.9319e-6636 (display rounded)",
+   "inside_999_band": false,
+   "same_position": {
+    "num": 7,
+    "den": 49991
+   },
+   "same_position_null_mean": "6.3988",
+   "same_position_null_mean_exact": "19657/3072",
+   "same_position_p_upper_bracket": [
+    "4.574807e-01",
+    "4.574807e-01"
+   ],
+   "same_position_inside_null": true
+  },
+  "tau_0.5": {
+   "share": {
+    "num": 15161,
+    "den": 16153
+   },
+   "invariant_mean_max_abs_r": 0.6236912385156644,
+   "matched_same_layer": {
+    "num": 14625,
+    "den": 16153
+   },
+   "p_upper": "9.2810e-3246 (display rounded)",
+   "p_two": "1.8562e-3245 (display rounded)",
+   "inside_999_band": false,
+   "same_position": {
+    "num": 0,
+    "den": 16153
+   }
+  }
+ },
+ "ba": {
+  "source": "q2",
+  "target": "q08",
+  "law": "binomial (source gated, passes skew)",
+  "dropped_r_exactly_zero": 0,
+  "tau_0": {
+   "share": {
+    "num": 98926,
+    "den": 147456
+   },
+   "invariant_mean_max_abs_r": 0.3085328127050339,
+   "matched_same_layer": {
+    "num": 63310,
+    "den": 147456
+   },
+   "p_upper": "1.2234e-3819 (display rounded)",
+   "p_two": "2.4467e-3819 (display rounded)",
+   "inside_999_band": false
+  },
+  "tau_0.3": {
+   "share": {
+    "num": 49829,
+    "den": 62432
+   },
+   "invariant_mean_max_abs_r": 0.4505445717997839,
+   "matched_same_layer": {
+    "num": 41514,
+    "den": 62432
+   },
+   "p_upper": "3.7559e-5159 (display rounded)",
+   "p_two": "7.5118e-5159 (display rounded)",
+   "inside_999_band": false
+  },
+  "tau_0.5": {
+   "share": {
+    "num": 15903,
+    "den": 17710
+   },
+   "invariant_mean_max_abs_r": 0.6206319125709282,
+   "matched_same_layer": {
+    "num": 14827,
+    "den": 17710
+   },
+   "p_upper": "2.0549e-2799 (display rounded)",
+   "p_two": "4.1098e-2799 (display rounded)",
+   "inside_999_band": false
+  }
+ },
+ "mutual_closest": {
+  "num": 44697,
+  "den": 86016
+ },
+ "pooled_share_tau_0": {
+  "num": 166150,
+  "den": 233472
+ },
+ "pooled_share_tau_0.3": {
+  "num": 93289,
+  "den": 112423
+ },
+ "pooled_share_tau_0.5": {
+  "num": 31064,
+  "den": 33863
+ }
+}

@@ -1,0 +1,5925 @@
+{
+ "pairs": {
+  "s135__s135i": {
+   "name": "s135__s135i",
+   "ab": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 46080,
+     "positive": 46070,
+     "invariant": 0.9226250491428405,
+     "matched_same_layer": 46064,
+     "r_zero": 0,
+     "p_upper": "4.100e-13832",
+     "p_two": "8.201e-13832",
+     "F": 46059,
+     "null_mean": "2879/96",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -126752.43610407182,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.3": {
+     "kept": 46078,
+     "positive": 46068,
+     "invariant": 0.9226545655684998,
+     "matched_same_layer": 46063,
+     "r_zero": 0,
+     "p_upper": "1.639e-13831",
+     "p_two": "3.279e-13831",
+     "F": 46058,
+     "null_mean": "46063/1536",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -126749.24991082193,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.5": {
+     "kept": 46073,
+     "positive": 46066,
+     "invariant": 0.9227109720117982,
+     "matched_same_layer": 46060,
+     "r_zero": 0,
+     "p_upper": "3.860e-13841",
+     "p_two": "7.720e-13841",
+     "F": 46056
+    }
+   },
+   "ba": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 46080,
+     "positive": 46066,
+     "invariant": 0.9227109547972712,
+     "matched_same_layer": 46058,
+     "r_zero": 0,
+     "p_upper": "7.688e-13818",
+     "p_two": "1.538e-13817",
+     "F": 46048,
+     "null_mean": "23029/768",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -126717.38849696207,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.3": {
+     "kept": 46079,
+     "positive": 46065,
+     "invariant": 0.9227250715330361,
+     "matched_same_layer": 46057,
+     "r_zero": 0,
+     "p_upper": "1.537e-13817",
+     "p_two": "3.074e-13817",
+     "F": 46047,
+     "null_mean": "46057/1536",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -126714.20240744455,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.5": {
+     "kept": 46075,
+     "positive": 46061,
+     "invariant": 0.9227663759426912,
+     "matched_same_layer": 46054,
+     "r_zero": 0,
+     "p_upper": "2.457e-13816",
+     "p_two": "4.913e-13816",
+     "F": 46044
+    }
+   },
+   "mutual": 46041,
+   "nA": 46080,
+   "pooled": {
+    "tau_0": [
+     92136,
+     92160
+    ],
+    "tau_0.3": [
+     92133,
+     92157
+    ],
+    "tau_0.5": [
+     92127,
+     92148
+    ]
+   }
+  },
+  "s135__s360": {
+   "name": "s135__s360",
+   "ab": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 46080,
+     "positive": 22974,
+     "invariant": 0.29165779334012737,
+     "matched_same_layer": 4270,
+     "r_zero": 0,
+     "p_upper": "7.322317e-01",
+     "p_two": "5.416899e-01"
+    },
+    "tau_0.3": {
+     "kept": 15958,
+     "positive": 7900,
+     "invariant": 0.426651453475433,
+     "matched_same_layer": 2119,
+     "r_zero": 0,
+     "p_upper": "8.959238e-01",
+     "p_two": "2.139306e-01"
+    },
+    "tau_0.5": {
+     "kept": 3326,
+     "positive": 1630,
+     "invariant": 0.6281283494468859,
+     "matched_same_layer": 646,
+     "r_zero": 0,
+     "p_upper": "8.773341e-01",
+     "p_two": "2.597082e-01"
+    }
+   },
+   "ba": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 81920,
+     "positive": 40875,
+     "invariant": 0.2577002637987619,
+     "matched_same_layer": 7560,
+     "r_zero": 0,
+     "p_upper": "7.248962e-01",
+     "p_two": "5.548814e-01"
+    },
+    "tau_0.3": {
+     "kept": 20679,
+     "positive": 10290,
+     "invariant": 0.4211082790841576,
+     "matched_same_layer": 2543,
+     "r_zero": 0,
+     "p_upper": "7.565975e-01",
+     "p_two": "4.955606e-01"
+    },
+    "tau_0.5": {
+     "kept": 3989,
+     "positive": 1998,
+     "invariant": 0.6234141175739913,
+     "matched_same_layer": 690,
+     "r_zero": 0,
+     "p_upper": "4.621586e-01",
+     "p_two": "9.243171e-01"
+    }
+   },
+   "mutual": 4721,
+   "nA": 46080,
+   "pooled": {
+    "tau_0": [
+     63849,
+     128000
+    ],
+    "tau_0.3": [
+     18190,
+     36637
+    ],
+    "tau_0.5": [
+     3628,
+     7315
+    ]
+   }
+  },
+  "s135__s135L": {
+   "name": "s135__s135L",
+   "ab": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 46080,
+     "positive": 23089,
+     "invariant": 0.9226250485256161,
+     "matched_same_layer": 46064,
+     "r_zero": 0,
+     "p_upper": "3.256808e-01",
+     "p_two": "6.513616e-01",
+     "F": 20,
+     "null_mean": "2879/96",
+     "F_p_upper": [
+      "9.780332e-01",
+      "9.780332e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.3": {
+     "kept": 46078,
+     "positive": 23088,
+     "invariant": 0.922654564949897,
+     "matched_same_layer": 46063,
+     "r_zero": 0,
+     "p_upper": "3.256773e-01",
+     "p_two": "6.513545e-01",
+     "F": 20,
+     "null_mean": "46063/1536",
+     "F_p_upper": [
+      "9.780274e-01",
+      "9.780274e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.5": {
+     "kept": 46073,
+     "positive": 23086,
+     "invariant": 0.9227109713538283,
+     "matched_same_layer": 46060,
+     "r_zero": 0,
+     "p_upper": "3.239920e-01",
+     "p_two": "6.479840e-01",
+     "F": 20
+    }
+   },
+   "ba": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 46080,
+     "positive": 23086,
+     "invariant": 0.9227109539238657,
+     "matched_same_layer": 46058,
+     "r_zero": 0,
+     "p_upper": "3.358119e-01",
+     "p_two": "6.716237e-01",
+     "F": 20,
+     "null_mean": "23029/768",
+     "F_p_upper": [
+      "9.779982e-01",
+      "9.779982e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.3": {
+     "kept": 46079,
+     "positive": 23086,
+     "invariant": 0.9227250706598952,
+     "matched_same_layer": 46057,
+     "r_zero": 0,
+     "p_upper": "3.341131e-01",
+     "p_two": "6.682262e-01",
+     "F": 20,
+     "null_mean": "46057/1536",
+     "F_p_upper": [
+      "9.779923e-01",
+      "9.779923e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.5": {
+     "kept": 46075,
+     "positive": 23086,
+     "invariant": 0.9227663751072374,
+     "matched_same_layer": 46054,
+     "r_zero": 0,
+     "p_upper": "3.273519e-01",
+     "p_two": "6.547038e-01",
+     "F": 20
+    }
+   },
+   "mutual": 46041,
+   "nA": 46080,
+   "pooled": {
+    "tau_0": [
+     46175,
+     92160
+    ],
+    "tau_0.3": [
+     46174,
+     92157
+    ],
+    "tau_0.5": [
+     46172,
+     92148
+    ]
+   }
+  },
+  "py__py_s1": {
+   "name": "py__py_s1",
+   "ab": {
+    "law": "none",
+    "tau_0": {
+     "kept": 36864,
+     "positive": 35906,
+     "invariant": 0.34756367750863265,
+     "matched_same_layer": 11721,
+     "r_zero": 0,
+     "F": 10,
+     "null_mean": "3907/1024",
+     "F_p_upper": [
+      "5.925567e-03",
+      "5.925567e-03"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.3": {
+     "kept": 21539,
+     "positive": 21312,
+     "invariant": 0.4230020335762767,
+     "matched_same_layer": 7908,
+     "r_zero": 0,
+     "F": 5,
+     "null_mean": "659/256",
+     "F_p_upper": [
+      "1.188377e-01",
+      "1.188377e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.5": {
+     "kept": 4005,
+     "positive": 3993,
+     "invariant": 0.6103174952345543,
+     "matched_same_layer": 1825,
+     "r_zero": 0,
+     "F": 1
+    }
+   },
+   "ba": {
+    "law": "none",
+    "tau_0": {
+     "kept": 36864,
+     "positive": 35779,
+     "invariant": 0.34644930880202796,
+     "matched_same_layer": 11611,
+     "r_zero": 0,
+     "F": 5,
+     "null_mean": "11611/3072",
+     "F_p_upper": [
+      "3.281709e-01",
+      "3.281709e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.3": {
+     "kept": 21399,
+     "positive": 21107,
+     "invariant": 0.42188975116108396,
+     "matched_same_layer": 7764,
+     "r_zero": 0,
+     "F": 4,
+     "null_mean": "647/256",
+     "F_p_upper": [
+      "2.482222e-01",
+      "2.482222e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.5": {
+     "kept": 3962,
+     "positive": 3951,
+     "invariant": 0.6070777214698316,
+     "matched_same_layer": 1858,
+     "r_zero": 0,
+     "F": 1
+    }
+   },
+   "mutual": 3089,
+   "nA": 36864,
+   "pooled": {
+    "tau_0": [
+     71685,
+     73728
+    ],
+    "tau_0.3": [
+     42419,
+     42938
+    ],
+    "tau_0.5": [
+     7944,
+     7967
+    ]
+   }
+  },
+  "py__py_s2": {
+   "name": "py__py_s2",
+   "ab": {
+    "law": "none",
+    "tau_0": {
+     "kept": 36864,
+     "positive": 35898,
+     "invariant": 0.3498035550028536,
+     "matched_same_layer": 10972,
+     "r_zero": 0,
+     "F": 2,
+     "null_mean": "2743/768",
+     "F_p_upper": [
+      "8.718224e-01",
+      "8.718224e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.3": {
+     "kept": 21683,
+     "positive": 21469,
+     "invariant": 0.42525858311905484,
+     "matched_same_layer": 7514,
+     "r_zero": 0,
+     "F": 2,
+     "null_mean": "3757/1536",
+     "F_p_upper": [
+      "7.018915e-01",
+      "7.018915e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.5": {
+     "kept": 4156,
+     "positive": 4144,
+     "invariant": 0.6122894759542642,
+     "matched_same_layer": 1740,
+     "r_zero": 0,
+     "F": 1
+    }
+   },
+   "ba": {
+    "law": "none",
+    "tau_0": {
+     "kept": 36864,
+     "positive": 35922,
+     "invariant": 0.35099038384084247,
+     "matched_same_layer": 11072,
+     "r_zero": 0,
+     "F": 3,
+     "null_mean": "173/48",
+     "F_p_upper": [
+      "6.981636e-01",
+      "6.981636e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.3": {
+     "kept": 21824,
+     "positive": 21580,
+     "invariant": 0.4260284355242664,
+     "matched_same_layer": 7640,
+     "r_zero": 0,
+     "F": 2,
+     "null_mean": "955/384",
+     "F_p_upper": [
+      "7.102032e-01",
+      "7.102032e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.5": {
+     "kept": 4249,
+     "positive": 4235,
+     "invariant": 0.6116853629019203,
+     "matched_same_layer": 1776,
+     "r_zero": 0,
+     "F": 2
+    }
+   },
+   "mutual": 2988,
+   "nA": 36864,
+   "pooled": {
+    "tau_0": [
+     71820,
+     73728
+    ],
+    "tau_0.3": [
+     43049,
+     43507
+    ],
+    "tau_0.5": [
+     8379,
+     8405
+    ]
+   }
+  },
+  "py_s1__py_s2": {
+   "name": "py_s1__py_s2",
+   "ab": {
+    "law": "none",
+    "tau_0": {
+     "kept": 36864,
+     "positive": 35827,
+     "invariant": 0.3477453370843542,
+     "matched_same_layer": 11259,
+     "r_zero": 0,
+     "F": 4,
+     "null_mean": "3753/1024",
+     "F_p_upper": [
+      "4.986642e-01",
+      "4.986642e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.3": {
+     "kept": 21617,
+     "positive": 21392,
+     "invariant": 0.42221162550980573,
+     "matched_same_layer": 7656,
+     "r_zero": 0,
+     "F": 2,
+     "null_mean": "319/128",
+     "F_p_upper": [
+      "7.114486e-01",
+      "7.114486e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.5": {
+     "kept": 4030,
+     "positive": 4016,
+     "invariant": 0.6055949025602531,
+     "matched_same_layer": 1856,
+     "r_zero": 0,
+     "F": 1
+    }
+   },
+   "ba": {
+    "law": "none",
+    "tau_0": {
+     "kept": 36864,
+     "positive": 36025,
+     "invariant": 0.3484238433761051,
+     "matched_same_layer": 11150,
+     "r_zero": 0,
+     "F": 4,
+     "null_mean": "5575/1536",
+     "F_p_upper": [
+      "4.911552e-01",
+      "4.911552e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.3": {
+     "kept": 21590,
+     "positive": 21410,
+     "invariant": 0.42396979900411025,
+     "matched_same_layer": 7634,
+     "r_zero": 0,
+     "F": 2,
+     "null_mean": "3817/1536",
+     "F_p_upper": [
+      "7.098415e-01",
+      "7.098415e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.5": {
+     "kept": 4092,
+     "positive": 4088,
+     "invariant": 0.6072598031009278,
+     "matched_same_layer": 1770,
+     "r_zero": 0,
+     "F": 0
+    }
+   },
+   "mutual": 3080,
+   "nA": 36864,
+   "pooled": {
+    "tau_0": [
+     71852,
+     73728
+    ],
+    "tau_0.3": [
+     42802,
+     43207
+    ],
+    "tau_0.5": [
+     8104,
+     8122
+    ]
+   }
+  },
+  "py_1k__py": {
+   "name": "py_1k__py",
+   "ab": {
+    "law": "none",
+    "tau_0": {
+     "kept": 36864,
+     "positive": 35259,
+     "invariant": 0.30008509113839427,
+     "matched_same_layer": 7934,
+     "r_zero": 0,
+     "F": 2344,
+     "null_mean": "3967/1536",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -4353.677609480079,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.3": {
+     "kept": 15637,
+     "positive": 15397,
+     "invariant": 0.3725509939496761,
+     "matched_same_layer": 3652,
+     "r_zero": 0,
+     "F": 1122,
+     "null_mean": "913/768",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -1725.8963373221322,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.5": {
+     "kept": 827,
+     "positive": 826,
+     "invariant": 0.5591792993166564,
+     "matched_same_layer": 269,
+     "r_zero": 0,
+     "F": 99
+    }
+   },
+   "ba": {
+    "law": "none",
+    "tau_0": {
+     "kept": 36864,
+     "positive": 34445,
+     "invariant": 0.2592182936353274,
+     "matched_same_layer": 8693,
+     "r_zero": 0,
+     "F": 3572,
+     "null_mean": "8693/3072",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -7287.039955724042,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.3": {
+     "kept": 9691,
+     "positive": 9550,
+     "invariant": 0.3715795355458682,
+     "matched_same_layer": 2799,
+     "r_zero": 0,
+     "F": 1265,
+     "null_mean": "933/1024",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -2011.5478827211984,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.5": {
+     "kept": 509,
+     "positive": 504,
+     "invariant": 0.5730323726883181,
+     "matched_same_layer": 188,
+     "r_zero": 0,
+     "F": 85
+    }
+   },
+   "mutual": 1618,
+   "nA": 36864,
+   "pooled": {
+    "tau_0": [
+     69704,
+     73728
+    ],
+    "tau_0.3": [
+     24947,
+     25328
+    ],
+    "tau_0.5": [
+     1330,
+     1336
+    ]
+   }
+  },
+  "py_8k__py": {
+   "name": "py_8k__py",
+   "ab": {
+    "law": "none",
+    "tau_0": {
+     "kept": 36864,
+     "positive": 36820,
+     "invariant": 0.42181923672516625,
+     "matched_same_layer": 33155,
+     "r_zero": 0,
+     "F": 31958,
+     "null_mean": "33155/3072",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -95592.3486813984,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.3": {
+     "kept": 31897,
+     "positive": 31885,
+     "invariant": 0.448029521177082,
+     "matched_same_layer": 29570,
+     "r_zero": 0,
+     "F": 28666,
+     "null_mean": "14785/1536",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -84392.21774657143,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.5": {
+     "kept": 8209,
+     "positive": 8209,
+     "invariant": 0.5879230763095605,
+     "matched_same_layer": 7748,
+     "r_zero": 0,
+     "F": 7463
+    }
+   },
+   "ba": {
+    "law": "none",
+    "tau_0": {
+     "kept": 36864,
+     "positive": 36487,
+     "invariant": 0.42446241446241056,
+     "matched_same_layer": 32143,
+     "r_zero": 0,
+     "F": 31008,
+     "null_mean": "32143/3072",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -92344.407662212,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.3": {
+     "kept": 32191,
+     "positive": 32091,
+     "invariant": 0.4493014609676667,
+     "matched_same_layer": 28912,
+     "r_zero": 0,
+     "F": 28093,
+     "null_mean": "1807/192",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -82459.01672736491,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.5": {
+     "kept": 8368,
+     "positive": 8357,
+     "invariant": 0.5896403530522865,
+     "matched_same_layer": 7591,
+     "r_zero": 0,
+     "F": 7401
+    }
+   },
+   "mutual": 28811,
+   "nA": 36864,
+   "pooled": {
+    "tau_0": [
+     73307,
+     73728
+    ],
+    "tau_0.3": [
+     63976,
+     64088
+    ],
+    "tau_0.5": [
+     16566,
+     16577
+    ]
+   }
+  },
+  "py_32k__py": {
+   "name": "py_32k__py",
+   "ab": {
+    "law": "none",
+    "tau_0": {
+     "kept": 36864,
+     "positive": 36859,
+     "invariant": 0.6531055601813622,
+     "matched_same_layer": 36498,
+     "r_zero": 0,
+     "F": 36356,
+     "null_mean": "6083/512",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -110783.06031436242,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.3": {
+     "kept": 36711,
+     "positive": 36707,
+     "invariant": 0.6547660137771192,
+     "matched_same_layer": 36414,
+     "r_zero": 0,
+     "F": 36295,
+     "null_mean": "6069/512",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -110570.71710118809,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.5": {
+     "kept": 35011,
+     "positive": 35011,
+     "invariant": 0.6649984523752671,
+     "matched_same_layer": 34856,
+     "r_zero": 0,
+     "F": 34778
+    }
+   },
+   "ba": {
+    "law": "none",
+    "tau_0": {
+     "kept": 36864,
+     "positive": 36822,
+     "invariant": 0.6535280997407702,
+     "matched_same_layer": 36351,
+     "r_zero": 0,
+     "F": 36211,
+     "null_mean": "12117/1024",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -110278.38293899117,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.3": {
+     "kept": 36747,
+     "positive": 36715,
+     "invariant": 0.6548121765038744,
+     "matched_same_layer": 36299,
+     "r_zero": 0,
+     "F": 36176,
+     "null_mean": "36299/3072",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -110156.60200282262,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.5": {
+     "kept": 35049,
+     "positive": 35040,
+     "invariant": 0.6650269590041596,
+     "matched_same_layer": 34793,
+     "r_zero": 0,
+     "F": 34720
+    }
+   },
+   "mutual": 36053,
+   "nA": 36864,
+   "pooled": {
+    "tau_0": [
+     73681,
+     73728
+    ],
+    "tau_0.3": [
+     73422,
+     73458
+    ],
+    "tau_0.5": [
+     70051,
+     70060
+    ]
+   }
+  },
+  "py__falcon": {
+   "name": "py__falcon",
+   "ab": {
+    "law": "none",
+    "tau_0": {
+     "kept": 36864,
+     "positive": 31053,
+     "invariant": 0.29149273392895736,
+     "matched_same_layer": 1508,
+     "r_zero": 0
+    },
+    "tau_0.3": {
+     "kept": 13925,
+     "positive": 12083,
+     "invariant": 0.3967755126880148,
+     "matched_same_layer": 506,
+     "r_zero": 0
+    },
+    "tau_0.5": {
+     "kept": 1713,
+     "positive": 1560,
+     "invariant": 0.5946190396199232,
+     "matched_same_layer": 88,
+     "r_zero": 0
+    }
+   },
+   "ba": {
+    "law": "none",
+    "tau_0": {
+     "kept": 90112,
+     "positive": 56875,
+     "invariant": 0.18536067507513054,
+     "matched_same_layer": 2879,
+     "r_zero": 0
+    },
+    "tau_0.3": {
+     "kept": 9011,
+     "positive": 6762,
+     "invariant": 0.4021841893926456,
+     "matched_same_layer": 304,
+     "r_zero": 0
+    },
+    "tau_0.5": {
+     "kept": 1331,
+     "positive": 1125,
+     "invariant": 0.6020057115416221,
+     "matched_same_layer": 59,
+     "r_zero": 0
+    }
+   },
+   "mutual": 1229,
+   "nA": 36864,
+   "pooled": {
+    "tau_0": [
+     87928,
+     126976
+    ],
+    "tau_0.3": [
+     18845,
+     22936
+    ],
+    "tau_0.5": [
+     2685,
+     3044
+    ]
+   }
+  },
+  "py__falcon_gate": {
+   "name": "py__falcon_gate",
+   "ab": {
+    "law": "none",
+    "tau_0": {
+     "kept": 36864,
+     "positive": 34019,
+     "invariant": 0.3173104786925844,
+     "matched_same_layer": 895,
+     "r_zero": 0
+    },
+    "tau_0.3": {
+     "kept": 18229,
+     "positive": 17350,
+     "invariant": 0.40563418066790446,
+     "matched_same_layer": 297,
+     "r_zero": 0
+    },
+    "tau_0.5": {
+     "kept": 2592,
+     "positive": 2528,
+     "invariant": 0.5890875092027902,
+     "matched_same_layer": 56,
+     "r_zero": 0
+    }
+   },
+   "ba": {
+    "law": "none",
+    "tau_0": {
+     "kept": 90112,
+     "positive": 75448,
+     "invariant": 0.30829296406908463,
+     "matched_same_layer": 2319,
+     "r_zero": 0
+    },
+    "tau_0.3": {
+     "kept": 40456,
+     "positive": 36075,
+     "invariant": 0.4062795641228755,
+     "matched_same_layer": 677,
+     "r_zero": 0
+    },
+    "tau_0.5": {
+     "kept": 6088,
+     "positive": 5806,
+     "invariant": 0.5875534821149819,
+     "matched_same_layer": 70,
+     "r_zero": 0
+    }
+   },
+   "mutual": 1078,
+   "nA": 36864,
+   "pooled": {
+    "tau_0": [
+     109467,
+     126976
+    ],
+    "tau_0.3": [
+     53425,
+     58685
+    ],
+    "tau_0.5": [
+     8334,
+     8680
+    ]
+   }
+  },
+  "s135__s135": {
+   "name": "s135__s135",
+   "ab": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 46080,
+     "positive": 46080,
+     "invariant": 1.0,
+     "matched_same_layer": 46080,
+     "r_zero": 0,
+     "p_upper": "3.450e-13872",
+     "p_two": "6.900e-13872",
+     "F": 46080,
+     "null_mean": "30",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -126819.34834010129,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.3": {
+     "kept": 46080,
+     "positive": 46080,
+     "invariant": 1.0,
+     "matched_same_layer": 46080,
+     "r_zero": 0,
+     "p_upper": "3.450e-13872",
+     "p_two": "6.900e-13872",
+     "F": 46080,
+     "null_mean": "30",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -126819.34834010129,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.5": {
+     "kept": 46080,
+     "positive": 46080,
+     "invariant": 1.0,
+     "matched_same_layer": 46080,
+     "r_zero": 0,
+     "p_upper": "3.450e-13872",
+     "p_two": "6.900e-13872",
+     "F": 46080
+    }
+   },
+   "ba": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 46080,
+     "positive": 46080,
+     "invariant": 1.0,
+     "matched_same_layer": 46080,
+     "r_zero": 0,
+     "p_upper": "3.450e-13872",
+     "p_two": "6.900e-13872",
+     "F": 46080,
+     "null_mean": "30",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -126819.34834010129,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.3": {
+     "kept": 46080,
+     "positive": 46080,
+     "invariant": 1.0,
+     "matched_same_layer": 46080,
+     "r_zero": 0,
+     "p_upper": "3.450e-13872",
+     "p_two": "6.900e-13872",
+     "F": 46080,
+     "null_mean": "30",
+     "F_bound_below_0.001": true,
+     "F_bound_log10": -126819.34834010129,
+     "F_p_kind": "bound L^k/k!"
+    },
+    "tau_0.5": {
+     "kept": 46080,
+     "positive": 46080,
+     "invariant": 1.0,
+     "matched_same_layer": 46080,
+     "r_zero": 0,
+     "p_upper": "3.450e-13872",
+     "p_two": "6.900e-13872",
+     "F": 46080
+    }
+   },
+   "mutual": 46080,
+   "nA": 46080,
+   "pooled": {
+    "tau_0": [
+     92160,
+     92160
+    ],
+    "tau_0.3": [
+     92160,
+     92160
+    ],
+    "tau_0.5": [
+     92160,
+     92160
+    ]
+   }
+  },
+  "s135__s135i_shuf": {
+   "name": "s135__s135i_shuf",
+   "ab": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 46080,
+     "positive": 23045,
+     "invariant": 0.038058885377250794,
+     "matched_same_layer": 1570,
+     "r_zero": 0,
+     "p_upper": "4.832788e-01",
+     "p_two": "9.665575e-01",
+     "F": 0,
+     "null_mean": "785/768",
+     "F_p_upper": [
+      "1",
+      "1"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.3": {
+     "kept": 0,
+     "positive": 0,
+     "invariant": null,
+     "matched_same_layer": 0,
+     "r_zero": 0,
+     "F": 0,
+     "null_mean": "0",
+     "F_p_upper": [
+      "1",
+      "1"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.5": {
+     "kept": 0,
+     "positive": 0,
+     "invariant": null,
+     "matched_same_layer": 0,
+     "r_zero": 0,
+     "F": 0
+    }
+   },
+   "ba": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 46080,
+     "positive": 22843,
+     "invariant": 0.038180866121167174,
+     "matched_same_layer": 1528,
+     "r_zero": 0,
+     "p_upper": "9.671236e-01",
+     "p_two": "6.713213e-02",
+     "F": 0,
+     "null_mean": "191/192",
+     "F_p_upper": [
+      "1",
+      "1"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.3": {
+     "kept": 0,
+     "positive": 0,
+     "invariant": null,
+     "matched_same_layer": 0,
+     "r_zero": 0,
+     "F": 0,
+     "null_mean": "0",
+     "F_p_upper": [
+      "1",
+      "1"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.5": {
+     "kept": 0,
+     "positive": 0,
+     "invariant": null,
+     "matched_same_layer": 0,
+     "r_zero": 0,
+     "F": 0
+    }
+   },
+   "mutual": 6452,
+   "nA": 46080,
+   "pooled": {
+    "tau_0": [
+     45888,
+     92160
+    ],
+    "tau_0.3": [
+     0,
+     0
+    ],
+    "tau_0.5": [
+     0,
+     0
+    ]
+   }
+  },
+  "q08__q2": {
+   "name": "q08__q2",
+   "ab": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 86016,
+     "positive": 67224,
+     "invariant": 0.3636511361776441,
+     "matched_same_layer": 53733,
+     "r_zero": 0,
+     "p_upper": "1.082e-6285",
+     "p_two": "2.164e-6285",
+     "F": 8,
+     "null_mean": "17911/2048",
+     "F_p_upper": [
+      "6.455159e-01",
+      "6.455159e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.3": {
+     "kept": 49991,
+     "positive": 43460,
+     "invariant": 0.46397156778439436,
+     "matched_same_layer": 39314,
+     "r_zero": 0,
+     "p_upper": "1.966e-6636",
+     "p_two": "3.932e-6636",
+     "F": 7,
+     "null_mean": "19657/3072",
+     "F_p_upper": [
+      "4.574807e-01",
+      "4.574807e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.5": {
+     "kept": 16153,
+     "positive": 15161,
+     "invariant": 0.6236912385156643,
+     "matched_same_layer": 14625,
+     "r_zero": 0,
+     "p_upper": "9.281e-3246",
+     "p_two": "1.856e-3245",
+     "F": 0
+    }
+   },
+   "ba": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 147456,
+     "positive": 98926,
+     "invariant": 0.3085328127050341,
+     "matched_same_layer": 63310,
+     "r_zero": 0,
+     "p_upper": "1.223e-3819",
+     "p_two": "2.447e-3819"
+    },
+    "tau_0.3": {
+     "kept": 62432,
+     "positive": 49829,
+     "invariant": 0.45054457179978413,
+     "matched_same_layer": 41514,
+     "r_zero": 0,
+     "p_upper": "3.756e-5159",
+     "p_two": "7.512e-5159"
+    },
+    "tau_0.5": {
+     "kept": 17710,
+     "positive": 15903,
+     "invariant": 0.6206319125709283,
+     "matched_same_layer": 14827,
+     "r_zero": 0,
+     "p_upper": "2.055e-2799",
+     "p_two": "4.110e-2799"
+    }
+   },
+   "mutual": 44697,
+   "nA": 86016,
+   "pooled": {
+    "tau_0": [
+     166150,
+     233472
+    ],
+    "tau_0.3": [
+     93289,
+     112423
+    ],
+    "tau_0.5": [
+     31064,
+     33863
+    ]
+   }
+  },
+  "py__s135": {
+   "name": "py__s135",
+   "ab": {
+    "law": "cluster",
+    "tau_0": {
+     "kept": 36864,
+     "positive": 19377,
+     "invariant": 0.31306053392183,
+     "matched_same_layer": 3144,
+     "r_zero": 0,
+     "p_upper": "7.568545e-02",
+     "p_two": "1.513709e-01",
+     "kappa": "287657/6144"
+    },
+    "tau_0.3": {
+     "kept": 16697,
+     "positive": 8964,
+     "invariant": 0.40756280832340336,
+     "matched_same_layer": 1375,
+     "r_zero": 0,
+     "p_upper": "5.644880e-02",
+     "p_two": "1.128976e-01",
+     "kappa": "600101/16697"
+    },
+    "tau_0.5": {
+     "kept": 2558,
+     "positive": 1431,
+     "invariant": 0.6008950160520571,
+     "matched_same_layer": 409,
+     "r_zero": 0,
+     "p_upper": "8.449632e-02",
+     "p_two": "1.689926e-01",
+     "kappa": "23784/1279"
+    }
+   },
+   "ba": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 46080,
+     "positive": 23030,
+     "invariant": 0.2661824896250905,
+     "matched_same_layer": 2284,
+     "r_zero": 0,
+     "p_upper": "5.389655e-01",
+     "p_two": "9.294706e-01"
+    },
+    "tau_0.3": {
+     "kept": 12595,
+     "positive": 6363,
+     "invariant": 0.4047908974497752,
+     "matched_same_layer": 639,
+     "r_zero": 0,
+     "p_upper": "1.233577e-01",
+     "p_two": "2.467153e-01"
+    },
+    "tau_0.5": {
+     "kept": 1876,
+     "positive": 951,
+     "invariant": 0.608624238363409,
+     "matched_same_layer": 179,
+     "r_zero": 0,
+     "p_upper": "2.819092e-01",
+     "p_two": "5.638184e-01"
+    }
+   },
+   "mutual": 1652,
+   "nA": 36864,
+   "pooled": {
+    "tau_0": [
+     42407,
+     82944
+    ],
+    "tau_0.3": [
+     15327,
+     29292
+    ],
+    "tau_0.5": [
+     2382,
+     4434
+    ]
+   }
+  },
+  "falcon__s135": {
+   "name": "falcon__s135",
+   "ab": {
+    "law": "cluster",
+    "tau_0": {
+     "kept": 90112,
+     "positive": 45503,
+     "invariant": 0.19282235363524666,
+     "matched_same_layer": 3167,
+     "r_zero": 0,
+     "p_upper": "1.169085e-01",
+     "p_two": "2.338169e-01",
+     "kappa": "34943/5632"
+    },
+    "tau_0.3": {
+     "kept": 10474,
+     "positive": 5511,
+     "invariant": 0.41036434015390183,
+     "matched_same_layer": 389,
+     "r_zero": 0,
+     "p_upper": "6.800994e-03",
+     "p_two": "1.360199e-02",
+     "kappa": "24808/5237"
+    },
+    "tau_0.5": {
+     "kept": 1769,
+     "positive": 960,
+     "invariant": 0.610656029518163,
+     "matched_same_layer": 86,
+     "r_zero": 0,
+     "p_upper": "1.619092e-02",
+     "p_two": "3.238183e-02",
+     "kappa": "4931/1769"
+    }
+   },
+   "ba": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 46080,
+     "positive": 23089,
+     "invariant": 0.25554234420029703,
+     "matched_same_layer": 1145,
+     "r_zero": 0,
+     "p_upper": "3.256808e-01",
+     "p_two": "6.513616e-01"
+    },
+    "tau_0.3": {
+     "kept": 11000,
+     "positive": 5604,
+     "invariant": 0.4089887986160631,
+     "matched_same_layer": 374,
+     "r_zero": 0,
+     "p_upper": "2.420732e-02",
+     "p_two": "4.841463e-02"
+    },
+    "tau_0.5": {
+     "kept": 1818,
+     "positive": 942,
+     "invariant": 0.6108401961717331,
+     "matched_same_layer": 101,
+     "r_zero": 0,
+     "p_upper": "6.368521e-02",
+     "p_two": "1.273704e-01"
+    }
+   },
+   "mutual": 1953,
+   "nA": 90112,
+   "pooled": {
+    "tau_0": [
+     68592,
+     136192
+    ],
+    "tau_0.3": [
+     11115,
+     21474
+    ],
+    "tau_0.5": [
+     1902,
+     3587
+    ]
+   }
+  },
+  "s135__mylaund5150": {
+   "name": "s135__mylaund5150",
+   "ab": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 46080,
+     "positive": 23053,
+     "invariant": 0.9226250491428405,
+     "matched_same_layer": 46064,
+     "r_zero": 0,
+     "p_upper": "4.536433e-01",
+     "p_two": "9.072867e-01",
+     "F": 27,
+     "null_mean": "2879/96",
+     "F_p_upper": [
+      "7.320486e-01",
+      "7.320486e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.3": {
+     "kept": 46078,
+     "positive": 23053,
+     "invariant": 0.9226545655684998,
+     "matched_same_layer": 46063,
+     "r_zero": 0,
+     "p_upper": "4.499525e-01",
+     "p_two": "8.999050e-01",
+     "F": 27,
+     "null_mean": "46063/1536",
+     "F_p_upper": [
+      "7.320102e-01",
+      "7.320102e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.5": {
+     "kept": 46073,
+     "positive": 23049,
+     "invariant": 0.9227109720117982,
+     "matched_same_layer": 46060,
+     "r_zero": 0,
+     "p_upper": "4.554864e-01",
+     "p_two": "9.109727e-01",
+     "F": 27
+    }
+   },
+   "ba": {
+    "law": "binomial",
+    "tau_0": {
+     "kept": 46080,
+     "positive": 23051,
+     "invariant": 0.9227109547972712,
+     "matched_same_layer": 46058,
+     "r_zero": 0,
+     "p_upper": "4.610345e-01",
+     "p_two": "9.220690e-01",
+     "F": 27,
+     "null_mean": "23029/768",
+     "F_p_upper": [
+      "7.318179e-01",
+      "7.318179e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.3": {
+     "kept": 46079,
+     "positive": 23050,
+     "invariant": 0.9227250715330363,
+     "matched_same_layer": 46057,
+     "r_zero": 0,
+     "p_upper": "4.628841e-01",
+     "p_two": "9.257682e-01",
+     "F": 27,
+     "null_mean": "46057/1536",
+     "F_p_upper": [
+      "7.317795e-01",
+      "7.317795e-01"
+     ],
+     "F_p_kind": "bracket"
+    },
+    "tau_0.5": {
+     "kept": 46075,
+     "positive": 23047,
+     "invariant": 0.9227663759426911,
+     "matched_same_layer": 46054,
+     "r_zero": 0,
+     "p_upper": "4.665851e-01",
+     "p_two": "9.331702e-01",
+     "F": 27
+    }
+   },
+   "mutual": 46041,
+   "nA": 46080,
+   "pooled": {
+    "tau_0": [
+     46104,
+     92160
+    ],
+    "tau_0.3": [
+     46103,
+     92157
+    ],
+    "tau_0.5": [
+     46096,
+     92148
+    ]
+   }
+  }
+ },
+ "models": {
+  "falcon": {
+   "skew_pos": 64683,
+   "skew_neg": 25429,
+   "skew_p_two": "3.073e-3843",
+   "skew_pass": false,
+   "mean_pos": 66889,
+   "pos_on_gt90pct_words": 812,
+   "zero_var": 0,
+   "units": 90112
+  },
+  "falcon_gate": {
+   "skew_pos": 89856,
+   "skew_neg": 256,
+   "skew_p_two": "1.663e-26365",
+   "skew_pass": false,
+   "mean_pos": 25755,
+   "pos_on_gt90pct_words": 746,
+   "zero_var": 0,
+   "units": 90112
+  },
+  "py": {
+   "skew_pos": 36802,
+   "skew_neg": 62,
+   "skew_p_two": "5.510e-10900",
+   "skew_pass": false,
+   "mean_pos": 6085,
+   "pos_on_gt90pct_words": 93,
+   "zero_var": 0,
+   "units": 36864
+  },
+  "py_1k": {
+   "skew_pos": 36864,
+   "skew_neg": 0,
+   "skew_p_two": "1.353e-11097",
+   "skew_pass": false,
+   "mean_pos": 15372,
+   "pos_on_gt90pct_words": 0,
+   "zero_var": 0,
+   "units": 36864
+  },
+  "py_32k": {
+   "skew_pos": 36854,
+   "skew_neg": 10,
+   "skew_p_two": "1.726e-11058",
+   "skew_pass": false,
+   "mean_pos": 7895,
+   "pos_on_gt90pct_words": 5,
+   "zero_var": 0,
+   "units": 36864
+  },
+  "py_8k": {
+   "skew_pos": 36859,
+   "skew_neg": 5,
+   "skew_p_two": "7.674e-11077",
+   "skew_pass": false,
+   "mean_pos": 9341,
+   "pos_on_gt90pct_words": 3,
+   "zero_var": 0,
+   "units": 36864
+  },
+  "py_s1": {
+   "skew_pos": 36817,
+   "skew_neg": 47,
+   "skew_p_two": "2.171e-10942",
+   "skew_pass": false,
+   "mean_pos": 5718,
+   "pos_on_gt90pct_words": 64,
+   "zero_var": 0,
+   "units": 36864
+  },
+  "py_s2": {
+   "skew_pos": 36833,
+   "skew_neg": 31,
+   "skew_p_two": "5.968e-10990",
+   "skew_pass": false,
+   "mean_pos": 5308,
+   "pos_on_gt90pct_words": 59,
+   "zero_var": 0,
+   "units": 36864
+  },
+  "q08": {
+   "skew_pos": 42976,
+   "skew_neg": 43040,
+   "skew_p_two": "8.299170e-01",
+   "skew_pass": true,
+   "mean_pos": 42606,
+   "pos_on_gt90pct_words": 498,
+   "zero_var": 0,
+   "units": 86016
+  },
+  "q2": {
+   "skew_pos": 73695,
+   "skew_neg": 73761,
+   "skew_p_two": "8.655837e-01",
+   "skew_pass": true,
+   "mean_pos": 73253,
+   "pos_on_gt90pct_words": 863,
+   "zero_var": 0,
+   "units": 147456
+  },
+  "s135": {
+   "skew_pos": 23183,
+   "skew_neg": 22897,
+   "skew_p_two": "1.842881e-01",
+   "skew_pass": true,
+   "mean_pos": 22955,
+   "pos_on_gt90pct_words": 138,
+   "zero_var": 0,
+   "units": 46080
+  },
+  "s135L": {
+   "skew_pos": 23119,
+   "skew_neg": 22961,
+   "skew_p_two": "4.645471e-01",
+   "skew_pass": true,
+   "mean_pos": 22921,
+   "pos_on_gt90pct_words": 138,
+   "zero_var": 0,
+   "units": 46080
+  },
+  "s135i": {
+   "skew_pos": 23091,
+   "skew_neg": 22989,
+   "skew_p_two": "6.379940e-01",
+   "skew_pass": true,
+   "mean_pos": 23041,
+   "pos_on_gt90pct_words": 138,
+   "zero_var": 0,
+   "units": 46080
+  },
+  "s360": {
+   "skew_pos": 41087,
+   "skew_neg": 40833,
+   "skew_p_two": "3.767257e-01",
+   "skew_pass": true,
+   "mean_pos": 41020,
+   "pos_on_gt90pct_words": 262,
+   "zero_var": 0,
+   "units": 81920
+  }
+ },
+ "within_layer": {
+  "py_1k__py": {
+   "F": 6044,
+   "units": 36864,
+   "positive": 34917,
+   "ties": 0,
+   "null_mean": "12",
+   "bound_below_0.001": true,
+   "bound_log10": -13709.167468466141
+  },
+  "py_8k__py": {
+   "F": 33672,
+   "units": 36864,
+   "positive": 36837,
+   "ties": 0,
+   "null_mean": "12",
+   "bound_below_0.001": true,
+   "bound_log10": -101483.10684368355
+  },
+  "py_32k__py": {
+   "F": 36475,
+   "units": 36864,
+   "positive": 36857,
+   "ties": 0,
+   "null_mean": "12",
+   "bound_below_0.001": true,
+   "bound_log10": -111197.43149969466
+  },
+  "py_s1__py": {
+   "F": 8,
+   "units": 36864,
+   "positive": 36125,
+   "ties": 0,
+   "null_mean": "12",
+   "p": [
+    "9.107364e-01",
+    "9.107364e-01"
+   ]
+  }
+ },
+ "score": {
+  "P1": {
+   "parts": [
+    true,
+    true
+   ],
+   "outcome": "hit"
+  },
+  "P2": {
+   "parts": [
+    true,
+    true,
+    true
+   ],
+   "outcome": "hit"
+  },
+  "P3": {
+   "parts": [
+    true,
+    true,
+    true
+   ],
+   "outcome": "hit"
+  },
+  "P4": {
+   "parts": [
+    false,
+    true
+   ],
+   "outcome": "partial",
+   "same_pos_shares": [
+    "293/4608",
+    "15979/18432",
+    "9089/9216"
+   ]
+  },
+  "P5": {
+   "parts": [
+    true,
+    true
+   ],
+   "outcome": "hit"
+  },
+  "P6": {
+   "s135__s135L": {
+    "parts": [
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "outcome": "hit",
+    "F_p_bracket": [
+     "9.780332e-01",
+     "9.780332e-01"
+    ],
+    "invariants_tau0": [
+     0.9226250485256161,
+     0.9226250491428405,
+     0.29165779334012737
+    ]
+   },
+   "s135__mylaund5150": {
+    "parts": [
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "outcome": "hit",
+    "F_p_bracket": [
+     "7.320486e-01",
+     "7.320486e-01"
+    ],
+    "invariants_tau0": [
+     0.9226250491428405,
+     0.9226250491428405,
+     0.29165779334012737
+    ]
+   }
+  },
+  "P7": {
+   "share": "43460/49991",
+   "outcome": "hit"
+  },
+  "M1": {
+   "falcon_skew_pass": false,
+   "outcome": "miss"
+  },
+  "M2": {
+   "shares": [
+    "3089/36864",
+    "83/1024",
+    "385/4608"
+   ],
+   "outcome": "hit"
+  },
+  "M3": {
+   "parts": [
+    true,
+    true
+   ],
+   "outcome": "hit"
+  },
+  "M4": {
+   "share": "17350/18229",
+   "outcome": "hit"
+  },
+  "self_pair": {
+   "ok": true
+  },
+  "shuffled": {
+   "invariant": 0.038058885377250794,
+   "kept_0.3": 0,
+   "share0": [
+    23045,
+    46080
+   ],
+   "p_two": "9.665575e-01",
+   "ok": true
+  }
+ },
+ "comparison_rows": [
+  [
+   "model falcon skew+",
+   "[64683, 90112]",
+   "[64683, 90112]",
+   "ok"
+  ],
+  [
+   "model falcon skew p two",
+   "3.073e-3843",
+   "3.0731e-3843 (display rounded)",
+   "ok"
+  ],
+  [
+   "model falcon skew verdict",
+   "fail",
+   "fail",
+   "ok"
+  ],
+  [
+   "model falcon mean+",
+   "66889",
+   "66889",
+   "ok"
+  ],
+  [
+   "model falcon >90% positive",
+   "812",
+   "812",
+   "ok"
+  ],
+  [
+   "model falcon_gate skew+",
+   "[89856, 90112]",
+   "[89856, 90112]",
+   "ok"
+  ],
+  [
+   "model falcon_gate skew p two",
+   "1.663e-26365",
+   "1.6626e-26365 (display rounded)",
+   "ok"
+  ],
+  [
+   "model falcon_gate skew verdict",
+   "fail",
+   "fail",
+   "ok"
+  ],
+  [
+   "model falcon_gate mean+",
+   "25755",
+   "25755",
+   "ok"
+  ],
+  [
+   "model falcon_gate >90% positive",
+   "746",
+   "746",
+   "ok"
+  ],
+  [
+   "model py skew+",
+   "[36802, 36864]",
+   "[36802, 36864]",
+   "ok"
+  ],
+  [
+   "model py skew p two",
+   "5.510e-10900",
+   "5.5102e-10900 (display rounded)",
+   "ok"
+  ],
+  [
+   "model py skew verdict",
+   "fail",
+   "fail",
+   "ok"
+  ],
+  [
+   "model py mean+",
+   "6085",
+   "6085",
+   "ok"
+  ],
+  [
+   "model py >90% positive",
+   "93",
+   "93",
+   "ok"
+  ],
+  [
+   "model py_1k skew+",
+   "[36864, 36864]",
+   "[36864, 36864]",
+   "ok"
+  ],
+  [
+   "model py_1k skew p two",
+   "1.353e-11097",
+   "1.3529e-11097 (display rounded)",
+   "ok"
+  ],
+  [
+   "model py_1k skew verdict",
+   "fail",
+   "fail",
+   "ok"
+  ],
+  [
+   "model py_1k mean+",
+   "15372",
+   "15372",
+   "ok"
+  ],
+  [
+   "model py_1k >90% positive",
+   "0",
+   "0",
+   "ok"
+  ],
+  [
+   "model py_32k skew+",
+   "[36854, 36864]",
+   "[36854, 36864]",
+   "ok"
+  ],
+  [
+   "model py_32k skew p two",
+   "1.726e-11058",
+   "1.7263e-11058 (display rounded)",
+   "ok"
+  ],
+  [
+   "model py_32k skew verdict",
+   "fail",
+   "fail",
+   "ok"
+  ],
+  [
+   "model py_32k mean+",
+   "7895",
+   "7895",
+   "ok"
+  ],
+  [
+   "model py_32k >90% positive",
+   "5",
+   "5",
+   "ok"
+  ],
+  [
+   "model py_8k skew+",
+   "[36859, 36864]",
+   "[36859, 36864]",
+   "ok"
+  ],
+  [
+   "model py_8k skew p two",
+   "7.674e-11077",
+   "7.6744e-11077 (display rounded)",
+   "ok"
+  ],
+  [
+   "model py_8k skew verdict",
+   "fail",
+   "fail",
+   "ok"
+  ],
+  [
+   "model py_8k mean+",
+   "9341",
+   "9341",
+   "ok"
+  ],
+  [
+   "model py_8k >90% positive",
+   "3",
+   "3",
+   "ok"
+  ],
+  [
+   "model py_s1 skew+",
+   "[36817, 36864]",
+   "[36817, 36864]",
+   "ok"
+  ],
+  [
+   "model py_s1 skew p two",
+   "2.171e-10942",
+   "2.1714e-10942 (display rounded)",
+   "ok"
+  ],
+  [
+   "model py_s1 skew verdict",
+   "fail",
+   "fail",
+   "ok"
+  ],
+  [
+   "model py_s1 mean+",
+   "5718",
+   "5718",
+   "ok"
+  ],
+  [
+   "model py_s1 >90% positive",
+   "64",
+   "64",
+   "ok"
+  ],
+  [
+   "model py_s2 skew+",
+   "[36833, 36864]",
+   "[36833, 36864]",
+   "ok"
+  ],
+  [
+   "model py_s2 skew p two",
+   "5.968e-10990",
+   "5.9677e-10990 (display rounded)",
+   "ok"
+  ],
+  [
+   "model py_s2 skew verdict",
+   "fail",
+   "fail",
+   "ok"
+  ],
+  [
+   "model py_s2 mean+",
+   "5308",
+   "5308",
+   "ok"
+  ],
+  [
+   "model py_s2 >90% positive",
+   "59",
+   "59",
+   "ok"
+  ],
+  [
+   "model q08 skew+",
+   "[42976, 86016]",
+   "[42976, 86016]",
+   "ok"
+  ],
+  [
+   "model q08 skew p two",
+   "8.299170e-01",
+   "8.299170e-01",
+   "ok"
+  ],
+  [
+   "model q08 skew verdict",
+   "pass",
+   "pass",
+   "ok"
+  ],
+  [
+   "model q08 mean+",
+   "42606",
+   "42606",
+   "ok"
+  ],
+  [
+   "model q08 >90% positive",
+   "498",
+   "498",
+   "ok"
+  ],
+  [
+   "model q2 skew+",
+   "[73695, 147456]",
+   "[73695, 147456]",
+   "ok"
+  ],
+  [
+   "model q2 skew p two",
+   "8.655837e-01",
+   "8.655837e-01",
+   "ok"
+  ],
+  [
+   "model q2 skew verdict",
+   "pass",
+   "pass",
+   "ok"
+  ],
+  [
+   "model q2 mean+",
+   "73253",
+   "73253",
+   "ok"
+  ],
+  [
+   "model q2 >90% positive",
+   "863",
+   "863",
+   "ok"
+  ],
+  [
+   "model s135 skew+",
+   "[23183, 46080]",
+   "[23183, 46080]",
+   "ok"
+  ],
+  [
+   "model s135 skew p two",
+   "1.842881e-01",
+   "1.842881e-01",
+   "ok"
+  ],
+  [
+   "model s135 skew verdict",
+   "pass",
+   "pass",
+   "ok"
+  ],
+  [
+   "model s135 mean+",
+   "22955",
+   "22955",
+   "ok"
+  ],
+  [
+   "model s135 >90% positive",
+   "138",
+   "138",
+   "ok"
+  ],
+  [
+   "model s135L skew+",
+   "[23119, 46080]",
+   "[23119, 46080]",
+   "ok"
+  ],
+  [
+   "model s135L skew p two",
+   "4.645471e-01",
+   "4.645471e-01",
+   "ok"
+  ],
+  [
+   "model s135L skew verdict",
+   "pass",
+   "pass",
+   "ok"
+  ],
+  [
+   "model s135L mean+",
+   "22921",
+   "22921",
+   "ok"
+  ],
+  [
+   "model s135L >90% positive",
+   "138",
+   "138",
+   "ok"
+  ],
+  [
+   "model s135i skew+",
+   "[23091, 46080]",
+   "[23091, 46080]",
+   "ok"
+  ],
+  [
+   "model s135i skew p two",
+   "6.379940e-01",
+   "6.379940e-01",
+   "ok"
+  ],
+  [
+   "model s135i skew verdict",
+   "pass",
+   "pass",
+   "ok"
+  ],
+  [
+   "model s135i mean+",
+   "23041",
+   "23041",
+   "ok"
+  ],
+  [
+   "model s135i >90% positive",
+   "138",
+   "138",
+   "ok"
+  ],
+  [
+   "model s360 skew+",
+   "[41087, 81920]",
+   "[41087, 81920]",
+   "ok"
+  ],
+  [
+   "model s360 skew p two",
+   "3.767257e-01",
+   "3.767257e-01",
+   "ok"
+  ],
+  [
+   "model s360 skew verdict",
+   "pass",
+   "pass",
+   "ok"
+  ],
+  [
+   "model s360 mean+",
+   "41020",
+   "41020",
+   "ok"
+  ],
+  [
+   "model s360 >90% positive",
+   "262",
+   "262",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0 share",
+   "[46070, 46080]",
+   "[46070, 46080]",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0 invariant",
+   "0.922625",
+   "0.922625",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0 same-layer",
+   "46064",
+   "46064",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0 same position",
+   "46059",
+   "46059",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0 null mean",
+   "2879/96",
+   "2879/96",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0 p_two",
+   "8.201e-13832",
+   "8.2009e-13832 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0 p_upper",
+   "4.100e-13832",
+   "4.1005e-13832 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0.3 share",
+   "[46068, 46078]",
+   "[46068, 46078]",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0.3 invariant",
+   "0.922655",
+   "0.922655",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0.3 same-layer",
+   "46063",
+   "46063",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0.3 same position",
+   "46058",
+   "46058",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0.3 null mean",
+   "46063/1536",
+   "46063/1536",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0.3 p_two",
+   "3.279e-13831",
+   "3.2789e-13831 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0.3 p_upper",
+   "1.639e-13831",
+   "1.6395e-13831 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0.5 share",
+   "[46066, 46073]",
+   "[46066, 46073]",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0.5 invariant",
+   "0.922711",
+   "0.922711",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0.5 same-layer",
+   "46060",
+   "46060",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0.5 same position",
+   "46056",
+   "46056",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0.5 p_two",
+   "7.720e-13841",
+   "7.7197e-13841 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135i ab tau_0.5 p_upper",
+   "3.860e-13841",
+   "3.8599e-13841 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135i ab law",
+   "binomial",
+   "binomial",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0 share",
+   "[46066, 46080]",
+   "[46066, 46080]",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0 invariant",
+   "0.922711",
+   "0.922711",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0 same-layer",
+   "46058",
+   "46058",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0 same position",
+   "46048",
+   "46048",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0 null mean",
+   "23029/768",
+   "23029/768",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0 p_two",
+   "1.538e-13817",
+   "1.5377e-13817 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0 p_upper",
+   "7.688e-13818",
+   "7.6885e-13818 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0.3 share",
+   "[46065, 46079]",
+   "[46065, 46079]",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0.3 invariant",
+   "0.922725",
+   "0.922725",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0.3 same-layer",
+   "46057",
+   "46057",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0.3 same position",
+   "46047",
+   "46047",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0.3 null mean",
+   "46057/1536",
+   "46057/1536",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0.3 p_two",
+   "3.074e-13817",
+   "3.0745e-13817 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0.3 p_upper",
+   "1.537e-13817",
+   "1.5372e-13817 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0.5 share",
+   "[46061, 46075]",
+   "[46061, 46075]",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0.5 invariant",
+   "0.922766",
+   "0.922766",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0.5 same-layer",
+   "46054",
+   "46054",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0.5 same position",
+   "46044",
+   "46044",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0.5 p_two",
+   "4.913e-13816",
+   "4.9132e-13816 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135i ba tau_0.5 p_upper",
+   "2.457e-13816",
+   "2.4566e-13816 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135i ba law",
+   "binomial",
+   "binomial",
+   "ok"
+  ],
+  [
+   "s135__s135i mutual",
+   "46041",
+   "46041",
+   "ok"
+  ],
+  [
+   "s135__s135i pooled tau_0",
+   "[92136, 92160]",
+   "[92136, 92160]",
+   "ok"
+  ],
+  [
+   "s135__s135i pooled tau_0.3",
+   "[92133, 92157]",
+   "[92133, 92157]",
+   "ok"
+  ],
+  [
+   "s135__s135i pooled tau_0.5",
+   "[92127, 92148]",
+   "[92127, 92148]",
+   "ok"
+  ],
+  [
+   "s135__s360 ab tau_0 share",
+   "[22974, 46080]",
+   "[22974, 46080]",
+   "ok"
+  ],
+  [
+   "s135__s360 ab tau_0 invariant",
+   "0.291658",
+   "0.291658",
+   "ok"
+  ],
+  [
+   "s135__s360 ab tau_0 same-layer",
+   "4270",
+   "4270",
+   "ok"
+  ],
+  [
+   "s135__s360 ab tau_0 p_two",
+   "5.416899e-01",
+   "5.416899e-01",
+   "ok"
+  ],
+  [
+   "s135__s360 ab tau_0 p_upper",
+   "7.322317e-01",
+   "7.322317e-01",
+   "ok"
+  ],
+  [
+   "s135__s360 ab tau_0.3 share",
+   "[7900, 15958]",
+   "[7900, 15958]",
+   "ok"
+  ],
+  [
+   "s135__s360 ab tau_0.3 invariant",
+   "0.426651",
+   "0.426651",
+   "ok"
+  ],
+  [
+   "s135__s360 ab tau_0.3 same-layer",
+   "2119",
+   "2119",
+   "ok"
+  ],
+  [
+   "s135__s360 ab tau_0.3 p_two",
+   "2.139306e-01",
+   "2.139306e-01",
+   "ok"
+  ],
+  [
+   "s135__s360 ab tau_0.3 p_upper",
+   "8.959238e-01",
+   "8.959238e-01",
+   "ok"
+  ],
+  [
+   "s135__s360 ab tau_0.5 share",
+   "[1630, 3326]",
+   "[1630, 3326]",
+   "ok"
+  ],
+  [
+   "s135__s360 ab tau_0.5 invariant",
+   "0.628128",
+   "0.628128",
+   "ok"
+  ],
+  [
+   "s135__s360 ab tau_0.5 same-layer",
+   "646",
+   "646",
+   "ok"
+  ],
+  [
+   "s135__s360 ab tau_0.5 p_two",
+   "2.597082e-01",
+   "2.597082e-01",
+   "ok"
+  ],
+  [
+   "s135__s360 ab tau_0.5 p_upper",
+   "8.773341e-01",
+   "8.773341e-01",
+   "ok"
+  ],
+  [
+   "s135__s360 ab law",
+   "binomial",
+   "binomial",
+   "ok"
+  ],
+  [
+   "s135__s360 ba tau_0 share",
+   "[40875, 81920]",
+   "[40875, 81920]",
+   "ok"
+  ],
+  [
+   "s135__s360 ba tau_0 invariant",
+   "0.2577",
+   "0.2577",
+   "ok"
+  ],
+  [
+   "s135__s360 ba tau_0 same-layer",
+   "7560",
+   "7560",
+   "ok"
+  ],
+  [
+   "s135__s360 ba tau_0 p_two",
+   "5.548814e-01",
+   "5.548814e-01",
+   "ok"
+  ],
+  [
+   "s135__s360 ba tau_0 p_upper",
+   "7.248962e-01",
+   "7.248962e-01",
+   "ok"
+  ],
+  [
+   "s135__s360 ba tau_0.3 share",
+   "[10290, 20679]",
+   "[10290, 20679]",
+   "ok"
+  ],
+  [
+   "s135__s360 ba tau_0.3 invariant",
+   "0.421108",
+   "0.421108",
+   "ok"
+  ],
+  [
+   "s135__s360 ba tau_0.3 same-layer",
+   "2543",
+   "2543",
+   "ok"
+  ],
+  [
+   "s135__s360 ba tau_0.3 p_two",
+   "4.955606e-01",
+   "4.955606e-01",
+   "ok"
+  ],
+  [
+   "s135__s360 ba tau_0.3 p_upper",
+   "7.565975e-01",
+   "7.565975e-01",
+   "ok"
+  ],
+  [
+   "s135__s360 ba tau_0.5 share",
+   "[1998, 3989]",
+   "[1998, 3989]",
+   "ok"
+  ],
+  [
+   "s135__s360 ba tau_0.5 invariant",
+   "0.623414",
+   "0.623414",
+   "ok"
+  ],
+  [
+   "s135__s360 ba tau_0.5 same-layer",
+   "690",
+   "690",
+   "ok"
+  ],
+  [
+   "s135__s360 ba tau_0.5 p_two",
+   "9.243171e-01",
+   "9.243171e-01",
+   "ok"
+  ],
+  [
+   "s135__s360 ba tau_0.5 p_upper",
+   "4.621586e-01",
+   "4.621586e-01",
+   "ok"
+  ],
+  [
+   "s135__s360 ba law",
+   "binomial",
+   "binomial",
+   "ok"
+  ],
+  [
+   "s135__s360 mutual",
+   "4721",
+   "4721",
+   "ok"
+  ],
+  [
+   "s135__s360 pooled tau_0",
+   "[63849, 128000]",
+   "[63849, 128000]",
+   "ok"
+  ],
+  [
+   "s135__s360 pooled tau_0.3",
+   "[18190, 36637]",
+   "[18190, 36637]",
+   "ok"
+  ],
+  [
+   "s135__s360 pooled tau_0.5",
+   "[3628, 7315]",
+   "[3628, 7315]",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0 share",
+   "[23089, 46080]",
+   "[23089, 46080]",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0 invariant",
+   "0.922625",
+   "0.922625",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0 same-layer",
+   "46064",
+   "46064",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0 same position",
+   "20",
+   "20",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0 null mean",
+   "2879/96",
+   "2879/96",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0 F p bracket (mine inside theirs)",
+   "['9.780332e-01', '9.780332e-01']",
+   "['8.010781e-01', '1.000000e+00']",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0 p_two",
+   "6.513616e-01",
+   "6.513616e-01",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0 p_upper",
+   "3.256808e-01",
+   "3.256808e-01",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0.3 share",
+   "[23088, 46078]",
+   "[23088, 46078]",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0.3 invariant",
+   "0.922655",
+   "0.922655",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0.3 same-layer",
+   "46063",
+   "46063",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0.3 same position",
+   "20",
+   "20",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0.3 null mean",
+   "46063/1536",
+   "46063/1536",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0.3 F p bracket (mine inside theirs)",
+   "['9.780274e-01', '9.780274e-01']",
+   "['8.010626e-01', '1.000000e+00']",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0.3 p_two",
+   "6.513545e-01",
+   "6.513545e-01",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0.3 p_upper",
+   "3.256773e-01",
+   "3.256773e-01",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0.5 share",
+   "[23086, 46073]",
+   "[23086, 46073]",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0.5 invariant",
+   "0.922711",
+   "0.922711",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0.5 same-layer",
+   "46060",
+   "46060",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0.5 same position",
+   "20",
+   "20",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0.5 p_two",
+   "6.479840e-01",
+   "6.479840e-01",
+   "ok"
+  ],
+  [
+   "s135__s135L ab tau_0.5 p_upper",
+   "3.239920e-01",
+   "3.239920e-01",
+   "ok"
+  ],
+  [
+   "s135__s135L ab law",
+   "binomial",
+   "binomial",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0 share",
+   "[23086, 46080]",
+   "[23086, 46080]",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0 invariant",
+   "0.922711",
+   "0.922711",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0 same-layer",
+   "46058",
+   "46058",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0 same position",
+   "20",
+   "20",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0 null mean",
+   "23029/768",
+   "23029/768",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0 F p bracket (mine inside theirs)",
+   "['9.779982e-01', '9.779982e-01']",
+   "['8.009856e-01', '1.000000e+00']",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0 p_two",
+   "6.716237e-01",
+   "6.716237e-01",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0 p_upper",
+   "3.358119e-01",
+   "3.358119e-01",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0.3 share",
+   "[23086, 46079]",
+   "[23086, 46079]",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0.3 invariant",
+   "0.922725",
+   "0.922725",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0.3 same-layer",
+   "46057",
+   "46057",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0.3 same position",
+   "20",
+   "20",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0.3 null mean",
+   "46057/1536",
+   "46057/1536",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0.3 F p bracket (mine inside theirs)",
+   "['9.779923e-01', '9.779923e-01']",
+   "['8.009701e-01', '1.000000e+00']",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0.3 p_two",
+   "6.682262e-01",
+   "6.682262e-01",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0.3 p_upper",
+   "3.341131e-01",
+   "3.341131e-01",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0.5 share",
+   "[23086, 46075]",
+   "[23086, 46075]",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0.5 invariant",
+   "0.922766",
+   "0.922766",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0.5 same-layer",
+   "46054",
+   "46054",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0.5 same position",
+   "20",
+   "20",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0.5 p_two",
+   "6.547038e-01",
+   "6.547038e-01",
+   "ok"
+  ],
+  [
+   "s135__s135L ba tau_0.5 p_upper",
+   "3.273519e-01",
+   "3.273519e-01",
+   "ok"
+  ],
+  [
+   "s135__s135L ba law",
+   "binomial",
+   "binomial",
+   "ok"
+  ],
+  [
+   "s135__s135L mutual",
+   "46041",
+   "46041",
+   "ok"
+  ],
+  [
+   "s135__s135L pooled tau_0",
+   "[46175, 92160]",
+   "[46175, 92160]",
+   "ok"
+  ],
+  [
+   "s135__s135L pooled tau_0.3",
+   "[46174, 92157]",
+   "[46174, 92157]",
+   "ok"
+  ],
+  [
+   "s135__s135L pooled tau_0.5",
+   "[46172, 92148]",
+   "[46172, 92148]",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0 share",
+   "[35906, 36864]",
+   "[35906, 36864]",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0 invariant",
+   "0.347564",
+   "0.347564",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0 same-layer",
+   "11721",
+   "11721",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0 same position",
+   "10",
+   "10",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0 null mean",
+   "3907/1024",
+   "3907/1024",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0 F p bracket (mine inside theirs)",
+   "['5.925567e-03', '5.925567e-03']",
+   "['5.925567e-03', '5.925567e-03']",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0.3 share",
+   "[21312, 21539]",
+   "[21312, 21539]",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0.3 invariant",
+   "0.423002",
+   "0.423002",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0.3 same-layer",
+   "7908",
+   "7908",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0.3 same position",
+   "5",
+   "5",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0.3 null mean",
+   "659/256",
+   "659/256",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0.3 F p bracket (mine inside theirs)",
+   "['1.188377e-01', '1.188377e-01']",
+   "['1.188377e-01', '1.188377e-01']",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0.5 share",
+   "[3993, 4005]",
+   "[3993, 4005]",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0.5 invariant",
+   "0.610317",
+   "0.610317",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0.5 same-layer",
+   "1825",
+   "1825",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab tau_0.5 same position",
+   "1",
+   "1",
+   "ok"
+  ],
+  [
+   "py__py_s1 ab law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0 share",
+   "[35779, 36864]",
+   "[35779, 36864]",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0 invariant",
+   "0.346449",
+   "0.346449",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0 same-layer",
+   "11611",
+   "11611",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0 same position",
+   "5",
+   "5",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0 null mean",
+   "11611/3072",
+   "11611/3072",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0 F p bracket (mine inside theirs)",
+   "['3.281709e-01', '3.281709e-01']",
+   "['3.281709e-01', '3.281709e-01']",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0.3 share",
+   "[21107, 21399]",
+   "[21107, 21399]",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0.3 invariant",
+   "0.42189",
+   "0.42189",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0.3 same-layer",
+   "7764",
+   "7764",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0.3 same position",
+   "4",
+   "4",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0.3 null mean",
+   "647/256",
+   "647/256",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0.3 F p bracket (mine inside theirs)",
+   "['2.482222e-01', '2.482222e-01']",
+   "['2.482222e-01', '2.482222e-01']",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0.5 share",
+   "[3951, 3962]",
+   "[3951, 3962]",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0.5 invariant",
+   "0.607078",
+   "0.607078",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0.5 same-layer",
+   "1858",
+   "1858",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba tau_0.5 same position",
+   "1",
+   "1",
+   "ok"
+  ],
+  [
+   "py__py_s1 ba law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py__py_s1 mutual",
+   "3089",
+   "3089",
+   "ok"
+  ],
+  [
+   "py__py_s1 pooled tau_0",
+   "[71685, 73728]",
+   "[71685, 73728]",
+   "ok"
+  ],
+  [
+   "py__py_s1 pooled tau_0.3",
+   "[42419, 42938]",
+   "[42419, 42938]",
+   "ok"
+  ],
+  [
+   "py__py_s1 pooled tau_0.5",
+   "[7944, 7967]",
+   "[7944, 7967]",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0 share",
+   "[35898, 36864]",
+   "[35898, 36864]",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0 invariant",
+   "0.349804",
+   "0.349804",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0 same-layer",
+   "10972",
+   "10972",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0 same position",
+   "2",
+   "2",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0 null mean",
+   "2743/768",
+   "2743/768",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0 F p bracket (mine inside theirs)",
+   "['8.718224e-01', '8.718224e-01']",
+   "['8.718224e-01', '8.718224e-01']",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0.3 share",
+   "[21469, 21683]",
+   "[21469, 21683]",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0.3 invariant",
+   "0.425259",
+   "0.425259",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0.3 same-layer",
+   "7514",
+   "7514",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0.3 same position",
+   "2",
+   "2",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0.3 null mean",
+   "3757/1536",
+   "3757/1536",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0.3 F p bracket (mine inside theirs)",
+   "['7.018915e-01', '7.018915e-01']",
+   "['7.018915e-01', '7.018915e-01']",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0.5 share",
+   "[4144, 4156]",
+   "[4144, 4156]",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0.5 invariant",
+   "0.612289",
+   "0.612289",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0.5 same-layer",
+   "1740",
+   "1740",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab tau_0.5 same position",
+   "1",
+   "1",
+   "ok"
+  ],
+  [
+   "py__py_s2 ab law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0 share",
+   "[35922, 36864]",
+   "[35922, 36864]",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0 invariant",
+   "0.35099",
+   "0.35099",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0 same-layer",
+   "11072",
+   "11072",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0 same position",
+   "3",
+   "3",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0 null mean",
+   "173/48",
+   "173/48",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0 F p bracket (mine inside theirs)",
+   "['6.981636e-01', '6.981636e-01']",
+   "['6.981636e-01', '6.981636e-01']",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0.3 share",
+   "[21580, 21824]",
+   "[21580, 21824]",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0.3 invariant",
+   "0.426028",
+   "0.426028",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0.3 same-layer",
+   "7640",
+   "7640",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0.3 same position",
+   "2",
+   "2",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0.3 null mean",
+   "955/384",
+   "955/384",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0.3 F p bracket (mine inside theirs)",
+   "['7.102032e-01', '7.102032e-01']",
+   "['7.102032e-01', '7.102032e-01']",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0.5 share",
+   "[4235, 4249]",
+   "[4235, 4249]",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0.5 invariant",
+   "0.611685",
+   "0.611685",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0.5 same-layer",
+   "1776",
+   "1776",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba tau_0.5 same position",
+   "2",
+   "2",
+   "ok"
+  ],
+  [
+   "py__py_s2 ba law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py__py_s2 mutual",
+   "2988",
+   "2988",
+   "ok"
+  ],
+  [
+   "py__py_s2 pooled tau_0",
+   "[71820, 73728]",
+   "[71820, 73728]",
+   "ok"
+  ],
+  [
+   "py__py_s2 pooled tau_0.3",
+   "[43049, 43507]",
+   "[43049, 43507]",
+   "ok"
+  ],
+  [
+   "py__py_s2 pooled tau_0.5",
+   "[8379, 8405]",
+   "[8379, 8405]",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0 share",
+   "[35827, 36864]",
+   "[35827, 36864]",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0 invariant",
+   "0.347745",
+   "0.347745",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0 same-layer",
+   "11259",
+   "11259",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0 same position",
+   "4",
+   "4",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0 null mean",
+   "3753/1024",
+   "3753/1024",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0 F p bracket (mine inside theirs)",
+   "['4.986642e-01', '4.986642e-01']",
+   "['4.986642e-01', '4.986642e-01']",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0.3 share",
+   "[21392, 21617]",
+   "[21392, 21617]",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0.3 invariant",
+   "0.422212",
+   "0.422212",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0.3 same-layer",
+   "7656",
+   "7656",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0.3 same position",
+   "2",
+   "2",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0.3 null mean",
+   "319/128",
+   "319/128",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0.3 F p bracket (mine inside theirs)",
+   "['7.114486e-01', '7.114486e-01']",
+   "['7.114486e-01', '7.114486e-01']",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0.5 share",
+   "[4016, 4030]",
+   "[4016, 4030]",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0.5 invariant",
+   "0.605595",
+   "0.605595",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0.5 same-layer",
+   "1856",
+   "1856",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab tau_0.5 same position",
+   "1",
+   "1",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ab law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0 share",
+   "[36025, 36864]",
+   "[36025, 36864]",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0 invariant",
+   "0.348424",
+   "0.348424",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0 same-layer",
+   "11150",
+   "11150",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0 same position",
+   "4",
+   "4",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0 null mean",
+   "5575/1536",
+   "5575/1536",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0 F p bracket (mine inside theirs)",
+   "['4.911552e-01', '4.911552e-01']",
+   "['4.911552e-01', '4.911552e-01']",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0.3 share",
+   "[21410, 21590]",
+   "[21410, 21590]",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0.3 invariant",
+   "0.42397",
+   "0.42397",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0.3 same-layer",
+   "7634",
+   "7634",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0.3 same position",
+   "2",
+   "2",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0.3 null mean",
+   "3817/1536",
+   "3817/1536",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0.3 F p bracket (mine inside theirs)",
+   "['7.098415e-01', '7.098415e-01']",
+   "['7.098415e-01', '7.098415e-01']",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0.5 share",
+   "[4088, 4092]",
+   "[4088, 4092]",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0.5 invariant",
+   "0.60726",
+   "0.60726",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0.5 same-layer",
+   "1770",
+   "1770",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba tau_0.5 same position",
+   "0",
+   "0",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 ba law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 mutual",
+   "3080",
+   "3080",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 pooled tau_0",
+   "[71852, 73728]",
+   "[71852, 73728]",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 pooled tau_0.3",
+   "[42802, 43207]",
+   "[42802, 43207]",
+   "ok"
+  ],
+  [
+   "py_s1__py_s2 pooled tau_0.5",
+   "[8104, 8122]",
+   "[8104, 8122]",
+   "ok"
+  ],
+  [
+   "py_1k__py ab tau_0 share",
+   "[35259, 36864]",
+   "[35259, 36864]",
+   "ok"
+  ],
+  [
+   "py_1k__py ab tau_0 invariant",
+   "0.300085",
+   "0.300085",
+   "ok"
+  ],
+  [
+   "py_1k__py ab tau_0 same-layer",
+   "7934",
+   "7934",
+   "ok"
+  ],
+  [
+   "py_1k__py ab tau_0 same position",
+   "2344",
+   "2344",
+   "ok"
+  ],
+  [
+   "py_1k__py ab tau_0 null mean",
+   "3967/1536",
+   "3967/1536",
+   "ok"
+  ],
+  [
+   "py_1k__py ab tau_0.3 share",
+   "[15397, 15637]",
+   "[15397, 15637]",
+   "ok"
+  ],
+  [
+   "py_1k__py ab tau_0.3 invariant",
+   "0.372551",
+   "0.372551",
+   "ok"
+  ],
+  [
+   "py_1k__py ab tau_0.3 same-layer",
+   "3652",
+   "3652",
+   "ok"
+  ],
+  [
+   "py_1k__py ab tau_0.3 same position",
+   "1122",
+   "1122",
+   "ok"
+  ],
+  [
+   "py_1k__py ab tau_0.3 null mean",
+   "913/768",
+   "913/768",
+   "ok"
+  ],
+  [
+   "py_1k__py ab tau_0.5 share",
+   "[826, 827]",
+   "[826, 827]",
+   "ok"
+  ],
+  [
+   "py_1k__py ab tau_0.5 invariant",
+   "0.559179",
+   "0.559179",
+   "ok"
+  ],
+  [
+   "py_1k__py ab tau_0.5 same-layer",
+   "269",
+   "269",
+   "ok"
+  ],
+  [
+   "py_1k__py ab tau_0.5 same position",
+   "99",
+   "99",
+   "ok"
+  ],
+  [
+   "py_1k__py ab law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py_1k__py ba tau_0 share",
+   "[34445, 36864]",
+   "[34445, 36864]",
+   "ok"
+  ],
+  [
+   "py_1k__py ba tau_0 invariant",
+   "0.259218",
+   "0.259218",
+   "ok"
+  ],
+  [
+   "py_1k__py ba tau_0 same-layer",
+   "8693",
+   "8693",
+   "ok"
+  ],
+  [
+   "py_1k__py ba tau_0 same position",
+   "3572",
+   "3572",
+   "ok"
+  ],
+  [
+   "py_1k__py ba tau_0 null mean",
+   "8693/3072",
+   "8693/3072",
+   "ok"
+  ],
+  [
+   "py_1k__py ba tau_0.3 share",
+   "[9550, 9691]",
+   "[9550, 9691]",
+   "ok"
+  ],
+  [
+   "py_1k__py ba tau_0.3 invariant",
+   "0.37158",
+   "0.37158",
+   "ok"
+  ],
+  [
+   "py_1k__py ba tau_0.3 same-layer",
+   "2799",
+   "2799",
+   "ok"
+  ],
+  [
+   "py_1k__py ba tau_0.3 same position",
+   "1265",
+   "1265",
+   "ok"
+  ],
+  [
+   "py_1k__py ba tau_0.3 null mean",
+   "933/1024",
+   "933/1024",
+   "ok"
+  ],
+  [
+   "py_1k__py ba tau_0.5 share",
+   "[504, 509]",
+   "[504, 509]",
+   "ok"
+  ],
+  [
+   "py_1k__py ba tau_0.5 invariant",
+   "0.573032",
+   "0.573032",
+   "ok"
+  ],
+  [
+   "py_1k__py ba tau_0.5 same-layer",
+   "188",
+   "188",
+   "ok"
+  ],
+  [
+   "py_1k__py ba tau_0.5 same position",
+   "85",
+   "85",
+   "ok"
+  ],
+  [
+   "py_1k__py ba law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py_1k__py mutual",
+   "1618",
+   "1618",
+   "ok"
+  ],
+  [
+   "py_1k__py pooled tau_0",
+   "[69704, 73728]",
+   "[69704, 73728]",
+   "ok"
+  ],
+  [
+   "py_1k__py pooled tau_0.3",
+   "[24947, 25328]",
+   "[24947, 25328]",
+   "ok"
+  ],
+  [
+   "py_1k__py pooled tau_0.5",
+   "[1330, 1336]",
+   "[1330, 1336]",
+   "ok"
+  ],
+  [
+   "py_8k__py ab tau_0 share",
+   "[36820, 36864]",
+   "[36820, 36864]",
+   "ok"
+  ],
+  [
+   "py_8k__py ab tau_0 invariant",
+   "0.421819",
+   "0.421819",
+   "ok"
+  ],
+  [
+   "py_8k__py ab tau_0 same-layer",
+   "33155",
+   "33155",
+   "ok"
+  ],
+  [
+   "py_8k__py ab tau_0 same position",
+   "31958",
+   "31958",
+   "ok"
+  ],
+  [
+   "py_8k__py ab tau_0 null mean",
+   "33155/3072",
+   "33155/3072",
+   "ok"
+  ],
+  [
+   "py_8k__py ab tau_0.3 share",
+   "[31885, 31897]",
+   "[31885, 31897]",
+   "ok"
+  ],
+  [
+   "py_8k__py ab tau_0.3 invariant",
+   "0.44803",
+   "0.44803",
+   "ok"
+  ],
+  [
+   "py_8k__py ab tau_0.3 same-layer",
+   "29570",
+   "29570",
+   "ok"
+  ],
+  [
+   "py_8k__py ab tau_0.3 same position",
+   "28666",
+   "28666",
+   "ok"
+  ],
+  [
+   "py_8k__py ab tau_0.3 null mean",
+   "14785/1536",
+   "14785/1536",
+   "ok"
+  ],
+  [
+   "py_8k__py ab tau_0.5 share",
+   "[8209, 8209]",
+   "[8209, 8209]",
+   "ok"
+  ],
+  [
+   "py_8k__py ab tau_0.5 invariant",
+   "0.587923",
+   "0.587923",
+   "ok"
+  ],
+  [
+   "py_8k__py ab tau_0.5 same-layer",
+   "7748",
+   "7748",
+   "ok"
+  ],
+  [
+   "py_8k__py ab tau_0.5 same position",
+   "7463",
+   "7463",
+   "ok"
+  ],
+  [
+   "py_8k__py ab law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py_8k__py ba tau_0 share",
+   "[36487, 36864]",
+   "[36487, 36864]",
+   "ok"
+  ],
+  [
+   "py_8k__py ba tau_0 invariant",
+   "0.424462",
+   "0.424462",
+   "ok"
+  ],
+  [
+   "py_8k__py ba tau_0 same-layer",
+   "32143",
+   "32143",
+   "ok"
+  ],
+  [
+   "py_8k__py ba tau_0 same position",
+   "31008",
+   "31008",
+   "ok"
+  ],
+  [
+   "py_8k__py ba tau_0 null mean",
+   "32143/3072",
+   "32143/3072",
+   "ok"
+  ],
+  [
+   "py_8k__py ba tau_0.3 share",
+   "[32091, 32191]",
+   "[32091, 32191]",
+   "ok"
+  ],
+  [
+   "py_8k__py ba tau_0.3 invariant",
+   "0.449301",
+   "0.449301",
+   "ok"
+  ],
+  [
+   "py_8k__py ba tau_0.3 same-layer",
+   "28912",
+   "28912",
+   "ok"
+  ],
+  [
+   "py_8k__py ba tau_0.3 same position",
+   "28093",
+   "28093",
+   "ok"
+  ],
+  [
+   "py_8k__py ba tau_0.3 null mean",
+   "1807/192",
+   "1807/192",
+   "ok"
+  ],
+  [
+   "py_8k__py ba tau_0.5 share",
+   "[8357, 8368]",
+   "[8357, 8368]",
+   "ok"
+  ],
+  [
+   "py_8k__py ba tau_0.5 invariant",
+   "0.58964",
+   "0.58964",
+   "ok"
+  ],
+  [
+   "py_8k__py ba tau_0.5 same-layer",
+   "7591",
+   "7591",
+   "ok"
+  ],
+  [
+   "py_8k__py ba tau_0.5 same position",
+   "7401",
+   "7401",
+   "ok"
+  ],
+  [
+   "py_8k__py ba law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py_8k__py mutual",
+   "28811",
+   "28811",
+   "ok"
+  ],
+  [
+   "py_8k__py pooled tau_0",
+   "[73307, 73728]",
+   "[73307, 73728]",
+   "ok"
+  ],
+  [
+   "py_8k__py pooled tau_0.3",
+   "[63976, 64088]",
+   "[63976, 64088]",
+   "ok"
+  ],
+  [
+   "py_8k__py pooled tau_0.5",
+   "[16566, 16577]",
+   "[16566, 16577]",
+   "ok"
+  ],
+  [
+   "py_32k__py ab tau_0 share",
+   "[36859, 36864]",
+   "[36859, 36864]",
+   "ok"
+  ],
+  [
+   "py_32k__py ab tau_0 invariant",
+   "0.653106",
+   "0.653106",
+   "ok"
+  ],
+  [
+   "py_32k__py ab tau_0 same-layer",
+   "36498",
+   "36498",
+   "ok"
+  ],
+  [
+   "py_32k__py ab tau_0 same position",
+   "36356",
+   "36356",
+   "ok"
+  ],
+  [
+   "py_32k__py ab tau_0 null mean",
+   "6083/512",
+   "6083/512",
+   "ok"
+  ],
+  [
+   "py_32k__py ab tau_0.3 share",
+   "[36707, 36711]",
+   "[36707, 36711]",
+   "ok"
+  ],
+  [
+   "py_32k__py ab tau_0.3 invariant",
+   "0.654766",
+   "0.654766",
+   "ok"
+  ],
+  [
+   "py_32k__py ab tau_0.3 same-layer",
+   "36414",
+   "36414",
+   "ok"
+  ],
+  [
+   "py_32k__py ab tau_0.3 same position",
+   "36295",
+   "36295",
+   "ok"
+  ],
+  [
+   "py_32k__py ab tau_0.3 null mean",
+   "6069/512",
+   "6069/512",
+   "ok"
+  ],
+  [
+   "py_32k__py ab tau_0.5 share",
+   "[35011, 35011]",
+   "[35011, 35011]",
+   "ok"
+  ],
+  [
+   "py_32k__py ab tau_0.5 invariant",
+   "0.664998",
+   "0.664998",
+   "ok"
+  ],
+  [
+   "py_32k__py ab tau_0.5 same-layer",
+   "34856",
+   "34856",
+   "ok"
+  ],
+  [
+   "py_32k__py ab tau_0.5 same position",
+   "34778",
+   "34778",
+   "ok"
+  ],
+  [
+   "py_32k__py ab law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py_32k__py ba tau_0 share",
+   "[36822, 36864]",
+   "[36822, 36864]",
+   "ok"
+  ],
+  [
+   "py_32k__py ba tau_0 invariant",
+   "0.653528",
+   "0.653528",
+   "ok"
+  ],
+  [
+   "py_32k__py ba tau_0 same-layer",
+   "36351",
+   "36351",
+   "ok"
+  ],
+  [
+   "py_32k__py ba tau_0 same position",
+   "36211",
+   "36211",
+   "ok"
+  ],
+  [
+   "py_32k__py ba tau_0 null mean",
+   "12117/1024",
+   "12117/1024",
+   "ok"
+  ],
+  [
+   "py_32k__py ba tau_0.3 share",
+   "[36715, 36747]",
+   "[36715, 36747]",
+   "ok"
+  ],
+  [
+   "py_32k__py ba tau_0.3 invariant",
+   "0.654812",
+   "0.654812",
+   "ok"
+  ],
+  [
+   "py_32k__py ba tau_0.3 same-layer",
+   "36299",
+   "36299",
+   "ok"
+  ],
+  [
+   "py_32k__py ba tau_0.3 same position",
+   "36176",
+   "36176",
+   "ok"
+  ],
+  [
+   "py_32k__py ba tau_0.3 null mean",
+   "36299/3072",
+   "36299/3072",
+   "ok"
+  ],
+  [
+   "py_32k__py ba tau_0.5 share",
+   "[35040, 35049]",
+   "[35040, 35049]",
+   "ok"
+  ],
+  [
+   "py_32k__py ba tau_0.5 invariant",
+   "0.665027",
+   "0.665027",
+   "ok"
+  ],
+  [
+   "py_32k__py ba tau_0.5 same-layer",
+   "34793",
+   "34793",
+   "ok"
+  ],
+  [
+   "py_32k__py ba tau_0.5 same position",
+   "34720",
+   "34720",
+   "ok"
+  ],
+  [
+   "py_32k__py ba law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py_32k__py mutual",
+   "36053",
+   "36053",
+   "ok"
+  ],
+  [
+   "py_32k__py pooled tau_0",
+   "[73681, 73728]",
+   "[73681, 73728]",
+   "ok"
+  ],
+  [
+   "py_32k__py pooled tau_0.3",
+   "[73422, 73458]",
+   "[73422, 73458]",
+   "ok"
+  ],
+  [
+   "py_32k__py pooled tau_0.5",
+   "[70051, 70060]",
+   "[70051, 70060]",
+   "ok"
+  ],
+  [
+   "py__falcon ab tau_0 share",
+   "[31053, 36864]",
+   "[31053, 36864]",
+   "ok"
+  ],
+  [
+   "py__falcon ab tau_0 invariant",
+   "0.291493",
+   "0.291493",
+   "ok"
+  ],
+  [
+   "py__falcon ab tau_0 same-layer",
+   "1508",
+   "1508",
+   "ok"
+  ],
+  [
+   "py__falcon ab tau_0.3 share",
+   "[12083, 13925]",
+   "[12083, 13925]",
+   "ok"
+  ],
+  [
+   "py__falcon ab tau_0.3 invariant",
+   "0.396776",
+   "0.396776",
+   "ok"
+  ],
+  [
+   "py__falcon ab tau_0.3 same-layer",
+   "506",
+   "506",
+   "ok"
+  ],
+  [
+   "py__falcon ab tau_0.5 share",
+   "[1560, 1713]",
+   "[1560, 1713]",
+   "ok"
+  ],
+  [
+   "py__falcon ab tau_0.5 invariant",
+   "0.594619",
+   "0.594619",
+   "ok"
+  ],
+  [
+   "py__falcon ab tau_0.5 same-layer",
+   "88",
+   "88",
+   "ok"
+  ],
+  [
+   "py__falcon ab law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py__falcon ba tau_0 share",
+   "[56875, 90112]",
+   "[56875, 90112]",
+   "ok"
+  ],
+  [
+   "py__falcon ba tau_0 invariant",
+   "0.185361",
+   "0.185361",
+   "ok"
+  ],
+  [
+   "py__falcon ba tau_0 same-layer",
+   "2879",
+   "2879",
+   "ok"
+  ],
+  [
+   "py__falcon ba tau_0.3 share",
+   "[6762, 9011]",
+   "[6762, 9011]",
+   "ok"
+  ],
+  [
+   "py__falcon ba tau_0.3 invariant",
+   "0.402184",
+   "0.402184",
+   "ok"
+  ],
+  [
+   "py__falcon ba tau_0.3 same-layer",
+   "304",
+   "304",
+   "ok"
+  ],
+  [
+   "py__falcon ba tau_0.5 share",
+   "[1125, 1331]",
+   "[1125, 1331]",
+   "ok"
+  ],
+  [
+   "py__falcon ba tau_0.5 invariant",
+   "0.602006",
+   "0.602006",
+   "ok"
+  ],
+  [
+   "py__falcon ba tau_0.5 same-layer",
+   "59",
+   "59",
+   "ok"
+  ],
+  [
+   "py__falcon ba law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py__falcon mutual",
+   "1229",
+   "1229",
+   "ok"
+  ],
+  [
+   "py__falcon pooled tau_0",
+   "[87928, 126976]",
+   "[87928, 126976]",
+   "ok"
+  ],
+  [
+   "py__falcon pooled tau_0.3",
+   "[18845, 22936]",
+   "[18845, 22936]",
+   "ok"
+  ],
+  [
+   "py__falcon pooled tau_0.5",
+   "[2685, 3044]",
+   "[2685, 3044]",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ab tau_0 share",
+   "[34019, 36864]",
+   "[34019, 36864]",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ab tau_0 invariant",
+   "0.31731",
+   "0.31731",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ab tau_0 same-layer",
+   "895",
+   "895",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ab tau_0.3 share",
+   "[17350, 18229]",
+   "[17350, 18229]",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ab tau_0.3 invariant",
+   "0.405634",
+   "0.405634",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ab tau_0.3 same-layer",
+   "297",
+   "297",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ab tau_0.5 share",
+   "[2528, 2592]",
+   "[2528, 2592]",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ab tau_0.5 invariant",
+   "0.589088",
+   "0.589088",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ab tau_0.5 same-layer",
+   "56",
+   "56",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ab law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ba tau_0 share",
+   "[75448, 90112]",
+   "[75448, 90112]",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ba tau_0 invariant",
+   "0.308293",
+   "0.308293",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ba tau_0 same-layer",
+   "2319",
+   "2319",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ba tau_0.3 share",
+   "[36075, 40456]",
+   "[36075, 40456]",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ba tau_0.3 invariant",
+   "0.40628",
+   "0.40628",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ba tau_0.3 same-layer",
+   "677",
+   "677",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ba tau_0.5 share",
+   "[5806, 6088]",
+   "[5806, 6088]",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ba tau_0.5 invariant",
+   "0.587553",
+   "0.587553",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ba tau_0.5 same-layer",
+   "70",
+   "70",
+   "ok"
+  ],
+  [
+   "py__falcon_gate ba law",
+   "none",
+   "none",
+   "ok"
+  ],
+  [
+   "py__falcon_gate mutual",
+   "1078",
+   "1078",
+   "ok"
+  ],
+  [
+   "py__falcon_gate pooled tau_0",
+   "[109467, 126976]",
+   "[109467, 126976]",
+   "ok"
+  ],
+  [
+   "py__falcon_gate pooled tau_0.3",
+   "[53425, 58685]",
+   "[53425, 58685]",
+   "ok"
+  ],
+  [
+   "py__falcon_gate pooled tau_0.5",
+   "[8334, 8680]",
+   "[8334, 8680]",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0 share",
+   "[46080, 46080]",
+   "[46080, 46080]",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0 invariant",
+   "1.0",
+   "1.0",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0 same-layer",
+   "46080",
+   "46080",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0 same position",
+   "46080",
+   "46080",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0 null mean",
+   "30",
+   "30",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0 p_two",
+   "6.900e-13872",
+   "6.8997e-13872 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0 p_upper",
+   "3.450e-13872",
+   "3.4498e-13872 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0.3 share",
+   "[46080, 46080]",
+   "[46080, 46080]",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0.3 invariant",
+   "1.0",
+   "1.0",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0.3 same-layer",
+   "46080",
+   "46080",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0.3 same position",
+   "46080",
+   "46080",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0.3 null mean",
+   "30",
+   "30",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0.3 p_two",
+   "6.900e-13872",
+   "6.8997e-13872 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0.3 p_upper",
+   "3.450e-13872",
+   "3.4498e-13872 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0.5 share",
+   "[46080, 46080]",
+   "[46080, 46080]",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0.5 invariant",
+   "1.0",
+   "1.0",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0.5 same-layer",
+   "46080",
+   "46080",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0.5 same position",
+   "46080",
+   "46080",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0.5 p_two",
+   "6.900e-13872",
+   "6.8997e-13872 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135 ab tau_0.5 p_upper",
+   "3.450e-13872",
+   "3.4498e-13872 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135 ab law",
+   "binomial",
+   "binomial",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0 share",
+   "[46080, 46080]",
+   "[46080, 46080]",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0 invariant",
+   "1.0",
+   "1.0",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0 same-layer",
+   "46080",
+   "46080",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0 same position",
+   "46080",
+   "46080",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0 null mean",
+   "30",
+   "30",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0 p_two",
+   "6.900e-13872",
+   "6.8997e-13872 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0 p_upper",
+   "3.450e-13872",
+   "3.4498e-13872 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0.3 share",
+   "[46080, 46080]",
+   "[46080, 46080]",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0.3 invariant",
+   "1.0",
+   "1.0",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0.3 same-layer",
+   "46080",
+   "46080",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0.3 same position",
+   "46080",
+   "46080",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0.3 null mean",
+   "30",
+   "30",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0.3 p_two",
+   "6.900e-13872",
+   "6.8997e-13872 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0.3 p_upper",
+   "3.450e-13872",
+   "3.4498e-13872 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0.5 share",
+   "[46080, 46080]",
+   "[46080, 46080]",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0.5 invariant",
+   "1.0",
+   "1.0",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0.5 same-layer",
+   "46080",
+   "46080",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0.5 same position",
+   "46080",
+   "46080",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0.5 p_two",
+   "6.900e-13872",
+   "6.8997e-13872 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135 ba tau_0.5 p_upper",
+   "3.450e-13872",
+   "3.4498e-13872 (display rounded)",
+   "ok"
+  ],
+  [
+   "s135__s135 ba law",
+   "binomial",
+   "binomial",
+   "ok"
+  ],
+  [
+   "s135__s135 mutual",
+   "46080",
+   "46080",
+   "ok"
+  ],
+  [
+   "s135__s135 pooled tau_0",
+   "[92160, 92160]",
+   "[92160, 92160]",
+   "ok"
+  ],
+  [
+   "s135__s135 pooled tau_0.3",
+   "[92160, 92160]",
+   "[92160, 92160]",
+   "ok"
+  ],
+  [
+   "s135__s135 pooled tau_0.5",
+   "[92160, 92160]",
+   "[92160, 92160]",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ab tau_0 share",
+   "[23045, 46080]",
+   "[23045, 46080]",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ab tau_0 invariant",
+   "0.038059",
+   "0.038059",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ab tau_0 same-layer",
+   "1570",
+   "1570",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ab tau_0 same position",
+   "0",
+   "0",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ab tau_0 null mean",
+   "785/768",
+   "785/768",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ab tau_0 p_two",
+   "9.665575e-01",
+   "9.665575e-01",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ab tau_0 p_upper",
+   "4.832788e-01",
+   "4.832788e-01",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ab tau_0.3 share",
+   "[0, 0]",
+   "[0, 0]",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ab tau_0.3 same-layer",
+   "0",
+   "0",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ab tau_0.3 same position",
+   "0",
+   "0",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ab tau_0.3 null mean",
+   "0",
+   "0",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ab tau_0.5 share",
+   "[0, 0]",
+   "[0, 0]",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ab tau_0.5 same-layer",
+   "0",
+   "0",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ab tau_0.5 same position",
+   "0",
+   "0",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ab law",
+   "binomial",
+   "binomial",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ba tau_0 share",
+   "[22843, 46080]",
+   "[22843, 46080]",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ba tau_0 invariant",
+   "0.038181",
+   "0.038181",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ba tau_0 same-layer",
+   "1528",
+   "1528",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ba tau_0 same position",
+   "0",
+   "0",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ba tau_0 null mean",
+   "191/192",
+   "191/192",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ba tau_0 p_two",
+   "6.713213e-02",
+   "6.713213e-02",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ba tau_0 p_upper",
+   "9.671236e-01",
+   "9.671236e-01",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ba tau_0.3 share",
+   "[0, 0]",
+   "[0, 0]",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ba tau_0.3 same-layer",
+   "0",
+   "0",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ba tau_0.3 same position",
+   "0",
+   "0",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ba tau_0.3 null mean",
+   "0",
+   "0",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ba tau_0.5 share",
+   "[0, 0]",
+   "[0, 0]",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ba tau_0.5 same-layer",
+   "0",
+   "0",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ba tau_0.5 same position",
+   "0",
+   "0",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf ba law",
+   "binomial",
+   "binomial",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf mutual",
+   "6452",
+   "6452",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf pooled tau_0",
+   "[45888, 92160]",
+   "[45888, 92160]",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf pooled tau_0.3",
+   "[0, 0]",
+   "[0, 0]",
+   "ok"
+  ],
+  [
+   "s135__s135i_shuf pooled tau_0.5",
+   "[0, 0]",
+   "[0, 0]",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0 share",
+   "[67224, 86016]",
+   "[67224, 86016]",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0 invariant",
+   "0.363651",
+   "0.363651",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0 same-layer",
+   "53733",
+   "53733",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0 same position",
+   "8",
+   "8",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0 null mean",
+   "17911/2048",
+   "17911/2048",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0 F p bracket (mine inside theirs)",
+   "['6.455159e-01', '6.455159e-01']",
+   "['6.455159e-01', '6.455159e-01']",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0 p_two",
+   "2.164e-6285",
+   "2.1641e-6285 (display rounded)",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0 p_upper",
+   "1.082e-6285",
+   "1.0820e-6285 (display rounded)",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0.3 share",
+   "[43460, 49991]",
+   "[43460, 49991]",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0.3 invariant",
+   "0.463972",
+   "0.463972",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0.3 same-layer",
+   "39314",
+   "39314",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0.3 same position",
+   "7",
+   "7",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0.3 null mean",
+   "19657/3072",
+   "19657/3072",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0.3 F p bracket (mine inside theirs)",
+   "['4.574807e-01', '4.574807e-01']",
+   "['4.574807e-01', '4.574807e-01']",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0.3 p_two",
+   "3.932e-6636",
+   "3.9319e-6636 (display rounded)",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0.3 p_upper",
+   "1.966e-6636",
+   "1.9660e-6636 (display rounded)",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0.5 share",
+   "[15161, 16153]",
+   "[15161, 16153]",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0.5 invariant",
+   "0.623691",
+   "0.623691",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0.5 same-layer",
+   "14625",
+   "14625",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0.5 same position",
+   "0",
+   "0",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0.5 p_two",
+   "1.856e-3245",
+   "1.8562e-3245 (display rounded)",
+   "ok"
+  ],
+  [
+   "q08__q2 ab tau_0.5 p_upper",
+   "9.281e-3246",
+   "9.2810e-3246 (display rounded)",
+   "ok"
+  ],
+  [
+   "q08__q2 ab law",
+   "binomial",
+   "binomial",
+   "ok"
+  ],
+  [
+   "q08__q2 ba tau_0 share",
+   "[98926, 147456]",
+   "[98926, 147456]",
+   "ok"
+  ],
+  [
+   "q08__q2 ba tau_0 invariant",
+   "0.308533",
+   "0.308533",
+   "ok"
+  ],
+  [
+   "q08__q2 ba tau_0 same-layer",
+   "63310",
+   "63310",
+   "ok"
+  ],
+  [
+   "q08__q2 ba tau_0 p_two",
+   "2.447e-3819",
+   "2.4467e-3819 (display rounded)",
+   "ok"
+  ],
+  [
+   "q08__q2 ba tau_0 p_upper",
+   "1.223e-3819",
+   "1.2234e-3819 (display rounded)",
+   "ok"
+  ],
+  [
+   "q08__q2 ba tau_0.3 share",
+   "[49829, 62432]",
+   "[49829, 62432]",
+   "ok"
+  ],
+  [
+   "q08__q2 ba tau_0.3 invariant",
+   "0.450545",
+   "0.450545",
+   "ok"
+  ],
+  [
+   "q08__q2 ba tau_0.3 same-layer",
+   "41514",
+   "41514",
+   "ok"
+  ],
+  [
+   "q08__q2 ba tau_0.3 p_two",
+   "7.512e-5159",
+   "7.5118e-5159 (display rounded)",
+   "ok"
+  ],
+  [
+   "q08__q2 ba tau_0.3 p_upper",
+   "3.756e-5159",
+   "3.7559e-5159 (display rounded)",
+   "ok"
+  ],
+  [
+   "q08__q2 ba tau_0.5 share",
+   "[15903, 17710]",
+   "[15903, 17710]",
+   "ok"
+  ],
+  [
+   "q08__q2 ba tau_0.5 invariant",
+   "0.620632",
+   "0.620632",
+   "ok"
+  ],
+  [
+   "q08__q2 ba tau_0.5 same-layer",
+   "14827",
+   "14827",
+   "ok"
+  ],
+  [
+   "q08__q2 ba tau_0.5 p_two",
+   "4.110e-2799",
+   "4.1098e-2799 (display rounded)",
+   "ok"
+  ],
+  [
+   "q08__q2 ba tau_0.5 p_upper",
+   "2.055e-2799",
+   "2.0549e-2799 (display rounded)",
+   "ok"
+  ],
+  [
+   "q08__q2 ba law",
+   "binomial",
+   "binomial",
+   "ok"
+  ],
+  [
+   "q08__q2 mutual",
+   "44697",
+   "44697",
+   "ok"
+  ],
+  [
+   "q08__q2 pooled tau_0",
+   "[166150, 233472]",
+   "[166150, 233472]",
+   "ok"
+  ],
+  [
+   "q08__q2 pooled tau_0.3",
+   "[93289, 112423]",
+   "[93289, 112423]",
+   "ok"
+  ],
+  [
+   "q08__q2 pooled tau_0.5",
+   "[31064, 33863]",
+   "[31064, 33863]",
+   "ok"
+  ],
+  [
+   "py__s135 ab tau_0 share",
+   "[19377, 36864]",
+   "[19377, 36864]",
+   "ok"
+  ],
+  [
+   "py__s135 ab tau_0 invariant",
+   "0.313061",
+   "0.313061",
+   "ok"
+  ],
+  [
+   "py__s135 ab tau_0 same-layer",
+   "3144",
+   "3144",
+   "ok"
+  ],
+  [
+   "py__s135 ab tau_0 p_two",
+   "1.513709e-01",
+   "1.513709e-01",
+   "ok"
+  ],
+  [
+   "py__s135 ab tau_0 p_upper",
+   "7.568545e-02",
+   "7.568545e-02",
+   "ok"
+  ],
+  [
+   "py__s135 ab tau_0.3 share",
+   "[8964, 16697]",
+   "[8964, 16697]",
+   "ok"
+  ],
+  [
+   "py__s135 ab tau_0.3 invariant",
+   "0.407563",
+   "0.407563",
+   "ok"
+  ],
+  [
+   "py__s135 ab tau_0.3 same-layer",
+   "1375",
+   "1375",
+   "ok"
+  ],
+  [
+   "py__s135 ab tau_0.3 p_two",
+   "1.128976e-01",
+   "1.128976e-01",
+   "ok"
+  ],
+  [
+   "py__s135 ab tau_0.3 p_upper",
+   "5.644880e-02",
+   "5.644880e-02",
+   "ok"
+  ],
+  [
+   "py__s135 ab tau_0.5 share",
+   "[1431, 2558]",
+   "[1431, 2558]",
+   "ok"
+  ],
+  [
+   "py__s135 ab tau_0.5 invariant",
+   "0.600895",
+   "0.600895",
+   "ok"
+  ],
+  [
+   "py__s135 ab tau_0.5 same-layer",
+   "409",
+   "409",
+   "ok"
+  ],
+  [
+   "py__s135 ab tau_0.5 p_two",
+   "1.689926e-01",
+   "1.689926e-01",
+   "ok"
+  ],
+  [
+   "py__s135 ab tau_0.5 p_upper",
+   "8.449632e-02",
+   "8.449632e-02",
+   "ok"
+  ],
+  [
+   "py__s135 ab law",
+   "cluster",
+   "cluster",
+   "ok"
+  ],
+  [
+   "py__s135 ba tau_0 share",
+   "[23030, 46080]",
+   "[23030, 46080]",
+   "ok"
+  ],
+  [
+   "py__s135 ba tau_0 invariant",
+   "0.266182",
+   "0.266182",
+   "ok"
+  ],
+  [
+   "py__s135 ba tau_0 same-layer",
+   "2284",
+   "2284",
+   "ok"
+  ],
+  [
+   "py__s135 ba tau_0 p_two",
+   "9.294706e-01",
+   "9.294706e-01",
+   "ok"
+  ],
+  [
+   "py__s135 ba tau_0 p_upper",
+   "5.389655e-01",
+   "5.389655e-01",
+   "ok"
+  ],
+  [
+   "py__s135 ba tau_0.3 share",
+   "[6363, 12595]",
+   "[6363, 12595]",
+   "ok"
+  ],
+  [
+   "py__s135 ba tau_0.3 invariant",
+   "0.404791",
+   "0.404791",
+   "ok"
+  ],
+  [
+   "py__s135 ba tau_0.3 same-layer",
+   "639",
+   "639",
+   "ok"
+  ],
+  [
+   "py__s135 ba tau_0.3 p_two",
+   "2.467153e-01",
+   "2.467153e-01",
+   "ok"
+  ],
+  [
+   "py__s135 ba tau_0.3 p_upper",
+   "1.233577e-01",
+   "1.233577e-01",
+   "ok"
+  ],
+  [
+   "py__s135 ba tau_0.5 share",
+   "[951, 1876]",
+   "[951, 1876]",
+   "ok"
+  ],
+  [
+   "py__s135 ba tau_0.5 invariant",
+   "0.608624",
+   "0.608624",
+   "ok"
+  ],
+  [
+   "py__s135 ba tau_0.5 same-layer",
+   "179",
+   "179",
+   "ok"
+  ],
+  [
+   "py__s135 ba tau_0.5 p_two",
+   "5.638184e-01",
+   "5.638184e-01",
+   "ok"
+  ],
+  [
+   "py__s135 ba tau_0.5 p_upper",
+   "2.819092e-01",
+   "2.819092e-01",
+   "ok"
+  ],
+  [
+   "py__s135 ba law",
+   "binomial",
+   "binomial",
+   "ok"
+  ],
+  [
+   "py__s135 mutual",
+   "1652",
+   "1652",
+   "ok"
+  ],
+  [
+   "py__s135 pooled tau_0",
+   "[42407, 82944]",
+   "[42407, 82944]",
+   "ok"
+  ],
+  [
+   "py__s135 pooled tau_0.3",
+   "[15327, 29292]",
+   "[15327, 29292]",
+   "ok"
+  ],
+  [
+   "py__s135 pooled tau_0.5",
+   "[2382, 4434]",
+   "[2382, 4434]",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab tau_0 share",
+   "[45503, 90112]",
+   "[45503, 90112]",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab tau_0 invariant",
+   "0.192822",
+   "0.192822",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab tau_0 same-layer",
+   "3167",
+   "3167",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab tau_0 p_two",
+   "2.338169e-01",
+   "2.338169e-01",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab tau_0 p_upper",
+   "1.169085e-01",
+   "1.169085e-01",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab tau_0.3 share",
+   "[5511, 10474]",
+   "[5511, 10474]",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab tau_0.3 invariant",
+   "0.410364",
+   "0.410364",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab tau_0.3 same-layer",
+   "389",
+   "389",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab tau_0.3 p_two",
+   "1.360199e-02",
+   "1.360199e-02",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab tau_0.3 p_upper",
+   "6.800994e-03",
+   "6.800994e-03",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab tau_0.5 share",
+   "[960, 1769]",
+   "[960, 1769]",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab tau_0.5 invariant",
+   "0.610656",
+   "0.610656",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab tau_0.5 same-layer",
+   "86",
+   "86",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab tau_0.5 p_two",
+   "3.238183e-02",
+   "3.238183e-02",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab tau_0.5 p_upper",
+   "1.619092e-02",
+   "1.619092e-02",
+   "ok"
+  ],
+  [
+   "falcon__s135 ab law",
+   "cluster",
+   "cluster",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba tau_0 share",
+   "[23089, 46080]",
+   "[23089, 46080]",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba tau_0 invariant",
+   "0.255542",
+   "0.255542",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba tau_0 same-layer",
+   "1145",
+   "1145",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba tau_0 p_two",
+   "6.513616e-01",
+   "6.513616e-01",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba tau_0 p_upper",
+   "3.256808e-01",
+   "3.256808e-01",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba tau_0.3 share",
+   "[5604, 11000]",
+   "[5604, 11000]",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba tau_0.3 invariant",
+   "0.408989",
+   "0.408989",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba tau_0.3 same-layer",
+   "374",
+   "374",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba tau_0.3 p_two",
+   "4.841463e-02",
+   "4.841463e-02",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba tau_0.3 p_upper",
+   "2.420732e-02",
+   "2.420732e-02",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba tau_0.5 share",
+   "[942, 1818]",
+   "[942, 1818]",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba tau_0.5 invariant",
+   "0.61084",
+   "0.61084",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba tau_0.5 same-layer",
+   "101",
+   "101",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba tau_0.5 p_two",
+   "1.273704e-01",
+   "1.273704e-01",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba tau_0.5 p_upper",
+   "6.368521e-02",
+   "6.368521e-02",
+   "ok"
+  ],
+  [
+   "falcon__s135 ba law",
+   "binomial",
+   "binomial",
+   "ok"
+  ],
+  [
+   "falcon__s135 mutual",
+   "1953",
+   "1953",
+   "ok"
+  ],
+  [
+   "falcon__s135 pooled tau_0",
+   "[68592, 136192]",
+   "[68592, 136192]",
+   "ok"
+  ],
+  [
+   "falcon__s135 pooled tau_0.3",
+   "[11115, 21474]",
+   "[11115, 21474]",
+   "ok"
+  ],
+  [
+   "falcon__s135 pooled tau_0.5",
+   "[1902, 3587]",
+   "[1902, 3587]",
+   "ok"
+  ],
+  [
+   "within py_1k__py same position",
+   "6044",
+   "6044",
+   "ok"
+  ],
+  [
+   "within py_1k__py null mean",
+   "12",
+   "12",
+   "ok"
+  ],
+  [
+   "within py_8k__py same position",
+   "33672",
+   "33672",
+   "ok"
+  ],
+  [
+   "within py_8k__py null mean",
+   "12",
+   "12",
+   "ok"
+  ],
+  [
+   "within py_32k__py same position",
+   "36475",
+   "36475",
+   "ok"
+  ],
+  [
+   "within py_32k__py null mean",
+   "12",
+   "12",
+   "ok"
+  ],
+  [
+   "within py_s1__py same position",
+   "8",
+   "8",
+   "ok"
+  ],
+  [
+   "within py_s1__py null mean",
+   "12",
+   "12",
+   "ok"
+  ],
+  [
+   "weights tiiuae__Falcon-H1-Tiny-R-0.6B gate-up positive",
+   "[70500, 90112]",
+   "[70500, 90112]",
+   "ok"
+  ],
+  [
+   "weights tiiuae__Falcon-H1-Tiny-R-0.6B-pre-GRPO gate-up positive",
+   "[70500, 90112]",
+   "[70500, 90112]",
+   "ok"
+  ],
+  [
+   "weights tiiuae__Falcon-H1-Tiny-90M-Base gate-up positive",
+   "[12162, 18432]",
+   "[12162, 18432]",
+   "ok"
+  ],
+  [
+   "weights HuggingFaceTB__SmolLM2-135M gate-up positive",
+   "[22971, 46080]",
+   "[22971, 46080]",
+   "ok"
+  ],
+  [
+   "weights HuggingFaceTB__SmolLM2-360M gate-up positive",
+   "[41038, 81920]",
+   "[41038, 81920]",
+   "ok"
+  ],
+  [
+   "weights HuggingFaceTB__SmolLM2-135M-Instruct gate-up positive",
+   "[23060, 46080]",
+   "[23060, 46080]",
+   "ok"
+  ],
+  [
+   "weights Qwen__Qwen3.5-0.8B gate-up positive",
+   "[42974, 86016]",
+   "[42974, 86016]",
+   "ok"
+  ],
+  [
+   "weights Qwen__Qwen3.5-2B gate-up positive",
+   "[73680, 147456]",
+   "[73680, 147456]",
+   "ok"
+  ]
+ ],
+ "mismatches": []
+}

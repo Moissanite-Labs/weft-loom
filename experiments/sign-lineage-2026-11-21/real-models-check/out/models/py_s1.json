@@ -1,0 +1,116 @@
+{
+ "key": "py_s1",
+ "trace_dir": "<real-models>/traces/py_s1",
+ "T": 20000,
+ "layers": 12,
+ "widths": [
+  3072,
+  3072,
+  3072,
+  3072,
+  3072,
+  3072,
+  3072,
+  3072,
+  3072,
+  3072,
+  3072,
+  3072
+ ],
+ "units": 36864,
+ "zero_var": 0,
+ "skew_pos": 36817,
+ "skew_neg": 47,
+ "skew_zero": 0,
+ "mean_pos": 5718,
+ "mean_neg": 31146,
+ "pos_on_gt90pct_words": 64,
+ "max_abs_value": 78.375,
+ "nonfinite": false,
+ "per_layer": [
+  {
+   "layer": 0,
+   "h": 3072,
+   "skew_pos": 3072,
+   "skew_nonzero": 3072,
+   "zero_var": 0
+  },
+  {
+   "layer": 1,
+   "h": 3072,
+   "skew_pos": 3064,
+   "skew_nonzero": 3072,
+   "zero_var": 0
+  },
+  {
+   "layer": 2,
+   "h": 3072,
+   "skew_pos": 3072,
+   "skew_nonzero": 3072,
+   "zero_var": 0
+  },
+  {
+   "layer": 3,
+   "h": 3072,
+   "skew_pos": 3072,
+   "skew_nonzero": 3072,
+   "zero_var": 0
+  },
+  {
+   "layer": 4,
+   "h": 3072,
+   "skew_pos": 3070,
+   "skew_nonzero": 3072,
+   "zero_var": 0
+  },
+  {
+   "layer": 5,
+   "h": 3072,
+   "skew_pos": 3072,
+   "skew_nonzero": 3072,
+   "zero_var": 0
+  },
+  {
+   "layer": 6,
+   "h": 3072,
+   "skew_pos": 3070,
+   "skew_nonzero": 3072,
+   "zero_var": 0
+  },
+  {
+   "layer": 7,
+   "h": 3072,
+   "skew_pos": 3069,
+   "skew_nonzero": 3072,
+   "zero_var": 0
+  },
+  {
+   "layer": 8,
+   "h": 3072,
+   "skew_pos": 3065,
+   "skew_nonzero": 3072,
+   "zero_var": 0
+  },
+  {
+   "layer": 9,
+   "h": 3072,
+   "skew_pos": 3070,
+   "skew_nonzero": 3072,
+   "zero_var": 0
+  },
+  {
+   "layer": 10,
+   "h": 3072,
+   "skew_pos": 3065,
+   "skew_nonzero": 3072,
+   "zero_var": 0
+  },
+  {
+   "layer": 11,
+   "h": 3072,
+   "skew_pos": 3056,
+   "skew_nonzero": 3072,
+   "zero_var": 0
+  }
+ ]
+}

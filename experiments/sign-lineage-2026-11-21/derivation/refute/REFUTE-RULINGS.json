@@ -1,0 +1,107 @@
+{
+ "source": "The rulings field of the refuter's final report, 2026-11-21. The report's prose summary and file list are left out because they name local paths; REFUTE.txt holds the same content.",
+ "rulings": [
+  {
+   "statement": "S1.1 gated-block signed-permutation symmetry; S1.2 code anchors (Qwen3, Qwen3.5, Gemma 4, Falcon-H1 gated; Pythia plain)",
+   "ruling": "holds",
+   "tightening_or_counterexample": "",
+   "evidence": "equivariance_refute.py: real Qwen3ForCausalLM, unit-5 trace exactly negated, others identical, logits identical; must-fail controls fail (flip gate row 0.16, plain GELU 0.37, hidden LayerNorm 0.79). Lines re-read in transformers 5.22.2: qwen3 69-82, gemma4 1060-1076 (and MoE experts 1268-1304 fused gate_up, same form), falcon_h1 825-839. Kind: exact-in-float check plus anchor."
+  },
+  {
+   "statement": "S2.1/S2.2 training (GD, momentum, Adam/AdamW, decoupled/coupled wd, clipping, dropout) commutes with the symmetry; invariant init gives invariant trained law conditional on data",
+   "ruling": "holds",
+   "tightening_or_counterexample": "",
+   "evidence": "14 real torch optimiser configs on real Qwen3 (AdamW fp32/eps1e-3/amsgrad/fused/foreach-off, Adam coupled L2, SGD Nesterov, RAdam, Adagrad, Muon, clip-norm, clip-value, bf16 autocast, bf16 params): max param diff 0.0 and logit diff 0.0 after 60 steps with weights moving 0.03-0.37; sign-tying loss control gives diff 0.034/0.77. Sampled (each run bitwise)."
+  },
+  {
+   "statement": "S2.3 list of what breaks the symmetry",
+   "ruling": "holds_after_tightening",
+   "tightening_or_counterexample": "Add: (i) a mean-centring LayerNorm on the hidden vector breaks per-unit sign symmetry (RMSNorm does not); (ii) a shared default seed with an identical config gives identical init (siblings: dependence without 'made from' lineage); (iii) float init laws are symmetric only up to discretisation (torch uniform_ is [from,to)), coin bias of order d*2^-24 per unit.",
+   "evidence": "equivariance_refute.py block_controls (LayerNorm 0.79 output change, RMSNorm 0.0); seed_sharing: same_seed_same_config_identical=True, different intermediate_size shares 0/48 rows. (iii) is a proof-level remark, not measured."
+  },
+  {
+   "statement": "S3.1 under H0_B, B unit signs are independent fair coins given A, data and orbit; conditional p-value valid",
+   "ruling": "holds",
+   "tightening_or_counterexample": "",
+   "evidence": "exact_refute.py E1: 397/397 brute-force cases over all 2^nB sign vectors (199 with exact |corr| ties, tau in {0,.3,.5}); p-value super-uniform in 397/397. Exact; parity under three interpreter modes."
+  },
+  {
+   "statement": "S3.2 cluster law N+ = (m + sum e_j|s_j|)/2; 'Binomial(m,1/2) exactly when every |s_j|=1'",
+   "ruling": "holds_after_tightening",
+   "tightening_or_counterexample": "Law correct, but 'Binomial exactly when every |s_j|=1' is false: 3 sources -> 1 target with signs (+,+,-) has |s|=1, law {1:1/2,2:1/2} vs Bin(3,1/2). Correct: binomial iff every cluster has size 1 (injective matching). Also kept pairs with corr exactly 0 must be dropped (formula gives half-integer; their analyze.py line 89 (line 100 in this record's copy) maps 0 to -1, a fixed sign).",
+   "evidence": "exact_refute.py E3 and E1z (formula and brute force agree); their cluster_pvalues matches my enumeration 300/300 (blackbox_their_null.py) and rejects sign 0."
+  },
+  {
+   "statement": "S3.3 source side sign-invariant implies N+ exactly Binomial(m,1/2) for any matching",
+   "ruling": "holds_after_tightening",
+   "tightening_or_counterexample": "Exclude kept pairs with corr exactly 0 (a zero-corr kept pair breaks the binomial). Otherwise exact.",
+   "evidence": "exact_refute.py E2: 300/300 exact over all 2^nA source flips, 270 with clustered matchings; zero-corr control breaks it. Sampled confirmation: gated source -> GELU target pairs binomial p<0.01 one-sided 1/120 over 3 seeds."
+  },
+  {
+   "statement": "S3.4 Pythia-Falcon-H1 Tiny 83-87% means (a) Falcon signs not fair, (b) different trace, or (c) real relation",
+   "ruling": "holds_after_tightening",
+   "tightening_or_counterexample": "List incomplete: add (d) the site's matching/threshold/co-firing rule is not a sign-blind function of |corr| (e.g. signed argmax, firing on top positive activations) and (e) counts pooled over both match directions.",
+   "evidence": "Proof step (mean exactly 1/2 whichever side is source) confirmed by E1/E2; Falcon-H1 gated form confirmed at modeling_falcon_h1.py 825-839 (anchor). Site not fetched."
+  },
+  {
+   "statement": "S3.5 binomial tails, union bounds, kappa thresholds for the site's 33-59% sentence",
+   "ruling": "holds_after_tightening",
+   "tightening_or_counterexample": "Max low tail 1.48585e-6 occurs at m=203, not m=201 (m=201 gives 1.32e-6). All other numbers reproduce.",
+   "evidence": "exact_refute.py E5 (integer sums): 8.688e-7/9.698e-3 (m=200), 4.125e-8/3.541e-3, 4.757e-14/6.95e-5, 2.147e-26/4.239e-8; union 1.49e-4/4.46e-4/7.37e-4; kappa 578/225, 289/45; 50x4 example 7.67e-3."
+  },
+  {
+   "statement": "S4 same-position null: fixed-point law for bijective matching, rook law for argmax, P(F>=k) <= 1/k! for any argmax matching",
+   "ruling": "holds_after_tightening",
+   "tightening_or_counterexample": "Requires an equivariant matching. With argmax and first-index tie breaking the law and the bound fail. Smallest: N=h_A=3, |corr| rows (1,1,1),(1,1,1/2),(1/2,1/2,1): P(F>=2)=2/3 > 1/2. Fix: no ties, random tie breaking, or drop tied rows.",
+   "evidence": "exact_refute.py E4: 45/45 argmax and 35/35 bijective no-tie cases match enumeration over all N! relabellings; 6/15 tie cases differ. tie_search.py exhaustive; identical output under three interpreter modes. Known in substance: Zhu et al. ICML 2025 arXiv 2502.12292 sec 2.2."
+  },
+  {
+   "statement": "S5.1 null calibration (independent gated, shared data order): binomial and cluster p calibrated; S5.1b shared data order not flagged",
+   "ruling": "holds",
+   "tightening_or_counterexample": "",
+   "evidence": "Own implementation, seeds 500000/600000/700000: 240 gated null pairs (shared data stream), share 0.498-0.503, sd 0.030-0.033 vs binomial 0.031, one-sided p<0.01: binomial 3/240, cluster 3/240. Sampled."
+  },
+  {
+   "statement": "S5.2 descendants detected (40/40 every arm)",
+   "ruling": "holds",
+   "tightening_or_counterexample": "Replicated only for one arm (1500 steps on an equal-entropy different task); scope is toy networks.",
+   "evidence": "sampled_refute.py: 90/90 detected, share 0.972-0.976, same position ~243/256. Sampled."
+  },
+  {
+   "statement": "S5.3 one-sided control (plain ReLU/GELU far above 50%) and mixed pairs (binomial anti-conservative when source is one-sided, cluster calibrated; binomial valid when source gated)",
+   "ruling": "holds",
+   "tightening_or_counterexample": "",
+   "evidence": "GELU null share 0.964-0.966, 120/120 flagged; GELU source -> gated target sd 0.046-0.048 vs 0.031, kappa 2.3, one-sided p<0.01 binomial 12/120 vs cluster 2/120; gated source -> GELU target 1/120 both. Sampled, 3 seeds."
+  },
+  {
+   "statement": "S5.3 diagnostics: positive-mean lean test is exact under symmetry and separates block types completely",
+   "ruling": "holds_after_tightening",
+   "tightening_or_counterexample": "Failure case: GELU(z)-c with down bias b+cD1 is the same function; its traces are shifted, share unchanged (0.964/0.966, 40/40 flagged) but the positive-mean lean test rejects 0/120 blocks (c = median unit mean), on seeds 600000 and 700000. Use a shift-invariant odd statistic (sign of third central moment): rejects 120/120 GELU (shifted or not), 1-2/120 gated.",
+   "evidence": "sampled_refute.py lean_gelu_shifted, gelu_shifted_null, lean_gated in out/sampled_seed600000.json and out/sampled_seed700000.json. Sampled. A natural sparse-GELU counterexample attempt failed (still rejected)."
+  },
+  {
+   "statement": "S5.4 planted relabelled descendant defeats the sign and position tests; S5.4a theorem (symmetry-null tests cannot detect a descendant hit by a uniform group element)",
+   "ruling": "holds",
+   "tightening_or_counterexample": "Theorem is correct and known in substance (Zhu et al. 2025, sec 2.2.1/2.3, for permutations).",
+   "evidence": "sampled_refute.py planted_relabelled: share 0.488-0.498, 0/90 one-sided rejections at 0.01, invariant mean max|corr| = 1.0. Proof checked by reasoning: B' is uniform on B's orbit."
+  },
+  {
+   "statement": "S5.4 repairs: residual-coordinate sign test (exact null) and invariant mean max|corr| statistic (sampled null)",
+   "ruling": "not_shown",
+   "tightening_or_counterexample": "Not independently re-run. Scope note: residual-coordinate sign symmetry does not exist under mean-centring LayerNorm (Pythia), and hidden-state distillation from a common teacher would tie residual bases without lineage between the students.",
+   "evidence": "Read their out/pairs_all.jsonl: residual null p<0.01 rates 0-3 per 100-200 pairs. My toy: invariant statistic null 0.156, GELU 0.22, descendant 0.47, planted 1.0."
+  },
+  {
+   "statement": "S6.1 looped blocks: one coin per weight-space unit shared by its P pass traces",
+   "ruling": "holds",
+   "tightening_or_counterexample": "Conditional statement only; Inkling 2 Mini architecture not checked against code.",
+   "evidence": "Proof-level agreement (flip of row i of U and column i of D is a parameter symmetry regardless of how many passes reuse it). Not run."
+  },
+  {
+   "statement": "S6.2 MoE: group (prod_e H_e) semidirect S_E; S3.2 and S3.3 hold unchanged with units (e,i)",
+   "ruling": "holds_after_tightening",
+   "tightening_or_counterexample": "False for upcycled MoE (experts copied from one dense MLP, not independently re-randomised): unit i in every copied expert shares one sign coin, so the cluster is the dense unit across experts and S3.3's binomial fails with such a model as source.",
+   "evidence": "Proof-level: the init law of copied experts is invariant only under the diagonal flip. Router reads residual not hidden units (Gemma4TextRouter lines 1307-1342, anchor). Upcycling practice not fetched here."
+  }
+ ]
+}

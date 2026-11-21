@@ -1,0 +1,285 @@
+{
+ "seed": 700000,
+ "loss_gated": 3.0939105987548827,
+ "loss_gelu": 3.2608563741048178,
+ "loss_gelu_sparse": 3.2039115905761717,
+ "t_train": 154.46880984306335,
+ "gated_null": {
+  "pairs": 80,
+  "mean_share": 0.5017578125,
+  "sd_share": 0.03249176901765062,
+  "binom_sd": 0.03125,
+  "min_share": 0.4296875,
+  "max_share": 0.58203125,
+  "median_kappa": 1.0,
+  "mean_F": 1.2875,
+  "mean_inv": 0.15701573038539535,
+  "pb1_lt05_lt01": [
+   4,
+   1
+  ],
+  "pb2_lt05_lt01": [
+   4,
+   0
+  ],
+  "pc1_lt05_lt01": [
+   3,
+   1
+  ],
+  "pc2_lt05_lt01": [
+   4,
+   0
+  ]
+ },
+ "gelu_null": {
+  "pairs": 40,
+  "mean_share": 0.9662109375,
+  "sd_share": 0.011484368186375094,
+  "binom_sd": 0.03125,
+  "min_share": 0.9375,
+  "max_share": 0.984375,
+  "median_kappa": 2.75390625,
+  "mean_F": 1.45,
+  "mean_inv": 0.22715731368913863,
+  "pb1_lt05_lt01": [
+   40,
+   40
+  ],
+  "pb2_lt05_lt01": [
+   40,
+   40
+  ],
+  "pc1_lt05_lt01": [
+   40,
+   40
+  ],
+  "pc2_lt05_lt01": [
+   40,
+   40
+  ]
+ },
+ "gelu_sparse_null": {
+  "pairs": 30,
+  "mean_share": 0.977734375,
+  "sd_share": 0.009010398499250836,
+  "binom_sd": 0.03125,
+  "min_share": 0.96484375,
+  "max_share": 0.99609375,
+  "median_kappa": 2.55859375,
+  "mean_F": 1.0333333333333334,
+  "mean_inv": 0.20880438815719088,
+  "pb1_lt05_lt01": [
+   30,
+   30
+  ],
+  "pb2_lt05_lt01": [
+   30,
+   30
+  ],
+  "pc1_lt05_lt01": [
+   30,
+   30
+  ],
+  "pc2_lt05_lt01": [
+   30,
+   30
+  ]
+ },
+ "mixed_gelu_src_gated_tgt": {
+  "pairs": 40,
+  "mean_share": 0.4955078125,
+  "sd_share": 0.04803380352991506,
+  "binom_sd": 0.03125,
+  "min_share": 0.3984375,
+  "max_share": 0.58984375,
+  "median_kappa": 2.2734375,
+  "mean_F": 1.1,
+  "mean_inv": 0.18558156794411057,
+  "pb1_lt05_lt01": [
+   4,
+   3
+  ],
+  "pb2_lt05_lt01": [
+   9,
+   3
+  ],
+  "pc1_lt05_lt01": [
+   1,
+   0
+  ],
+  "pc2_lt05_lt01": [
+   3,
+   0
+  ]
+ },
+ "mixed_gated_src_gelu_tgt": {
+  "pairs": 40,
+  "mean_share": 0.50341796875,
+  "sd_share": 0.031164590565306086,
+  "binom_sd": 0.03125,
+  "min_share": 0.43359375,
+  "max_share": 0.5546875,
+  "median_kappa": 1.0078125,
+  "mean_F": 1.3,
+  "mean_inv": 0.17536462943862924,
+  "pb1_lt05_lt01": [
+   1,
+   0
+  ],
+  "pb2_lt05_lt01": [
+   1,
+   0
+  ],
+  "pc1_lt05_lt01": [
+   1,
+   0
+  ],
+  "pc2_lt05_lt01": [
+   1,
+   0
+  ]
+ },
+ "lean_gated": {
+  "rej_mean_01": 0,
+  "rej_skew_01": 1,
+  "frac_pos_mean": [
+   0.390625,
+   0.5078125,
+   0.6015625
+  ],
+  "frac_pos_skew": [
+   0.3671875,
+   0.5078125,
+   0.6171875
+  ],
+  "blocks": 120
+ },
+ "lean_gelu": {
+  "rej_mean_01": 120,
+  "rej_skew_01": 120,
+  "frac_pos_mean": [
+   0.96875,
+   1.0,
+   1.0
+  ],
+  "frac_pos_skew": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "blocks": 120
+ },
+ "lean_gelu_sparse": {
+  "rej_mean_01": 120,
+  "rej_skew_01": 120,
+  "frac_pos_mean": [
+   0.7109375,
+   0.859375,
+   0.9609375
+  ],
+  "frac_pos_skew": [
+   0.9765625,
+   1.0,
+   1.0
+  ],
+  "blocks": 120
+ },
+ "lean_gelu_shifted": {
+  "rej_mean_01": 0,
+  "rej_skew_01": 120,
+  "frac_pos_mean": [
+   0.5,
+   0.5,
+   0.5078125
+  ],
+  "frac_pos_skew": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "blocks": 120
+ },
+ "gelu_shifted_null": {
+  "pairs": 40,
+  "mean_share": 0.9662109375,
+  "sd_share": 0.011484368186375094,
+  "binom_sd": 0.03125,
+  "min_share": 0.9375,
+  "max_share": 0.984375,
+  "median_kappa": 2.75390625,
+  "mean_F": 1.45,
+  "mean_inv": 0.22715731368913863,
+  "pb1_lt05_lt01": [
+   40,
+   40
+  ],
+  "pb2_lt05_lt01": [
+   40,
+   40
+  ],
+  "pc1_lt05_lt01": [
+   40,
+   40
+  ],
+  "pc2_lt05_lt01": [
+   40,
+   40
+  ]
+ },
+ "loss_desc": 3.0938095092773437,
+ "descendant_task1": {
+  "pairs": 30,
+  "mean_share": 0.9723958333333333,
+  "sd_share": 0.010804559488805012,
+  "binom_sd": 0.03125,
+  "min_share": 0.94921875,
+  "max_share": 0.984375,
+  "median_kappa": 0.99609375,
+  "mean_F": 242.36666666666667,
+  "mean_inv": 0.4731198930964685,
+  "pb1_lt05_lt01": [
+   30,
+   30
+  ],
+  "pb2_lt05_lt01": [
+   30,
+   30
+  ],
+  "pc1_lt05_lt01": [
+   30,
+   30
+  ],
+  "pc2_lt05_lt01": [
+   30,
+   30
+  ]
+ },
+ "planted_relabelled": {
+  "pairs": 30,
+  "mean_share": 0.48828125,
+  "sd_share": 0.03884638492533432,
+  "binom_sd": 0.03125,
+  "min_share": 0.4140625,
+  "max_share": 0.57421875,
+  "median_kappa": 1.0,
+  "mean_F": 1.8333333333333333,
+  "mean_inv": 1.0,
+  "pb1_lt05_lt01": [
+   2,
+   0
+  ],
+  "pb2_lt05_lt01": [
+   3,
+   1
+  ],
+  "pc1_lt05_lt01": [
+   2,
+   0
+  ],
+  "pc2_lt05_lt01": [
+   3,
+   1
+  ]
+ },
+ "t_total": 181.49539184570312
+}

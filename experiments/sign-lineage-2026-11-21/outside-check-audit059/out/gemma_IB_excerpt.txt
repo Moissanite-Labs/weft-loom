@@ -1,0 +1,6 @@
+# Excerpt of gemma_IB.txt (the -I -B run). Kept: the margin, the correlation lines and their control. Left out, because they list the site's per-layer figures: the top-6 layers by mean group out-weight (layer 10 first), the layers whose code share exceeds their prose share (layer 10 is the only one among 0 to 13), and other per-layer lines. CHECK.md states the first two in words. The full output's hash prefix is in parity_hashes.txt.
+L10 vs L9 margin: 3101/237659 = 1.3048%
+mean_out vs KL, 42 layers                        rho = +0.1607 (sign exact: +); one-sided perm P(rho>=obs): seed 101 501/3000, seed 20262 443/3000, seed 777 460/3000
+mean_out vs KL, 41 layers without L10            rho = +0.0978 (sign exact: +); one-sided perm P(rho>=obs): seed 101 833/3000, seed 20262 810/3000, seed 777 804/3000
+control, shuffled mean_out vs KL: rho = +0.0803; perm 908/3000
+mean_out top-1/top-2 ratio 1.0130; KL top-1/top-2 ratio 78.39

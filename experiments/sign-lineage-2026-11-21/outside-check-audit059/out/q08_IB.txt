@@ -1,0 +1,56 @@
+page: Qwen3.5-0.8B · 86,016 MLP neurons width 3584 layers 24
+family 73 'Adjacent brackets: }( )( )*(' | kind 12 'Equations, numbers and units'
+
+=== L15 ===
+selected in col<512: 40/64 (exact tail vs 512/3584: 3.6033e-19)
+Adjacent brackets, all       obs 16/64  bg  77/3584  expected 1.375  exact P(X>=obs) = 8.9157e-14
+Adjacent brackets, col<512   obs  9/40  bg  29/ 512  expected 2.266  exact P(X>=obs) = 1.3906e-04
+Adjacent brackets, col>=512  obs  7/24  bg  48/3072  expected 0.375  exact P(X>=obs) = 4.0993e-08
+Kind Equations, all          obs 22/64  bg 364/3584  expected 6.500  exact P(X>=obs) = 1.0986e-07
+Kind Equations, col<512      obs 12/40  bg  60/ 512  expected 4.688  exact P(X>=obs) = 9.3576e-04
+Kind Equations, col>=512     obs 10/24  bg 304/3072  expected 2.375  exact P(X>=obs) = 4.3173e-05
+Adjacent brackets stratified (2 blocks) exact P(X1+X2>=16) = 3.0805e-10
+Kind Equations stratified (2 blocks) exact P(X1+X2>=22) = 2.5151e-07
+no-family: 5/64 vs 333/3584; P(X<=obs)=4.4550e-01, P(X>=obs)=7.2299e-01
+top-20 L_inf columns in col<512: 15/20 (tie at rank 20/21: True)
+  robustness: top-10 L_inf in col<512: 7/10 (exact tail 9.4783e-05)
+  robustness: top-40 L_inf in col<512: 30/40 (exact tail 4.3702e-18)
+  robustness: top-100 L_inf in col<512: 55/100 (exact tail 3.2305e-22)
+row with the largest |entry|: 0
+uncentred kurtosis mean: selected 10.444 vs non-selected 4.036 (sibling: 10.44/4.03, 12.18/3.45)
+  within col<512 : selected 13.395 (n=40) vs non-selected 7.271 (n=472); centred 13.402 vs 7.262
+  within col>=512: selected 5.524 (n=24) vs non-selected 3.535 (n=3048); centred 5.516 vs 3.533
+  block means, all columns: col<512 7.749, col>=512 3.550
+  block-matched null (mean uncentred kurtosis >= 10.444): seed 11: 42/4000, seed 2027: 46/4000, seed 90001: 51/4000
+  control (random block-matched 64-set as 'selected'): mean 6.937, exceed 989/4000
+  block x |c|-decile matched null (>= 10.444): seed 13: 475/4000, seed 4049: 464/4000
+  |u| top-5 residual dims: [0, 5, 15, 18, 37] | selected |c| deciles: [0, 0, 0, 0, 0, 0, 2, 5, 6, 51]
+
+=== L19 ===
+selected in col<512: 35/64 (exact tail vs 512/3584: 2.2519e-14)
+Adjacent brackets, all       obs  4/64  bg  11/3584  expected 0.196  exact P(X>=obs) = 2.7798e-05
+Adjacent brackets, col<512   obs  3/35  bg   8/ 512  expected 0.547  exact P(X>=obs) = 1.2957e-02
+Adjacent brackets, col>=512  obs  1/29  bg   3/3072  expected 0.028  exact P(X>=obs) = 2.8063e-02
+Kind Equations, all          obs 15/64  bg 291/3584  expected 5.196  exact P(X>=obs) = 1.2625e-04
+Kind Equations, col<512      obs  8/35  bg  43/ 512  expected 2.939  exact P(X>=obs) = 5.4041e-03
+Kind Equations, col>=512     obs  7/29  bg 248/3072  expected 2.341  exact P(X>=obs) = 6.8358e-03
+Adjacent brackets stratified (2 blocks) exact P(X1+X2>=4) = 1.4163e-03
+Kind Equations stratified (2 blocks) exact P(X1+X2>=15) = 1.2025e-04
+no-family: 11/64 vs 460/3584; P(X<=obs)=8.8911e-01, P(X>=obs)=1.9079e-01
+top-20 L_inf columns in col<512: 14/20 (tie at rank 20/21: False)
+  robustness: top-10 L_inf in col<512: 5/10 (exact tail 7.9065e-03)
+  robustness: top-40 L_inf in col<512: 24/40 (exact tail 2.1437e-11)
+  robustness: top-100 L_inf in col<512: 48/100 (exact tail 2.6866e-16)
+row with the largest |entry|: 0
+uncentred kurtosis mean: selected 12.186 vs non-selected 3.454 (sibling: 10.44/4.03, 12.18/3.45)
+  within col<512 : selected 19.431 (n=35) vs non-selected 4.670 (n=477); centred 19.355 vs 4.665
+  within col>=512: selected 3.442 (n=29) vs non-selected 3.263 (n=3043); centred 3.445 vs 3.262
+  block means, all columns: col<512 5.679, col>=512 3.265
+  block-matched null (mean uncentred kurtosis >= 12.186): seed 11: 23/4000, seed 2027: 22/4000, seed 90001: 17/4000
+  control (random block-matched 64-set as 'selected'): mean 3.622, exceed 2851/4000
+  block x |c|-decile matched null (>= 12.186): seed 13: 652/4000, seed 4049: 669/4000
+  |u| top-5 residual dims: [0, 5, 15, 18, 37] | selected |c| deciles: [0, 0, 0, 1, 0, 0, 1, 6, 6, 50]
+
+pooled top-20 L_inf in col<512: 29/40 vs 1024/7168, exact P(X>=29) = 1.0370e-16
+21/21 sign test two-sided: 1/1048576
+DONE: both exact routes agree on every tail

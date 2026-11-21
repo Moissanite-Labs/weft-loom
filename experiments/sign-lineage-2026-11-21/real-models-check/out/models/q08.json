@@ -1,0 +1,212 @@
+{
+ "key": "q08",
+ "trace_dir": "<real-models>/traces/q08",
+ "T": 20000,
+ "layers": 24,
+ "widths": [
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584,
+  3584
+ ],
+ "units": 86016,
+ "zero_var": 0,
+ "skew_pos": 42976,
+ "skew_neg": 43040,
+ "skew_zero": 0,
+ "mean_pos": 42606,
+ "mean_neg": 43410,
+ "pos_on_gt90pct_words": 498,
+ "max_abs_value": 73.0,
+ "nonfinite": false,
+ "per_layer": [
+  {
+   "layer": 0,
+   "h": 3584,
+   "skew_pos": 1732,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 1,
+   "h": 3584,
+   "skew_pos": 1808,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 2,
+   "h": 3584,
+   "skew_pos": 1823,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 3,
+   "h": 3584,
+   "skew_pos": 1809,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 4,
+   "h": 3584,
+   "skew_pos": 1787,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 5,
+   "h": 3584,
+   "skew_pos": 1771,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 6,
+   "h": 3584,
+   "skew_pos": 1765,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 7,
+   "h": 3584,
+   "skew_pos": 1808,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 8,
+   "h": 3584,
+   "skew_pos": 1777,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 9,
+   "h": 3584,
+   "skew_pos": 1773,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 10,
+   "h": 3584,
+   "skew_pos": 1800,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 11,
+   "h": 3584,
+   "skew_pos": 1796,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 12,
+   "h": 3584,
+   "skew_pos": 1823,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 13,
+   "h": 3584,
+   "skew_pos": 1746,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 14,
+   "h": 3584,
+   "skew_pos": 1787,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 15,
+   "h": 3584,
+   "skew_pos": 1713,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 16,
+   "h": 3584,
+   "skew_pos": 1847,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 17,
+   "h": 3584,
+   "skew_pos": 1793,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 18,
+   "h": 3584,
+   "skew_pos": 1785,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 19,
+   "h": 3584,
+   "skew_pos": 1847,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 20,
+   "h": 3584,
+   "skew_pos": 1801,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 21,
+   "h": 3584,
+   "skew_pos": 1835,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 22,
+   "h": 3584,
+   "skew_pos": 1784,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  },
+  {
+   "layer": 23,
+   "h": 3584,
+   "skew_pos": 1766,
+   "skew_nonzero": 3584,
+   "zero_var": 0
+  }
+ ]
+}

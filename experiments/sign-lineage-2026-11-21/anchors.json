@@ -1,0 +1,14 @@
+{
+ "note": "Facts read from public code, configs and model cards, not run. Line numbers refer to the transformers source named in each entry.",
+ "anchors": [
+  {"what": "SmolLM2 (LlamaForCausalLM) MLP is gated: down_proj(act_fn(gate_proj(x)) * up_proj(x)), act SiLU", "where": "transformers 5.22.2, models/llama/modeling_llama.py lines 163-165"},
+  {"what": "Qwen3 MLP is gated, same form, no biases, SiLU", "where": "transformers 5.22.2, models/qwen3/modeling_qwen3.py lines 69-81"},
+  {"what": "Qwen3.5 MLP is gated, same form", "where": "transformers 5.22.2, models/qwen3_5/modeling_qwen3_5.py lines 811-823"},
+  {"what": "Gemma 4 text MLP is gated, same form, act gelu_pytorch_tanh", "where": "transformers 5.22.2, models/gemma4/modeling_gemma4.py lines 1060-1076"},
+  {"what": "Falcon-H1 MLP is gated: up_proj(x) * act(gate_proj(x) * gate_multiplier), then down_proj(y) * down_multiplier, SiLU. Falcon-H1-Tiny-R-0.6B has multipliers 1.0 and 1.0", "where": "transformers 5.22.2, models/falcon_h1/modeling_falcon_h1.py lines 825-839, and the model's config.json"},
+  {"what": "Pythia (GPT-NeoX) MLP is plain: dense_4h_to_h(act(dense_h_to_4h(x))) with biases, act GELU", "where": "transformers 5.22.2, models/gpt_neox/modeling_gpt_neox.py lines 37-47"},
+  {"what": "SmolLM2-135M-Instruct names SmolLM2-135M as its base model", "where": "Hugging Face model card of HuggingFaceTB/SmolLM2-135M-Instruct"},
+  {"what": "Inkling 2 Mini stores 24 layers. Layers 0-5 run once, layers 6-17 run three times, layers 18-23 run once", "where": "Hugging Face config.json of thinkingmachines/Inkling-2-Mini, loop_config core_start 6, core_end 18, num_passes 3, and the publisher's model card"},
+  {"what": "Inkling 2 Mini expert form: down(softcap_4(g) * sigmoid(g) * softcap_25(u)), softcap_c(z) = c * tanh(z / c), with g and u the gate and up halves of one fused matrix. 128 experts per layer", "where": "transformers commit 046bdb8cc2cee29d233964bb77fe6fd37cfe4aa3 (contained in release 5.24.0), models/inkling2_loop/modeling_inkling2_loop.py lines 749-757, 760-771 and 775-811. Constants mlp_gate_softcap 4.0 and mlp_up_softcap 25.0 from the model's config.json. Expert count from the checkpoint's tensor shapes"}
+ ]
+}

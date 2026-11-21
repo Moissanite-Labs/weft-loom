@@ -1,0 +1,40 @@
+{
+ "corpus_json_sha256": "ae42fafa88d88fbeab14d3c310a60b911f45b73208f0a2469e4181efb80df156",
+ "corpus_txt_sha256": "67693619fea31dc309a9f5cb122b7f70358f5ede82c20748c4015d3dbd6b4629",
+ "source_hash_ok": [
+  [
+   "pg1661.txt",
+   true
+  ],
+  [
+   "textwrap.py",
+   true
+  ],
+  [
+   "fractions.py",
+   true
+  ],
+  [
+   "09-gate-contracts.md",
+   true
+  ],
+  [
+   "10-exact-inertia-certificates.md",
+   true
+  ]
+ ],
+ "chunks": 100,
+ "words": 20000,
+ "chunks_with_bad_spans": 0,
+ "parts": {
+  "prose": 33,
+  "code": 34,
+  "math": 33
+ },
+ "chunks_not_a_verbatim_substring_of_their_part_sources": [
+  44
+ ],
+ "carriage_returns": 812,
+ "corpus_txt_split_words": 20000,
+ "corpus_txt_equals_join": true
+}

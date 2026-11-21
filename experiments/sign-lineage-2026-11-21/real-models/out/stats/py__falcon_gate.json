@@ -1,0 +1,180 @@
+{
+ "name": "py__falcon_gate",
+ "pair_meta": {
+  "name": "py__falcon_gate",
+  "A": "py",
+  "B": "falcon_gate",
+  "shuffle": null,
+  "T": 20000,
+  "A_layers": 12,
+  "B_layers": 44,
+  "A_widths": [
+   3072,
+   3072,
+   3072,
+   3072,
+   3072,
+   3072,
+   3072,
+   3072,
+   3072,
+   3072,
+   3072,
+   3072
+  ],
+  "B_widths": [
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048,
+   2048
+  ],
+  "A_dropped_zero_var": 0,
+  "B_dropped_zero_var": 0,
+  "ab": {
+   "ties": 0,
+   "full_rows": 0,
+   "max_abs_r32_minus_r64_on_candidates": 1.1022097223145622e-05
+  },
+  "ba": {
+   "ties": 0,
+   "full_rows": 2,
+   "max_abs_r32_minus_r64_on_candidates": 2.3994827321405232e-05
+  },
+  "screen_seconds": 115.7,
+  "seconds": 122.7
+ },
+ "ab": {
+  "source": "py",
+  "target": "falcon_gate",
+  "law": "none",
+  "dropped_r_exactly_zero": 0,
+  "tau_0": {
+   "share": {
+    "num": 34019,
+    "den": 36864
+   },
+   "invariant_mean_max_abs_r": 0.31731047869258444,
+   "matched_same_layer": {
+    "num": 895,
+    "den": 36864
+   }
+  },
+  "tau_0.3": {
+   "share": {
+    "num": 17350,
+    "den": 18229
+   },
+   "invariant_mean_max_abs_r": 0.4056341806679046,
+   "matched_same_layer": {
+    "num": 297,
+    "den": 18229
+   }
+  },
+  "tau_0.5": {
+   "share": {
+    "num": 2528,
+    "den": 2592
+   },
+   "invariant_mean_max_abs_r": 0.5890875092027907,
+   "matched_same_layer": {
+    "num": 56,
+    "den": 2592
+   }
+  }
+ },
+ "ba": {
+  "source": "falcon_gate",
+  "target": "py",
+  "law": "none",
+  "dropped_r_exactly_zero": 0,
+  "tau_0": {
+   "share": {
+    "num": 75448,
+    "den": 90112
+   },
+   "invariant_mean_max_abs_r": 0.30829296406908446,
+   "matched_same_layer": {
+    "num": 2319,
+    "den": 90112
+   }
+  },
+  "tau_0.3": {
+   "share": {
+    "num": 36075,
+    "den": 40456
+   },
+   "invariant_mean_max_abs_r": 0.4062795641228753,
+   "matched_same_layer": {
+    "num": 677,
+    "den": 40456
+   }
+  },
+  "tau_0.5": {
+   "share": {
+    "num": 5806,
+    "den": 6088
+   },
+   "invariant_mean_max_abs_r": 0.5875534821149813,
+   "matched_same_layer": {
+    "num": 70,
+    "den": 6088
+   }
+  }
+ },
+ "mutual_closest": {
+  "num": 1078,
+  "den": 36864
+ },
+ "pooled_share_tau_0": {
+  "num": 109467,
+  "den": 126976
+ },
+ "pooled_share_tau_0.3": {
+  "num": 53425,
+  "den": 58685
+ },
+ "pooled_share_tau_0.5": {
+  "num": 8334,
+  "den": 8680
+ }
+}

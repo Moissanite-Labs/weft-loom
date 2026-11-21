@@ -1,0 +1,84 @@
+{
+ "tiiuae__Falcon-H1-Tiny-R-0.6B": {
+  "layers": 44,
+  "units": 90112,
+  "positive": 70500,
+  "nonzero": 90112,
+  "p_two": "4.324e-6626"
+ },
+ "tiiuae__Falcon-H1-Tiny-R-0.6B-pre-GRPO": {
+  "layers": 44,
+  "units": 90112,
+  "positive": 70500,
+  "nonzero": 90112,
+  "p_two": "4.324e-6626"
+ },
+ "tiiuae__Falcon-H1-Tiny-90M-Base": {
+  "layers": 24,
+  "units": 18432,
+  "positive": 12162,
+  "nonzero": 18432,
+  "p_two": "1.434e-418"
+ },
+ "HuggingFaceTB__SmolLM2-135M": {
+  "layers": 30,
+  "units": 46080,
+  "positive": 22971,
+  "nonzero": 46080,
+  "p_two": "5.233367e-01"
+ },
+ "HuggingFaceTB__SmolLM2-135M-Instruct": {
+  "layers": 30,
+  "units": 46080,
+  "positive": 23060,
+  "nonzero": 46080,
+  "p_two": "8.558337e-01"
+ },
+ "HuggingFaceTB__SmolLM2-360M": {
+  "layers": 32,
+  "units": 81920,
+  "positive": 41038,
+  "nonzero": 81920,
+  "p_two": "5.881304e-01"
+ },
+ "Qwen__Qwen3.5-0.8B": {
+  "layers": 24,
+  "units": 86016,
+  "positive": 42974,
+  "nonzero": 86016,
+  "p_two": "8.192990e-01"
+ },
+ "Qwen__Qwen3.5-2B": {
+  "layers": 24,
+  "units": 147456,
+  "positive": 73680,
+  "nonzero": 147456,
+  "p_two": "8.046020e-01"
+ },
+ "R_vs_preGRPO": {
+  "tensors_identical": 200,
+  "tensors_different": 507,
+  "mlp_identical": 0,
+  "mlp_different": 132,
+  "first_different": [
+   "lm_head.weight",
+   "model.embed_tokens.weight",
+   "model.layers.0.feed_forward.down_proj.weight",
+   "model.layers.0.feed_forward.gate_proj.weight",
+   "model.layers.0.feed_forward.up_proj.weight",
+   "model.layers.0.mamba.conv1d.bias",
+   "model.layers.0.mamba.conv1d.weight",
+   "model.layers.0.mamba.in_proj.weight"
+  ],
+  "only_in_R": [],
+  "only_in_pre": []
+ },
+ "falcon_weight_sign_vs_trace_skew": {
+  "w+_skew+": 58253,
+  "w+_skew-": 12247,
+  "w-_skew+": 6430,
+  "w-_skew-": 13182,
+  "agree": 71435,
+  "units": 90112
+ }
+}
