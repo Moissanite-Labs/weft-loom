@@ -35,7 +35,7 @@ Each finding says what kind of evidence it rests on. The proofs are written out 
 **What reproduces.** Where we could rebuild the site's numbers, they come out close, in one case only under a post hoc reading. Here a strong pair is a matched pair whose correlation is at least 0.3 in size, the plan's main cut.
 
 - Unrelated models agree about half the time, as the site says. When either model has free signs this is a theorem (finding a).
-- The site's caveat, quoted in finding c, names Pythia and Falcon-H1 Tiny as models whose units cannot point either way or lean, and puts their agreement at 83 to 87 percent. We measure 0.868 of strong pairs (finding c).
+- The site's caveat, quoted in finding c, names two models, Pythia, whose units cannot point either way, and Falcon-H1 Tiny, whose units lean to one side, and puts their agreement at 83 to 87 percent. We measure 0.868 of strong pairs (finding c).
 - The site's coin rule holds on a known pair: SmolLM2-135M and its Instruct fine-tune agree in nearly every strong pair, with nearly every unit in the same position. SmolLM2-135M and 360M, which the site counts as unrelated, sit at chance (finding d).
 - The two Qwen3.5 models we read agree in 0.869 of strong pairs, against the site's 93 percent (finding d).
 - The site's numbers for Pythia's training checkpoints come out close when units are matched within each layer, a post hoc reading (finding f).
@@ -140,7 +140,7 @@ The site says every unrelated pair with at least 200 strong matches lands betwee
 
 If each pair was tested in both directions, the bound doubles to 1.5e-3. Each further pair, such as those of the 6 more Gemma 3 models the site also compared, adds at most 1.5e-6.
 
-So the binomial law, applied to every pair the site compared, is rejected at p at most 7.4e-4, or 1.5e-3 with both directions. The derivation and the refuter leave four explanations, and the site's text does not tell them apart.
+So the binomial law, applied to the 496 pairs, is rejected at p at most 7.4e-4, or 1.5e-3 with both directions. The derivation and the refuter leave four explanations, and the site's text does not tell them apart.
 
 - The 33 percent pair's source lacks free signs: a plain block such as Pythia, or a gated model whose coin was lost (finding a). Then the cluster law governs and the spread is wider. In our small networks with a plain GELU source and a gated target, unrelated pairs ranged from 0.355 to 0.633 at 256 matches.
 - The site pools the matches of both directions, so each model's units appear more than once and the count is not of the form the laws assume.
@@ -227,7 +227,11 @@ Sampled, on two-block networks with 128 units per block (256 matched pairs) trai
 | Same start, other data order | 40 | 0.998 (0.988 to 1.000) | 40 | 40 |
 | Copy with units reordered and flipped at random | 40 | 0.497 (0.457 to 0.559) | 0 | 0 |
 
-The binomial over-rejects only where the source lacks free signs, as the law says. One run with a fixed source network flagged 6 of 200 under both laws. Four replications with other fixed sources flagged 1, 2, 2 and 2 under the cluster law, so we read the first as chance among the many arms and cuts we looked at, and keep it on record. Every descendant arm we ran was flagged in 40 of 40 pairs.
+The binomial over-rejects only where the source lacks free signs, as the law says.
+
+One run with a fixed source network flagged 6 of 200 under both laws (one-sided, p below 0.01, counting every matched pair). Four replications with other fixed sources flagged 1, 2, 2 and 2 under the cluster law. With the 0.3 cut the first run flagged 8 and the replications 1, 0, 1 and 1.
+
+We read the first as chance among the many arms and cuts we looked at, and keep it on record. Every descendant arm we ran was flagged in 40 of 40 pairs.
 
 ### Predictions
 
