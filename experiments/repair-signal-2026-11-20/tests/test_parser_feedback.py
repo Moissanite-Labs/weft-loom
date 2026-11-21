@@ -34,6 +34,11 @@ class Parser(unittest.TestCase):
             with self.subTest(t=t):
                 self.bad(t)
 
+    def test_empty_reply_gets_its_own_reason(self):
+        for t in ["", "  \n", "```\n```"]:
+            with self.subTest(t=t):
+                self.assertEqual(rsig.parse_candidate(t, 2), (None, "the reply was empty"))
+
     def test_exact_value_survives(self):
         self.assertEqual(self.ok("x0 = 1/3\nx1 = 0")[0] * 3, 1)
 

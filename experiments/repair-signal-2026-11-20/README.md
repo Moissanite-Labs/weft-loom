@@ -25,8 +25,11 @@ Check the harness (verified, no model needed):
 ```
 python3 -O -B -W error -m unittest discover -s tests
 python3 -O -B -W error selftest.py
+python3 -I -B selftest.py
 python3 mutate.py
 ```
+
+The unit tests are in `tests/`, including `tests/test_decision_rule.py`, which pins the preregistered decision rule at each boundary. They run 55 tests. `mutate.py` applies 45 deliberate breaks, one at a time, and must report zero survivors. For each break it runs the unit tests, the self-test and `recount_controls.py`.
 
 Run against a local server that speaks the OpenAI chat protocol, such as llama-server. Replace `NAME` with a label for the model. The `--model` value is sent to the server as the model name.
 
@@ -78,6 +81,8 @@ The first command reproduces `results/Qwen3.8-27B-AD-Q4_K_M-analysis.txt` and th
 `recount.py` was written after the run and is not part of the registered analysis. It shares no code with the harness. It reads the constraints from the logged prompt, parses each reply with its own parser, rebuilds every verdict with exact fractions and stops on any disagreement with the log.
 
 `recount_controls.py` feeds it seven corrupted copies of the tier S log and expects each to be refused. It also compares the recount's reply parser with the harness parser on 9,010 generated replies and on every logged tier S reply. The two must agree on each.
+
+It also runs 15 tests in all. They include a pin of every number `recount.py` prints for both models' logs (`recount_golden.json`, which must match the committed `results/*-recount.txt` files) and checks of the reply reader on lines that break one rule each.
 
 Each log line holds the prompt, the reply, hashes of the chat and the reply, the checker verdict and the violations. Nothing is sent anywhere except the chosen URL.
 

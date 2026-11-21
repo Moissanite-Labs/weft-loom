@@ -8,13 +8,16 @@ local stub server.
 """
 import json
 import os
+import sys
 import tempfile
 import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-import analyze
-import rsig
-import runner
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # python3 -I drops the script directory
+
+import analyze  # noqa: E402
+import rsig  # noqa: E402
+import runner  # noqa: E402
 
 
 class SelfTestFailure(Exception):

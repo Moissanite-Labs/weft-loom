@@ -95,12 +95,55 @@ class RecountControls(unittest.TestCase):
         self.refused(rows, "was not sent the feedback")
 
 
+class PinnedOutput(unittest.TestCase):
+    """Every number recount.py prints for the committed logs of both models, pinned in recount_golden.json."""
+
+    MODELS = ("Qwen3.8-27B-AD-Q4_K_M", "gemma-4-E4B-it-Q8_0")
+
+    def golden(self):
+        with open(os.path.join(HERE, "recount_golden.json"), encoding="utf-8") as fh:
+            return json.load(fh)
+
+    def test_full_output_matches_golden(self):
+        golden = self.golden()
+        for model in self.MODELS:
+            for tier in ("S", "M"):
+                got = recount.recount(os.path.join(HERE, "results", "%s-%s.jsonl" % (model, tier)))
+                got.pop("file")
+                self.assertEqual(json.loads(json.dumps(got)), golden[model][tier], (model, tier))
+
+    def test_golden_matches_the_committed_recount_files(self):
+        golden = self.golden()
+        for model in self.MODELS:
+            with open(os.path.join(HERE, "results", "%s-recount.txt" % model), encoding="utf-8") as fh:
+                committed = json.load(fh)
+            for entry, tier in zip(committed, ("S", "M")):
+                entry.pop("file")
+                self.assertEqual(entry, golden[model][tier], (model, tier))
+
+
+class ReadLineControls(unittest.TestCase):
+    """Each line breaks one guard of recount.read_line, so a copy without that guard accepts it or crashes."""
+
+    def test_wrong_separator_is_unreadable(self):
+        for line in ["x0 : 3", "x0 - 3", "x0 < 3", "x0 3", "x0", "x0 =", "x0 = -"]:
+            self.assertIsNone(recount.read_line(line), line)
+
+    def test_closing_assignment_of_exactly_n_lines_with_a_stray_fence(self):
+        self.assertEqual(recount.closing_assignment("x0 = 1\nx1 = 2\n```", 2), {0: 1, 1: 2})
+        self.assertIsNone(recount.closing_assignment("x0 = 1\n```", 2))
+
+    def test_dangling_slash_is_unreadable(self):
+        for line in ["x0 = 3/", "x0 = 3/ 4", "x0 = 3/x"]:
+            self.assertIsNone(recount.read_line(line), line)
+
+
 class ParserAgreement(unittest.TestCase):
     """recount.py's reply reader and the harness's parser are written separately. They must accept the same replies."""
 
     PIECES = ["x0 = 1", "x1 = -3/2", "x2 = 0", "x3 = 7/4", "x0=1", "x1 =\t2", "x00 = 1", "x4 = 1", "x1 = 1/0", "x1 = 1.5",
               "x1 = +1", "x2 = 1234567890123", "x2 = 123456789012", "x3 = 1/1234567890123", "x1 = \u0663", "", "  ",
-              "```", "```text", "Here is the answer:", "x1 = 2 ", "x1 = 2/3/4", "x = 1", "x1 = -", "X1 = 1", "x1 == 1", "x1 = 1 # ok"]
+              "```", "```text", "Here is the answer:", "x1 = 2 ", "x1 = 2/3/4", "x = 1", "x1 = -", "X1 = 1", "x1 == 1", "x1 = 1 # ok", "x1 : 1", "x1 - 1", "x1 = 1/"]
 
     def test_same_verdict_and_values_on_generated_replies(self):
         import random

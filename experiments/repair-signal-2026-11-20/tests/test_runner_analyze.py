@@ -20,6 +20,10 @@ def unit(model="m", arm="C", inst=1, tier="S", passed=True, rnd=2, k=4):
 
 
 class Mocks(unittest.TestCase):
+    def test_unknown_mock_kind_is_refused(self):
+        with self.assertRaises(ValueError):
+            runner.mock_chat("folow")
+
     def test_follow_first_answer_is_zeros_then_moves_by_excess(self):
         inst = INSTS[0]
         chat = runner.mock_chat("follow")

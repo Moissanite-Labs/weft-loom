@@ -9,7 +9,7 @@ import sys
 import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-FILES = ["rsig.py", "runner.py", "analyze.py", "stats.py", "selftest.py"]
+FILES = ["rsig.py", "runner.py", "analyze.py", "stats.py", "selftest.py", "recount.py"]
 
 # (name, file, old text, new text)
 MUTATIONS = [
@@ -56,6 +56,23 @@ MUTATIONS = [
      'wins = sum(1 for i in ids if b[i]["passed"] and not a[i]["passed"])'),
     ("decision rule ignores the threshold", "analyze.py", "ALPHA = 0.025", "ALPHA = 1.0"),
     ("tiers pooled", "analyze.py", 't.setdefault((u["model"], u["tier"]), {})', 't.setdefault((u["model"], ""), {})'),
+    ("empty reply gets no reason of its own", "rsig.py", '    if not body.strip():\n        return None, "the reply was empty"\n', ""),
+    ("unknown mock kind is accepted", "runner.py", "    if kind not in MOCK_KINDS:\n        raise ValueError(kind)\n", "    pass\n"),
+    ("decision rule: floor is exclusive", "analyze.py", "all(r <= EDGE for r in rates)", "all(r < EDGE for r in rates)"),
+    ("decision rule: ceiling is exclusive", "analyze.py", "all(r >= 1 - EDGE for r in rates)", "all(r > 1 - EDGE for r in rates)"),
+    ("decision rule: ten discordant pairs are too few", "analyze.py", "< MIN_DISCORDANT:", "<= MIN_DISCORDANT:"),
+    ("decision rule: p equal to the threshold is not support", "analyze.py", 'primary["p_pass_sign"] <= ALPHA', 'primary["p_pass_sign"] < ALPHA'),
+    ("decision rule: reverse p at the threshold is not against", "analyze.py", 'primary["p_reverse"] <= ALPHA', 'primary["p_reverse"] < ALPHA'),
+    ("decision rule: a tie is not against", "analyze.py", 'primary["first_only"] <= primary["second_only"]', 'primary["first_only"] < primary["second_only"]'),
+    ("overall ignores a tier against", "analyze.py", 'if "supports" in vs and "against" not in vs:', 'if "supports" in vs:'),
+    ("recount reads a colon as the separator", "recount.py", 'line[at] != "=":', 'line[at] not in "=:":'),
+    ("recount accepts a dangling slash", "recount.py", "if den is None:\n            return None", "if den is None:\n            den = \"1\""),
+    ("recount accepts trailing text", "recount.py", "if at != len(line) or int(den) == 0:", "if int(den) == 0:"),
+    ("recount accepts a short assignment", "recount.py", "return values if len(values) == n else None", "return values"),
+    ("recount skips the verdict comparison", "recount.py", "if verdict != r[\"verdict\"]:", "if False:"),
+    ("recount tail needs more than n lines", "recount.py", "if len(lines) >= n else None", "if len(lines) > n else None"),
+    ("recount stops counting decimal answers", "recount.py", "+= decimal_answer(r[\"reply\"], n)", "+= 0"),
+    ("recount misreads the closing assignment", "recount.py", "all(tail[u] - tail[w] - b <= 0 for _, u, w, b in cons)", "True"),
 ]
 
 
@@ -71,6 +88,8 @@ def checks(d):
         return "unit tests"
     if run([py] + flags + ["selftest.py"], d) != 0:
         return "selftest"
+    if run([py, "-I", "-B", "recount_controls.py"], d) != 0:
+        return "recount controls"
     return None
 
 
@@ -79,7 +98,7 @@ def main():
     base = tempfile.mkdtemp(prefix="rsig-mut-")
     try:
         d = os.path.join(base, "clean")
-        shutil.copytree(HERE, d, ignore=shutil.ignore_patterns("__pycache__", ".git", "texts", "*.jsonl", "results"))
+        shutil.copytree(HERE, d, ignore=shutil.ignore_patterns("__pycache__", ".git", "texts"))
         if checks(d) is not None:
             print("clean copy is not green")
             return 2

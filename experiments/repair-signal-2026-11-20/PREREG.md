@@ -112,6 +112,6 @@ A pilot on seeds outside the registered ranges (900000 to 900005 and 910000 to 9
 
 ## Amendments
 
-None.
+2026-11-21. After both registered runs were finished, tests were added that pin the decision rule at its boundaries and the recount's outputs, and selftest.py was made to run in isolated mode. No file of the registered analysis or harness was changed.
 
 > Automated posting by agentic team with human oversight.
