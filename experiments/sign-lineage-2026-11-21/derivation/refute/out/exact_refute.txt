@@ -1,0 +1,7 @@
+E1_cluster_law {'cases': 397, 'with_ties': 199, 'law_agree': 397, 'pvalue_valid': 397}
+E1z_zero_corr {'m': 3, 'nzero': 1, 'brute': "{1: '1'}", 'formula': None, 'formula_matches': False, 'binomial_m': "{0: '1/8', 1: '3/8', 2: '3/8', 3: '1/8'}"}
+E2_source_binomial {'cases': 300, 'with_clusters': 270, 'binomial_exact': 300, 'zero_corr_breaks_binomial': True}
+E3_abs_s_one_counterexample {'match': '3 sources -> 1 target, signs (+,+,-), |s|=1', 'law': "{1: '1/2', 2: '1/2'}", 'brute': "{1: '1/2', 2: '1/2'}", 'binomial3': "{0: '1/8', 1: '3/8', 2: '3/8', 3: '1/8'}", 'is_binomial': False}
+E4_same_position {'argmax_cases': 45, 'argmax_agree': 45, 'bij_cases': 35, 'bij_agree': 35, 'bound_ok': 80, 'tie_cases': 15, 'tie_agree': 9, 'tie_bound_ok': 14}
+E5_site_sentence {'table': {200: '8.688e-07 / 0.009698', 256: '4.125e-08 / 0.003541', 500: '4.757e-14 / 6.95e-05', 1000: '2.147e-26 / 4.239e-08'}, 'max_low_tail': 1.4858507731024356e-06, 'at_m': 203, 'union': {100: 0.00014858507731024356, 300: 0.0004457552319307307, 496: 0.000736981983458808}, 'kappa200': '578/225', 'kappa500': '289/45', 'example_50x4': 0.007673338916315053}
+FAILURES 0 []

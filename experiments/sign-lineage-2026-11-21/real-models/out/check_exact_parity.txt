@@ -1,0 +1,4 @@
+mode '-I -B' exit 0
+mode '-I -O -B' exit 0
+mode '-I -B -W error' exit 0
+outputs byte-identical

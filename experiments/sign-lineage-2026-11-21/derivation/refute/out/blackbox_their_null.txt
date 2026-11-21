@@ -1,0 +1,3 @@
+cluster_pvalues vs brute force: 300 / 300 agree
+zero sign rejected: CheckFailure
+same_position_law vs brute force: 40 / 40 agree

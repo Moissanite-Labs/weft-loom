@@ -1,0 +1,1410 @@
+{
+ "tiiuae__Falcon-H1-Tiny-R-0.6B": {
+  "gate_up_inner_positive": {
+   "num": 70500,
+   "den": 90112
+  },
+  "p_two": "4.3238e-6626 (display rounded)",
+  "up_rowsum_positive": {
+   "num": 45101,
+   "den": 90112
+  },
+  "down_colsum_positive": {
+   "num": 45419,
+   "den": 90112
+  },
+  "per_layer": [
+   {
+    "layer": 0,
+    "gate_up_inner_positive": 1838,
+    "units": 2048
+   },
+   {
+    "layer": 1,
+    "gate_up_inner_positive": 1841,
+    "units": 2048
+   },
+   {
+    "layer": 2,
+    "gate_up_inner_positive": 1825,
+    "units": 2048
+   },
+   {
+    "layer": 3,
+    "gate_up_inner_positive": 1805,
+    "units": 2048
+   },
+   {
+    "layer": 4,
+    "gate_up_inner_positive": 1708,
+    "units": 2048
+   },
+   {
+    "layer": 5,
+    "gate_up_inner_positive": 1660,
+    "units": 2048
+   },
+   {
+    "layer": 6,
+    "gate_up_inner_positive": 1597,
+    "units": 2048
+   },
+   {
+    "layer": 7,
+    "gate_up_inner_positive": 1588,
+    "units": 2048
+   },
+   {
+    "layer": 8,
+    "gate_up_inner_positive": 1610,
+    "units": 2048
+   },
+   {
+    "layer": 9,
+    "gate_up_inner_positive": 1522,
+    "units": 2048
+   },
+   {
+    "layer": 10,
+    "gate_up_inner_positive": 1461,
+    "units": 2048
+   },
+   {
+    "layer": 11,
+    "gate_up_inner_positive": 1454,
+    "units": 2048
+   },
+   {
+    "layer": 12,
+    "gate_up_inner_positive": 1484,
+    "units": 2048
+   },
+   {
+    "layer": 13,
+    "gate_up_inner_positive": 1452,
+    "units": 2048
+   },
+   {
+    "layer": 14,
+    "gate_up_inner_positive": 1427,
+    "units": 2048
+   },
+   {
+    "layer": 15,
+    "gate_up_inner_positive": 1427,
+    "units": 2048
+   },
+   {
+    "layer": 16,
+    "gate_up_inner_positive": 1458,
+    "units": 2048
+   },
+   {
+    "layer": 17,
+    "gate_up_inner_positive": 1379,
+    "units": 2048
+   },
+   {
+    "layer": 18,
+    "gate_up_inner_positive": 1461,
+    "units": 2048
+   },
+   {
+    "layer": 19,
+    "gate_up_inner_positive": 1461,
+    "units": 2048
+   },
+   {
+    "layer": 20,
+    "gate_up_inner_positive": 1461,
+    "units": 2048
+   },
+   {
+    "layer": 21,
+    "gate_up_inner_positive": 1533,
+    "units": 2048
+   },
+   {
+    "layer": 22,
+    "gate_up_inner_positive": 1504,
+    "units": 2048
+   },
+   {
+    "layer": 23,
+    "gate_up_inner_positive": 1547,
+    "units": 2048
+   },
+   {
+    "layer": 24,
+    "gate_up_inner_positive": 1540,
+    "units": 2048
+   },
+   {
+    "layer": 25,
+    "gate_up_inner_positive": 1528,
+    "units": 2048
+   },
+   {
+    "layer": 26,
+    "gate_up_inner_positive": 1576,
+    "units": 2048
+   },
+   {
+    "layer": 27,
+    "gate_up_inner_positive": 1593,
+    "units": 2048
+   },
+   {
+    "layer": 28,
+    "gate_up_inner_positive": 1600,
+    "units": 2048
+   },
+   {
+    "layer": 29,
+    "gate_up_inner_positive": 1648,
+    "units": 2048
+   },
+   {
+    "layer": 30,
+    "gate_up_inner_positive": 1623,
+    "units": 2048
+   },
+   {
+    "layer": 31,
+    "gate_up_inner_positive": 1681,
+    "units": 2048
+   },
+   {
+    "layer": 32,
+    "gate_up_inner_positive": 1657,
+    "units": 2048
+   },
+   {
+    "layer": 33,
+    "gate_up_inner_positive": 1666,
+    "units": 2048
+   },
+   {
+    "layer": 34,
+    "gate_up_inner_positive": 1701,
+    "units": 2048
+   },
+   {
+    "layer": 35,
+    "gate_up_inner_positive": 1687,
+    "units": 2048
+   },
+   {
+    "layer": 36,
+    "gate_up_inner_positive": 1686,
+    "units": 2048
+   },
+   {
+    "layer": 37,
+    "gate_up_inner_positive": 1735,
+    "units": 2048
+   },
+   {
+    "layer": 38,
+    "gate_up_inner_positive": 1756,
+    "units": 2048
+   },
+   {
+    "layer": 39,
+    "gate_up_inner_positive": 1731,
+    "units": 2048
+   },
+   {
+    "layer": 40,
+    "gate_up_inner_positive": 1721,
+    "units": 2048
+   },
+   {
+    "layer": 41,
+    "gate_up_inner_positive": 1663,
+    "units": 2048
+   },
+   {
+    "layer": 42,
+    "gate_up_inner_positive": 1642,
+    "units": 2048
+   },
+   {
+    "layer": 43,
+    "gate_up_inner_positive": 1563,
+    "units": 2048
+   }
+  ],
+  "skipped_prefixes": []
+ },
+ "tiiuae__Falcon-H1-Tiny-R-0.6B-pre-GRPO": {
+  "gate_up_inner_positive": {
+   "num": 70500,
+   "den": 90112
+  },
+  "p_two": "4.3238e-6626 (display rounded)",
+  "up_rowsum_positive": {
+   "num": 45101,
+   "den": 90112
+  },
+  "down_colsum_positive": {
+   "num": 45419,
+   "den": 90112
+  },
+  "per_layer": [
+   {
+    "layer": 0,
+    "gate_up_inner_positive": 1838,
+    "units": 2048
+   },
+   {
+    "layer": 1,
+    "gate_up_inner_positive": 1841,
+    "units": 2048
+   },
+   {
+    "layer": 2,
+    "gate_up_inner_positive": 1825,
+    "units": 2048
+   },
+   {
+    "layer": 3,
+    "gate_up_inner_positive": 1805,
+    "units": 2048
+   },
+   {
+    "layer": 4,
+    "gate_up_inner_positive": 1708,
+    "units": 2048
+   },
+   {
+    "layer": 5,
+    "gate_up_inner_positive": 1660,
+    "units": 2048
+   },
+   {
+    "layer": 6,
+    "gate_up_inner_positive": 1597,
+    "units": 2048
+   },
+   {
+    "layer": 7,
+    "gate_up_inner_positive": 1588,
+    "units": 2048
+   },
+   {
+    "layer": 8,
+    "gate_up_inner_positive": 1610,
+    "units": 2048
+   },
+   {
+    "layer": 9,
+    "gate_up_inner_positive": 1522,
+    "units": 2048
+   },
+   {
+    "layer": 10,
+    "gate_up_inner_positive": 1461,
+    "units": 2048
+   },
+   {
+    "layer": 11,
+    "gate_up_inner_positive": 1454,
+    "units": 2048
+   },
+   {
+    "layer": 12,
+    "gate_up_inner_positive": 1484,
+    "units": 2048
+   },
+   {
+    "layer": 13,
+    "gate_up_inner_positive": 1452,
+    "units": 2048
+   },
+   {
+    "layer": 14,
+    "gate_up_inner_positive": 1427,
+    "units": 2048
+   },
+   {
+    "layer": 15,
+    "gate_up_inner_positive": 1427,
+    "units": 2048
+   },
+   {
+    "layer": 16,
+    "gate_up_inner_positive": 1458,
+    "units": 2048
+   },
+   {
+    "layer": 17,
+    "gate_up_inner_positive": 1379,
+    "units": 2048
+   },
+   {
+    "layer": 18,
+    "gate_up_inner_positive": 1461,
+    "units": 2048
+   },
+   {
+    "layer": 19,
+    "gate_up_inner_positive": 1461,
+    "units": 2048
+   },
+   {
+    "layer": 20,
+    "gate_up_inner_positive": 1461,
+    "units": 2048
+   },
+   {
+    "layer": 21,
+    "gate_up_inner_positive": 1533,
+    "units": 2048
+   },
+   {
+    "layer": 22,
+    "gate_up_inner_positive": 1504,
+    "units": 2048
+   },
+   {
+    "layer": 23,
+    "gate_up_inner_positive": 1547,
+    "units": 2048
+   },
+   {
+    "layer": 24,
+    "gate_up_inner_positive": 1540,
+    "units": 2048
+   },
+   {
+    "layer": 25,
+    "gate_up_inner_positive": 1528,
+    "units": 2048
+   },
+   {
+    "layer": 26,
+    "gate_up_inner_positive": 1576,
+    "units": 2048
+   },
+   {
+    "layer": 27,
+    "gate_up_inner_positive": 1593,
+    "units": 2048
+   },
+   {
+    "layer": 28,
+    "gate_up_inner_positive": 1600,
+    "units": 2048
+   },
+   {
+    "layer": 29,
+    "gate_up_inner_positive": 1648,
+    "units": 2048
+   },
+   {
+    "layer": 30,
+    "gate_up_inner_positive": 1623,
+    "units": 2048
+   },
+   {
+    "layer": 31,
+    "gate_up_inner_positive": 1681,
+    "units": 2048
+   },
+   {
+    "layer": 32,
+    "gate_up_inner_positive": 1657,
+    "units": 2048
+   },
+   {
+    "layer": 33,
+    "gate_up_inner_positive": 1666,
+    "units": 2048
+   },
+   {
+    "layer": 34,
+    "gate_up_inner_positive": 1701,
+    "units": 2048
+   },
+   {
+    "layer": 35,
+    "gate_up_inner_positive": 1687,
+    "units": 2048
+   },
+   {
+    "layer": 36,
+    "gate_up_inner_positive": 1686,
+    "units": 2048
+   },
+   {
+    "layer": 37,
+    "gate_up_inner_positive": 1735,
+    "units": 2048
+   },
+   {
+    "layer": 38,
+    "gate_up_inner_positive": 1756,
+    "units": 2048
+   },
+   {
+    "layer": 39,
+    "gate_up_inner_positive": 1731,
+    "units": 2048
+   },
+   {
+    "layer": 40,
+    "gate_up_inner_positive": 1721,
+    "units": 2048
+   },
+   {
+    "layer": 41,
+    "gate_up_inner_positive": 1663,
+    "units": 2048
+   },
+   {
+    "layer": 42,
+    "gate_up_inner_positive": 1642,
+    "units": 2048
+   },
+   {
+    "layer": 43,
+    "gate_up_inner_positive": 1563,
+    "units": 2048
+   }
+  ],
+  "skipped_prefixes": []
+ },
+ "tiiuae__Falcon-H1-Tiny-90M-Base": {
+  "gate_up_inner_positive": {
+   "num": 12162,
+   "den": 18432
+  },
+  "p_two": "1.4342e-418 (display rounded)",
+  "up_rowsum_positive": {
+   "num": 9111,
+   "den": 18432
+  },
+  "down_colsum_positive": {
+   "num": 9104,
+   "den": 18432
+  },
+  "per_layer": [
+   {
+    "layer": 0,
+    "gate_up_inner_positive": 641,
+    "units": 768
+   },
+   {
+    "layer": 1,
+    "gate_up_inner_positive": 574,
+    "units": 768
+   },
+   {
+    "layer": 2,
+    "gate_up_inner_positive": 571,
+    "units": 768
+   },
+   {
+    "layer": 3,
+    "gate_up_inner_positive": 555,
+    "units": 768
+   },
+   {
+    "layer": 4,
+    "gate_up_inner_positive": 509,
+    "units": 768
+   },
+   {
+    "layer": 5,
+    "gate_up_inner_positive": 474,
+    "units": 768
+   },
+   {
+    "layer": 6,
+    "gate_up_inner_positive": 464,
+    "units": 768
+   },
+   {
+    "layer": 7,
+    "gate_up_inner_positive": 455,
+    "units": 768
+   },
+   {
+    "layer": 8,
+    "gate_up_inner_positive": 455,
+    "units": 768
+   },
+   {
+    "layer": 9,
+    "gate_up_inner_positive": 479,
+    "units": 768
+   },
+   {
+    "layer": 10,
+    "gate_up_inner_positive": 532,
+    "units": 768
+   },
+   {
+    "layer": 11,
+    "gate_up_inner_positive": 553,
+    "units": 768
+   },
+   {
+    "layer": 12,
+    "gate_up_inner_positive": 526,
+    "units": 768
+   },
+   {
+    "layer": 13,
+    "gate_up_inner_positive": 543,
+    "units": 768
+   },
+   {
+    "layer": 14,
+    "gate_up_inner_positive": 565,
+    "units": 768
+   },
+   {
+    "layer": 15,
+    "gate_up_inner_positive": 542,
+    "units": 768
+   },
+   {
+    "layer": 16,
+    "gate_up_inner_positive": 496,
+    "units": 768
+   },
+   {
+    "layer": 17,
+    "gate_up_inner_positive": 501,
+    "units": 768
+   },
+   {
+    "layer": 18,
+    "gate_up_inner_positive": 496,
+    "units": 768
+   },
+   {
+    "layer": 19,
+    "gate_up_inner_positive": 460,
+    "units": 768
+   },
+   {
+    "layer": 20,
+    "gate_up_inner_positive": 442,
+    "units": 768
+   },
+   {
+    "layer": 21,
+    "gate_up_inner_positive": 445,
+    "units": 768
+   },
+   {
+    "layer": 22,
+    "gate_up_inner_positive": 442,
+    "units": 768
+   },
+   {
+    "layer": 23,
+    "gate_up_inner_positive": 442,
+    "units": 768
+   }
+  ],
+  "skipped_prefixes": []
+ },
+ "HuggingFaceTB__SmolLM2-135M": {
+  "gate_up_inner_positive": {
+   "num": 22971,
+   "den": 46080
+  },
+  "p_two": "5.233367e-01",
+  "up_rowsum_positive": {
+   "num": 23103,
+   "den": 46080
+  },
+  "down_colsum_positive": {
+   "num": 22978,
+   "den": 46080
+  },
+  "per_layer": [
+   {
+    "layer": 0,
+    "gate_up_inner_positive": 790,
+    "units": 1536
+   },
+   {
+    "layer": 1,
+    "gate_up_inner_positive": 782,
+    "units": 1536
+   },
+   {
+    "layer": 2,
+    "gate_up_inner_positive": 772,
+    "units": 1536
+   },
+   {
+    "layer": 3,
+    "gate_up_inner_positive": 768,
+    "units": 1536
+   },
+   {
+    "layer": 4,
+    "gate_up_inner_positive": 786,
+    "units": 1536
+   },
+   {
+    "layer": 5,
+    "gate_up_inner_positive": 761,
+    "units": 1536
+   },
+   {
+    "layer": 6,
+    "gate_up_inner_positive": 755,
+    "units": 1536
+   },
+   {
+    "layer": 7,
+    "gate_up_inner_positive": 771,
+    "units": 1536
+   },
+   {
+    "layer": 8,
+    "gate_up_inner_positive": 741,
+    "units": 1536
+   },
+   {
+    "layer": 9,
+    "gate_up_inner_positive": 771,
+    "units": 1536
+   },
+   {
+    "layer": 10,
+    "gate_up_inner_positive": 760,
+    "units": 1536
+   },
+   {
+    "layer": 11,
+    "gate_up_inner_positive": 776,
+    "units": 1536
+   },
+   {
+    "layer": 12,
+    "gate_up_inner_positive": 760,
+    "units": 1536
+   },
+   {
+    "layer": 13,
+    "gate_up_inner_positive": 792,
+    "units": 1536
+   },
+   {
+    "layer": 14,
+    "gate_up_inner_positive": 749,
+    "units": 1536
+   },
+   {
+    "layer": 15,
+    "gate_up_inner_positive": 786,
+    "units": 1536
+   },
+   {
+    "layer": 16,
+    "gate_up_inner_positive": 786,
+    "units": 1536
+   },
+   {
+    "layer": 17,
+    "gate_up_inner_positive": 774,
+    "units": 1536
+   },
+   {
+    "layer": 18,
+    "gate_up_inner_positive": 749,
+    "units": 1536
+   },
+   {
+    "layer": 19,
+    "gate_up_inner_positive": 748,
+    "units": 1536
+   },
+   {
+    "layer": 20,
+    "gate_up_inner_positive": 753,
+    "units": 1536
+   },
+   {
+    "layer": 21,
+    "gate_up_inner_positive": 764,
+    "units": 1536
+   },
+   {
+    "layer": 22,
+    "gate_up_inner_positive": 795,
+    "units": 1536
+   },
+   {
+    "layer": 23,
+    "gate_up_inner_positive": 718,
+    "units": 1536
+   },
+   {
+    "layer": 24,
+    "gate_up_inner_positive": 757,
+    "units": 1536
+   },
+   {
+    "layer": 25,
+    "gate_up_inner_positive": 761,
+    "units": 1536
+   },
+   {
+    "layer": 26,
+    "gate_up_inner_positive": 784,
+    "units": 1536
+   },
+   {
+    "layer": 27,
+    "gate_up_inner_positive": 752,
+    "units": 1536
+   },
+   {
+    "layer": 28,
+    "gate_up_inner_positive": 768,
+    "units": 1536
+   },
+   {
+    "layer": 29,
+    "gate_up_inner_positive": 742,
+    "units": 1536
+   }
+  ],
+  "skipped_prefixes": []
+ },
+ "HuggingFaceTB__SmolLM2-360M": {
+  "gate_up_inner_positive": {
+   "num": 41038,
+   "den": 81920
+  },
+  "p_two": "5.881304e-01",
+  "up_rowsum_positive": {
+   "num": 40995,
+   "den": 81920
+  },
+  "down_colsum_positive": {
+   "num": 40932,
+   "den": 81920
+  },
+  "per_layer": [
+   {
+    "layer": 0,
+    "gate_up_inner_positive": 1279,
+    "units": 2560
+   },
+   {
+    "layer": 1,
+    "gate_up_inner_positive": 1284,
+    "units": 2560
+   },
+   {
+    "layer": 2,
+    "gate_up_inner_positive": 1308,
+    "units": 2560
+   },
+   {
+    "layer": 3,
+    "gate_up_inner_positive": 1288,
+    "units": 2560
+   },
+   {
+    "layer": 4,
+    "gate_up_inner_positive": 1283,
+    "units": 2560
+   },
+   {
+    "layer": 5,
+    "gate_up_inner_positive": 1306,
+    "units": 2560
+   },
+   {
+    "layer": 6,
+    "gate_up_inner_positive": 1272,
+    "units": 2560
+   },
+   {
+    "layer": 7,
+    "gate_up_inner_positive": 1304,
+    "units": 2560
+   },
+   {
+    "layer": 8,
+    "gate_up_inner_positive": 1245,
+    "units": 2560
+   },
+   {
+    "layer": 9,
+    "gate_up_inner_positive": 1263,
+    "units": 2560
+   },
+   {
+    "layer": 10,
+    "gate_up_inner_positive": 1272,
+    "units": 2560
+   },
+   {
+    "layer": 11,
+    "gate_up_inner_positive": 1303,
+    "units": 2560
+   },
+   {
+    "layer": 12,
+    "gate_up_inner_positive": 1266,
+    "units": 2560
+   },
+   {
+    "layer": 13,
+    "gate_up_inner_positive": 1265,
+    "units": 2560
+   },
+   {
+    "layer": 14,
+    "gate_up_inner_positive": 1306,
+    "units": 2560
+   },
+   {
+    "layer": 15,
+    "gate_up_inner_positive": 1295,
+    "units": 2560
+   },
+   {
+    "layer": 16,
+    "gate_up_inner_positive": 1300,
+    "units": 2560
+   },
+   {
+    "layer": 17,
+    "gate_up_inner_positive": 1287,
+    "units": 2560
+   },
+   {
+    "layer": 18,
+    "gate_up_inner_positive": 1254,
+    "units": 2560
+   },
+   {
+    "layer": 19,
+    "gate_up_inner_positive": 1287,
+    "units": 2560
+   },
+   {
+    "layer": 20,
+    "gate_up_inner_positive": 1270,
+    "units": 2560
+   },
+   {
+    "layer": 21,
+    "gate_up_inner_positive": 1275,
+    "units": 2560
+   },
+   {
+    "layer": 22,
+    "gate_up_inner_positive": 1299,
+    "units": 2560
+   },
+   {
+    "layer": 23,
+    "gate_up_inner_positive": 1277,
+    "units": 2560
+   },
+   {
+    "layer": 24,
+    "gate_up_inner_positive": 1305,
+    "units": 2560
+   },
+   {
+    "layer": 25,
+    "gate_up_inner_positive": 1290,
+    "units": 2560
+   },
+   {
+    "layer": 26,
+    "gate_up_inner_positive": 1296,
+    "units": 2560
+   },
+   {
+    "layer": 27,
+    "gate_up_inner_positive": 1272,
+    "units": 2560
+   },
+   {
+    "layer": 28,
+    "gate_up_inner_positive": 1237,
+    "units": 2560
+   },
+   {
+    "layer": 29,
+    "gate_up_inner_positive": 1248,
+    "units": 2560
+   },
+   {
+    "layer": 30,
+    "gate_up_inner_positive": 1338,
+    "units": 2560
+   },
+   {
+    "layer": 31,
+    "gate_up_inner_positive": 1264,
+    "units": 2560
+   }
+  ],
+  "skipped_prefixes": []
+ },
+ "HuggingFaceTB__SmolLM2-135M-Instruct": {
+  "gate_up_inner_positive": {
+   "num": 23060,
+   "den": 46080
+  },
+  "p_two": "8.558337e-01",
+  "up_rowsum_positive": {
+   "num": 23086,
+   "den": 46080
+  },
+  "down_colsum_positive": {
+   "num": 23006,
+   "den": 46080
+  },
+  "per_layer": [
+   {
+    "layer": 0,
+    "gate_up_inner_positive": 794,
+    "units": 1536
+   },
+   {
+    "layer": 1,
+    "gate_up_inner_positive": 784,
+    "units": 1536
+   },
+   {
+    "layer": 2,
+    "gate_up_inner_positive": 784,
+    "units": 1536
+   },
+   {
+    "layer": 3,
+    "gate_up_inner_positive": 783,
+    "units": 1536
+   },
+   {
+    "layer": 4,
+    "gate_up_inner_positive": 791,
+    "units": 1536
+   },
+   {
+    "layer": 5,
+    "gate_up_inner_positive": 759,
+    "units": 1536
+   },
+   {
+    "layer": 6,
+    "gate_up_inner_positive": 760,
+    "units": 1536
+   },
+   {
+    "layer": 7,
+    "gate_up_inner_positive": 769,
+    "units": 1536
+   },
+   {
+    "layer": 8,
+    "gate_up_inner_positive": 744,
+    "units": 1536
+   },
+   {
+    "layer": 9,
+    "gate_up_inner_positive": 772,
+    "units": 1536
+   },
+   {
+    "layer": 10,
+    "gate_up_inner_positive": 754,
+    "units": 1536
+   },
+   {
+    "layer": 11,
+    "gate_up_inner_positive": 777,
+    "units": 1536
+   },
+   {
+    "layer": 12,
+    "gate_up_inner_positive": 761,
+    "units": 1536
+   },
+   {
+    "layer": 13,
+    "gate_up_inner_positive": 805,
+    "units": 1536
+   },
+   {
+    "layer": 14,
+    "gate_up_inner_positive": 750,
+    "units": 1536
+   },
+   {
+    "layer": 15,
+    "gate_up_inner_positive": 790,
+    "units": 1536
+   },
+   {
+    "layer": 16,
+    "gate_up_inner_positive": 793,
+    "units": 1536
+   },
+   {
+    "layer": 17,
+    "gate_up_inner_positive": 775,
+    "units": 1536
+   },
+   {
+    "layer": 18,
+    "gate_up_inner_positive": 758,
+    "units": 1536
+   },
+   {
+    "layer": 19,
+    "gate_up_inner_positive": 754,
+    "units": 1536
+   },
+   {
+    "layer": 20,
+    "gate_up_inner_positive": 748,
+    "units": 1536
+   },
+   {
+    "layer": 21,
+    "gate_up_inner_positive": 763,
+    "units": 1536
+   },
+   {
+    "layer": 22,
+    "gate_up_inner_positive": 797,
+    "units": 1536
+   },
+   {
+    "layer": 23,
+    "gate_up_inner_positive": 728,
+    "units": 1536
+   },
+   {
+    "layer": 24,
+    "gate_up_inner_positive": 764,
+    "units": 1536
+   },
+   {
+    "layer": 25,
+    "gate_up_inner_positive": 767,
+    "units": 1536
+   },
+   {
+    "layer": 26,
+    "gate_up_inner_positive": 781,
+    "units": 1536
+   },
+   {
+    "layer": 27,
+    "gate_up_inner_positive": 746,
+    "units": 1536
+   },
+   {
+    "layer": 28,
+    "gate_up_inner_positive": 763,
+    "units": 1536
+   },
+   {
+    "layer": 29,
+    "gate_up_inner_positive": 746,
+    "units": 1536
+   }
+  ],
+  "skipped_prefixes": []
+ },
+ "Qwen__Qwen3.5-0.8B": {
+  "gate_up_inner_positive": {
+   "num": 42974,
+   "den": 86016
+  },
+  "p_two": "8.192990e-01",
+  "up_rowsum_positive": {
+   "num": 42777,
+   "den": 86016
+  },
+  "down_colsum_positive": {
+   "num": 43114,
+   "den": 86016
+  },
+  "per_layer": [
+   {
+    "layer": 0,
+    "gate_up_inner_positive": 1778,
+    "units": 3584
+   },
+   {
+    "layer": 1,
+    "gate_up_inner_positive": 1830,
+    "units": 3584
+   },
+   {
+    "layer": 2,
+    "gate_up_inner_positive": 1793,
+    "units": 3584
+   },
+   {
+    "layer": 3,
+    "gate_up_inner_positive": 1755,
+    "units": 3584
+   },
+   {
+    "layer": 4,
+    "gate_up_inner_positive": 1821,
+    "units": 3584
+   },
+   {
+    "layer": 5,
+    "gate_up_inner_positive": 1797,
+    "units": 3584
+   },
+   {
+    "layer": 6,
+    "gate_up_inner_positive": 1746,
+    "units": 3584
+   },
+   {
+    "layer": 7,
+    "gate_up_inner_positive": 1821,
+    "units": 3584
+   },
+   {
+    "layer": 8,
+    "gate_up_inner_positive": 1797,
+    "units": 3584
+   },
+   {
+    "layer": 9,
+    "gate_up_inner_positive": 1797,
+    "units": 3584
+   },
+   {
+    "layer": 10,
+    "gate_up_inner_positive": 1754,
+    "units": 3584
+   },
+   {
+    "layer": 11,
+    "gate_up_inner_positive": 1802,
+    "units": 3584
+   },
+   {
+    "layer": 12,
+    "gate_up_inner_positive": 1775,
+    "units": 3584
+   },
+   {
+    "layer": 13,
+    "gate_up_inner_positive": 1775,
+    "units": 3584
+   },
+   {
+    "layer": 14,
+    "gate_up_inner_positive": 1794,
+    "units": 3584
+   },
+   {
+    "layer": 15,
+    "gate_up_inner_positive": 1716,
+    "units": 3584
+   },
+   {
+    "layer": 16,
+    "gate_up_inner_positive": 1797,
+    "units": 3584
+   },
+   {
+    "layer": 17,
+    "gate_up_inner_positive": 1894,
+    "units": 3584
+   },
+   {
+    "layer": 18,
+    "gate_up_inner_positive": 1774,
+    "units": 3584
+   },
+   {
+    "layer": 19,
+    "gate_up_inner_positive": 1836,
+    "units": 3584
+   },
+   {
+    "layer": 20,
+    "gate_up_inner_positive": 1790,
+    "units": 3584
+   },
+   {
+    "layer": 21,
+    "gate_up_inner_positive": 1772,
+    "units": 3584
+   },
+   {
+    "layer": 22,
+    "gate_up_inner_positive": 1757,
+    "units": 3584
+   },
+   {
+    "layer": 23,
+    "gate_up_inner_positive": 1803,
+    "units": 3584
+   }
+  ],
+  "skipped_prefixes": [
+   "mtp.layers.0"
+  ]
+ },
+ "Qwen__Qwen3.5-2B": {
+  "gate_up_inner_positive": {
+   "num": 73680,
+   "den": 147456
+  },
+  "p_two": "8.046020e-01",
+  "up_rowsum_positive": {
+   "num": 73727,
+   "den": 147456
+  },
+  "down_colsum_positive": {
+   "num": 73452,
+   "den": 147456
+  },
+  "per_layer": [
+   {
+    "layer": 0,
+    "gate_up_inner_positive": 3018,
+    "units": 6144
+   },
+   {
+    "layer": 1,
+    "gate_up_inner_positive": 3052,
+    "units": 6144
+   },
+   {
+    "layer": 2,
+    "gate_up_inner_positive": 3078,
+    "units": 6144
+   },
+   {
+    "layer": 3,
+    "gate_up_inner_positive": 3043,
+    "units": 6144
+   },
+   {
+    "layer": 4,
+    "gate_up_inner_positive": 3099,
+    "units": 6144
+   },
+   {
+    "layer": 5,
+    "gate_up_inner_positive": 3111,
+    "units": 6144
+   },
+   {
+    "layer": 6,
+    "gate_up_inner_positive": 3063,
+    "units": 6144
+   },
+   {
+    "layer": 7,
+    "gate_up_inner_positive": 3152,
+    "units": 6144
+   },
+   {
+    "layer": 8,
+    "gate_up_inner_positive": 3084,
+    "units": 6144
+   },
+   {
+    "layer": 9,
+    "gate_up_inner_positive": 3065,
+    "units": 6144
+   },
+   {
+    "layer": 10,
+    "gate_up_inner_positive": 2976,
+    "units": 6144
+   },
+   {
+    "layer": 11,
+    "gate_up_inner_positive": 3106,
+    "units": 6144
+   },
+   {
+    "layer": 12,
+    "gate_up_inner_positive": 3084,
+    "units": 6144
+   },
+   {
+    "layer": 13,
+    "gate_up_inner_positive": 3106,
+    "units": 6144
+   },
+   {
+    "layer": 14,
+    "gate_up_inner_positive": 3030,
+    "units": 6144
+   },
+   {
+    "layer": 15,
+    "gate_up_inner_positive": 2985,
+    "units": 6144
+   },
+   {
+    "layer": 16,
+    "gate_up_inner_positive": 3078,
+    "units": 6144
+   },
+   {
+    "layer": 17,
+    "gate_up_inner_positive": 3105,
+    "units": 6144
+   },
+   {
+    "layer": 18,
+    "gate_up_inner_positive": 3079,
+    "units": 6144
+   },
+   {
+    "layer": 19,
+    "gate_up_inner_positive": 3122,
+    "units": 6144
+   },
+   {
+    "layer": 20,
+    "gate_up_inner_positive": 3073,
+    "units": 6144
+   },
+   {
+    "layer": 21,
+    "gate_up_inner_positive": 2993,
+    "units": 6144
+   },
+   {
+    "layer": 22,
+    "gate_up_inner_positive": 3069,
+    "units": 6144
+   },
+   {
+    "layer": 23,
+    "gate_up_inner_positive": 3109,
+    "units": 6144
+   }
+  ],
+  "skipped_prefixes": [
+   "mtp.layers.0"
+  ]
+ }
+}

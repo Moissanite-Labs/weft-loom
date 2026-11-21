@@ -1,0 +1,12 @@
+L15: 297 families present in the layer; families hit by the selection: 27
+   Adjacent brackets: }( )( )*(                  16/64 vs  77/3584  exact tail 8.9157e-14  x297 families = 2.6480e-11
+   ' · fe · ------- · }'                          6/64 vs  42/3584  exact tail 8.1123e-05  x297 families = 2.4094e-02
+   Brackets with commas and quotes                3/64 vs  12/3584  exact tail 1.0653e-03  x297 families = 3.1639e-01
+   Capital letter pieces: QU, GRA, TH             4/64 vs  28/3584  exact tail 1.3728e-03  x297 families = 4.0771e-01
+   Wheeler · type · isinstance · Briggs           2/64 vs   9/3584  exact tail 1.0425e-02  x297 families = 1.0000e+00
+L19: 292 families present in the layer; families hit by the selection: 39
+   Adjacent brackets: }( )( )*(                   4/64 vs  11/3584  exact tail 2.7798e-05  x292 families = 8.1171e-03
+   ' · fe · ------- · }'                          3/64 vs  14/3584  exact tail 1.7181e-03  x292 families = 5.0168e-01
+   Equals signs in equations (75% deep)           6/64 vs  76/3584  exact tail 2.1051e-03  x292 families = 6.1470e-01
+   Word pieces: -etts, -ses, -kan                 1/64 vs   1/3584  exact tail 1.7857e-02  x292 families = 1.0000e+00
+   Counted things: cars, towels, shirts           1/64 vs   1/3584  exact tail 1.7857e-02  x292 families = 1.0000e+00

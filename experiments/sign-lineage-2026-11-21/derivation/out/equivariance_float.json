@@ -1,0 +1,20 @@
+{
+ "logit_scale": 1.8752094507217407,
+ "max_logit_diff_sign_only_pair": 0.0,
+ "max_logit_diff_signed_perm_pair": 8.225440979003906e-06,
+ "max_weight_diff_sign_only_D1": 0.0,
+ "max_weight_diff_sign_only_U0": 0.0,
+ "seeds": {
+  "group_element_rng": 31337,
+  "init": [
+   777001,
+   777002
+  ],
+  "sign_pattern_rng": 5,
+  "steps": 2000,
+  "stream": [
+   0,
+   0
+  ]
+ }
+}

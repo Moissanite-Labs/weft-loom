@@ -1,0 +1,91 @@
+{
+ "max_over_pairs": 4.597167579756256e-05,
+ "note": "Extracted from the second checker's pair metadata files (not committed, they hold local paths): for 256 rows per pair, every entry recomputed in float64 against the float32 screen. Margin used by the screen: 2e-3.",
+ "pairs": {
+  "falcon__s135": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 4.099417111436132e-06,
+   "rows_checked": 256
+  },
+  "py_1k__py": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 3.1791532089764374e-05,
+   "rows_checked": 256
+  },
+  "py_32k__py": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 4.288668182017563e-05,
+   "rows_checked": 256
+  },
+  "py_8k__py": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 4.447621886694009e-05,
+   "rows_checked": 256
+  },
+  "py__falcon": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 3.7141255708750265e-06,
+   "rows_checked": 256
+  },
+  "py__falcon_gate": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 4.881715029214639e-06,
+   "rows_checked": 256
+  },
+  "py__py_s1": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 3.38249857616546e-05,
+   "rows_checked": 256
+  },
+  "py__py_s2": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 3.203683090480247e-05,
+   "rows_checked": 256
+  },
+  "py__s135": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 8.353248899028998e-06,
+   "rows_checked": 256
+  },
+  "py_s1__py_s2": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 4.597167579756256e-05,
+   "rows_checked": 256
+  },
+  "q08__q2": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 5.332873247776426e-06,
+   "rows_checked": 256
+  },
+  "s135__mylaund5150": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 1.5220019566331011e-05,
+   "rows_checked": 256
+  },
+  "s135__s135": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 2.747774124589597e-05,
+   "rows_checked": 256
+  },
+  "s135__s135L": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 1.5220019566331011e-05,
+   "rows_checked": 256
+  },
+  "s135__s135i": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 1.5220019566331011e-05,
+   "rows_checked": 256
+  },
+  "s135__s135i_shuf": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 5.398648913468307e-07,
+   "rows_checked": 256
+  },
+  "s135__s360": {
+   "argmax_agree": 256,
+   "max_abs_r32_minus_r64_all_entries": 1.0384575972466337e-05,
+   "rows_checked": 256
+  }
+ }
+}

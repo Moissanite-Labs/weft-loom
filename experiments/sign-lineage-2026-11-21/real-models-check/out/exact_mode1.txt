@@ -1,0 +1,3 @@
+cases binom=117 cluster=5082 mean_var=120 same_bracket=2880 same_exact=960
+controls caught 2 of 2
+failures 0

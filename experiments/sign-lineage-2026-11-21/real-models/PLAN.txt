@@ -1,0 +1,185 @@
+# Plan: the lineage instrument on small open models
+
+Seat [name removed], folder `homology/real-models/`, model tier opus, 2026-11-21. Written before any model is loaded.
+After this file is hashed into `PLAN.sha256` it does not change. Deviations go in `RESULTS.md`.
+
+Sources this plan rests on: `../first-principles/STATEMENTS.md` (S1-S6), the refuter's rulings in
+`../first-principles/refute/REFUTE.md` and `../first-principles/REFUTE-RESULT.json` (binding), and
+`../site-method/METHOD.md` sections 2, 4, 6.
+
+## (a) Corpus
+
+20,000 whitespace-separated words (Python `str.split()` on the source text), three parts, each a multiple of 200 words
+so that no chunk straddles two parts.
+
+| part | words | source | license |
+|---|---|---|---|
+| prose | 6,600 | Arthur Conan Doyle, *The Adventures of Sherlock Holmes*, Project Gutenberg eBook #1661, file `1661-0.txt` fetched from the Gutenberg mirror `https://gutenberg.pglaf.org/1/6/6/1661/1661-0.txt` (the main site `gutenberg.org` answered "Temporarily Down for Maintenance" on 2026-11-21). SHA-256 of the fetched file b9c105a5c0cf9fcb37c7d0211658851ed56074519c9455d15e20f04c0c5a3174. Words start at the first word of the sentence "To Sherlock Holmes she is always" (line 59) and run for 6,600 words. | public domain in the USA; Project Gutenberg License for the eBook file |
+| code | 6,800 | Python 3.14.6 standard library in `/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/`: all of `textwrap.py` (2,213 words, SHA-256 7f05d89c...dfa84544), then the first 4,587 words of `fractions.py` (SHA-256 7a95f1c5...21ef6) | PSF License Agreement (`LICENSE.txt` in the same install) |
+| math prose | 6,600 | our public drafts: first 3,400 words of `[local clone]/docs/09-gate-contracts.md` (SHA-256 5bf76eb9...340a), then first 3,200 words of `[local clone]/docs/10-exact-inertia-certificates.md` (SHA-256 93f007c5...0f02) | CC BY 4.0 (`LICENSE-DOCS` in each repo) |
+
+Assembly (`scripts/build_corpus.py`): for each source, the text from the start of its first chosen word to the end of
+its last chosen word, original whitespace kept. The corpus is 100 chunks of 200 consecutive words: 33 prose, 34 code,
+33 math. A chunk's text is the original substring from its first word's first character to its 200th word's last
+character (newlines and indentation kept). `data/corpus.json` holds the chunk texts and, per chunk, the character
+span of each of its 200 words. `data/corpus.txt` is the chunk texts joined by a blank line. The SHA-256 of both is
+recorded in `RESULTS.md`.
+
+## (b) Alignment
+
+Each chunk is run on its own (one forward pass per chunk, no padding, batch 1). Tokenization: the tokenizer's
+default call with `return_offsets_mapping=True` (fast tokenizers only), special tokens as the tokenizer adds them by
+default; the number of special tokens added is recorded per model. For each word, the value is taken at the last
+token whose offset span contains the word's last character (span start <= c < span end; a token whose span is
+empty is ignored). If two words map to the same token, both get that token's value and the count of such
+collisions is recorded per model. If a word's last character falls in no token span, the run stops and the
+tokenizer is reported. The trace of a unit is its vector of 20,000 word values, in corpus order.
+
+## (c) The trace
+
+Captured with a forward pre-hook on the module named below, reading its input, i.e. the vector the down projection
+multiplies. Forward passes in float32 on Apple MPS (CPU float32 if MPS fails for a model, recorded).
+
+| model family | block | hooked module (per layer i) | the value |
+|---|---|---|---|
+| SmolLM2 (LlamaForCausalLM) | gated SiLU | `model.layers[i].mlp.down_proj` | `silu(gate_proj x) * up_proj x` |
+| Pythia (GPTNeoXForCausalLM) | plain GELU, biases | `gpt_neox.layers[i].mlp.dense_4h_to_h` | `gelu(dense_h_to_4h x)` |
+| Falcon-H1 (FalconH1ForCausalLM) | gated SiLU, scalar multipliers | `model.layers[i].feed_forward.down_proj` | `up_proj x * silu(gate_proj x * gate_multiplier)` |
+| Qwen3.5 (optional) | gated SiLU | the `down_proj` of each text decoder layer's `mlp` (name recorded at load) | `silu(gate_proj x) * up_proj x` |
+
+Traces are saved as float16 arrays, one file per layer, shape (20,000, h). If a value exceeds the float16 range the
+layer is saved in float32 instead and this is recorded. A unit's position is (layer, index).
+
+Exploratory extra trace, Falcon only, marked as mine: the gate factor alone `silu(gate_proj x * gate_multiplier)`,
+captured by a forward hook on `gate_proj` (this factor does not flip under the symmetry; it is the stand-in for the
+refuter's alternative (b), "the site's trace for Falcon is not the product").
+
+## (d) Matching and statistics
+
+All as in STATEMENTS.md S3-S4 with the refuter's tightenings.
+
+- Standardise each trace in float64 (mean 0, population sd 1). A unit whose trace has zero variance (all 20,000
+  float16 values equal) is dropped, on either side, and counted.
+- Correlation r_ij = z_i . z_j / T, T = 20,000. Every reported correlation is a float64 value. Route: a float32 screen
+  on MPS over all pairs finds, for each source row, every target with |r32| >= rowmax32 - 2e-3; those candidates are
+  recomputed in float64 on CPU and the match is the argmax of |r64| over them. The same screen gives the reverse
+  direction (column maxima). The screen is checked against a full float64 computation for 2,048 source units of one
+  pair (identical matches required; the largest |r32 - r64| reported).
+- Matching: every kept source unit i is matched to m(i) = argmax_j |r_ij| over all target units of all layers.
+  Ties: targets with |r| within 1e-12 of the row maximum are tied; one is chosen uniformly at random with
+  `numpy.random.Generator(PCG64(20261121))`. Tie counts are reported.
+- c_i = sign(r_i,m(i)). A kept pair with r exactly 0 is dropped (refuter, S3.2/S3.3).
+- Positive share N+/m at tau = 0 (all kept source units), tau = 0.3 (primary) and tau = 0.5, kept meaning
+  |r| >= tau. Always reported as count and denominator.
+- Skew test, per model: count of units whose trace has positive third central moment (float64), among units with
+  nonzero third moment, against Binomial(h_live, 1/2). Two-sided exact p = min(1, 2 min(P(X <= k), P(X >= k))).
+  A model *passes* when p >= 0.001 and *fails* when p < 0.001. Also reported per layer, plus the share of units
+  whose trace is positive on more than 90 percent of words, and the positive-mean count (the older lean test, for
+  comparison only).
+- Exact p-value for the share (one-sided upper tail P(N+ >= obs), and two-sided as above for band checks):
+  - source gated and passes the skew test: Binomial(m, 1/2) exactly (S3.3, any matching);
+  - otherwise, target gated and passes the skew test: the cluster law S3.2, N+ = (m + sum_j e_j |s_j|)/2, computed by
+    exact integer convolution (grouped by |s_j|, the largest group as an exact binomial tail). If the exact
+    convolution would exceed a fixed cost cap (2e8 big-integer multiply-adds) the routine reports Hoeffding's exact
+    upper bound exp(-t^2 / (2 sum s_j^2)) instead and says so;
+  - neither: no exact law; counts only.
+  "Inside the 99.9 percent band" means the two-sided exact p >= 0.001.
+- Same position (only where both models have the same number of layers and h_A <= h_B per layer): F = #{kept i at
+  tau = 0 : m(i) has the same (layer, index) as i}. Null: B's units relabelled by an independent uniform permutation
+  per layer (S4.1). Law of F_L per layer: rook law with n_j = number of layer-L source units matched to target unit j
+  of layer L; F = sum of F_L, combined through the factorial-moment generating function prod_L sum_r e_r(n^L)
+  (N_L - r)!/N_L! x^r. Null mean exactly sum_L sum_j n_j / N_L. The upper tail P(F >= F_obs) is computed exactly in
+  Fractions by inclusion-exclusion truncated with a rigorous Bonferroni bracket when F_obs <= 300; above that the
+  exact bound P(F >= k) <= E C(F, k) <= L^k / k! (L = number of layers) is reported. "Inside its null" means
+  p >= 0.001 (one-sided upper). Same-position share = F / m(tau = 0); also reported at tau = 0.3.
+- Invariant statistic: mean over kept source units of max_j |r_ij|.
+- Mutual closest matches (mine, for the site's "pair up one to one"): share of kept source units i with
+  m_B(m_A(i)) = i.
+- Every pair is computed in both directions from one correlation matrix; the direction named in the prediction is
+  primary, the other is reported as secondary.
+
+## (e) Models
+
+Downloads: Hugging Face, no token, `HF_HOME` and `local_dir` inside this folder, files `config.json`,
+`generation_config.json`, tokenizer files, `*.safetensors`, `*.safetensors.index.json`. Never `trust_remote_code`.
+Model loading with `HF_HUB_OFFLINE=1`. Commit SHAs recorded.
+
+| group | models | role |
+|---|---|---|
+| 1 | HuggingFaceTB/SmolLM2-135M; HuggingFaceTB/SmolLM2-135M-Instruct (its card lists SmolLM2-135M as base model); HuggingFaceTB/SmolLM2-360M | descendant and unrelated |
+| 2 | EleutherAI/pythia-160m (main = step 143,000); pythia-160m-seed1; pythia-160m-seed2; pythia-160m revisions step1000, step8000, step32000 | one-sided seeds and checkpoints |
+| 3 | tiiuae/Falcon-H1-Tiny-R-0.6B (the only 0.6B Falcon-H1 Tiny repo besides `-pre-GRPO`; config 44 x 2,048 matches the site, METHOD.md section 6) | the "lean" claim |
+| 4 | laundered SmolLM2-135M-Instruct, built here (seed 777): in every MLP block an independent uniform permutation of the hidden units and an independent fair sign per unit; gate rows, up rows and down columns permuted together; up row and down column of each flipped unit negated | relabelled descendant |
+| 5 (optional, dropped first if short of time) | Qwen/Qwen3.5-0.8B, Qwen/Qwen3.5-2B | the site's 93 percent pair |
+
+Pairs (source -> target): G1: 135M -> Instruct; 135M -> 360M. G2: main -> seed1, main -> seed2, seed1 -> seed2;
+step1000 -> main, step8000 -> main, step32000 -> main. G3: pythia main -> Falcon (and Falcon -> pythia main as the
+reverse of the same matrix); exploratory: pythia main -> Falcon gate-only trace. G4: 135M -> laundered.
+G5: Qwen3.5-0.8B -> Qwen3.5-2B.
+
+## (f) Predictions (fixed before any run)
+
+Each is scored hit, partial or miss by the rule given. "share" is the positive share at tau = 0.3 unless stated.
+
+**P1.** SmolLM2-135M -> Instruct: (a) share >= 0.95; (b) same-position share (tau 0) >= 0.90.
+Hit: both. Partial: one. Miss: neither.
+
+**P2.** SmolLM2-135M -> SmolLM2-360M: (a) share inside the exact binomial 99.9 percent band; (b) 135M passes the skew
+test; (c) 360M passes the skew test. Hit: all three. Partial: two. Miss: one or none.
+
+**P3.** (a) All six Pythia models fail the skew test. (b) Each of the three seed pairs has share >= 0.80. (c) Each
+seed pair's same-position count is inside its null. Hit: all three. Partial: two. Miss: one or none.
+
+**P4.** (a) step1000 -> main: same-position share (tau 0) in [0.08, 0.35] and its null p < 0.001. (b) The
+same-position share rises strictly from step1000 to step8000 to step32000. Hit: both. Partial: one. Miss: neither.
+
+**P5.** (a) Falcon-H1 Tiny fails the skew test. (b) pythia main -> Falcon share >= 0.75. Hit: both. Partial: one.
+Miss: neither. If Falcon passes the skew test, RESULTS.md says which of the refuter's alternatives (a) Falcon signs
+not fair coins, (b) the site's trace is not the product, (c) a real relation, (d) the site's matching or co-firing
+rule is not sign-blind, (e) pooled directions, the data favour.
+
+**P6.** SmolLM2-135M -> laundered: (a) the laundered model's logits equal the Instruct model's within float
+rounding, criterion max |diff| <= 1e-3 x max |logit| over the corpus; (b) share inside the binomial 99.9 percent
+band; (c) same-position count inside its null; (d) invariant statistic within 5 percent (relative) of its value for
+135M -> Instruct; (e) invariant statistic at least 0.10 above its value for 135M -> 360M.
+Hit: all five. Partial: (a) and three of (b)-(e). Miss: otherwise.
+
+**P7 (optional group).** Qwen3.5-0.8B -> 2B: share >= 0.85. Hit: >= 0.85. Partial: [0.70, 0.85). Miss: < 0.70.
+
+Mine, marked as such:
+
+**M1 (mine).** Falcon-H1 Tiny passes the skew test (against P5(a)), and then pythia main -> Falcon share at tau 0.3
+lies inside the cluster-law 99.9 percent band (or, if the cluster routine hits its cost cap, the Hoeffding bound does
+not reject at 0.001), and Falcon -> pythia main share lies inside the binomial 99.9 percent band. Hit: all three.
+Partial: Falcon passes but one share is outside. Miss: Falcon fails.
+
+**M2 (mine).** For the three Pythia seed pairs the mutual-closest-match share (tau 0) lies in [0.03, 0.20] (site: 9
+percent "pair up one to one"). Hit: all three. Partial: one or two. Miss: none.
+
+**M3 (mine).** Pythia checkpoints, same-position share (tau 0): step8000 -> main in [0.60, 0.98] and step32000 ->
+main in [0.85, 1.00] (site: 92 and 99.1 percent). Hit: both. Partial: one. Miss: neither.
+
+**M4 (mine).** The exploratory Falcon gate-only trace (a factor that does not flip): pythia main -> Falcon gate-only
+share >= 0.75. Hit: >= 0.75. Partial: [0.60, 0.75). Miss: < 0.60.
+
+## Checks on the instrument (in the record)
+
+- Self-pair: SmolLM2-135M against itself. Required: share 1 at every tau and F = m (all same position).
+- Shuffled words: SmolLM2-135M -> Instruct with the Instruct traces' 20,000 word positions permuted (one permutation,
+  seed 4242, the same for every unit). Required: invariant statistic below 0.10 and share at tau 0 inside the
+  binomial 99.9 percent band.
+- Exact routines (`scripts/exactlaw.py`, pure Python, no numpy): binomial tail, cluster law and same-position law
+  tested against brute-force enumeration (all sign vectors; all relabellings) on small cases by
+  `scripts/check_exact.py`, under `python3 -I -B`, `python3 -I -O -B` and `python3 -I -B -W error`; outputs must be
+  byte-identical, no bare `assert` on a checking path.
+- Float32 screen against full float64 on one block (section d).
+
+## Budget
+
+About 2.5 hours of wall clock. Order of work: corpus, exact routines and their checks, group 1 and 4, group 2,
+group 3, then group 5 only if at least 30 minutes remain. One heavy process at a time.
+
+## Evidence kinds
+
+Every share, count and statistic is a measurement on named models and one corpus: sampled evidence. p-values are
+exact under the stated null (or an exact bound where said). Model facts read from configs or code are anchors.

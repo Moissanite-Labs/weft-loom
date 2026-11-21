@@ -1,0 +1,5 @@
+Qwen__Qwen3.5-0.8B layers in file 24 layers in model 24 weights equal True
+Qwen__Qwen3.5-2B layers in file 24 layers in model 24 weights equal True
+tiiuae__Falcon-H1-Tiny-R-0.6B layers in file 44 layers in model 44 weights equal True
+EleutherAI__pythia-160m@step1000 layers in file 12 layers in model 12 weights equal True
+HuggingFaceTB__SmolLM2-360M layers in file 32 layers in model 32 weights equal True

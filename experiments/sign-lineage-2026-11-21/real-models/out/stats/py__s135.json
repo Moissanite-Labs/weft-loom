@@ -1,0 +1,202 @@
+{
+ "name": "py__s135",
+ "pair_meta": {
+  "name": "py__s135",
+  "A": "py",
+  "B": "s135",
+  "shuffle": null,
+  "T": 20000,
+  "A_layers": 12,
+  "B_layers": 30,
+  "A_widths": [
+   3072,
+   3072,
+   3072,
+   3072,
+   3072,
+   3072,
+   3072,
+   3072,
+   3072,
+   3072,
+   3072,
+   3072
+  ],
+  "B_widths": [
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536,
+   1536
+  ],
+  "A_dropped_zero_var": 0,
+  "B_dropped_zero_var": 0,
+  "ab": {
+   "ties": 0,
+   "full_rows": 0,
+   "max_abs_r32_minus_r64_on_candidates": 5.65280255659939e-05
+  },
+  "ba": {
+   "ties": 0,
+   "full_rows": 0,
+   "max_abs_r32_minus_r64_on_candidates": 4.41438693610241e-06
+  },
+  "screen_seconds": 59.0,
+  "seconds": 62.9
+ },
+ "ab": {
+  "source": "py",
+  "target": "s135",
+  "law": "cluster (target gated, passes skew)",
+  "dropped_r_exactly_zero": 0,
+  "tau_0": {
+   "share": {
+    "num": 19377,
+    "den": 36864
+   },
+   "invariant_mean_max_abs_r": 0.31306053392182986,
+   "matched_same_layer": {
+    "num": 3144,
+    "den": 36864
+   },
+   "clusters": 5806,
+   "kappa_num_den": {
+    "num": 1725942,
+    "den": 36864
+   },
+   "p_upper": "7.568545e-02",
+   "p_two": "1.513709e-01",
+   "inside_999_band": true,
+   "p_exact": true
+  },
+  "tau_0.3": {
+   "share": {
+    "num": 8964,
+    "den": 16697
+   },
+   "invariant_mean_max_abs_r": 0.4075628083234032,
+   "matched_same_layer": {
+    "num": 1375,
+    "den": 16697
+   },
+   "clusters": 2984,
+   "kappa_num_den": {
+    "num": 600101,
+    "den": 16697
+   },
+   "p_upper": "5.644880e-02",
+   "p_two": "1.128976e-01",
+   "inside_999_band": true,
+   "p_exact": true
+  },
+  "tau_0.5": {
+   "share": {
+    "num": 1431,
+    "den": 2558
+   },
+   "invariant_mean_max_abs_r": 0.6008950160520565,
+   "matched_same_layer": {
+    "num": 409,
+    "den": 2558
+   },
+   "clusters": 830,
+   "kappa_num_den": {
+    "num": 47568,
+    "den": 2558
+   },
+   "p_upper": "8.449632e-02",
+   "p_two": "1.689926e-01",
+   "inside_999_band": true,
+   "p_exact": true
+  }
+ },
+ "ba": {
+  "source": "s135",
+  "target": "py",
+  "law": "binomial (source gated, passes skew)",
+  "dropped_r_exactly_zero": 0,
+  "tau_0": {
+   "share": {
+    "num": 23030,
+    "den": 46080
+   },
+   "invariant_mean_max_abs_r": 0.26618248962509033,
+   "matched_same_layer": {
+    "num": 2284,
+    "den": 46080
+   },
+   "p_upper": "5.389655e-01",
+   "p_two": "9.294706e-01",
+   "inside_999_band": true
+  },
+  "tau_0.3": {
+   "share": {
+    "num": 6363,
+    "den": 12595
+   },
+   "invariant_mean_max_abs_r": 0.40479089744977476,
+   "matched_same_layer": {
+    "num": 639,
+    "den": 12595
+   },
+   "p_upper": "1.233577e-01",
+   "p_two": "2.467153e-01",
+   "inside_999_band": true
+  },
+  "tau_0.5": {
+   "share": {
+    "num": 951,
+    "den": 1876
+   },
+   "invariant_mean_max_abs_r": 0.6086242383634075,
+   "matched_same_layer": {
+    "num": 179,
+    "den": 1876
+   },
+   "p_upper": "2.819092e-01",
+   "p_two": "5.638184e-01",
+   "inside_999_band": true
+  }
+ },
+ "mutual_closest": {
+  "num": 1652,
+  "den": 36864
+ },
+ "pooled_share_tau_0": {
+  "num": 42407,
+  "den": 82944
+ },
+ "pooled_share_tau_0.3": {
+  "num": 15327,
+  "den": 29292
+ },
+ "pooled_share_tau_0.5": {
+  "num": 2382,
+  "den": 4434
+ }
+}

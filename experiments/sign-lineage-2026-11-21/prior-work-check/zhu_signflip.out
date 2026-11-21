@@ -1,0 +1,38 @@
+exact rational check: 20 seeds, up/down flip + permutation preserves output exactly; gate-row flip control changes it: True
+float64 SiLU check (signs only, same summation order): bitwise equal: True
+
+d=64 h=256 N=1024, 60 seeds per row; median r, median p, frac p<0.01
+scenario                                   variant       med r      med p  p<.01 |  signagr
+independent (null)                         paper        -0.003      0.518   0.03 |    0.496
+independent (null)                         code          0.004      0.376   0.00 |    0.496
+independent (null)                         paper_abs    -0.012      0.578   0.00 |    0.496
+copy+perm, no flips                        paper         1.000          0   1.00 |    1.000
+copy+perm, no flips                        code          1.000          0   1.00 |    1.000
+copy+perm, no flips                        paper_abs     1.000          0   1.00 |    1.000
+copy+perm+random per-unit flips            paper         0.507   2.14e-18   1.00 |    0.504
+copy+perm+random per-unit flips            code          0.514   1.24e-18   1.00 |    0.504
+copy+perm+random per-unit flips            paper_abs     1.000          0   1.00 |    0.504
+copy+perm+all units flipped (T6 c=-1)      paper        -0.036      0.715   0.02 |    0.000
+copy+perm+all units flipped (T6 c=-1)      code         -0.021      0.398   0.10 |    0.000
+copy+perm+all units flipped (T6 c=-1)      paper_abs     1.000          0   1.00 |    0.000
+finetuned(0.5)+perm, no flips              paper         1.000          0   1.00 |    1.000
+finetuned(0.5)+perm, no flips              code          1.000          0   1.00 |    1.000
+finetuned(0.5)+perm, no flips              paper_abs     1.000          0   1.00 |    1.000
+finetuned(0.5)+perm+random flips           paper         0.503   3.72e-18   1.00 |    0.510
+finetuned(0.5)+perm+random flips           code          0.495   2.94e-17   1.00 |    0.510
+finetuned(0.5)+perm+random flips           paper_abs     1.000          0   1.00 |    0.510
+finetuned(0.5)+perm+all flipped            paper         0.017      0.394   0.03 |    0.000
+finetuned(0.5)+perm+all flipped            code          0.003      0.445   0.02 |    0.000
+finetuned(0.5)+perm+all flipped            paper_abs     1.000          0   1.00 |    0.000
+
+flip-fraction sweep (exact copy + perm, paper variant): f, median r, predicted 1-f, frac p<.01
+  f=0.00  med r=1.000  1-f=1.000  p<.01: 1.00
+  f=0.25  med r=0.745  1-f=0.750  p<.01: 1.00
+  f=0.50  med r=0.495  1-f=0.500  p<.01: 1.00
+  f=0.75  med r=0.244  1-f=0.250  p<.01: 0.87
+  f=0.90  med r=0.123  1-f=0.100  p<.01: 0.30
+  f=0.97  med r=0.045  1-f=0.030  p<.01: 0.13
+  f=0.99  med r=0.015  1-f=0.010  p<.01: 0.03
+  f=1.00  med r=-0.008  1-f=0.000  p<.01: 0.10
+
+all exactness checks passed

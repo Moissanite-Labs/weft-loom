@@ -1,0 +1,2 @@
+{"C1_clustered_law_differs_from_binomial": "pass (differs, as it must)", "T1_one_to_one_is_binomial": "pass", "T2_mean_and_variance": "pass", "T3_fixed_points_mean_var_1": "pass", "T4_argmax_classes_mean_and_bound": "pass"}
+cases exported: 44

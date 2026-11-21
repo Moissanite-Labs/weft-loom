@@ -1,0 +1,30 @@
+L00 lo   7/512 hi  17/1536 hi>lo False P_null(hi>lo)=0.4213 exact one-sided tail 7.6731e-01
+L01 lo  14/512 hi  29/1536 hi>lo False P_null(hi>lo)=0.4760 exact one-sided tail 9.0616e-01
+L02 lo  29/512 hi  98/1536 hi>lo True  P_null(hi>lo)=0.4851 exact one-sided tail 3.2141e-01
+L03 lo  29/512 hi 124/1536 hi>lo True  P_null(hi>lo)=0.5248 exact one-sided tail 4.1958e-02
+L04 lo  34/512 hi 154/1536 hi>lo True  P_null(hi>lo)=0.4696 exact one-sided tail 1.1779e-02
+L05 lo  36/512 hi 153/1536 hi>lo True  P_null(hi>lo)=0.5224 exact one-sided tail 2.6725e-02
+L06 lo  31/512 hi 170/1536 hi>lo True  P_null(hi>lo)=0.5217 exact one-sided tail 4.0161e-04
+L07 lo  42/512 hi 133/1536 hi>lo True  P_null(hi>lo)=0.4868 exact one-sided tail 4.1447e-01
+L08 lo  38/512 hi 139/1536 hi>lo True  P_null(hi>lo)=0.5231 exact one-sided tail 1.4785e-01
+L09 lo  34/512 hi 121/1536 hi>lo True  P_null(hi>lo)=0.4862 exact one-sided tail 2.0741e-01
+L10 lo  31/512 hi 146/1536 hi>lo True  P_null(hi>lo)=0.5231 exact one-sided tail 8.6365e-03
+L11 lo  43/512 hi 150/1536 hi>lo True  P_null(hi>lo)=0.5221 exact one-sided tail 2.0442e-01
+L12 lo  33/512 hi 177/1536 hi>lo True  P_null(hi>lo)=0.5045 exact one-sided tail 4.4221e-04
+L13 lo  43/512 hi 172/1536 hi>lo True  P_null(hi>lo)=0.4878 exact one-sided tail 4.1804e-02
+L14 lo  38/512 hi 200/1536 hi>lo True  P_null(hi>lo)=0.5041 exact one-sided tail 2.5717e-04
+L15 lo  36/512 hi 170/1536 hi>lo True  P_null(hi>lo)=0.5045 exact one-sided tail 4.4093e-03
+L16 lo  22/512 hi 212/1536 hi>lo True  P_null(hi>lo)=0.5041 exact one-sided tail 1.6411e-10
+L17 lo  36/512 hi 192/1536 hi>lo True  P_null(hi>lo)=0.4719 exact one-sided tail 2.7178e-04
+L18 lo  36/512 hi 209/1536 hi>lo True  P_null(hi>lo)=0.5197 exact one-sided tail 2.3105e-05
+L19 lo  41/512 hi 230/1536 hi>lo True  P_null(hi>lo)=0.4887 exact one-sided tail 1.8466e-05
+L20 lo  35/512 hi 199/1536 hi>lo True  P_null(hi>lo)=0.5041 exact one-sided tail 5.7599e-05
+L21 lo  23/512 hi 209/1536 hi>lo True  P_null(hi>lo)=0.4720 exact one-sided tail 8.7258e-10
+L22 lo  22/512 hi 182/1536 hi>lo True  P_null(hi>lo)=0.4706 exact one-sided tail 8.5046e-08
+L23 lo  61/512 hi 112/1536 hi>lo False P_null(hi>lo)=0.5234 exact one-sided tail 9.9941e-01
+hi>lo in 21 of 24 layers; in 21 of 21 layers L02..L22
+exact null chance of hi>lo in all 21 of L02..L22 (product, conditional on counts): 4.6635e-07
+largest per-layer one-sided tail among L02..L22: 4.1447e-01
+their sign-test value 2^-20 = 9.5367e-07
+L15: bf16-exact entries 1.0000; entries off the 2^-16 grid 0.1376; |w| < 2^-9: 0.2054
+L19: bf16-exact entries 1.0000; entries off the 2^-16 grid 0.1218; |w| < 2^-9: 0.1818

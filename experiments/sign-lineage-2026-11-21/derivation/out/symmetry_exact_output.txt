@@ -1,0 +1,33 @@
+{
+ "S1": {
+  "controls_changed_output_as_required": [
+   "flip_G_and_D_nonodd_act",
+   "flip_U_only",
+   "plain_gelu_like_flip_U_and_D",
+   "plain_relu_flip_U_and_D"
+  ],
+  "gated_flip_and_perm_relu": "pass: 4 flips x 6 inputs, 24 permutations",
+  "gated_flip_and_perm_rodd": "pass: 4 flips x 6 inputs, 24 permutations",
+  "gated_flip_and_perm_rsilu": "pass: 4 flips x 6 inputs, 24 permutations",
+  "plain_odd_activation_keeps_symmetry": "pass"
+ },
+ "S1_symbolic": {
+  "symbolic_control_flip_U_only": "nonzero difference, as required",
+  "symbolic_generic_act": "pass: D F (act(G x) * (F U x)) == D (act(G x) * (U x)), F=diag(-1,1)"
+ },
+ "S2": {
+  "control_sign_tying_penalty_breaks_equivariance": "pass (broken, as required)",
+  "loss_invariant_gradient_equivariant": "pass",
+  "three_steps_momentum_adam_moments_weight_decay": "pass"
+ },
+ "S3b": {
+  "cases": 12,
+  "conditional_on_A_cluster_example_law_x4": [
+   1,
+   1,
+   0,
+   1,
+   1
+  ]
+ }
+}

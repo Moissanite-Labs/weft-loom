@@ -1,0 +1,6 @@
+py__s135 tau_0 share 19377/36864 | valid law: cluster (target gated, passes skew) p_two 1.513709e-01 | plain binomial p_two 7.52e-23
+py__s135 tau_0.3 share 8964/16697 | valid law: cluster (target gated, passes skew) p_two 1.128976e-01 | plain binomial p_two 1.68e-21
+py__s135 tau_0.5 share 1431/2558 | valid law: cluster (target gated, passes skew) p_two 1.689926e-01 | plain binomial p_two 2.00e-9
+falcon__s135 tau_0 share 45503/90112 | valid law: cluster (target gated, passes skew) p_two 2.338169e-01 | plain binomial p_two 2.93e-3
+falcon__s135 tau_0.3 share 5511/10474 | valid law: cluster (target gated, passes skew) p_two 1.360199e-02 | plain binomial p_two 8.99e-8
+falcon__s135 tau_0.5 share 960/1769 | valid law: cluster (target gated, passes skew) p_two 3.238183e-02 | plain binomial p_two 3.59e-4

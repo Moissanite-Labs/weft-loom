@@ -1,0 +1,30 @@
+{
+ "note": "Numbers and phrases CHECK.md quotes from other parties' records, taken on trust and not recomputed here. Our own recounts are printed by the scripts in scripts/ and kept in out/.",
+ "the_study": {
+  "where": "draft pull request on Moissanite-Labs/siliquant, head commit d4c54e43bc9f24fd76d57a7467b0c726dd0acd1f, folder studies/expedition-neuron-homology-unlock/",
+  "census": "13 model pages of the site, 1,504,256 neurons",
+  "page_snapshots_pinned": 15,
+  "snapshots_we_did_not_read": 5,
+  "quoted_claims": [
+   "the Z2 algebra reproduces the site's 83 to 87% false lineage",
+   "enrichment surviving stratification inside BOTH col < 512 and col >= 512",
+   "selected neurons dramatically more kurtotic (10.44 vs 4.03, 12.18 vs 3.45)",
+   "exact dyadic 2^16 on bf16 weights",
+   "Pythia two-phase trajectory reproduced identically across all 3 random seeds",
+   "weight-magnitude heuristics fail on Layer 10 because of high-fan-out circuit broadcast coupling",
+   "21 of 21 middle layers L02 to L22, p = 2^-20",
+   "check_048 confirmed the real-weight results and an unseen-seed 5,000-draw null",
+   "1,000-draw seeded permutation null: 0/1,000 exceed",
+   "~30%-45% of MLP neurons in four symbol kinds",
+   "7.8%-17.2% dark fraction",
+   "85/96 initial failures"
+  ]
+ },
+ "the_weight_edit": {
+  "where": "alphaxiv/weight-edit-minimization at commit 768d7340",
+  "selected_units_per_layer": 64,
+  "layers": [15, 19],
+  "selection_score": "a weight term u @ W0 times a difference in MLP activations on 8 hand-written repetitive and productive texts (method notes, lines 17-22)",
+  "baseline_run": "Initial 11/96 correct, 85 cutoff (the edit's own report excerpt)"
+ }
+}

@@ -1,0 +1,8 @@
+p1 = 1: A_chance = p2 exactly; p2 values on a 1/100 grid reproducing 83-87%: 5 (83/100..87/100)
+one side with p = 1/2: A_chance = 1/2 for every p of the other side (checked on the grid)
+Qwen3.5 0.8B/2B: A = 93/100, kappa at p = 1/2 = 43/50
+Qwen3.5 4B/9B: A = 49/50, kappa at p = 1/2 = 24/25
+Qwen3 0.6B/1.7B: A = 22/25, kappa at p = 1/2 = 19/25
+gated MLP, flip up-row and down-column 1: outputs identical on 6 inputs: True
+ungated MLP, same flip: outputs identical: False (must be False)
+DONE

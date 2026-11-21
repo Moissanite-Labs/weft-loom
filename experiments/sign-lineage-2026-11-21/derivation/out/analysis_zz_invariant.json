@@ -1,0 +1,37 @@
+{
+ "invariant_statistic_holdout": {
+  "detection": {
+   "descend_diff_30": 1.0,
+   "descend_diff_300": 1.0,
+   "descend_diff_3000": 1.0,
+   "descend_same_30": 1.0,
+   "descend_same_300": 1.0,
+   "descend_same_3000": 1.0,
+   "planted_full_0": 1.0,
+   "planted_full_diff3000": 1.0,
+   "planted_full_same300": 1.0,
+   "planted_hidden_0": 1.0,
+   "planted_hidden_diff3000": 1.0,
+   "planted_hidden_same300": 1.0,
+   "siblings_same_init_other_order": 1.0
+  },
+  "heldout_null_fixedA_reps_fpr": 0.0,
+  "heldout_null_other_data_order_fpr": 0.01,
+  "min_value": {
+   "descend_diff_30": 0.9357152600655942,
+   "descend_diff_300": 0.7871112963068088,
+   "descend_diff_3000": 0.5205544306154236,
+   "descend_same_30": 0.9819990627821329,
+   "descend_same_300": 0.9653020160769237,
+   "descend_same_3000": 0.9004329390120099,
+   "planted_full_0": 0.9999999999999551,
+   "planted_full_diff3000": 0.5080455768131387,
+   "planted_full_same300": 0.965837991757178,
+   "planted_hidden_0": 0.9999999999999778,
+   "planted_hidden_diff3000": 0.5080454909324424,
+   "planted_hidden_same300": 0.9658379915675334,
+   "siblings_same_init_other_order": 0.8235989744519547
+  },
+  "threshold_max_of_200_calibration_null_pairs": 0.42224952462301435
+ }
+}

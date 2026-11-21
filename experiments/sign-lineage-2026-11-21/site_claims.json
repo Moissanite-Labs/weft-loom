@@ -1,0 +1,14 @@
+{
+ "source": "index page of the neuron map site, saved once on 2026-11-21 (SHA-256 prefix 179059c77f9702b3). Short verbatim quotes of the sentences this record tests. Numbers here are the site's, taken on trust.",
+ "quotes": [
+  {"id": "coin", "text": "In two unrelated models a neuron and its match move together half the time and move opposite the other half, like a coin. When they move together nearly always, the two models share an origin. When the match is also the neuron in the same position, one model was made from the other."},
+  {"id": "caveat", "text": "The test needs neurons that can point either way. Pythia’s cannot, and Falcon-H1 Tiny’s lean to one side, so those two agree 83 to 87% of the time without being related: no neuron of one sits in the other’s position."},
+  {"id": "unrelated_range", "text": "The 30 models here and the 27B’s two predecessors were all compared with each other, 496 pairs, and 6 more Gemma 3 models with the rest of Gemma. Outside the trees above, every pair with 200 strong matches or more lands between 33% and 59%, scattered around 50%."},
+  {"id": "related_only_checkpoints", "text": "Nothing else is related, apart from Pythia’s checkpoints, which are one training run."},
+  {"id": "qwen_pairs", "text": "A neuron and its closest match move together 93% and 98% of the time within a pair and 50% across, which is chance."},
+  {"id": "seeds", "text": "Two runs of one recipe from different seeds pair up neuron by neuron 9% of the time, and group by group for 67% of their neurons."},
+  {"id": "step_1000", "text": "After 1,000 of 143,000 training steps Pythia-160m has 84% of its neurons in a family, yet only 18% of its neurons are the neuron they end as."},
+  {"id": "step_8000_card", "text": "The same network as Pythia-160m at another point in its training: 92% of neurons are the same neuron in both."},
+  {"id": "step_32000_card", "text": "The same network as Pythia-160m at another point in its training: 99.1% of neurons are the same neuron in both."}
+ ]
+}

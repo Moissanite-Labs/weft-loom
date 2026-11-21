@@ -1,0 +1,54 @@
+{
+ "chunks_per_part": {
+  "code": 34,
+  "math": 33,
+  "prose": 33
+ },
+ "corpus_json_sha256": "ae42fafa88d88fbeab14d3c310a60b911f45b73208f0a2469e4181efb80df156",
+ "corpus_txt_sha256": "67693619fea31dc309a9f5cb122b7f70358f5ede82c20748c4015d3dbd6b4629",
+ "n_chunks": 100,
+ "n_words_corpus_txt_split": 20000,
+ "note": "Local source paths of the original run were replaced by source names when this record was published. Every other field is as written by the run.",
+ "sources": [
+  {
+   "first_word": "To",
+   "last_word": "After",
+   "part": "prose",
+   "sha256": "b9c105a5c0cf9fcb37c7d0211658851ed56074519c9455d15e20f04c0c5a3174",
+   "source": "gutenberg 1661-0.txt (saved locally as pg1661.txt)",
+   "words": 6600
+  },
+  {
+   "first_word": "\"\"\"Text",
+   "last_word": "indented.\"))",
+   "part": "code",
+   "sha256": "7f05d89c983f5aa8cefcff707a9cc561ed60c51fc8a68e2e3ab61cc6dfa84544",
+   "source": "CPython 3.14.6 Lib/textwrap.py",
+   "words": 2213
+  },
+  {
+   "first_word": "#",
+   "last_word": "a._richcmp(b,",
+   "part": "code",
+   "sha256": "7a95f1c506c9ac4b2277df5f2bdd9d61cc67b520c45021a5a961939770221ef6",
+   "source": "CPython 3.14.6 Lib/fractions.py",
+   "words": 4587
+  },
+  {
+   "first_word": "#",
+   "last_word": "this",
+   "part": "math",
+   "sha256": "5bf76eb94589b36946e4025a6b8116da9a8678304e28a6a058b022f6e7c2340a",
+   "source": "siliconcordat/loom docs/09-gate-contracts.md at 8cdfa396a38f",
+   "words": 3400
+  },
+  {
+   "first_word": "#",
+   "last_word": "side",
+   "part": "math",
+   "sha256": "93f007c5370065952a0729587c04e06dcd4c5bf68bee209ba34eea4ccf1d0f02",
+   "source": "siliconcordat/loom docs/10-exact-inertia-certificates.md at 64c797d30da1",
+   "words": 3200
+  }
+ ]
+}

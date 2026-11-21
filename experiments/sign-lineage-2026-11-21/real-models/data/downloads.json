@@ -1,0 +1,184 @@
+{
+ "EleutherAI__pythia-160m": {
+  "files": [
+   ".cache",
+   "config.json",
+   "model.safetensors",
+   "special_tokens_map.json",
+   "tokenizer.json",
+   "tokenizer_config.json"
+  ],
+  "repo": "EleutherAI/pythia-160m",
+  "revision": "main",
+  "sha": "50f5173d932e8e61f858120bcb800b97af589f46"
+ },
+ "EleutherAI__pythia-160m-seed1": {
+  "files": [
+   ".cache",
+   "config.json",
+   "model.safetensors",
+   "special_tokens_map.json",
+   "tokenizer.json",
+   "tokenizer_config.json"
+  ],
+  "repo": "EleutherAI/pythia-160m-seed1",
+  "revision": "main",
+  "sha": "5ed55222b3092e69edcfa5fa646b7aac0b7e03d9"
+ },
+ "EleutherAI__pythia-160m-seed2": {
+  "files": [
+   ".cache",
+   "config.json",
+   "model.safetensors",
+   "special_tokens_map.json",
+   "tokenizer.json",
+   "tokenizer_config.json"
+  ],
+  "repo": "EleutherAI/pythia-160m-seed2",
+  "revision": "main",
+  "sha": "6e9b9f6270d1d624f9d7188c1e8909600c4efae2"
+ },
+ "EleutherAI__pythia-160m@step1000": {
+  "files": [
+   ".cache",
+   "config.json",
+   "model.safetensors",
+   "special_tokens_map.json",
+   "tokenizer.json",
+   "tokenizer_config.json"
+  ],
+  "repo": "EleutherAI/pythia-160m",
+  "revision": "step1000",
+  "sha": "f711eaa4e5158955f6fcdff84a2145158b739f77"
+ },
+ "EleutherAI__pythia-160m@step32000": {
+  "files": [
+   ".cache",
+   "config.json",
+   "model.safetensors",
+   "special_tokens_map.json",
+   "tokenizer.json",
+   "tokenizer_config.json"
+  ],
+  "repo": "EleutherAI/pythia-160m",
+  "revision": "step32000",
+  "sha": "dfead30ed6021412baa93aac4dbb31f1ee82033d"
+ },
+ "EleutherAI__pythia-160m@step8000": {
+  "files": [
+   ".cache",
+   "config.json",
+   "model.safetensors",
+   "special_tokens_map.json",
+   "tokenizer.json",
+   "tokenizer_config.json"
+  ],
+  "repo": "EleutherAI/pythia-160m",
+  "revision": "step8000",
+  "sha": "efd022a43b3330576e60ae82bf5d71619f404997"
+ },
+ "HuggingFaceTB__SmolLM2-135M": {
+  "files": [
+   ".cache",
+   "config.json",
+   "generation_config.json",
+   "merges.txt",
+   "model.safetensors",
+   "special_tokens_map.json",
+   "tokenizer.json",
+   "tokenizer_config.json",
+   "vocab.json"
+  ],
+  "repo": "HuggingFaceTB/SmolLM2-135M",
+  "revision": "main",
+  "sha": "93efa2f097d58c2a74874c7e644dbc9b0cee75a2"
+ },
+ "HuggingFaceTB__SmolLM2-135M-Instruct": {
+  "files": [
+   ".cache",
+   "config.json",
+   "generation_config.json",
+   "merges.txt",
+   "model.safetensors",
+   "special_tokens_map.json",
+   "tokenizer.json",
+   "tokenizer_config.json",
+   "vocab.json"
+  ],
+  "repo": "HuggingFaceTB/SmolLM2-135M-Instruct",
+  "revision": "main",
+  "sha": "12fd25f77366fa6b3b4b768ec3050bf629380bac"
+ },
+ "HuggingFaceTB__SmolLM2-360M": {
+  "files": [
+   ".cache",
+   "config.json",
+   "generation_config.json",
+   "merges.txt",
+   "model.safetensors",
+   "special_tokens_map.json",
+   "tokenizer.json",
+   "tokenizer_config.json",
+   "vocab.json"
+  ],
+  "repo": "HuggingFaceTB/SmolLM2-360M",
+  "revision": "main",
+  "sha": "f8027fd0eaeea54caa13c31d31b9fdc459c38b49"
+ },
+ "Qwen__Qwen3.5-0.8B": {
+  "files": [
+   ".cache",
+   "config.json",
+   "merges.txt",
+   "model.safetensors-00001-of-00001.safetensors",
+   "model.safetensors.index.json",
+   "tokenizer.json",
+   "tokenizer_config.json",
+   "vocab.json"
+  ],
+  "repo": "Qwen/Qwen3.5-0.8B",
+  "revision": "main",
+  "sha": "2fc06364715b967f1860aea9cf38778875588b17"
+ },
+ "Qwen__Qwen3.5-2B": {
+  "files": [
+   ".cache",
+   "config.json",
+   "merges.txt",
+   "model.safetensors-00001-of-00001.safetensors",
+   "model.safetensors.index.json",
+   "tokenizer.json",
+   "tokenizer_config.json",
+   "vocab.json"
+  ],
+  "repo": "Qwen/Qwen3.5-2B",
+  "revision": "main",
+  "sha": "15852e8c16360a2fea060d615a32b45270f8a8fc"
+ },
+ "tiiuae__Falcon-H1-Tiny-90M-Base": {
+  "post_hoc": true,
+  "repo": "tiiuae/Falcon-H1-Tiny-90M-Base",
+  "revision": "main",
+  "sha": "7994372e93b62822ae25f8bfb19f653649cea3a3"
+ },
+ "tiiuae__Falcon-H1-Tiny-R-0.6B": {
+  "files": [
+   ".cache",
+   "config.json",
+   "generation_config.json",
+   "model.safetensors",
+   "special_tokens_map.json",
+   "tokenizer.json",
+   "tokenizer_config.json"
+  ],
+  "repo": "tiiuae/Falcon-H1-Tiny-R-0.6B",
+  "revision": "main",
+  "sha": "ccf3d61714e029d86dbd48883f1d40cfc995d433"
+ },
+ "tiiuae__Falcon-H1-Tiny-R-0.6B-pre-GRPO": {
+  "post_hoc": true,
+  "repo": "tiiuae/Falcon-H1-Tiny-R-0.6B-pre-GRPO",
+  "revision": "main",
+  "sha": "24ec8732ac99ed90a2d8af136ded1936adefe848"
+ }
+}

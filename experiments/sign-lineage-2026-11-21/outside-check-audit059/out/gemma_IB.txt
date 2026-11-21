@@ -1,0 +1,13 @@
+top-6 layers by mean group out-weight (x1e5): [(10, 23511), (9, 23208), (41, 23039), (6, 22770), (22, 22375), (29, 21907)]
+L10 vs L9 margin: 3101/237659 = 1.3048%
+layers with code share > prose share: [10, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41]
+per-layer no-family share: min 0.0043 (L0) max 0.3702 (L17)
+L10 neurons whose group's modal layer is L10: 1583 of 10240
+KL rank (1 = largest) of the top-5 mean_out layers: [(10, 1), (9, 8), (41, 3), (6, 32), (22, 27)]
+L9 0.001003, L12 0.000397, L13 0.000165
+mean_out vs KL, 42 layers                        rho = +0.1607 (sign exact: +); one-sided perm P(rho>=obs): seed 101 501/3000, seed 20262 443/3000, seed 777 460/3000
+mean_out vs KL, 41 layers without L10            rho = +0.0978 (sign exact: +); one-sided perm P(rho>=obs): seed 101 833/3000, seed 20262 810/3000, seed 777 804/3000
+mean_in vs KL, 42 layers (comparator)            rho = +0.4792 (sign exact: +); one-sided perm P(rho>=obs): seed 101 2/3000, seed 20262 2/3000, seed 777 3/3000
+no-family share vs KL, 42 layers (comparator)    rho = +0.2008 (sign exact: +); one-sided perm P(rho>=obs): seed 101 330/3000, seed 20262 294/3000, seed 777 284/3000
+control, shuffled mean_out vs KL: rho = +0.0803; perm 908/3000
+mean_out top-1/top-2 ratio 1.0130; KL top-1/top-2 ratio 78.39

@@ -1,0 +1,372 @@
+{
+ "key": "falcon",
+ "trace_dir": "<real-models>/traces/falcon",
+ "T": 20000,
+ "layers": 44,
+ "widths": [
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048,
+  2048
+ ],
+ "units": 90112,
+ "zero_var": 0,
+ "skew_pos": 64683,
+ "skew_neg": 25429,
+ "skew_zero": 0,
+ "mean_pos": 66889,
+ "mean_neg": 23223,
+ "pos_on_gt90pct_words": 812,
+ "max_abs_value": 907.5,
+ "nonfinite": false,
+ "per_layer": [
+  {
+   "layer": 0,
+   "h": 2048,
+   "skew_pos": 1759,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 1,
+   "h": 2048,
+   "skew_pos": 1767,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 2,
+   "h": 2048,
+   "skew_pos": 1763,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 3,
+   "h": 2048,
+   "skew_pos": 1761,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 4,
+   "h": 2048,
+   "skew_pos": 1643,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 5,
+   "h": 2048,
+   "skew_pos": 1618,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 6,
+   "h": 2048,
+   "skew_pos": 1560,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 7,
+   "h": 2048,
+   "skew_pos": 1560,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 8,
+   "h": 2048,
+   "skew_pos": 1574,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 9,
+   "h": 2048,
+   "skew_pos": 1493,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 10,
+   "h": 2048,
+   "skew_pos": 1443,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 11,
+   "h": 2048,
+   "skew_pos": 1417,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 12,
+   "h": 2048,
+   "skew_pos": 1494,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 13,
+   "h": 2048,
+   "skew_pos": 1430,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 14,
+   "h": 2048,
+   "skew_pos": 1435,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 15,
+   "h": 2048,
+   "skew_pos": 1414,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 16,
+   "h": 2048,
+   "skew_pos": 1434,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 17,
+   "h": 2048,
+   "skew_pos": 1353,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 18,
+   "h": 2048,
+   "skew_pos": 1390,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 19,
+   "h": 2048,
+   "skew_pos": 1419,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 20,
+   "h": 2048,
+   "skew_pos": 1455,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 21,
+   "h": 2048,
+   "skew_pos": 1468,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 22,
+   "h": 2048,
+   "skew_pos": 1394,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 23,
+   "h": 2048,
+   "skew_pos": 1474,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 24,
+   "h": 2048,
+   "skew_pos": 1435,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 25,
+   "h": 2048,
+   "skew_pos": 1480,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 26,
+   "h": 2048,
+   "skew_pos": 1490,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 27,
+   "h": 2048,
+   "skew_pos": 1492,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 28,
+   "h": 2048,
+   "skew_pos": 1482,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 29,
+   "h": 2048,
+   "skew_pos": 1500,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 30,
+   "h": 2048,
+   "skew_pos": 1456,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 31,
+   "h": 2048,
+   "skew_pos": 1564,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 32,
+   "h": 2048,
+   "skew_pos": 1477,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 33,
+   "h": 2048,
+   "skew_pos": 1476,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 34,
+   "h": 2048,
+   "skew_pos": 1508,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 35,
+   "h": 2048,
+   "skew_pos": 1459,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 36,
+   "h": 2048,
+   "skew_pos": 1422,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 37,
+   "h": 2048,
+   "skew_pos": 1430,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 38,
+   "h": 2048,
+   "skew_pos": 1483,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 39,
+   "h": 2048,
+   "skew_pos": 1382,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 40,
+   "h": 2048,
+   "skew_pos": 1310,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 41,
+   "h": 2048,
+   "skew_pos": 1136,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 42,
+   "h": 2048,
+   "skew_pos": 1046,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  },
+  {
+   "layer": 43,
+   "h": 2048,
+   "skew_pos": 1137,
+   "skew_nonzero": 2048,
+   "zero_var": 0
+  }
+ ]
+}

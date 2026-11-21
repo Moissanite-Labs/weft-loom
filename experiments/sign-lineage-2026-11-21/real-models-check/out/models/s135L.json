@@ -1,0 +1,260 @@
+{
+ "key": "s135L",
+ "trace_dir": "<real-models>/traces/s135L",
+ "T": 20000,
+ "layers": 30,
+ "widths": [
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536,
+  1536
+ ],
+ "units": 46080,
+ "zero_var": 0,
+ "skew_pos": 23119,
+ "skew_neg": 22961,
+ "skew_zero": 0,
+ "mean_pos": 22921,
+ "mean_neg": 23159,
+ "pos_on_gt90pct_words": 138,
+ "max_abs_value": 3766.0,
+ "nonfinite": false,
+ "per_layer": [
+  {
+   "layer": 0,
+   "h": 1536,
+   "skew_pos": 754,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 1,
+   "h": 1536,
+   "skew_pos": 757,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 2,
+   "h": 1536,
+   "skew_pos": 763,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 3,
+   "h": 1536,
+   "skew_pos": 793,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 4,
+   "h": 1536,
+   "skew_pos": 767,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 5,
+   "h": 1536,
+   "skew_pos": 810,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 6,
+   "h": 1536,
+   "skew_pos": 803,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 7,
+   "h": 1536,
+   "skew_pos": 747,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 8,
+   "h": 1536,
+   "skew_pos": 788,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 9,
+   "h": 1536,
+   "skew_pos": 768,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 10,
+   "h": 1536,
+   "skew_pos": 796,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 11,
+   "h": 1536,
+   "skew_pos": 746,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 12,
+   "h": 1536,
+   "skew_pos": 773,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 13,
+   "h": 1536,
+   "skew_pos": 760,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 14,
+   "h": 1536,
+   "skew_pos": 807,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 15,
+   "h": 1536,
+   "skew_pos": 754,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 16,
+   "h": 1536,
+   "skew_pos": 769,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 17,
+   "h": 1536,
+   "skew_pos": 789,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 18,
+   "h": 1536,
+   "skew_pos": 761,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 19,
+   "h": 1536,
+   "skew_pos": 801,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 20,
+   "h": 1536,
+   "skew_pos": 726,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 21,
+   "h": 1536,
+   "skew_pos": 763,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 22,
+   "h": 1536,
+   "skew_pos": 767,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 23,
+   "h": 1536,
+   "skew_pos": 776,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 24,
+   "h": 1536,
+   "skew_pos": 743,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 25,
+   "h": 1536,
+   "skew_pos": 751,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 26,
+   "h": 1536,
+   "skew_pos": 765,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 27,
+   "h": 1536,
+   "skew_pos": 780,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 28,
+   "h": 1536,
+   "skew_pos": 789,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  },
+  {
+   "layer": 29,
+   "h": 1536,
+   "skew_pos": 753,
+   "skew_nonzero": 1536,
+   "zero_var": 0
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+cantelli cases 2
+binomial cases 117
+cluster cases 3916
+same-position cases 1428
+control cluster caught True
+control same-position caught True
+failures 0

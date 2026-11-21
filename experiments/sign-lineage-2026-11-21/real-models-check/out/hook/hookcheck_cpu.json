@@ -1,0 +1,93 @@
+{
+ "device": "cpu",
+ "chunks": [
+  0,
+  40,
+  99
+ ],
+ "torch": "2.15.0",
+ "down_proj_module_names_first_last": [
+  "model.layers.0.mlp.down_proj",
+  "model.layers.29.mlp.down_proj",
+  30
+ ],
+ "down_proj_in_features": 1536,
+ "act": "silu",
+ "step3": [
+  {
+   "chunk": 0,
+   "part": "prose",
+   "tokens": 277,
+   "special_tokens": 0,
+   "max_rel_diff_downproj_input_vs_float64_product": 1.4063861685322465e-06,
+   "max_abs_diff_saved_vs_mine": 0.192138671875,
+   "max_rel_diff_saved_vs_mine": 0.07098117686160461,
+   "float16_identical": [
+    9088547,
+    9216000
+   ],
+   "max_diff_over_unit_max_abs": 0.0004860282010186079,
+   "min_unit_corr_saved_vs_mine": 0.9999995702536713
+  },
+  {
+   "chunk": 40,
+   "part": "code",
+   "tokens": 504,
+   "special_tokens": 0,
+   "max_rel_diff_downproj_input_vs_float64_product": 1.796096664514089e-06,
+   "max_abs_diff_saved_vs_mine": 0.5537109375,
+   "max_rel_diff_saved_vs_mine": 0.1004209480015561,
+   "float16_identical": [
+    9091490,
+    9216000
+   ],
+   "max_diff_over_unit_max_abs": 0.000493150899546408,
+   "min_unit_corr_saved_vs_mine": 0.9999995475788901
+  },
+  {
+   "chunk": 99,
+   "part": "math",
+   "tokens": 356,
+   "special_tokens": 0,
+   "max_rel_diff_downproj_input_vs_float64_product": 1.4335242630261542e-06,
+   "max_abs_diff_saved_vs_mine": 0.8134765625,
+   "max_rel_diff_saved_vs_mine": 0.08489279627808384,
+   "float16_identical": [
+    9088820,
+    9216000
+   ],
+   "max_diff_over_unit_max_abs": 0.0004880434125328596,
+   "min_unit_corr_saved_vs_mine": 0.9999996362089943
+  }
+ ],
+ "step4": {
+  "seed": 5150,
+  "weights_changed_max": 2.132568359375,
+  "chunks": [
+   {
+    "chunk": 0,
+    "max_abs_logit_diff": 0.00012969970703125,
+    "max_abs_logit": 41.606258392333984,
+    "max_abs_trace_diff_vs_signed_perm_of_ref": 0.0048828125,
+    "trace_scale": 2660.4248046875,
+    "max_abs_diff_vs_signed_perm_of_saved_instruct_trace": 0.593994140625
+   },
+   {
+    "chunk": 40,
+    "max_abs_logit_diff": 0.00013971328735351562,
+    "max_abs_logit": 46.080482482910156,
+    "max_abs_trace_diff_vs_signed_perm_of_ref": 0.0006103515625,
+    "trace_scale": 3166.70654296875,
+    "max_abs_diff_vs_signed_perm_of_saved_instruct_trace": 0.7060546875
+   },
+   {
+    "chunk": 99,
+    "max_abs_logit_diff": 0.000110626220703125,
+    "max_abs_logit": 41.35873031616211,
+    "max_abs_trace_diff_vs_signed_perm_of_ref": 0.0068359375,
+    "trace_scale": 3766.92578125,
+    "max_abs_diff_vs_signed_perm_of_saved_instruct_trace": 0.9326171875
+   }
+  ]
+ }
+}
