@@ -1,0 +1,387 @@
+{
+  "part1_live_null_law_exact_farkas": {
+    "dyadic_means_and_exact_2se_intervals": [
+      {
+        "interval_2se_exact": [
+          "105877/200000",
+          "582537/1000000"
+        ],
+        "mean": 0.555961,
+        "n_keep": 16,
+        "se": 0.013288
+      },
+      {
+        "interval_2se_exact": [
+          "107337/250000",
+          "237867/500000"
+        ],
+        "mean": 0.452541,
+        "n_keep": 32,
+        "se": 0.011596
+      },
+      {
+        "interval_2se_exact": [
+          "83373/250000",
+          "92703/250000"
+        ],
+        "mean": 0.352152,
+        "n_keep": 64,
+        "se": 0.00933
+      },
+      {
+        "interval_2se_exact": [
+          "126659/500000",
+          "140471/500000"
+        ],
+        "mean": 0.26713,
+        "n_keep": 128,
+        "se": 0.006906
+      },
+      {
+        "interval_2se_exact": [
+          "36147/200000",
+          "49987/250000"
+        ],
+        "mean": 0.190341,
+        "n_keep": 256,
+        "se": 0.004803
+      },
+      {
+        "interval_2se_exact": [
+          "116291/1000000",
+          "129937/1000000"
+        ],
+        "mean": 0.123114,
+        "n_keep": 512,
+        "se": 0.003411
+      }
+    ],
+    "empirical_cross_ratios_all_lt_1": [
+      {
+        "R_k": 0.956,
+        "n_keep_center": 32
+      },
+      {
+        "R_k": 0.974813,
+        "n_keep_center": 64
+      },
+      {
+        "R_k": 0.939328,
+        "n_keep_center": 128
+      },
+      {
+        "R_k": 0.907745,
+        "n_keep_center": 256
+      }
+    ],
+    "exact_4ray_farkas_windows_1p5se": {
+      "n_keep_16_to_128": {
+        "concave_log_R_le_1": {
+          "feasible": true,
+          "refuting_rays": []
+        },
+        "convex_log_R_ge_1": {
+          "feasible": true,
+          "refuting_rays": []
+        }
+      },
+      "n_keep_32_to_256": {
+        "concave_log_R_le_1": {
+          "feasible": true,
+          "refuting_rays": []
+        },
+        "convex_log_R_ge_1": {
+          "feasible": true,
+          "refuting_rays": []
+        }
+      },
+      "n_keep_64_to_512": {
+        "concave_log_R_le_1": {
+          "feasible": true,
+          "refuting_rays": []
+        },
+        "convex_log_R_ge_1": {
+          "feasible": false,
+          "refuting_rays": [
+            {
+              "max_lhs_lt_1_float": 0.9802280797837434,
+              "ray": [
+                1,
+                2
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "exact_4ray_farkas_windows_1se": {
+      "n_keep_16_to_128": {
+        "concave_log_R_le_1": {
+          "feasible": true,
+          "refuting_rays": []
+        },
+        "convex_log_R_ge_1": {
+          "feasible": true,
+          "refuting_rays": []
+        }
+      },
+      "n_keep_32_to_256": {
+        "concave_log_R_le_1": {
+          "feasible": true,
+          "refuting_rays": []
+        },
+        "convex_log_R_ge_1": {
+          "feasible": true,
+          "refuting_rays": []
+        }
+      },
+      "n_keep_64_to_512": {
+        "concave_log_R_le_1": {
+          "feasible": true,
+          "refuting_rays": []
+        },
+        "convex_log_R_ge_1": {
+          "feasible": false,
+          "refuting_rays": [
+            {
+              "max_lhs_lt_1_float": 0.9382338261832308,
+              "ray": [
+                2,
+                1
+              ]
+            },
+            {
+              "max_lhs_lt_1_float": 0.9060405204849431,
+              "ray": [
+                1,
+                2
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "exact_4ray_farkas_windows_2se": {
+      "n_keep_16_to_128": {
+        "concave_log_R_le_1": {
+          "feasible": true,
+          "refuting_rays": []
+        },
+        "convex_log_R_ge_1": {
+          "feasible": true,
+          "refuting_rays": []
+        }
+      },
+      "n_keep_32_to_256": {
+        "concave_log_R_le_1": {
+          "feasible": true,
+          "refuting_rays": []
+        },
+        "convex_log_R_ge_1": {
+          "feasible": true,
+          "refuting_rays": []
+        }
+      },
+      "n_keep_64_to_512": {
+        "concave_log_R_le_1": {
+          "feasible": true,
+          "refuting_rays": []
+        },
+        "convex_log_R_ge_1": {
+          "feasible": true,
+          "refuting_rays": []
+        }
+      }
+    },
+    "exact_zero_log_power_law_test_1se": {
+      "global_power_law_feasible": false,
+      "obstruction_witness": {
+        "exact_violation_ratio_gt_1": 1.9007783132250187,
+        "hi_pair_indices": [
+          3,
+          5
+        ],
+        "lo_pair_indices": [
+          0,
+          4
+        ]
+      }
+    },
+    "exact_zero_log_power_law_test_2se": {
+      "global_power_law_feasible": false,
+      "obstruction_witness": {
+        "exact_violation_ratio_gt_1": 1.4011502746616777,
+        "hi_pair_indices": [
+          3,
+          5
+        ],
+        "lo_pair_indices": [
+          0,
+          3
+        ]
+      }
+    },
+    "input_sha256": "f1f1010ae6a12a2d9b10555b77bc8cedf7cc9656dfb31dac36629ff525d358e5",
+    "paired_within_host_cross_ratios": [
+      {
+        "exact_sign_test_p_float": 0.38720703125,
+        "exact_sign_test_p_frac": "793/2048",
+        "hosts_strictly_concave_lt_1": 7,
+        "max_R": 1.084085,
+        "min_R": 0.827173,
+        "n_hosts": 12,
+        "n_keep_center": 32
+      },
+      {
+        "exact_sign_test_p_float": 0.19384765625,
+        "exact_sign_test_p_frac": "397/2048",
+        "hosts_strictly_concave_lt_1": 8,
+        "max_R": 1.045752,
+        "min_R": 0.919813,
+        "n_hosts": 12,
+        "n_keep_center": 64
+      },
+      {
+        "exact_sign_test_p_float": 0.000244140625,
+        "exact_sign_test_p_frac": "1/4096",
+        "hosts_strictly_concave_lt_1": 12,
+        "max_R": 0.98863,
+        "min_R": 0.87359,
+        "n_hosts": 12,
+        "n_keep_center": 128
+      },
+      {
+        "exact_sign_test_p_float": 0.000244140625,
+        "exact_sign_test_p_frac": "1/4096",
+        "hosts_strictly_concave_lt_1": 12,
+        "max_R": 0.963581,
+        "min_R": 0.876575,
+        "n_hosts": 12,
+        "n_keep_center": 256
+      }
+    ],
+    "synthetic_power_law_control_feasible": true
+  },
+  "part2_exact_pencil_adversary_bound": {
+    "certified_rms_hiding_ratio_interval": [
+      45.896418,
+      45.896418
+    ],
+    "certified_sq_hiding_ratio_hi_float": 2106.481229,
+    "certified_sq_hiding_ratio_lo_float": 2106.48122805,
+    "exact_arithmetic": "100% pure Fraction Bunch-Kaufman inertia (zero floats)",
+    "inertia_at_hi": [
+      4,
+      0,
+      0
+    ],
+    "inertia_at_lo": [
+      3,
+      0,
+      1
+    ],
+    "noncommuting_Gp_Gh": true,
+    "permutation_gauge_invariance_exact": true,
+    "regularization_eps": "1/100",
+    "sp09_heedle_shed_9th_schur_complement": {
+      "certified_lam_max_S_shed_bracket": [
+        22.78609321,
+        22.78609321
+      ],
+      "exact_identity_S_shed_eq_Jo_Pi_JoT_residual_zero": true,
+      "exact_power_traces_W_shed_eq_S_shed_m1_to_4": [
+        "1073/46",
+        "1099257/2116",
+        "1151566133/97336",
+        "1207010205457/4477456"
+      ]
+    },
+    "zero_blindspot_control_ratio_lt_1": true
+  },
+  "part3_live_tf_leverage_and_cbc_curve": {
+    "cbc_budget_curve_sha256": "3da1b229782d24f8dd0e7c74dd58e0c944e99c4d8e700880cbbd8c7bb9673dd7",
+    "cbc_saturation_audit": {
+      "crossed_tau": [
+        {
+          "best_change": 10.157992,
+          "crossing_row": 40719,
+          "pair": 1015
+        }
+      ],
+      "max_gain_100k_to_600k_across_all_12": 6.7e-05,
+      "max_gain_50k_to_600k_across_all_12": 0.010217,
+      "n_benign_pairs": 12,
+      "non_crossing_max_at_600k": 8.257572,
+      "scope_note": "Plateau measures candidate-stage saturation, not global ellipsoid proof; pair 1015 proves frozen-budget admission can miss a valid witness at row 40,719.",
+      "tau": 10.0
+    },
+    "probe_count_tf_sha256": "b267a2f4a465620997ea37a35a2b857defa3204f6d00d7b17271cbcb227836fe",
+    "tf_spatial_leverage_H4_diagnosis": {
+      "failing_seeds_top5_range": [
+        0.5635,
+        0.8797
+      ],
+      "hosts": [
+        {
+          "failed_H4_at_96_probes": true,
+          "seed": 4,
+          "share_outside_1p25_at_384": 0.045,
+          "share_outside_1p25_at_96": 0.23,
+          "top5_pct_share_of_sq_change": 0.648
+        },
+        {
+          "failed_H4_at_96_probes": true,
+          "seed": 5,
+          "share_outside_1p25_at_384": 0.57,
+          "share_outside_1p25_at_96": 0.845,
+          "top5_pct_share_of_sq_change": 0.8797
+        },
+        {
+          "failed_H4_at_96_probes": true,
+          "seed": 7,
+          "share_outside_1p25_at_384": 0.02,
+          "share_outside_1p25_at_96": 0.195,
+          "top5_pct_share_of_sq_change": 0.5635
+        },
+        {
+          "failed_H4_at_96_probes": false,
+          "seed": 0,
+          "share_outside_1p25_at_384": 0.0,
+          "share_outside_1p25_at_96": 0.025,
+          "top5_pct_share_of_sq_change": 0.3634
+        },
+        {
+          "failed_H4_at_96_probes": false,
+          "seed": 1,
+          "share_outside_1p25_at_384": 0.005,
+          "share_outside_1p25_at_96": 0.055,
+          "top5_pct_share_of_sq_change": 0.4256
+        },
+        {
+          "failed_H4_at_96_probes": false,
+          "seed": 2,
+          "share_outside_1p25_at_384": 0.005,
+          "share_outside_1p25_at_96": 0.13,
+          "top5_pct_share_of_sq_change": 0.497
+        }
+      ],
+      "passing_seeds_top5_range": [
+        0.3634,
+        0.497
+      ],
+      "strict_separation_by_share_outside_1p25_at_96": true,
+      "strict_separation_by_top5_leverage": true
+    }
+  },
+  "probe": "probe_s3_weft_nullspace_schur_law",
+  "r3_negative_controls": {
+    "all_r3_rejected": true,
+    "exceptions": {
+      "asymmetric_matrix": "ValueError",
+      "bool_entry": "TypeError",
+      "float_entry": "TypeError",
+      "ragged_matrix": "ValueError"
+    }
+  },
+  "target_upstream": "Moissanite-Labs/weft-loom (gate-metric-calibration-2026-11-15 & committed-behaviour-change-2026-11-15)"
+}
