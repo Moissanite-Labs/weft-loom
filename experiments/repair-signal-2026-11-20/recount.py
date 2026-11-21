@@ -117,6 +117,15 @@ def closing_assignment(reply, n):
     return read_lines(lines[-n:], n) if len(lines) >= n else None
 
 
+DECIMAL_LINE = re.compile(r"^x[0-9]+[ \t]*=[ \t]*-?[0-9]+(?:\.[0-9]+)?(?:/[0-9]+)?$", re.ASCII)
+
+
+def decimal_answer(reply, n):
+    """Is this unreadable reply a plain list of n assignments in which at least one number has a decimal point?"""
+    lines = [line.strip() for line in reply.strip().split("\n") if line.strip()]
+    return len(lines) == n and all(DECIMAL_LINE.match(line) for line in lines) and any("." in line for line in lines)
+
+
 def sign_p(first_only, second_only):
     """Exact one-sided binomial sign test: chance of at least first_only heads in first_only + second_only fair flips."""
     n = first_only + second_only
@@ -153,7 +162,8 @@ def recount(path):
     unreadable_in_round_2 = {a: 0 for a in ARMS}
     solved_by_round = {a: [0] * K for a in ARMS}
     seconds_unreadable, seconds_readable = [], []
-    closing = {"unreadable": 0, "end_in_complete_assignment": 0, "that_assignment_satisfies_every_constraint": 0,
+    closing = {"unreadable": 0, "by_round": [0] * K, "answers_written_with_a_decimal": 0,
+               "end_in_complete_assignment": 0, "that_assignment_satisfies_every_constraint": 0,
                "next_round_passes_after_one_ending_in_an_assignment": [0, 0], "next_round_passes_after_one_that_does_not": [0, 0]}
 
     for (arm, inst), rs in by_unit.items():
@@ -207,6 +217,8 @@ def recount(path):
             if mine[j][0] != "unparsable":
                 continue
             closing["unreadable"] += 1
+            closing["by_round"][r["round"] - 1] += 1
+            closing["answers_written_with_a_decimal"] += decimal_answer(r["reply"], n)
             tail = closing_assignment(r["reply"], n)
             if tail is not None:
                 closing["end_in_complete_assignment"] += 1
@@ -217,7 +229,11 @@ def recount(path):
                 closing[key][0] += mine[j + 1][0] == "pass"
         for j in range(1, len(mine)):
             repeats[arm][1] += 1
-            if mine[j][1] is not None and mine[j - 1][1] is not None and mine[j][1] == mine[j - 1][1]:
+            both_readable = mine[j][1] is not None and mine[j - 1][1] is not None
+            both_unreadable = mine[j][1] is None and mine[j - 1][1] is None
+            # The harness counts a repeat when two readable answers have equal values, and also when two unreadable
+            # replies are the same text. The recount follows it.
+            if (both_readable and mine[j][1] == mine[j - 1][1]) or (both_unreadable and rs[j]["reply"] == rs[j - 1]["reply"]):
                 repeats[arm][0] += 1
             bucket = after_unreadable if mine[j - 1][0] == "unparsable" else after_readable_fail
             bucket[arm][1] += 1
@@ -246,7 +262,8 @@ def recount(path):
             "next_round_passes_after_readable_failed_round": {a: "%d/%d" % tuple(after_readable_fail[a]) for a in ARMS},
             "median_seconds_per_unreadable_reply": round(median(seconds_unreadable), 1) if seconds_unreadable else None,
             "median_seconds_per_readable_reply": round(median(seconds_readable), 1) if seconds_readable else None,
-            "unreadable_replies": {k: ("%d/%d" % tuple(v) if isinstance(v, list) else v) for k, v in closing.items()},
+            "unreadable_replies": {k: ("%d/%d" % tuple(v) if isinstance(v, list) and len(v) == 2 else v)
+                                   for k, v in closing.items()},
         },
     }
     for name, x, y in (("primary_C_vs_B", "C", "B"), ("check_B_vs_A", "B", "A"), ("check_C_vs_D", "C", "D")):

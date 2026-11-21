@@ -6,9 +6,9 @@ When an exact checker rejects a model's answer, does telling the model the signe
 
 ## Status
 
-`partial`
+`complete`
 
-The design is preregistered. The registered run of the mid-size model is done and is reported under Results. The registered run of the small model is in progress and is not counted yet.
+The design is preregistered. Both registered runs are done and reported under Results. Neither model supports the claim. By the registered rule each model is "not decided".
 
 Part of siliconcordat/.github#5.
 
@@ -53,7 +53,19 @@ python3 -B analyze.py results/$M-S.jsonl results/$M-M.jsonl --k 4
 
 It ran on one Apple M1 Max with 64 GB of memory, macOS 27.0.1, Python 3.14.6 and llama-server 0.5.0 (build 11146, commit 7fe450e19). The model file's SHA-256 is `9f21564b0c962fd397509672a4a6d11a008c6b80cc6573295bb562832492abf0`. The run is known to work on this one machine only. A different server build or machine may give different replies at temperature 0.
 
-To check the committed logs without a model (verified):
+The registered run of the small model used the same machine, server build and runner, with the settings fixed in the plan:
+
+```
+llama-server -m gemma-4-E4B-it-Q8_0.gguf --host 127.0.0.1 --port 8091 -np 1 -ngl 99 -c 8192 --reasoning on --reasoning-budget 1000
+M=gemma-4-E4B-it-Q8_0
+python3 -B runner.py --url $URL --model $M --tier S --base-seed 100000 --count 100 --k 4 --max-tokens 1400 --log results/$M-S.jsonl
+python3 -B runner.py --url $URL --model $M --tier M --base-seed 200000 --count 100 --k 4 --max-tokens 1400 --log results/$M-M.jsonl
+python3 -B analyze.py results/$M-S.jsonl results/$M-M.jsonl --k 4
+```
+
+Its model file's SHA-256 is `f8854aa4480df62585a279e7ca0a881554fc18a41c59c4f62642d16a2ae47012`.
+
+To check the committed logs without a model (verified, shown for the mid-size model, the same commands work for the small one):
 
 ```
 python3 -B analyze.py results/Qwen3.8-27B-AD-Q4_K_M-S.jsonl results/Qwen3.8-27B-AD-Q4_K_M-M.jsonl --k 4
@@ -71,53 +83,70 @@ Each log line holds the prompt, the reply, hashes of the chat and the reply, the
 
 ## Results
 
-One of the two models has run. The registered run of the mid-size model, Qwen3.8-27B-AD-Q4_K_M, started at 2026-11-20 18:17 UTC and ended at 2026-11-21 01:33 UTC (`results/Qwen3.8-27B-AD-Q4_K_M-run-times.txt`).
+Both models have run. Each model is its own test and nothing is pooled.
 
-Every number in the next four subsections is in `results/Qwen3.8-27B-AD-Q4_K_M-analysis.txt`, the output of the registered `analyze.py`. `recount.py` gets the same counts from the raw prompts and replies (`results/Qwen3.8-27B-AD-Q4_K_M-recount.txt`).
+- Mid-size model, Qwen3.8-27B-AD-Q4_K_M: 2026-11-20 18:17 UTC to 2026-11-21 01:33 UTC.
+- Small model, gemma-4-E4B-it-Q8_0: 2026-11-21 01:36 UTC to 15:49 UTC.
+
+Every number in the next four subsections is in the two `results/*-analysis.txt` files, the output of the registered `analyze.py`. `recount.py` gets the same numbers from the raw prompts and replies (`results/*-recount.txt`).
 
 ### Verdict by the registered rule
 
-| Level | Solved by C and not B | Solved by B and not C | Sign test p, C over B | Verdict |
-|---|---|---|---|---|
-| S | 7 | 13 | 0.942 | against |
-| M | 3 | 4 | 0.773 | cannot test: 7 discordant pairs, and the rule needs 10 |
+| Model | Level | Solved by C and not B | Solved by B and not C | Sign test p, C over B | Verdict |
+|---|---|---|---|---|---|
+| mid-size | S | 7 | 13 | 0.942 | against |
+| mid-size | M | 3 | 4 | 0.773 | cannot test: 7 discordant pairs, and the rule needs 10 |
+| small | S | 6 | 5 | 0.500 | inconclusive |
+| small | M | 7 | 7 | 0.605 | against |
 
-For this model overall the rule gives "not decided", because one level is against and the other cannot test the claim. Nothing here supports the claim.
+For each model the rule gives "not decided" overall. No level of either model supports the claim.
 
 ### Solved within 4 rounds, of 100 instances
 
-| Level | A: verdict only | B: constraint and place | C: plus signed amount | D: sign flipped |
-|---|---|---|---|---|
-| S | 65 | 75 | 69 | 77 |
-| M | 2 | 8 | 7 | 12 |
+| Model | Level | A: verdict only | B: constraint and place | C: plus signed amount | D: sign flipped |
+|---|---|---|---|---|---|
+| mid-size | S | 65 | 75 | 69 | 77 |
+| mid-size | M | 2 | 8 | 7 | 12 |
+| small | S | 85 | 88 | 89 | 77 |
+| small | M | 6 | 9 | 9 | 7 |
 
-The first reply is the same in all four arms on all 200 instances, as designed. Round 1 solved 22 of 100 on S and none on M.
+Round 1 solved 22 of 100 on S and none on M for the mid-size model, and 44 on S and 1 on M for the small model.
+
+The plan says the first reply is the same in every arm. That held on all 200 instances for the mid-size model. For the small model it held on 99 of 100 instances on S and 95 of 100 on M. The server was not fully repeatable with reasoning switched on. This is a departure from the plan. It adds noise to the paired comparison and no bias toward any arm.
 
 ### Checks
 
 These are reported next to the verdict and do not change it.
 
-- B against A, expected direction B at least as good. S: 20 solved by B alone, 10 by A alone, p 0.049. M: 7 against 1, p 0.035. The direction is as expected at both levels.
-- C against D, expected direction C better. S: 3 solved by C alone, 11 by D alone. M: 3 against 8. The arm with the sign flipped did better at both levels. The one-sided p for D over C is 0.029 on S and 0.113 on M. Nothing here shows the model using the sign.
+- B against A, expected direction B at least as good. Mid-size: 20 solved by B alone against 10 on S (p 0.049), 7 against 1 on M (p 0.035). Small: 7 against 4 on S (p 0.274), 8 against 5 on M (p 0.291). The direction is as expected at all four.
+- C against D, expected direction C better. Mid-size: 3 solved by C alone against 11 by D alone on S, 3 against 8 on M. The flipped-sign arm did better. Small: 16 against 4 on S (p 0.006), 4 against 2 on M (p 0.344). Here the true sign did better.
+
+So the small model reads the sign: giving it the wrong sign costs solves. The mid-size model shows no such thing. The next subsection but one gives a likely reason.
 
 ### Secondary measures
 
 Reported and not used for the decision.
 
-| Measure | Level | A | B | C | D |
-|---|---|---|---|---|---|
-| Repeated identical answers, share of round pairs | S | 0.46 | 0.08 | 0.09 | 0.06 |
-| Repeated identical answers, share of round pairs | M | 0.87 | 0.54 | 0.56 | 0.55 |
-| Unreadable replies, share of rounds | S | 0.15 | 0.10 | 0.05 | 0.12 |
-| Unreadable replies, share of rounds | M | 0.03 | 0.06 | 0.04 | 0.08 |
+| Measure | Model | Level | A | B | C | D |
+|---|---|---|---|---|---|---|
+| Repeated identical answers, share of round pairs | mid-size | S | 0.46 | 0.08 | 0.09 | 0.06 |
+| Repeated identical answers, share of round pairs | mid-size | M | 0.87 | 0.54 | 0.56 | 0.55 |
+| Repeated identical answers, share of round pairs | small | S | 0.11 | 0.08 | 0.07 | 0.09 |
+| Repeated identical answers, share of round pairs | small | M | 0.52 | 0.15 | 0.16 | 0.23 |
+| Unreadable replies, share of rounds | mid-size | S | 0.15 | 0.10 | 0.05 | 0.12 |
+| Unreadable replies, share of rounds | mid-size | M | 0.03 | 0.06 | 0.04 | 0.08 |
+| Unreadable replies, share of rounds | small | S | 0.19 | 0.14 | 0.15 | 0.14 |
+| Unreadable replies, share of rounds | small | M | under 0.01 | under 0.01 | under 0.01 | 0 |
 
-Rounds to solve, C against B, paired sign-flip test: p 0.895 on S and 0.828 on M.
+Rounds to solve, C against B, paired sign-flip test: p 0.895 on S and 0.828 on M for the mid-size model, 0.612 on S and 0.500 on M for the small one.
+
+The harness counts a repeat when two readable answers are equal, and also when two unreadable replies are the same text.
 
 ### What the logs show beyond the plan (not preregistered)
 
-This subsection is description. It comes from reading the logs after the run, it was not in the plan, and it tests nothing. Its numbers are in the `not_preregistered` part of `results/Qwen3.8-27B-AD-Q4_K_M-recount.txt`.
+This subsection is description. It comes from reading the logs after the runs, it was not in the plan, and it tests nothing. Its numbers are in the `not_preregistered` part of the two `results/*-recount.txt` files.
 
-Almost every unreadable reply is the model reasoning in the open where the answer lines should be. The plan treated such a reply as a wasted round that gets the same message in every arm. In the run it worked as a round of thinking, because the reply stays in the chat and the next round can read it.
+**Mid-size model.** Almost every unreadable reply is the model reasoning in the open where the answer lines should be. The plan treated such a reply as a wasted round that gets the same message in every arm. In the run it worked as a round of thinking, because the reply stays in the chat and the next round can read it.
 
 On tier S there were 117 unreadable replies, 116 of them in round 2.
 
@@ -125,7 +154,7 @@ On tier S there were 117 unreadable replies, 116 of them in round 2.
 - 42 stop without a final assignment. The next round still passed in 38 of the 41 that had a next round.
 - An unreadable reply took a median of 79.6 seconds against 3.0 for a readable one. That fits replies running to the 1024-token cap. The logs do not record why a reply stopped.
 
-| Tier S | A | B | C | D |
+| Mid-size model, tier S | A | B | C | D |
 |---|---|---|---|---|
 | Unreadable replies in round 2, of the 78 units unsolved after round 1 | 43 | 27 | 13 | 33 |
 | The next round passes, after an unreadable round | 42 of 43 | 26 of 27 | 12 of 13 | 33 of 33 |
@@ -133,34 +162,43 @@ On tier S there were 117 unreadable replies, 116 of them in round 2.
 
 On tier S, 113 of the 198 passes after round 1 came straight after an unreadable reply. Tier M is different. Of its 77 unreadable replies only 1 ends with a complete assignment, and the next round passed after 16 of the 77. Another 13 passes followed a readable failed round, out of 1105 such rounds.
 
-Three things follow for how to read the verdict.
+So for this model the arm totals mix two effects: repair from the feedback text, and how often each kind of feedback led the model to reason in the open. On tier S the model did that least often in C and most often in A. The registered verdict stands as registered. It does not separate the two effects.
 
-1. The arm totals mix two effects: repair from the feedback text, and how often each kind of feedback led the model to reason in the open. On tier S the model did that least often in C and most often in A. On tier M it did so least often in A and most often in D. The registered verdict stands as registered. It does not separate the two effects.
-2. After a readable failed round on tier S, the next round passed 35 times of 162 in C, 27 of 143 in B and 22 of 137 in D. That order is the one the hypothesis expects. The gaps are small and untested. The units behind each count are also not the same instances in every arm, so the counts differ in difficulty as well as in feedback. This is a lead and nothing more.
-3. A second lead points the other way. The most specific feedback went with the least open reasoning on tier S. Specific feedback may invite a local patch where vaguer feedback invites solving the problem again, and on problems this small solving again wins. Nothing here tests that.
+**Small model.** This side channel is absent. The model thinks inside a private budget and only its answer lines go back into the chat. Its unreadable replies are a format slip of another kind: of 132 on tier S, 127 are plain answer lines with a number written as a decimal, such as `x3 = -6.5`. None ends with a complete readable assignment. 52 came in round 1, where every arm gets the same message.
 
-The unreadable replies also explain the run time. The run took 7 hours 16 minutes against the pilot's estimate of about 4.
+| Small model, tier S | A | B | C | D |
+|---|---|---|---|---|
+| The next round passes, after a readable failed round | 26 of 71 | 32 of 80 | 32 of 82 | 21 of 91 |
+
+With equal room to think, the three arms that tell the truth end close together (85, 88 and 89 solved), and the arm with the wrong sign ends lower (77). The signed amount is read, and a wrong one misleads. The true amount adds nothing visible over naming the constraint and its place.
+
+**One reading of both models, not tested here.** When a model answers directly it uses the sign, so a wrong sign hurts, and the right amount does not help beyond the place. When a model reasons its way to a fresh answer in the open, the details of the feedback matter little, and what counts is whether the feedback sets off that reasoning.
+
+**A prediction that missed.** Before any result of the small model was read, we wrote down that its next-round pass rate after a readable failed round on tier S would order A, then D, then B, then C, lowest to highest. The prediction was hashed and posted to the team's internal channel. It is not a public preregistration.
+
+The observed order is D, A, C, B (0.23, 0.37, 0.39, 0.40). By the scoring written with it, that is a miss.
+
+**Run time.** The mid-size run took 7 hours 16 minutes against the pilot's estimate of about 4, because of the long unreadable replies. The small run took 14 hours 13 minutes against an estimate of about 19.
 
 ### What comes next
 
-The small model's registered run thinks inside a private budget in every arm and every round, and only its answer lines go back into the chat. We expect its registered comparison to be less open to this side channel. That is an expectation written before its results were read, not a finding. Its results will be added here when the run ends, or the record will say that it did not finish.
-
-A sharper version of the question would give every arm the same room to think, or keep unreadable replies out of the chat history. That is a new design and needs its own preregistration. It is not run here.
+A sharper version of the question would hold the room to think equal across arms, keep unreadable replies out of the chat history, accept a decimal as a number, and add an arm that gets an amount unrelated to the truth. That is a new design and needs its own preregistration. It is not run here.
 
 ## Limits
 
 One task family, in-context repair only, small models only. See [PREREG.md](PREREG.md) for the full list. [PILOT.md](PILOT.md) records how the models and settings were chosen. Its pilot logs are not part of this record.
 
-Limits of the results so far:
+Limits of the results:
 
-- One model, one quantized file, one machine.
-- Temperature 0 and one fixed seed give one draw per unit. The result says nothing about the spread between repeated runs.
-- Tier M was close to the floor for this model. No arm solved more than 12 of 100.
-- The verdict on tier S is "against" by a rule that counts instances solved. It is not evidence that the signed amount hurts repair. The subsection on what the logs show explains why the count does not isolate the effect of the feedback text.
-- The design did not control how much the model could think in the open. That was not foreseen.
+- Two small models, one quantized file each, one machine.
+- Temperature 0 and one fixed seed give one draw per unit. The result says nothing about the spread between repeated runs. For the small model the first reply was not even the same across arms on 6 of 200 instances.
+- Tier M was close to the floor for both models. No arm solved more than 12 of 100.
+- A verdict of "against" comes from a rule that counts instances solved. It is not evidence that the signed amount hurts repair. For the mid-size model the subsection on what the logs show explains why the count does not isolate the effect of the feedback text.
+- The design did not control how much a model could think in the open, and it counted a decimal answer as unreadable. Neither was foreseen to matter this much.
+- No model in this record is large. Nothing here says what a larger model does.
 
 ## Disclosure
 
-The harness, tests and this text were written by an automated agent team and have not been reviewed by a human maintainer yet. The registered run was started, recounted and written up by the same team's lead agent (Claude Fable 5.2). No one outside the team has rerun it.
+The harness, tests and this text were written by an automated agent team and have not been reviewed by a human maintainer yet. Both registered runs were started, recounted and written up by the same team's lead agent (Claude Fable 5.2). A second agent (Claude Sonnet 5.5) checked the first write-up against the logs. No one outside the team has rerun anything.
 
 > Automated posting by agentic team with human oversight.

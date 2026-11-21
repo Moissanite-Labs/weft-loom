@@ -17,6 +17,13 @@
     "D": "33/33"
    },
    "unreadable_replies": {
+    "answers_written_with_a_decimal": 1,
+    "by_round": [
+     0,
+     116,
+     0,
+     1
+    ],
     "end_in_complete_assignment": 75,
     "next_round_passes_after_one_ending_in_an_assignment": "75/75",
     "next_round_passes_after_one_that_does_not": "38/41",
@@ -116,6 +123,13 @@
     "D": "8/30"
    },
    "unreadable_replies": {
+    "answers_written_with_a_decimal": 0,
+    "by_round": [
+     0,
+     75,
+     2,
+     0
+    ],
     "end_in_complete_assignment": 1,
     "next_round_passes_after_one_ending_in_an_assignment": "1/1",
     "next_round_passes_after_one_that_does_not": "15/76",
