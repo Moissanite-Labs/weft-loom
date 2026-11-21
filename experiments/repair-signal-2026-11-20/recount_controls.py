@@ -138,6 +138,26 @@ class ReadLineControls(unittest.TestCase):
             self.assertIsNone(recount.read_line(line), line)
 
 
+class ReadDecimalControls(unittest.TestCase):
+    """read_decimal_answer reads the decimal answers that the closing-answer count asks about. Each case breaks one guard."""
+
+    def test_clean_decimal_answer_is_read_as_exact_numbers(self):
+        from fractions import Fraction
+        self.assertEqual(recount.read_decimal_answer("x0 = 1.5\nx1 = 1/2", 2), {0: Fraction(3, 2), 1: Fraction(1, 2)})
+
+    def test_index_outside_the_instance_is_refused(self):
+        # two lines and no repeat, so only the index guard can refuse it
+        self.assertIsNone(recount.read_decimal_answer("x0 = 1.5\nx2 = 1", 2))
+        self.assertIsNone(recount.read_decimal_answer("x0 = 1.5\nx5 = 1", 2))
+
+    def test_zero_denominator_is_refused_instead_of_crashing(self):
+        self.assertTrue(recount.decimal_answer("x0 = 1.5\nx1 = 1/0", 2))
+        self.assertIsNone(recount.read_decimal_answer("x0 = 1.5\nx1 = 1/0", 2))
+
+    def test_repeated_variable_is_refused(self):
+        self.assertIsNone(recount.read_decimal_answer("x0 = 1.5\nx0 = 2.5", 2))
+
+
 class ParserAgreement(unittest.TestCase):
     """recount.py's reply reader and the harness's parser are written separately. They must accept the same replies."""
 

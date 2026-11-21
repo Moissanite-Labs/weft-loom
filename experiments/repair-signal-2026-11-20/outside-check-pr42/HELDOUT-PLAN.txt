@@ -1,0 +1,63 @@
+# Held-out plan: the PR 42 part-1 claims tested on the gemma logs
+
+Written 2026-11-21 before any gemma result was computed by me and before reading `results/gemma-4-E4B-it-Q8_0-analysis.txt`, `results/gemma-4-E4B-it-Q8_0-recount.txt` or any gemma log beyond its first line. The SHA-256 of this file is recorded in EVAL.md. The plan is not edited after that. Any deviation is listed in EVAL.md under "Deviations".
+
+## What I had already seen (so what is not blind)
+
+- Our record README (`land/weft-loom-record/experiments/repair-signal-2026-11-20/README.md`) gives gemma aggregates: four-round solves A/B/C/D = 85/88/89/77 on S and 6/9/9/7 on M; C-only vs D-only four-round solves 16 vs 4 on S and 4 vs 2 on M; unreadable share of rounds per arm (S: .19/.14/.15/.14; M: under .01 everywhere); 127 of 132 unreadable replies on S are decimal answer lines; R1 reply identical across arms on 99/100 (S) and 95/100 (M), the odd ones all in arm A.
+- The key names and types of the first line of each gemma log: the same fields as Qwen, including `seconds` (float) and `parse_error`.
+
+So G4 and G5 below are not held out: their outcome is implied by the README (C beats D on the total at both tiers). G1 is only partly held out: the per-arm unreadable shares are known, the paired round-2 counts are not. G2, G3, G6, G7, G8 and G9 are held out.
+
+## Definitions (applied identically to every tier and model)
+
+Per tier, per instance i, per arm a, the round records sorted by `round`.
+
+- unreadable(round): `parse_error` is not null.
+- pass4(a,i): some round has `verdict == "pass"`.
+- esc(a,i): some round is unreadable.
+- pure(a,i): pass4 and not esc.
+- r1fail(i): round 1 has `verdict == "fail"` (an unreadable round 1 is not counted, as in their code).
+- r2esc(a,i): r1fail, a round 2 exists, and round 2 is unreadable.
+- r2pass(a,i): r1fail and round 2 has `verdict == "pass"`.
+- solve_time(a,i): the sum of `seconds` over rounds 1 to the passing round.
+- tot_time(a,i): the sum of `seconds` over all rounds of the unit.
+- T*(tier): 10 times the median of `seconds` over all readable rounds of the tier, all arms pooled, median taken as the element at index floor(n/2) of the ascending list. (On Qwen S this gives about 30 s, the window their code uses.)
+- Pairing: for arms X and Y, instance i is dropped from an X-vs-Y test if the round-1 `reply_sha256` differs between X and Y. The number dropped is reported.
+- Sign test: exact one-sided binomial on discordant pairs, p = sum over k >= w of C(n,k) / 2^n, with w the count in the claimed direction and n the discordant total. Computed in integers.
+
+## Tests
+
+Primary family (8 tests, Holm step-down over all 8 at family alpha 0.05, one-sided in the direction PR 42 claims):
+
+| id | per tier | statistic | claimed direction |
+|---|---|---|---|
+| G1 | S, M | paired r2esc, D-only vs C-only | D > C |
+| G2 | S, M | paired pure, C-only vs D-only | C > D |
+| G3 | S, M | paired r2pass, C-only vs D-only | C > D |
+| G4 | S, M | paired pass4, D-only vs C-only (not blind) | D > C |
+
+Decision per claim: "replicates on gemma" if at least one tier has Holm-adjusted p <= 0.05 in the claimed direction. "Contradicted" if at either tier the one-sided p in the opposite direction is <= 0.025 (unadjusted). Otherwise "not replicated".
+
+Secondary (reported with raw p, alpha 0.025 one-sided, no family correction, no verdict hangs on them):
+
+- G5 Simpson structure (not blind): Delta_direct = #pure(C) - #pure(D), Delta_total = #pass4(C) - #pass4(D). Present iff Delta_direct > 0 and Delta_total < 0.
+- G6 Compute: sum of tot_time over instances, D over C. Paired sign test on tot_time per instance, D > C, ties dropped.
+- G7 Windows: survival counts (solve_time <= T) for T in {5, 10, 15, 20, 30, 45, 60, 90, 120, 180, 300} s and T*; paired C > D sign test at T = 30 s and at T*.
+- G8 Repaired fast-channel test (my strongest version of their claim, also run on Qwen): restricted to instances where neither C nor D had any unreadable round, paired pass4 C-only vs D-only, C > D.
+- G9 What the extra unreadable replies are: each round-2 unreadable reply (r2esc) is classed "decimal-assignment" if, after removing one surrounding code fence, every non-empty line matches `^\s*x\d+\s*=\s*[-+]?\d+(\.\d+)?(/\d+)?\s*$` and at least one value has a decimal point; "assignment-other" if every line matches but none has a decimal point; else "prose". Report counts by arm and the median reply length in characters. Also B vs C paired r2esc (their `r2_cot_escape_B_vs_C`), B > C.
+
+## Which claims cannot transfer, and why
+
+1. "The flipped sign triggers long open-reasoning replies (about 80 s) that break the format." Gemma ran with `--reasoning on --reasoning-budget 1000` (PREREG.md, Models and settings); its reasoning is private and not sent back into the chat, and the README says its unreadable replies are mostly decimal answer lines. So the open-reasoning mechanism is absent by design. Only the generic form ("D causes more round-2 unreadable replies than C") is tested (G1), and G9 says what those replies are.
+2. Time windows. Gemma's `seconds` include its private reasoning (up to 1000 tokens a round), so a short time does not mean "no side channel" and 30 s is not the same budget it was for Qwen. G7 is description only; the literal 30 s and the scaled T* are both reported.
+3. Compute ratio. On gemma it measures hidden reasoning length per round and rounds used, not an open side channel. G6 is description.
+4. "Simpson's paradox" and the D > C reversal (G4, G5) are not blind (see above).
+
+## Predictions written now
+
+- G1 not replicated on either tier (no open-reasoning channel; README shares are flat).
+- G2 C > D on S at raw p < 0.025, because D hurts gemma on S overall; on M too few discordant pairs.
+- G3 C > D direction on S, p not predicted.
+- G4 contradicted on S (README: C 16 vs D 4).
+- G8 C > D on S.

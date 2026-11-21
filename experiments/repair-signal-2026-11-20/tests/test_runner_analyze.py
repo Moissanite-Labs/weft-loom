@@ -46,6 +46,19 @@ class Mocks(unittest.TestCase):
             sol = runner._solve_prompt(first, inst.n)
             self.assertEqual(rsig.check(inst, sol), [], inst.seed)
 
+    def test_ignore_mock_answers_zeros_until_its_round_and_then_the_solution(self):
+        chat = runner.mock_chat("ignore")
+        for inst in INSTS[:6]:
+            first = rsig.initial_prompt(inst)
+            at = 2 + int(runner.sha(first), 16) % 4
+            zeros = "\n".join("x%d = 0" % i for i in range(inst.n))
+            solved = "\n".join("x%d = %s" % (i, v) for i, v in enumerate(runner._solve_prompt(first, inst.n)))
+            for rnd in range(1, 7):
+                msgs = [{"role": "user", "content": first}]
+                for _ in range(rnd - 1):
+                    msgs += [{"role": "assistant", "content": "a"}, {"role": "user", "content": "b"}]
+                self.assertEqual(chat(msgs), zeros if rnd < at else solved, (inst.seed, rnd, at))
+
     def test_garbage_is_unparsable_in_every_arm(self):
         for arm in "ABCD":
             _, u = runner.run_unit(runner.mock_chat("garbage"), INSTS[0], arm, 3, "g")
