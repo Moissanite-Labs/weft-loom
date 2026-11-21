@@ -3,6 +3,7 @@
 D="$(cd "$(dirname "$0")/.." && pwd)"
 PY="${PYTHON:-python3} -I"  # PYTHON: an interpreter with torch, transformers, numpy and safetensors
 cd "$D"
+mkdir -p logs
 # The original run waited here for run_queue.sh to finish. Run it after run_queue.sh.
 pr() { n="$1__$2"; [ -f out/pairs/$n.json ] || $PY scripts/pairs.py "$D" "$@" 2>&1 | tail -1 | cut -c1-300; }
 pr py s135

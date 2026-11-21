@@ -1,0 +1,7 @@
+# Excerpt of q08layers_IB.txt (the -I -B run): only the summary lines, because the full output lists the site's no-family counts for all 24 layers. Layers 0, 1 and 23 are the three with hi>lo False. The full output's hash prefix is in parity_hashes.txt.
+hi>lo in 21 of 24 layers; in 21 of 21 layers L02..L22
+exact null chance of hi>lo in all 21 of L02..L22 (product, conditional on counts): 4.6635e-07
+largest per-layer one-sided tail among L02..L22: 4.1447e-01
+their sign-test value 2^-20 = 9.5367e-07
+L15: bf16-exact entries 1.0000; entries off the 2^-16 grid 0.1376; |w| < 2^-9: 0.2054
+L19: bf16-exact entries 1.0000; entries off the 2^-16 grid 0.1218; |w| < 2^-9: 0.1818

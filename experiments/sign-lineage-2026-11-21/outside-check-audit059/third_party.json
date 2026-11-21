@@ -26,5 +26,28 @@
   "layers": [15, 19],
   "selection_score": "a weight term u @ W0 times a difference in MLP activations on 8 hand-written repetitive and productive texts (method notes, lines 17-22)",
   "baseline_run": "Initial 11/96 correct, 85 cutoff (the edit's own report excerpt)"
+ },
+ "site_figures_counted_by_others": {
+  "note": "Site figures that CHECK.md quotes but that no kept output prints. They are counts of the site's published pages, made by the study or by our advocate, and are listed here so each number has a source.",
+  "N5_pythia_no_family_share": {
+   "counted_by": "the study's own script (bridge.py, part 2), read from the site's Pythia-160m pages; restated by our advocate",
+   "values_percent": {
+    "step_1000": 16.3,
+    "step_8000": 4.36,
+    "step_32000": 3.77,
+    "main_end": 5.68,
+    "seed_1_end": 5.36,
+    "seed_2_end": 5.69
+   }
+  },
+  "N10_index_kinds": {
+   "counted_by": "our advocate's adv_index_kinds.py, from the bar widths on the site's index page for all 30 models (output not kept, because it lists the site's figures model by model)",
+   "four_symbol_kinds_share_range_percent": [
+    20.8,
+    40.8
+   ],
+   "models_inside_30_to_45_percent": "13 of 30",
+   "site_no_family_bars_equal_to_7.8_or_17.2_percent": "none (within 0.06 points)"
+  }
  }
 }

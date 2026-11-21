@@ -1,0 +1,99 @@
+# Refutation pass on STATEMENTS.md (S1-S6)
+
+The refuter (a Claude session on the Opus tier), 2026-11-21. Folder `derivation/refute/` in this record. Kept as written, with private names and paths removed.
+
+My code shares nothing with `../scripts/`. I wrote and ran my tests first, then read their scripts to hunt bugs. One file (`scripts/blackbox_their_null.py`) loads their `exact_null.py` by path only to feed it inputs and compare against my brute force. None of my checks depends on it.
+
+## Files
+
+| file | what | evidence kind |
+|---|---|---|
+| `scripts/exact_refute.py` | brute-force enumeration of S3.1-S3.3 laws (397 + 300 random cases, ties, thresholds, clusters), p-value validity, same-position law by all relabellings, S3.5 tails | exact |
+| `scripts/tie_search.py` | smallest counterexample: index tie rule breaks the S4 law and the 1/k! bound | exact |
+| `scripts/blackbox_their_null.py` | their `cluster_pvalues` and `same_position_law` against my enumeration | exact |
+| `scripts/run_parity.sh` | the three exact scripts under `-I -B`, `-I -O -B`, `-I -B -W error`: exit 0, outputs byte-identical (`out/parity.txt`) | |
+| `scripts/equivariance_refute.py` | real `transformers` Qwen3 model plus real `torch.optim` optimisers: train A and its per-unit sign image B on the same batches, map back, compare bit for bit; must-fail controls; same-seed init | sampled (each run checked bitwise) |
+| `scripts/sampled_refute.py` | my own re-run of S5 with a different task, net and trainer, three fresh master seeds 500000 / 600000 / 700000 | sampled |
+| `out/*.json`, `out/*.txt` | outputs | |
+
+## Rulings in one table
+
+| statement | ruling | one-line reason |
+|---|---|---|
+| S1.1 symmetry | holds | own torch check: trace of flipped unit negated exactly, output unchanged; must-fail controls fail (flip gate row, plain GELU, LayerNorm on hidden) |
+| S1.2 code anchors | holds | lines re-read in local transformers 5.22.2 (Qwen3 69-82, Gemma4 1060-1076, Falcon-H1 825-839) |
+| S2.1/S2.2 training equivariance | holds | 14 real optimiser configs bitwise sign-equivariant after 60 steps; sign-tying loss control fails |
+| S2.3 list of breakers | holds_after_tightening | add LayerNorm (mean-centring) on the hidden vector; add the shared default seed; note float init law is symmetric only up to discretisation |
+| S3.1 conditional coins | holds | 397/397 brute-force cases incl. 199 with exact |corr| ties and tau in {0, .3, .5}; p-value super-uniform in all |
+| S3.2 cluster law | holds_after_tightening | "Binomial exactly when every |s_j| = 1" is false; also corr exactly 0 must be dropped |
+| S3.3 source-side binomial | holds_after_tightening | 300/300 exact (270 with clusters); fails only with kept corr = 0 |
+| S3.4 Falcon-H1 Tiny trichotomy | holds_after_tightening | list incomplete: add "site's matching / co-firing rule is not sign-blind" and "pooled directions" |
+| S3.5 site sentence numbers | holds_after_tightening | all numbers reproduce; the worst m is 203, not 201 |
+| S4 same position | holds_after_tightening | the law and even the 1/k! bound fail for argmax with an index tie rule (N=3 counterexample) |
+| S5.1 calibration | holds (sampled, replicated) | my 240 gated null pairs: cluster p<0.01 one-sided 3/240 |
+| S5.2 descendants | holds (sampled, replicated in scope) | 90/90 detected after 1500 steps on an equal-entropy other task |
+| S5.3 one-sided control + mixed arm | holds (sampled, replicated) | GELU 0.964-0.966; mixed binomial 12/120 vs cluster 2/120 at 0.01 |
+| S5.3 lean diagnostic | holds_after_tightening | the positive-mean lean test is not shift-invariant: 0/240 rejections after a function-preserving shift while share stays 0.96; a skew-sign lean test rejects 240/240 |
+| S5.4 planted relabelled | holds (sampled, replicated) | share 0.488-0.498, 0/90 one-sided cluster rejections at 0.01 |
+| S5.4a theorem | holds (known in substance) | correct; Zhu et al. 2025 state the same failure for permutations |
+| S5.4 residual repair, invariant statistic | not_shown (by me) | not re-run; their pair file shows null rates near nominal; residual sign symmetry does not exist with LayerNorm (Pythia) |
+| S6.1 looped | holds (proof level) | one coin per weight-space unit; agrees |
+| S6.2 MoE | holds_after_tightening | false for upcycled MoE: copies of one dense unit share one coin across experts |
+
+## Details
+
+### S1 (holds)
+`equivariance_refute.py`, `trace_flip`: on a tiny `Qwen3ForCausalLM`, flipping unit 5 of layer 0 (row of `up_proj`, column of `down_proj`) gives `trace_A + trace_B = 0` exactly at unit 5 and difference 0.0 elsewhere, logits identical. Block controls (`block_controls_output_change`): gated with biases 0.0, gated with RMSNorm on hidden 0.0; must-fail: LayerNorm on hidden 0.79, plain GELU 0.37, flip gate row + D column 0.16. S1.2 line numbers re-read and confirmed (anchor). Gemma 4 MoE experts (`Gemma4TextExperts`, lines 1268-1304) use a fused `gate_up_proj` with `act(gate) * up`, same symmetry; its router reads the residual, not the hidden units (lines 1307-1342).
+
+### S2 (holds; S2.3 tightened)
+Bitwise equality (max |param diff| 0.0, max |logit diff| 0.0) after 60 steps, with weights moving 0.03-0.37, for: AdamW fp32, AdamW eps=1e-3, AMSGrad, fused CPU AdamW, foreach off, Adam with coupled L2, SGD Nesterov, RAdam decoupled, Adagrad, `torch.optim.Muon` (Newton-Schulz is odd and orthogonally equivariant), clip by global norm, clip by value, bf16 autocast plus clipping, bf16 parameters. Must-fail: a loss term `0.1 * mean(up_proj(emb))` gives param diff 0.034 and logit diff 0.77.
+Tightenings to S2.3:
+1. A **mean-centring LayerNorm on the hidden vector** (NormFormer-style FFN LayerNorm) breaks the per-unit sign symmetry (output change 0.79 above). An RMSNorm there keeps it.
+2. **Same default seed.** Two from-scratch inits of the same config with `torch.manual_seed(42)` are identical (`seed_sharing`). Default seeds (HF Trainer 42, Megatron 1234) make "independent" runs siblings, which S5.2 shows score about 1.0. This breaks independence, not the symmetry, and it is not lineage in the "made from" sense. Same seed with a different `intermediate_size` shared 0/48 rows of layer-0 gate and up in transformers 5.22.2, so cross-size sharing does not arise from this route.
+3. Float init laws are symmetric only up to discretisation (torch `uniform_` samples `[from, to)`, so `-b` is reachable and `+b` is not). The bias on the coin is of order d * 2^-24 per unit. Negligible, but S2.2 is exact only for the real-valued law. (Proof-level remark, not measured.)
+Not found: any optimiser, clipping or precision mode in torch that breaks the symmetry. Not tested: stochastic rounding, FP8 recipes, Adafactor, Shampoo/SOAP (argued equivariant, not run).
+
+### S3.1-S3.3 (exact)
+`exact_refute.py` E1: cluster formula equals brute force over all 2^nB sign vectors in 397/397 cases (199 with exact ties in |corr|, tau in {0, 0.3, 0.5}); p-value `P(N+ >= obs)` super-uniform in 397/397. E2: source-side flips give exactly Binomial(m, 1/2) in 300/300 cases, 270 with clustered matchings. Their `cluster_pvalues` agrees with my enumeration in 300/300 random cases and their `same_position_law` in 40/40.
+Two defects in S3.2 as written:
+- **"It is Binomial(m, 1/2) exactly when every |s_j| = 1" is false.** Smallest counterexample: three A units matched to one B unit with signs (+, +, -), so |s| = 1 and m = 3. Law of N+ is {1: 1/2, 2: 1/2}, Binomial(3, 1/2) is {1/8, 3/8, 3/8, 1/8} (E3, by formula and by brute force, identical under three interpreter modes). Correct statement: Binomial(m, 1/2) iff every cluster has size 1, i.e. the matching is injective on the kept pairs (proof: equal support needs sum |s_j| = m, equal variance needs sum s_j^2 = m, so each |s_j| is 0 or 1 with m ones, which forces n_j = 1).
+- **Exact zero correlations.** If a kept best match has corr exactly 0 (tau = 0), c_i = 0 is neither sign, the formula gives a half-integer, and S3.3's binomial fails (E1z, E2 control). Their `analyze.py` line 89 (line 100 in this record's copy) maps corr == 0 to -1, which is a fixed sign, not a coin. Probability zero for continuous traces, so no effect on their numbers; the tightening is "drop pairs with corr = 0".
+
+### S3.4 (tightened)
+The proof step is right: with Falcon-H1 gated (anchor confirmed) and sign-symmetric, the expected share is exactly 1/2 whichever side is source. The list of explanations for 83-87 percent is incomplete. Add: (d) the site's matching, threshold or co-firing definition is not a sign-blind function of |corr| (for example, matching on signed correlation, or "fire together" defined on top positive activations); (e) the count pools both match directions. Each makes the coin argument inapplicable without any relation between the models.
+
+### S3.5 (numbers reproduce)
+Independent integer computation: P(share < 0.335) = 8.688e-7 (m=200), 4.125e-8 (256), 4.757e-14 (500), 2.147e-26 (1000); upper tails 9.698e-3, 3.541e-3, 6.95e-5, 4.239e-8. Max low tail over m in 200..1000 is 1.48585e-6 **at m = 203** (m = 201 gives 1.32e-6; STATEMENTS line 82 says 201; `../STATEMENTS.txt` keeps that line number; their script does not record the argmax). Union bounds 1.49e-4 / 4.46e-4 / 7.37e-4; kappa 578/225 and 289/45; 50 clusters of 4 gives 7.67e-3. All agree.
+
+### S4 (tightened)
+Rook law equals enumeration over all N! relabellings for 45 argmax and 35 bijective matchings with no ties, and the 1/k! bound holds in all. With **ties broken by first index** (an `argmax` over |corr| with duplicated B units) the matching is not equivariant: the law differs from the rook law in 6 of 15 tie cases, and the bound fails. Smallest counterexample (`tie_search.py`, exhaustive over 0/1 patterns of two |corr| values, N <= 4): N = h_A = 3, |corr| rows (1, 1, 1), (1, 1, 1/2), (1/2, 1/2, 1): P(F >= 2) = 2/3 > 1/2! = 1/2. Tightening: the bound and law need an equivariant matching (no ties, or ties broken uniformly at random, or tied rows dropped). Exact ties arise from duplicated units (width growth by copying) and are rare otherwise.
+Prior work: Zhu, Ahmed, Kuditipudi, Liang, "Independence Tests for Language Models", ICML 2025, arXiv 2502.12292, sections 2.2.1-2.2.2 (read on ar5iv, first 100k characters): exact p-values from the assumption that training is equivariant to hidden-unit permutations, and a matching statistic compared to the identity. S4 is known in substance. That paper, as far as I read, does not use the per-unit sign symmetry of the up projection, so S3 is not covered there.
+
+### S5 (sampled; my own re-run)
+Design differences from theirs: Dirichlet(0.2) order-2 table (V = 40), i.i.d. (a, b) contexts, 1500 steps, different init scales, all 2h traces pooled into one matching (theirs matches within block), "other task" has the same entropy (final NLL 2.98-3.09 on both), which removes their caveat 6. Pooled over three master seeds:
+
+| arm | pairs | mean share | sd (obs / binomial) | median kappa | binomial p<0.01 (one-sided) | cluster p<0.01 (one-sided) |
+|---|---|---|---|---|---|---|
+| gated null (shared data order, different init) | 240 | 0.498-0.503 | 0.030-0.033 / 0.031 | 0.95-1.0 | 3 | 3 |
+| plain GELU null | 120 | 0.964-0.966 | 0.011-0.013 | 2.7 | 120 | 120 |
+| GELU source -> gated target | 120 | 0.496-0.515 | 0.046-0.048 / 0.031 | 2.3 | 12 | 2 |
+| gated source -> GELU target | 120 | 0.502-0.503 | 0.031-0.037 / 0.031 | 1.0 | 1 | 1 |
+| descendant, 1500 steps other task | 90 | 0.972-0.976 | | 1.0 | 90 | 90 |
+| planted relabelled (signed perm, no training) | 90 | 0.488-0.498 | | 1.0 | 0 | 0 |
+
+This reproduces S5.1, S5.3 (including the S3.2/S3.3 split in the mixed arms) and S5.4(a) on an independent implementation. The invariant mean max|corr| separates in my toy too (null 0.156, GELU null 0.22, descendant 0.47, planted 1.0).
+
+**Lean diagnostic: a failure case, re-run on two fresh seeds.** A plain GELU block with activation `GELU(z) - c` and down bias `b + c D 1` computes exactly the same function, and its traces are the GELU traces minus c. Correlation, and so the sign statistic, is unchanged (share 0.964 and 0.966, 40/40 pairs flagged in both runs). With c = the block's median unit mean, the positive-mean lean test rejects **0/120 blocks** in each of seeds 600000 and 700000 (positive-mean fraction 0.500-0.508): a one-sided model that looks two-sided. A shift-invariant odd statistic fixes it: the count of units with positive third central moment is also Binomial(h_live, 1/2) under sign symmetry (same coin argument), and it rejects 120/120 shifted and unshifted GELU blocks and 1-2/120 gated blocks per seed. Tightening for S5.3: use the skew sign (or any odd, shift-invariant statistic), not the mean sign. An attempt to find a natural sparse GELU counterexample (biases ~ N(-1.5, 1)) failed: positive-mean fraction stayed 0.70-0.97 and it still rejects.
+
+Not re-run by me: tanh arm, siblings, h = 64 / 256, tau > 0, residual-coordinate test, invariant-statistic holdout. From their `out/pairs_all.jsonl` (read, not recomputed; not committed, 2.3 MB): residual-test null rates at 0.01 are 0-3 per 100-200 pairs, and the first fixed-A run's excess (8/200 at 0.01) sits only in the far tail (15/200 at 0.05, 26/200 at 0.1, 103/200 at 0.5), consistent with chance.
+
+### S6
+S6.1 holds as a conditional statement. S6.2 needs a tightening: in an **upcycled** MoE (experts copied from one dense MLP, a published practice for some open MoE families; not fetched here), unit i of every copied expert carries the same sign coin unless experts were independently re-randomised, so the null group acting on the init law is the diagonal one and the cluster for S3.2 / S3.3 is the dense unit across experts, not (e, i). Then S3.3's binomial fails for such a model as source. Inkling 2 Mini's architecture is still unchecked against code.
+
+## Could not check
+- The site's actual statistic (sign-blindness of its matching, threshold, pooling), and any real Falcon-H1 Tiny or Pythia traces: nothing downloaded.
+- Whether real labs' training inits match the transformers `_init_weights` code (normal, zero biases): anchor only.
+- Stochastic rounding, FP8, Shampoo/SOAP, Adafactor: argued, not run.
+- The rest of Zhu et al. after 100k characters (appendices).
+
+The rulings in machine-readable form are in `REFUTE-RULINGS.json`.

@@ -1,0 +1,5 @@
+# Excerpt of famscan_IB.txt (the -I -B run): only the lines CHECK.md quotes, because the full output lists site family titles and counts. The full output's hash prefix is in parity_hashes.txt.
+L15: 297 families present in the layer; families hit by the selection: 27
+   Adjacent brackets: }( )( )*(                  16/64 vs  77/3584  exact tail 8.9157e-14  x297 families = 2.6480e-11
+L19: 292 families present in the layer; families hit by the selection: 39
+   Adjacent brackets: }( )( )*(                   4/64 vs  11/3584  exact tail 2.7798e-05  x292 families = 8.1171e-03

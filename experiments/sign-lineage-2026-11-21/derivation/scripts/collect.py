@@ -33,7 +33,7 @@ def main():
            "evidence_kinds": {"exact": "S1, S2 (rational), S3, S4, site sentence",
                               "sampled": "S5 (trained networks; seeds in train_all.py and runs/train_log.jsonl)",
                               "anchor": "S1.2 public code lines in transformers 5.22.2",
-                              "third_party": "site numbers via task text and sources/ROUND5_PORTALS.md"}}
+                              "third_party": "site numbers as quoted in ../site_claims.json, taken on trust"}}
     res["exact"] = {
         "exact_null_selftest": json.loads(run_exact("exact_null.py").splitlines()[0]),
         "independent_checker": json.loads(run_exact("check_independent.py")),

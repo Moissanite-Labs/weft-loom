@@ -1,4 +1,4 @@
-"""Exact test of the site's sentence (task text): unrelated pairs with at least
+"""Exact test of the site's sentence (quoted in ../site_claims.json): unrelated pairs with at least
 200 strong matches land between 33 and 59 percent sign agreement.
 
 Question: is that spread, over a few hundred pairs, compatible with each pair's

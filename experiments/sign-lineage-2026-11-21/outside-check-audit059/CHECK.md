@@ -16,7 +16,7 @@ One correction to the first reader: the edit's selection is not free of activati
 
 **2. The enrichment survives within column blocks.** *Exact, site data and weights.* Split at the first 512 columns, the combined stratified exact tails are 3.1e-10 in layer 15 and 1.4e-3 in layer 19.
 
-**3. Qwen3.5-0.8B's unit order is not exchangeable.** *Exact, weights and site data.* Of the 20 columns per layer with the largest single weight, 29 of 40 lie in the first seventh of the columns, exact tail 1.0e-16. In layer 15 ranks 20 and 21 tie exactly, and the other tie break gives 28 of 40, tail 1.6e-15.
+**3. Qwen3.5-0.8B's unit order is not exchangeable.** *Exact, weights and site data.* In layers 15 and 19, of the 20 columns per layer with the largest single weight, 29 of 40 lie in the first seventh of the columns, exact tail 1.0e-16. In layer 15 ranks 20 and 21 tie exactly, and the other tie break gives 28 of 40, tail 1.6e-15.
 
 The share of units outside every family is higher in the last three sevenths of columns than in the first seventh in 21 of 24 layers, two-sided sign test 2.8e-4.
 
@@ -52,7 +52,7 @@ Strongest surviving claim: "The weights are bf16 values held in float32, and eve
 
 **N5. A Pythia trajectory "across all 3 random seeds".** The checkpoints at steps 1,000, 8,000 and 32,000 are one training run, and the other two seeds enter only at the end. The site itself says the checkpoints are one run.
 
-Ruling: stands.
+Ruling: stands. The shares below are the study's own counts of the site's pages, listed in [third_party.json](third_party.json).
 
 Strongest surviving claim: "In one Pythia-160m run the no-family share falls from 16.30% (step 1,000) to 3.77% (step 32,000) and ends at 5.68%, and two other seeds end at 5.36% and 5.69%, both above that run's step-32,000 value."
 
@@ -82,7 +82,7 @@ Strongest surviving claim: "A seeded simulation of the same sampling law agrees 
 
 **N10. Numbers not produced by the study's code.** The study's plan of next steps quotes 30 to 45 percent of units in four symbol kinds, a 7.8 to 17.2 percent share outside families, and 85 of 96 initial failures.
 
-Ruling: stands, narrowed. The 85 of 96 is sourced in the edit's own report, but not its link to "Adjacent brackets". The four kinds hold 20.8 to 40.8 percent of units across the site's 30 models, with only 13 of 30 inside 30 to 45 percent. No site figure for the share outside families equals 7.8 or 17.2 percent.
+Ruling: stands, narrowed. The 85 of 96 is sourced in the edit's own report, but not its link to "Adjacent brackets". The four kinds hold 20.8 to 40.8 percent of units across the site's 30 models, with only 13 of 30 inside 30 to 45 percent. No site figure for the share outside families equals 7.8 or 17.2 percent. These are the advocate's counts of the index page, listed in [third_party.json](third_party.json).
 
 Strongest surviving claim: "In the edit's baseline run, 85 of 96 math answers failed by running into repetition cutoffs (third-party record), and the four named symbol kinds hold 21% to 41% of neurons across the site's 30 models."
 
@@ -108,7 +108,11 @@ The scripts in [scripts/](scripts/) are the advocate's, cleaned of local paths. 
 bash scripts/run_all.sh Q08_PAGE INDEX_PAGE GEMMA_PAGE WEM_DIR SILIQUANT_RESULTS
 ```
 
-Each check runs under `python3 -I -B`, `-I -O -B` and `-I -B -W error`. Outputs were byte-identical across the three modes ([out/parity_hashes.txt](out/parity_hashes.txt)), and the `-I -B` outputs are kept in [out/](out/). The output of `adv_index_kinds.py` is not kept, because it lists the site's own figures model by model.
+Each check runs under `python3 -I -B`, `-I -O -B` and `-I -B -W error`. Outputs were byte-identical across the three modes ([out/parity_hashes.txt](out/parity_hashes.txt)).
+
+What we keep of the `-I -B` outputs in [out/](out/) follows one rule: an output that lists the site's figures across many layers, families or models is not kept in full. Outputs about the two edited layers and our own weight counts are kept in full (`q08_IB.txt`, `extra_IB.txt`, `z2_IB.txt`).
+
+The scans over all 24 layers, over all families in a layer, and over all 42 Gemma layers are kept only as excerpts of the lines this file relies on (`*_excerpt.txt`). The output of `adv_index_kinds.py`, which lists all 30 models, is not kept, and the numbers this file takes from it are in [third_party.json](third_party.json).
 
 | Script | What it checks |
 |---|---|

@@ -9,7 +9,7 @@
 #                      frozen_weights_manifest.json, base_l15_down_proj_f32.npy, base_l19_down_proj_f32.npy,
 #                      factors_layer15.npz, factors_layer19.npz
 #   SILIQUANT_RESULTS  experiments/output-budget-gemma-e4b-2026-11-17/results.jsonl of Moissanite-Labs/siliquant
-# The site states no license, so its pages are not included here. The page hashes the checks expect are in CHECK.md.
+# The site states no license, so its pages are not included here. The hashes of the inputs the checks expect are in inputs.sha256.
 set -u
 Q=$1; IX=$2; G=$3; W=$4; R=$5
 cd "$(dirname "$0")/.." || exit 1

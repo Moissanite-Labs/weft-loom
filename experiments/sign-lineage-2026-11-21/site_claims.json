@@ -6,6 +6,7 @@
   {"id": "unrelated_range", "text": "The 30 models here and the 27B’s two predecessors were all compared with each other, 496 pairs, and 6 more Gemma 3 models with the rest of Gemma. Outside the trees above, every pair with 200 strong matches or more lands between 33% and 59%, scattered around 50%."},
   {"id": "related_only_checkpoints", "text": "Nothing else is related, apart from Pythia’s checkpoints, which are one training run."},
   {"id": "qwen_pairs", "text": "A neuron and its closest match move together 93% and 98% of the time within a pair and 50% across, which is chance."},
+  {"id": "qwen35_small_card", "text": "Related to Qwen3.5-0.8B: a neuron and its closest match there move together 93% of the time, against 50% for unrelated models."},
   {"id": "seeds", "text": "Two runs of one recipe from different seeds pair up neuron by neuron 9% of the time, and group by group for 67% of their neurons."},
   {"id": "step_1000", "text": "After 1,000 of 143,000 training steps Pythia-160m has 84% of its neurons in a family, yet only 18% of its neurons are the neuron they end as."},
   {"id": "step_8000_card", "text": "The same network as Pythia-160m at another point in its training: 92% of neurons are the same neuron in both."},
