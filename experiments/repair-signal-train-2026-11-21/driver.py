@@ -10,6 +10,16 @@ Every prompt that is sampled from, for the untrained model and every adapter,
 ends with the forced opening of the model's turn (codec.Codec.prompt_ids), so
 the cap of reply tokens counts answer tokens only, for every arm alike.
 
+Which adapter is evaluated: train_and_save trains an arm, saves its one
+checkpoint and writes a "train" receipt (label, arm, seed, descriptor, steps,
+sampler identifier) to the chain. Every evaluation then goes through
+evaluate_recorded, which asks the run which sampler object this is
+(TinkerRun.binding) and has the ratchet check it against the train receipts
+before any call is made; the evaluation receipt names the adapter, its step
+count, its sampler identifier and the hash of the train receipt. A sampler of
+another arm or seed, one the run did not issue, or one with no train receipt
+is refused. The untrained model's evaluations are marked "untrained".
+
 Order of a registered run (run_registered):
   1. the untrained model on held-out set 1, every text (exploratory baseline)
   2. for each training seed and each arm A, B, C: train 64 steps, save the one
@@ -152,15 +162,33 @@ def train_arm(run, label, codec, trainset, text_arm, seed, batch_size=BATCH_SIZE
     return steps
 
 
+def train_and_save(run, ratchet, codec, trainset, text_arm, seed, label, descriptor, run_id, **kw):
+    """Trains one arm, saves its one checkpoint and records the training
+    receipt that later evaluations are bound to. Returns (sampler, steps).
+    kw goes to train_arm."""
+    steps = train_arm(run, label, codec, trainset, text_arm, seed, **kw)
+    sampler = run.checkpoint_sampler(label)
+    bound = run.binding(sampler)
+    if bound["steps"] != steps:
+        raise DriverError("the run counted %d training steps for %r, the loop %d" % (bound["steps"], label, steps))
+    ratchet.record_training(run_id, {"label": label, "arm": text_arm, "seed": seed, "descriptor": descriptor,
+                                     "steps": bound["steps"], "sampler_source": bound["sampler_source"],
+                                     "sampler_id": bound["sampler_id"]})
+    return sampler, steps
+
+
 def responder(run, sampler, codec, cap):
     return tinker_backend.TinkerResponder(run, sampler, codec, cap)
 
 
 def evaluate_recorded(ratchet, run, sampler, codec, epset, text_arm, descriptor, run_id, config):
-    """Evaluate one model on one set with one text, and record the receipt."""
+    """Evaluate one model on one set with one text, and record the receipt.
+    The model is bound first: a refusal happens before any call is made."""
+    model = run.binding(sampler)
+    ratchet.require_model(model, descriptor)
     result = evaluate.evaluate_arm(responder(run, sampler, codec, ratchet.cap), epset, text_arm, ratchet.cap,
                                    descriptor)
-    ratchet.record(result, run_id, config)
+    ratchet.record(result, run_id, config, model)
     return result
 
 
@@ -258,9 +286,9 @@ def run_registered(run, ratchet, codec, run_id, plan, config, decision_id=DECISI
     for seed in range(plan.seeds):
         for arm in plan.arms:
             label = "%s-s%d" % (arm, seed)
-            summary["steps"][label] = train_arm(run, label, codec, train, arm, seed)
-            samplers[(arm, seed)] = run.checkpoint_sampler(label)
             name = adapter_name(arm, seed)
+            samplers[(arm, seed)], summary["steps"][label] = train_and_save(
+                run, ratchet, codec, train, arm, seed, label, name, run_id)
             summary["own"][(arm, seed)] = evaluate_recorded(
                 ratchet, run, samplers[(arm, seed)], codec, h1, arm, name, run_id, config)
         for text in CONTROL_TEXTS:
@@ -285,7 +313,9 @@ def run_registered(run, ratchet, codec, run_id, plan, config, decision_id=DECISI
                ("B", responder(run, samplers[("B", 0)], codec, cap), "B", b0),
                ("E", responder(run, samplers[("C", 0)], codec, cap), "E", c0),
                ("N", responder(run, samplers[("C", 0)], codec, cap), "N", c0)]
-    got = ratchet.second_set_results(decision_id, h2, entries, config)
+    models = {"C": run.binding(samplers[("C", 0)]), "B": run.binding(samplers[("B", 0)]),
+              "E": run.binding(samplers[("C", 0)]), "N": run.binding(samplers[("C", 0)])}
+    got = ratchet.second_set_results(decision_id, h2, entries, config, models)
     summary["set2"] = compare_all(ratchet, "set2-seed0", got["C"], got["B"], {"E": got["E"], "N": got["N"]})
     v2, why2 = judge(summary["set2"])
     summary["verdicts"]["set2"], summary["reasons"]["set2"] = v2, why2
@@ -348,16 +378,19 @@ def run_pilot(run, ratchet, codec, run_id, plan, config, full_plan, clock=time.p
     out = {}
 
     def evaluate_timed(sampler, descriptor):
+        model = run.binding(sampler)
+        ratchet.require_model(model, descriptor)
         inner = responder(run, sampler, codec, ratchet.cap)
         timed = TimedResponder(inner, clock)
         result = evaluate.evaluate_arm(timed, ev, "C", ratchet.cap, descriptor)
-        ratchet.record(result, run_id, config)
+        ratchet.record(result, run_id, config, model)
         return result, timed.call_ns, inner.stats
 
     out["base"] = evaluate_timed(run.base_sampler(), "pilot:base-model")
     step_ns = []
-    steps = train_arm(run, "C-pilot", codec, train, "C", 0, step_ns=step_ns, clock=clock)
-    out["adapter"] = evaluate_timed(run.checkpoint_sampler("C-pilot"), "pilot:adapter:C")
+    adapter_sampler, steps = train_and_save(run, ratchet, codec, train, "C", 0, "C-pilot", "pilot:adapter:C", run_id,
+                                            step_ns=step_ns, clock=clock)
+    out["adapter"] = evaluate_timed(adapter_sampler, "pilot:adapter:C")
     result, call_ns, stats = out["adapter"]
     base_result, base_ns, base_stats = out["base"]
     m = {"adapter_n": result.n, "adapter_passed": result.passed, "adapter_format_broken": result.format_broken,

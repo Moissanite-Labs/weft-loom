@@ -1,15 +1,15 @@
 tinker 0.39.0
-OK         tinker_backend.py:321 Datum                          arguments match
-OK         tinker_backend.py:384 forward_backward               arguments match; loss 'cross_entropy' is a defined loss name; returns APIFuture, used through .result()
-OK         tinker_backend.py:385 optim_step                     arguments match; returns APIFuture, used through .result()
-OK         tinker_backend.py:321 from_ints                      arguments match
-OK         tinker_backend.py:385 AdamParams                     arguments match
-OK         tinker_backend.py:374 create_lora_training_client    arguments match; returns BackcompatTrainingClientFuture, used through .result()
-OK         tinker_backend.py:394 save_weights_and_get_sampling_client arguments match; returns BackcompatSamplingClientFuture, used through .result()
-OK         tinker_backend.py:397 create_sampling_client         arguments match; returns BackcompatSamplingClientFuture, used through .result()
-OK         tinker_backend.py:428 sample                         arguments match; returns APIFuture, used through .result()
-OK         tinker_backend.py:429 from_ints                      arguments match
-OK         tinker_backend.py:430 SamplingParams                 arguments match
+OK         tinker_backend.py:340 Datum                          arguments match
+OK         tinker_backend.py:405 forward_backward               arguments match; loss 'cross_entropy' is a defined loss name; returns APIFuture, used through .result()
+OK         tinker_backend.py:406 optim_step                     arguments match; returns APIFuture, used through .result()
+OK         tinker_backend.py:340 from_ints                      arguments match
+OK         tinker_backend.py:406 AdamParams                     arguments match
+OK         tinker_backend.py:395 create_lora_training_client    arguments match; returns BackcompatTrainingClientFuture, used through .result()
+OK         tinker_backend.py:416 save_weights_and_get_sampling_client arguments match; returns BackcompatSamplingClientFuture, used through .result()
+OK         tinker_backend.py:424 create_sampling_client         arguments match; returns BackcompatSamplingClientFuture, used through .result()
+OK         tinker_backend.py:493 sample                         arguments match; returns APIFuture, used through .result()
+OK         tinker_backend.py:494 from_ints                      arguments match
+OK         tinker_backend.py:495 SamplingParams                 arguments match
 OK         SampleResponse.sequences                             a field of the response (a sequence of SampledSequence)
 OK         SampledSequence.tokens                               a property returning typing.List[int]
 OK         ModelInput.length                                    present (the backend bills sum(length + 1))
@@ -20,6 +20,9 @@ OK         Datum.loss_fn_inputs                                 weights float32 
 OK         Datum.model_input                                    length 4 for 5 ids (the last token is dropped)
 OK         AdamParams, SamplingParams, ModelInput               build with the backend's arguments (temperature 0.0, integer stop ids)
 OK         fake client                                          creation and saving return futures, as the library does
+OK         SamplingClient.get_sampler_handle                    takes no arguments and returns a str (a credential-free handle)
+OK         fake get_sampler_handle                              matches the library's
+UNSETTLED  saved checkpoint identifier                          the library returns BackcompatSamplingClientFuture with no public checkpoint id; the backend binds by the object the run holds and by the SHA-256 of the handle
 OK         ServiceClient()                                      builds with no arguments, so the backend passes none
 OK         credentials: the key variable                        TINKER_API_KEY is read when no api_key is passed
 UNSETTLED  credentials: other sources                           with the variable unset, the library falls back to a stored credentials file and to TINKER_CREDENTIAL_CMD, so the runner refuses to start unless the variable is non-empty
@@ -39,4 +42,4 @@ OK         earlier scripts: Datum                               tk_smoke.py call
 OK         earlier scripts: AdamParams                          tk_smoke.py calls it with 0 positional and keywords ['learning_rate']
 UNSETTLED  earlier scripts: SamplingParams                      neither earlier script calls it, so it has no run against the real service behind it
 OK         earlier scripts: from_ints                           tk_smoke.py calls it with 0 positional and keywords ['tokens']
-33 OK, 0 MISMATCH, 6 UNSETTLED, 1 NOTE
+35 OK, 0 MISMATCH, 7 UNSETTLED, 1 NOTE

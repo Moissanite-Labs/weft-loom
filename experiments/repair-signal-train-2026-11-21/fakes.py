@@ -78,10 +78,17 @@ class _Resp:
 
 
 class FakeSampler:
+    count = 0       # handles are numbered in order of creation
+
     def __init__(self, reply_tokens=(1, 2, 3), overrun=False):
+        FakeSampler.count += 1
+        self.handle = "fake-sampler-handle-%d" % FakeSampler.count
         self.reply_tokens = list(reply_tokens)
         self.overrun = overrun      # a misbehaving server that ignores max_tokens
         self.calls, self.prompts, self.stops = [], [], []
+
+    def get_sampler_handle(self):
+        return self.handle
 
     def sample(self, prompt, num_samples, sampling_params, include_prompt_logprobs=False, topk_prompt_logprobs=0,
                topk_sample_logprobs=0, target_prompt_logprobs=None, prompt_alt_tokens_k=0, prompt_logprobs_last_n=None):

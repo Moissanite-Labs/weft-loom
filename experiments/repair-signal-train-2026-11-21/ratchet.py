@@ -21,6 +21,15 @@ Five gates, from the method's rules for any automated improvement loop:
      named at the touch, once each.
   5. Every comparison is at the same compute cap, the cap this ratchet was
      created with.
+  6. An evaluation of a service model names its model. An adapter is
+     evaluated only if this chain holds exactly one "train" receipt for it
+     (record_training), and the evaluation names the same descriptor, label,
+     step count and sampler identifier; anything else is refused before a
+     call is made (require_model). The untrained model is marked "untrained".
+     An evaluation with no model is a stand-in policy ("policy") and is refused
+     in a chain that holds a train receipt. What this binds: the receipts and
+     the sampler object the run itself holds (tinker_backend.TinkerRun.binding).
+     It does not prove what weights the service holds behind that sampler.
 
 The exact checker stays outside the model and is the only judge. This module
 never scores anything itself: it reads the outcome strings that evaluate.py
@@ -43,6 +52,7 @@ import latch as latch_mod  # noqa: E402
 import receipts  # noqa: E402
 
 DEFAULT_ALPHA = Fraction(1, 40)   # a choice
+SAMPLER_SOURCES = ("handle", "object")
 
 
 class RatchetRefused(Exception):
@@ -86,6 +96,28 @@ def paired_counts(first_outcomes, second_outcomes, test="pass"):
     first_only = sum(1 for a, b in pairs if hit(a) and not hit(b))
     second_only = sum(1 for a, b in pairs if hit(b) and not hit(a))
     return first_only, second_only
+
+
+def _train_body(run_id, info):
+    """The body of a train receipt, refusing a malformed one."""
+    want = {"label": str, "arm": str, "seed": int, "descriptor": str, "steps": int, "sampler_source": str,
+            "sampler_id": str}
+    if not isinstance(info, dict) or set(info) != set(want):
+        raise RatchetRefused("a training receipt needs exactly these fields: %s" % ", ".join(sorted(want)))
+    for key, kind in want.items():
+        if not isinstance(info[key], kind) or isinstance(info[key], bool):
+            raise RatchetRefused("training receipt field %s has the wrong type" % key)
+    if not info["label"] or not info["descriptor"]:
+        raise RatchetRefused("a training receipt needs a label and a descriptor")
+    if info["steps"] < 1:
+        raise RatchetRefused("an adapter with no training step has no training receipt")
+    if info["sampler_source"] not in SAMPLER_SOURCES:
+        raise RatchetRefused("unknown sampler source %r" % (info["sampler_source"],))
+    if (info["sampler_source"] == "handle") != bool(info["sampler_id"]):
+        raise RatchetRefused("a sampler id goes with the source handle and with no other")
+    body = dict(info)
+    body.update({"kind": "train", "run_id": run_id})
+    return body
 
 
 class Ratchet:
@@ -160,12 +192,67 @@ class Ratchet:
             raise RatchetRefused("the evaluation harness differs from its locked hashes")
         return locked
 
+    # gate 6
+    def _train_bodies(self):
+        # not pinned to the head: the append that records anything under these
+        # receipts is pinned, and a refusal here must not hide the latch's own head check
+        return [b for b in receipts.bodies(self.receipts_path) if b.get("kind") == "train"]
+
+    def record_training(self, run_id, info):
+        """Appends the "train" receipt of one adapter. info holds label, arm,
+        seed, descriptor, steps, sampler_source and sampler_id (what
+        TinkerRun.binding returns, plus the arm, seed and descriptor). A label
+        or descriptor that already has a train receipt in this chain is refused,
+        so a name never means two adapters."""
+        self.check_lock()
+        body = _train_body(run_id, info)
+        for b in self._train_bodies():
+            if b["label"] == body["label"] or b["descriptor"] == body["descriptor"]:
+                raise RatchetRefused("this chain already holds a training receipt for %r" % (body["label"],))
+        return self._append(body)
+
+    def require_model(self, model, descriptor):
+        """Checks, before any call is made, that an evaluation under this
+        descriptor may be recorded for this model. model is None (a stand-in
+        policy), {"model": "untrained"} or what TinkerRun.binding gives for an
+        adapter. Returns the fields the evaluation receipt carries."""
+        trained = self._train_bodies()
+        if model is None:
+            if trained:
+                raise RatchetRefused("an evaluation with no named model is refused in a chain that holds a "
+                                     "training receipt")
+            return {"model": "policy"}
+        if not isinstance(model, dict) or model.get("model") not in ("untrained", "adapter"):
+            raise RatchetRefused("the model of an evaluation must be untrained or an adapter")
+        if model["model"] == "untrained":
+            if set(model) != {"model"}:
+                raise RatchetRefused("an untrained model carries no other field")
+            if any(b["descriptor"] == descriptor for b in trained):
+                raise RatchetRefused("descriptor %r names a trained adapter, not the untrained model" % (descriptor,))
+            return {"model": "untrained"}
+        if set(model) != {"model", "label", "steps", "sampler_source", "sampler_id"}:
+            raise RatchetRefused("the adapter binding has the wrong fields")
+        mine = [b for b in trained if b["descriptor"] == descriptor]
+        if len(mine) != 1:
+            raise RatchetRefused("no single training receipt in this chain for descriptor %r" % (descriptor,))
+        t = mine[0]
+        if t["label"] != model["label"]:
+            raise RatchetRefused("the sampler belongs to adapter %r, not to the one named %r"
+                                 % (model["label"], t["label"]))
+        if t["steps"] != model["steps"] or t["sampler_source"] != model["sampler_source"] \
+                or t["sampler_id"] != model["sampler_id"]:
+            raise RatchetRefused("the sampler differs from the checkpoint the training receipt names")
+        return {"model": "adapter", "adapter_label": t["label"], "adapter_steps": t["steps"],
+                "sampler_source": t["sampler_source"], "sampler_id": t["sampler_id"],
+                "train_receipt_sha256": evaluate.canonical_sha256(t)}
+
     # gate 2
-    def record(self, result, run_id, config):
+    def record(self, result, run_id, config, model=None):
         """Append the evaluation receipt. The config dict is hashed into it. The
         raw replies are stored first and rescored: a result whose replies do
-        not give its outcomes is refused."""
+        not give its outcomes is refused. model: see require_model."""
         locked = self.check_lock()
+        named = self.require_model(model, result.descriptor)
         if result.harness != locked:
             raise RatchetRefused("the result was produced by a different harness than the lock")
         self._recount(result)
@@ -173,6 +260,7 @@ class Ratchet:
         body = result.body()
         body.update({"kind": "eval", "run_id": run_id, "config_sha256": evaluate.canonical_sha256(config),
                      "replies_entry_sha256": self._store_replies(result)})
+        body.update(named)
         return self._append(body)
 
     def _rescored(self, entry, r):
@@ -272,14 +360,18 @@ class Ratchet:
                 "first_passed": first.passed, "second_passed": second.passed, "n": first.n,
                 "first_better": first_only > second_only and p <= self.alpha}
 
-    def second_set_results(self, decision_id, epset2, entries, config):
+    def second_set_results(self, decision_id, epset2, entries, config, models=None):
         """The one touch of the second held-out set for a registered decision.
         entries is a list of (key, responder, arm, descriptor). The latch is
         touched first, for exactly those (arm, descriptor) pairs. Every result
-        is recorded. Returns {key: result}."""
+        is recorded. Returns {key: result}. models maps each key to its model
+        (see require_model); every one is checked before the latch is touched."""
         if epset2.kind != "heldout2":
             raise RatchetRefused("this is not the second held-out set")
         self.check_lock()
+        models = {} if models is None else models
+        for key, _resp, _arm, desc in entries:
+            self.require_model(models.get(key), desc)
         self.latch.head = self.head
         token = self.latch.touch(decision_id, [(arm, desc) for _key, _resp, arm, desc in entries])
         self.head = self.latch.head
@@ -287,7 +379,7 @@ class Ratchet:
         for key, responder, arm, desc in entries:
             out[key] = evaluate.evaluate_arm(responder, epset2, arm, self.cap, desc, token)
         for key, _resp, _arm, _desc in entries:
-            self.record(out[key], decision_id, config)
+            self.record(out[key], decision_id, config, models.get(key))
         return out
 
     def confirm_arms_second_set(self, decision_id, epset2, first_responder, first_arm, first_descriptor,

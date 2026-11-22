@@ -16,6 +16,24 @@ It counts tokens as it goes and raises BudgetStop before a call that would
 reach the ceiling. At most one checkpoint is saved per arm label. Sampled
 tokens are counted as the service returned them, not as capped.
 
+Which sampler an evaluation uses. The run keeps every sampler it issued
+(base_sampler, checkpoint_sampler) and binding() tells which one an object is,
+by identity, so a sampler the run did not issue is refused. For an adapter it
+also gives the label, the training steps taken when the checkpoint was saved,
+and an identifier of the sampler. The installed library (tinker 0.39.0) gives a
+saved checkpoint no public identifier: save_weights_and_get_sampling_client
+returns a SamplingClient, and the nearest public thing is
+SamplingClient.get_sampler_handle(), a credential-free string that encodes the
+session and sampling session ids. The identifier is the SHA-256 of that string,
+read once at save time (source "handle"), or empty with source "object" if the
+client offers no handle or it raises. Two different sampler objects that give
+the same handle, or the same object for two arms, are refused at save time.
+What is guaranteed: an evaluation is recorded only for a sampler object this
+run issued after training steps of that arm, under the arm's own receipt. What
+is not: that the service's weights behind the sampler are those steps, and that
+the handle is stable or unique on the real service (not observed: no client was
+built).
+
 The spend is kept in an append-only ledger file beside the approvals file (its
 path plus ".spend.jsonl"; there is no other way to name a ledger). A reservation
 is written and fsynced before its call, and any later refund or extra is
@@ -56,6 +74,7 @@ Approvals file (JSON):
 The ceiling is a string so that it is read as an exact fraction, never a float.
 """
 import fcntl
+import hashlib
 import json
 import os
 import re
@@ -354,6 +373,8 @@ class TinkerRun:
             raise
         self.clients = {}
         self.checkpoints = {}
+        self.steps = {}        # label -> training steps taken
+        self.issued = []       # every sampler this run handed out
 
     def close(self):
         """Releases the run lock. A closed run must not be used again."""
@@ -385,16 +406,60 @@ class TinkerRun:
         op = _guard(client.optim_step, self.types.AdamParams(learning_rate=learning_rate))
         _guard(fb.result)
         _guard(op.result)
+        self.steps[label] = self.steps.get(label, 0) + 1
 
     def checkpoint_sampler(self, label):
         """The one saved checkpoint of this arm, as a sampling client."""
         if self.checkpoints.get(label, 0) >= 1:
             raise BackendError("arm %r already saved its one checkpoint" % (label,))
         self.checkpoints[label] = self.checkpoints.get(label, 0) + 1
-        return _guard(lambda: self.clients[label].save_weights_and_get_sampling_client().result())
+        sampler = _guard(lambda: self.clients[label].save_weights_and_get_sampling_client().result())
+        source, ident = sampler_identifier(sampler)
+        self._refuse_reuse(sampler, source, ident)
+        self.issued.append({"model": "adapter", "label": label, "steps": self.steps.get(label, 0),
+                            "sampler_source": source, "sampler_id": ident, "sampler": sampler})
+        return sampler
 
     def base_sampler(self):
-        return _guard(lambda: self.service.create_sampling_client(base_model=MODEL_ID).result())
+        sampler = _guard(lambda: self.service.create_sampling_client(base_model=MODEL_ID).result())
+        for e in self.issued:
+            if e["sampler"] is sampler and e["model"] == "untrained":
+                return sampler
+        source, ident = sampler_identifier(sampler)
+        self._refuse_reuse(sampler, source, ident)
+        self.issued.append({"model": "untrained", "sampler": sampler, "sampler_source": source,
+                            "sampler_id": ident})
+        return sampler
+
+    def _refuse_reuse(self, sampler, source, ident):
+        for e in self.issued:
+            if e["sampler"] is sampler or (source == "handle" and e["sampler_source"] == "handle"
+                                           and e["sampler_id"] == ident):
+                raise BackendError("the service gave the same sampler for two models")
+
+    def binding(self, sampler):
+        """What this run knows about a sampler object: {"model": "untrained"}, or
+        for an adapter its label, the steps taken when the checkpoint was
+        saved, and the sampler source and id. Refuses a sampler this run did
+        not issue."""
+        for e in self.issued:
+            if e["sampler"] is sampler:
+                if e["model"] == "untrained":
+                    return {"model": "untrained"}
+                return {k: e[k] for k in ("model", "label", "steps", "sampler_source", "sampler_id")}
+        raise BackendError("the sampler was not issued by this run")
+
+
+def sampler_identifier(sampler):
+    """(source, id) of a sampling client: ("handle", SHA-256 of get_sampler_handle()),
+    or ("object", "") when the client has no handle or it fails."""
+    try:
+        handle = sampler.get_sampler_handle()
+    except Exception:  # an identifier is a convenience, never a reason to lose a paid run
+        return "object", ""
+    if not isinstance(handle, str) or not handle:
+        return "object", ""
+    return "handle", hashlib.sha256(handle.encode("utf-8")).hexdigest()
 
 
 class TinkerResponder:

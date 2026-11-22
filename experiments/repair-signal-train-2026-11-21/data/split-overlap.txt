@@ -1,0 +1,32 @@
+within train        puzzle   episodes  2048 distinct  2048 repeated     0
+within train        episode  episodes  2048 distinct  2048 repeated     0
+within heldout1     puzzle   episodes  1000 distinct  1000 repeated     0
+within heldout1     episode  episodes  1000 distinct  1000 repeated     0
+within heldout2     puzzle   episodes  1000 distinct  1000 repeated     0
+within heldout2     episode  episodes  1000 distinct  1000 repeated     0
+within pilot_train  puzzle   episodes   256 distinct   256 repeated     0
+within pilot_train  episode  episodes   256 distinct   256 repeated     0
+within pilot_eval   puzzle   episodes   100 distinct   100 repeated     0
+within pilot_eval   episode  episodes   100 distinct   100 repeated     0
+across train        heldout1     puzzle   shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across train        heldout1     episode  shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across train        heldout2     puzzle   shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across train        heldout2     episode  shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across train        pilot_train  puzzle   shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across train        pilot_train  episode  shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across train        pilot_eval   puzzle   shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across train        pilot_eval   episode  shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across heldout1     heldout2     puzzle   shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across heldout1     heldout2     episode  shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across heldout1     pilot_train  puzzle   shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across heldout1     pilot_train  episode  shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across heldout1     pilot_eval   puzzle   shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across heldout1     pilot_eval   episode  shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across heldout2     pilot_train  puzzle   shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across heldout2     pilot_train  episode  shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across heldout2     pilot_eval   puzzle   shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across heldout2     pilot_eval   episode  shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across pilot_train  pilot_eval   puzzle   shared_forms     0 episodes_of_first     0 episodes_of_second     0
+across pilot_train  pilot_eval   episode  shared_forms     0 episodes_of_first     0 episodes_of_second     0
+train_puzzle_in_heldout1 episodes_affected 0 of 1000
+train_puzzle_in_heldout2 episodes_affected 0 of 1000

@@ -304,6 +304,29 @@ def check_fakes_dynamic():
         ok("fake client", "creation and saving return futures, as the library does")
 
 
+def check_sampler_identity():
+    """What the backend relies on to name a saved checkpoint's sampler."""
+    sig = inspect.signature(tinker.SamplingClient.get_sampler_handle)
+    ann = typing.get_type_hints(tinker.SamplingClient.get_sampler_handle).get("return")
+    if [n for n in sig.parameters if n != "self"] or ann is not str:
+        bad("SamplingClient.get_sampler_handle", "signature %s -> %s, wanted no arguments and a str" % (sig, ann))
+    else:
+        ok("SamplingClient.get_sampler_handle", "takes no arguments and returns a str (a credential-free handle)")
+    fsig = inspect.signature(fakes.FakeSampler.get_sampler_handle)
+    if [n for n in fsig.parameters if n != "self"] or not isinstance(fakes.FakeSampler().get_sampler_handle(), str):
+        bad("fake get_sampler_handle", "does not match the library's")
+    else:
+        ok("fake get_sampler_handle", "matches the library's")
+    ret = typing.get_type_hints(tinker.TrainingClient.save_weights_and_get_sampling_client).get("return")
+    public = [n for n in dir(tinker.SamplingClient) if not n.startswith("_") and ("checkpoint" in n or "path" in n)]
+    if public:
+        unsettled("saved checkpoint identifier", "the client has public names %s: bind to one of them" % public)
+    else:
+        unsettled("saved checkpoint identifier", "the library returns %s with no public checkpoint id; the backend "
+                  "binds by the object the run holds and by the SHA-256 of the handle"
+                  % getattr(ret, "__name__", str(ret)))
+
+
 def check_credentials():
     sig = inspect.signature(tinker.ServiceClient.__init__)
     if any(p.default is inspect.Parameter.empty for n, p in sig.parameters.items()
@@ -403,6 +426,7 @@ def main(argv):
     check_return_shapes()
     check_construction()
     check_fakes_dynamic()
+    check_sampler_identity()
     check_credentials()
     check_tokenizer()
     check_old_scripts(old)

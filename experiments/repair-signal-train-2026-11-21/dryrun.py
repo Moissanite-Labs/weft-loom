@@ -111,6 +111,20 @@ def driver_checks(out):
           all(summary["set1"][s]["control_E"]["second_only"] == 0 and summary["set1"][s]["control_E"]["first_better"]
               for s in range(2)))
     check("driver: the meter stayed under the ceiling", run_.meter.spent < run_.meter.ceiling)
+    bodies = receipts.bodies(rt.receipts_path)
+    trains = {evaluate.canonical_sha256(b): b for b in bodies if b["kind"] == "train"}
+    adapter_evals = [b for b in bodies if b["kind"] == "eval" and b["model"] == "adapter"]
+    check("driver: six training receipts, and every adapter evaluation names the one of its own adapter",
+          len(trains) == 6 and len(adapter_evals) == 16
+          and all(trains[b["train_receipt_sha256"]]["descriptor"] == b["descriptor"] for b in adapter_evals)
+          and sum(1 for b in bodies if b["kind"] == "eval" and b["model"] == "untrained") == 5)
+    b0 = run_.issued[2]["sampler"]                                       # the adapter trained on B, seed 0
+    calls0 = sum(len(smp.calls) for smp in svc.checkpoint_samplers)
+    check("driver: a sampler of another arm is refused as the C adapter, before any call",
+          refused(ratchet_mod.RatchetRefused, lambda: driver.evaluate_recorded(
+              rt, run_, b0, codec_mod.Codec(fakes.FakeTokenizer()), ep_mod.build_set("heldout1", {"S": 2}), "C",
+              driver.adapter_name("C", 0), "driver-dryrun-driver-good", {"cap": CAP}))
+          and sum(len(smp.calls) for smp in svc.checkpoint_samplers) == calls0)
     check("driver: every sampled prompt carries special role ids",
           all(1000 in p and 1010 in p and 1004 in p for smp in svc.checkpoint_samplers for p in smp.prompts[:3]))
     summary2, _run2, rt2, _svc2 = driver_scenario(out, "dryrun-driver-flat", False)

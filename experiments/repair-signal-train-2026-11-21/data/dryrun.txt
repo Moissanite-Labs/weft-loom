@@ -36,6 +36,8 @@ CHECK driver: C beat B in both seeds, so the second set was touched once and sup
 CHECK driver: the verdict is support on set 1 for both seeds and on set 2 PASS
 CHECK driver: the controls (C adapter on texts E and N) score below C PASS
 CHECK driver: the meter stayed under the ceiling                     PASS
+CHECK driver: six training receipts, and every adapter evaluation names the one of its own adapter PASS
+CHECK driver: a sampler of another arm is refused as the C adapter, before any call PASS
 CHECK driver: every sampled prompt carries special role ids          PASS
 CHECK driver: no gain means no support and the second set is never touched PASS
 CHECK driver: no gain at all is reported as cannot_test, not as not_supported PASS
@@ -47,7 +49,7 @@ CHECK pilot: evaluates on training-range seeds only and never touches a held-out
 CHECK pilot: its measurements are a receipt in the chain             PASS
 CHECK pilot: a run started for the full plan cannot run the pilot    PASS
 CHECK pilot: a run id approved for the pilot plan cannot start the full plan PASS
-receipts: 36, chain head 8d18aaa9c29c6d6b915c9b7f2dcb431eadcd1e04f2031664da83feb140710439
+receipts: 36, chain head 4cfcdb990a6893c6fd50ee875ce6dfef54108eb0941089a6dfde99e8d98623ab
 CHECK receipt chain verifies                                         PASS
 CHECK an edited receipt fails verification                           PASS
 CHECK a changed rsig hash refuses to run                             PASS
@@ -59,4 +61,4 @@ CHECK a second holder of the same ledger is refused while the first holds the lo
 CHECK the paid backend refuses a restart of a started run id unless resume is given PASS
 CHECK a resumed run counts the spend already in the ledger           PASS
 
-44 checks, 0 failed
+46 checks, 0 failed

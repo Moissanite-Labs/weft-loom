@@ -97,6 +97,14 @@ So a C adapter that reads the values and applies the rule, but is shown the wron
 
 All sets are disjoint from the registered ranges 100000 to 100099 and 200000 to 200099 of the earlier experiment, and the episode builder refuses any seed outside the range of its kind and tier. The pilot's training seeds lie above the first 1024 seeds of each tier that the full run trains on, so the pilot shares no episode with the full run (a test checks it).
 
+Disjoint seeds can still generate the same puzzle, so the sets were also checked by content (measurement, `checks/split_overlap.py`, output in `data/split-overlap.txt`, test in `tests/test_split_overlap.py`).
+
+Every episode of the five sets was built from its seed with the episode builder: training 2048, first held-out 1000, second held-out 1000, pilot training 256, pilot evaluation 100. Two forms were compared, both the exact text a model is shown. The puzzle form is the first message, with every constraint. The episode form adds the failed attempt and the canonical repair.
+
+The count of repeated episodes inside each set is 0 at both levels, and the count of forms shared by any two sets is 0 at both levels. So 0 of the 1000 episodes of the first held-out set and 0 of the 1000 of the second have a training puzzle. A test fails if a training puzzle equals a held-out puzzle.
+
+Had any been found, the seeds would stay as registered, and this plan would also report the primary comparison with those episodes left out. Nothing was found, so no such analysis is added.
+
 The same episodes are used in every comparison, so comparisons are paired. The text E draws its amounts from decoy puzzles at seeds 700000 and up, outside every range above.
 
 ## Compute cap
@@ -329,6 +337,20 @@ Invented replies would still pass this check, and the check proves only that the
 
 The approvals file is written by the owner outside the agent's write area, with the run id, the ceiling and the plan the run is approved for.
 
+A sixth guard, added on 2026-11-22 before any registered run, binds each evaluation to the adapter it names.
+
+- An adapter is evaluated only after the run trained it, saved its one checkpoint and wrote a training receipt for it: label, text, seed, descriptor, step count and an identifier of the sampler.
+- The evaluation receipt must name the same descriptor, label, step count and identifier, and the check is made before any sampling call. The untrained model's evaluations are marked as such.
+- The installed service library (version 0.39.0) gives a saved checkpoint no public identifier. The identifier is the SHA-256 of the sampler handle the library offers, read once when the checkpoint is saved, and the run also holds the sampler object itself.
+
+What is guaranteed: no evaluation is recorded for a sampler object this run did not issue after training that arm, under that arm's own receipt.
+
+What is not guaranteed: that the service's weights behind the sampler are the weights of those steps, and that the handle is stable or unique on the real service, which no run has observed.
+
+## Limits of the registered numbers
+
+Every registered number is measured on the service's own sampler for the saved checkpoint of an adapter. A merged, exported or quantised copy of an adapter is another model. It needs its own evaluation under this same harness, with the same prompts, cap and sets, before anything is said about it. Nothing in this plan carries the result over to such a copy.
+
 ## Revision notes
 
 Changes made to this draft after an independent review on 2026-11-21, before any registration:
@@ -378,6 +400,14 @@ Pilot run on 2026-11-22 (UTC), after the changes above. No plan field and no gat
 - The forced opening, new blocks, format and testable gates passed. The time gate failed: the full plan projects to 15.759 hours against the 12 allowed, from 2.573 seconds per sampling call sent one at a time, 7.049 seconds per training step, 21,000 calls and 384 steps. The verdict is a no-go.
 - By the section "After the pilot", the full run waits for a dated change to the plan that names the time gate, the change and the reason, then a new pilot under a new run id, then a new approval. No such change is made here.
 - The pilot did not compare any token count from the service with the tokenizer, and the service bill has not been compared with the ledger.
+
+Changes made on 2026-11-22 (UTC), before any registered run and before any registered data. No plan field is changed: sizes, seeds, cap and decision rule stand as written.
+
+- Identical puzzles across sets. The seed ranges were already proved disjoint. The sets were now also compared by content, at two levels: the same puzzle, and the same puzzle with the same failed attempt and repair.
+- The result is 0 repeated episodes inside any set and 0 forms shared by any two sets, so 0 of 1000 episodes of each held-out set share a puzzle with the training set. The script, its committed output and a test are in the record. The seeds are unchanged.
+- The rule to report the primary comparison with such episodes left out was conditional on a finding and does not apply.
+- Which adapter is evaluated. A new guard binds every adapter evaluation to a training receipt of this run (see "Gates"). The pilot ran with the earlier code, so its two evaluations were recorded without it.
+- What the result is about. A limit is added: registered numbers are for the service's sampler for the checkpoint, and a merged, exported or quantised copy needs its own evaluation (see "Limits of the registered numbers").
 
 ## Statement
 

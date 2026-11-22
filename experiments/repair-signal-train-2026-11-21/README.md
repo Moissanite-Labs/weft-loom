@@ -35,6 +35,8 @@ Output is identical under `python3 -I -B`, `python3 -I -O -B` and `python3 -I -B
 
 The plan's other numbers come from these scripts. `power.py 1000` is exact and takes a few minutes. `checks/power_crosscheck.py` needs scipy, shares no code with `power.py` and agrees with it to 0.000035.
 
+`checks/split_overlap.py` builds every episode of every set of the full plan and of the pilot and counts identical puzzles inside each set and across every pair of sets (see "Identical puzzles across sets").
+
 `checks/e_floor.py` and `checks/rule2_ties.py` print the chance floor on text E and the tie counts in the canonical repair.
 
 `checks/targets.py` prints the rule split of the training targets, the mean amounts of texts C and E, the coverage of the first rule by the number of variables moved, and the one-subtraction count. `power.py 400` prints the 0.35 the plan quotes for the earlier set size.
@@ -46,6 +48,7 @@ python3 -I -B checks/power_crosscheck.py
 python3 -I -B checks/e_floor.py
 python3 -I -B checks/rule2_ties.py
 python3 -I -B checks/targets.py
+python3 -I -B checks/split_overlap.py
 ```
 
 `python3 -I -B pilot/summarize.py` prints the summary of the committed pilot run and rescores its 200 replies (output in `pilot/pilot-2026-11-22-a/summary.txt`, and it exits 1 if any check disagrees). `python3 -I -B local-baseline/check_seeds.py` checks that the committed local baseline holds pilot evaluation seeds only. `python3 -I -B local-baseline/facts.py` prints the free-reasoning counts, the time per call and what it projects for the full plan, and the smoke-run facts (output in `local-baseline/facts.txt`).
@@ -54,7 +57,7 @@ python3 -I -B checks/targets.py
 
 Two more tests need the service library or the tokenizer package: the conformance test in `tests/test_api_check.py` and the real-tokenizer cost test in `tests/test_pilot_cli.py`. Both passed with that Python, and are skipped without it.
 
-The outputs are committed under `data/`: `dryrun.txt` (`dryrun.py`), `cost-rule.txt` (`cost.py`), `cost-tokenizer.txt` (`cost.py --venv-python PATH`, with a Python that has tml_renderers), `targets.txt`, `e_floor.txt`, `rule2_ties.txt`, `power-400.txt` (the script of the same name, run as listed above) and `tinker-api-check.txt` (`checks/tinker_api_check.py`, run with a Python that has the service library).
+The outputs are committed under `data/`: `dryrun.txt` (`dryrun.py`), `cost-rule.txt` (`cost.py`), `cost-tokenizer.txt` (`cost.py --venv-python PATH`, with a Python that has tml_renderers), `targets.txt`, `e_floor.txt`, `rule2_ties.txt`, `power-400.txt`, `split-overlap.txt` (the scripts of the same names, run as listed above) and `tinker-api-check.txt` (`checks/tinker_api_check.py`, run with a Python that has the service library).
 
 The dry run is deterministic and runs on any machine. It was run here on one Apple laptop with the system Python.
 
@@ -111,7 +114,7 @@ Its output for the installed library is `data/tinker-api-check.txt`. It found tw
 
 None yet. No model has produced a registered result for this question. The pilot run below is exploratory and is not one.
 
-The dry run checks the harness with stand-in policies. It says nothing about any model. It uses 40 training, 200 first held-out and 200 second held-out episodes, and ends with `44 checks, 0 failed`. The chain of receipts for the stand-in policies has 36 lines and verifies. Held-out set 1 at cap 96, each cell passed over episodes:
+The dry run checks the harness with stand-in policies. It says nothing about any model. It uses 40 training, 200 first held-out and 200 second held-out episodes, and ends with `46 checks, 0 failed`. The chain of receipts for the stand-in policies has 36 lines and verifies. Held-out set 1 at cap 96, each cell passed over episodes:
 
 | Stand-in policy | A | B | C | E | N |
 |---|---|---|---|---|---|
@@ -123,9 +126,9 @@ The dry run checks the harness with stand-in policies. It says nothing about any
 
 The verbose policy breaks the format in all 200 replies in every text, and that is counted apart from a failed repair.
 
-The dry run's 44 checks show that the exact checker, the sign test, the ratchet, the latch, the receipt chain and the budget guards each behave as designed. The table shows that the C, E and N texts separate a policy that reads the amounts from one that does not. The oracle scores 0 on N because its sign convention is written into the policy, and that is not a property of any model.
+The dry run's 46 checks show that the exact checker, the sign test, the ratchet, the latch, the receipt chain and the budget guards each behave as designed. The table shows that the C, E and N texts separate a policy that reads the amounts from one that does not. The oracle scores 0 on N because its sign convention is written into the policy, and that is not a property of any model.
 
-The test suite runs 487 tests (9 skipped without the service library and the tokenizer package) and passes. `mutate.py` removes 392 guards one at a time and every one is caught by a failing test. These too check the harness only.
+The test suite runs 539 tests (9 skipped without the service library and the tokenizer package) and passes. `mutate.py` removes 444 guards one at a time and every one is caught by a failing test. These too check the harness only.
 
 The dry run also runs the whole registered procedure against a fake client twice. With a gain built in for C, the verdict is `support`, and the second held-out set is touched once. With no gain, the verdict is `cannot_test` and the second set is never touched. The fake pilot reports 200 calls and 8 steps. These are properties of the fake.
 
@@ -141,6 +144,50 @@ Prices are the rates published in the Tinker model table (https://tinker-docs.th
 | Full plan, three texts, two seeds | 12,572,333 | 5.0406 | 13,385,972 | 5.3646 |
 
 The exact full-plan cost with the tokenizer is 26823111/5000000 dollars. The plan sets a ceiling of 0.50 dollars for the pilot and 12.00 for the full run.
+
+## Identical puzzles across sets
+
+The plan proves that the seed ranges of its sets are disjoint. Distinct seeds can still generate the same puzzle, so `checks/split_overlap.py` builds every episode of the five sets from its seed with the record's own builder and compares exact forms. The sets are the training set (2048), the first held-out set (1000), the second held-out set (1000), the pilot training set (256) and the pilot evaluation set (100).
+
+Two forms are compared, both the exact text a model is shown. The puzzle form is the first message, with every constraint. The episode form adds the failed attempt and the canonical repair that is the training target. Tier and seed are not part of either form, because the model does not see them.
+
+The counts are integers, and the output is `data/split-overlap.txt`.
+
+- Inside every set, 0 episodes repeat an earlier one, at both levels.
+- Across every one of the 10 pairs of sets, 0 forms are shared, at both levels.
+- So 0 of the 1000 episodes of the first held-out set and 0 of the 1000 of the second have a training puzzle, and no pilot set shares a puzzle with the training or held-out sets.
+
+`tests/test_split_overlap.py` fails if any training puzzle equals a held-out puzzle, and it checks that the counter finds duplicates in sets built to contain them. The seeds are unchanged. Had duplicates been found, the plan would report the primary comparison again with those episodes left out. That rule does not apply, because none were found. PREREG.md records this in its note of 2026-11-22.
+
+## Which adapter is evaluated
+
+Before this guard, nothing tied an evaluation to the adapter this run had trained. A sampler from another arm, or from outside the run, could have been evaluated and recorded under a trained adapter's name.
+
+Now `driver.train_and_save` trains an arm, saves its one checkpoint and writes a training receipt (label, text, seed, descriptor, steps, sampler identifier) to the receipt chain.
+
+Every evaluation goes through `driver.evaluate_recorded`. It asks the run which sampler object this is, and the ratchet compares that with the training receipts before any sampling call is made. The evaluation receipt then names the adapter, its step count, its sampler identifier and the hash of the training receipt.
+
+- A sampler of another arm or another seed, a sampler the run did not issue, and a sampler with no training receipt are refused. So is a second training receipt for the same adapter, and a stand-in policy evaluation in a chain that holds a training receipt.
+- The untrained model's evaluations carry `"model": "untrained"`. Stand-in policy evaluations carry `"model": "policy"`.
+- The second held-out set checks its four models before the one touch is spent.
+
+The installed library (tinker 0.39.0) gives a saved checkpoint no public identifier. The save returns a sampling client, and the nearest public name is `SamplingClient.get_sampler_handle()`, a credential-free string. The identifier is the SHA-256 of that string, read once at save time.
+
+A client with no handle, or one that raises, gets the source `object` and an empty identifier. The binding then rests on the sampler object and the order of the receipts alone. `checks/tinker_api_check.py` compares the handle call with the installed library and records the missing checkpoint id as unsettled.
+
+What is guaranteed: an evaluation is recorded only for a sampler object this run issued, after training steps of that arm, under that arm's own training receipt.
+
+What is not:
+
+- that the weights the service holds behind the sampler are the weights of those steps
+- that a handle is stable or unique on the real service, because no client was built to observe it
+- that the same agent could not edit the guard
+
+A resumed run cannot reuse a receipt chain, because a second training receipt for the same adapter is refused.
+
+The pilot ran with the earlier code, and its two evaluations predate this guard. Its chain holds the two evaluation receipts and the pilot measurement and no training receipt, and its evaluation receipts have no model field.
+
+The pilot trained one adapter and sampled the checkpoint that its save returned, so no other adapter could have been confused with it. That is read from the code and is not recorded in the receipts. The committed pilot files are unchanged.
 
 ## Pilot run
 
@@ -208,6 +255,8 @@ The team can choose among three ways forward. This record does not choose.
 
 ## Limits
 
+- Every registered number is measured on the service's own sampler for the saved checkpoint of an adapter. A merged, exported or quantised copy of an adapter is another model. It needs its own evaluation under this same harness, with the same prompts, cap and sets, before anything is said about it.
+- The adapter guard binds receipts and the sampler object the run holds. It does not show what weights the service holds behind that sampler, and its identifier is a hash of a handle that has not been observed on the real service.
 - The calls are compared with the installed library's signatures by `checks/tinker_api_check.py`, and the logic is tested against fakes. Only the one pilot run has used the real service (see "Pilot run"). The registered run has not.
 - The pilot ran the sampling calls, the checkpoint save and the base sampler once against the real service, and the service accepted greedy sampling with integer stop ids for this model. The time per sampling call and per step were measured once, for sampling calls sent one at a time and for 8 training steps. Another day or another way of sending calls may give other times.
 - Whether the tokenizer carried by tml_renderers matches the Mini model is a guess. The chat layout matches the renderer id for id, but whether the service applies the same layout to a tuned model is not checked. The pilot ran but did not check it, because no token count from the service was compared with the tokenizer's.
@@ -254,6 +303,7 @@ This record keeps the puzzle generator, the exact checker and the texts for A an
 - `pilot_cli.py`: the command line runner of the pilot (see "How to run the pilot"). It refuses a used output directory, a missing key and any approval that is not the pilot's, logs every raw reply, and writes the result file with integers and strings only.
 - `driver.py`, `tinker_backend.py`, `fakes.py`: the run, the paid backend and test doubles. The paid backend refuses to start without an owner approval for the exact run id and the exact plan, and it holds a lock so that only one process uses a ledger at a time. The only sampling path is the paid backend's responder, which builds every prompt with `codec.py`, forced opening included.
 - `checks/tinker_api_check.py`: the static comparison of the backend with the installed service library.
+- `checks/split_overlap.py` and `data/split-overlap.txt`: the count of identical puzzles inside and across the sets.
 - `cost.py`, `power.py`, `dryrun.py`, `mutate.py`, `tests/`, `checks/`: the checks. `mutate.py` removes each guard by an exact text substitution and requires a test to fail.
 - `vendor/`: the pinned generator and checker.
 - `pilot/`: the pilot run of 2026-11-22 (`pilot-2026-11-22-a/`: the output files unchanged, the spend ledger, the approval row and note, `SHA256SUMS` and `summary.txt`) and `summarize.py`, which reads them, rescores every reply and prints the summary. `tests/test_pilot_summary.py` tests it.
@@ -264,5 +314,7 @@ This record keeps the puzzle generator, the exact checker and the texts for A an
 The code, tests and plan were written and run by AI agent sessions under the direction of the research team's human owner, with independent review rounds by other agent sessions. The plan went through two such reviews before registration, and the revision notes in `PREREG.md` list what they changed.
 
 A third independent review found seven points to fix and four small ones. The fixes made for it (the run lock and plan binding in the backend, the single decision procedure, the removal of the old local responder, the committed logs and the rewording of the local section) have not been reviewed by a second agent. No human has line-reviewed the code.
+
+The split-overlap check, the adapter guard and the added limit (2026-11-22) were written after the pilot, in answer to points raised by a scan of another team's work, and they have had no second review.
 
 The code and plan were written without calling a paid service. The one pilot run on the real service was approved by the owner, and "Pilot run" describes it.
