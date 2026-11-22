@@ -79,6 +79,8 @@ WATCH = {
     "save_weights_and_get_sampling_client": (tinker.TrainingClient, fakes.FakeTrainingClient, True),
     "sample": (tinker.SamplingClient, fakes.FakeSampler, True),
 }
+# watched method name -> more fake classes whose method is bound the same way
+EXTRA_FAKES = {"sample": (fakes.WindowSampler,)}
 # constructor or factory name -> (real callable, fake callable)
 TYPES = {
     "Datum": (T.Datum, fakes.FakeTypes.Datum),
@@ -169,6 +171,8 @@ def uses_result(tree, node):
     # climb out of a _guard(...) wrapper
     while cur in parents and isinstance(parents[cur], ast.Call) and isinstance(parents[cur].func, ast.Name):
         cur = parents[cur]
+    if isinstance(parents.get(cur), ast.Lambda) and isinstance(parents.get(parents[cur]), ast.Call):
+        cur = parents[parents[cur]]            # _guard(lambda: ....sample(...)): the value of the _guard call
     par = parents.get(cur)
     if isinstance(par, ast.Attribute) and par.attr == "result":
         return True
@@ -180,6 +184,25 @@ def uses_result(tree, node):
         return any(isinstance(n, ast.Attribute) and n.attr == "result" and isinstance(n.value, ast.Name)
                    and n.value.id == var for n in ast.walk(scope))
     return False
+
+
+def kept_in_flight_and_read(tree, node):
+    """The windowed responder keeps the value of sample() in a pending list and reads it
+    later, so the value is not read in the function that made it. True if the value is
+    passed to _Flight(...) as its future, and the module reads a `.future.result` somewhere."""
+    parents = {c: p for p in ast.walk(tree) for c in ast.iter_child_nodes(p)}
+    cur = node
+    if isinstance(parents.get(cur), ast.Lambda) and isinstance(parents.get(parents[cur]), ast.Call):
+        cur = parents[parents[cur]]
+    par = parents.get(cur)
+    if not (isinstance(par, ast.Assign) and len(par.targets) == 1 and isinstance(par.targets[0], ast.Name)):
+        return False
+    var = par.targets[0].id
+    passed = any(isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and n.func.id == "_Flight"
+                 and any(isinstance(a, ast.Name) and a.id == var for a in n.args) for n in ast.walk(tree))
+    read = any(isinstance(n, ast.Attribute) and n.attr == "result" and isinstance(n.value, ast.Attribute)
+               and n.value.attr == "future" for n in ast.walk(tree))
+    return passed and read
 
 
 def check_calls():
@@ -213,10 +236,16 @@ def check_calls():
                     if fut is None or not hasattr(fut, "result"):
                         bad(label, "the return annotation %r has no result()" % ann)
                         continue
-                    if not uses_result(tree, node):
+                    if uses_result(tree, node):
+                        msgs.append("returns %s, used through .result()" % fut.__name__)
+                    elif kept_in_flight_and_read(tree, node):
+                        msgs.append("returns %s, kept pending in a window and read through .future.result()"
+                                    % fut.__name__)
+                    else:
                         bad(label, "returns %s (a future) but the code does not call .result() on it" % ann)
                         continue
-                    msgs.append("returns %s, used through .result()" % fut.__name__)
+                for extra in EXTRA_FAKES.get(name, ()):
+                    check_signature(label + " (%s)" % extra.__name__, real, getattr(extra, name), args, kws, True)
                 ok(label, "; ".join(["arguments match"] + msgs))
                 seen.add(name)
             else:
@@ -228,6 +257,44 @@ def check_calls():
     for name in list(WATCH) + list(TYPES):
         if name not in seen:
             unsettled(name, "no call site found in the backend, driver or runner")
+
+
+def check_sample_dispatch():
+    """What the windowed responder relies on: sample() is a plain method that hands the
+    request to the library's background loop when it is called and returns a pending future,
+    so several calls can be in flight before the first result is read. Read from the source of
+    the installed package: no client is built and nothing is sent."""
+    src = inspect.getsource(tinker.SamplingClient.sample)
+    if inspect.iscoroutinefunction(tinker.SamplingClient.sample):
+        bad("SamplingClient.sample dispatch", "sample is a coroutine function: a call would send nothing until awaited")
+    elif "run_coroutine_threadsafe(_sample_async" not in src or ".result(" in src.split("return _AwaitableFutureCompatWrapper")[-1]:
+        bad("SamplingClient.sample dispatch", "the source no longer submits the request to the background loop at call time")
+    else:
+        ok("SamplingClient.sample dispatch", "a plain method that submits the request to the library's background loop "
+           "with run_coroutine_threadsafe and returns the pending future without waiting")
+    wrap = tinker.lib.public_interfaces.sampling_client._AwaitableFutureCompatWrapper \
+        if hasattr(tinker, "lib") else None
+    if wrap is None:
+        unsettled("sample future .result", "the wrapper class could not be found")
+    else:
+        for fake_cls in (fakes.PendingFuture, fakes.FakeFuture):
+            try:
+                bind(wrap.result, [], {}, True)
+                bind(fake_cls.result, [], {}, True)
+            except TypeError as exc:
+                bad("sample future .result (%s)" % fake_cls.__name__, "does not accept a call with no argument: %s" % exc)
+                continue
+            real_names = set(inspect.signature(wrap.result).parameters)
+            extra = [n for n in inspect.signature(fake_cls.result).parameters if n != "self" and n not in real_names]
+            if extra:
+                bad("sample future .result (%s)" % fake_cls.__name__, "the fake takes names the real one lacks: %s" % extra)
+            else:
+                ok("sample future .result (%s)" % fake_cls.__name__, "takes no required argument and no name the library's lacks")
+    unsettled("sample concurrency limit", "the request limit is server-controlled (sample_max_concurrent_requests, "
+              "default 2000 in the library's own client config) and the service's real limit for this account is not observable here")
+    unsettled("sample retries", "the library retries a failed or backpressured request itself with no count limit "
+              "(RetryHandler, exponential backoff 0.5 s to 10 s, stuck after 120 minutes without progress), and whether "
+              "a retried request that the service had already accepted is billed twice is not observable here")
 
 
 def check_return_shapes():
@@ -426,6 +493,7 @@ def main(argv):
     check_return_shapes()
     check_construction()
     check_fakes_dynamic()
+    check_sample_dispatch()
     check_sampler_identity()
     check_credentials()
     check_tokenizer()

@@ -112,6 +112,86 @@ class ScriptedSampler(FakeSampler):
         return super().sample(prompt, num_samples, sampling_params, **kw)
 
 
+class PendingFuture:
+    """What the library's sample() returns: a future that is still pending when
+    sample() returns. result() takes an optional timeout, as the library's does."""
+
+    def __init__(self, sampler, index, done_at, value=None, error=None):
+        self.sampler, self.index, self.done_at = sampler, index, done_at
+        self._value, self._error = value, error
+        self.consumed = False
+
+    def result(self, timeout=None):
+        self.sampler._answer_through(self)
+        if not self.consumed:
+            self.consumed = True
+            self.sampler.outstanding -= 1
+        if self._error is not None:
+            raise self._error
+        return self._value
+
+
+class WindowSampler(FakeSampler):
+    """A fake sampling client that behaves like the service under a window of
+    calls: sample() returns at once with a pending future, the calls are
+    answered in the order of their latency and not of their sending, and the
+    client can see what it asked for. No thread and no clock are used: time is a
+    virtual counter that moves forward when a result is asked for.
+
+    reply_for(prompt_tokens) gives the reply ids for a prompt, so a reply depends
+    on the prompt and never on the order of the calls (as with greedy sampling).
+    latency(index) gives a call's virtual latency, index being its position in the
+    order of sending (default: later calls answer sooner, the reverse of the sending order).
+    fail_result: indexes whose future raises when its result is asked for.
+    fail_send: indexes for which sample() itself raises (the call never reaches the service).
+    oversize: indexes whose reply holds more ids than max_tokens allows.
+    two_sequences: indexes whose answer holds two sequences for the one sample asked for.
+    Recorded: calls and prompts (as FakeSampler), answered_order (indexes in the order the
+    fake answered them), outstanding (sent and not yet handed back) and max_in_flight, its largest value."""
+
+    def __init__(self, reply_for=None, latency=None, fail_result=(), fail_send=(), oversize=(), two_sequences=()):
+        super().__init__()
+        self.reply_for = reply_for if reply_for is not None else (lambda tokens: [1 + len(tokens) % 5, 2, 3])
+        self.latency = latency if latency is not None else (lambda index: 1000 - index)
+        self.fail_result, self.fail_send, self.oversize = set(fail_result), set(fail_send), set(oversize)
+        self.two_sequences = set(two_sequences)
+        self.now = 0
+        self.futures, self.answered_order, self.send_attempts = [], [], 0
+        self.outstanding = self.max_in_flight = 0
+
+    def sample(self, prompt, num_samples, sampling_params, include_prompt_logprobs=False, topk_prompt_logprobs=0,
+               topk_sample_logprobs=0, target_prompt_logprobs=None, prompt_alt_tokens_k=0, prompt_logprobs_last_n=None):
+        attempt = self.send_attempts
+        self.send_attempts += 1
+        if attempt in self.fail_send:
+            raise RuntimeError("fake service: the request could not be sent")
+        index = len(self.calls)
+        self.calls.append((prompt.length, num_samples, sampling_params.max_tokens))
+        self.prompts.append(list(prompt.tokens))
+        self.stops.append(sampling_params.stop)
+        toks = list(self.reply_for(list(prompt.tokens)))
+        if index in self.oversize:
+            toks = toks + [7] * (sampling_params.max_tokens + 1 - len(toks))
+        else:
+            toks = toks[:sampling_params.max_tokens]
+        error = RuntimeError("fake service: the call failed") if index in self.fail_result else None
+        resp = _Resp(toks)
+        if index in self.two_sequences:
+            resp.sequences = [_Seq(toks), _Seq(list(toks))]
+        fut = PendingFuture(self, index, self.now + self.latency(index), resp, error)
+        self.futures.append(fut)
+        self.outstanding += 1
+        self.max_in_flight = max(self.max_in_flight, self.outstanding)
+        return fut
+
+    def _answer_through(self, fut):
+        """Moves virtual time to the future's completion and answers every call due by then."""
+        self.now = max(self.now, fut.done_at)
+        due = sorted((f for f in self.futures if f.done_at <= self.now and f.index not in self.answered_order),
+                     key=lambda f: (f.done_at, f.index))
+        self.answered_order.extend(f.index for f in due)
+
+
 class FakeTrainingClient:
     def __init__(self, fail_with=None, sampler=None):
         self.calls, self.fail_with = [], fail_with

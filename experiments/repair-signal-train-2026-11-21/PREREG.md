@@ -324,6 +324,8 @@ The pilot is then run again, under a new pilot run id with its own approval, and
 
 What an amendment may weigh for the time gate is fewer sampling calls (which changes the power table) or a longer time gate with a stated reason. Neither is decided here.
 
+One further option, sampling several calls at once, is built as a proposal and is not approved: see the last section, "Proposed change after the pilot (not approved)".
+
 ## Gates
 
 The loop runs under the five gates of the ratchet: the harness locked by hash (including the registry of decision ids), receipts chained and float-free with every decided result matched to a receipt and its counts recomputed.
@@ -417,3 +419,65 @@ Changes made on 2026-11-22 (UTC), before any registered run and before any regis
 ## Statement
 
 No registered result exists yet. This file was written before any model was trained or evaluated in this loop. The only measurements are the exploratory local ones under "What the local model did" and the one pilot run named in the last revision note. From the merge onward, later changes go in a dated amendments section at the end and never replace the text above it.
+
+## Proposed change after the pilot (not approved)
+
+Date: 2026-11-22. This section is a proposal, written on the branch `proposal/parallel-sampling`. The owner has not approved it, no new pilot has run, and no paid call was made to build it. Until the owner approves a change, the plan above stands as written.
+
+### Why
+
+The first pilot (run id pilot-2026-11-22-a) passed four gates and failed the time gate. Calls were sent one at a time and took 2.573 seconds each, so the full plan projects to 15.759 hours against the 12 allowed. By "After the pilot" the full run must not start, and the plan needs a dated change before a new pilot.
+
+This proposal is one of three ways forward. The other two are listed at the end.
+
+### What changes
+
+- Sampling calls are sent up to the window size at a time. The proposed window is 8 (choice, not a measurement). The evaluation still asks for one reply at a time in episode order, and each reply is read from its own call.
+- The window is a field of the plan and part of the plan fingerprint. A window of 1 is the plan the first pilot ran under, and it keeps that plan's fingerprint.
+- The pilot measures the time of each evaluation as a whole, as wall-clock time, and divides by the evaluation's calls. With a window a reply may already be waiting when it is asked for, so the wait for one call is kept only as a reading.
+- The time gate keeps its formula: the time per call times the 21,000 calls of the full plan, plus the time per step times its 384 steps, at most 12 hours.
+
+### What does not change
+
+Sizes, seeds, the cap of 96 reply tokens, the texts, the primary comparison and the decision rule stand. So do the five pilot gates with their thresholds, the 12 hour limit and the ceilings (0.50 dollars for the pilot, 12.00 for the full run). Sampling stays greedy, so each reply depends on its prompt alone.
+
+Every spend rule stands: the plan and approval checks, the one-process lock, the ledger across restarts, the stop before a call that would reach the ceiling, the stop at the first reply over its limit, and one checkpoint per adapter.
+
+### Spend with calls in flight
+
+Spend safety is the point of this change, so the rules are written out.
+
+- Every call is reserved in the ledger, prefill then sample limit, and written to disk before it is sent. At any moment the ledger holds one open reservation for each call in flight.
+- The ceiling check before a send counts those reservations. A windowed run can stop earlier than a sequential run would, because the sequential run settles each call before the next. The difference is at most the unused part of the sample limits in flight, under 0.0004 dollars for a window of 8.
+- If a send fails, a call fails, or the budget stop fires, the calls already sent are awaited and settled before the error is raised. A call that failed keeps its full reservation.
+- A reply with more tokens than reserved is counted in full and stops the run after the calls in flight are settled.
+- A process killed with calls in flight leaves their reservations in the ledger. A restart counts each one as spent at its full limit. An interrupt does the same, because the process does not wait.
+- At the first pilot's mean prompt of 341 tokens (68,218 prefill tokens over 200 calls) a call reserves 341 prefill and 97 sample tokens, about 0.0001 dollars. A window of 8 holds about 0.0008 dollars in open reservations (arithmetic).
+
+### What the new pilot must show
+
+The same five gates as before, read with the new time measurement. In addition the windowed replies must equal the sequential ones.
+
+- The new pilot samples the untrained model on the 100 pilot puzzles twice, once with the window and once one call at a time, and requires identical replies on all 100, both the text and the cut flag.
+- The time gate reads the windowed evaluations only. The one-at-a-time evaluation is a check and is not part of the projected time.
+- The extra evaluation adds 100 sampling calls. By cost.py it adds 43,809 tokens and 199327/20000000 dollars (arithmetic, tokenizer count). The planned cost of the new pilot is 2048301/20000000 dollars, about 0.1024, against the ceiling of 0.50.
+- A difference in the replies is a no-go. It would not say whether the window matters or the service is not deterministic even one call at a time. A third evaluation of the same model one call at a time would tell, and this proposal does not include it.
+
+### What a new run needs
+
+The plan fingerprint changes for the pilot (the window and the added evaluation) and for the full plan (the window). So the owner approves a new pilot run id with an approval row that names the new fingerprint, and later a full run id the same way. No gate threshold is changed.
+
+### What cannot be known before a real run
+
+- Whether the service accepts 8 requests at once for this account without slowing them. The library sets a request limit from the server, and after a busy reply it throttles to 10 at a time.
+- How much the time per call falls. Calls at once may share the service's capacity.
+- Whether greedy replies stay identical when calls are batched differently. The check exists for this.
+- Whether a request the library retries was already accepted and billed. The meter cannot see library retries.
+- The step time, which rests on 8 steps and is unchanged by the window.
+
+### The other two ways forward
+
+- Keep sampling sequential and change the time gate for a stated reason. The projection is about 16 hours. This needs no new code, a dated change of the gate, and a new pilot.
+- Shrink the held-out sets. This cuts the sampling calls, which are most of the projected time, and loses power. The power table in this file shows what each size can see.
+
+The three can be combined. A smaller set with a window needs its own power reading and its own fingerprint.

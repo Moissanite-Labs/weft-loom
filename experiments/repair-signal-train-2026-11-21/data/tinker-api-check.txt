@@ -1,15 +1,18 @@
 tinker 0.39.0
-OK         tinker_backend.py:340 Datum                          arguments match
-OK         tinker_backend.py:405 forward_backward               arguments match; loss 'cross_entropy' is a defined loss name; returns APIFuture, used through .result()
-OK         tinker_backend.py:406 optim_step                     arguments match; returns APIFuture, used through .result()
-OK         tinker_backend.py:340 from_ints                      arguments match
-OK         tinker_backend.py:406 AdamParams                     arguments match
-OK         tinker_backend.py:395 create_lora_training_client    arguments match; returns BackcompatTrainingClientFuture, used through .result()
-OK         tinker_backend.py:416 save_weights_and_get_sampling_client arguments match; returns BackcompatSamplingClientFuture, used through .result()
-OK         tinker_backend.py:424 create_sampling_client         arguments match; returns BackcompatSamplingClientFuture, used through .result()
-OK         tinker_backend.py:493 sample                         arguments match; returns APIFuture, used through .result()
-OK         tinker_backend.py:494 from_ints                      arguments match
-OK         tinker_backend.py:495 SamplingParams                 arguments match
+OK         tinker_backend.py:349 Datum                          arguments match
+OK         tinker_backend.py:414 forward_backward               arguments match; loss 'cross_entropy' is a defined loss name; returns APIFuture, used through .result()
+OK         tinker_backend.py:415 optim_step                     arguments match; returns APIFuture, used through .result()
+OK         tinker_backend.py:349 from_ints                      arguments match
+OK         tinker_backend.py:415 AdamParams                     arguments match
+OK         tinker_backend.py:597 sample                         arguments match; returns APIFuture, kept pending in a window and read through .future.result()
+OK         tinker_backend.py:404 create_lora_training_client    arguments match; returns BackcompatTrainingClientFuture, used through .result()
+OK         tinker_backend.py:425 save_weights_and_get_sampling_client arguments match; returns BackcompatSamplingClientFuture, used through .result()
+OK         tinker_backend.py:433 create_sampling_client         arguments match; returns BackcompatSamplingClientFuture, used through .result()
+OK         tinker_backend.py:502 sample                         arguments match; returns APIFuture, used through .result()
+OK         tinker_backend.py:598 from_ints                      arguments match
+OK         tinker_backend.py:599 SamplingParams                 arguments match
+OK         tinker_backend.py:503 from_ints                      arguments match
+OK         tinker_backend.py:504 SamplingParams                 arguments match
 OK         SampleResponse.sequences                             a field of the response (a sequence of SampledSequence)
 OK         SampledSequence.tokens                               a property returning typing.List[int]
 OK         ModelInput.length                                    present (the backend bills sum(length + 1))
@@ -20,6 +23,11 @@ OK         Datum.loss_fn_inputs                                 weights float32 
 OK         Datum.model_input                                    length 4 for 5 ids (the last token is dropped)
 OK         AdamParams, SamplingParams, ModelInput               build with the backend's arguments (temperature 0.0, integer stop ids)
 OK         fake client                                          creation and saving return futures, as the library does
+OK         SamplingClient.sample dispatch                       a plain method that submits the request to the library's background loop with run_coroutine_threadsafe and returns the pending future without waiting
+OK         sample future .result (PendingFuture)                takes no required argument and no name the library's lacks
+OK         sample future .result (FakeFuture)                   takes no required argument and no name the library's lacks
+UNSETTLED  sample concurrency limit                             the request limit is server-controlled (sample_max_concurrent_requests, default 2000 in the library's own client config) and the service's real limit for this account is not observable here
+UNSETTLED  sample retries                                       the library retries a failed or backpressured request itself with no count limit (RetryHandler, exponential backoff 0.5 s to 10 s, stuck after 120 minutes without progress), and whether a retried request that the service had already accepted is billed twice is not observable here
 OK         SamplingClient.get_sampler_handle                    takes no arguments and returns a str (a credential-free handle)
 OK         fake get_sampler_handle                              matches the library's
 UNSETTLED  saved checkpoint identifier                          the library returns BackcompatSamplingClientFuture with no public checkpoint id; the backend binds by the object the run holds and by the SHA-256 of the handle
@@ -42,4 +50,4 @@ OK         earlier scripts: Datum                               tk_smoke.py call
 OK         earlier scripts: AdamParams                          tk_smoke.py calls it with 0 positional and keywords ['learning_rate']
 UNSETTLED  earlier scripts: SamplingParams                      neither earlier script calls it, so it has no run against the real service behind it
 OK         earlier scripts: from_ints                           tk_smoke.py calls it with 0 positional and keywords ['tokens']
-35 OK, 0 MISMATCH, 7 UNSETTLED, 1 NOTE
+41 OK, 0 MISMATCH, 9 UNSETTLED, 1 NOTE

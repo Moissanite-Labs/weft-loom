@@ -8,7 +8,19 @@ eval sample adapter C, text C (cap 96, upper bound)  sample           9700    0.
 TOTAL                                                               172549                  0.0864
 exact total: 1727507/20000000 dollars
 
-Plan full (token source: rule)
+Plan pilot (window 8, token source: rule)
+item                                                 kind           tokens      $/M        dollars
+train C: 256 examples x 1 epoch x 1 seed             train           89505    0.750         0.0671
+eval prefill base model, text C on e1 x1             prefill         31822    0.150         0.0048
+eval sample base model, text C (cap 96, upper bound) sample           9700    0.500         0.0049
+eval prefill adapter C, text C on e1 x1              prefill         31822    0.150         0.0048
+eval sample adapter C, text C (cap 96, upper bound)  sample           9700    0.500         0.0049
+eval prefill base model, text C (window check) on e1 x1 prefill         31822    0.150         0.0048
+eval sample base model, text C (window check) (cap 96, upper bound) sample           9700    0.500         0.0049
+TOTAL                                                               214071                  0.0960
+exact total: 1919973/20000000 dollars
+
+Plan full (window 8, token source: rule)
 item                                                 kind           tokens      $/M        dollars
 train A: 2048 examples x 1 epoch x 2 seed            train         1260168    0.750         0.9451
 train B: 2048 examples x 1 epoch x 2 seed            train         1380098    0.750         1.0351

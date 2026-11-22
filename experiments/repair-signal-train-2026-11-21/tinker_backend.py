@@ -59,6 +59,12 @@ Each approvals row names the plan it approves, by name and by fingerprint, and
 a run for any other plan is refused: an id approved for the pilot cannot run
 the full plan, and the reverse.
 
+Windowed sampling (a proposal, see WindowedResponder): up to `window` calls are in
+flight at once. Every call is still reserved before it is sent, so the ledger holds
+one open reservation per call in flight, the ceiling check counts them, a failure
+settles the calls already sent before it is raised, and a killed process leaves their
+reservations for a restart to count as spent.
+
 Known gap: an overrun (the service returns more tokens than the limit asked
 for) is written to the ledger after the call. A crash between the call and that
 write loses the extra tokens from the ledger. A service that ignores max_tokens
@@ -82,7 +88,7 @@ import json
 import os
 import re
 import sys
-from collections import namedtuple
+from collections import deque, namedtuple
 from fractions import Fraction
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -509,6 +515,158 @@ class TinkerResponder:
         self.stats["new_block"] += 1 if self.codec.opens_new_block(out) else 0
         self.stats["cut"] += 1 if was_cut else 0
         return text, count, was_cut                    # a cut reply is a format break (evaluate.py)
+
+
+MAX_WINDOW = 64        # choice: the largest window a plan may name
+
+
+def check_window(window):
+    """The window of a plan: how many sampling calls may be in flight at once."""
+    if not isinstance(window, int) or isinstance(window, bool) or not 1 <= window <= MAX_WINDOW:
+        raise BackendError("the window must be an integer from 1 to %d" % MAX_WINDOW)
+    return window
+
+
+class _Flight:
+    """One sampling call that was sent: its position among the planned views,
+    the sample limit it reserved, and the pending future the library returned."""
+
+    def __init__(self, index, limit, future):
+        self.index, self.limit, self.future = index, limit, future
+
+
+class WindowedResponder(TinkerResponder):
+    """Evaluation responder that keeps up to `window` sampling calls in flight.
+
+    It is made for one evaluation: `views` are the views of its episodes, in
+    the order the evaluation will ask for them (the locked evaluation asks for
+    one reply at a time, in order, and cannot be changed). When the evaluation
+    asks for reply i, the responder first sends calls until `window` are in
+    flight or every view is sent, then waits for call i only, settles it and
+    hands it back. Replies leave in episode order whatever order the service
+    answers in, and each is read from its own future, so the replies do not
+    depend on the window or on the service's timing (sampling is greedy and
+    every prompt is independent).
+
+    The library starts a request when sample() is called and returns a pending
+    future (see README, "Parallel sampling"), so a window of pending futures is
+    enough and no thread is used.
+
+    Spend safety, in this order:
+      - a call is reserved (prefill, then the sample limit) in the ledger,
+        fsynced, before it is sent. The meter counts every reservation until it
+        is settled, so the ceiling check before a send already counts every call
+        in flight.
+      - on any error (a send that fails, a service failure, a reply over its
+        limit, the budget stop) the calls already sent are awaited and settled
+        before the error is raised, so the ledger holds what they used. Calls
+        that are not delivered to the evaluation are listed in `orphans`.
+      - a reply with more tokens than reserved is counted in full by the meter,
+        the calls in flight are settled, and then the run stops.
+      - a process killed with calls in flight leaves their reservations in the
+        ledger, and a restart counts them as spent (the full limit each).
+      - KeyboardInterrupt is not caught: it leaves the calls in flight
+        unsettled, which keeps their reservations (an upper bound).
+    `finish()` settles whatever is still in flight and is called by the driver
+    when an evaluation ends for any reason.
+
+    A window of 1 sends, waits and settles one call at a time, so its ledger
+    rows, replies and stats are those of TinkerResponder (a test compares them).
+    max_in_flight is the largest number of calls sent and not yet handed back.
+    """
+
+    def __init__(self, run, sampler, codec, cap, views, window):
+        super().__init__(run, sampler, codec, cap)
+        self.window = check_window(window)
+        self.views = list(views)
+        self.sent = self.delivered = 0
+        self.pending = deque()
+        self.attempted = set()
+        self.returned_ids = {}
+        self.orphans = []
+        self.max_in_flight = 0
+        self.stopped = False
+
+    def _send(self, index):
+        ids = self.codec.prompt_ids(self.views[index].messages)
+        limit = codec_mod.REPLY_OVERHEAD + self.cap    # the reply and the end marker
+        self.run.meter.reserve("prefill", len(ids))    # both reservations are on disk before the call is made
+        self.run.meter.reserve("sample", limit)        # upper bound, settled when the reply is read
+        types = self.run.types
+        self.attempted.add(index)
+        future = _guard(lambda: self.sampler.sample(
+            prompt=types.ModelInput.from_ints(tokens=ids), num_samples=1,
+            sampling_params=types.SamplingParams(max_tokens=limit, temperature=0.0,
+                                                 stop=self.codec.stop_ids())))
+        self.pending.append(_Flight(index, limit, future))
+        self.sent += 1
+        self.max_in_flight = max(self.max_in_flight, len(self.pending))
+
+    def _top_up(self):
+        while self.sent < len(self.views) and len(self.pending) < self.window:
+            self._send(self.sent)
+
+    def _collect(self, flight):
+        """Waits for one call and settles it. Returns the ids of its one sequence."""
+        resp = _guard(flight.future.result)
+        self.returned_ids[flight.index] = [list(sq.tokens) for sq in resp.sequences]
+        if len(self.returned_ids[flight.index]) != 1:
+            raise BackendError("the service returned %d sequences for one sample" % len(resp.sequences))
+        out = self.returned_ids[flight.index][0]
+        self.run.meter.settle("sample", flight.limit, len(out))   # counted as returned, even over the limit
+        return out
+
+    def _settle_all(self, first=None):
+        """Waits for and settles every call in flight. Returns the first error,
+        the one given or the first found here. Calls that cannot be delivered are listed as orphans."""
+        while self.pending:
+            flight = self.pending.popleft()
+            try:
+                self._collect(flight)
+            except Exception as exc:
+                first = first or exc
+            self.orphans.append({"index": flight.index, "returned": self.returned_ids.get(flight.index)})
+        return first
+
+    def _fail(self, exc, index):
+        self.stopped = True
+        err = self._settle_all(exc)
+        self.last_returned = self.returned_ids.get(index)
+        self.reached = index in self.attempted
+        self.orphans = [o for o in self.orphans if o["index"] != index]
+        raise err
+
+    def finish(self):
+        """Settles every call still in flight. Raises the first error found, so
+        an oversize reply is not lost. Does nothing when no call is in flight."""
+        self.stopped = True
+        err = self._settle_all()
+        if err is not None:
+            raise err
+
+    def __call__(self, view):
+        self.last_returned, self.reached, self.orphans = None, False, []
+        if self.stopped:
+            raise BackendError("this responder stopped after an error or at the end of its evaluation")
+        i = self.delivered
+        try:
+            if i >= len(self.views):
+                raise BackendError("more replies were asked for than the evaluation has episodes")
+            want = self.views[i]
+            if view.arm != want.arm or view.messages != want.messages:
+                raise BackendError("the reply asked for is not the next planned episode")
+            self._top_up()
+            flight = self.pending.popleft()                # the call of episode i: calls are sent in episode order
+            out = self._collect(flight)
+            self.last_returned, self.reached = self.returned_ids[i], True
+            reply = self.codec.reply(out, self.cap)
+        except Exception as exc:
+            self._fail(exc, i)
+        self.delivered += 1
+        for key, add in (("calls", 1), ("accepted", 1), ("new_block", int(self.codec.opens_new_block(out))),
+                         ("cut", int(reply[2]))):
+            self.stats[key] += add
+        return reply                                   # (text, count, cut): a cut reply is a format break
 
 
 def _real_service():

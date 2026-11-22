@@ -241,6 +241,64 @@ class RegisteredRunTests(Fixture):
         self.assertLess(run.meter.spent, run.meter.ceiling)
         receipts.verify(rt.receipts_path)
 
+    def test_a_windowed_registered_run_records_what_the_sequential_one_records(self):
+        base_plan = self.plan
+        got = {}
+        for window in (1, 4):
+            self.plan = cost.full_plan(64, 2, CAP, heldout_per_tier=10, window=window)
+            svc, samplers = self.service(self.c_good())
+            summary, run, rt = self.run_registered(svc, run_id="run-w%d" % window, ratchet=self.ratchet("w%d" % window))
+            keys = ("arm", "descriptor", "n", "passed", "failed", "format_broken", "outcomes", "replies_sha256", "set_sha256")
+            raw = [{k: body[k] for k in keys} for body in receipts.bodies(rt.receipts_path) if body.get("kind") == "eval"]
+            got[window] = (summary, raw, [s_.prompts for s_ in samplers], run.meter.tokens)
+        self.plan = base_plan
+        (s1, raw1, prompts1, tokens1), (s4, raw4, prompts4, tokens4) = got[1], got[4]
+        self.assertGreater(len(raw1), 10)
+        self.assertEqual(raw4, raw1)                                         # every evaluation receipt: replies, outcomes and counts
+        self.assertEqual(prompts4, prompts1)                                 # the same prompts, in the same order, per sampler
+        self.assertEqual(tokens4, tokens1)
+        self.assertEqual((s4["verdict"], s4["support"], s4["steps"]), (s1["verdict"], s1["support"], s1["steps"]))
+        for key in s1["own"]:
+            self.assertEqual(s4["own"][key].replies_sha256, s1["own"][key].replies_sha256)
+        self.assertTrue(s4["support"])
+
+    def test_every_evaluation_of_a_registered_run_is_made_at_the_plans_window(self):
+        windows = []
+        real = D.responder
+
+        def spy(run, sampler, codec, cap, views=None, window=1):
+            windows.append((len(views) if views is not None else None, window))
+            return real(run, sampler, codec, cap, views, window)
+        self.plan = cost.full_plan(64, 2, CAP, heldout_per_tier=10, window=3)
+        svc, _ = self.service(self.c_good())
+        with mock.patch.object(D, "responder", spy):
+            summary, run, rt = self.run_registered(svc)
+        # 3 base texts of 5 (A, B, C, E, N): 5 + 2 seeds x (3 own + 3 controls) at 20 episodes, then 4 on set 2
+        self.assertEqual(len(windows), 5 + 2 * 6 + 4)
+        self.assertEqual({w for _n, w in windows}, {3})
+        self.assertTrue(all(n == 20 for n, _w in windows))
+
+    def test_the_second_set_responders_are_settled_when_the_touch_stops_early(self):
+        made = []
+        real = D.responder
+
+        def spy(run, sampler, codec, cap, views=None, window=1):
+            made.append(real(run, sampler, codec, cap, views, window))
+            return made[-1]
+
+        def stop_midway(self_, decision_id, epset2, entries, config, models=None):
+            entries[0][1](D.epset_views(epset2, "C")[0])           # one reply asked for, with the window open
+            self.assertGreater(len(entries[0][1].pending), 0)
+            raise RuntimeError("the touch stops here")
+        self.plan = cost.full_plan(64, 2, CAP, heldout_per_tier=10, window=4)
+        svc, _ = self.service(self.c_good())
+        with mock.patch.object(D, "responder", spy), mock.patch.object(RT.Ratchet, "second_set_results", stop_midway):
+            with self.assertRaises(RuntimeError):
+                self.run_registered(svc)
+        last_four = made[-4:]
+        self.assertEqual([len(r.pending) for r in last_four], [0, 0, 0, 0])
+        self.assertTrue(all(r.stopped for r in last_four))
+
     def test_every_sampled_prompt_uses_special_ids_and_stops_on_the_end_marker(self):
         svc, samplers = self.service(self.c_good())
         self.run_registered(svc)
@@ -538,10 +596,10 @@ class PlanTests(Fixture):
         seen = {D.plan_fingerprint(base)}
         for other in (cost.full_plan(64, 1, CAP, heldout_per_tier=10), cost.full_plan(64, 2, CAP - 1, heldout_per_tier=10),
                       cost.full_plan(128, 2, CAP, heldout_per_tier=10), cost.full_plan(64, 2, CAP, heldout_per_tier=11),
-                      cost.pilot_plan(CAP)):
+                      cost.pilot_plan(CAP), cost.full_plan(64, 2, CAP, heldout_per_tier=10, window=2)):
             seen.add(D.plan_fingerprint(other))
-        self.assertEqual(len(seen), 6)
-        for field, value in (("name", "x"), ("arms", ("A",)), ("train_counts", {"S": 1}), ("epochs", 2),
+        self.assertEqual(len(seen), 7)
+        for field, value in (("window", 3), ("name", "x"), ("arms", ("A",)), ("train_counts", {"S": 1}), ("epochs", 2),
                              ("eval2_counts", {"S": 1}), ("train_offset", 1), ("eval1_offset", 1),
                              ("evals", base.evals[:1]), ("eval1_counts", {"S": 3})):
             p = cost.full_plan(64, 2, CAP, heldout_per_tier=10)
@@ -793,7 +851,11 @@ class PilotTests(Fixture):
         self.assertEqual((m["adapter_n"], m["adapter_passed"], m["adapter_format_broken"]), (100, 60, 0))
         self.assertEqual((m["base_passed"], m["base_format_broken"]), (0, 0))
         self.assertEqual((m["calls"], m["accepted"], m["new_block"], m["steps"]), (200, 200, 0, 8))
-        self.assertEqual((m["sample_ns"], m["train_ns"]), (200 * 1000, 8 * 1000))
+        # the clock ticks 1000 on every reading: an evaluation reads it twice for itself and twice for each of its
+        # 100 calls, so its wall-clock time is 201 ticks and the waits of its calls are 100 ticks
+        self.assertEqual((m["sample_ns"], m["call_wait_ns"], m["train_ns"]), (2 * 201 * 1000, 200 * 1000, 8 * 1000))
+        self.assertEqual(m["window"], 1)
+        self.assertNotIn("window_check_calls", m)
         self.assertTrue(out["gates"]["go"])
         body = receipts.bodies(rt.receipts_path)[-1]
         self.assertEqual(body, dict({"kind": "pilot", "run_id": "pilot-1", "go": 1}, **m))
@@ -873,6 +935,161 @@ class PilotTests(Fixture):
         edge = dict(self.good_m(), sample_ns=12 * 3600 * 10**9 * 200 // 20000, train_ns=0)     # exactly 12 hours
         self.assertTrue(D.pilot_verdict(edge, 20000, 384)["projected_time_ok"])
         self.assertFalse(D.pilot_verdict(dict(edge, sample_ns=edge["sample_ns"] + 1), 20000, 384)["projected_time_ok"])
+
+
+class WindowedPilotTests(Fixture):
+    """The pilot of the proposal: a window above 1, timed as whole evaluations, with the window check."""
+
+    def setUp(self):
+        super().setUp()
+        self.pilot = cost.pilot_plan(CAP, 8)
+        self.eval = E.build_set("train", self.pilot.eval1_counts, self.pilot.eval1_offset)
+        self.fails, self.win = texts(self.eval, "attempt"), texts(self.eval, "target")
+
+    def clock(self):
+        t = iter(range(0, 10**9, 1000))
+        return lambda: next(t)
+
+    def run_it(self, base_texts, adapter_texts=None, plan=None):
+        plan = plan or self.pilot
+        enc = self.codec.target_ids
+        adapter = fakes.ScriptedSampler(adapter_texts or (self.win[:60] + self.fails[60:]), enc)
+        svc = fakes.FakeService(checkpoint_samplers=[adapter], base=fakes.ScriptedSampler(base_texts, enc))
+        run = self.start_run("pilot-w", self.approvals("pilot-w", plan=plan), plan, cost.Counter(rule_only=True), svc,
+                             fakes.FakeTypes)
+        rt = self.ratchet("pilot")
+        out = D.run_pilot(run, rt, self.codec, "pilot-w", plan, {"cap": CAP}, cost.full_plan(2048, 2, CAP, window=8),
+                          clock=self.clock())
+        return out, run, rt, svc
+
+    def test_the_window_check_samples_the_base_model_again_one_call_at_a_time_and_the_replies_agree(self):
+        out, run, rt, svc = self.run_it(self.fails)
+        m = out["measurements"]
+        self.assertEqual((m["window"], m["window_check_calls"], m["window_check_differing"]), (8, 100, 0))
+        self.assertTrue(out["gates"]["windowed_replies_equal"])
+        self.assertTrue(out["gates"]["go"])
+        self.assertEqual(set(out["results"]), {"base", "base-sequential", "adapter"})
+        a, b = out["results"]["base"], out["results"]["base-sequential"]
+        self.assertEqual((a.texts, a.cuts, a.outcomes), (b.texts, b.cuts, b.outcomes))
+        self.assertEqual((a.descriptor, b.descriptor), ("pilot:base-model", "pilot:base-model-sequential"))
+        self.assertEqual(m["calls"], 200)                  # the two measured evaluations only, not the check
+        bodies = receipts.bodies(rt.receipts_path)
+        self.assertEqual([x.get("descriptor") for x in bodies if x["kind"] == "eval"],
+                         ["pilot:base-model", "pilot:base-model-sequential", "pilot:adapter:C"])
+        self.assertEqual(bodies[-1], dict({"kind": "pilot", "run_id": "pilot-w", "go": 1}, **m))
+
+    def test_replies_that_differ_between_the_two_ways_are_counted_and_are_not_a_go(self):
+        # the second evaluation of the base model sees other replies than the first on every puzzle
+        out, *_ = self.run_it(self.fails + self.win)
+        m = out["measurements"]
+        self.assertEqual((m["window_check_calls"], m["window_check_differing"]), (100, 100))
+        self.assertFalse(out["gates"]["windowed_replies_equal"])
+        self.assertFalse(out["gates"]["go"])
+        self.assertTrue(out["gates"]["forced_opening_accepted"])
+
+    def test_one_differing_reply_is_enough_to_fail_the_check(self):
+        other = list(self.fails)
+        other[41] = self.win[41]
+        out, *_ = self.run_it(self.fails + other)
+        self.assertEqual(out["measurements"]["window_check_differing"], 1)
+        self.assertFalse(out["gates"]["windowed_replies_equal"])
+
+    def test_a_difference_in_the_cut_flag_alone_fails_the_check(self):
+        # the same text after the cut, but one reply was cut at the cap and the other was not
+        exact = ("x0 = 1\n" * 20)[:CAP]             # exactly the cap in pieces (one per character with the fake tokenizer)
+        first = list(self.fails)
+        first[7] = exact
+        second = list(first)
+        second[7] = exact + "x"                      # one piece over the cap: cut back to the same text
+        out, *_ = self.run_it(first + second)
+        a, b = out["results"]["base"], out["results"]["base-sequential"]
+        self.assertEqual(a.texts, b.texts)
+        self.assertNotEqual(a.cuts, b.cuts)
+        self.assertEqual(out["measurements"]["window_check_differing"], 1)
+        self.assertFalse(out["gates"]["windowed_replies_equal"])
+
+    def test_the_measured_evaluations_use_the_window_and_the_check_sends_one_call_at_a_time(self):
+        seen = []
+        enc = self.codec.target_ids
+
+        class Spy(fakes.WindowSampler):
+            def sample(spy, *a, **kw):
+                seen.append(spy.outstanding)
+                return super().sample(*a, **kw)
+        mapping = {}
+        for v, text in zip(D.epset_views(self.eval, "C"), self.fails):
+            mapping[tuple(self.codec.prompt_ids(v.messages))] = enc(text)
+        base = Spy(reply_for=lambda toks: mapping[tuple(toks)])
+        mixed = self.win[:60] + self.fails[60:]
+        amap = {}
+        for v, text in zip(D.epset_views(self.eval, "C"), mixed):
+            amap[tuple(self.codec.prompt_ids(v.messages))] = enc(text)
+        adapter = fakes.WindowSampler(reply_for=lambda toks: amap[tuple(toks)])
+        svc = fakes.FakeService(checkpoint_samplers=[adapter], base=base)
+        run = self.start_run("pilot-w", self.approvals("pilot-w", plan=self.pilot), self.pilot,
+                             cost.Counter(rule_only=True), svc, fakes.FakeTypes)
+        D.run_pilot(run, self.ratchet("pilot"), self.codec, "pilot-w", self.pilot, {"cap": CAP},
+                    cost.full_plan(2048, 2, CAP, window=8), clock=self.clock())
+        self.assertEqual(len(seen), 200)
+        self.assertEqual(max(seen[:100]), 7)                  # the windowed evaluation: 8 in flight at the eighth send
+        self.assertEqual(max(seen[100:]), 0)                  # the check: each call is sent after the one before is back
+        self.assertEqual(base.max_in_flight, 8)
+        self.assertEqual((len(adapter.calls), adapter.max_in_flight), (100, 8))       # the adapter too is sampled at the window
+
+    def test_replies_of_other_puzzles_or_another_length_are_all_different(self):
+        class R:
+            def __init__(self, ids, texts, cuts):
+                self.episode_ids, self.texts, self.cuts = ids, texts, cuts
+        a = R(["e1", "e2", "e3"], ["a", "b", "c"], "000")
+        self.assertEqual(D.differing_replies(a, R(["e1", "e2", "e3"], ["a", "b", "c"], "000")), 0)
+        self.assertEqual(D.differing_replies(a, R(["e1", "e2", "e3"], ["a", "x", "c"], "000")), 1)
+        self.assertEqual(D.differing_replies(a, R(["e1", "e2", "e3"], ["a", "b", "c"], "010")), 1)
+        self.assertEqual(D.differing_replies(a, R(["e1", "e2", "e9"], ["a", "b", "c"], "000")), 3)      # another puzzle
+        self.assertEqual(D.differing_replies(a, R(["e1", "e2"], ["a", "b"], "00")), 3)
+
+    def test_the_time_is_the_wall_clock_of_each_evaluation_as_a_whole(self):
+        out, *_ = self.run_it(self.fails)
+        m = out["measurements"]
+        # every clock reading is 1000 ns on: an evaluation reads the clock twice for itself and twice for each of its
+        # 100 calls. Its wall-clock time is 201 readings' worth, and the check is not part of the sampling time.
+        self.assertEqual(m["sample_ns"], 2 * 201 * 1000)
+        self.assertEqual(m["window_check_ns"], 201 * 1000)
+        self.assertEqual(m["call_wait_ns"], 200 * 1000)
+        self.assertNotEqual(m["sample_ns"], m["call_wait_ns"])
+        self.assertEqual(m["train_ns"], 8 * 1000)
+        edge = D.pilot_verdict(dict(m, sample_ns=12 * 3600 * 10**9 * 200 // 21000, train_ns=0), 21000, 384)
+        self.assertTrue(edge["projected_time_ok"])
+
+    def test_the_projection_divides_the_whole_evaluation_time_by_its_calls(self):
+        m = {"adapter_n": 100, "adapter_passed": 60, "adapter_format_broken": 0, "accepted": 200, "new_block": 0,
+             "calls": 200, "sample_ns": 200 * 10**9, "train_ns": 8 * 10**9, "steps": 8,
+             "window_check_calls": 100, "window_check_differing": 0}
+        got = D.pilot_verdict(m, 21000, 384)
+        self.assertTrue(got["windowed_replies_equal"])
+        self.assertEqual(set(got), {"forced_opening_accepted", "no_new_block_in_replies", "format_breaks_low",
+                                    "adapter_pass_rate_testable", "projected_time_ok", "windowed_replies_equal", "go"})
+        self.assertTrue(got["projected_time_ok"])                                  # 1 s a call: 21000 s plus 384 s
+        slower = D.pilot_verdict(dict(m, sample_ns=200 * 2 * 10**9), 21000, 384)
+        self.assertTrue(slower["projected_time_ok"])                               # 2 s a call: 11.77 hours
+        self.assertFalse(D.pilot_verdict(dict(m, sample_ns=200 * 3 * 10**9), 21000, 384)["projected_time_ok"])
+        for field, value in (("window_check_calls", 99), ("window_check_differing", 1)):
+            bad = D.pilot_verdict(dict(m, **{field: value}), 21000, 384)
+            self.assertFalse(bad["windowed_replies_equal"], field)
+            self.assertFalse(bad["go"], field)
+
+    def test_a_window_of_one_has_no_window_check_and_no_such_gate(self):
+        plan = cost.pilot_plan(CAP, 1)
+        out, run, rt, svc = self.run_it(self.fails, plan=plan)
+        self.assertNotIn("windowed_replies_equal", out["gates"])
+        self.assertEqual(set(out["results"]), {"base", "adapter"})
+        self.assertEqual(out["measurements"]["window"], 1)
+
+    def test_the_pilot_plan_refuses_to_run_under_another_window(self):
+        enc = self.codec.target_ids
+        svc = fakes.FakeService(base=fakes.ScriptedSampler(self.fails, enc))
+        approvals = self.approvals("pilot-w", plan=cost.pilot_plan(CAP, 8))
+        with self.assertRaises(T.ApprovalError):
+            self.start_run("pilot-w", approvals, cost.pilot_plan(CAP, 4), cost.Counter(rule_only=True), svc, fakes.FakeTypes)
 
 
 class TimingTests(Fixture):

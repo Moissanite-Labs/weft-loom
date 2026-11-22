@@ -36,7 +36,7 @@ class Base(unittest.TestCase):
         os.makedirs(os.path.dirname(self.approvals))
         self.out = os.path.join(self.dir, "out")
         self.services = []                                  # every service object the backend asked for
-        self.plan = cost.pilot_plan(CAP)
+        self.plan = cost.pilot_plan(CAP, P.PILOT_WINDOW)
 
     def approve(self, run_id="pilot-1", ceiling="0.50", plan=None, plan_id=None):
         plan = plan or self.plan
@@ -107,14 +107,17 @@ class FakeRunTests(Base):
         with open(os.path.join(self.out, "pilot-summary.md"), encoding="utf-8") as fh:
             summary = fh.read()
         self.assertIn("| base | 0 | 100 | 0 |", summary)
+        self.assertIn("| base-sequential | 0 | 100 | 0 |", summary)
         self.assertIn("| adapter | 60 | 40 | 0 |", summary)
+        self.assertIn("window 8", summary)
+        self.assertIn("Window check: 100 replies of the untrained model sampled one call at a time, 0 differ", summary)
 
     def test_replies_are_logged_one_line_per_reply(self):
         self.run_fake()
         with open(os.path.join(self.out, "replies.jsonl"), encoding="utf-8") as fh:
             rows = [json.loads(line, parse_float=no_float) for line in fh]
-        self.assertEqual(len(rows), 200)
-        self.assertEqual([r["model"] for r in rows], ["base"] * 100 + ["adapter"] * 100)
+        self.assertEqual(len(rows), 300)
+        self.assertEqual([r["model"] for r in rows], ["base"] * 100 + ["base-sequential"] * 100 + ["adapter"] * 100)
         self.assertEqual(sorted(rows[0]), sorted(["arm", "cut", "episode_id", "reply", "seed", "tier", "tokens",
                                                   "outcome", "model", "status", "returned", "returned_tokens"]))
         for r in rows:
@@ -124,7 +127,7 @@ class FakeRunTests(Base):
         self.assertEqual([r["episode_id"] for r in rows[:100]], [ep.id for ep in ev.episodes])
         self.assertTrue(all(r["episode_id"].startswith("train-") for r in rows))
         res = self.result()
-        for name in P.MODEL_ORDER:
+        for name in P.WINDOWED_ORDER:
             mine = "".join(r["outcome"] for r in rows if r["model"] == name)
             self.assertEqual(P.counts_by_outcome(mine), res["outcomes"][name])
 
@@ -218,12 +221,14 @@ class FakeRunTests(Base):
 
     @unittest.skipUnless(__import__("importlib").util.find_spec("tml_renderers"), "needs tml_renderers")
     def test_the_planned_cost_with_the_real_tokenizer_is_the_documented_one(self):
-        self.approve()
-        opts = {"approvals": self.approvals, "run_id": "pilot-1", "out": self.out, "fake": False, "print_row": False}
-        lines = []
-        _plan, _codec, _counter, _appr, planned = P.prepare(opts, {P.KEY_VAR: SHORT_KEY}, CAP, lines.append)
-        self.assertEqual(cost.usd_text(planned), "0.0924")
-        self.assertEqual(len(lines), 1)
+        for window, want in ((P.PILOT_WINDOW, "0.1024"), (1, "0.0924")):     # the proposed pilot, and the first pilot
+            self.approve(plan=cost.pilot_plan(CAP, window))
+            opts = {"approvals": self.approvals, "run_id": "pilot-1", "out": self.out, "fake": False, "print_row": False,
+                    "window": window}
+            lines = []
+            _plan, _codec, _counter, _appr, planned = P.prepare(opts, {P.KEY_VAR: SHORT_KEY}, CAP, lines.append)
+            self.assertEqual(cost.usd_text(planned), want)
+            self.assertEqual(len(lines), 1)
 
 
 class RefusalTests(Base):
@@ -370,8 +375,8 @@ class ApprovalRowTests(Base):
             json.dump({"approvals": [row]}, fh)
         got = T.load_approval(self.approvals, "pilot-7")
         self.assertEqual((got.ceiling, got.plan, got.plan_id),
-                         (T.Fraction(1, 2), "pilot", driver.plan_fingerprint(cost.pilot_plan(CAP))))
-        self.assertEqual(row, driver.approval_row("pilot-7", "0.50", cost.pilot_plan(CAP)))
+                         (T.Fraction(1, 2), "pilot", driver.plan_fingerprint(cost.pilot_plan(CAP, P.PILOT_WINDOW))))
+        self.assertEqual(row, driver.approval_row("pilot-7", "0.50", cost.pilot_plan(CAP, P.PILOT_WINDOW)))
 
     def test_the_printed_row_starts_a_run(self):
         _code, out, _err = self.run_cli(["--run-id", "pilot-7", "--print-approval-row"])
@@ -505,6 +510,28 @@ class IncompleteRunTests(Base):
         self.assertIn("more than the", err)
         with open(os.path.join(self.out, "replies.jsonl"), encoding="utf-8") as fh:
             rows = [json.loads(line) for line in fh]
+        # a window of 8: the first reply is the overrun, and the 7 calls in flight with it are settled and logged
+        self.assertEqual(len(rows), 8)
+        self.assertEqual([r["status"] for r in rows], ["raised"] + ["drained"] * 7)
+        self.assertEqual((rows[0]["outcome"], rows[0]["reply"]), ("", ""))
+        for r in rows:
+            self.assertEqual((r["returned"], r["returned_tokens"]), ([[ord("a")] * 500], 500))
+        self.assertEqual([r["episode_id"] for r in rows],
+                         [ep.id for ep in E.build_set("train", self.plan.eval1_counts, self.plan.eval1_offset).episodes[:8]])
+        res = self.result()
+        self.assertEqual((res["replies_logged"], res["spend"]["by_kind"]["sample"]["tokens"]), (8, 8 * 500))
+        self.assertEqual(len(base.calls), 8)
+
+    def test_with_a_window_of_one_a_paid_call_that_raised_is_the_only_one_logged(self):
+        plan = cost.pilot_plan(CAP, 1)
+        self.approve(plan=plan)
+        base = fakes.FakeSampler(reply_tokens=[ord("a")] * 500, overrun=True)
+        svc = fakes.FakeService(checkpoint_samplers=[], base=base)
+        with mock.patch.object(P, "fake_service", lambda *a: svc):
+            code, _out, err = self.run_cli(self.fake_args() + ["--window", "1"])
+        self.assertEqual(code, P.EXIT_ERROR)
+        with open(os.path.join(self.out, "replies.jsonl"), encoding="utf-8") as fh:
+            rows = [json.loads(line) for line in fh]
         self.assertEqual(len(rows), 1)                                   # one paid call, stopped by the first overrun
         self.assertEqual((rows[0]["status"], rows[0]["outcome"], rows[0]["reply"]), ("raised", "", ""))
         self.assertEqual((rows[0]["returned"], rows[0]["returned_tokens"]), ([[ord("a")] * 500], 500))
@@ -525,9 +552,9 @@ class IncompleteRunTests(Base):
         self.assertEqual((res["status"], "measurements" in res, "gates" in res), ("incomplete", False, False))
         self.assertIn("the service went away", res["error"])
         self.assertGreater(res["spend"]["by_kind"]["prefill"]["tokens"], 0)         # the base model was already sampled
-        self.assertEqual(res["replies_logged"], 100)
+        self.assertEqual(res["replies_logged"], 200)                    # the base model, windowed and one at a time
         with open(os.path.join(self.out, "replies.jsonl"), encoding="utf-8") as fh:
-            self.assertEqual(len(fh.readlines()), 100)
+            self.assertEqual(len(fh.readlines()), 200)
         with open(os.path.join(self.out, "pilot-result.json"), encoding="utf-8") as fh:
             receipts.check_plain(json.load(fh, parse_float=no_float))
         self.assertTrue(os.path.exists(os.path.join(self.out, "pilot-summary.md")))
@@ -663,6 +690,28 @@ class RecordingTests(Base):
         rec(E.View(self.ev.episodes[0], "C"))
         self.assertEqual(len(calls), 1)
 
+    def test_finish_settles_the_inner_responder_and_logs_the_calls_that_were_paid_for_and_not_handed_back(self):
+        calls = []
+
+        class Inner:
+            stats = {}
+            orphans = [{"index": 3, "returned": [[5, 6, 7]]}, {"index": 4, "returned": None}]
+
+            def finish(self_):
+                calls.append("finish")
+        log = self.log("orph.jsonl")
+        rec = P.Recording(Inner(), self.ev, "base", log)
+        rec.finish()
+        self.assertEqual(calls, ["finish"])
+        with open(os.path.join(self.dir, "orph.jsonl"), encoding="utf-8") as fh:
+            rows = [json.loads(line) for line in fh]
+        self.assertEqual([r["episode_id"] for r in rows], [self.ev.episodes[3].id, self.ev.episodes[4].id])
+        self.assertEqual([(r["status"], r["returned"], r["returned_tokens"], r["outcome"]) for r in rows],
+                         [("drained", [[5, 6, 7]], 3, ""), ("drained", None, 0, "")])
+        self.assertEqual(Inner.orphans[:0], [])
+        rec.finish()                                                 # the rows are written once
+        self.assertEqual(log.count, 2)
+
     def test_more_requests_than_episodes_are_refused(self):
         inner, calls = self.inner()
         rec = P.Recording(inner, self.ev, "base", self.log())
@@ -672,14 +721,24 @@ class RecordingTests(Base):
             rec(E.View(self.ev.episodes[0], "C"))
         self.assertEqual(len(calls), 100)
 
-    def test_a_third_sampling_model_is_refused(self):
+    def test_a_third_sampling_model_is_refused_with_a_window_of_one(self):
         run = mock.Mock()
         with mock.patch.object(driver, "responder", lambda *a: self.inner()[0]):
-            with P.recording(self.plan, self.log()):
+            with P.recording(cost.pilot_plan(CAP, 1), self.log()):
                 driver.responder(run, None, self.codec, CAP)
                 driver.responder(run, None, self.codec, CAP)
                 with self.assertRaises(P.PilotCliError):
                     driver.responder(run, None, self.codec, CAP)
+
+    def test_a_window_above_one_allows_three_sampling_evaluations_and_refuses_a_fourth(self):
+        run = mock.Mock()
+        with mock.patch.object(driver, "responder", lambda *a: self.inner()[0]):
+            with P.recording(self.plan, self.log()) as made:
+                for _ in range(3):
+                    driver.responder(run, None, self.codec, CAP, [], 8)
+                with self.assertRaises(P.PilotCliError):
+                    driver.responder(run, None, self.codec, CAP, [], 8)
+        self.assertEqual([r.model for r in made], ["base", "base-sequential", "adapter"])
 
     def test_driver_responder_is_put_back(self):
         before = driver.responder
@@ -709,6 +768,90 @@ class RecordingTests(Base):
         self.log("same.jsonl")
         with self.assertRaises(FileExistsError):
             P.ReplyLog(os.path.join(self.dir, "same.jsonl"))
+
+
+class WindowOptionTests(Base):
+    LEGACY = "588a6b6c0082ae7a1b898dade6d4ec713ead807eceeef967a4e927e341c57aa0"
+
+    def row(self, *extra):
+        code, out, err = self.run_cli(["--run-id", "pilot-7", "--print-approval-row", *extra])
+        self.assertEqual((code, err), (0, ""))
+        return json.loads(out)
+
+    def test_the_default_window_is_the_proposed_one(self):
+        self.assertEqual(P.PILOT_WINDOW, 8)
+        self.assertEqual(self.row(), driver.approval_row("pilot-7", "0.50", cost.pilot_plan(CAP, 8)))
+        self.assertEqual(self.row("--window", "8"), self.row())
+
+    def test_a_window_of_one_names_the_plan_of_the_first_pilot(self):
+        self.assertEqual(self.row("--window", "1")["plan_id"], self.LEGACY)
+        self.assertNotEqual(self.row()["plan_id"], self.LEGACY)
+        self.assertNotEqual(self.row("--window", "2")["plan_id"], self.row("--window", "3")["plan_id"])
+
+    def test_a_window_that_is_not_a_whole_number_in_range_is_refused(self):
+        for bad in ("0", "65", "-1", "x", "", "2.5", "\u0668"):
+            code, _out, err = self.run_cli(["--run-id", "pilot-7", "--print-approval-row", "--window", bad])
+            self.assertEqual(code, P.EXIT_REFUSED, bad)
+            self.assertIn("window", err)
+        code, _out, err = self.run_cli(["--run-id", "pilot-7", "--print-approval-row", "--window"])
+        self.assertEqual(code, P.EXIT_REFUSED)
+
+    def test_an_approval_for_one_window_does_not_start_a_run_with_another(self):
+        self.approve()                                                     # window 8
+        code, _out, err = self.run_cli(self.fake_args() + ["--window", "1"])
+        self.assertEqual(code, P.EXIT_REFUSED)
+        self.assertIn("another plan", err)
+        self.assertFalse(os.path.exists(self.out))
+        code, _out, err = self.run_cli(self.fake_args() + ["--window", "4"])
+        self.assertEqual(code, P.EXIT_REFUSED)
+
+    def test_a_fake_run_with_a_window_of_one_is_the_first_pilots_plan_without_the_check(self):
+        plan = cost.pilot_plan(CAP, 1)
+        self.approve(plan=plan)
+        code, out, err = self.run_cli(self.fake_args() + ["--window", "1"])
+        self.assertEqual((code, err), (0, ""))
+        res = self.result()
+        self.assertEqual((res["plan_id"], res["measurements"]["window"]), (self.LEGACY, 1))
+        self.assertNotIn("windowed_replies_equal", res["gates"])
+        self.assertEqual(sorted(res["outcomes"]), ["adapter", "base"])
+        self.assertEqual(res["replies_logged"], 200)
+
+    def test_a_window_run_logs_the_check_and_reports_it(self):
+        self.approve()
+        code, out, err = self.run_cli(self.fake_args())
+        self.assertEqual((code, err), (0, ""))
+        res = self.result()
+        self.assertEqual(res["gates"]["windowed_replies_equal"], "true")
+        m = res["measurements"]
+        self.assertEqual((m["window"], m["window_check_calls"], m["window_check_differing"]), (8, 100, 0))
+        self.assertEqual(sorted(res["outcomes"]), ["adapter", "base", "base-sequential"])
+        self.assertEqual(res["outcomes"]["base"], res["outcomes"]["base-sequential"])
+
+
+    def test_a_failure_in_the_middle_of_a_window_logs_the_raised_call_and_every_call_that_was_in_flight(self):
+        self.approve()
+        codec = driver.check_codec(fakes.FakeTokenizer())
+        ev = E.build_set("train", self.plan.eval1_counts, self.plan.eval1_offset)
+        views = driver.epset_views(ev, "C")
+        mapping = {tuple(codec.prompt_ids(v.messages)): codec.target_ids(E.render(ep, "A").attempt_text)
+                   for v, ep in zip(views, ev.episodes)}
+        base = fakes.WindowSampler(reply_for=lambda toks: mapping[tuple(toks)], fail_result=[5])
+        svc = fakes.FakeService(checkpoint_samplers=[], base=base)
+        with mock.patch.object(P, "fake_service", lambda *a: svc):
+            code, _out, err = self.run_cli(self.fake_args())
+        self.assertEqual(code, P.EXIT_ERROR)
+        self.assertIn("the call failed", err)
+        with open(os.path.join(self.out, "replies.jsonl"), encoding="utf-8") as fh:
+            rows = [json.loads(line) for line in fh]
+        self.assertEqual([r["status"] for r in rows], ["ok"] * 5 + ["raised"] + ["drained"] * 7)
+        self.assertEqual([r["episode_id"] for r in rows], [ep.id for ep in ev.episodes[:5]] + [ev.episodes[5].id]
+                         + [ep.id for ep in ev.episodes[6:13]])
+        self.assertIsNone(rows[5]["returned"])                           # the service failed before any answer
+        self.assertTrue(all(r["returned"] and r["outcome"] == "" for r in rows[6:]))
+        self.assertEqual(self.result()["replies_logged"], 13)
+        self.assertEqual((len(base.calls), base.outstanding), (13, 0))
+        spent, tokens, _starts, _plan = T.Ledger(self.approvals + ".spend.jsonl", "pilot-1").replay()
+        self.assertEqual(tokens["sample"], sum(len(q) for r in rows if r["returned"] for q in r["returned"]) + 97)
 
 
 class CounterTests(unittest.TestCase):

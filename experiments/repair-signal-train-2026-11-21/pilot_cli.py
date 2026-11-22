@@ -1,7 +1,14 @@
 """Command line runner for the pilot (PREREG.md, "After the pilot").
 
-    python3 pilot_cli.py --run-id ID --print-approval-row
-    python3 pilot_cli.py --approvals PATH --run-id ID --out DIR [--fake]
+    python3 pilot_cli.py --run-id ID --print-approval-row [--window N]
+    python3 pilot_cli.py --approvals PATH --run-id ID --out DIR [--fake] [--window N]
+
+--window N is the number of sampling calls in flight at once (default 8, a choice
+of the proposal this branch holds, not approved). The window is part of the plan
+fingerprint, so the approval row names it. A window above 1 adds one evaluation
+to the pilot: the untrained model sampled one call at a time on the same puzzles,
+whose replies must equal the windowed ones. A window of 1 is the plan of the
+first pilot.
 
 --print-approval-row prints the one JSON row the owner puts in the approvals
 file for this run id and the pilot plan, with the pilot ceiling, and stops.
@@ -24,11 +31,15 @@ plan, the ceiling and the lock have all been checked.
   pilot-result.json   integers and strings only: measurements, gates, counts by
                       outcome, tokens and exact dollars spent by kind (from the
                       spend ledger), time totals in nanoseconds with their counts
+                      (the sampling time is the wall-clock time of the evaluations
+                      as wholes, see driver.run_pilot)
   replies.jsonl       one line per call that reached the service, written as each
-                      call ends: the decoded reply, and the ids and their count
-                      exactly as the service returned them. A call that raised
+                      reply is handed back: the decoded reply, and the ids and their
+                      count exactly as the service returned them. A call that raised
                       after the service was reached has a row with status
-                      "raised" and an empty outcome
+                      "raised" and an empty outcome. With a window, a call that was
+                      in flight when another failed has a row with status "drained"
+                      and the ids it returned (or none), and its model
   receipts.jsonl      the chain of receipts (with its stored replies and lock)
   pilot-summary.md    a short table a person can read
 On any error after the run has started the same files are written with what
@@ -65,7 +76,13 @@ import tinker_backend  # noqa: E402
 KEY_VAR = "TINKER_API_KEY"
 PILOT_CEILING = Fraction(1, 2)                  # the pilot's registered ceiling in dollars (PREREG.md, Spend)
 FULL_EXAMPLES, FULL_SEEDS = 2048, 2             # the full plan the time projection is made for
-MODEL_ORDER = ("base", "adapter")               # the order run_pilot samples its two models in
+PILOT_WINDOW = cost.PROPOSED_WINDOW             # the window of the proposed pilot (a choice, not approved)
+MODEL_ORDER = ("base", "adapter")               # the order run_pilot samples its models in with a window of 1
+WINDOWED_ORDER = ("base", "base-sequential", "adapter")     # and with a window above 1
+
+
+def model_order(plan):
+    return WINDOWED_ORDER if plan.window > 1 else MODEL_ORDER
 EXIT_OK, EXIT_ERROR, EXIT_REFUSED = 0, 1, 2
 
 
@@ -127,6 +144,25 @@ class Recording:
     def stats(self):
         return self.inner.stats
 
+    def finish(self):
+        """Settles the calls the inner responder still has in flight, and logs the
+        replies of those that were paid for and not handed back."""
+        try:
+            driver.settled(self.inner)
+        finally:
+            self._write_orphans()
+
+    def _write_orphans(self):
+        for o in getattr(self.inner, "orphans", []):
+            if 0 <= o["index"] < len(self.expected.episodes):
+                ep = self.expected.episodes[o["index"]]
+                self.log.write({"model": self.model, "episode_id": ep.id, "tier": ep.tier, "seed": ep.seed, "arm": "C",
+                                "status": "drained", "reply": "", "tokens": 0, "cut": 0, "outcome": "",
+                                "returned": o["returned"],
+                                "returned_tokens": sum(len(q) for q in o["returned"]) if o["returned"] else 0})
+        if hasattr(self.inner, "orphans"):
+            self.inner.orphans = []
+
     def __call__(self, view):
         if self.i >= len(self.expected.episodes):
             raise PilotCliError("more reply requests than the pilot's evaluation episodes")
@@ -163,10 +199,12 @@ def recording(plan, log):
         raise PilotCliError("the pilot's evaluation set is not a training-range set")
     original, made = driver.responder, []
 
-    def make(run, sampler, codec, cap):
-        if len(made) >= len(MODEL_ORDER):
-            raise PilotCliError("the pilot made more than two sampling models")
-        rec = Recording(original(run, sampler, codec, cap), expected, MODEL_ORDER[len(made)], log)
+    order = model_order(plan)
+
+    def make(run, sampler, codec, cap, views=None, window=1):
+        if len(made) >= len(order):
+            raise PilotCliError("the pilot made more than %d sampling evaluations" % len(order))
+        rec = Recording(original(run, sampler, codec, cap, views, window), expected, order[len(made)], log)
         made.append(rec)
         return rec
     driver.responder = make
@@ -202,7 +240,7 @@ def build_result(run_id, plan_id, ceiling, planned, mode, spend, error, got, row
         res["measurements"] = {k: m[k] for k in sorted(m)}
         res["gates"] = {k: true_false(v) for k, v in sorted(got["gates"].items())}
         res["go"] = true_false(got["gates"]["go"])
-        res["outcomes"] = {name: counts_by_outcome(got["results"][name].outcomes) for name in MODEL_ORDER}
+        res["outcomes"] = {name: counts_by_outcome(got["results"][name].outcomes) for name in WINDOWED_ORDER if name in got["results"]}
         res["timing"] = {"sampling_calls": m["calls"], "sampling_ns_total": m["sample_ns"],
                          "train_steps": m["steps"], "train_ns_total": m["train_ns"]}
     return res
@@ -216,12 +254,19 @@ def summary_text(res):
         lines += ["", "| Gate | Result |", "|---|---|"]
         lines += ["| %s | %s |" % (k, v) for k, v in res["gates"].items()]
         lines += ["", "| Model | Passed | Failed the check | Broke the format |", "|---|---|---|---|"]
-        for name in MODEL_ORDER:
-            o = res["outcomes"][name]
-            lines.append("| %s | %d | %d | %d |" % (name, o["P"], o["F"], o["X"]))
+        for name in WINDOWED_ORDER:
+            if name in res["outcomes"]:
+                o = res["outcomes"][name]
+                lines.append("| %s | %d | %d | %d |" % (name, o["P"], o["F"], o["X"]))
         t = res["timing"]
-        lines += ["", "Sampling: %d calls, %d ns in total. Training: %d steps, %d ns in total."
-                  % (t["sampling_calls"], t["sampling_ns_total"], t["train_steps"], t["train_ns_total"])]
+        lines += ["", "Sampling: %d calls, %d ns of wall-clock time over the evaluations as wholes, window %d. "
+                  "Training: %d steps, %d ns in total."
+                  % (t["sampling_calls"], t["sampling_ns_total"], res["measurements"]["window"], t["train_steps"],
+                     t["train_ns_total"])]
+        m = res["measurements"]
+        if "window_check_calls" in m:
+            lines += ["", "Window check: %d replies of the untrained model sampled one call at a time, %d differ from "
+                      "the windowed replies." % (m["window_check_calls"], m["window_check_differing"])]
     lines += ["", "| Spend | Tokens | Dollars |", "|---|---|---|"]
     for kind, row in res["spend"]["by_kind"].items():
         lines.append("| %s | %d | %s |" % (kind, row["tokens"], row["usd"]))
@@ -264,12 +309,20 @@ def fake_backend(plan, codec):
 
 
 def parse_args(argv):
-    opts = {"approvals": None, "run_id": None, "out": None, "fake": False, "print_row": False}
-    flags = {"--approvals": "approvals", "--run-id": "run_id", "--out": "out"}
+    opts = {"approvals": None, "run_id": None, "out": None, "fake": False, "print_row": False, "window": PILOT_WINDOW}
+    flags = {"--approvals": "approvals", "--run-id": "run_id", "--out": "out", "--window": "window"}
     i = 0
     while i < len(argv):
         a = argv[i]
-        if a in flags and i + 1 < len(argv):
+        if a == "--window" and i + 1 < len(argv):
+            if not argv[i + 1].isascii() or not argv[i + 1].isdigit():
+                raise PilotCliError("--window must be a whole number")
+            try:
+                opts["window"] = tinker_backend.check_window(int(argv[i + 1]))
+            except tinker_backend.BackendError as exc:
+                raise PilotCliError(str(exc))
+            i += 2
+        elif a in flags and i + 1 < len(argv):
             opts[flags[a]] = argv[i + 1]
             i += 2
         elif a == "--fake":
@@ -292,7 +345,7 @@ def prepare(opts, env, cap, out_msg):
         raise PilotCliError("--out must be a new or empty directory")
     if not opts["fake"] and not env.get(KEY_VAR):
         raise PilotCliError("the environment variable %s must be set and non-empty" % KEY_VAR)
-    plan = cost.pilot_plan(cap)
+    plan = cost.pilot_plan(cap, opts["window"])
     approval = tinker_backend.load_approval(opts["approvals"], opts["run_id"])
     if approval.ceiling > PILOT_CEILING:
         raise PilotCliError("the approved ceiling %s is above the pilot's registered ceiling %s" % (
@@ -340,10 +393,10 @@ def _main(argv, env):
         if opts["print_row"]:
             if not opts["run_id"]:
                 raise PilotCliError("--run-id is required")
-            print(json.dumps(driver.approval_row(opts["run_id"], "0.50", cost.pilot_plan(cap)), sort_keys=True))
+            print(json.dumps(driver.approval_row(opts["run_id"], "0.50", cost.pilot_plan(cap, opts["window"])), sort_keys=True))
             return EXIT_OK
         plan, codec, counter, approval, planned = prepare(opts, env, cap, out_msg)
-        big = cost.full_plan(FULL_EXAMPLES, FULL_SEEDS, cap)
+        big = cost.full_plan(FULL_EXAMPLES, FULL_SEEDS, cap, window=opts["window"])
     except (PilotCliError, tinker_backend.ApprovalError, tinker_backend.BudgetError, tinker_backend.BudgetStop,
             driver.DriverError, OSError) as exc:
         print("refused: %s" % scrub(exc, env), file=sys.stderr)
@@ -374,7 +427,7 @@ def _main(argv, env):
             with recording(plan, log) as made:
                 got = driver.run_pilot(run, rt, codec, run_id, plan, {"cap": cap, "plan_id": plan_id, "mode": mode},
                                        big)
-                for rec, name in zip(made, MODEL_ORDER):
+                for rec, name in zip(made, model_order(plan)):
                     if "".join(rec.outcomes) != got["results"][name].outcomes:
                         raise PilotCliError("the logged replies of the %s model do not give its recorded outcomes" % name)
     except (Exception, KeyboardInterrupt) as exc:
