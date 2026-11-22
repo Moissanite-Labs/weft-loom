@@ -42,7 +42,7 @@ CHECK driver: every sampled prompt carries special role ids          PASS
 CHECK driver: no gain means no support and the second set is never touched PASS
 CHECK driver: no gain at all is reported as cannot_test, not as not_supported PASS
 CHECK driver: a run refuses a plan other than the one it was started for PASS
-pilot measurements: {"accepted": 200, "adapter_format_broken": 0, "adapter_n": 100, "adapter_passed": 60, "base_format_broken": 0, "base_passed": 0, "calls": 200, "new_block": 0, "sample_ns": 200000, "steps": 8, "train_ns": 8000}
+pilot measurements: {"accepted": 200, "adapter_format_broken": 0, "adapter_n": 100, "adapter_passed": 60, "base_format_broken": 0, "base_passed": 0, "call_wait_ns": 200000, "calls": 200, "new_block": 0, "sample_ns": 402000, "steps": 8, "train_ns": 8000, "window": 1}
 CHECK pilot: measures calls, steps, accepted forced openings, new blocks and format breaks, and every gate holds PASS
 CHECK pilot: every prompt sampled from, base model and adapter, ends with the forced opening of the model's turn PASS
 CHECK pilot: evaluates on training-range seeds only and never touches a held-out set PASS

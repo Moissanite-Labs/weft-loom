@@ -14,6 +14,10 @@ reply (the training target and what the model writes) adds REPLY_OVERHEAD
 tokens: its end marker. tests/test_layout_real.py checks these counts against
 the tml_renderers renderer, id for id, when that package can be imported.
 
+The window (calls in flight at once) changes no token count. The pilot of the
+proposed plan holds one extra evaluation (the window check), counted here. The
+first pilot's plan (window 1) is printed too, because pilot/summarize.py reads it.
+
 Cost: tokens times the published price per million, as exact fractions.
 Training bills every token of the prompt and the target (forward and backward).
 Evaluation bills prefill for each prompt (with the forced opening) and, as an
@@ -93,9 +97,18 @@ class Eval:
         self.label, self.text_arm, self.set_key, self.runs = label, text_arm, set_key, runs
 
 
+# The window is how many sampling calls are in flight at once. A plan holds it as a
+# field and it is part of the plan fingerprint. The default of a plan is 1, the
+# sequential plan of the first pilot. The value this record proposes is 8, a choice
+# and not a measurement: nothing here is approved (PREREG.md, "Proposed change after
+# the pilot").
+PROPOSED_WINDOW = 8
+
+
 class Plan:
     def __init__(self, name, arms, train_counts, seeds, epochs, eval1_counts, eval2_counts, cap, evals,
-                 train_offset=0, eval1_offset=0):
+                 train_offset=0, eval1_offset=0, window=1):
+        self.window = tinker_backend.check_window(window)
         self.name, self.arms = name, tuple(arms)
         self.train_counts, self.seeds, self.epochs = dict(train_counts), seeds, epochs
         self.eval1_counts, self.eval2_counts, self.cap = dict(eval1_counts), dict(eval2_counts), cap
@@ -111,13 +124,19 @@ PILOT_EVAL_OFFSET = 10000
 HELDOUT_PER_TIER = 500       # a choice: 1000 episodes per held-out set, see PREREG.md
 
 
-def pilot_plan(cap):
+def pilot_plan(cap, window=1):
+    """The pilot. With a window above 1 it holds one more evaluation: the untrained
+    model sampled one call at a time on the same puzzles, whose replies must equal
+    the windowed ones. Its cost is counted with the rest."""
+    tinker_backend.check_window(window)
     evals = [Eval("base model, text C", "C", "e1", 1), Eval("adapter C, text C", "C", "e1", 1)]
+    if window > 1:
+        evals.append(Eval("base model, text C (window check)", "C", "e1", 1))
     return Plan("pilot", ("C",), {"S": 128, "M": 128}, 1, 1, {"S": 50, "M": 50}, {}, cap, evals,
-                PILOT_TRAIN_OFFSET, PILOT_EVAL_OFFSET)
+                PILOT_TRAIN_OFFSET, PILOT_EVAL_OFFSET, window)
 
 
-def full_plan(examples, seeds, cap, heldout_per_tier=HELDOUT_PER_TIER):
+def full_plan(examples, seeds, cap, heldout_per_tier=HELDOUT_PER_TIER, window=1):
     half = examples // 2
     evals = [Eval("base model, text %s" % a, a, "e1", 1) for a in ep_mod.ARMS]
     evals += [Eval("adapter %s, text %s" % (a, a), a, "e1", seeds) for a in ep_mod.TRAIN_ARMS]
@@ -127,7 +146,7 @@ def full_plan(examples, seeds, cap, heldout_per_tier=HELDOUT_PER_TIER):
               Eval("adapter C, text E (control)", "E", "e2", 1), Eval("adapter C, text N (control)", "N", "e2", 1)]
     return Plan("full", ep_mod.TRAIN_ARMS, {"S": half, "M": half}, seeds, 1,
                 {"S": heldout_per_tier, "M": heldout_per_tier}, {"S": heldout_per_tier, "M": heldout_per_tier},
-                cap, evals)
+                cap, evals, window=window)
 
 
 def _strings_for(epset, arm):
@@ -194,7 +213,8 @@ def table(plan, counter):
         price = tinker_backend.PRICES_PER_MILLION[kind]
         rows.append((label, kind, n, price, tinker_backend.cost_usd(kind, n)))
     total = sum((r[4] for r in rows), Fraction(0))
-    lines = ["Plan %s (token source: %s)" % (plan.name, counter.source),
+    shown = "" if plan.window == 1 else " (window %d, token source: %s)" % (plan.window, counter.source)
+    lines = ["Plan %s%s" % (plan.name, shown or " (token source: %s)" % counter.source),
              "%-52s %-8s %12s %8s %14s" % ("item", "kind", "tokens", "$/M", "dollars")]
     for label, kind, n, price, c in rows:
         lines.append("%-52s %-8s %12d %8s %14s" % (label, kind, n, usd_text(price, 3), usd_text(c)))
@@ -209,7 +229,9 @@ def main(argv):
     cap = int(opt("--cap", evaluate.DEFAULT_CAP))
     examples, seeds = int(opt("--examples", 2048)), int(opt("--seeds", 2))
     counter = Counter(opt("--venv-python", None))
-    for plan in (pilot_plan(cap), full_plan(examples, seeds, cap)):
+    # the first pilot's plan (window 1, which pilot/summarize.py reads), the proposed pilot, the full plan
+    for plan in (pilot_plan(cap), pilot_plan(cap, PROPOSED_WINDOW),
+                 full_plan(examples, seeds, cap, window=PROPOSED_WINDOW)):
         _totals, _total, lines = table(plan, counter)
         print("\n".join(lines))
         print()

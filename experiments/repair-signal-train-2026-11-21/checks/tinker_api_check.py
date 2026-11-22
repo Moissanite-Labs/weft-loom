@@ -79,6 +79,8 @@ WATCH = {
     "save_weights_and_get_sampling_client": (tinker.TrainingClient, fakes.FakeTrainingClient, True),
     "sample": (tinker.SamplingClient, fakes.FakeSampler, True),
 }
+# watched method name -> more fake classes whose method is bound the same way
+EXTRA_FAKES = {"sample": (fakes.WindowSampler,)}
 # constructor or factory name -> (real callable, fake callable)
 TYPES = {
     "Datum": (T.Datum, fakes.FakeTypes.Datum),
@@ -169,6 +171,8 @@ def uses_result(tree, node):
     # climb out of a _guard(...) wrapper
     while cur in parents and isinstance(parents[cur], ast.Call) and isinstance(parents[cur].func, ast.Name):
         cur = parents[cur]
+    if isinstance(parents.get(cur), ast.Lambda) and isinstance(parents.get(parents[cur]), ast.Call):
+        cur = parents[parents[cur]]            # _guard(lambda: ....sample(...)): the value of the _guard call
     par = parents.get(cur)
     if isinstance(par, ast.Attribute) and par.attr == "result":
         return True
@@ -180,6 +184,25 @@ def uses_result(tree, node):
         return any(isinstance(n, ast.Attribute) and n.attr == "result" and isinstance(n.value, ast.Name)
                    and n.value.id == var for n in ast.walk(scope))
     return False
+
+
+def kept_in_flight_and_read(tree, node):
+    """The windowed responder keeps the value of sample() in a pending list and reads it
+    later, so the value is not read in the function that made it. True if the value is
+    passed to _Flight(...) as its future, and the module reads a `.future.result` somewhere."""
+    parents = {c: p for p in ast.walk(tree) for c in ast.iter_child_nodes(p)}
+    cur = node
+    if isinstance(parents.get(cur), ast.Lambda) and isinstance(parents.get(parents[cur]), ast.Call):
+        cur = parents[parents[cur]]
+    par = parents.get(cur)
+    if not (isinstance(par, ast.Assign) and len(par.targets) == 1 and isinstance(par.targets[0], ast.Name)):
+        return False
+    var = par.targets[0].id
+    passed = any(isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and n.func.id == "_Flight"
+                 and any(isinstance(a, ast.Name) and a.id == var for a in n.args) for n in ast.walk(tree))
+    read = any(isinstance(n, ast.Attribute) and n.attr == "result" and isinstance(n.value, ast.Attribute)
+               and n.value.attr == "future" for n in ast.walk(tree))
+    return passed and read
 
 
 def check_calls():
@@ -213,10 +236,16 @@ def check_calls():
                     if fut is None or not hasattr(fut, "result"):
                         bad(label, "the return annotation %r has no result()" % ann)
                         continue
-                    if not uses_result(tree, node):
+                    if uses_result(tree, node):
+                        msgs.append("returns %s, used through .result()" % fut.__name__)
+                    elif kept_in_flight_and_read(tree, node):
+                        msgs.append("returns %s, kept pending in a window and read through .future.result()"
+                                    % fut.__name__)
+                    else:
                         bad(label, "returns %s (a future) but the code does not call .result() on it" % ann)
                         continue
-                    msgs.append("returns %s, used through .result()" % fut.__name__)
+                for extra in EXTRA_FAKES.get(name, ()):
+                    check_signature(label + " (%s)" % extra.__name__, real, getattr(extra, name), args, kws, True)
                 ok(label, "; ".join(["arguments match"] + msgs))
                 seen.add(name)
             else:
@@ -228,6 +257,94 @@ def check_calls():
     for name in list(WATCH) + list(TYPES):
         if name not in seen:
             unsettled(name, "no call site found in the backend, driver or runner")
+
+
+def check_sample_dispatch():
+    """What the windowed responder relies on: sample() is a plain method that hands the
+    request to the library's background loop when it is called and returns a pending future,
+    so several calls can be in flight before the first result is read. Read from the source of
+    the installed package: no client is built and nothing is sent."""
+    src = inspect.getsource(tinker.SamplingClient.sample)
+    if inspect.iscoroutinefunction(tinker.SamplingClient.sample):
+        bad("SamplingClient.sample dispatch", "sample is a coroutine function: a call would send nothing until awaited")
+    elif "run_coroutine_threadsafe(_sample_async" not in src or ".result(" in src.split("return _AwaitableFutureCompatWrapper")[-1]:
+        bad("SamplingClient.sample dispatch", "the source no longer submits the request to the background loop at call time")
+    else:
+        ok("SamplingClient.sample dispatch", "a plain method that submits the request to the library's background loop "
+           "with run_coroutine_threadsafe and returns the pending future without waiting")
+    wrap = tinker.lib.public_interfaces.sampling_client._AwaitableFutureCompatWrapper \
+        if hasattr(tinker, "lib") else None
+    if wrap is None:
+        unsettled("sample future .result", "the wrapper class could not be found")
+    else:
+        for fake_cls in (fakes.PendingFuture, fakes.FakeFuture):
+            try:
+                bind(wrap.result, [], {}, True)
+                bind(fake_cls.result, [], {}, True)
+            except TypeError as exc:
+                bad("sample future .result (%s)" % fake_cls.__name__, "does not accept a call with no argument: %s" % exc)
+                continue
+            real_names = set(inspect.signature(wrap.result).parameters)
+            extra = [n for n in inspect.signature(fake_cls.result).parameters if n != "self" and n not in real_names]
+            if extra:
+                bad("sample future .result (%s)" % fake_cls.__name__, "the fake takes names the real one lacks: %s" % extra)
+            else:
+                ok("sample future .result (%s)" % fake_cls.__name__, "takes no required argument and no name the library's lacks")
+    unsettled("sample concurrency limit", "the request limit is server-controlled (sample_max_concurrent_requests, "
+              "default 2000 in the library's own client config) and the service's real limit for this account is not observable here")
+    unsettled("sample retries (window of 1)", "the library retries a failed or backpressured request itself with no count "
+              "limit (RetryHandler, exponential backoff 0.5 s to 10 s, stuck after 120 minutes without progress), and whether "
+              "a retried request that the service had already accepted is billed twice is not observable here. The first "
+              "pilot ran this way, and a plan with a window of 1 still does")
+
+
+def check_retry_switch():
+    """A plan with a window above 1 builds its sampling clients with the library's whole-call retry
+    loop off, so every billed sample is a call the meter reserved. Reads the installed code for each
+    link of that chain."""
+    import dataclasses
+    import inspect as ins
+    try:
+        from tinker.lib.retry_handler import RetryConfig, RetryHandler
+    except ImportError as exc:
+        bad("retry switch", "RetryConfig cannot be imported: %s" % type(exc).__name__)
+        return
+    fields = {f.name: f for f in dataclasses.fields(RetryConfig)}
+    if "enable_retry_logic" not in fields or fields["enable_retry_logic"].default is not True:
+        bad("retry switch: field", "RetryConfig has no enable_retry_logic field that defaults to True")
+        return
+    ok("retry switch: field", "RetryConfig.enable_retry_logic exists and defaults to True (retries on)")
+    cfg = tinker_backend.no_retry_config(T)
+    if not isinstance(cfg, RetryConfig) or cfg.enable_retry_logic is not False:
+        bad("retry switch: backend config", "tinker_backend.no_retry_config does not build a RetryConfig with the loop off")
+    else:
+        ok("retry switch: backend config", "tinker_backend.no_retry_config builds a RetryConfig with enable_retry_logic False")
+    kept = dataclasses.replace(cfg, max_connections=None, enable_stuck_detection=False)
+    if kept.enable_retry_logic is not False:
+        bad("retry switch: client rewrite", "dataclasses.replace, as the sampling client applies it, drops the switch")
+    else:
+        ok("retry switch: client rewrite", "the sampling client's own dataclasses.replace of the config keeps the loop off")
+    for cls, name in ((tinker.ServiceClient, "create_sampling_client"),
+                      (tinker.TrainingClient, "save_weights_and_get_sampling_client")):
+        if "retry_config" not in ins.signature(getattr(cls, name)).parameters:
+            bad("retry switch: %s" % name, "the method takes no retry_config")
+        else:
+            ok("retry switch: %s" % name, "takes retry_config, and the backend passes it by name")
+    if not hasattr(tinker.SamplingClient, "sample"):
+        return
+    body = ins.getsource(RetryHandler._execute_with_retry)
+    if "if not self.config.enable_retry_logic:" in body and "return await func(*args, **kwargs)" in body:
+        ok("retry switch: fast path", "RetryHandler._execute_with_retry calls the function once when the loop is off")
+    else:
+        bad("retry switch: fast path", "the one-call path for a disabled loop was not found in the installed source")
+    if "max_retries=0" in ins.getsource(tinker.SamplingClient._send_asample_request):
+        ok("retry switch: request", "SamplingClient._send_asample_request sends its HTTP request with max_retries=0 "
+           "(no retry below the handler)")
+    else:
+        bad("retry switch: request", "the sample request does not set max_retries=0 in the installed source")
+    unsettled("retry switch: stuck call", "the handler's 120 minute stuck detection is part of the retry loop and does not "
+              "run on the fast path, so a call the service never answers holds the run (and the settling of the calls "
+              "around it) until the owner interrupts it")
 
 
 def check_return_shapes():
@@ -426,6 +543,8 @@ def main(argv):
     check_return_shapes()
     check_construction()
     check_fakes_dynamic()
+    check_sample_dispatch()
+    check_retry_switch()
     check_sampler_identity()
     check_credentials()
     check_tokenizer()

@@ -4,7 +4,9 @@
 
 When a model must repair a rejected answer to a rational difference-constraint puzzle, and may answer only with the repaired assignment under one small token cap, does training on feedback that gives the exact amount of each violation let it repair more often than training on feedback that names only the violated constraints?
 
-The record holds the preregistered plan and the training loop that would run it on Inkling 2 Mini through the Tinker service. The harness is built and tested, and it has made one pilot run on the real service (see "Pilot run"). The pilot was a no-go, and the registered run has not started. 
+The record holds the preregistered plan and the training loop that would run it on Inkling 2 Mini through the Tinker service. The harness is built and tested, and it has made one pilot run on the real service (see "Pilot run"). The pilot was a no-go, and the registered run has not started.
+
+This branch, `proposal/parallel-sampling`, adds one proposal on top of that record: send the sampling calls several at a time. It is there for the team to read as code before it chooses a way forward. Nothing in it is approved (see "Proposal: parallel sampling (not approved)").
 
 Every prompt that is sampled from ends with the model's turn already opened for an answer (the forced opening), because the untrained model opened a thinking block in every local call that left the opening to it, and none of the four switches tried turned that off.
 
@@ -12,7 +14,7 @@ Every prompt that is sampled from ends with the model's turn already opened for 
 
 `pilot`. The plan and the code exist, and one pilot run was made on the real service on 2026-11-22 with an approved ceiling of 0.50 dollars: see "Pilot run". It was a no-go on the time gate.
 
-The registered run has not started and no registered result exists. The untrained model was also sampled once, for free, on pilot evaluation seeds only, with a local quantised copy: see [local-baseline](local-baseline/README.md). Both are exploratory measurements and not results.
+On this branch the code also holds the proposal, and no pilot has run with it. The registered run has not started and no registered result exists. The untrained model was also sampled once, for free, on pilot evaluation seeds only, with a local quantised copy: see [local-baseline](local-baseline/README.md). Both are exploratory measurements and not results.
 
 ## Preregistration
 
@@ -63,7 +65,9 @@ The dry run is deterministic and runs on any machine. It was run here on one App
 
 ## How to run the pilot
 
-The owner approves the pilot (one adapter trained on text C with 256 examples, the untrained model and the adapter each sampled on the 100 pilot evaluation puzzles, ceiling 0.50 dollars) and starts it. The steps:
+The owner approves the pilot (one adapter trained on text C with 256 examples, the untrained model and the adapter each sampled on the 100 pilot evaluation puzzles, ceiling 0.50 dollars) and starts it.
+
+On this branch the runner's default is the proposed plan: window 8, with one more evaluation of the untrained model sampled one call at a time (the window check). `--window 1` names the plan of the first pilot, without the check. The window is part of the plan fingerprint, so the approval row names it. Nothing here is approved. The steps:
 
 1. Print the approval row for a new run id. This prints one line and does nothing else.
 
@@ -92,7 +96,7 @@ The runner checks the approval, the plan, the ceiling and the lock, and prints t
 | File | Content |
 |---|---|
 | `pilot-result.json` | integers and strings only: every measurement, every gate as the string "true" or "false", the go verdict, counts by outcome for the base model and the adapter, tokens and exact dollars by kind from the spend ledger, and the time per training step and per sampling call as integer nanosecond totals with their counts |
-| `replies.jsonl` | one line per call that reached the service, written as the call ends: which model, tier, seed, the decoded reply, the outcome, and `returned`, the token ids of every sequence exactly as the service returned them, with `returned_tokens` their count. A paid call that then raised (an overrun, a wrong number of sequences) has a row with status `raised` and an empty outcome. A call that failed inside the service before any answer has `returned` null |
+| `replies.jsonl` | one line per call that reached the service, written as the call ends: which model, tier, seed, the decoded reply, the outcome, and `returned`, the token ids of every sequence exactly as the service returned them, with `returned_tokens` their count. A paid call that then raised (an overrun, a wrong number of sequences) has a row with status `raised` and an empty outcome. A call that failed inside the service before any answer has `returned` null. With a window, a call that was in flight when another failed has status `drained` and the ids it returned |
 | `receipts.jsonl` | the chain of receipts, with the stored replies and the harness lock beside it |
 | `pilot-summary.md` | a short table for a person |
 
@@ -128,22 +132,23 @@ The verbose policy breaks the format in all 200 replies in every text, and that 
 
 The dry run's 46 checks show that the exact checker, the sign test, the ratchet, the latch, the receipt chain and the budget guards each behave as designed. The table shows that the C, E and N texts separate a policy that reads the amounts from one that does not. The oracle scores 0 on N because its sign convention is written into the policy, and that is not a property of any model.
 
-The test suite runs 542 tests (9 skipped without the service library and the tokenizer package) and passes. `mutate.py` removes 448 guards one at a time and every one is caught by a failing test. These too check the harness only.
+The test suite runs 625 tests (10 skipped without the service library and the tokenizer package) and passes. `mutate.py` removes 538 guards one at a time and every one is caught by a failing test. These too check the harness only.
 
 The dry run also runs the whole registered procedure against a fake client twice. With a gain built in for C, the verdict is `support`, and the second held-out set is touched once. With no gain, the verdict is `cannot_test` and the second set is never touched. The fake pilot reports 200 calls and 8 steps. These are properties of the fake.
 
 ### Cost of the plan
 
-`cost.py` prints the cost of the pilot and of the full plan, with every item. The totals are below. The rule count is the documented counting rule in `evaluate.py`. The tokenizer count uses the one carried by tml_renderers.
+`cost.py` prints the cost of the first pilot's plan (window 1), of the proposed pilot (window 8, with the window check) and of the full plan, with every item. The totals are below. The rule count is the documented counting rule in `evaluate.py`. The tokenizer count uses the one carried by tml_renderers.
 
 Prices are the rates published in the Tinker model table (https://tinker-docs.thinkingmachines.ai/tinker/models.json) for the 64K context, read on 2026-11-21: 0.75 dollars per million training tokens, 0.15 per million prefill tokens and 0.50 per million sampled tokens.
 
 | Plan | Tokens (rule) | Dollars (rule) | Tokens (tokenizer) | Dollars (tokenizer) |
 |---|---|---|---|---|
-| Pilot, one adapter, 256 examples | 172,549 | 0.0864 | 184,306 | 0.0924 |
+| First pilot (run), one adapter, 256 examples, no window | 172,549 | 0.0864 | 184,306 | 0.0924 |
+| Proposed pilot, window 8, with the window check | 214,071 | 0.0960 | 228,115 | 0.1024 |
 | Full plan, three texts, two seeds | 12,572,333 | 5.0406 | 13,385,972 | 5.3646 |
 
-The exact full-plan cost with the tokenizer is 26823111/5000000 dollars. The plan sets a ceiling of 0.50 dollars for the pilot and 12.00 for the full run.
+The exact full-plan cost with the tokenizer is 26823111/5000000 dollars, with any window. The exact cost of the proposed pilot with the tokenizer is 2048301/20000000 dollars, and the window check accounts for 199327/20000000 of it. The plan sets a ceiling of 0.50 dollars for the pilot and 12.00 for the full run.
 
 ## Identical puzzles across sets
 
@@ -255,9 +260,80 @@ By the plan's own rule (PREREG.md, "After the pilot") the full run must not star
 
 The team can choose among three ways forward. This record does not choose.
 
-- Sample in parallel. A new small pilot sends the sampling calls at the same time, to test that path. The ledger, the order of replies and the service's limits are untested for it, and the projection then rests on what that pilot measures.
+- Sample in parallel. A new small pilot sends the sampling calls at the same time, to test that path. The ledger, the order of replies and the service's limits are untested for it, and the projection then rests on what that pilot measures. This branch builds it as a proposal, see "Proposal: parallel sampling (not approved)".
 - Keep it sequential. Accept about 16 hours of projected time and change the time gate for that stated reason, in a dated amendment, then run a new pilot.
 - Shrink the held-out sets. This cuts the sampling calls, which are most of the projected time, and loses power. The power table in PREREG.md shows what each size can see.
+
+## Proposal: parallel sampling (not approved)
+
+This branch holds a proposal, built so the team can read real code before it chooses. It is the first of the three ways forward under "After the no-go": send the sampling calls several at a time.
+
+The owner has not approved it, no pilot has run with it, and no paid call, key or network was used to build it. PREREG.md, section "Proposed change after the pilot (not approved)", states the change, what stays and what a new pilot must show.
+
+### What the installed library does
+
+Read from the package source of tinker 0.39.0 with `inspect` and no client built. Paths are inside the package, lines are those of that version. `checks/tinker_api_check.py` re-reads the first point and fails if it stops holding.
+
+- `SamplingClient.sample` is a plain method. It hands the request to the library's background event loop with `run_coroutine_threadsafe` and returns a pending future at once (`lib/public_interfaces/sampling_client.py` lines 475 to 613, the hand-over at 612 and 613, `lib/internal_client_holder.py` lines 875 to 879). The request is sent when `sample` is called, and `.result()` only waits.
+- So a window of pending futures is enough and no thread pool is needed. A thread pool would only be needed if the request were sent when the result is asked for, which the source rules out.
+- The loop runs in one background thread (`lib/internal_client_holder.py` lines 119 to 135). Calls from the main thread are safe to interleave.
+- A request limit exists and the server sets it. The sampling client's own limit is `sample_max_concurrent_requests`, default 2000 in the library's configuration type (`types/client_config_response.py` line 39, applied at `sampling_client.py` lines 243 to 257).
+- The holder also caps dispatch at 400 requests, and at 10 after the service has asked it to back off (`lib/internal_client_holder.py` lines 307, 308 and 545 to 564). A window of 8 is under both.
+- Retries happen in layers the meter cannot see. The HTTP request is sent with no retries (`sampling_client.py` line 364). A busy answer (429) makes the client wait 1 or 5 seconds and send again (lines 366 to 370 and 405 to 420).
+- The send is retried for up to 5 minutes on retryable errors (`lib/internal_client_holder.py` lines 953 to 1003), and a billing pause can last up to an hour.
+- The whole call is retried with no count limit on connection errors, timeouts and status 408, 409, 429 and 5xx, with delays of 0.5 to 10 seconds (`lib/retry_handler.py` lines 35, 211 to 274 and 301 to 318, `_constants.py` lines 11 and 12). It gives up after 120 minutes without progress.
+- So the limit of 10 retries named under "Limits" is the library's default for its other requests, and sampling has its own rules.
+- Every whole-call retry is a new request. Each run of the call takes a new request id (`sampling_client.py`, the request counter in `_sample_async_impl`), so the service cannot tell a retry from a new sample and bills it again.
+- Retries also follow errors that arrive after the request was accepted, such as a broken or expired promise (`lib/api_future_impl.py` lines 411 to 414).
+- The clock for the 120 minutes is the handler's, shared by all its calls (`lib/retry_handler.py`, `_last_global_progress`), so calls that finish keep pushing it back.
+- The library lets the caller turn the loop off. `ServiceClient.create_sampling_client` and `TrainingClient.save_weights_and_get_sampling_client` both take `retry_config`, and `RetryConfig(enable_retry_logic=False)` takes the path that calls the function once (`lib/retry_handler.py` line 216). The sampling client rewrites the config with `dataclasses.replace`, which keeps the switch. `checks/tinker_api_check.py` reads each of these links.
+
+### What was chosen
+
+A window of pending futures, with no thread. `tinker_backend.WindowedResponder` sends up to the window size of calls ahead, in episode order, then waits for the next reply only, settles it and hands it back.
+
+The evaluation (`evaluate.py`, in the locked harness hash and untouched) still asks for one reply at a time, in order, so the replies it records cannot depend on the order the service answers in. The responder is made for one evaluation, with the views of its episodes, and refuses any other request.
+
+The window is a field of the plan (`cost.Plan.window`, at most 64) and part of the plan fingerprint. A plan holds 1 unless told otherwise, which is the plan of the first pilot and keeps its fingerprint, so `pilot/summarize.py` still reproduces the first pilot. The proposed window is 8 (`cost.PROPOSED_WINDOW`, a choice). `pilot_cli.py` defaults to the approved plan's window of 1, so its default approval row is the approved plan's row, and the proposal is asked for with `--window 8`.
+
+A plan with a window above 1 builds its sampling clients with the library's retry loop off (`TinkerRun(sample_retries=False)`, set by `driver.start_run` from the plan), so every billed sample is a call the meter reserved. A transient service error then stops the run instead of being retried. A plan with a window of 1 keeps the library's retries, as the first pilot ran.
+
+### Spend safety
+
+Each rule has a test, and `mutate.py` removes each guard in turn.
+
+- Every call is reserved in the ledger before it is sent, so the ledger holds one open reservation per call in flight, and the ceiling check counts them.
+- After a failed send, a failed call or the budget stop, the calls already sent are awaited and settled before the error is raised. A reply over its limit stops the run after the others are settled.
+- An interrupt (SIGINT, SIGTERM or SIGHUP) waits for the calls in flight and settles them, because the driver settles them whenever an evaluation ends. The wait lasts as long as the slowest call and has no timeout of its own with the library's retries off.
+- A second interrupt during the wait leaves the calls not yet settled at their full reservation.
+- An oversize reply found during the wait stops the run with the budget stop in place of the interrupt. Tests cover each of these three.
+- With every reply oversize the overshoot past the ceiling is the sum of the excess of up to `window` replies, since every call in flight can come back oversize before the stop. A test shows the sum for windows of 1, 2, 4 and 8.
+- An answer with the wrong number of sequences is settled against the tokens of all its sequences before it is refused, so the ledger counts every returned token (this also holds with a window of 1).
+- A process killed with calls in flight leaves their reservations, and a restart counts them as spent. A test kills a real process with four calls in flight and restarts the run.
+- A window of 1 reproduces the sequential path row for row: a test compares every ledger row, the receipt chain and every reply with the sequential responder on the fake client.
+- A call that is sent and not handed back is logged in `replies.jsonl` as status `drained`, with the ids the service returned. That includes the call of the reply being asked for, when it came back whole and a look-ahead send failed. A look-ahead send that failed has a row with status `send_failed` and no ids.
+
+### Time
+
+The pilot measures the wall-clock time of each evaluation as a whole and divides by its calls. The per-call wait is kept in the result as `call_wait_ns`, a reading and not the gate, because with a window a reply may already be there when it is asked for.
+
+### What is not known until a real run
+
+How many calls at once the service takes for this account, how much the time per call falls, whether greedy replies stay identical when calls are batched differently (the new pilot reports three counts on 100 puzzles and one gate, see PREREG.md), how often a run stops on a transient error with the retries off, and the step time.
+
+Whether a library retry is billed twice stays unknown only for a plan with a window of 1. All of it is listed in PREREG.md.
+
+### The window check
+
+The pilot of the proposed plan samples the untrained model on the 100 pilot puzzles with the window and again one call at a time. It also reads the first pilot's committed replies of the same model on the same puzzles (checked against a pinned SHA-256, free).
+
+It reports three counts of puzzles whose reply text or cut flag differs: windowed against sequential now, sequential now against the first pilot, and windowed against the first pilot.
+
+The gate `window_adds_no_differences` passes when the first count is at most the second. A positive second count says the service is not deterministic across runs, which is not the window's doing. PREREG.md gives the full rule.
+
+### Cost of the proposed pilot
+
+The proposed pilot adds one evaluation, the untrained model sampled one call at a time on the same 100 puzzles. By `cost.py` with the tokenizer count its planned cost is 2048301/20000000 dollars (0.1024), against 924487/10000000 (0.0924) for the first pilot, and the ceiling stays 0.50. The full plan costs the same with any window.
 
 ## Limits
 
@@ -273,9 +349,12 @@ The team can choose among three ways forward. This record does not choose.
 - The gates are code that the same agent can edit. `ratchet.py`, `latch.py` and `driver.py` are not in the harness hash. The latch tokens live in memory, and the head of the receipt chain is pinned in memory unless it is kept elsewhere.
 - Rescoring proves that recorded outcomes follow from recorded replies. Invented replies would pass it.
 - The full run does not check that a pilot gave a go. The go is the owner's call and the full run must not start after a no-go (PREREG.md, "After the pilot"). The service took 2.573 seconds per sampling call sent one at a time, so the time gate failed in pilot-2026-11-22-a.
-- The service library retries requests itself (10 retries by default, and a request can wait up to 120 minutes without progress), and the meter cannot see these. A retried request that the server already served could be billed twice, and a stuck request can hold the run for hours. The runner does not change these settings. After the run, compare the spend in the service console with the ledger's total.
+- The service library retries requests itself (10 retries by default, and a request can wait up to 120 minutes without progress), and the meter cannot see these. A retried request that the server already served could be billed twice, and a stuck request can hold the run for hours.
+- A plan with a window of 1 does not change these settings. A plan with a window above 1 switches the whole-call retry loop off (see "Parallel sampling"). After the run, compare the spend in the service console with the ledger's total.
 - The service's own bill for the pilot has not been compared with its ledger.
-- A service that returns more tokens than asked for stops the run at the first such reply, after that reply is counted in full. The overshoot is that one reply's excess, which has no upper limit.
+- The windowed path has run only against `fakes.py`. The service's limit for this account, the time per call at a window of 8, whether greedy replies stay identical when calls are batched differently, and whether a retried request is billed twice are unknown until a new pilot runs.
+- An interrupt (SIGINT, SIGTERM or SIGHUP) waits for the calls in flight and settles them, which can take as long as the slowest call (with a window above 1 the library's retries and their stuck detection are off, so a call the service never answers holds the run until a second interrupt). A second interrupt leaves the calls not yet settled at their full reservation, and the next run counts them as spent.
+- A service that returns more tokens than asked for stops the run at the first such reply, after that reply is counted in full. With a window, the calls in flight are settled first, so the overshoot is the sum of the excess of up to `window` replies, each without an upper limit.
 - The run lock is `flock`, so it works on macOS and Linux only, and it covers one ledger file: two copies of the approvals file in two places make two ledgers. An overrun followed by a crash before its ledger line is written loses those extra tokens from the ledger.
 - The mark that tells `run_registered` a run's token counts came from `start_run` is set in ordinary code that the same agent can edit.
 - The approvals file that allows a paid run belongs to the owner, in a place the agent cannot write. The code cannot enforce that.
@@ -306,8 +385,10 @@ This record keeps the puzzle generator, the exact checker and the texts for A an
 - `PREREG.md`: the plan, with its dated revision notes.
 - `episodes.py`, `codec.py`, `evaluate.py`, `reference_policies.py`: episodes, token layout, the locked evaluation and the stand-in policies.
 - `receipts.py`, `latch.py`, `ratchet.py`, `decisions.json`: the receipt chain, the once-only touch and the accept rule.
-- `pilot_cli.py`: the command line runner of the pilot (see "How to run the pilot"). It refuses a used output directory, a missing key and any approval that is not the pilot's, logs every raw reply, and writes the result file with integers and strings only.
-- `driver.py`, `tinker_backend.py`, `fakes.py`: the run, the paid backend and test doubles. The paid backend refuses to start without an owner approval for the exact run id and the exact plan, and it holds a lock so that only one process uses a ledger at a time. The only sampling path is the paid backend's responder, which builds every prompt with `codec.py`, forced opening included.
+- `pilot_cli.py`: the command line runner of the pilot (see "How to run the pilot"), with `--window N` on this branch.
+- `pilot_cli.py` also refuses a used output directory, a missing key and any approval that is not the pilot's, logs every raw reply, and writes the result file with integers and strings only.
+- `driver.py`, `tinker_backend.py`, `fakes.py`: the run, the paid backend and test doubles. The paid backend refuses to start without an owner approval for the exact run id and the exact plan, and it holds a lock so that only one process uses a ledger at a time.
+- The only sampling paths are the paid backend's responders (the sequential `TinkerResponder` and the proposal's `WindowedResponder`), which build every prompt with `codec.py`, forced opening included. `fakes.WindowSampler` answers out of order, with delays and failures, and records the most calls in flight.
 - `checks/tinker_api_check.py`: the static comparison of the backend with the installed service library.
 - `checks/split_overlap.py` and `data/split-overlap.txt`: the count of identical puzzles inside and across the sets.
 - `cost.py`, `power.py`, `dryrun.py`, `mutate.py`, `tests/`, `checks/`: the checks. `mutate.py` removes each guard by an exact text substitution and requires a test to fail.
@@ -320,6 +401,12 @@ This record keeps the puzzle generator, the exact checker and the texts for A an
 The code, tests and plan were written and run by AI agent sessions under the direction of the research team's human owner, with independent review rounds by other agent sessions. The plan went through two such reviews before registration, and the revision notes in `PREREG.md` list what they changed.
 
 A third independent review found seven points to fix and four small ones. The fixes made for it (the run lock and plan binding in the backend, the single decision procedure, the removal of the old local responder, the committed logs and the rewording of the local section) have not been reviewed by a second agent. No human has line-reviewed the code.
+
+The windowed sampling proposal on this branch (the windowed responder, the window field of the plan, the window check of the pilot, their tests and mutations) was written by an agent session and then reviewed once by another.
+
+The fixes for that review (the interrupt and overshoot statements, the retry switch, the three-count window gate, the sequence-count billing, the log rows for a failed look-ahead and the default window of 1) have had no second review.
+
+No paid call, key or network was used to build it.
 
 The split-overlap check, the adapter guard and the added limit (2026-11-22) were written after the pilot, in answer to points raised by a scan of another team's work, and they have had no second review.
 

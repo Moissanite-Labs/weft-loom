@@ -10,6 +10,12 @@ Every prompt that is sampled from, for the untrained model and every adapter,
 ends with the forced opening of the model's turn (codec.Codec.prompt_ids), so
 the cap of reply tokens counts answer tokens only, for every arm alike.
 
+Sampling goes at the plan's window (a proposal, PREREG.md "Proposed change after
+the pilot (not approved)"): every evaluation builds a tinker_backend.WindowedResponder
+for its own episodes and keeps up to plan.window calls in flight, and calls still in
+flight when an evaluation ends for any reason are settled (settled). A window of 1 is
+the sequential behaviour. The window is part of plan_fingerprint.
+
 Which adapter is evaluated: train_and_save trains an arm, saves its one
 checkpoint and writes a "train" receipt (label, arm, seed, descriptor, steps,
 sampler identifier) to the chain. Every evaluation then goes through
@@ -94,12 +100,18 @@ class DriverError(Exception):
 
 
 def plan_fingerprint(plan):
-    """A hash of everything that defines a plan, so a run id can be tied to one plan."""
-    return evaluate.canonical_sha256({
+    """A hash of everything that defines a plan, so a run id can be tied to one plan.
+    The window (how many sampling calls are in flight at once) is part of it. A window
+    of 1 is the sequential plan the first pilot ran under, and it is left out of the
+    hashed text so that plan keeps the fingerprint its approval row names."""
+    body = {
         "name": plan.name, "arms": list(plan.arms), "train_counts": plan.train_counts, "seeds": plan.seeds,
         "epochs": plan.epochs, "eval1_counts": plan.eval1_counts, "eval2_counts": plan.eval2_counts,
         "cap": plan.cap, "train_offset": plan.train_offset, "eval1_offset": plan.eval1_offset,
-        "evals": [[e.label, e.text_arm, e.set_key, e.runs] for e in plan.evals]})
+        "evals": [[e.label, e.text_arm, e.set_key, e.runs] for e in plan.evals]}
+    if plan.window != 1:
+        body["window"] = plan.window
+    return evaluate.canonical_sha256(body)
 
 
 def approval_row(run_id, ceiling, plan):
@@ -113,7 +125,8 @@ def start_run(run_id, approvals_path, plan, counter, service=None, types_mod=Non
     run is marked with the fingerprint of the plan that was counted."""
     totals, _items = cost.plan_counts(plan, counter)
     fingerprint = plan_fingerprint(plan)
-    run = tinker_backend.TinkerRun(run_id, approvals_path, totals, plan.name, fingerprint, service, types_mod, resume)
+    run = tinker_backend.TinkerRun(run_id, approvals_path, totals, plan.name, fingerprint, service, types_mod, resume,
+                                   sample_retries=plan.window == 1)
     run.counted_plan = fingerprint
     return run
 
@@ -177,17 +190,38 @@ def train_and_save(run, ratchet, codec, trainset, text_arm, seed, label, descrip
     return sampler, steps
 
 
-def responder(run, sampler, codec, cap):
-    return tinker_backend.TinkerResponder(run, sampler, codec, cap)
+def epset_views(epset, text_arm):
+    """The views an evaluation of this set with this text asks for, in its order."""
+    return [ep_mod.View(ep, text_arm) for ep in epset.episodes]
 
 
-def evaluate_recorded(ratchet, run, sampler, codec, epset, text_arm, descriptor, run_id, config):
+def responder(run, sampler, codec, cap, views=None, window=1):
+    """The sampling responder of one evaluation. With the views of the evaluation it
+    keeps up to `window` calls in flight (a window of 1 is one call at a time).
+    Without views it is the plain sequential responder."""
+    if views is None:
+        return tinker_backend.TinkerResponder(run, sampler, codec, cap)
+    return tinker_backend.WindowedResponder(run, sampler, codec, cap, views, window)
+
+
+def settled(resp):
+    """Settles the calls a responder still has in flight, if it keeps any."""
+    finish = getattr(resp, "finish", None)
+    if finish is not None:
+        finish()
+
+
+def evaluate_recorded(ratchet, run, sampler, codec, epset, text_arm, descriptor, run_id, config, window=1):
     """Evaluate one model on one set with one text, and record the receipt.
-    The model is bound first: a refusal happens before any call is made."""
+    The model is bound first: a refusal happens before any call is made.
+    Calls still in flight when the evaluation ends, for any reason, are settled."""
     model = run.binding(sampler)
     ratchet.require_model(model, descriptor)
-    result = evaluate.evaluate_arm(responder(run, sampler, codec, ratchet.cap), epset, text_arm, ratchet.cap,
-                                   descriptor)
+    resp = responder(run, sampler, codec, ratchet.cap, epset_views(epset, text_arm), window)
+    try:
+        result = evaluate.evaluate_arm(resp, epset, text_arm, ratchet.cap, descriptor)
+    finally:
+        settled(resp)
     ratchet.record(result, run_id, config, model)
     return result
 
@@ -281,7 +315,8 @@ def run_registered(run, ratchet, codec, run_id, plan, config, decision_id=DECISI
                "verdict": None, "verdicts": {}, "reasons": {}, "interpretive": {}}
     base = run.base_sampler()
     for arm in ep_mod.ARMS:
-        summary["base"][arm] = evaluate_recorded(ratchet, run, base, codec, h1, arm, "base-model", run_id, config)
+        summary["base"][arm] = evaluate_recorded(ratchet, run, base, codec, h1, arm, "base-model", run_id, config,
+                                                 plan.window)
     samplers = {}
     for seed in range(plan.seeds):
         for arm in plan.arms:
@@ -290,10 +325,11 @@ def run_registered(run, ratchet, codec, run_id, plan, config, decision_id=DECISI
             samplers[(arm, seed)], summary["steps"][label] = train_and_save(
                 run, ratchet, codec, train, arm, seed, label, name, run_id)
             summary["own"][(arm, seed)] = evaluate_recorded(
-                ratchet, run, samplers[(arm, seed)], codec, h1, arm, name, run_id, config)
+                ratchet, run, samplers[(arm, seed)], codec, h1, arm, name, run_id, config, plan.window)
         for text in CONTROL_TEXTS:
             summary["controls"][(text, seed)] = evaluate_recorded(
-                ratchet, run, samplers[("C", seed)], codec, h1, text, adapter_name("C", seed), run_id, config)
+                ratchet, run, samplers[("C", seed)], codec, h1, text, adapter_name("C", seed), run_id, config,
+                plan.window)
     for seed in range(plan.seeds):
         controls = {t: summary["controls"][(t, seed)] for t in ("E", "N")}
         controls["B"] = summary["controls"][("B", seed)]
@@ -309,12 +345,17 @@ def run_registered(run, ratchet, codec, run_id, plan, config, decision_id=DECISI
     # the one touch must not be lost to a BudgetStop part way through
     run.meter.require_room(set2_bound(plan, codec, h2))
     c0, b0 = adapter_name("C", 0), adapter_name("B", 0)
-    entries = [("C", responder(run, samplers[("C", 0)], codec, cap), "C", c0),
-               ("B", responder(run, samplers[("B", 0)], codec, cap), "B", b0),
-               ("E", responder(run, samplers[("C", 0)], codec, cap), "E", c0),
-               ("N", responder(run, samplers[("C", 0)], codec, cap), "N", c0)]
+    w = plan.window
+    entries = [("C", responder(run, samplers[("C", 0)], codec, cap, epset_views(h2, "C"), w), "C", c0),
+               ("B", responder(run, samplers[("B", 0)], codec, cap, epset_views(h2, "B"), w), "B", b0),
+               ("E", responder(run, samplers[("C", 0)], codec, cap, epset_views(h2, "E"), w), "E", c0),
+               ("N", responder(run, samplers[("C", 0)], codec, cap, epset_views(h2, "N"), w), "N", c0)]
     models = {key: run.binding(resp.sampler) for key, resp, _arm, _desc in entries}   # from what samples
-    got = ratchet.second_set_results(decision_id, h2, entries, config, models)
+    try:
+        got = ratchet.second_set_results(decision_id, h2, entries, config, models)
+    finally:
+        for _key, resp, _arm, _desc in entries:
+            settled(resp)
     summary["set2"] = compare_all(ratchet, "set2-seed0", got["C"], got["B"], {"E": got["E"], "N": got["N"]})
     v2, why2 = judge(summary["set2"])
     summary["verdicts"]["set2"], summary["reasons"]["set2"] = v2, why2
@@ -327,7 +368,11 @@ def run_registered(run, ratchet, codec, run_id, plan, config, decision_id=DECISI
 # ------------------------------------------------------------------ pilot
 
 class TimedResponder:
-    """Wraps a responder and records the nanoseconds of each call."""
+    """Wraps a responder and records the nanoseconds of each call. With a window
+    this is the time spent waiting for each reply, not the time the call took in
+    the service: a reply that came while an earlier one was awaited costs about
+    nothing. The pilot's time check therefore uses the wall-clock time of the
+    whole evaluation (run_pilot), and these waits are kept as a reading only."""
 
     def __init__(self, inner, clock=time.perf_counter_ns):
         self.inner, self.clock, self.call_ns = inner, clock, []
@@ -337,6 +382,9 @@ class TimedResponder:
         out = self.inner(view)
         self.call_ns.append(self.clock() - t0)
         return out
+
+    def finish(self):
+        settled(self.inner)
 
 
 def plan_calls(plan):
@@ -350,7 +398,17 @@ def plan_calls(plan):
 def pilot_verdict(m, full_calls, full_steps):
     """The pilot's gates as exact comparisons. m holds integers from run_pilot:
     adapter n, passed, format_broken; accepted, new_block and calls (sampling), sample_ns
-    and train_ns totals with steps. Returns {gate: bool, ..., "go": bool}."""
+    and train_ns totals with steps. sample_ns is the wall-clock time of the evaluations as
+    wholes, so sample_ns over calls is the time per call at the plan's window. When m holds
+    window_check_calls (a plan with a window above 1), one more gate applies, decided in advance:
+    the window may not add differences. Three counts are compared over the same puzzles:
+    window_check_differing (windowed against one at a time now), ref_differing_sequential (one at
+    a time now against the first pilot's replies) and ref_differing_windowed (windowed against the
+    first pilot's replies). The gate passes when the windowed replies differ from the sequential
+    ones in no more puzzles than the sequential replies differ from the first pilot's. Zero
+    against a positive count is a pass, and a positive count of the second kind is information
+    about the service, not a failure of the window.
+    Returns {gate: bool, ..., "go": bool}."""
     n = m["adapter_n"]
     rate = Fraction(m["adapter_passed"], n)
     projected = Fraction(m["sample_ns"], m["calls"]) * full_calls + Fraction(m["train_ns"], m["steps"]) * full_steps
@@ -361,43 +419,93 @@ def pilot_verdict(m, full_calls, full_steps):
         "adapter_pass_rate_testable": PILOT_RATE_LOW < rate < PILOT_RATE_HIGH,
         "projected_time_ok": projected <= PILOT_MAX_HOURS * NS_PER_HOUR,
     }
+    if "window_check_calls" in m:
+        gates["window_adds_no_differences"] = (m["window_check_calls"] == n
+                                               and m["window_check_differing"] <= m["ref_differing_sequential"])
     gates["go"] = all(gates.values())
     return gates
 
 
-def run_pilot(run, ratchet, codec, run_id, plan, config, full_plan, clock=time.perf_counter_ns):
+def differing_replies(a, b):
+    """How many puzzles two evaluations of one set disagree on, by reply text or cut flag.
+    Evaluations of different sets or lengths are all different."""
+    if a.episode_ids != b.episode_ids or len(a.texts) != len(b.texts):
+        return max(len(a.texts), len(b.texts))
+    return sum(1 for i in range(len(a.texts)) if a.texts[i] != b.texts[i] or a.cuts[i] != b.cuts[i])
+
+
+class Reference:
+    """Replies of an earlier evaluation of the same puzzles: episode ids, reply texts and cut flags."""
+
+    def __init__(self, episode_ids, texts, cuts):
+        # cut flags as an evaluation result keeps them: a string of 0 and 1, one per puzzle
+        self.episode_ids, self.texts, self.cuts = list(episode_ids), list(texts), "".join("1" if c else "0" for c in cuts)
+        if not len(self.episode_ids) == len(self.texts) == len(self.cuts):
+            raise DriverError("the reference replies have unequal lengths")
+
+
+def run_pilot(run, ratchet, codec, run_id, plan, config, full_plan, clock=time.perf_counter_ns, reference=None):
     """The pilot: the base model and one adapter trained on text C, both on the
     pilot's evaluation episodes (training-range seeds) in text C. It measures
     what the pilot gates on, writes the measurements as a receipt, and returns
-    them with the gate results. Nothing in it touches held-out sets."""
+    them with the gate results. Nothing in it touches held-out sets.
+
+    Sampling goes at the plan's window. The time of an evaluation is its
+    wall-clock time as a whole, and sample_ns is the sum over the two measured
+    evaluations, so sample_ns over calls is the time per call at that window.
+    With a window above 1 the untrained model is also sampled one call at a
+    time on the same puzzles (the plan carries that evaluation, so it is
+    counted in the cost). The windowed and sequential replies are compared with each other and
+    with `reference` (the first pilot's replies of the untrained model on the same puzzles, free
+    to read), which a window above 1 requires."""
     require_plan_run(run, plan, "pilot")
+    if plan.window > 1 and reference is None:
+        raise DriverError("a pilot with a window above 1 needs the reference replies of the first pilot")
     train = ep_mod.build_set("train", plan.train_counts, plan.train_offset)
     ev = ep_mod.build_set("train", plan.eval1_counts, plan.eval1_offset)
+    if reference is not None and reference.episode_ids != [ep.id for ep in ev.episodes]:
+        raise DriverError("the reference replies are not for the pilot's evaluation puzzles")
     ratchet.lock_harness()
     out = {}
 
-    def evaluate_timed(sampler, descriptor):
+    def evaluate_timed(sampler, descriptor, window):
         model = run.binding(sampler)
         ratchet.require_model(model, descriptor)
-        inner = responder(run, sampler, codec, ratchet.cap)
+        inner = responder(run, sampler, codec, ratchet.cap, epset_views(ev, "C"), window)
         timed = TimedResponder(inner, clock)
-        result = evaluate.evaluate_arm(timed, ev, "C", ratchet.cap, descriptor)
+        t0 = clock()
+        try:
+            result = evaluate.evaluate_arm(timed, ev, "C", ratchet.cap, descriptor)
+        finally:
+            settled(inner)
+        wall = clock() - t0
         ratchet.record(result, run_id, config, model)
-        return result, timed.call_ns, inner.stats
+        return result, timed.call_ns, inner.stats, wall
 
-    out["base"] = evaluate_timed(run.base_sampler(), "pilot:base-model")
+    base_sampler = run.base_sampler()
+    out["base"] = evaluate_timed(base_sampler, "pilot:base-model", plan.window)
+    if plan.window > 1:
+        out["base-sequential"] = evaluate_timed(base_sampler, "pilot:base-model-sequential", 1)
     step_ns = []
     adapter_sampler, steps = train_and_save(run, ratchet, codec, train, "C", 0, "C-pilot", "pilot:adapter:C", run_id,
                                             step_ns=step_ns, clock=clock)
-    out["adapter"] = evaluate_timed(adapter_sampler, "pilot:adapter:C")
-    result, call_ns, stats = out["adapter"]
-    base_result, base_ns, base_stats = out["base"]
+    out["adapter"] = evaluate_timed(adapter_sampler, "pilot:adapter:C", plan.window)
+    result, call_ns, stats, adapter_wall = out["adapter"]
+    base_result, base_ns, base_stats, base_wall = out["base"]
     m = {"adapter_n": result.n, "adapter_passed": result.passed, "adapter_format_broken": result.format_broken,
          "base_passed": base_result.passed, "base_format_broken": base_result.format_broken,
          "accepted": stats["accepted"] + base_stats["accepted"],
          "new_block": stats["new_block"] + base_stats["new_block"],
-         "calls": stats["calls"] + base_stats["calls"], "sample_ns": sum(call_ns) + sum(base_ns),
-         "train_ns": sum(step_ns), "steps": steps}
+         "calls": stats["calls"] + base_stats["calls"], "sample_ns": adapter_wall + base_wall,
+         "call_wait_ns": sum(call_ns) + sum(base_ns),
+         "train_ns": sum(step_ns), "steps": steps, "window": plan.window}
+    if plan.window > 1:
+        check = out["base-sequential"]
+        m["window_check_calls"] = check[0].n
+        m["window_check_differing"] = differing_replies(base_result, check[0])
+        m["ref_differing_sequential"] = differing_replies(check[0], reference)
+        m["ref_differing_windowed"] = differing_replies(base_result, reference)
+        m["window_check_ns"] = check[3]
     full_calls, full_steps = plan_calls(full_plan)
     gates = pilot_verdict(m, full_calls, full_steps)
     ratchet.measure({"kind": "pilot", "run_id": run_id, "go": 1 if gates["go"] else 0, **m})

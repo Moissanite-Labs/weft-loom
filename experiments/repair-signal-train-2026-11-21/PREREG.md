@@ -324,6 +324,8 @@ The pilot is then run again, under a new pilot run id with its own approval, and
 
 What an amendment may weigh for the time gate is fewer sampling calls (which changes the power table) or a longer time gate with a stated reason. Neither is decided here.
 
+One further option, sampling several calls at once, is built as a proposal and is not approved: see the last section, "Proposed change after the pilot (not approved)".
+
 ## Gates
 
 The loop runs under the five gates of the ratchet: the harness locked by hash (including the registry of decision ids), receipts chained and float-free with every decided result matched to a receipt and its counts recomputed.
@@ -417,3 +419,80 @@ Changes made on 2026-11-22 (UTC), before any registered run and before any regis
 ## Statement
 
 No registered result exists yet. This file was written before any model was trained or evaluated in this loop. The only measurements are the exploratory local ones under "What the local model did" and the one pilot run named in the last revision note. From the merge onward, later changes go in a dated amendments section at the end and never replace the text above it.
+
+## Proposed change after the pilot (not approved)
+
+Date: 2026-11-22. This section is a proposal, written on the branch `proposal/parallel-sampling`. The owner has not approved it, no new pilot has run, and no paid call was made to build it. Until the owner approves a change, the plan above stands as written.
+
+### Why
+
+The first pilot (run id pilot-2026-11-22-a) passed four gates and failed the time gate. Calls were sent one at a time and took 2.573 seconds each, so the full plan projects to 15.759 hours against the 12 allowed. By "After the pilot" the full run must not start, and the plan needs a dated change before a new pilot.
+
+This proposal is one of three ways forward. The other two are listed at the end.
+
+### What changes
+
+- Sampling calls are sent up to the window size at a time. The proposed window is 8 (choice, not a measurement). The evaluation still asks for one reply at a time in episode order, and each reply is read from its own call.
+- The window is a field of the plan and part of the plan fingerprint. A window of 1 is the plan the first pilot ran under, and it keeps that plan's fingerprint.
+- With a window above 1 the sampling clients are built with the library's own retry loop switched off (`RetryConfig(enable_retry_logic=False)`). A window of 1 builds them as the first pilot did, with the library's retries on. The runner's default window is 1, so its default approval row is the approved plan's row, and a window above 1 must be asked for with `--window`.
+- The pilot measures the time of each evaluation as a whole, as wall-clock time, and divides by the evaluation's calls. With a window a reply may already be waiting when it is asked for, so the wait for one call is kept only as a reading.
+- The time gate keeps its formula: the time per call times the 21,000 calls of the full plan, plus the time per step times its 384 steps, at most 12 hours.
+
+### What does not change
+
+Sizes, seeds, the cap of 96 reply tokens, the texts, the primary comparison and the decision rule stand. So do the five pilot gates with their thresholds, the 12 hour limit and the ceilings (0.50 dollars for the pilot, 12.00 for the full run). Sampling stays greedy, so each reply depends on its prompt alone.
+
+Every spend rule stands: the plan and approval checks, the one-process lock, the ledger across restarts, the stop before a call that would reach the ceiling, the stop at the first reply over its limit, and one checkpoint per adapter.
+
+### Spend with calls in flight
+
+Spend safety is the point of this change, so the rules are written out.
+
+- Every call is reserved in the ledger, prefill then sample limit, and written to disk before it is sent. At any moment the ledger holds one open reservation for each call in flight.
+- The ceiling check before a send counts those reservations. A windowed run can stop earlier than a sequential run would, because the sequential run settles each call before the next. The difference is at most the unused part of the sample limits in flight, under 0.0004 dollars for a window of 8.
+- If a send fails, a call fails, or the budget stop fires, the calls already sent are awaited and settled before the error is raised. A call that failed keeps its full reservation.
+- A reply with more tokens than reserved is counted in full and stops the run after the calls in flight are settled. The overshoot past the ceiling is then the sum of the excess of up to `window` replies, because every call in flight can come back oversize before the stop, and the excess of each has no upper limit. A test shows the sum for windows of 1, 2, 4 and 8.
+- An answer with the wrong number of sequences is settled against the tokens of all its sequences before it is refused, so the ledger counts every returned token.
+- A process killed with calls in flight leaves their reservations in the ledger. A restart counts each one as spent at its full limit.
+- An interrupt (SIGINT, SIGTERM or SIGHUP) does not skip the settling. The driver settles the calls in flight when an evaluation ends for any reason, so an interrupt waits for every call in flight and settles it. That takes as long as the slowest call, and with the library's retries off there is no timeout of its own, so a call the service never answers holds the run until the owner interrupts again.
+- A second interrupt during the wait leaves the calls not yet settled at their full limit, which is an upper bound.
+- An oversize reply found while the calls are settled stops the run with the budget stop in place of the interrupt. Tests cover the wait, the second interrupt and the oversize reply.
+- The library's whole-call retry would bill a sample again where the meter cannot see it. Read from the installed library (0.39.0): a sampling client runs each call through a retry handler, and every retry sends a new request with a new request id that the service cannot deduplicate.
+- Retries follow errors after the request was accepted (a broken or expired promise, a dropped connection, a timeout, a 408, 409, 429 or 5xx reply). Their number has no limit, and the 120 minute stuck detection clock is shared by all calls of the handler, so calls that finish keep pushing it back. A window multiplies all of this by its size.
+- A plan with a window above 1 therefore builds its sampling clients with the retry loop off. Every billed sample is then a call the meter reserved, and a transient service error stops the run: the failed call keeps its full reservation, and a restart starts the plan again (with `resume`) at that cost.
+- The request itself is sent with no retry below the handler (`max_retries=0` in the library's sample request). `checks/tinker_api_check.py` reads each link of this from the installed library.
+- A plan with a window of 1 keeps the library's retries, as the first pilot ran, and the bound for it is the unknown listed below.
+- At the first pilot's mean prompt of 341 tokens (68,218 prefill tokens over 200 calls) a call reserves 341 prefill and 97 sample tokens, about 0.0001 dollars. A window of 8 holds about 0.0008 dollars in open reservations (arithmetic).
+
+### What the new pilot must show
+
+The same five gates as before, read with the new time measurement. In addition the window may not add differences to the replies.
+
+- The new pilot samples the untrained model on the 100 pilot puzzles twice, once with the window and once one call at a time. The first pilot's committed replies of the untrained model on the same 100 puzzles (`pilot/pilot-2026-11-22-a/replies.jsonl`, same evaluation set, same episode ids, same codec, all ok) are a free third reading.
+- The reference replies are taken from that file after its SHA-256 is checked against the pinned value. A reply differs when the text or the cut flag differs.
+- Three counts are reported, decided before the run: windowed against sequential now (`window_check_differing`), sequential now against the first pilot (`ref_differing_sequential`), and windowed against the first pilot (`ref_differing_windowed`).
+- The gate `window_adds_no_differences` passes when the first count is at most the second: the window may not make the replies differ in more puzzles than a second sequential run differs from the first pilot. Zero differences everywhere passes.
+- A positive second count is information about the service, which is not deterministic across runs even one call at a time, and it is not counted against the window. With a positive second count the gate is a weak test, because chance alone can move the first count past the second, and the owner reads the three counts together instead of the gate alone.
+- A failure with the second count at zero is the window's: the sequential run repeats the first pilot exactly and the windowed run does not.
+- The time gate reads the windowed evaluations only. The one-at-a-time evaluation is a check and is not part of the projected time.
+- The extra evaluation adds 100 sampling calls. By cost.py it adds 43,809 tokens and 199327/20000000 dollars (arithmetic, tokenizer count). The planned cost of the new pilot is 2048301/20000000 dollars, about 0.1024, against the ceiling of 0.50.
+- The reference reading costs nothing and is part of the same pilot, so no further evaluation is proposed.
+
+### What a new run needs
+
+The plan fingerprint changes for the pilot (the window and the added evaluation) and for the full plan (the window). So the owner approves a new pilot run id with an approval row that names the new fingerprint, and later a full run id the same way. No gate threshold is changed.
+
+### What cannot be known before a real run
+
+- Whether the service accepts 8 requests at once for this account without slowing them. The library sets a request limit from the server, and after a busy reply it throttles to 10 at a time.
+- How much the time per call falls. Calls at once may share the service's capacity.
+- Whether greedy replies stay identical when calls are batched differently. The check and the reference reading exist for this.
+- Whether a request the library retries was already accepted and billed, for a plan with a window of 1, which keeps the library's retries. The meter cannot see them. A plan with a window above 1 switches them off, and what it cannot know is whether the service answers a call when the library no longer retries it, so how often a run stops on a transient error is unknown.
+- The step time, which rests on 8 steps and is unchanged by the window.
+
+### The other two ways forward
+
+- Keep sampling sequential and change the time gate for a stated reason. The projection is about 16 hours. This needs no new code, a dated change of the gate, and a new pilot.
+- Shrink the held-out sets. This cuts the sampling calls, which are most of the projected time, and loses power. The power table in this file shows what each size can see.
+
+The three can be combined. A smaller set with a window needs its own power reading and its own fingerprint.
