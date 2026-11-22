@@ -16,6 +16,8 @@ The results are quoted, with what they do and do not show, in the section "What 
 - `results.jsonl`: one line per call, 560 lines, 110 KB. Each line holds the text, tier, seed, mode, the reply, generated tokens, the stop reason, seconds and the outcome.
 - `summary.json`: counts per mode, text and tier, the paired count of C against B and the seconds per call.
 - `check_seeds.py`: the check below.
+- `logs/`: the standard output of the measured run (`baseline-stdout.txt`) and of two earlier smoke runs (`smoke.out`, `smoke2.out`), with the two request scripts that made the smoke runs (`smoke.sh`, `smoke2.sh`). The paths of the local machine are replaced by two variables, `LLAMA_DIR` and `MODEL_GGUF`. The smoke scripts are kept as they ran apart from those paths.
+- `facts.py` and `facts.txt`: `python3 -I -B facts.py` prints the numbers the plan quotes that are not in `summary.json`, from `results.jsonl` and `logs/`: the free-reasoning counts, the fewest thinking tokens in a free-reasoning call, the smoke-run facts, and the hours the full plan's sampling would take at the local mean time per call. `tests/test_local_baseline.py` checks that `facts.txt` is its output in all three run modes.
 
 ## Pilot seeds only
 

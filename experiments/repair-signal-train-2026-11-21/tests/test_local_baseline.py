@@ -100,13 +100,67 @@ class LocalBaselineTests(unittest.TestCase):
         self.assertEqual(self.summary["F"]["A_M"]["passed"], 0)
 
     def test_the_committed_files_carry_no_local_paths(self):
-        for name in sorted(os.listdir(BASE)):
-            if name == "__pycache__":
-                continue
-            with open(os.path.join(BASE, name), "r", encoding="utf-8") as fh:
-                text = fh.read()
-            for needle in ("/Users/", "/home/", "/Volumes/", "/private/", "/tmp/"):
-                self.assertNotIn(needle, text, (name, needle))
+        seen = 0
+        for root, dirs, names in os.walk(BASE):
+            dirs[:] = sorted(d for d in dirs if d != "__pycache__")
+            for name in sorted(names):
+                with open(os.path.join(root, name), "r", encoding="utf-8") as fh:
+                    text = fh.read()
+                seen += 1
+                for needle in ("/Users/", "/home/", "/Volumes/", "/private/", "/tmp/"):
+                    self.assertNotIn(needle, text, (name, needle))
+        self.assertGreaterEqual(seen, 12)
+
+    def facts(self, *flags):
+        return subprocess.run([sys.executable, "-I", *flags, os.path.join(BASE, "facts.py")],
+                              capture_output=True, text=True)
+
+    def test_facts_txt_is_what_facts_py_prints_in_every_mode(self):
+        want = read("local-baseline/facts.txt")
+        for flags in (("-B",), ("-O", "-B"), ("-B", "-W", "error")):
+            got = self.facts(*flags)
+            self.assertEqual((got.returncode, got.stdout, got.stderr), (0, want, ""), flags)
+
+    def test_the_plans_local_numbers_are_the_ones_facts_prints(self):
+        facts = read("local-baseline/facts.txt")
+        for line in ("free-reasoning calls: 60", "free-reasoning calls with no thinking tokens: 0",
+                     "free-reasoning fewest thinking tokens in one call: 531",
+                     "free B tier M: 15 calls, passed 5, no answer 8, cut by the cap 2",
+                     "free C tier M: 15 calls, passed 4, no answer 10, cut by the cap 1",
+                     "mean milliseconds per call, forced answer: 3305",
+                     "sampling calls of the full plan: 21000, training steps: 384",
+                     "hours of sampling for the full plan at the local mean per call: 19.28 (4627/240)",
+                     "that is above the 12 hour gate: yes",
+                     "tries at a cap of 96 with an empty answer (smoke.out, then smoke2.out A to D): 5",
+                     "calls of the two smoke runs that returned reasoning text: 7",
+                     "one-line arithmetic question: 82 completion tokens, answer '7/4'",
+                     "puzzle at a cap of 1500: 569 completion tokens, finished",
+                     "local layout equals codec.py ids on 15 prompts"):
+            self.assertIn(line + "\n", facts)
+        for needle in ("at least 531 thinking tokens", "the 7 calls of the two smoke runs", "That is 67 calls",
+                       "In 5 tries at a cap of 96 tokens", "answer in 82 tokens", "it wrote 569 tokens",
+                       "on 15 prompts", "2 (B) and 1 (C) more calls were cut", "19.28 hours",
+                       "4 episodes passed only with C and 4 only with B", "(UTC)"):
+            self.assertIn(needle, self.prereg)
+        for banned in ("does not use the amounts", "always opens a thinking block", "no switch turns"):
+            self.assertNotIn(banned, self.prereg)
+            self.assertNotIn(banned, read("README.md"))
+
+    def test_facts_refuses_a_log_that_lacks_a_quoted_line(self):
+        import shutil
+        with tempfile.TemporaryDirectory() as tmp:
+            shutil.copytree(BASE, os.path.join(tmp, "local-baseline"), ignore=shutil.ignore_patterns("__pycache__"))
+            for name in os.listdir(HERE):
+                if name.endswith(".py") or name in ("vendor", "decisions.json"):
+                    src = os.path.join(HERE, name)
+                    (shutil.copytree if os.path.isdir(src) else shutil.copy)(src, os.path.join(tmp, name))
+            log = os.path.join(tmp, "local-baseline", "logs", "baseline-stdout.txt")
+            with open(log, "w", encoding="utf-8") as fh:
+                fh.write("nothing here\n")
+            got = subprocess.run([sys.executable, "-I", "-B", os.path.join(tmp, "local-baseline", "facts.py")],
+                                 capture_output=True, text=True)
+            self.assertEqual(got.returncode, 1, got.stdout + got.stderr)
+            self.assertIn("PROBLEM", got.stdout)
 
 
 if __name__ == "__main__":

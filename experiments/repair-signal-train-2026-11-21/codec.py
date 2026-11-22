@@ -64,6 +64,7 @@ class Codec:
         ids = list(self.role.values()) + [self.content, self.end, self.eos, self.thinking]
         if len(set(ids)) != len(ids):
             raise CodecError("two markers share one id")
+        self._is_special = getattr(tok, "is_special_token", None)
         self._marker_names = {i: n for n, i in zip(
             list(ROLE_NAMES.values()) + [CONTENT_NAME, END_NAME, EOS_NAME, THINKING_NAME], ids)}
 
@@ -106,14 +107,20 @@ class Codec:
         """(prompt ids, target ids): loss goes on the second part only."""
         return self.prompt_ids(messages), self.target_ids(target_text)
 
+    def is_marker(self, i):
+        """True for the layout's own marker ids and for any other special id of
+        the tokenizer (when it can tell, through is_special_token): no special
+        id belongs in an answer."""
+        return i in self._marker_names or bool(self._is_special is not None and self._is_special(i))
+
     def opens_new_block(self, ids):
         """True if the reply part of sampled ids (what comes before the first
-        stop id) holds any marker id: a reply must not open a new message or
-        block of its own, such as a thinking block."""
+        stop id) holds any marker or other special id: a reply must not open a
+        new message or block of its own, such as a thinking block."""
         for i in ids:
             if i in (self.end, self.eos):
                 return False
-            if i in self._marker_names:
+            if self.is_marker(i):
                 return True
         return False
 

@@ -86,9 +86,9 @@ def driver_scenario(out, decision_id, c_good):
                 texts = fail1 + fail1 * 3 + fail2 * 3 if arm == "C" else fail1 + fail2
             samplers.append(fakes.ScriptedSampler(texts, enc))
     svc = fakes.FakeService(checkpoint_samplers=samplers, base=fakes.ScriptedSampler(fail1, enc))
-    appr = os.path.join(out, "approvals-driver.json")
+    appr = os.path.join(out, "approvals-driver-%s.json" % decision_id)
     with open(appr, "w", encoding="utf-8") as fh:
-        json.dump({"approvals": [{"run_id": "driver-" + decision_id, "ceiling_usd": "5.00"}]}, fh)
+        json.dump({"approvals": [driver.approval_row("driver-" + decision_id, "5.00", plan)]}, fh)
     counter = cost.Counter(rule_only=True)
     run_ = driver.start_run("driver-" + decision_id, appr, plan, counter, svc, fakes.FakeTypes)
     sub = os.path.join(out, decision_id)
@@ -135,7 +135,7 @@ def pilot_checks(out):
     svc = fakes.FakeService(checkpoint_samplers=[sampler], base=fakes.ScriptedSampler(fails, codec.target_ids))
     appr = os.path.join(out, "approvals-pilot.json")
     with open(appr, "w", encoding="utf-8") as fh:
-        json.dump({"approvals": [{"run_id": "pilot-dry", "ceiling_usd": "0.50"}]}, fh)
+        json.dump({"approvals": [driver.approval_row("pilot-dry", "0.50", pilot)]}, fh)
     run_ = driver.start_run("pilot-dry", appr, pilot, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
     sub = os.path.join(out, "pilot")
     os.makedirs(sub, exist_ok=True)
@@ -159,15 +159,19 @@ def pilot_checks(out):
           receipts.bodies(rt.receipts_path)[-1].get("kind") == "pilot")
     check("pilot: a run started for the full plan cannot run the pilot",
           refused(driver.DriverError, lambda: driver.run_pilot(
-              driver.start_run("pilot-dry2", _approve(out, "pilot-dry2"), big, cost.Counter(rule_only=True),
+              driver.start_run("pilot-dry2", _approve(out, "pilot-dry2", big), big, cost.Counter(rule_only=True),
                                fakes.FakeService(), fakes.FakeTypes),
               rt, codec, "pilot-dry2", pilot, {}, big)))
+    check("pilot: a run id approved for the pilot plan cannot start the full plan",
+          refused(tinker_backend.ApprovalError, lambda: driver.start_run(
+              "pilot-dry3", _approve(out, "pilot-dry3", pilot), big, cost.Counter(rule_only=True),
+              fakes.FakeService(), fakes.FakeTypes)))
 
 
-def _approve(out, run_id):
+def _approve(out, run_id, plan):
     path = os.path.join(out, "approvals-%s.json" % run_id)
     with open(path, "w", encoding="utf-8") as fh:
-        json.dump({"approvals": [{"run_id": run_id, "ceiling_usd": "50.00"}]}, fh)
+        json.dump({"approvals": [driver.approval_row(run_id, "50.00", plan)]}, fh)
     return path
 
 
@@ -293,27 +297,37 @@ def _run(out, record):
 
     # 9. the paid backend, with a fake client
     appr = os.path.join(out, "approvals.json")
-    with open(appr, "w", encoding="utf-8") as fh:
-        json.dump({"approvals": [{"run_id": "some-other-run", "ceiling_usd": "10.00"}]}, fh)
+
+    def approve(run_id, ceiling, plan_id="plan-1"):
+        with open(appr, "w", encoding="utf-8") as fh:
+            json.dump({"approvals": [{"run_id": run_id, "ceiling_usd": ceiling, "plan": "test", "plan_id": plan_id}]}, fh)
+
+    def start(run_id, plan_tokens, plan_id="plan-1", **kw):
+        return tinker_backend.TinkerRun(run_id, appr, plan_tokens, "test", plan_id, fakes.FakeService(),
+                                        fakes.FakeTypes, **kw)
+
+    approve("some-other-run", "10.00")
     plan = {"train": 1000000, "prefill": 100000, "sample": 100000}
     check("the paid backend refuses an unapproved run id",
-          refused(tinker_backend.ApprovalError,
-                  lambda: tinker_backend.TinkerRun("dryrun-1", appr, plan, fakes.FakeService(), fakes.FakeTypes)))
-    with open(appr, "w", encoding="utf-8") as fh:
-        json.dump({"approvals": [{"run_id": "dryrun-1", "ceiling_usd": "0.50"}]}, fh)
+          refused(tinker_backend.ApprovalError, lambda: start("dryrun-1", plan)))
+    approve("dryrun-1", "0.50")
     check("the paid backend refuses a budget at or over the ceiling",
-          refused(tinker_backend.BudgetError,
-                  lambda: tinker_backend.TinkerRun("dryrun-1", appr, plan, fakes.FakeService(), fakes.FakeTypes)))
-    ok = tinker_backend.TinkerRun("dryrun-1", appr, {"train": 1000, "prefill": 1000, "sample": 1000},
-                                  fakes.FakeService(), fakes.FakeTypes)
-    check("the paid backend starts with approval and a budget under the ceiling", ok.budget < ok.meter.ceiling)
-    ok.meter.reserve("train", 100000)
+          refused(tinker_backend.BudgetError, lambda: start("dryrun-1", plan)))
+    check("the paid backend refuses a plan other than the one the approval names",
+          refused(tinker_backend.ApprovalError, lambda: start("dryrun-1", {"train": 1000, "prefill": 1000, "sample": 1000},
+                                                              plan_id="plan-2")))
     small = {"train": 1000, "prefill": 1000, "sample": 1000}
+    ok = start("dryrun-1", small)
+    check("the paid backend starts with approval and a budget under the ceiling", ok.budget < ok.meter.ceiling)
+    check("a second holder of the same ledger is refused while the first holds the lock",
+          refused(tinker_backend.ApprovalError, lambda: start("dryrun-1", small, resume=True)))
+    ok.meter.reserve("train", 100000)
+    ok.close()
     check("the paid backend refuses a restart of a started run id unless resume is given",
-          refused(tinker_backend.ApprovalError,
-                  lambda: tinker_backend.TinkerRun("dryrun-1", appr, small, fakes.FakeService(), fakes.FakeTypes)))
-    again = tinker_backend.TinkerRun("dryrun-1", appr, small, fakes.FakeService(), fakes.FakeTypes, resume=True)
+          refused(tinker_backend.ApprovalError, lambda: start("dryrun-1", small)))
+    again = start("dryrun-1", small, resume=True)
     check("a resumed run counts the spend already in the ledger", again.meter.spent == ok.meter.spent > 0)
+    again.close()
 
     bad_checks = [n for n, good in CHECKS if not good]
     print()

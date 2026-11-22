@@ -52,6 +52,19 @@ class RealLayoutTests(unittest.TestCase):
         self.assertTrue(all(self.tk.is_special_token(i) for i in ids))
         self.assertEqual(self.r.stop(), [c.eos])
 
+    def test_any_other_special_id_in_a_reply_opens_a_new_block_and_breaks_the_format(self):
+        import evaluate as V
+        answer = self.c.target_ids("x0 = 1")[:-1]
+        others = [self.c._special(n) for n in ("content_xml", "content_invoke_tool_json", "message_tool", "endoftext",
+                                               "content_tool_error")]
+        for i in others:
+            self.assertNotIn(i, self.c._marker_names)
+            self.assertTrue(self.tk.is_special_token(i))
+            self.assertTrue(self.c.opens_new_block([i] + answer + [self.c.end]), i)
+            self.assertTrue(self.c.opens_new_block(answer + [i, self.c.end]), i)
+            self.assertFalse(self.c.opens_new_block(answer + [self.c.end, i]), i)
+            self.assertEqual(V.parse_reply(self.c.reply(answer + [i], 96)[0], 1)[0], None, i)
+
     def test_literal_marker_text_is_not_the_special_id(self):
         ordinary = self.tk.encode_ordinary("<|end_message|>")
         self.assertNotIn(self.c.end, ordinary)

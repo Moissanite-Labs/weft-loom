@@ -26,7 +26,7 @@ Here every arm answers under the same cap with answer text only. The prompt of e
 - Two training seeds (choice). Each trains its own three adapters, one per trained text.
 - Chat layout: role and end markers are special tokens, not text. Prompts and targets are built by codec.py and checked id for id against the tml_renderers Inkling2 renderer (measurement, tests/test_layout_real.py). Every prompt ends with the forced opening, the model role marker followed by the text content marker, which carries no loss. The target is the reply followed by the end marker.
 - The renderer has no form of its completion prompt that ends with the opening. The offline check therefore compares the prompt with the renderer's completion prompt plus the two opening ids, and compares the prompt and target together with the renderer's own SFT ids of the whole turn.
-- System line: `Thinking effort level: 0`, the text the renderer writes for effort 0.0 (choice). The model card says minimum effort does not fully disable reasoning, and the local measurements below show that no switch turns it off. The forced opening below is the control.
+- System line: `Thinking effort level: 0`, the text the renderer writes for effort 0.0 (choice). The model card says minimum effort does not fully disable reasoning, and none of the four switches tried locally turned it off (see "What the local model did"). The forced opening below is the control.
 - Sampling: greedy, temperature 0.0, one sample per episode (choice).
 - Stop tokens: both end_message and content_model_end_sampling (choice). The renderer's own stop is content_model_end_sampling alone. Stopping on end_message as well ends the reply at the end of the model's message.
 
@@ -110,19 +110,27 @@ A reply that had to be cut at the cap is counted as a format break even if the c
 
 ## The forced opening and the thinking block
 
-Every prompt that is sampled from ends with the model's turn opened for an answer: the model role marker followed by the text content marker (choice). This holds for every adapter, every text, the untrained baseline and the pilot. The plan does not rely on training to make an adapter answer directly, and an adapter that sometimes opens a thinking block cannot lose replies to the cap for that reason.
+Every prompt that is sampled from ends with the model's turn opened for an answer: the model role marker followed by the text content marker (choice). This holds for every adapter, every text, the untrained baseline and the pilot.
 
-A reply that opens a block of its own, shown by any marker id before the end marker such as a thinking marker, is written into the stored text as `<|name|>`, so it breaks the reply grammar. The pilot counts such replies.
+The plan does not rely on training to make an adapter answer directly, and an adapter that sometimes opens a thinking block cannot lose replies to the cap for that reason.
+
+A reply that opens a block of its own, shown by any marker id or other special id of the tokenizer before the end marker, such as a thinking marker, is written into the stored text as `<|name|>`, so it breaks the reply grammar. The pilot counts such replies.
+
+The layout's own markers are counted by name, and any other special id by the tokenizer's own test (`is_special_token`, checked in tests/test_layout_real.py for content_xml, content_invoke_tool_json, message_tool, endoftext and content_tool_error).
 
 ### What the local model did
 
-These are exploratory measurements, made for free on 2026-11-21 and 2026-11-22 with a local quantised copy of the model (Q8_0, llama.cpp tag b12613), which is not the model the service runs.
+These are exploratory measurements, made for free on 2026-11-21 and 2026-11-22 (UTC) with a local quantised copy of the model (a Q8_0 file and llama.cpp tag b12613, both taken from the local setup notes, which are not committed), which is not the model the service runs. The logs, request scripts and the script that prints the numbers below are committed in `local-baseline/` (`logs/`, `facts.py`, `facts.txt`, `summary.json`, `results.jsonl`).
 
-They use the pilot evaluation seeds only (tier S 310000 to 310049, tier M 360000 to 360049), one greedy run, and a text layout built locally that gave the same token ids as codec.py on 15 prompts. The files are in `local-baseline/`.
+Paths of the local machine are removed from the committed copies.
 
-The untrained model always opens a thinking block before its answer. Four switches failed to turn that off: the server's reasoning flag, reasoning_effort none in the request, the same as a template argument, and enable_thinking false. On a puzzle-shaped request with a cap of 96 tokens it never reached an answer, in 5 of 5 tries.
+They use the pilot evaluation seeds only (tier S 310000 to 310049, tier M 360000 to 360049), one greedy run, and a text layout built locally that gave the same token ids as codec.py on 15 prompts (`logs/baseline-stdout.txt`).
 
-A one-line arithmetic question did reach its answer in 82 tokens. With a cap of 1500 tokens it wrote about 570 tokens and answered one test puzzle correctly.
+In the calls that left the opening to the model, it opened a thinking block every time: the 60 free-reasoning calls each had at least 531 thinking tokens (`facts.txt`), and the 7 calls of the two smoke runs each returned reasoning text (`logs/smoke.out`, `logs/smoke2.out`). That is 67 calls.
+
+None of the four switches tried turned the thinking block off: the server's reasoning flag, reasoning_effort none in the request, the same as a template argument, and enable_thinking false. In 5 tries at a cap of 96 tokens on a puzzle-shaped request (those four and the default) the model never reached an answer. Five tries are too few to say how often it would.
+
+A one-line arithmetic question did reach its answer in 82 tokens. With a cap of 1500 tokens it wrote 569 tokens and answered one test puzzle correctly (`facts.txt`, `logs/smoke.out`, `logs/smoke2.out`).
 
 With the answer block forced and a cap of 96 tokens, passed out of 50 per cell:
 
@@ -140,15 +148,18 @@ Paired over the 100 episodes, text C against text B: only C passed 4, only B pas
 
 Free reasoning is a different compute budget, so it is a reference line only and is never compared with the capped arms. With up to 2000 tokens on texts B and C, on the first 15 episodes of each tier, the model passed 15 of 15 in tier S for both texts, with a median of 773 (B) and 751 (C) generated tokens.
 
-In tier M it passed 5 of 15 (B) and 4 of 15 (C). Reasoning ran past 2000 tokens before any answer in 8 (B) and 10 (C) of those calls.
+In tier M it passed 5 of 15 (B) and 4 of 15 (C). Reasoning ran past 2000 tokens before any answer in 8 (B) and 10 (C) of those calls, and 2 (B) and 1 (C) more calls were cut by the limit with a partial answer, so 5 + 8 + 2 and 4 + 10 + 1 make 15 each.
 
-That run was stopped at its time budget after 60 of 80 planned calls. 
+That run was stopped at its time budget after 60 of 80 planned calls.
 
-A call took about 3.3 seconds with the answer forced and about 71 seconds with free reasoning.
+A call took about 3.3 seconds with the answer forced and about 71 seconds with free reasoning. At the local 3.305 seconds, the 21,000 sampling calls of the full plan would take 19.28 hours, which is above the 12 hour time gate of the pilot (arithmetic, `facts.txt`). The service's speed is not known, and a local quantised copy on one laptop says nothing certain about it.
+
+A no-go on this gate is a live outcome, and the section "After the pilot" says what follows.
 
 What this shows and does not show:
 
-- Under the cap, the untrained model does not use the amounts. Text C passes as often as text B, and the texts with wrong amounts (E) and flipped signs (N) pass about as often.
+- Under the cap, the untrained model showed no difference between text C and text B: 4 episodes passed only with C and 4 only with B, among 100. Eight discordant episodes are too few to detect a moderate effect, so this does not show that the model ignores the amounts.
+- The texts with wrong amounts (E) and flipped signs (N) passed about as often as C. That is consistent with no use of the amounts, and it is not a test of it.
 - The capped pass rates are neither at the floor nor at the ceiling, between 14 and 42 percent for B, C, E and N in each tier. Only text A in tier M is at 0 of 50.
 - It does not test the hypothesis, which is about what training adds. It is one run of 50 episodes per cell on a quantised copy, and the service's model may behave differently.
 
@@ -172,12 +183,14 @@ Items 1 and 2 count only if the comparison can test the claim (choice, as in the
 
 Otherwise the verdict for that seed and set is `cannot_test`, which is not `not_supported`: the set could not show a difference whatever the truth is. Item 3 is a no-harm gate and has no such condition. In the code these are `GATES` in driver.py, and `judge` gives one verdict per seed and set:
 
-1. Item 1 first. Not testable gives `cannot_test`. Testable and not won gives `not_supported`.
-2. Item 2 the same way.
-3. Item 3: if C breaks the format more often at 1/40, `not_supported`.
+1. Item 3 first: if C breaks the format more often at 1/40, `not_supported`. Item 3 has no testability condition, so a format harm gives `not_supported` even when item 1 or item 2 could not be tested.
+2. Item 1. Not testable gives `cannot_test`. Testable and not won gives `not_supported`.
+3. Item 2 the same way.
 4. Otherwise `support`.
 
-The overall verdict is `support` only if every seed and set that was run gives `support`. It is `not_supported` if any testable item failed. It is `cannot_test` only when no testable item failed and at least one could not be tested. When item 2 cannot be tested because few episodes are in the stratum, the result is `cannot_test` and not support, even if item 1 holds.
+This one ordered procedure is the decision rule, and the code follows it (`judge` in driver.py, with a test for a format harm when item 1 or item 2 cannot be tested).
+
+The overall verdict is `support` only if every seed and set that was run gives `support`. It is `not_supported` if any testable item failed (item 3 is always testable). It is `cannot_test` only when no testable item failed and at least one could not be tested. When item 2 cannot be tested because few episodes are in the stratum, the result is `cannot_test` and not support, even if item 1 holds.
 
 ### The E, N and B controls
 
@@ -247,7 +260,17 @@ If spending reaches the ceiling, the run stops before the call that would reach 
 
 The spend is kept in an append-only ledger, written and flushed to disk before each call and settled after it. A new process for the same run id reads the ledger and counts all earlier spend against the ceiling.
 A run id that has already started refuses to start again unless the owner asks for a resume, the plan must be the same plan (a hash of the whole plan is stored), a restart runs the plan again from the start, and the whole plan must fit under what is left of the ceiling. A service that returns more tokens than the limit asked for is counted in full and then stops the run.
-The ceiling is therefore a total for the run id across restarts. The approvals file and the ledger belong to the owner's write area in a real run, and the code cannot enforce that.
+The ceiling is therefore a total for the run id across restarts.
+
+Two limits of the ledger are closed in code and stated here. At most one process may hold a ledger: a run takes an exclusive lock (`flock`, macOS and Linux) on a lock file beside the ledger from its start until it is closed or the process ends, and a second process is refused.
+
+Without the lock, two live processes on one run id each kept their own spend in memory and both spent up to the ceiling (a test now starts a second real process against a live one and shows the refusal). The ledger path is always the approvals file's path plus `.spend.jsonl`, and a run cannot name another one.
+
+Two copies of the approvals file in two places make two ledgers, so the owner keeps one approvals file for a run.
+
+One loss is accepted. An overrun, where the service returns more tokens than the limit asked for, is written to the ledger after the call, so a crash between the call and that write loses the extra tokens of that one overrun from the ledger. A service that ignores `max_tokens` is already a fault, and the loss is only the overrun.
+
+The approvals file and the ledger belong to the owner's write area in a real run, and the code cannot enforce that.
 
 ## Spend
 
@@ -264,18 +287,34 @@ The sampling figure assumes the full cap plus the end marker is sampled for ever
 
 The pilot has one job. It checks the chat layout, the tokenizer, the step time, the time per sampling call and the format-break rate before any larger spend. Its results are not part of the registered result and its episodes are not reused.
 
-The pilot has its own run id, its own ceiling and its own code path (run_pilot in driver.py): a run started for the pilot plan cannot run the full plan, and the reverse. It trains one adapter on text C, evaluates the untrained model and the adapter on the pilot's 100 evaluation episodes (training-range seeds, never a held-out set) in text C, and writes its measurements as one receipt.
+The pilot has its own run id, its own ceiling and its own code path (run_pilot in driver.py): a run started for the pilot plan cannot run the full plan, and the reverse.
+
+Each row of the approvals file names the plan it approves, by name and by the fingerprint of the plan, and a run for any other plan is refused, so an id the owner approved for the pilot cannot run the full plan, and an id approved for the full plan cannot be used for the pilot.
+
+Only `start_run` counts a plan's tokens, and `run_registered` and `run_pilot` refuse a run it did not count for the plan given. It trains one adapter on text C, evaluates the untrained model and the adapter on the pilot's 100 evaluation episodes (training-range seeds, never a held-out set) in text C, and writes its measurements as one receipt.
 Its gates, all required for a go (choices):
 
 | Gate | Pass if |
 |---|---|
 | Forced opening | the service accepted every one of the 200 calls, whose prompts end with the forced opening (no call was refused, and each returned one sequence) |
-| New blocks | at most 5 percent of the 200 sampled replies open a block of their own (a marker id before the end marker, such as a thinking block) |
+| New blocks | at most 5 percent of the 200 sampled replies open a block of their own (a marker id or other special id before the end marker, such as a thinking block) |
 | Format | the adapter breaks the format in 20 percent or fewer of its 100 replies |
 | Testable | the adapter's pass rate on the 100 episodes is above 5 percent and below 95 percent |
 | Time | the sampling time per call times the 21,000 calls of the full plan, plus the step time times its 384 steps, is at most 12 hours |
 
-The call and step counts come from the plan (driver.plan_calls). The offline layout check against the renderer is a separate test and does not replace the first two gates, which measure what the service does. A service that refused the forced opening would raise an error in the call and stop the pilot, so the first gate records that no call failed.
+The call and step counts come from the plan (driver.plan_calls). The pilot gate on time uses the service's own speed. The local figures are in "What the local model did". The offline layout check against the renderer is a separate test and does not replace the first two gates, which measure what the service does.
+
+A service that refused the forced opening would raise an error in the call and stop the pilot, so the first gate records that no call failed.
+
+## After the pilot
+
+The go is the owner's call, and the code does not enforce it: `run_registered` reads no pilot receipt and checks no go flag. The pilot writes its measurements and the five gate results as one receipt (`kind` pilot, with `go` 1 or 0) in its own chain. The owner reads that receipt, and approves a run id for the full plan, with its own ceiling, only after a go.
+
+The full run must not start after a no-go. A no-go means the plan is amended before anything else is spent: the amendment goes in the dated amendments section, names the gate that failed, the change and the reason, and the amended plan has a new fingerprint.
+
+The pilot is then run again, under a new pilot run id with its own approval, and the full run is approved only after a go of that rerun. No gate threshold is changed to turn a no-go into a go except by such an amendment, written before the rerun.
+
+What an amendment may weigh for the time gate is fewer sampling calls (which changes the power table) or a longer time gate with a stated reason. Neither is decided here.
 
 ## Gates
 
@@ -288,7 +327,7 @@ The exact checker is the only judge. The paid backend refuses to start without a
 Every reply is stored whole, with its episode id and cut flag, in a replies file beside the chain, and the receipt names it by hash. Before any decision the replies are rescored with the exact checker on episodes rebuilt from their seeds, and the counts must match. A result that no evaluation produced cannot be decided on unless replies exist that give it.
 Invented replies would still pass this check, and the check proves only that the recorded outcomes follow from the recorded replies.
 
-The approvals file is written by the owner outside the agent's write area, with the run id and the ceiling.
+The approvals file is written by the owner outside the agent's write area, with the run id, the ceiling and the plan the run is approved for.
 
 ## Revision notes
 
@@ -314,12 +353,24 @@ Changes made after a second independent review on 2026-11-21, before any registr
 
 Changes made on 2026-11-22, before any registration, after the local measurements above:
 
-- The prompt of every sampled arm now ends with the forced opening (the model role marker and the text content marker). The untrained model always opens a thinking block and no switch turns it off.
+- The prompt of every sampled arm now ends with the forced opening (the model role marker and the text content marker). The untrained model opened a thinking block in every local call that left the opening to it, and none of the four switches tried turned it off.
 - Before this change the plan left the opening for the model to write. An untrained baseline would have scored zero for a reason unrelated to the question, and an adapter that opened a thinking block would have lost replies to the cap.
 - In training the two opening ids are part of the prompt without loss, and the target is the reply followed by the end marker.
 - The pilot gate that 95 percent of replies begin with the model's own turn opening is replaced by two gates: the service accepted the forced opening, and at most 5 percent of replies open a block of their own.
 - The exploratory baseline is defined: the untrained model on each text with the same forced opening and cap. A free-reasoning baseline is a reference line only.
 - A section on the thinking block records the local measurements, marked exploratory. Costs, test counts and dry-run counts were recomputed.
+
+Changes made on 2026-11-22 (UTC), before any registration, after a third independent review:
+
+- The spend ceiling now holds for concurrent processes and for a restart that names another ledger. A run holds an exclusive lock on a lock file beside the ledger, and the ledger path can no longer be chosen by the caller. The accepted loss of an overrun on a crash is stated.
+- Each approvals row names the plan and its fingerprint, and a run for another plan is refused. Only `start_run` counts a plan's tokens, and the two run functions refuse a run it did not count for the plan given. Before this, an id approved for the pilot could start the full plan, and the reverse.
+- A new section "After the pilot" says who acts on a pilot's go or no-go and what follows a no-go. Before, the gates were "all required for a go" with no consequence written.
+- The decision rule is now one ordered procedure. Item 3 is read first, so a format harm gives `not_supported` even when item 1 or item 2 cannot be tested. Before, the ordered list and the sentence under it gave different verdicts for that case, and the code followed the list.
+- The sampling responder that sent plain chat messages (`local_backend.py`, with its tests and mutations) is removed. It did not use the forced opening, and the baseline script never used it.
+- Every number of the local section now has a committed source: the smoke logs, the baseline's standard output and a script, `local-baseline/facts.py`, with its output.
+- The wording of the local section says only what the data show: no difference between C and B among 8 discordant episodes, a thinking block in every call that left the opening to the model, and none of four switches turned it off.
+- The free-reasoning cuts in tier M are added, the dates are given in UTC, and the projected sampling time at the local speed is printed.
+- The pilot's new-block count now covers any special id of the tokenizer, not only the seven named markers.
 
 ## Statement
 

@@ -1,0 +1,13 @@
+template chars: 6867
+mentions: ['<|content_image|>', '<|content_invoke_tool_json|>', '<|content_model_end_sampling|>', '<|content_text|>', '<|content_thinking|>', '<|content_xml|>', '<|end_message|>', '<|message_model|>', '<|message_system|>', '<|message_tool|>', '<|message_user|>', 'effort', 'reasoning_effort', 'thinking']
+--- A default, cap 96
+finish: length | completion_tokens: 96 | reasoning chars: 241 | content: ''
+--- B reasoning_effort none, cap 96
+finish: length | completion_tokens: 96 | reasoning chars: 241 | content: ''
+--- C template kwarg reasoning_effort none, cap 96
+finish: length | completion_tokens: 96 | reasoning chars: 279 | content: ''
+--- D template kwarg enable_thinking false, cap 96
+finish: length | completion_tokens: 96 | reasoning chars: 241 | content: ''
+--- E default, cap 1500
+finish: stop | completion_tokens: 569 | reasoning chars: 1439 | content: 'x0 = -1\nx1 = -1\nx2 = 0'
+stopped

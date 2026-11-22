@@ -59,11 +59,18 @@ class Fixture(unittest.TestCase):
         b = self.mixed(self.win1, self.fail1, b_wins) + self.mixed(self.win2, self.fail2, b_wins)
         return c, b
 
-    def approvals(self, run_id="run-d", ceiling="5.00"):
+    def approvals(self, run_id="run-d", ceiling="5.00", plan=None):
         path = os.path.join(self.dir, "approvals.json")
         with open(path, "w") as fh:
-            json.dump({"approvals": [{"run_id": run_id, "ceiling_usd": ceiling}]}, fh)
+            json.dump({"approvals": [D.approval_row(run_id, ceiling, self.plan if plan is None else plan)]}, fh)
         return path
+
+    def start_run(self, *args, **kw):
+        """D.start_run, then the run's lock is dropped at once, as if its process had ended: a
+        test may start the same run id again. The run's meter still works."""
+        run = D.start_run(*args, **kw)
+        run.close()
+        return run
 
     def service(self, c_replies, b_replies=None, a_replies=None, base=None):
         """c_replies: the C adapter's scripted texts for seed 0 and seed 1 (same list)."""
@@ -83,7 +90,7 @@ class Fixture(unittest.TestCase):
 
     def run_registered(self, svc, run_id="run-d", ratchet=None):
         counter = cost.Counter(rule_only=True)
-        run = D.start_run(run_id, self.approvals(run_id), self.plan, counter, svc, fakes.FakeTypes)
+        run = self.start_run(run_id, self.approvals(run_id), self.plan, counter, svc, fakes.FakeTypes)
         rt = ratchet or self.ratchet()
         summary = D.run_registered(run, rt, self.codec, run_id, self.plan, {"cap": CAP}, DECISION)
         return summary, run, rt
@@ -92,7 +99,7 @@ class Fixture(unittest.TestCase):
 class TrainArmTests(Fixture):
     def test_batches_steps_and_loss_only_on_the_target(self):
         svc = fakes.FakeService()
-        run = D.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
+        run = self.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
         train = E.build_set("train", {"S": 32, "M": 32})
         steps = D.train_arm(run, "C-s0", self.codec, train, "C", 0)
         self.assertEqual(steps, 2)
@@ -108,7 +115,7 @@ class TrainArmTests(Fixture):
                 return super().forward_backward(data, loss_fn)
         svc = fakes.FakeService()
         svc.create_lora_training_client = lambda **kw: svc.clients.append(Spy()) or svc.clients[-1]
-        run = D.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
+        run = self.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
         train = E.build_set("train", {"S": 32})
         D.train_arm(run, "B-s0", self.codec, train, "B", 0)
         self.assertEqual(len(seen), 32)
@@ -134,7 +141,7 @@ class TrainArmTests(Fixture):
                 return super().forward_backward(data, loss_fn)
         svc = fakes.FakeService()
         svc.create_lora_training_client = lambda **kw: svc.clients.append(Spy()) or svc.clients[-1]
-        run = D.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
+        run = self.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
         train = E.build_set("train", {"S": 32, "M": 32})
         D.train_arm(run, "C-s0", self.codec, train, "C", 0)
         order = D.shuffled_order(64, 0, "C-s0")
@@ -156,7 +163,7 @@ class TrainArmTests(Fixture):
 
     def test_partial_batches_are_refused(self):
         svc = fakes.FakeService()
-        run = D.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
+        run = self.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
         for n in (0, 33):
             train = E.EpisodeSet("train", {}, E.build_set("train", {"S": 40}).episodes[:n])
             with self.assertRaises(D.DriverError):
@@ -165,7 +172,7 @@ class TrainArmTests(Fixture):
 
     def test_training_stops_at_the_ceiling_before_the_call(self):
         svc = fakes.FakeService()
-        run = D.start_run("run-d", self.approvals(ceiling="5.00"), self.plan, cost.Counter(rule_only=True), svc,
+        run = self.start_run("run-d", self.approvals(ceiling="5.00"), self.plan, cost.Counter(rule_only=True), svc,
                           fakes.FakeTypes)
         run.meter.spent = run.meter.ceiling - Fraction(1, 10**6)
         with self.assertRaises(T.BudgetStop):
@@ -175,7 +182,7 @@ class TrainArmTests(Fixture):
 
 class StartRunTests(Fixture):
     def test_the_plan_is_computed_from_cost_for_this_configuration(self):
-        run = D.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), fakes.FakeService(),
+        run = self.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), fakes.FakeService(),
                           fakes.FakeTypes)
         totals, _ = cost.plan_counts(self.plan, cost.Counter(rule_only=True))
         self.assertEqual(run.budget, T.planned_cost(totals))
@@ -183,12 +190,12 @@ class StartRunTests(Fixture):
 
     def test_a_ceiling_below_the_plan_refuses_to_start(self):
         with self.assertRaises(T.BudgetError):
-            D.start_run("run-d", self.approvals(ceiling="0.01"), self.plan, cost.Counter(rule_only=True),
+            self.start_run("run-d", self.approvals(ceiling="0.01"), self.plan, cost.Counter(rule_only=True),
                         fakes.FakeService(), fakes.FakeTypes)
 
     def test_an_unapproved_run_id_refuses_to_start(self):
         with self.assertRaises(T.ApprovalError):
-            D.start_run("other", self.approvals("run-d"), self.plan, cost.Counter(rule_only=True),
+            self.start_run("other", self.approvals("run-d"), self.plan, cost.Counter(rule_only=True),
                         fakes.FakeService(), fakes.FakeTypes)
 
     def test_a_tokenizer_that_does_not_fit_is_refused(self):
@@ -362,7 +369,7 @@ class RegisteredRunTests(Fixture):
     def test_the_run_stops_at_the_ceiling_with_nothing_decided(self):
         svc, _ = self.service(self.c_good())
         counter = cost.Counter(rule_only=True)
-        run = D.start_run("run-d", self.approvals(ceiling="5.00"), self.plan, counter, svc, fakes.FakeTypes)
+        run = self.start_run("run-d", self.approvals(ceiling="5.00"), self.plan, counter, svc, fakes.FakeTypes)
         run.meter.ceiling = Fraction(1, 100)
         rt = self.ratchet()
         with self.assertRaises(T.BudgetStop):
@@ -445,6 +452,15 @@ class GateTests(Fixture):
         self.assertEqual(D.judge(cmp_of(self.good(), few))[0], "cannot_test")
         self.assertIn("stratum", D.judge(cmp_of(self.good(), few))[1])
         self.assertFalse(D.conditions_met(cmp_of(few, few)))
+
+    def test_a_format_harm_is_not_supported_even_when_item_1_or_2_cannot_be_tested(self):
+        few = side(7, 0, 40, 33)
+        for first, second in ((few, self.good()), (self.good(), few), (few, few)):
+            verdict, why = D.judge(cmp_of(first, second, fmt_better=True))
+            self.assertEqual(verdict, "not_supported")
+            self.assertIn("format", why)
+        self.assertEqual(D.judge(cmp_of(few, self.good(), fmt_better=False))[0], "cannot_test")
+        self.assertEqual(D.overall_verdict([D.judge(cmp_of(few, few, fmt_better=True))[0]]), "not_supported")
 
     def test_a_lost_pass_test_is_not_supported_even_if_the_stratum_cannot_be_tested(self):
         self.assertEqual(D.judge(cmp_of(side(20, 20, 50, 50), side(2, 0, 50, 48)))[0], "not_supported")
@@ -533,7 +549,7 @@ class PlanTests(Fixture):
             self.assertNotEqual(D.plan_fingerprint(p), D.plan_fingerprint(base), field)
 
     def test_start_run_ties_the_run_to_its_plan_and_writes_it_in_the_ledger(self):
-        run = D.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), fakes.FakeService(),
+        run = self.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), fakes.FakeService(),
                           fakes.FakeTypes)
         self.assertEqual(run.plan_id, D.plan_fingerprint(self.plan))
         with open(self.dir + "/approvals.json.spend.jsonl") as fh:
@@ -541,27 +557,85 @@ class PlanTests(Fixture):
 
     def test_start_run_restart_needs_resume_and_the_same_plan(self):
         counter = cost.Counter(rule_only=True)
-        D.start_run("run-d", self.approvals(), self.plan, counter, fakes.FakeService(), fakes.FakeTypes)
+        other = cost.full_plan(64, 2, CAP, heldout_per_tier=11)
+        self.start_run("run-d", self.approvals(), self.plan, counter, fakes.FakeService(), fakes.FakeTypes)
         with self.assertRaises(T.ApprovalError):
-            D.start_run("run-d", self.approvals(), self.plan, counter, fakes.FakeService(), fakes.FakeTypes)
-        with self.assertRaises(T.ApprovalError):
-            D.start_run("run-d", self.approvals(), cost.full_plan(64, 2, CAP, heldout_per_tier=11), counter,
-                        fakes.FakeService(), fakes.FakeTypes, resume=True)
-        run = D.start_run("run-d", self.approvals(), self.plan, counter, fakes.FakeService(), fakes.FakeTypes,
-                          resume=True)
+            self.start_run("run-d", self.approvals(), self.plan, counter, fakes.FakeService(), fakes.FakeTypes)
+        with self.assertRaises(T.ApprovalError) as cm:           # approved for the other plan, but not the plan that started
+            self.start_run("run-d", self.approvals(plan=other), other, counter, fakes.FakeService(), fakes.FakeTypes,
+                           resume=True)
+        self.assertIn("different plan", str(cm.exception))
+        run = self.start_run("run-d", self.approvals(), self.plan, counter, fakes.FakeService(), fakes.FakeTypes,
+                             resume=True)
         self.assertEqual(run.plan_id, D.plan_fingerprint(self.plan))
 
-    def test_start_run_takes_a_ledger_path(self):
-        path = os.path.join(self.dir, "elsewhere.jsonl")
-        D.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), fakes.FakeService(),
-                    fakes.FakeTypes, ledger_path=path)
-        self.assertTrue(os.path.exists(path))
-        self.assertFalse(os.path.exists(self.dir + "/approvals.json.spend.jsonl"))
+    def test_start_run_cannot_name_a_ledger(self):
+        import inspect
+        self.assertNotIn("ledger_path", inspect.signature(D.start_run).parameters)
+        self.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), fakes.FakeService(),
+                       fakes.FakeTypes)
+        self.assertTrue(os.path.exists(self.dir + "/approvals.json.spend.jsonl"))
+
+    def test_the_approval_row_names_the_plan_and_its_fingerprint(self):
+        row = D.approval_row("run-d", "5.00", self.plan)
+        self.assertEqual(row, {"run_id": "run-d", "ceiling_usd": "5.00", "plan": "full",
+                               "plan_id": D.plan_fingerprint(self.plan)})
+
+    def test_an_id_approved_for_the_pilot_cannot_start_the_full_plan_and_the_reverse(self):
+        counter = cost.Counter(rule_only=True)
+        pilot = cost.pilot_plan(CAP)
+        full = cost.full_plan(2048, 2, CAP)
+        with self.assertRaises(T.ApprovalError):
+            self.start_run("pilot-2", self.approvals("pilot-2", ceiling="12.00", plan=pilot), full, counter,
+                           fakes.FakeService(), fakes.FakeTypes)
+        with self.assertRaises(T.ApprovalError):
+            self.start_run("full-1", self.approvals("full-1", ceiling="12.00", plan=full), pilot, counter,
+                           fakes.FakeService(), fakes.FakeTypes)
+        self.assertFalse(os.path.exists(self.dir + "/approvals.json.spend.jsonl"))     # nothing was started
+        self.start_run("pilot-2", self.approvals("pilot-2", ceiling="12.00", plan=pilot), pilot, counter,
+                       fakes.FakeService(), fakes.FakeTypes)
+
+    def test_a_run_built_by_hand_with_the_full_plans_fingerprint_is_not_accepted(self):
+        full = cost.full_plan(64, 2, CAP, heldout_per_tier=10)
+        run = T.TinkerRun("run-d", self.approvals(plan=full), {"train": 1, "prefill": 1, "sample": 1}, full.name,
+                          D.plan_fingerprint(full), fakes.FakeService(), fakes.FakeTypes)
+        run.close()
+        self.assertIsNone(getattr(run, "counted_plan", None))
+        with self.assertRaises(D.DriverError) as cm:
+            D.require_plan_run(run, full, "full")
+        self.assertIn("start_run", str(cm.exception))
+        with self.assertRaises(D.DriverError):
+            D.run_registered(run, self.ratchet(), self.codec, "run-d", full, {"cap": CAP}, DECISION)
+        self.assertEqual(run.meter.spent, 0)
+
+    def test_a_run_whose_plan_id_differs_from_the_plan_given_is_refused_even_if_marked(self):
+        other = cost.full_plan(64, 2, CAP, heldout_per_tier=11)
+        run = self.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), fakes.FakeService(),
+                             fakes.FakeTypes)
+        run.counted_plan = D.plan_fingerprint(other)          # marked for the other plan, started for this one
+        with self.assertRaises(D.DriverError) as cm:
+            D.require_plan_run(run, other, "full")
+        self.assertIn("different plan", str(cm.exception))
+
+    def test_start_run_marks_the_run_with_the_plan_it_counted(self):
+        run = self.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), fakes.FakeService(),
+                             fakes.FakeTypes)
+        self.assertEqual(run.counted_plan, D.plan_fingerprint(self.plan))
+        D.require_plan_run(run, self.plan, "full")
+
+    def test_a_live_run_holds_the_lock_and_a_second_start_is_refused(self):
+        counter = cost.Counter(rule_only=True)
+        first = D.start_run("run-d", self.approvals(), self.plan, counter, fakes.FakeService(), fakes.FakeTypes)
+        self.addCleanup(first.close)
+        with self.assertRaises(T.ApprovalError) as cm:
+            D.start_run("run-d", self.approvals(), self.plan, counter, fakes.FakeService(), fakes.FakeTypes,
+                        resume=True)
+        self.assertIn("another process", str(cm.exception))
 
     def test_run_registered_refuses_a_run_started_for_another_plan(self):
         svc, _ = self.service(self.fail1 + self.fail2)
         small = cost.full_plan(64, 2, CAP, heldout_per_tier=5)
-        run = D.start_run("run-d", self.approvals(), small, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
+        run = self.start_run("run-d", self.approvals(plan=small), small, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
         rt = self.ratchet()
         with self.assertRaises(D.DriverError):
             D.run_registered(run, rt, self.codec, "run-d", self.plan, {"cap": CAP}, DECISION)
@@ -571,7 +645,7 @@ class PlanTests(Fixture):
     def test_run_registered_refuses_the_pilot_plan_before_any_spend(self):
         svc = fakes.FakeService()
         pilot = cost.pilot_plan(CAP)
-        run = D.start_run("run-d", self.approvals(), pilot, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
+        run = self.start_run("run-d", self.approvals(plan=pilot), pilot, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
         with self.assertRaises(D.DriverError) as cm:
             D.run_registered(run, self.ratchet(), self.codec, "run-d", pilot, {"cap": CAP}, DECISION)
         self.assertIn("full", str(cm.exception))
@@ -580,7 +654,7 @@ class PlanTests(Fixture):
     def test_run_pilot_refuses_the_full_plan_and_another_plans_run(self):
         svc = fakes.FakeService()
         counter = cost.Counter(rule_only=True)
-        run = D.start_run("run-d", self.approvals(), self.plan, counter, svc, fakes.FakeTypes)
+        run = self.start_run("run-d", self.approvals(), self.plan, counter, svc, fakes.FakeTypes)
         with self.assertRaises(D.DriverError):
             D.run_pilot(run, self.ratchet(), self.codec, "run-d", self.plan, {}, self.plan)
         pilot = cost.pilot_plan(CAP)
@@ -601,7 +675,7 @@ class PlanTests(Fixture):
         enc = self.codec.target_ids
         samplers = [fakes.ScriptedSampler(fails, enc) for _ in range(6)]
         svc = fakes.FakeService(checkpoint_samplers=samplers, base=fakes.ScriptedSampler(fails, enc))
-        run = D.start_run("run-d", self.approvals(), plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
+        run = self.start_run("run-d", self.approvals(plan=plan), plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
         summary = D.run_registered(run, self.ratchet(), self.codec, "run-d", plan, {"cap": CAP}, DECISION)
         ids = summary["base"]["A"].episode_ids
         self.assertEqual((ids[0], ids[10]), ("heldout1-M-450003", "heldout1-S-400003"))
@@ -623,7 +697,7 @@ class PlanTests(Fixture):
             self.assertEqual(rt.latch.touched(), [DECISION])
             svc2, _ = self.service(c, b_replies=b)
             counter = cost.Counter(rule_only=True)
-            run2 = D.start_run("run-d2", self.approvals("run-d2"), self.plan, counter, svc2, fakes.FakeTypes)
+            run2 = self.start_run("run-d2", self.approvals("run-d2"), self.plan, counter, svc2, fakes.FakeTypes)
             run2.meter.ceiling = total                  # the set-2 evaluations would reach it
             rt2 = self.ratchet("two")
             with self.assertRaises(T.BudgetStop):
@@ -695,7 +769,7 @@ class PilotTests(Fixture):
         return lambda: next(t)
 
     def start(self, svc):
-        run = D.start_run("pilot-1", self.approvals("pilot-1"), self.pilot, cost.Counter(rule_only=True), svc,
+        run = self.start_run("pilot-1", self.approvals("pilot-1", plan=self.pilot), self.pilot, cost.Counter(rule_only=True), svc,
                           fakes.FakeTypes)
         return run
 
@@ -804,7 +878,7 @@ class PilotTests(Fixture):
 class TimingTests(Fixture):
     def test_train_arm_records_each_step_time(self):
         svc = fakes.FakeService()
-        run = D.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
+        run = self.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
         ticks = iter(range(0, 10**9, 7))
         steps = []
         D.train_arm(run, "C-s0", self.codec, E.build_set("train", {"S": 32, "M": 32}), "C", 0, step_ns=steps,
@@ -813,7 +887,7 @@ class TimingTests(Fixture):
 
     def test_train_arm_without_a_list_records_nothing(self):
         svc = fakes.FakeService()
-        run = D.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
+        run = self.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
         self.assertEqual(D.train_arm(run, "C-s0", self.codec, E.build_set("train", {"S": 32}), "C", 0), 1)
 
     def test_a_timed_responder_passes_the_reply_through_and_records_each_call(self):

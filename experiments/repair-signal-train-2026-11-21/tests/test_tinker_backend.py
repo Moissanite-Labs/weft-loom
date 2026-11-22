@@ -1,6 +1,8 @@
 import json
 import os
 import re
+import subprocess
+import sys
 import tempfile
 import unittest
 from fractions import Fraction
@@ -13,6 +15,9 @@ import fakes
 import tinker_backend as T
 
 
+PID = "plan-fingerprint-1"
+
+
 class Base(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -20,12 +25,16 @@ class Base(unittest.TestCase):
         self.path = os.path.join(self.tmp.name, "approvals.json")
         self.plan = {"train": 100000, "prefill": 10000, "sample": 10000}   # $0.08 + $0.0015 + $0.005
 
-    def approve(self, run_id="run-1", ceiling="1.00", raw=None):
+    def approve(self, run_id="run-1", ceiling="1.00", raw=None, plan="test", plan_id=PID):
+        row = {"run_id": run_id, "ceiling_usd": ceiling, "plan": plan, "plan_id": plan_id}
         with open(self.path, "w") as fh:
-            fh.write(raw if raw is not None else json.dumps({"approvals": [{"run_id": run_id, "ceiling_usd": ceiling}]}))
+            fh.write(raw if raw is not None else json.dumps({"approvals": [row]}))
 
     def run_(self, run_id="run-1", plan=None, service=None):
-        return T.TinkerRun(run_id, self.path, self.plan if plan is None else plan, service or fakes.FakeService(), fakes.FakeTypes)
+        run = T.TinkerRun(run_id, self.path, self.plan if plan is None else plan, "test", PID,
+                          service or fakes.FakeService(), fakes.FakeTypes)
+        self.addCleanup(run.close)
+        return run
 
 
 class ApprovalTests(Base):
@@ -43,22 +52,26 @@ class ApprovalTests(Base):
                 self.run_()
 
     def test_ceiling_must_be_a_positive_exact_string(self):
-        for raw in ('{"approvals": [{"run_id": "run-1", "ceiling_usd": 1.5}]}',
-                    '{"approvals": [{"run_id": "run-1", "ceiling_usd": 5}]}',
-                    '{"approvals": [{"run_id": "run-1", "ceiling_usd": "0"}]}',
-                    '{"approvals": [{"run_id": "run-1", "ceiling_usd": "-1"}]}',
-                    '{"approvals": [{"run_id": "run-1", "ceiling_usd": "abc"}]}',
-                    '{"approvals": [{"run_id": "run-1", "ceiling_usd": "1/0"}]}'):
+        plan = '"plan": "test", "plan_id": "%s"' % PID           # everything else in the row is right
+        for raw in ('{"approvals": [{"run_id": "run-1", "ceiling_usd": 1.5, %s}]}',
+                    '{"approvals": [{"run_id": "run-1", "ceiling_usd": 5, %s}]}',
+                    '{"approvals": [{"run_id": "run-1", "ceiling_usd": "0", %s}]}',
+                    '{"approvals": [{"run_id": "run-1", "ceiling_usd": "-1", %s}]}',
+                    '{"approvals": [{"run_id": "run-1", "ceiling_usd": "abc", %s}]}',
+                    '{"approvals": [{"run_id": "run-1", "ceiling_usd": "1/0", %s}]}'):
+            raw = raw % plan
             self.approve(raw=raw)
             with self.assertRaises(T.ApprovalError, msg=raw):
                 self.run_()
+        self.approve(raw='{"approvals": [{"run_id": "run-1", "ceiling_usd": "1", %s}]}' % plan)
+        self.run_()
 
     def test_exact_run_id_match_only(self):
         self.approve("run-1")
         for rid in ("run-10", "RUN-1", "run-1 ", ""):
             with self.assertRaises(T.ApprovalError):
                 self.run_(rid)
-        self.assertEqual(T.load_ceiling(self.path, "run-1"), Fraction(1))
+        self.assertEqual(T.load_approval(self.path, "run-1").ceiling, Fraction(1))
 
     def test_refused_before_any_client_is_made(self):
         self.approve("other")
@@ -269,6 +282,7 @@ class RunTests(Base):
 
     def test_sampling_reserves_the_cap_and_stops_before_the_ceiling(self):
         self.approve(ceiling="0.0866")
+        self.run.close()                                  # setUp's run holds the lock
         os.remove(self.path + ".spend.jsonl")             # a fresh ledger: setUp already started this run id
         run = self.run_(service=fakes.FakeService())
         run.meter.spent = Fraction(8659, 100000)        # almost at the ceiling
@@ -298,9 +312,17 @@ class LedgerTests(Base):
         self.approve(ceiling="1.00")
         self.ledger = self.path + ".spend.jsonl"
 
-    def start(self, **kw):
+    def start(self, hold=False, **kw):
+        """A run on the ledger. Unless hold is true its lock is dropped at once, as if that
+        process had ended, so that the next start is not turned away. Its meter still works."""
         kw.setdefault("service", fakes.FakeService())
-        return T.TinkerRun("run-1", self.path, kw.pop("plan", self.plan), kw.pop("service"), fakes.FakeTypes, **kw)
+        plan_id = kw.pop("plan_id", PID)
+        run = T.TinkerRun("run-1", self.path, kw.pop("plan", self.plan), "test", plan_id, kw.pop("service"),
+                          fakes.FakeTypes, **kw)
+        self.addCleanup(run.close)
+        if not hold:
+            run.close()
+        return run
 
     def lines(self):
         with open(self.ledger) as fh:
@@ -311,18 +333,18 @@ class LedgerTests(Base):
             return fh.read()
 
     def test_a_start_and_each_reservation_and_refund_are_written(self):
-        run = self.start(plan_id="p1")
+        run = self.start()
         run.meter.reserve("sample", 100)
         run.meter.settle("sample", 100, 30)
         run.meter.reserve("train", 7)
         self.assertEqual(self.lines(), [
-            {"ev": "start", "plan_id": "p1", "run_id": "run-1"},
+            {"ev": "start", "plan_id": PID, "run_id": "run-1"},
             {"ev": "reserve", "kind": "sample", "run_id": "run-1", "tokens": 100},
             {"ev": "adjust", "kind": "sample", "run_id": "run-1", "tokens": -70},
             {"ev": "reserve", "kind": "train", "run_id": "run-1", "tokens": 7}])
         spent, tokens, starts, plan_id = T.Ledger(self.ledger, "run-1").replay()
         self.assertEqual((spent, tokens["sample"], tokens["train"], starts, plan_id),
-                         (run.meter.spent, 30, 7, 1, "p1"))
+                         (run.meter.spent, 30, 7, 1, PID))
 
     def test_an_overrun_is_written_as_extra_tokens(self):
         run = self.start()
@@ -347,9 +369,9 @@ class LedgerTests(Base):
         self.assertEqual(seen, [["start", "reserve"]])
 
     def test_a_second_process_counts_what_the_first_spent(self):
-        first = self.start(plan_id="p")
+        first = self.start()
         first.meter.reserve("train", 1000000)                 # $0.75
-        second = self.start(plan_id="p", resume=True, plan={"train": 10, "prefill": 10, "sample": 10})
+        second = self.start(resume=True, plan={"train": 10, "prefill": 10, "sample": 10})
         self.assertEqual(second.meter.spent, Fraction(3, 4))
         self.assertEqual(second.meter.tokens["train"], 1000000)
         with self.assertRaises(T.BudgetStop):                 # $0.75 + $0.30 would pass the $1.00 ceiling
@@ -361,7 +383,7 @@ class LedgerTests(Base):
         small = {"train": 10, "prefill": 10, "sample": 10}
         total = Fraction(0)
         for i in range(3):
-            run = self.start(plan_id="p", resume=i > 0, plan=small)
+            run = self.start(resume=i > 0, plan=small)
             try:
                 for _ in range(100):
                     run.meter.reserve("train", 100000)        # $0.075 a call
@@ -372,31 +394,37 @@ class LedgerTests(Base):
         self.assertEqual(T.Ledger(self.ledger, "run-1").replay()[0], total)
 
     def test_a_run_id_that_already_started_needs_resume(self):
-        self.start(plan_id="p")
+        self.start()
         with self.assertRaises(T.ApprovalError):
-            self.start(plan_id="p")
-        self.start(plan_id="p", resume=True)
+            self.start()
+        self.start(resume=True)
 
     def test_a_resumed_run_must_be_the_same_plan(self):
-        self.start(plan_id="p")
-        with self.assertRaises(T.ApprovalError):
+        self.start()
+        self.approve(plan_id="other")                         # the owner now approves another plan for this id
+        with self.assertRaises(T.ApprovalError) as cm:        # the approval agrees, the ledger does not
             self.start(plan_id="other", resume=True)
-        with self.assertRaises(T.ApprovalError):
-            self.start(plan_id=None, resume=True)
+        self.assertIn("different plan", str(cm.exception))
+        with self.assertRaises(T.ApprovalError):              # the plan given is not the approved one
+            self.start(resume=True)
 
     def test_the_whole_plan_must_fit_under_what_is_left(self):
-        first = self.start(plan_id="p")
+        first = self.start()
         first.meter.reserve("train", 1200000)                 # $0.90 of the $1.00
         with self.assertRaises(T.BudgetError):                # the plan costs $0.0864 and only $0.10 is left: fits
-            self.start(plan_id="p", resume=True, plan={"train": 200000, "prefill": 10, "sample": 10})
-        self.start(plan_id="p", resume=True)                  # the default plan costs $0.0864: fits
+            self.start(resume=True, plan={"train": 200000, "prefill": 10, "sample": 10})
+        self.start(resume=True)                  # the default plan costs $0.0864: fits
 
     def test_a_start_that_is_refused_writes_nothing(self):
-        self.start(plan_id="p")
+        self.start()
         before = self.raw()
-        for kw in ({"plan_id": "p"}, {"plan_id": "q", "resume": True}):
-            with self.assertRaises(T.ApprovalError):
-                self.start(**kw)
+        with self.assertRaises(T.ApprovalError):               # no resume
+            self.start()
+        with self.assertRaises(T.ApprovalError):               # not the approved plan
+            self.start(plan_id="q", resume=True)
+        self.approve(plan_id="q")
+        with self.assertRaises(T.ApprovalError):               # approved, but not the plan that started
+            self.start(plan_id="q", resume=True)
         self.assertEqual(self.raw(), before)
 
     def test_other_run_ids_in_the_same_ledger_are_not_counted(self):
@@ -407,7 +435,7 @@ class LedgerTests(Base):
         self.assertEqual(run.meter.spent, 0)
 
     def test_a_damaged_ledger_refuses_the_run(self):
-        good = json.dumps({"ev": "start", "plan_id": "p", "run_id": "run-1"}) + "\n"
+        good = json.dumps({"ev": "start", "plan_id": PID, "run_id": "run-1"}) + "\n"
         row = lambda **kw: json.dumps(dict({"run_id": "run-1", "ev": "reserve", "kind": "train", "tokens": 5}, **kw)) + "\n"
         for raw in (good + '{"run_id": "run-1"', "not json\n", "[]\n", '{"run_id": 5, "ev": "start"}\n',
                     '{"run_id": "run-1", "ev": 5}\n', row(ev="refund"), row(kind="rent"), row(tokens=1.5),
@@ -416,7 +444,7 @@ class LedgerTests(Base):
             with open(self.ledger, "w") as fh:
                 fh.write(raw)
             with self.assertRaises(T.BudgetError, msg=raw):
-                self.start(plan_id="p", resume=True)
+                self.start(resume=True)
 
     def test_every_ledger_line_is_flushed_to_disk(self):
         import unittest.mock as mock
@@ -434,8 +462,10 @@ class LedgerTests(Base):
         with self.assertRaises(T.BudgetStop):
             run.meter.reserve("train", 5)
         self.assertEqual(run.meter.spent, 0)
-        with self.assertRaises(T.BudgetStop):
-            self.start(ledger_path=os.path.join(self.tmp.name, "no-such-dir", "x.jsonl"))
+        import unittest.mock as mock
+        with mock.patch("os.open", side_effect=OSError("denied")):      # the run lock cannot be opened
+            with self.assertRaises(T.BudgetStop):
+                self.start()
 
     def test_require_room_counts_what_is_spent(self):
         run = self.start()
@@ -448,21 +478,120 @@ class LedgerTests(Base):
         run.meter.require_room({"train": 0, "prefill": 0, "sample": 499999})
 
     def test_a_crashed_process_leaves_its_spend_in_the_ledger(self):
-        import subprocess
-        import sys
         code = ("import os, sys\n"
                 "sys.path.insert(0, %r)\n"
                 "import fakes, tinker_backend as T\n"
-                "run = T.TinkerRun('run-1', %r, {'train': 100000, 'prefill': 10000, 'sample': 10000}, fakes.FakeService(), "
-                "fakes.FakeTypes, plan_id='p')\n"
+                "run = T.TinkerRun('run-1', %r, {'train': 100000, 'prefill': 10000, 'sample': 10000}, 'test', %r, "
+                "fakes.FakeService(), fakes.FakeTypes)\n"
                 "run.meter.reserve('train', 1000000)\n"
-                "os._exit(7)\n") % (_setup.LOOP, self.path)
+                "os._exit(7)\n") % (_setup.LOOP, self.path, PID)
         r = subprocess.run([sys.executable, "-I", "-B", "-c", code], capture_output=True, text=True)
         self.assertEqual(r.returncode, 7, r.stderr)
-        run = self.start(plan_id="p", resume=True)
+        run = self.start(resume=True)
         self.assertEqual(run.meter.spent, Fraction(3, 4))             # the dead process's reservation counts
         with self.assertRaises(T.ApprovalError):
-            self.start(plan_id="p")                                   # and a plain restart is refused
+            self.start()                                   # and a plain restart is refused
+
+
+class LockTests(Base):
+    """One live process per ledger, and a run only for the plan its approval names."""
+
+    def setUp(self):
+        super().setUp()
+        self.approve(ceiling="1.00")
+
+    def start(self, **kw):
+        return T.TinkerRun("run-1", self.path, self.plan, "test", kw.pop("plan_id", PID), fakes.FakeService(),
+                           fakes.FakeTypes, **kw)
+
+    def test_a_second_holder_of_the_ledger_is_refused_until_the_first_closes(self):
+        first = self.start()
+        with self.assertRaises(T.ApprovalError) as cm:
+            self.start(resume=True)
+        self.assertIn("another process", str(cm.exception))
+        first.close()
+        second = self.start(resume=True)
+        second.close()
+
+    def test_close_can_be_repeated_and_a_context_manager_closes(self):
+        with self.start() as run:
+            self.assertIsNotNone(run.lock_fd)
+        self.assertIsNone(run.lock_fd)
+        run.close()
+        with self.start(resume=True):
+            pass
+
+    def test_a_start_that_is_refused_does_not_keep_the_lock(self):
+        self.start().close()
+        with self.assertRaises(T.ApprovalError):               # no resume
+            self.start()
+        with self.assertRaises(T.BudgetError):                 # the plan does not fit
+            self.start(resume=True).close()
+            T.TinkerRun("run-1", self.path, {"train": 10**9, "prefill": 1, "sample": 1}, "test", PID,
+                        fakes.FakeService(), fakes.FakeTypes, resume=True)
+        self.start(resume=True).close()                        # nothing is left locked
+
+    def test_two_real_processes_cannot_spend_past_the_ceiling_together(self):
+        """A process that holds the run, and a second one started meanwhile on the same run id."""
+        holder = ("import sys, time\n"
+                  "sys.path.insert(0, %r)\n"
+                  "import fakes, tinker_backend as T\n"
+                  "run = T.TinkerRun('run-1', %r, {'train': 100000, 'prefill': 10000, 'sample': 10000}, 'test', %r, "
+                  "fakes.FakeService(), fakes.FakeTypes)\n"
+                  "print('held', flush=True)\n"
+                  "sys.stdin.readline()\n") % (_setup.LOOP, self.path, PID)
+        other = ("import sys\n"
+                 "sys.path.insert(0, %r)\n"
+                 "import fakes, tinker_backend as T\n"
+                 "try:\n"
+                 "    T.TinkerRun('run-1', %r, {'train': 10, 'prefill': 10, 'sample': 10}, 'test', %r, "
+                 "fakes.FakeService(), fakes.FakeTypes, resume=True)\n"
+                 "except T.ApprovalError as exc:\n"
+                 "    print('refused:', exc)\n"
+                 "    sys.exit(5)\n") % (_setup.LOOP, self.path, PID)
+        p = subprocess.Popen([sys.executable, "-I", "-B", "-c", holder], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                             text=True)
+        try:
+            self.assertEqual(p.stdout.readline().strip(), "held")
+            r = subprocess.run([sys.executable, "-I", "-B", "-c", other], capture_output=True, text=True)
+            self.assertEqual((r.returncode, "another process" in r.stdout), (5, True), r.stdout + r.stderr)
+        finally:
+            p.communicate("\n", timeout=30)
+        self.start(resume=True).close()                         # the holder has ended: its lock is gone
+
+    def test_the_ledger_is_beside_the_approvals_file_and_cannot_be_named(self):
+        import inspect
+        self.assertNotIn("ledger_path", inspect.signature(T.TinkerRun.__init__).parameters)
+        run = self.start()
+        run.close()
+        self.assertTrue(os.path.exists(self.path + ".spend.jsonl"))
+        self.assertTrue(os.path.exists(self.path + ".spend.jsonl.lock"))
+
+    def test_an_approval_names_its_plan_and_a_run_for_another_plan_is_refused(self):
+        with self.assertRaises(T.ApprovalError):               # other fingerprint
+            self.start(plan_id="not-the-approved-plan")
+        with self.assertRaises(T.ApprovalError):               # other plan name
+            T.TinkerRun("run-1", self.path, self.plan, "other-name", PID, fakes.FakeService(), fakes.FakeTypes)
+        self.start().close()
+
+    def test_an_approval_without_a_plan_is_refused(self):
+        """Each row is refused for what it lacks: the plan name and fingerprint given match the row."""
+        ok = {"run_id": "run-1", "ceiling_usd": "1.00", "plan": "test", "plan_id": PID}
+        cases = [({k: v for k, v in ok.items() if k != "plan"}, None, PID),
+                 ({k: v for k, v in ok.items() if k != "plan_id"}, "test", None),
+                 (dict(ok, plan=""), "", PID), (dict(ok, plan_id=""), "test", ""),
+                 (dict(ok, plan=5), 5, PID), (dict(ok, plan_id=5), "test", 5)]
+        for row, plan_name, plan_id in cases:
+            self.approve(raw=json.dumps({"approvals": [row]}))
+            with self.assertRaises(T.ApprovalError, msg=str(row)) as cm:
+                T.TinkerRun("run-1", self.path, self.plan, plan_name, plan_id, fakes.FakeService(), fakes.FakeTypes)
+            self.assertIn("must name its plan", str(cm.exception))
+        self.approve(raw=json.dumps({"approvals": [ok]}))
+        self.start().close()
+
+    def test_load_approval_returns_ceiling_plan_and_fingerprint(self):
+        got = T.load_approval(self.path, "run-1")
+        self.assertEqual((got.ceiling, got.plan, got.plan_id), (Fraction(1), "test", PID))
 
 
 class SecretTests(Base):
@@ -498,8 +627,8 @@ class SecretTests(Base):
         code = "\n".join(ln for ln in src.split("\n") if not ln.lstrip().startswith("#"))
         for word in ("environ", "getenv", "tinker_key", "textutil", "print("):
             self.assertNotIn(word, code)
-        # the approvals file, and the spend ledger twice (read it, append to it)
-        self.assertEqual(len(re.findall(r"\bopen\(", code)), 3)
+        # the approvals file, the lock file, and the spend ledger twice (read it, append to it)
+        self.assertEqual(len(re.findall(r"\bopen\(", code)), 4)
 
 
 if __name__ == "__main__":

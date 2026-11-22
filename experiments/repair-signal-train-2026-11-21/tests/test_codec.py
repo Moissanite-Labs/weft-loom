@@ -29,6 +29,27 @@ class CodecTests(unittest.TestCase):
         self.assertFalse(self.c.opens_new_block([self.end]))
         self.assertFalse(self.c.opens_new_block([]))
 
+    def test_any_special_id_of_the_tokenizer_opens_a_new_block(self):
+        named = set(T.SPECIALS.values())
+        unnamed = [i for i in range(1000, 1021) if i not in named]
+        self.assertTrue(unnamed)
+        for i in unnamed:
+            self.assertTrue(self.c.is_marker(i), i)
+            self.assertTrue(self.c.opens_new_block(self.ords("x0 = 1") + [i]), i)
+            self.assertTrue(self.c.opens_new_block([i, self.end]), i)
+            self.assertFalse(self.c.opens_new_block(self.ords("x0 = 1") + [self.end, i]), i)
+        for i in (0, 65, 999, 1021, 5000):
+            self.assertFalse(self.c.is_marker(i), i)
+
+    def test_a_tokenizer_that_cannot_tell_specials_apart_counts_the_named_markers_only(self):
+        class Plain(T):
+            is_special_token = None
+        plain = C.Codec(Plain())
+        self.assertFalse(plain.is_marker(1011))
+        self.assertFalse(plain.opens_new_block([1011]))
+        self.assertTrue(plain.is_marker(self.thinking))
+        self.assertTrue(plain.opens_new_block([ord("x"), self.thinking]))
+
     def test_a_message_is_role_content_text_end(self):
         self.assertEqual(self.c.message_ids("user", "hi"), [self.user, self.content] + self.ords("hi") + [self.end])
         self.assertEqual(self.c.message_ids("assistant", "x"), [self.model, self.content, ord("x"), self.end])

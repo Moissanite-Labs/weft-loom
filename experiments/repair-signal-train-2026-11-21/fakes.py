@@ -51,6 +51,10 @@ class FakeTokenizer:
     def decode(self, ids):
         return "".join(chr(i) for i in ids)
 
+    def is_special_token(self, i):
+        """The named specials above and the unnamed special ids around them (1000 to 1020)."""
+        return 1000 <= i <= 1020
+
 
 class FakeTypes:
     ModelInput = FakeModelInput

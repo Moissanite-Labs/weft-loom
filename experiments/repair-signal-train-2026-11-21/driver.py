@@ -30,13 +30,20 @@ The decision rule (support needs every item, each at alpha, so no alpha split):
 Before an item 1 or 2 test counts, the comparison must be testable: at least
 GATES.min_discordant discordant episodes, and neither adapter at or under
 GATES.rate_low or at or over GATES.rate_high on pass rate. A comparison that is
-not testable gives the verdict "cannot_test", not "not_supported". The text E
+not testable gives the verdict "cannot_test", not "not_supported". Item 3 has
+no testability condition and is read first in judge(): a format harm gives
+"not_supported" whether or not items 1 and 2 could be tested. The text E
 and N controls (the C adapter on other texts) are read, never decided on: they
 do not change the verdict (see control_readings).
 
-A run is tied to one plan: start_run records the plan's fingerprint with the
-run, run_registered runs only the full plan and run_pilot only the pilot plan,
-and each refuses a run started for another plan. Before the one touch of set 2,
+A run is tied to one plan, and the plan is the one the owner approved: each row
+of the approvals file names a plan and its fingerprint, TinkerRun refuses a
+different plan, and start_run is the only place that counts a plan's tokens
+(it marks the run with the fingerprint it counted). run_registered runs only the
+full plan and run_pilot only the pilot plan, and each refuses a run that was
+not counted for the plan given. The full run does not check that a pilot gave a
+go: the go is the owner's call before the full run is approved (PREREG.md,
+"After the pilot"). Before the one touch of set 2,
 the remaining ceiling must cover the four set-2 evaluations at their upper bounds.
 """
 import hashlib
@@ -85,20 +92,32 @@ def plan_fingerprint(plan):
         "evals": [[e.label, e.text_arm, e.set_key, e.runs] for e in plan.evals]})
 
 
-def start_run(run_id, approvals_path, plan, counter, service=None, types_mod=None, ledger_path=None, resume=False):
-    """A TinkerRun whose planned token counts come from cost.py for this plan,
-    tied to this plan by its fingerprint."""
+def approval_row(run_id, ceiling, plan):
+    """The approvals-file row the owner writes for a run id, naming the plan it approves."""
+    return {"run_id": run_id, "ceiling_usd": ceiling, "plan": plan.name, "plan_id": plan_fingerprint(plan)}
+
+
+def start_run(run_id, approvals_path, plan, counter, service=None, types_mod=None, resume=False):
+    """A TinkerRun whose planned token counts come from cost.py for this plan.
+    The approval for the run id must name this plan and its fingerprint. The
+    run is marked with the fingerprint of the plan that was counted."""
     totals, _items = cost.plan_counts(plan, counter)
-    return tinker_backend.TinkerRun(run_id, approvals_path, totals, service, types_mod, ledger_path,
-                                    plan_fingerprint(plan), resume)
+    fingerprint = plan_fingerprint(plan)
+    run = tinker_backend.TinkerRun(run_id, approvals_path, totals, plan.name, fingerprint, service, types_mod, resume)
+    run.counted_plan = fingerprint
+    return run
 
 
 def require_plan_run(run, plan, name):
-    """Refuses a run that was not started for this plan, or a plan of another kind."""
+    """Refuses a run that was not started for this plan, a plan of another
+    kind, or a run whose token counts did not come from start_run for this plan."""
     if plan.name != name:
         raise DriverError("this function runs the %s plan, not %r" % (name, plan.name))
-    if run.plan_id != plan_fingerprint(plan):
+    fingerprint = plan_fingerprint(plan)
+    if run.plan_id != fingerprint:
         raise DriverError("the run was started for a different plan than the one given")
+    if getattr(run, "counted_plan", None) != fingerprint:
+        raise DriverError("the run's token counts were not made by start_run for this plan")
 
 
 def shuffled_order(n, seed, label):
@@ -179,15 +198,16 @@ def testable(cmp_, gates=None):
 
 def judge(cmp_, gates=None):
     """The verdict for one seed on one set: ("support" | "not_supported" |
-    "cannot_test", reason). Items 1 and 2 first (each must be testable, then
-    win), then item 3."""
+    "cannot_test", reason). Item 3 first: it has no testability condition, so
+    a format harm is "not_supported" even when items 1 or 2 cannot be tested.
+    Then items 1 and 2 (each must be testable, then win)."""
+    if cmp_["format_harm"]["first_better"]:
+        return "not_supported", "C breaks the format more often than B"
     for name, label in (("pass", "all episodes"), ("stratum", "the format stratum")):
         if not testable(cmp_[name], gates):
             return "cannot_test", "the comparison on %s has too few discordant episodes or an adapter at the floor or ceiling" % label
         if not cmp_[name]["first_better"]:
             return "not_supported", "C does not beat B on %s" % label
-    if cmp_["format_harm"]["first_better"]:
-        return "not_supported", "C breaks the format more often than B"
     return "support", "every item holds"
 
 

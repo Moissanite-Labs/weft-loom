@@ -15,28 +15,48 @@ It counts tokens as it goes and raises BudgetStop before a call that would
 reach the ceiling. At most one checkpoint is saved per arm label. Sampled
 tokens are counted as the service returned them, not as capped.
 
-The spend is kept in an append-only ledger file (default: the approvals file
-path plus ".spend.jsonl"). A reservation is written and fsynced before its
-call, and any later refund or extra is written after it. A new process for the
-same run id reads the ledger first and counts everything already spent against
-the ceiling, so the ceiling holds across crashes and restarts. A run id that
-has already started is refused unless the caller passes resume=True, and the
-plan it was started with must be the same plan (plan_id). A restart runs the
-plan again from the start, so the whole planned cost must fit under what is
-left of the ceiling.
+The spend is kept in an append-only ledger file beside the approvals file (its
+path plus ".spend.jsonl"; there is no other way to name a ledger). A reservation
+is written and fsynced before its call, and any later refund or extra is
+written after it. A new process for the same run id reads the ledger first and
+counts everything already spent against the ceiling, so the ceiling holds
+across crashes and restarts. A run id that has already started is refused
+unless the caller passes resume=True, and the plan it was started with must be
+the same plan (plan_id). A restart runs the plan again from the start, so the
+whole planned cost must fit under what is left of the ceiling.
+
+A TinkerRun holds an exclusive, non-blocking flock on a lock file beside the
+ledger (the ledger path plus ".lock") from its construction until close() or
+the end of the process, and a second process that finds it held is refused.
+Each meter keeps its spend in memory, so two live processes on one ledger
+would each spend up to the ceiling. The lock stops that. It covers one ledger
+file, so two copies of the approvals file in two places make two ledgers: the
+owner keeps one approvals file for a run.
+
+Each approvals row names the plan it approves, by name and by fingerprint, and
+a run for any other plan is refused: an id approved for the pilot cannot run
+the full plan, and the reverse.
+
+Known gap: an overrun (the service returns more tokens than the limit asked
+for) is written to the ledger after the call. A crash between the call and that
+write loses the extra tokens from the ledger. A service that ignores max_tokens
+is already a fault, and the loss is the overrun only, so this is accepted.
 
 This module never reads, prints or stores a key. The service library finds its
 own credentials when the real client is built. Errors are passed through
 redact() before they leave this module.
 
 Approvals file (JSON):
-    {"approvals": [{"run_id": "RUN-ID", "ceiling_usd": "5.00"}]}
+    {"approvals": [{"run_id": "RUN-ID", "ceiling_usd": "5.00",
+                    "plan": "full", "plan_id": "<plan fingerprint>"}]}
 The ceiling is a string so that it is read as an exact fraction, never a float.
 """
+import fcntl
 import json
 import os
 import re
 import sys
+from collections import namedtuple
 from fractions import Fraction
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -109,8 +129,12 @@ def _refuse_float(text):
     raise ApprovalError("a float (%s) appears in the approvals file" % text)
 
 
-def load_ceiling(approvals_path, run_id):
-    """Exact ceiling in dollars for this run id, or ApprovalError."""
+Approval = namedtuple("Approval", "ceiling plan plan_id")
+
+
+def load_approval(approvals_path, run_id):
+    """The owner's approval for this run id: exact ceiling in dollars, plan
+    name and plan fingerprint, or ApprovalError."""
     try:
         with open(approvals_path, "r", encoding="utf-8") as fh:
             data = json.load(fh, parse_float=_refuse_float)
@@ -130,8 +154,30 @@ def load_ceiling(approvals_path, run_id):
                 raise ApprovalError("ceiling_usd is not a number")
             if ceiling <= 0:
                 raise ApprovalError("ceiling_usd must be above zero")
-            return ceiling
+            plan, plan_id = row.get("plan"), row.get("plan_id")
+            if not isinstance(plan, str) or not plan or not isinstance(plan_id, str) or not plan_id:
+                raise ApprovalError("the approval must name its plan and plan_id as non-empty strings")
+            return Approval(ceiling, plan, plan_id)
     raise ApprovalError("run id %r is not approved" % (run_id,))
+
+
+def acquire_lock(path):
+    """An exclusive, non-blocking flock on the lock file. Returns the open
+    descriptor, to be closed with release_lock. A second holder is refused."""
+    try:
+        fd = os.open(path, os.O_RDWR | os.O_CREAT, 0o600)
+    except OSError:
+        raise BudgetStop("the run lock cannot be opened, so no call is made")
+    try:
+        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        os.close(fd)
+        raise ApprovalError("another process holds this run: only one paid process may use a ledger at a time")
+    return fd
+
+
+def release_lock(fd):
+    os.close(fd)               # closing the descriptor drops the flock
 
 
 def _entry_cost(kind, tokens):
@@ -259,28 +305,49 @@ def make_datum(types_mod, prompt_ids, target_ids):
 
 
 class TinkerRun:
-    def __init__(self, run_id, approvals_path, plan_tokens, service=None, types_mod=None, ledger_path=None,
-                 plan_id=None, resume=False):
-        ceiling = load_ceiling(approvals_path, run_id)              # (a)
+    def __init__(self, run_id, approvals_path, plan_tokens, plan_name, plan_id, service=None, types_mod=None,
+                 resume=False):
+        self.lock_fd = None
+        approval = load_approval(approvals_path, run_id)            # (a)
+        if approval.plan != plan_name or approval.plan_id != plan_id:
+            raise ApprovalError("run id %r is approved for another plan than the one given" % (run_id,))
         require_plan(plan_tokens)                                   # (b)
         budget = planned_cost(plan_tokens)
-        ledger = Ledger(ledger_path if ledger_path is not None else approvals_path + ".spend.jsonl", run_id)
-        spent, tokens, starts, first_plan = ledger.replay()
-        if starts and not resume:
-            raise ApprovalError("run id %r already started: a restart needs resume=True, and runs the plan "
-                                "again from the start" % (run_id,))
-        if starts and first_plan != plan_id:
-            raise ApprovalError("run id %r was started under a different plan" % (run_id,))
-        if not budget < ceiling - spent:
-            raise BudgetError("planned cost %s is not under the ceiling %s less the %s already spent"
-                              % (budget, ceiling, spent))
-        self.run_id, self.budget, self.plan_id = run_id, budget, plan_id
-        self.meter = Meter(ceiling, ledger, spent, tokens)
-        self.service = service if service is not None else _real_service()
-        self.types = types_mod if types_mod is not None else _real_types()
-        ledger.append({"ev": "start", "plan_id": plan_id})
+        ledger_path = approvals_path + ".spend.jsonl"
+        self.lock_fd = acquire_lock(ledger_path + ".lock")
+        try:
+            ledger = Ledger(ledger_path, run_id)
+            spent, tokens, starts, first_plan = ledger.replay()
+            if starts and not resume:
+                raise ApprovalError("run id %r already started: a restart needs resume=True, and runs the plan "
+                                    "again from the start" % (run_id,))
+            if starts and first_plan != plan_id:
+                raise ApprovalError("run id %r was started under a different plan" % (run_id,))
+            if not budget < approval.ceiling - spent:
+                raise BudgetError("planned cost %s is not under the ceiling %s less the %s already spent"
+                                  % (budget, approval.ceiling, spent))
+            self.run_id, self.budget, self.plan_id, self.plan_name = run_id, budget, plan_id, plan_name
+            self.meter = Meter(approval.ceiling, ledger, spent, tokens)
+            self.service = service if service is not None else _real_service()
+            self.types = types_mod if types_mod is not None else _real_types()
+            ledger.append({"ev": "start", "plan_id": plan_id})
+        except BaseException:
+            self.close()
+            raise
         self.clients = {}
         self.checkpoints = {}
+
+    def close(self):
+        """Releases the run lock. A closed run must not be used again."""
+        if self.lock_fd is not None:
+            release_lock(self.lock_fd)
+            self.lock_fd = None
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        self.close()
 
     def start_arm(self, label, rank=8, seed=0, train_mlp=True, train_attn=True, train_unembed=True):
         if label in self.clients:

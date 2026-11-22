@@ -86,6 +86,26 @@ class PreregMatchesCodeTests(unittest.TestCase):
             self.assertIn(needle, self.text)
         self.assertEqual(driver.plan_calls(__import__("cost").full_plan(2048, 2, 96)), (21000, 384))
 
+    def test_the_decision_procedure_in_the_prereg_reads_item_3_first_like_judge(self):
+        import tinker_backend
+        i3 = self.text.index("1. Item 3 first: if C breaks the format more often at 1/40, `not_supported`.")
+        i1 = self.text.index("2. Item 1. Not testable gives `cannot_test`.")
+        i2 = self.text.index("3. Item 2 the same way.")
+        self.assertLess(i3, i1)
+        self.assertLess(i1, i2)
+        self.assertIn("a format harm gives `not_supported` even when item 1 or item 2 could not be tested", self.text)
+        with open(driver.__file__, encoding="utf-8") as fh:
+            src = fh.read()
+        self.assertLess(src.index('cmp_["format_harm"]["first_better"]'), src.index("for name, label in"))
+        self.assertIn("## After the pilot", self.text)
+        for needle in ("The go is the owner's call, and the code does not enforce it",
+                       "The full run must not start after a no-go", "new pilot run id",
+                       "exclusive lock (`flock`", "a run cannot name another one",
+                       "names the plan it approves, by name and by the fingerprint of the plan",
+                       "loses the extra tokens of that one overrun"):
+            self.assertIn(needle, self.text)
+        self.assertTrue(hasattr(tinker_backend, "acquire_lock"))
+
     def test_the_marked_choices_are_the_ones_in_the_code(self):
         import codec
         import tinker_backend
