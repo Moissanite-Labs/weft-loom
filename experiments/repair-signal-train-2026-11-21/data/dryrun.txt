@@ -1,0 +1,64 @@
+vendored rsig sha256 e8053b587e5a779d4c5e2f4f5df07681a1874f94e9d9b4c5f1898ca745a4004b
+episodes: train 40, heldout1 200, heldout2 200
+set hashes: train f0cd2413fcea4176 heldout1 a6fcca8bb9dd98d7 heldout2 11b612f6afe7543c
+CHECK every attempt fails the exact checker                          PASS
+CHECK every target passes the exact checker                          PASS
+train: no-op (reference policies have no weights)
+
+Score table, held-out set 1, cap 96 pieces, cell = passed/n and format breaks (x)
+policy    A               B               C               E               N               
+unchanged 0/200 x0        0/200 x0        0/200 x0        0/200 x0        0/200 x0        
+recompute 200/200 x0      200/200 x0      200/200 x0      200/200 x0      200/200 x0      
+oracle    0/200 x0        0/200 x0        188/200 x0      86/200 x0       0/200 x0        
+blind     0/200 x0        0/200 x0        89/200 x0       32/200 x0       0/200 x0        
+verbose   0/200 x200      0/200 x200      0/200 x200      0/200 x200      0/200 x200      
+
+CHECK oracle: C beats A (exact sign test, p <= 1/1000)               PASS
+CHECK oracle: C beats B (exact sign test, p <= 1/1000)               PASS
+CHECK oracle: C beats E (exact sign test, p <= 1/1000)               PASS
+CHECK oracle: C beats N (exact sign test, p <= 1/1000)               PASS
+CHECK recompute: identical outcomes in every arm (arms can tie)      PASS
+CHECK unchanged: scores zero in every arm                            PASS
+CHECK blind: hurt by E and N relative to C                           PASS
+CHECK verbose: every reply breaks the format, counted apart from failures PASS
+
+CHECK ratchet accepts the oracle over unchanged on held-out 1 (exact p) PASS
+CHECK second set touched once, decision confirmed                    PASS
+CHECK latch refuses a second touch of the second set for that decision PASS
+CHECK a deleted latch file does not buy a second touch: the chain holds the touch PASS
+CHECK evaluation of the second set without a latch token is refused  PASS
+CHECK ratchet rejects a candidate identical to the baseline          PASS
+CHECK ratchet refuses a comparison at a different compute cap        PASS
+CHECK ratchet refuses a result that is not in the receipt chain      PASS
+CHECK the latch refuses a decision id that is not registered         PASS
+CHECK driver: 2 seeds x 3 arms trained, 2 steps each                 PASS
+CHECK driver: C beat B in both seeds, so the second set was touched once and support holds PASS
+CHECK driver: the verdict is support on set 1 for both seeds and on set 2 PASS
+CHECK driver: the controls (C adapter on texts E and N) score below C PASS
+CHECK driver: the meter stayed under the ceiling                     PASS
+CHECK driver: six training receipts, and every adapter evaluation names the one of its own adapter PASS
+CHECK driver: a sampler of another arm is refused as the C adapter, before any call PASS
+CHECK driver: every sampled prompt carries special role ids          PASS
+CHECK driver: no gain means no support and the second set is never touched PASS
+CHECK driver: no gain at all is reported as cannot_test, not as not_supported PASS
+CHECK driver: a run refuses a plan other than the one it was started for PASS
+pilot measurements: {"accepted": 200, "adapter_format_broken": 0, "adapter_n": 100, "adapter_passed": 60, "base_format_broken": 0, "base_passed": 0, "calls": 200, "new_block": 0, "sample_ns": 200000, "steps": 8, "train_ns": 8000}
+CHECK pilot: measures calls, steps, accepted forced openings, new blocks and format breaks, and every gate holds PASS
+CHECK pilot: every prompt sampled from, base model and adapter, ends with the forced opening of the model's turn PASS
+CHECK pilot: evaluates on training-range seeds only and never touches a held-out set PASS
+CHECK pilot: its measurements are a receipt in the chain             PASS
+CHECK pilot: a run started for the full plan cannot run the pilot    PASS
+CHECK pilot: a run id approved for the pilot plan cannot start the full plan PASS
+receipts: 36, chain head 4cfcdb990a6893c6fd50ee875ce6dfef54108eb0941089a6dfde99e8d98623ab
+CHECK receipt chain verifies                                         PASS
+CHECK an edited receipt fails verification                           PASS
+CHECK a changed rsig hash refuses to run                             PASS
+CHECK the paid backend refuses an unapproved run id                  PASS
+CHECK the paid backend refuses a budget at or over the ceiling       PASS
+CHECK the paid backend refuses a plan other than the one the approval names PASS
+CHECK the paid backend starts with approval and a budget under the ceiling PASS
+CHECK a second holder of the same ledger is refused while the first holds the lock PASS
+CHECK the paid backend refuses a restart of a started run id unless resume is given PASS
+CHECK a resumed run counts the spend already in the ledger           PASS
+
+46 checks, 0 failed

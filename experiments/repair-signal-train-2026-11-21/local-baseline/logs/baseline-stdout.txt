@@ -1,0 +1,224 @@
+control: canonical repair passes 20/20 (need 20); failed attempt passes 0/20 (need 0)
+markers are single tokens: {'sys': 200002, 'user': 200000, 'model': 200001, 'text': 200004, 'end': 200010, 'eos': 200006, 'think': 200008}
+layout equals codec.py ids on 15 prompts
+F 25 calls, last 2.8s
+F 50 calls, last 3.1s
+F 75 calls, last 3.2s
+F 100 calls, last 2.8s
+F 125 calls, last 2.8s
+F 150 calls, last 2.7s
+F 175 calls, last 2.5s
+F 200 calls, last 2.5s
+F 225 calls, last 2.6s
+F 250 calls, last 2.7s
+F 275 calls, last 3.7s
+F 300 calls, last 3.9s
+F 325 calls, last 4.0s
+F 350 calls, last 4.0s
+F 375 calls, last 4.0s
+F 400 calls, last 3.8s
+F 425 calls, last 3.9s
+F 450 calls, last 4.0s
+F 475 calls, last 4.1s
+F 500 calls, last 3.9s
+mode F done
+R 5 calls, elapsed 340s
+R 10 calls, elapsed 662s
+R 15 calls, elapsed 1100s
+R 20 calls, elapsed 1528s
+R 25 calls, elapsed 1815s
+R 30 calls, elapsed 2107s
+R 35 calls, elapsed 2461s
+R 40 calls, elapsed 2826s
+R 45 calls, elapsed 3154s
+R 50 calls, elapsed 3475s
+R 55 calls, elapsed 3862s
+R 60 calls, elapsed 4241s
+mode R stopped at the 70 minute budget
+{
+ "F": {
+  "A_M": {
+   "cut_by_cap": 0,
+   "failed": 50,
+   "format_breaks": 0,
+   "median_generated_tokens": 45,
+   "n": 50,
+   "no_answer": 0,
+   "passed": 0
+  },
+  "A_S": {
+   "cut_by_cap": 0,
+   "failed": 39,
+   "format_breaks": 1,
+   "median_generated_tokens": 27,
+   "n": 50,
+   "no_answer": 0,
+   "passed": 10
+  },
+  "B_M": {
+   "cut_by_cap": 1,
+   "failed": 40,
+   "format_breaks": 0,
+   "median_generated_tokens": 45,
+   "n": 50,
+   "no_answer": 0,
+   "passed": 9
+  },
+  "B_S": {
+   "cut_by_cap": 0,
+   "failed": 30,
+   "format_breaks": 1,
+   "median_generated_tokens": 27,
+   "n": 50,
+   "no_answer": 0,
+   "passed": 19
+  },
+  "C_M": {
+   "cut_by_cap": 0,
+   "failed": 39,
+   "format_breaks": 2,
+   "median_generated_tokens": 45,
+   "n": 50,
+   "no_answer": 0,
+   "passed": 9
+  },
+  "C_S": {
+   "cut_by_cap": 0,
+   "failed": 30,
+   "format_breaks": 1,
+   "median_generated_tokens": 27,
+   "n": 50,
+   "no_answer": 0,
+   "passed": 19
+  },
+  "E_M": {
+   "cut_by_cap": 0,
+   "failed": 36,
+   "format_breaks": 1,
+   "median_generated_tokens": 45,
+   "n": 50,
+   "no_answer": 0,
+   "passed": 13
+  },
+  "E_S": {
+   "cut_by_cap": 0,
+   "failed": 30,
+   "format_breaks": 1,
+   "median_generated_tokens": 27,
+   "n": 50,
+   "no_answer": 0,
+   "passed": 19
+  },
+  "N_M": {
+   "cut_by_cap": 0,
+   "failed": 42,
+   "format_breaks": 1,
+   "median_generated_tokens": 45,
+   "n": 50,
+   "no_answer": 0,
+   "passed": 7
+  },
+  "N_S": {
+   "cut_by_cap": 0,
+   "failed": 28,
+   "format_breaks": 1,
+   "median_generated_tokens": 27,
+   "n": 50,
+   "no_answer": 0,
+   "passed": 21
+  }
+ },
+ "R": {
+  "B_M": {
+   "cut_by_cap": 2,
+   "failed": 0,
+   "format_breaks": 0,
+   "median_generated_tokens": 2000,
+   "n": 15,
+   "no_answer": 8,
+   "passed": 5
+  },
+  "B_S": {
+   "cut_by_cap": 0,
+   "failed": 0,
+   "format_breaks": 0,
+   "median_generated_tokens": 773,
+   "n": 15,
+   "no_answer": 0,
+   "passed": 15
+  },
+  "C_M": {
+   "cut_by_cap": 1,
+   "failed": 0,
+   "format_breaks": 0,
+   "median_generated_tokens": 2000,
+   "n": 15,
+   "no_answer": 10,
+   "passed": 4
+  },
+  "C_S": {
+   "cut_by_cap": 0,
+   "failed": 0,
+   "format_breaks": 0,
+   "median_generated_tokens": 751,
+   "n": 15,
+   "no_answer": 0,
+   "passed": 15
+  }
+ },
+ "integers_only": "1",
+ "note": "exploratory; Q8_0 local; greedy; pilot seeds; one run",
+ "paired": {
+  "F_M": {
+   "both_passed": 7,
+   "episodes": 50,
+   "neither_passed": 39,
+   "only_B_passed": 2,
+   "only_C_passed": 2
+  },
+  "F_S": {
+   "both_passed": 17,
+   "episodes": 50,
+   "neither_passed": 29,
+   "only_B_passed": 2,
+   "only_C_passed": 2
+  },
+  "F_both": {
+   "both_passed": 24,
+   "episodes": 100,
+   "neither_passed": 68,
+   "only_B_passed": 4,
+   "only_C_passed": 4
+  },
+  "R_M": {
+   "both_passed": 2,
+   "episodes": 15,
+   "neither_passed": 8,
+   "only_B_passed": 3,
+   "only_C_passed": 2
+  },
+  "R_S": {
+   "both_passed": 15,
+   "episodes": 15,
+   "neither_passed": 0,
+   "only_B_passed": 0,
+   "only_C_passed": 0
+  },
+  "R_both": {
+   "both_passed": 17,
+   "episodes": 30,
+   "neither_passed": 8,
+   "only_B_passed": 3,
+   "only_C_passed": 2
+  }
+ },
+ "seconds_per_call_ms": {
+  "F_calls": 500,
+  "F_mean": 3305,
+  "F_median": 3417,
+  "R_calls": 60,
+  "R_mean": 70678,
+  "R_median": 70954
+ }
+}
+port 8092 free at end: True

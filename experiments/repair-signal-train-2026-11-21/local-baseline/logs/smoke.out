@@ -1,0 +1,12 @@
+server pid 42134 started 22:34:23Z
+ready 22:34:49Z rss_kb=20339040
+--- request 1
+finish: stop | usage: {'completion_tokens': 82, 'prompt_tokens': 37, 'total_tokens': 119, 'prompt_tokens_details': {'cached_tokens': 0}} | timings: {'cache_n': 0, 'prompt_n': 37, 'prompt_ms': 1345.6, 'prompt_per_token_ms': 36.4, 'prompt_per_second': 27.5, 'predicted_n': 82, 'predicted_ms': 3965.6, 'predicted_per_token_ms': 49.0, 'predicted_per_second': 20.4}
+reasoning_len: 185
+content: '7/4'
+--- request 2
+finish: length | usage: {'completion_tokens': 96, 'prompt_tokens': 72, 'total_tokens': 168, 'prompt_tokens_details': {'cached_tokens': 12}} | timings: {'cache_n': 12, 'prompt_n': 60, 'prompt_ms': 692.9, 'prompt_per_token_ms': 11.5, 'prompt_per_second': 86.6, 'predicted_n': 96, 'predicted_ms': 4644.5, 'predicted_per_token_ms': 48.9, 'predicted_per_second': 20.5}
+reasoning_len: 241
+content: ''
+after requests rss_kb=20403760
+server stopped 22:35:02Z

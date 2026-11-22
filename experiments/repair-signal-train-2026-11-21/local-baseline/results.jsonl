@@ -1,0 +1,560 @@
+{"text": "A", "tier": "S", "seed": 310000, "mode": "F", "reply": "x0 = 1/2\nx1 = -9/2\nx2 = 0\nx3 = -7/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.578, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310000, "mode": "F", "reply": "x0 = 1/2\nx1 = -5/2\nx2 = 0\nx3 = -3\n", "gen_tokens": 28, "stop": "end_marker", "seconds": 2.806, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310000, "mode": "F", "reply": "x0 = 1/2\nx1 = -5/2\nx2 = 0\nx3 = -3/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.81, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310000, "mode": "F", "reply": "x0 = 1/2\nx1 = -5/2\nx2 = 0\nx3 = -3/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.822, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310000, "mode": "F", "reply": "x0 = 1/2\nx1 = -9/2\nx2 = 0\nx3 = -5/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.784, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310001, "mode": "F", "reply": "x0 = -2\nx1 = 5/2\nx2 = 3/2\nx3 = -3/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.715, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310001, "mode": "F", "reply": "x0 = -2\nx1 = 5/2\nx2 = 3/2\nx3 = -3/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.722, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310001, "mode": "F", "reply": "x0 = -2\nx1 = 5/2\nx2 = 1/2\nx3 = -1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.72, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310001, "mode": "F", "reply": "x0 = -2\nx1 = 5/2\nx2 = 1/2\nx3 = -1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.787, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310001, "mode": "F", "reply": "x0 = -2\nx1 = 5/2\nx2 = 1/2\nx3 = -1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.753, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310002, "mode": "F", "reply": "x0 = 3/2\nx1 = 4\nx2 = -7/2\nx3 = -5/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.67, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310002, "mode": "F", "reply": "x0 = -5/2\nx1 = 3\nx2 = -7/2\nx3 = 3/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.746, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310002, "mode": "F", "reply": "x0 = -5/2\nx1 = 5/2\nx2 = -9/2\nx3 = 3/2", "gen_tokens": 31, "stop": "end_marker", "seconds": 2.894, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310002, "mode": "F", "reply": "x0 = -5/2\nx1 = 3\nx2 = -9/2\nx3 = 3/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.844, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310002, "mode": "F", "reply": "x0 = -5/2\nx1 = 5/2\nx2 = -9/2\nx3 = 3/2", "gen_tokens": 31, "stop": "end_marker", "seconds": 2.844, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310003, "mode": "F", "reply": "x0 = 0\nx1 = 7\nx2 = 2\nx3 = 2", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.327, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310003, "mode": "F", "reply": "x0 = -6\nx1 = 1\nx2 = -1\nx3 = -4", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.443, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310003, "mode": "F", "reply": "x0 = -6\nx1 = 1\nx2 = -1\nx3 = -4", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.516, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310003, "mode": "F", "reply": "x0 = -1\nx1 = 7\nx2 = 1\nx3 = -4", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.519, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310003, "mode": "F", "reply": "x0 = -1\nx1 = 7\nx2 = 1\nx3 = -4", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.497, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310004, "mode": "F", "reply": "x0 = -9/2\nx1 = 0\nx2 = 1/2\nx3 = -7/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.728, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310004, "mode": "F", "reply": "x0 = -7/2\nx1 = 3\nx2 = 5/2\nx3 = -1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 3.114, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310004, "mode": "F", "reply": "x0 = -7/2\nx1 = 3\nx2 = 5/2\nx3 = -1", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.687, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310004, "mode": "F", "reply": "x0 = -7/2\nx1 = 3\nx2 = 5/2\nx3 = -1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.863, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310004, "mode": "F", "reply": "x0 = -7/2\nx1 = 3\nx2 = 5/2\nx3 = -1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.756, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310005, "mode": "F", "reply": "x0 = 6\nx1 = 9/2\nx2 = -3/2\nx3 = 3/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.644, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310005, "mode": "F", "reply": "x0 = 6\nx1 = 9/2\nx2 = -5/2\nx3 = 4", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.729, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310005, "mode": "F", "reply": "x0 = 3\nx1 = 5/2\nx2 = 0\nx3 = 1", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.584, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310005, "mode": "F", "reply": "x0 = 3\nx1 = 5/2\nx2 = 0\nx3 = 1/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.701, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310005, "mode": "F", "reply": "x0 = 6\nx1 = 9/2\nx2 = -5/2\nx3 = 4", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.607, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310006, "mode": "F", "reply": "x0 = -4\nx1 = -7/2\nx2 = -2\nx3 = -5/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.581, "outcome": "passed"}
+{"text": "B", "tier": "S", "seed": 310006, "mode": "F", "reply": "x0 = -3/2\nx1 = -7/2\nx2 = -7/2\nx3 = 0", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.803, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310006, "mode": "F", "reply": "x0 = -3/2\nx1 = -7/2\nx2 = -7/2\nx3 = 0", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.875, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310006, "mode": "F", "reply": "x0 = -4\nx1 = -7/2\nx2 = -7/2\nx3 = -5/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.872, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310006, "mode": "F", "reply": "x0 = -4\nx1 = -7/2\nx2 = -7/2\nx3 = -5/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.879, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310007, "mode": "F", "reply": "x0 = 0\nx1 = 0\nx2 = 0\nx3 = -1/2", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.607, "outcome": "passed"}
+{"text": "B", "tier": "S", "seed": 310007, "mode": "F", "reply": "x0 = -2\nx1 = -4\nx2 = -2\nx3 = -3", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.677, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310007, "mode": "F", "reply": "x0 = -2\nx1 = -4\nx2 = -5/2\nx3 = -3", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.641, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310007, "mode": "F", "reply": "x0 = -2\nx1 = -4\nx2 = -5/2\nx3 = -3", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.571, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310007, "mode": "F", "reply": "x0 = -2\nx1 = -4\nx2 = -3\nx3 = -3", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.417, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310008, "mode": "F", "reply": "x0 = 0\nx1 = -1\nx2 = 2\nx3 = 0", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.338, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310008, "mode": "F", "reply": "x0 = 0\nx1 = -1\nx2 = 2\nx3 = 0", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.678, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310008, "mode": "F", "reply": "x0 = 0\nx1 = -1\nx2 = 2\nx3 = 0", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.648, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310008, "mode": "F", "reply": "x0 = 0\nx1 = -1\nx2 = 2\nx3 = 0", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.64, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310008, "mode": "F", "reply": "x0 = 0\nx1 = -1\nx2 = 2\nx3 = 0", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.542, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310009, "mode": "F", "reply": "x0 = 9/2\nx1 = -7/2\nx2 = 7/2\nx3 = 13/2", "gen_tokens": 31, "stop": "end_marker", "seconds": 2.699, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310009, "mode": "F", "reply": "x0 = 3\nx1 = -4\nx2 = 3\nx3 = -3", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.486, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310009, "mode": "F", "reply": "x0 = 3\nx1 = -4\nx2 = 3\nx3 = -3", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.615, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310009, "mode": "F", "reply": "x0 = 3\nx1 = -4\nx2 = 3\nx3 = -3", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.634, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310009, "mode": "F", "reply": "x0 = 9/2\nx1 = -7/2\nx2 = 9/2\nx3 = 3/2", "gen_tokens": 31, "stop": "end_marker", "seconds": 3.133, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310010, "mode": "F", "reply": "x0 = -5\nx1 = -3\nx2 = -5\nx3 = -1/2", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.693, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310010, "mode": "F", "reply": "x0 = -5\nx1 = -2\nx2 = -4\nx3 = -2", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.586, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310010, "mode": "F", "reply": "x0 = -5\nx1 = -2\nx2 = -4\nx3 = -2", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.513, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310010, "mode": "F", "reply": "x0 = -5\nx1 = -2\nx2 = -4\nx3 = -2", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.668, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310010, "mode": "F", "reply": "x0 = -5\nx1 = -2\nx2 = -4\nx3 = -2", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.807, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310011, "mode": "F", "reply": "x0 = -1\nx1 = 3\nx2 = 1/2\nx3 = -3/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.575, "outcome": "passed"}
+{"text": "B", "tier": "S", "seed": 310011, "mode": "F", "reply": "x0 = -3\nx1 = 2\nx2 = -3/2\nx3 = -5/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.057, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310011, "mode": "F", "reply": "x0 = -3\nx1 = 2\nx2 = -3/2\nx3 = -5/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.405, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310011, "mode": "F", "reply": "x0 = -3\nx1 = 2\nx2 = -3/2\nx3 = -5/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.265, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310011, "mode": "F", "reply": "x0 = -3\nx1 = 2\nx2 = -3/2\nx3 = -5/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.147, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310012, "mode": "F", "reply": "x0 = -5\nx1 = -4\nx2 = -1/2\nx3 = -1/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.029, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310012, "mode": "F", "reply": "x0 = -7/2\nx1 = -3/2\nx2 = 5/2\nx3 = -1/2", "gen_tokens": 31, "stop": "end_marker", "seconds": 3.527, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310012, "mode": "F", "reply": "x0 = -7/2\nx1 = -3/2\nx2 = 5/2\nx3 = -1/2", "gen_tokens": 31, "stop": "end_marker", "seconds": 3.566, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310012, "mode": "F", "reply": "x0 = -7/2\nx1 = -3/2\nx2 = 3\nx3 = 1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 3.287, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310012, "mode": "F", "reply": "x0 = -7/2\nx1 = -3/2\nx2 = 5/2\nx3 = -1/2", "gen_tokens": 31, "stop": "end_marker", "seconds": 3.856, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310013, "mode": "F", "reply": "x0 = 3\nx1 = 1\nx2 = 1/2\nx3 = 3/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.121, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310013, "mode": "F", "reply": "x0 = 3\nx1 = 1\nx2 = 1/2\nx3 = 3", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.973, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310013, "mode": "F", "reply": "x0 = 3\nx1 = 1\nx2 = 1/2\nx3 = 3", "gen_tokens": 25, "stop": "end_marker", "seconds": 3.419, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310013, "mode": "F", "reply": "x0 = 3\nx1 = 1\nx2 = 1/2\nx3 = 3", "gen_tokens": 25, "stop": "end_marker", "seconds": 3.119, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310013, "mode": "F", "reply": "x0 = 3\nx1 = 1\nx2 = 1/2\nx3 = 3", "gen_tokens": 25, "stop": "end_marker", "seconds": 3.167, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310014, "mode": "F", "reply": "x0 = -7/2\nx1 = -1\nx2 = 5/2\nx3 = -5/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 3.416, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310014, "mode": "F", "reply": "x0 = -5\nx1 = -1/2\nx2 = -1\nx3 = -1/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.597, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310014, "mode": "F", "reply": "x0 = -5\nx1 = -1/2\nx2 = -1\nx3 = -1", "gen_tokens": 25, "stop": "end_marker", "seconds": 3.487, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310014, "mode": "F", "reply": "x0 = -5\nx1 = -1/2\nx2 = -1\nx3 = -1", "gen_tokens": 25, "stop": "end_marker", "seconds": 3.316, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310014, "mode": "F", "reply": "x0 = -5\nx1 = -1/2\nx2 = -1\nx3 = -1", "gen_tokens": 25, "stop": "end_marker", "seconds": 3.153, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310015, "mode": "F", "reply": "x0 = 0\nx1 = 3\nx2 = -2\nx3 = 1", "gen_tokens": 23, "stop": "end_marker", "seconds": 3.009, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310015, "mode": "F", "reply": "x0 = 0\nx1 = 3\nx2 = -3\nx3 = 1", "gen_tokens": 23, "stop": "end_marker", "seconds": 3.06, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310015, "mode": "F", "reply": "x0 = 0\nx1 = 3\nx2 = -3\nx3 = 1", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.947, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310015, "mode": "F", "reply": "x0 = 0\nx1 = 3\nx2 = -3\nx3 = 1", "gen_tokens": 23, "stop": "end_marker", "seconds": 3.276, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310015, "mode": "F", "reply": "x0 = 0\nx1 = 3\nx2 = -1\nx3 = 1", "gen_tokens": 23, "stop": "end_marker", "seconds": 3.141, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310016, "mode": "F", "reply": "x0 = -2\nx1 = -2\nx2 = -2\nx3 = 0", "gen_tokens": 23, "stop": "end_marker", "seconds": 3.172, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310016, "mode": "F", "reply": "x0 = 0\nx1 = -1/2\nx2 = 0\nx3 = 3/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.243, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310016, "mode": "F", "reply": "x0 = 0\nx1 = -1/2\nx2 = 0\nx3 = 3/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.287, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310016, "mode": "F", "reply": "x0 = 0\nx1 = -1/2\nx2 = 0\nx3 = 3/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.452, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310016, "mode": "F", "reply": "x0 = 0\nx1 = -1/2\nx2 = 0\nx3 = 3/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.121, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310017, "mode": "F", "reply": "x0 = -5/2\nx1 = 3\nx2 = 3/2\nx3 = -3/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 3.013, "outcome": "passed"}
+{"text": "B", "tier": "S", "seed": 310017, "mode": "F", "reply": "x0 = -5/2\nx1 = 3\nx2 = 3/2\nx3 = -3", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.174, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310017, "mode": "F", "reply": "x0 = -5/2\nx1 = 3\nx2 = 3/2\nx3 = -3", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.217, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310017, "mode": "F", "reply": "x0 = -5/2\nx1 = 3\nx2 = 3/2\nx3 = -3", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.995, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310017, "mode": "F", "reply": "x0 = -5/2\nx1 = 3\nx2 = 3/2\nx3 = -3", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.968, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310018, "mode": "F", "reply": "x0 = -3/2\nx1 = -3\nx2 = -1/2\nx3 = 2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.884, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310018, "mode": "F", "reply": "x0 = -3/2\nx1 = -3\nx2 = -1/2\nx3 = 2", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.091, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310018, "mode": "F", "reply": "x0 = -3/2\nx1 = -3\nx2 = -1/2\nx3 = 2", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.045, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310018, "mode": "F", "reply": "x0 = -3/2\nx1 = -3\nx2 = -1/2\nx3 = 2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.89, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310018, "mode": "F", "reply": "x0 = -3/2\nx1 = -3\nx2 = -1/2\nx3 = 2", "gen_tokens": 27, "stop": "end_marker", "seconds": 3.046, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310019, "mode": "F", "reply": "x0 = 1\nx1 = -3/2\nx2 = -3\nx3 = 0", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.656, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310019, "mode": "F", "reply": "x0 = 0\nx1 = -4\nx2 = -4\nx3 = -1", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.672, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310019, "mode": "F", "reply": "x0 = 0\nx1 = -4\nx2 = -4\nx3 = -1", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.685, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310019, "mode": "F", "reply": "x0 = 0\nx1 = -4\nx2 = -5\nx3 = -2", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.701, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310019, "mode": "F", "reply": "x0 = 0\nx1 = -4\nx2 = -4\nx3 = -1", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.751, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310020, "mode": "F", "reply": "x0 = -13/2\nx1 = -3/2\nx2 = -5/2\nx3 = -1/2", "gen_tokens": 31, "stop": "end_marker", "seconds": 3.018, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310020, "mode": "F", "reply": "x0 = 0\nx1 = 0\nx2 = 3/2\nx3 = 5/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.773, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310020, "mode": "F", "reply": "x0 = -13/2\nx1 = -3/2\nx2 = -5/2\nx3 = -1/2", "gen_tokens": 31, "stop": "end_marker", "seconds": 3.172, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310020, "mode": "F", "reply": "x0 = -5/2\nx1 = 1\nx2 = -1\nx3 = 0", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.804, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310020, "mode": "F", "reply": "x0 = -5/2\nx1 = 1\nx2 = -1\nx3 = 0", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.784, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310021, "mode": "F", "reply": "x0 = 0\nx1 = -3\nx2 = -7/2\nx3 = -1/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.496, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310021, "mode": "F", "reply": "x0 = 0\nx1 = -3\nx2 = -7/2\nx3 = 0", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.655, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310021, "mode": "F", "reply": "x0 = -3\nx1 = -5\nx2 = -10\nx3 = -7", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.632, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310021, "mode": "F", "reply": "x0 = -3\nx1 = -5\nx2 = -11/2\nx3 = -1/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.789, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310021, "mode": "F", "reply": "x0 = 0\nx1 = -3\nx2 = -7/2\nx3 = 0", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.733, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310022, "mode": "F", "reply": "x0 = -6\nx1 = 1/2\nx2 = 0\nx3 = -1/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.521, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310022, "mode": "F", "reply": "x0 = -4\nx1 = 3\nx2 = 1/2\nx3 = 7/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.628, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310022, "mode": "F", "reply": "x0 = -4\nx1 = 3\nx2 = 1/2\nx3 = 7/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.598, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310022, "mode": "F", "reply": "x0 = -4\nx1 = 3\nx2 = 1/2\nx3 = 7/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.609, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310022, "mode": "F", "reply": "x0 = -4\nx1 = 3\nx2 = 1/2\nx3 = 7/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.605, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310023, "mode": "F", "reply": "x0 = 0\nx1 = -1\nx2 = 2\nx3 = -4", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.247, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310023, "mode": "F", "reply": "x0 = -3\nx1 = -5\nx2 = -1\nx3 = 1", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.367, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310023, "mode": "F", "reply": "x0 = -3\nx1 = -5\nx2 = -1\nx3 = 1", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.431, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310023, "mode": "F", "reply": "x0 = -3\nx1 = -5\nx2 = -1\nx3 = 1", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.377, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310023, "mode": "F", "reply": "x0 = -3\nx1 = -5\nx2 = -1\nx3 = 1", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.37, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310024, "mode": "F", "reply": "x0 = -5\nx1 = 5/2\nx2 = -3\nx3 = 5/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.524, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310024, "mode": "F", "reply": "x0 = -5\nx1 = 5/2\nx2 = 1/2\nx3 = 5/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.734, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310024, "mode": "F", "reply": "x0 = -5\nx1 = 5/2\nx2 = 1/2\nx3 = 5/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.741, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310024, "mode": "F", "reply": "x0 = -5\nx1 = 5/2\nx2 = 1/2\nx3 = 5/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.761, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310024, "mode": "F", "reply": "x0 = -5\nx1 = 5/2\nx2 = 1/2\nx3 = 3/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.785, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310025, "mode": "F", "reply": "x0 = 0\nx1 = -5/2\nx2 = 1/2\nx3 = 2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.555, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310025, "mode": "F", "reply": "x0 = -3\nx1 = -5/2\nx2 = -4\nx3 = 1/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.548, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310025, "mode": "F", "reply": "x0 = -3\nx1 = -5/2\nx2 = -4\nx3 = 1/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.596, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310025, "mode": "F", "reply": "x0 = -3\nx1 = -5/2\nx2 = -4\nx3 = 1/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.601, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310025, "mode": "F", "reply": "x0 = -3\nx1 = -5/2\nx2 = -4\nx3 = 1/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.595, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310026, "mode": "F", "reply": "x0 = -3\nx1 = 1/2\nx2 = 3/2\nx3 = 4", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.487, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310026, "mode": "F", "reply": "x0 = -3\nx1 = 1/2\nx2 = -1/2\nx3 = 3/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.74, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310026, "mode": "F", "reply": "x0 = -3\nx1 = 1/2\nx2 = -1/2\nx3 = 3", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.6, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310026, "mode": "F", "reply": "x0 = -3\nx1 = 1/2\nx2 = -1/2\nx3 = 3", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.633, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310026, "mode": "F", "reply": "x0 = -3\nx1 = 1/2\nx2 = -1/2\nx3 = 3/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.692, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310027, "mode": "F", "reply": "x0 = 1\nx1 = -11/2\nx2 = 4\nx3 = -1/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.553, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310027, "mode": "F", "reply": "x0 = 0\nx1 = -4\nx2 = 4\nx3 = -2", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.504, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310027, "mode": "F", "reply": "x0 = 0\nx1 = -4\nx2 = 4\nx3 = -2", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.591, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310027, "mode": "F", "reply": "x0 = 1\nx1 = -11/2\nx2 = 5/2\nx3 = -1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.862, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310027, "mode": "F", "reply": "x0 = 0\nx1 = -4\nx2 = 4\nx3 = -2", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.555, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310028, "mode": "F", "reply": "x0 = 2\nx1 = 2\nx2 = -1/2\nx3 = 0", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.404, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310028, "mode": "F", "reply": "x0 = 2\nx1 = 2\nx2 = -1\nx3 = -2", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.388, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310028, "mode": "F", "reply": "x0 = 2\nx1 = 2\nx2 = -1\nx3 = -1/2", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.456, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310028, "mode": "F", "reply": "x0 = 2\nx1 = 2\nx2 = -1\nx3 = -1/2", "gen_tokens": 25, "stop": "end_marker", "seconds": 1.313, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310028, "mode": "F", "reply": "x0 = 2\nx1 = 2\nx2 = -1\nx3 = -1/2", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.447, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310029, "mode": "F", "reply": "x0 = 3/2\nx1 = -1/2\nx2 = 2\nx3 = 5/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.576, "outcome": "passed"}
+{"text": "B", "tier": "S", "seed": 310029, "mode": "F", "reply": "x0 = 3/2\nx1 = -4\nx2 = -1/2\nx3 = 1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.671, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310029, "mode": "F", "reply": "x0 = 3/2\nx1 = -4\nx2 = -1/2\nx3 = 1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.76, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310029, "mode": "F", "reply": "x0 = 3/2\nx1 = -4\nx2 = -1/2\nx3 = 1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.707, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310029, "mode": "F", "reply": "x0 = 3/2\nx1 = -4\nx2 = -1/2\nx3 = 1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.7, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310030, "mode": "F", "reply": "x0 = -2\nx1 = 0\nx2 = 0\nx3 = -2", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.243, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310030, "mode": "F", "reply": "x0 = -4\nx1 = -1\nx2 = -1\nx3 = -1/2", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.414, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310030, "mode": "F", "reply": "x0 = -4\nx1 = -1\nx2 = -1\nx3 = -1", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.337, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310030, "mode": "F", "reply": "x0 = -4\nx1 = -1\nx2 = -1\nx3 = -1/2", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.468, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310030, "mode": "F", "reply": "x0 = -4\nx1 = 1\nx2 = 1/2\nx3 = 1", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.496, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310031, "mode": "F", "reply": "x0 = -5\nx1 = -11/2\nx2 = -3/2\nx3 = 0", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.439, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310031, "mode": "F", "reply": "x0 = -5\nx1 = -6\nx2 = -1\nx3 = -1/2", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.784, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310031, "mode": "F", "reply": "x0 = -5\nx1 = -7\nx2 = -3/2\nx3 = -1/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.909, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310031, "mode": "F", "reply": "x0 = -5\nx1 = -7\nx2 = -3/2\nx3 = -1/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.791, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310031, "mode": "F", "reply": "x0 = -5\nx1 = -7\nx2 = -3/2\nx3 = -1/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.803, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310032, "mode": "F", "reply": "x0 = 0\nx1 = 0\nx2 = -3/2\nx3 = 5/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.454, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310032, "mode": "F", "reply": "x0 = 0\nx1 = 0\nx2 = -3/2\nx3 = 2", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.637, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310032, "mode": "F", "reply": "x0 = 0\nx1 = 0\nx2 = -3/2\nx3 = 2", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.774, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310032, "mode": "F", "reply": "x0 = 0\nx1 = 0\nx2 = -3/2\nx3 = 2", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.721, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310032, "mode": "F", "reply": "x0 = 0\nx1 = 0\nx2 = -3/2\nx3 = 2", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.659, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310033, "mode": "F", "reply": "x0 = 0\nx1 = -5\nx2 = 1/2\nx3 = -5", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.338, "outcome": "passed"}
+{"text": "B", "tier": "S", "seed": 310033, "mode": "F", "reply": "x0 = 0\nx1 = -5\nx2 = 1/2\nx3 = -5", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.554, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310033, "mode": "F", "reply": "x0 = 0\nx1 = -5\nx2 = 1/2\nx3 = -5", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.652, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310033, "mode": "F", "reply": "x0 = 0\nx1 = -5\nx2 = 1/2\nx3 = -5", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.649, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310033, "mode": "F", "reply": "x0 = 0\nx1 = -5\nx2 = 1/2\nx3 = -5", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.586, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310034, "mode": "F", "reply": "x0 = 2\nx1 = 0\nx2 = 1\nx3 = 2", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.276, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310034, "mode": "F", "reply": "x0 = 3\nx1 = 0\nx2 = 2\nx3 = 3", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.452, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310034, "mode": "F", "reply": "x0 = 3\nx1 = 0\nx2 = 2\nx3 = 3", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.515, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310034, "mode": "F", "reply": "x0 = 3\nx1 = 0\nx2 = 2\nx3 = 3", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.529, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310034, "mode": "F", "reply": "x0 = 3\nx1 = 0\nx2 = 2\nx3 = 3", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.469, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310035, "mode": "F", "reply": "x0 = 1\nx1 = -1/2\nx2 = 1\nx3 = -5/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.448, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310035, "mode": "F", "reply": "x0 = -3/2\nx1 = 1\nx2 = -3/2\nx3 = -4", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.551, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310035, "mode": "F", "reply": "x0 = -3/2\nx1 = 1\nx2 = -3/2\nx3 = -4", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.593, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310035, "mode": "F", "reply": "x0 = 1\nx1 = -1/2\nx2 = 1\nx3 = -5/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.581, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310035, "mode": "F", "reply": "x0 = -3/2\nx1 = 1\nx2 = -3/2\nx3 = -4", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.7, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310036, "mode": "F", "reply": "x0 = 3/2\nx1 = -5/2\nx2 = 1/2\nx3 = 2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.668, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310036, "mode": "F", "reply": "x0 = 3/2\nx1 = -5/2\nx2 = 3/2\nx3 = 2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.732, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310036, "mode": "F", "reply": "x0 = 3/2\nx1 = -5/2\nx2 = 3/2\nx3 = 2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.65, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310036, "mode": "F", "reply": "x0 = 3/2\nx1 = -5/2\nx2 = 3/2\nx3 = 2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.727, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310036, "mode": "F", "reply": "x0 = 3/2\nx1 = -5/2\nx2 = 3/2\nx3 = 2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.679, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310037, "mode": "F", "reply": "x0 = -7/2\nx1 = 4\nx2 = -4\nx3 = 2", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.37, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310037, "mode": "F", "reply": "x0 = -7/2\nx1 = 4\nx2 = -4\nx3 = 1/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.574, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310037, "mode": "F", "reply": "x0 = -7/2\nx1 = 4\nx2 = -4\nx3 = 3/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.581, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310037, "mode": "F", "reply": "x0 = -7/2\nx1 = 4\nx2 = -4\nx3 = 1", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.486, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310037, "mode": "F", "reply": "x0 = -7/2\nx1 = 4\nx2 = -4\nx3 = 1", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.481, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310038, "mode": "F", "reply": "x0 = 0\nx1 = -5/2\nx2 = -5/2\nx3 = -2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.494, "outcome": "passed"}
+{"text": "B", "tier": "S", "seed": 310038, "mode": "F", "reply": "x0 = 0\nx1 = -5/2\nx2 = -5/2\nx3 = -1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.823, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310038, "mode": "F", "reply": "x0 = 0\nx1 = -5/2\nx2 = -5/2\nx3 = -1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.884, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310038, "mode": "F", "reply": "x0 = 0\nx1 = -5/2\nx2 = -5/2\nx3 = -1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.868, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310038, "mode": "F", "reply": "x0 = 0\nx1 = -5/2\nx2 = -5/2\nx3 = -1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.811, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310039, "mode": "F", "reply": "x0 = 0\nx1 = 2\nx2 = 5/2\nx3 = 2", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.361, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310039, "mode": "F", "reply": "x0 = 0\nx1 = 2\nx2 = 5/2\nx3 = 0", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.472, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310039, "mode": "F", "reply": "x0 = 0\nx1 = 2\nx2 = 5/2\nx3 = 0", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.471, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310039, "mode": "F", "reply": "x0 = 0\nx1 = 2\nx2 = 5/2\nx3 = 0", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.459, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310039, "mode": "F", "reply": "x0 = 0\nx1 = 2\nx2 = 5/2\nx3 = 0", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.468, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310040, "mode": "F", "reply": "x0 = -5/2\nx1 = -4\nx2 = 1\nx3 = 3/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.448, "outcome": "passed"}
+{"text": "B", "tier": "S", "seed": 310040, "mode": "F", "reply": "x0 = -5/2\nx1 = -4\nx2 = 5/2\nx3 = 3", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.555, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310040, "mode": "F", "reply": "x0 = -5/2\nx1 = -4\nx2 = 5/2\nx3 = 3", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.611, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310040, "mode": "F", "reply": "x0 = -5/2\nx1 = -4\nx2 = 5/2\nx3 = 3", "gen_tokens": 27, "stop": "end_marker", "seconds": 1.399, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310040, "mode": "F", "reply": "x0 = -5/2\nx1 = -4\nx2 = 5/2\nx3 = 3", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.567, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310041, "mode": "F", "reply": "x0 = 5/2\nx1 = -3/2\nx2 = 1/2\nx3 = 0", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.518, "outcome": "passed"}
+{"text": "B", "tier": "S", "seed": 310041, "mode": "F", "reply": "x0 = 5/2\nx1 = -3/2\nx2 = 1/2\nx3 = 0", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.68, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310041, "mode": "F", "reply": "x0 = 3/2\nx1 = -3\nx2 = 0\nx3 = -3/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.587, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310041, "mode": "F", "reply": "x0 = 3/2\nx1 = -3\nx2 = 0\nx3 = -3/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 1.404, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310041, "mode": "F", "reply": "x0 = 3/2\nx1 = -3\nx2 = 0\nx3 = -3/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.573, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310042, "mode": "F", "reply": "x0 = -5\nx1 = -5\nx2 = 0\nx3 = -5", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.341, "outcome": "passed"}
+{"text": "B", "tier": "S", "seed": 310042, "mode": "F", "reply": "x0 = -5\nx1 = -5\nx2 = 0\nx3 = -5", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.433, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310042, "mode": "F", "reply": "x0 = -1/2\nx1 = -1/2\nx2 = 9/2\nx3 = -1/2", "gen_tokens": 31, "stop": "end_marker", "seconds": 2.889, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310042, "mode": "F", "reply": "x0 = -5\nx1 = -5\nx2 = 0\nx3 = -5", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.497, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310042, "mode": "F", "reply": "x0 = -5\nx1 = -5\nx2 = 0\nx3 = -5", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.46, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310043, "mode": "F", "reply": "x0 = 0\nx1 = -3/2\nx2 = 3/2\nx3 = -3/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.543, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310043, "mode": "F", "reply": "x0 = 0\nx1 = -3/2\nx2 = 3/2\nx3 = -3", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.602, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310043, "mode": "F", "reply": "x0 = 0\nx1 = -3/2\nx2 = 3/2\nx3 = -2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.619, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310043, "mode": "F", "reply": "x0 = 0\nx1 = -3/2\nx2 = 3/2\nx3 = -3/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.755, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310043, "mode": "F", "reply": "x0 = 0\nx1 = -3/2\nx2 = 3/2\nx3 = -2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.617, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310044, "mode": "F", "reply": "x0 = 2\nx1 = 7/2\nx2 = -2\nx3 = 3", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.358, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310044, "mode": "F", "reply": "x0 = 2\nx1 = 7/2\nx2 = -5/2\nx3 = 3", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.636, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310044, "mode": "F", "reply": "x0 = 2\nx1 = 7/2\nx2 = -5/2\nx3 = 3", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.57, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310044, "mode": "F", "reply": "x0 = 2\nx1 = 7/2\nx2 = -5/2\nx3 = 3", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.541, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310044, "mode": "F", "reply": "x0 = 2\nx1 = 7/2\nx2 = -5/2\nx3 = 3", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.582, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310045, "mode": "F", "reply": "x0 = 0\nx1 = 6\nx2 = 0\nx3 = 1", "gen_tokens": 23, "stop": "end_marker", "seconds": 2.313, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310045, "mode": "F", "reply": "x0 = 2\nx1 = 13/2\nx2 = 2\nx3 = -7", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.512, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310045, "mode": "F", "reply": "x0 = 2\nx1 = 13/2\nx2 = 2\nx3 = -7", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.523, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310045, "mode": "F", "reply": "x0 = 2\nx1 = 13/2\nx2 = -1\nx3 = -7", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.548, "outcome": "failed"}
+{"text": "N", "tier": "S", "seed": 310045, "mode": "F", "reply": "x0 = 2\nx1 = 13/2\nx2 = 2\nx3 = -7", "gen_tokens": 25, "stop": "end_marker", "seconds": 2.532, "outcome": "failed"}
+{"text": "A", "tier": "S", "seed": 310046, "mode": "F", "reply": "x0 = 3\nx1 = -1/2\nx2 = 7/2\nx3 = 1", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.485, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310046, "mode": "F", "reply": "x0 = 7/2\nx1 = -1/2\nx2 = 2\nx3 = 1\nx4 = 0", "gen_tokens": 33, "stop": "end_marker", "seconds": 2.831, "outcome": "format_break"}
+{"text": "C", "tier": "S", "seed": 310046, "mode": "F", "reply": "x0 = 7/2\nx1 = -1/2\nx2 = 2\nx3 = 1\nx4 = 0", "gen_tokens": 33, "stop": "end_marker", "seconds": 2.854, "outcome": "format_break"}
+{"text": "E", "tier": "S", "seed": 310046, "mode": "F", "reply": "x0 = 7/2\nx1 = -1/2\nx2 = 2\nx3 = 1\nx4 = 0", "gen_tokens": 33, "stop": "end_marker", "seconds": 1.704, "outcome": "format_break"}
+{"text": "N", "tier": "S", "seed": 310046, "mode": "F", "reply": "x0 = 7/2\nx1 = -1/2\nx2 = 2\nx3 = 1\nx4 = 0", "gen_tokens": 33, "stop": "end_marker", "seconds": 2.874, "outcome": "format_break"}
+{"text": "A", "tier": "S", "seed": 310047, "mode": "F", "reply": "x0 = 1/2\nx1 = -1/2\nx2 = -7/2\nx3 = -3\nx4 = 0", "gen_tokens": 35, "stop": "end_marker", "seconds": 2.856, "outcome": "format_break"}
+{"text": "B", "tier": "S", "seed": 310047, "mode": "F", "reply": "x0 = 5/2\nx1 = 3/2\nx2 = -3/2\nx3 = 1/2", "gen_tokens": 31, "stop": "end_marker", "seconds": 2.839, "outcome": "failed"}
+{"text": "C", "tier": "S", "seed": 310047, "mode": "F", "reply": "x0 = 5/2\nx1 = 3/2\nx2 = -3/2\nx3 = 1/2", "gen_tokens": 31, "stop": "end_marker", "seconds": 2.896, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310047, "mode": "F", "reply": "x0 = 1/2\nx1 = -1\nx2 = -7/2\nx3 = -1/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.766, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310047, "mode": "F", "reply": "x0 = 1/2\nx1 = -1/2\nx2 = -7/2\nx3 = -1/2", "gen_tokens": 31, "stop": "end_marker", "seconds": 2.817, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310048, "mode": "F", "reply": "x0 = 3/2\nx1 = -7/2\nx2 = 4\nx3 = 0", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.444, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310048, "mode": "F", "reply": "x0 = 3/2\nx1 = -7/2\nx2 = 4\nx3 = -7/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.592, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310048, "mode": "F", "reply": "x0 = 3/2\nx1 = -7/2\nx2 = 4\nx3 = -3", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.588, "outcome": "failed"}
+{"text": "E", "tier": "S", "seed": 310048, "mode": "F", "reply": "x0 = 3/2\nx1 = -7/2\nx2 = 4\nx3 = -7/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.675, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310048, "mode": "F", "reply": "x0 = 3/2\nx1 = -7/2\nx2 = 4\nx3 = -7/2", "gen_tokens": 29, "stop": "end_marker", "seconds": 2.639, "outcome": "passed"}
+{"text": "A", "tier": "S", "seed": 310049, "mode": "F", "reply": "x0 = 3/2\nx1 = -3\nx2 = -1\nx3 = -7/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.501, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310049, "mode": "F", "reply": "x0 = 3/2\nx1 = -3\nx2 = -2\nx3 = -7/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.643, "outcome": "passed"}
+{"text": "C", "tier": "S", "seed": 310049, "mode": "F", "reply": "x0 = 3/2\nx1 = -3\nx2 = -2\nx3 = -7/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.629, "outcome": "passed"}
+{"text": "E", "tier": "S", "seed": 310049, "mode": "F", "reply": "x0 = 3/2\nx1 = -3\nx2 = -2\nx3 = -7/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.686, "outcome": "passed"}
+{"text": "N", "tier": "S", "seed": 310049, "mode": "F", "reply": "x0 = 3/2\nx1 = -3\nx2 = -2\nx3 = -7/2", "gen_tokens": 27, "stop": "end_marker", "seconds": 2.658, "outcome": "passed"}
+{"text": "A", "tier": "M", "seed": 360000, "mode": "F", "reply": "x0 = 9/2\nx1 = -4/3\nx2 = 35/6\nx3 = -8/3\nx4 = 23/6\nx5 = -17/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.886, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360000, "mode": "F", "reply": "x0 = 9/2\nx1 = -4/3\nx2 = 35/6\nx3 = -8/3\nx4 = 23/6\nx5 = -17/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.919, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360000, "mode": "F", "reply": "x0 = 9/2\nx1 = -4/3\nx2 = 35/6\nx3 = -8/3\nx4 = 23/6\nx5 = -17/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.982, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360000, "mode": "F", "reply": "x0 = 9/2\nx1 = -4/3\nx2 = 35/6\nx3 = -8/3\nx4 = 23/6\nx5 = -17/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.95, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360000, "mode": "F", "reply": "x0 = 9/2\nx1 = -4/3\nx2 = 35/6\nx3 = -8/3\nx4 = 23/6\nx5 = -17/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.978, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360001, "mode": "F", "reply": "x0 = 16/3\nx1 = 3/2\nx2 = 4/3\nx3 = -13/6\nx4 = -31/6\nx5 = -1", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.71, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360001, "mode": "F", "reply": "x0 = 16/3\nx1 = 3/2\nx2 = 4/3\nx3 = -13/6\nx4 = -31/6\nx5 = -3/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.895, "outcome": "passed"}
+{"text": "C", "tier": "M", "seed": 360001, "mode": "F", "reply": "x0 = 16/3\nx1 = 3/2\nx2 = 4/3\nx3 = -13/6\nx4 = -31/6\nx5 = -3/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.852, "outcome": "passed"}
+{"text": "E", "tier": "M", "seed": 360001, "mode": "F", "reply": "x0 = 16/3\nx1 = 3/2\nx2 = 4/3\nx3 = -13/6\nx4 = -31/6\nx5 = -3/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.75, "outcome": "passed"}
+{"text": "N", "tier": "M", "seed": 360001, "mode": "F", "reply": "x0 = 16/3\nx1 = 3/2\nx2 = 4/3\nx3 = -13/6\nx4 = -31/6\nx5 = -7/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.774, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360002, "mode": "F", "reply": "x0 = 0\nx1 = -7\nx2 = 0\nx3 = 3\nx4 = -5\nx5 = 1", "gen_tokens": 35, "stop": "end_marker", "seconds": 3.202, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360002, "mode": "F", "reply": "x0 = -3\nx1 = -17/3\nx2 = 9/2\nx3 = -3/2\nx4 = -25/6\nx5 = -11/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.693, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360002, "mode": "F", "reply": "x0 = -3\nx1 = -17/3\nx2 = 9/2\nx3 = -3/2\nx4 = -25/6\nx5 = -11/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.748, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360002, "mode": "F", "reply": "x0 = -3\nx1 = -17/3\nx2 = 9/2\nx3 = -3/2\nx4 = -13/2\nx5 = -11/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.8, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360002, "mode": "F", "reply": "x0 = -3\nx1 = -17/3\nx2 = 9/2\nx3 = -3/2\nx4 = -25/6\nx5 = -11/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.729, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360003, "mode": "F", "reply": "x0 = 8/3\nx1 = -31/6\nx2 = -2/3\nx3 = 14/3\nx4 = -1/6\nx5 = -2", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.656, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360003, "mode": "F", "reply": "x0 = 8/3\nx1 = -31/6\nx2 = -2/3\nx3 = 10/3\nx4 = -1/6\nx5 = -2", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.758, "outcome": "passed"}
+{"text": "C", "tier": "M", "seed": 360003, "mode": "F", "reply": "x0 = 8/3\nx1 = -31/6\nx2 = 2/3\nx3 = 10/3\nx4 = -1/6\nx5 = -2", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.733, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360003, "mode": "F", "reply": "x0 = 8/3\nx1 = -31/6\nx2 = -2/3\nx3 = 10/3\nx4 = -1/6\nx5 = -2", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.701, "outcome": "passed"}
+{"text": "N", "tier": "M", "seed": 360003, "mode": "F", "reply": "x0 = 8/3\nx1 = -31/6\nx2 = -2/3\nx3 = 4/3\nx4 = -1/6\nx5 = -2", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.76, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360004, "mode": "F", "reply": "x0 = -5\nx1 = -2\nx2 = 3\nx3 = 4\nx4 = -22/3\nx5 = 5/2", "gen_tokens": 39, "stop": "end_marker", "seconds": 3.367, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360004, "mode": "F", "reply": "x0 = -5\nx1 = -12\nx2 = -5/2\nx3 = -4\nx4 = -13/6\nx5 = -14/3", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.662, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360004, "mode": "F", "reply": "x0 = -5\nx1 = -4\nx2 = 3\nx3 = 4\nx4 = -22/3\nx5 = 5/2", "gen_tokens": 39, "stop": "end_marker", "seconds": 3.883, "outcome": "passed"}
+{"text": "E", "tier": "M", "seed": 360004, "mode": "F", "reply": "x0 = -5\nx1 = -12\nx2 = -5/2\nx3 = -4\nx4 = -22/3\nx5 = 5/2", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.771, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360004, "mode": "F", "reply": "x0 = -5\nx1 = -2\nx2 = 3\nx3 = 4\nx4 = -22/3\nx5 = 5/2", "gen_tokens": 39, "stop": "end_marker", "seconds": 3.66, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360005, "mode": "F", "reply": "x0 = -5\nx1 = -4\nx2 = -1\nx3 = 1\nx4 = 1\nx5 = 1", "gen_tokens": 35, "stop": "end_marker", "seconds": 3.433, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360005, "mode": "F", "reply": "x0 = -23/6\nx1 = -13/6\nx2 = 19/6\nx3 = 37/6\nx4 = 2\nx5 = 13/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.906, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360005, "mode": "F", "reply": "x0 = -23/6\nx1 = -13/6\nx2 = 7/6\nx3 = 37/6\nx4 = 0\nx5 = 13/6", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.058, "outcome": "passed"}
+{"text": "E", "tier": "M", "seed": 360005, "mode": "F", "reply": "x0 = -23/6\nx1 = -13/6\nx2 = 7/6\nx3 = 37/6\nx4 = 0\nx5 = 13/6", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.029, "outcome": "passed"}
+{"text": "N", "tier": "M", "seed": 360005, "mode": "F", "reply": "x0 = -23/6\nx1 = -13/6\nx2 = 7/6\nx3 = 37/6\nx4 = 0\nx5 = 13/6", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.983, "outcome": "passed"}
+{"text": "A", "tier": "M", "seed": 360006, "mode": "F", "reply": "x0 = -13/6\nx1 = -2/3\nx2 = -3/2\nx3 = -17/6\nx4 = 19/6\nx5 = -5/6", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.905, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360006, "mode": "F", "reply": "x0 = -13/6\nx1 = -2/3\nx2 = -3/2\nx3 = -17/6\nx4 = 8/3\nx5 = -1/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.366, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360006, "mode": "F", "reply": "x0 = -13/6\nx1 = -2/3\nx2 = -3/2\nx3 = -17/6\nx4 = 8/3\nx5 = -1/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.223, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360006, "mode": "F", "reply": "x0 = -13/6\nx1 = -2/3\nx2 = -3/2\nx3 = -17/6\nx4 = 8/3\nx5 = -5/6", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.02, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360006, "mode": "F", "reply": "x0 = -13/6\nx1 = -2/3\nx2 = -3/2\nx3 = -17/6\nx4 = 8/3\nx5 = 1/6", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.964, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360007, "mode": "F", "reply": "x0 = 0\nx1 = 11/3\nx2 = 1/6\nx3 = -2\nx4 = -3/2\nx5 = -7/3", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.632, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360007, "mode": "F", "reply": "x0 = 13/6\nx1 = 9/2\nx2 = 8/3\nx3 = -17/6\nx4 = 2/3\nx5 = -4", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.91, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360007, "mode": "F", "reply": "x0 = 13/6\nx1 = 9/2\nx2 = 8/3\nx3 = -17/6\nx4 = 2/3\nx5 = -4", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.891, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360007, "mode": "F", "reply": "x0 = 13/6\nx1 = 9/2\nx2 = 8/3\nx3 = -17/6\nx4 = 2/3\nx5 = -4", "gen_tokens": 45, "stop": "end_marker", "seconds": 2.321, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360007, "mode": "F", "reply": "x0 = 13/6\nx1 = 9/2\nx2 = 8/3\nx3 = -17/6\nx4 = 2/3\nx5 = -4", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.872, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360008, "mode": "F", "reply": "x0 = -8/3\nx1 = -1/2\nx2 = -3/2\nx3 = 1/2\nx4 = 13/6\nx5 = -7/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.872, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360008, "mode": "F", "reply": "x0 = -8/3\nx1 = -1\nx2 = -2\nx3 = 1/2\nx4 = 13/6\nx5 = -7/2", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.973, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360008, "mode": "F", "reply": "x0 = -41/6\nx1 = -5/2\nx2 = -7/2\nx3 = 0\nx4 = 2/3\nx5 = -23/6", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.257, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360008, "mode": "F", "reply": "x0 = -41/6\nx1 = -1/2\nx2 = -3/2\nx3 = 0\nx4 = 2/3\nx5 = -23/6", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.147, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360008, "mode": "F", "reply": "x0 = -41/6\nx1 = -1/2\nx2 = -3/2\nx3 = 0\nx4 = 2/3\nx5 = -23/6", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.119, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360009, "mode": "F", "reply": "x0 = 7/6\nx1 = -1/6\nx2 = 11/2\nx3 = 5/2\nx4 = 6\nx5 = 7/6", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.949, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360009, "mode": "F", "reply": "x0 = 7/6\nx1 = -1/6\nx2 = 4\nx3 = 5/2\nx4 = 11/2\nx5 = 1/2", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.978, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360009, "mode": "F", "reply": "x0 = 7/6\nx1 = -1/6\nx2 = 4\nx3 = 5/2\nx4 = 11/2\nx5 = 1/2", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.04, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360009, "mode": "F", "reply": "x0 = 7/6\nx1 = -1/6\nx2 = 4\nx3 = 5/2\nx4 = 11/2\nx5 = 1/6", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.005, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360009, "mode": "F", "reply": "x0 = 7/6\nx1 = -1/6\nx2 = 11/2\nx3 = 5/2\nx4 = 6\nx5 = 1/2", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.884, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360010, "mode": "F", "reply": "x0 = 0\nx1 = -7/3\nx2 = 1/3\nx3 = 1/2\nx4 = -10/3\nx5 = -28/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.83, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360010, "mode": "F", "reply": "x0 = 4/3\nx1 = 2/3\nx2 = 13/3\nx3 = 7/3\nx4 = -10/3\nx5 = -11/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.046, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360010, "mode": "F", "reply": "x0 = 4/3\nx1 = 2/3\nx2 = 13/3\nx3 = 7/3\nx4 = -10/3\nx5 = -11/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.05, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360010, "mode": "F", "reply": "x0 = 4/3\nx1 = 2\nx2 = 13/3\nx3 = 7/3\nx4 = -10/3\nx5 = -11/2", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.92, "outcome": "passed"}
+{"text": "N", "tier": "M", "seed": 360010, "mode": "F", "reply": "x0 = 4/3\nx1 = 2/3\nx2 = 13/3\nx3 = 7/3\nx4 = -10/3\nx5 = -11/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.034, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360011, "mode": "F", "reply": "x0 = -7/3\nx1 = -8/3\nx2 = 17/6\nx3 = 9/2\nx4 = 5\nx5 = 3", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.744, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360011, "mode": "F", "reply": "x0 = -7/3\nx1 = -8/3\nx2 = 11/3\nx3 = 9/2\nx4 = 5\nx5 = 3", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.798, "outcome": "passed"}
+{"text": "C", "tier": "M", "seed": 360011, "mode": "F", "reply": "x0 = -7/3\nx1 = -8/3\nx2 = 11/3\nx3 = 9/2\nx4 = 5\nx5 = 3", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.869, "outcome": "passed"}
+{"text": "E", "tier": "M", "seed": 360011, "mode": "F", "reply": "x0 = -7/3\nx1 = -8/3\nx2 = 11/3\nx3 = 9/2\nx4 = 5\nx5 = 3", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.747, "outcome": "passed"}
+{"text": "N", "tier": "M", "seed": 360011, "mode": "F", "reply": "x0 = -7/3\nx1 = -8/3\nx2 = 11/3\nx3 = 9/2\nx4 = 5\nx5 = 3", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.706, "outcome": "passed"}
+{"text": "A", "tier": "M", "seed": 360012, "mode": "F", "reply": "x0 = -3\nx1 = 10/3\nx2 = 17/3\nx3 = -3\nx4 = 17/3\nx5 = -29/3", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.723, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360012, "mode": "F", "reply": "x0 = -3\nx1 = 10/3\nx2 = 17/3\nx3 = -3\nx4 = 17/3\nx5 = -14/3", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.936, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360012, "mode": "F", "reply": "x0 = -3\nx1 = 10/3\nx2 = 3\nx3 = -11/2\nx4 = 17/3\nx5 = -14/3", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.945, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360012, "mode": "F", "reply": "x0 = -3\nx1 = 10/3\nx2 = 3\nx3 = -3\nx4 = 17/3\nx5 = -14/3", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.801, "outcome": "passed"}
+{"text": "N", "tier": "M", "seed": 360012, "mode": "F", "reply": "x0 = -3\nx1 = 10/3\nx2 = 17/3\nx3 = -3\nx4 = 17/3\nx5 = -14/3", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.892, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360013, "mode": "F", "reply": "x0 = -5/6\nx1 = -2/3\nx2 = -7/3\nx3 = 5/2\nx4 = -19/6\nx5 = -1/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.161, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360013, "mode": "F", "reply": "x0 = -5/6\nx1 = -2/3\nx2 = -7/3\nx3 = 5/2\nx4 = -19/6\nx5 = -1/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.073, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360013, "mode": "F", "reply": "x0 = -5/6\nx1 = -2/3\nx2 = -7/3\nx3 = 5/2\nx4 = -19/6\nx5 = -1/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.178, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360013, "mode": "F", "reply": "x0 = -5/6\nx1 = -2/3\nx2 = -7/3\nx3 = 5/2\nx4 = -19/6\nx5 = -1/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.355, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360013, "mode": "F", "reply": "x0 = -5/6\nx1 = -2/3\nx2 = -7/3\nx3 = 5/2\nx4 = -19/6\nx5 = -1/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.18, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360014, "mode": "F", "reply": "x0 = 31/6\nx1 = 2\nx2 = 5/6\nx3 = -13/6\nx4 = -5/3\nx5 = 1/2", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.48, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360014, "mode": "F", "reply": "x0 = 31/6\nx1 = 13/6\nx2 = 5/6\nx3 = -13/6\nx4 = -5/3\nx5 = 1/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.118, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360014, "mode": "F", "reply": "x0 = 31/6\nx1 = 13/6\nx2 = 5/6\nx3 = -13/6\nx4 = -5/3\nx5 = 1/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.079, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360014, "mode": "F", "reply": "x0 = 31/6\nx1 = 13/6\nx2 = 5/6\nx3 = -13/6\nx4 = -5/3\nx5 = 1/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.059, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360014, "mode": "F", "reply": "x0 = 31/6\nx1 = 2\nx2 = 5/6\nx3 = -13/6\nx4 = -5/3\nx5 = 1/2", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.037, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360015, "mode": "F", "reply": "x0 = 0\nx1 = 4\nx2 = 1\nx3 = 3\nx4 = -4\nx5 = -5", "gen_tokens": 35, "stop": "end_marker", "seconds": 3.295, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360015, "mode": "F", "reply": "x0 = 17/6\nx1 = 17/3\nx2 = 1/3\nx3 = 19/6\nx4 = -7/2\nx5 = -5/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.004, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360015, "mode": "F", "reply": "x0 = 17/6\nx1 = 17/3\nx2 = 5/3\nx3 = 19/6\nx4 = -7/2\nx5 = -3/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.198, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360015, "mode": "F", "reply": "x0 = 17/6\nx1 = 17/3\nx2 = 5/3\nx3 = 19/6\nx4 = -7/2\nx5 = -3/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.055, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360015, "mode": "F", "reply": "x0 = 17/6\nx1 = 17/3\nx2 = 5/3\nx3 = 19/6\nx4 = -7/2\nx5 = -3/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.067, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360016, "mode": "F", "reply": "x0 = -11/2\nx1 = 1/6\nx2 = 2/3\nx3 = 2\nx4 = 4/3\nx5 = 11/2", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.828, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360016, "mode": "F", "reply": "x0 = -11/2\nx1 = 1/6\nx2 = 2/3\nx3 = 2\nx4 = 1/6\nx5 = 11/2", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.965, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360016, "mode": "F", "reply": "x0 = -11/2\nx1 = 1/6\nx2 = 2/3\nx3 = 2\nx4 = 1/6\nx5 = 11/2", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.988, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360016, "mode": "F", "reply": "x0 = -11/2\nx1 = 1/6\nx2 = 7/2\nx3 = 2\nx4 = 3\nx5 = 11/2", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.979, "outcome": "passed"}
+{"text": "N", "tier": "M", "seed": 360016, "mode": "F", "reply": "x0 = -11/2\nx1 = 1/6\nx2 = 7/2\nx3 = 2\nx4 = 3\nx5 = 11/2", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.921, "outcome": "passed"}
+{"text": "A", "tier": "M", "seed": 360017, "mode": "F", "reply": "x0 = -1/3\nx1 = 23/6\nx2 = 23/6\nx3 = -4/3\nx4 = -3\nx5 = 4/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.815, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360017, "mode": "F", "reply": "x0 = -1/3\nx1 = 23/6\nx2 = 23/6\nx3 = 2/3\nx4 = -3\nx5 = 4/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.099, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360017, "mode": "F", "reply": "x0 = -1/3\nx1 = 23/6\nx2 = 23/6\nx3 = -1/3\nx4 = -3\nx5 = 4/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.601, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360017, "mode": "F", "reply": "x0 = -1/3\nx1 = 23/6\nx2 = 23/6\nx3 = -4/3\nx4 = -3\nx5 = 4/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.128, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360017, "mode": "F", "reply": "x0 = -1/3\nx1 = 23/6\nx2 = 23/6\nx3 = -4/3\nx4 = -3\nx5 = 4/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.931, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360018, "mode": "F", "reply": "x0 = -1\nx1 = 2\nx2 = 7/3\nx3 = 8/3\nx4 = -11/6\nx5 = 23/6", "gen_tokens": 43, "stop": "end_marker", "seconds": 4.096, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360018, "mode": "F", "reply": "x0 = -1\nx1 = 2\nx2 = 7/6\nx3 = 8/3\nx4 = -11/6\nx5 = 23/6", "gen_tokens": 43, "stop": "end_marker", "seconds": 4.492, "outcome": "passed"}
+{"text": "C", "tier": "M", "seed": 360018, "mode": "F", "reply": "x0 = -1\nx1 = 2\nx2 = 7/6\nx3 = 8/3\nx4 = -11/6\nx5 = 23/6", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.85, "outcome": "passed"}
+{"text": "E", "tier": "M", "seed": 360018, "mode": "F", "reply": "x0 = -1\nx1 = 2\nx2 = 7/6\nx3 = 8/3\nx4 = -11/6\nx5 = 23/6", "gen_tokens": 43, "stop": "end_marker", "seconds": 4.239, "outcome": "passed"}
+{"text": "N", "tier": "M", "seed": 360018, "mode": "F", "reply": "x0 = -1\nx1 = 2\nx2 = 7/6\nx3 = 8/3\nx4 = -11/6\nx5 = 23/6", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.8, "outcome": "passed"}
+{"text": "A", "tier": "M", "seed": 360019, "mode": "F", "reply": "x0 = 5/2\nx1 = 8/3\nx2 = 17/6\nx3 = 19/6\nx4 = -11/2\nx5 = -2/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.982, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360019, "mode": "F", "reply": "x0 = 5/2\nx1 = 8/3\nx2 = 17/6\nx3 = 1/2\nx4 = -11/2\nx5 = -2/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.932, "outcome": "passed"}
+{"text": "C", "tier": "M", "seed": 360019, "mode": "F", "reply": "x0 = 5/2\nx1 = 8/3\nx2 = 17/6\nx3 = 5/2\nx4 = -11/2\nx5 = -2/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.937, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360019, "mode": "F", "reply": "x0 = 5/2\nx1 = 8/3\nx2 = 17/6\nx3 = 5/2\nx4 = -11/2\nx5 = -2/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.975, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360019, "mode": "F", "reply": "x0 = 5/2\nx1 = 8/3\nx2 = 17/6\nx3 = 5/2\nx4 = -11/2\nx5 = -2/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.039, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360020, "mode": "F", "reply": "x0 = -11/6\nx1 = 31/6\nx2 = -25/6\nx3 = 7/2\nx4 = 14/3\nx5 = -11/6", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.987, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360020, "mode": "F", "reply": "x0 = -11/6\nx1 = 31/6\nx2 = -25/6\nx3 = 7/2\nx4 = 14/3\nx5 = -11/6", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.001, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360020, "mode": "F", "reply": "x0 = -11/6\nx1 = 31/6\nx2 = -25/6\nx3 = 7/2\nx4 = 14/3\nx5 = -11/6", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.982, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360020, "mode": "F", "reply": "x0 = -11/6\nx1 = 31/6\nx2 = -25/6\nx3 = 7/2\nx4 = 14/3\nx5 = -11/6", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.053, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360020, "mode": "F", "reply": "x0 = -11/6\nx1 = 31/6\nx2 = -25/6\nx3 = 7/2\nx4 = 14/3\nx5 = -11/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.051, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360021, "mode": "F", "reply": "x0 = -14/3\nx1 = -1/3\nx2 = 1/6\nx3 = 13/3\nx4 = 23/6\nx5 = 5/6", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.927, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360021, "mode": "F", "reply": "x0 = -14/3\nx1 = -1/3\nx2 = 1/6\nx3 = 13/3\nx4 = 7/3\nx5 = 5/6", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.931, "outcome": "passed"}
+{"text": "C", "tier": "M", "seed": 360021, "mode": "F", "reply": "x0 = -14/3\nx1 = -1/3\nx2 = 1/6\nx3 = 13/3\nx4 = 7/3\nx5 = 5/6", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.993, "outcome": "passed"}
+{"text": "E", "tier": "M", "seed": 360021, "mode": "F", "reply": "x0 = -14/3\nx1 = -1/3\nx2 = 1/6\nx3 = 13/3\nx4 = 7/3\nx5 = 5/6", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.986, "outcome": "passed"}
+{"text": "N", "tier": "M", "seed": 360021, "mode": "F", "reply": "x0 = -14/3\nx1 = -1/3\nx2 = 1/6\nx3 = 13/3\nx4 = 7/3\nx5 = 5/6", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.926, "outcome": "passed"}
+{"text": "A", "tier": "M", "seed": 360022, "mode": "F", "reply": "x0 = -14/3\nx1 = -4\nx2 = 5/3\nx3 = -19/6\nx4 = 10/3\nx5 = -5/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.791, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360022, "mode": "F", "reply": "x0 = -14/3\nx1 = -4\nx2 = 5/3\nx3 = -19/6\nx4 = 10/3\nx5 = -5/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.179, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360022, "mode": "F", "reply": "x0 = -14/3\nx1 = -4\nx2 = 5/3\nx3 = -19/6\nx4 = 10/3\nx5 = -5/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.496, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360022, "mode": "F", "reply": "x0 = -14/3\nx1 = -4\nx2 = 5/3\nx3 = -19/6\nx4 = 10/3\nx5 = -5/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.238, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360022, "mode": "F", "reply": "x0 = -14/3\nx1 = -4\nx2 = 5/3\nx3 = -19/6\nx4 = 10/3\nx5 = -5/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.224, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360023, "mode": "F", "reply": "x0 = 14/3\nx1 = 25/6\nx2 = -4/3\nx3 = 25/6\nx4 = -7/3\nx5 = -1/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.139, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360023, "mode": "F", "reply": "x0 = 14/3\nx1 = 25/6\nx2 = -4/3\nx3 = 25/6\nx4 = -7/3\nx5 = -1/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.201, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360023, "mode": "F", "reply": "x0 = 14/3\nx1 = 25/6\nx2 = -4/3\nx3 = 25/6\nx4 = -7/3\nx5 = -1/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.386, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360023, "mode": "F", "reply": "x0 = 14/3\nx1 = 25/6\nx2 = -4/3\nx3 = 25/6\nx4 = -7/3\nx5 = -1/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.23, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360023, "mode": "F", "reply": "x0 = 14/3\nx1 = 25/6\nx2 = -4/3\nx3 = 25/6\nx4 = -7/3\nx5 = -1/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.134, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360024, "mode": "F", "reply": "x0 = -17/6\nx1 = -4/3\nx2 = -9/2\nx3 = 5\nx4 = 13/3\nx5 = -7/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.805, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360024, "mode": "F", "reply": "x0 = -17/6\nx1 = -4/3\nx2 = -9/2\nx3 = 5\nx4 = 13/3\nx5 = -7/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.054, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360024, "mode": "F", "reply": "x0 = -17/6\nx1 = -4/3\nx2 = -9/2\nx3 = 5\nx4 = 13/3\nx5 = -7/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.1, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360024, "mode": "F", "reply": "x0 = -17/6\nx1 = -4/3\nx2 = -9/2\nx3 = 5\nx4 = 13/3\nx5 = -7/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.184, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360024, "mode": "F", "reply": "x0 = -17/6\nx1 = -4/3\nx2 = -9/2\nx3 = 5\nx4 = 13/3\nx5 = -7/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.035, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360025, "mode": "F", "reply": "x0 = -23/6\nx1 = 10/3\nx2 = 23/6\nx3 = -7/2\nx4 = -3\nx5 = -10/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.902, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360025, "mode": "F", "reply": "x0 = -23/6\nx1 = 10/3\nx2 = 23/6\nx3 = -7/2\nx4 = -3\nx5 = -10/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.856, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360025, "mode": "F", "reply": "x0 = -23/6\nx1 = 10/3\nx2 = 23/6\nx3 = -7/2\nx4 = -3\nx5 = -10/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.902, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360025, "mode": "F", "reply": "x0 = -23/6\nx1 = 10/3\nx2 = 23/6\nx3 = -7/2\nx4 = -3\nx5 = -10/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.887, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360025, "mode": "F", "reply": "x0 = -23/6\nx1 = 10/3\nx2 = 23/6\nx3 = -7/2\nx4 = -3\nx5 = -10/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.827, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360026, "mode": "F", "reply": "x0 = -5/3\nx1 = 11/2\nx2 = 19/6\nx3 = -7/3\nx4 = 6\nx5 = 5", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.657, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360026, "mode": "F", "reply": "x0 = -5/3\nx1 = 11/2\nx2 = 19/6\nx3 = 4/3\nx4 = 6\nx5 = 5", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.801, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360026, "mode": "F", "reply": "x0 = -5/3\nx1 = 11/2\nx2 = 19/6\nx3 = 2/3\nx4 = 6\nx5 = 5", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.808, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360026, "mode": "F", "reply": "x0 = -5/3\nx1 = 11/2\nx2 = 19/6\nx3 = 2/3\nx4 = 6\nx5 = 5", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.765, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360026, "mode": "F", "reply": "x0 = -5/3\nx1 = 11/2\nx2 = 19/6\nx3 = 2/3\nx4 = 6\nx5 = 5", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.873, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360027, "mode": "F", "reply": "x0 = 7/3\nx1 = -7/6\nx2 = 3/2\nx3 = -7/3\nx4 = -25/6\nx5 = 5/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.868, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360027, "mode": "F", "reply": "x0 = 7/3\nx1 = -7/6\nx2 = 3/2\nx3 = -7/3\nx4 = -25/6\nx5 = 7/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.012, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360027, "mode": "F", "reply": "x0 = 0\nx1 = -3\nx2 = 3/2\nx3 = -14/3\nx4 = -25/3\nx5 = 7/2", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.819, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360027, "mode": "F", "reply": "x0 = 7/3\nx1 = -7/6\nx2 = 3/2\nx3 = -7/3\nx4 = -9/2\nx5 = 7/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.042, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360027, "mode": "F", "reply": "x0 = 7/3\nx1 = -7/6\nx2 = 3/2\nx3 = -7/3\nx4 = -25/6\nx5 = 7/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.107, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360028, "mode": "F", "reply": "x0 = 2/3\nx1 = -14/3\nx2 = 7/6\nx3 = -1/3\nx4 = -13/3\nx5 = -5/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.843, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360028, "mode": "F", "reply": "x0 = 2/3\nx1 = -14/3\nx2 = 5/2\nx3 = -1/3\nx4 = -13/3\nx5 = -5/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.927, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360028, "mode": "F", "reply": "x0 = 2/3\nx1 = -14/3\nx2 = 5/6\nx3 = -1/3\nx4 = -13/3\nx5 = -5/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.937, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360028, "mode": "F", "reply": "x0 = 2/3\nx1 = -14/3\nx2 = 5/6\nx3 = -1/3\nx4 = -13/3\nx5 = -5/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.027, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360028, "mode": "F", "reply": "x0 = 2/3\nx1 = -14/3\nx2 = 5/2\nx3 = -1/3\nx4 = -13/3\nx5 = -5/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.969, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360029, "mode": "F", "reply": "x0 = -4/3\nx1 = -7/6\nx2 = 3/2\nx3 = -16/3\nx4 = -11/2\nx5 = -1/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.874, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360029, "mode": "F", "reply": "x0 = 0\nx1 = 0\nx2 = 7/3\nx3 = -20/3\nx4 = -53/6 + 7/3 = -53/6 + 14/6 = -39/6 = -13/2\nx5 = -1\nx0 = 0\nx1 = 0\nx2 = 7/3\nx3 = -20/3\nx", "gen_tokens": 97, "stop": "cap", "seconds": 6.394, "outcome": "cut"}
+{"text": "C", "tier": "M", "seed": 360029, "mode": "F", "reply": "x0 = 0\nx1 = 0\nx2 = 7/3\nx3 = -20/3\nx4 = -14/3\nx5 = -1", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.767, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360029, "mode": "F", "reply": "x0 = 0\nx1 = 0\nx2 = 7/3\nx3 = -20/3\nx4 = -16/3\nx5 = -1", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.803, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360029, "mode": "F", "reply": "x0 = 0\nx1 = 0\nx2 = 7/3\nx3 = -20/3\nx4 = -16/3\nx5 = -1", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.766, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360030, "mode": "F", "reply": "x0 = 0\nx1 = -3\nx2 = -2\nx3 = -1\nx4 = 1\nx5 = -2", "gen_tokens": 35, "stop": "end_marker", "seconds": 3.279, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360030, "mode": "F", "reply": "x0 = 31/6\nx1 = 8/3\nx2 = 10/3\nx3 = 13/3\nx4 = 6\nx5 = 5/2", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.894, "outcome": "passed"}
+{"text": "C", "tier": "M", "seed": 360030, "mode": "F", "reply": "x0 = 31/6\nx1 = 3\nx2 = 10/3\nx3 = 14/3\nx4 = 6\nx5 = 17/6", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.726, "outcome": "passed"}
+{"text": "E", "tier": "M", "seed": 360030, "mode": "F", "reply": "x0 = 31/6\nx1 = 3\nx2 = 10/3\nx3 = 14/3\nx4 = 6\nx5 = 17/6", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.696, "outcome": "passed"}
+{"text": "N", "tier": "M", "seed": 360030, "mode": "F", "reply": "x0 = 31/6\nx1 = 8/3\nx2 = 10/3\nx3 = 13/3\nx4 = 6\nx5 = 5/2", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.817, "outcome": "passed"}
+{"text": "A", "tier": "M", "seed": 360031, "mode": "F", "reply": "x0 = 11/6\nx1 = 5/6\nx2 = 7/6\nx3 = -11/2\nx4 = 25/6\nx5 = 11/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.819, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360031, "mode": "F", "reply": "x0 = 11/6\nx1 = 5/6\nx2 = 7/6\nx3 = -11/2\nx4 = 7/2\nx5 = 11/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.955, "outcome": "passed"}
+{"text": "C", "tier": "M", "seed": 360031, "mode": "F", "reply": "x0 = 11/6\nx1 = 5/6\nx2 = 7/6\nx3 = -11/2\nx4 = 7/3\nx5 = 11/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.122, "outcome": "passed"}
+{"text": "E", "tier": "M", "seed": 360031, "mode": "F", "reply": "x0 = 11/6\nx1 = 5/6\nx2 = 7/6\nx3 = -11/2\nx4 = 7/3\nx5 = 11/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.964, "outcome": "passed"}
+{"text": "N", "tier": "M", "seed": 360031, "mode": "F", "reply": "x0 = 11/6\nx1 = 5/6\nx2 = 7/6\nx3 = -11/2\nx4 = 22/6\nx5 = 11/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.904, "outcome": "passed"}
+{"text": "A", "tier": "M", "seed": 360032, "mode": "F", "reply": "x0 = -31/6\nx1 = 7/2\nx2 = -5/2\nx3 = 19/3\nx4 = -4/3\nx5 = 4", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.719, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360032, "mode": "F", "reply": "x0 = -31/6\nx1 = 7/2\nx2 = -5/2\nx3 = 19/3\nx4 = -4/3\nx5 = 5/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.877, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360032, "mode": "F", "reply": "x0 = -31/6\nx1 = 7/2\nx2 = -5/2\nx3 = 19/3\nx4 = -4/3\nx5 = 5/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.338, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360032, "mode": "F", "reply": "x0 = -31/6\nx1 = 7/2\nx2 = -5/2\nx3 = 19/3\nx4 = -4/3\nx5 = 5/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.958, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360032, "mode": "F", "reply": "x0 = -31/6\nx1 = 7/2\nx2 = -5/2\nx3 = 19/3\nx4 = -4/3\nx5 = 5/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.843, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360033, "mode": "F", "reply": "x0 = -2\nx1 = -17/3\nx2 = 35/6\nx3 = 4\nx4 = -11/3\nx5 = -25/6", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.649, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360033, "mode": "F", "reply": "x0 = -2\nx1 = -17/3\nx2 = 35/6\nx3 = 4\nx4 = 5/2\nx5 = -25/6", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.77, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360033, "mode": "F", "reply": "x0 = -2\nx1 = -17/3\nx2 = 35/6\nx3 = 4\nx4 = 5/2\nx5 = -25/6", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.844, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360033, "mode": "F", "reply": "x0 = -2\nx1 = -17/3\nx2 = 35/6\nx3 = 4\nx4 = 5/2\nx5 = -25/6", "gen_tokens": 43, "stop": "end_marker", "seconds": 2.28, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360033, "mode": "F", "reply": "x0 = -2\nx1 = -17/3\nx2 = 35/6\nx3 = 4\nx4 = 5/2\nx5 = -25/6", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.728, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360034, "mode": "F", "reply": "x0 = -23/6\nx1 = 1/3\nx2 = 5\nx3 = 8/3\nx4 = -23/6\nx5 = -5/6", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.737, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360034, "mode": "F", "reply": "x0 = -23/6\nx1 = 1/3\nx2 = 5/3\nx3 = 7/3\nx4 = -23/6\nx5 = 4/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.015, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360034, "mode": "F", "reply": "x0 = -23/6\nx1 = 1/3\nx2 = 5/3\nx3 = 7/3\nx4 = -23/6\nx5 = 4/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.017, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360034, "mode": "F", "reply": "x0 = -23/6\nx1 = 1/3\nx2 = 5/3\nx3 = 7/3\nx4 = -23/6\nx5 = 5/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.023, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360034, "mode": "F", "reply": "x0 = -23/6\nx1 = 1/3\nx2 = 5\nx3 = 8/3\nx4 = -1/2\nx5 = -5/6", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.899, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360035, "mode": "F", "reply": "x0 = 0\nx1 = -7/6\nx2 = 1/2\nx3 = -5\nx4 = -17/2\nx5 = 0", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.593, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360035, "mode": "F", "reply": "x0 = 1/2\nx1 = -5/3\nx2 = 8/3\nx3 = -2/3\nx4 = -23/6\nx5 = 4/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.892, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360035, "mode": "F", "reply": "x0 = 1/2\nx1 = -5/3\nx2 = 8/3\nx3 = -2/3\nx4 = -23/6\nx5 = 4", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.807, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360035, "mode": "F", "reply": "x0 = 1/2\nx1 = -5/3\nx2 = 8/3\nx3 = -2/3\nx4 = -23/6\nx5 = 11/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.07, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360035, "mode": "F", "reply": "x0 = 1/2\nx1 = -5/3\nx2 = 8/3\nx3 = -2/3\nx4 = -23/6\nx5 = 4/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.085, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360036, "mode": "F", "reply": "x0 = 19/6\nx1 = -7/6\nx2 = -9/2\nx3 = -17/3\nx4 = -23/6\nx5 = 5/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.899, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360036, "mode": "F", "reply": "x0 = 19/6\nx1 = -7/6\nx2 = -9/2\nx3 = -17/3\nx4 = -23/6\nx5 = 5/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.184, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360036, "mode": "F", "reply": "x0 = -1/2\nx1 = -5/2\nx2 = -25/6\nx3 = -31/6\nx4 = -10/3\nx5 = 1/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.083, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360036, "mode": "F", "reply": "x0 = 19/6\nx1 = -7/6\nx2 = -9/2\nx3 = -17/3\nx4 = -23/6\nx5 = 25/6", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.05, "outcome": "passed"}
+{"text": "N", "tier": "M", "seed": 360036, "mode": "F", "reply": "x0 = -1/2\nx1 = -7/6\nx2 = -9/2\nx3 = -17/3\nx4 = -23/6\nx5 = 1/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.061, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360037, "mode": "F", "reply": "x0 = 11/3\nx1 = -13/6\nx2 = -9/2\nx3 = -23/6\nx4 = -1\nx5 = 4", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.721, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360037, "mode": "F", "reply": "x0 = 11/3\nx1 = -13/6\nx2 = -9/2\nx3 = -23/6\nx4 = -1\nx5 = 4", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.778, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360037, "mode": "F", "reply": "x0 = 11/3\nx1 = -5/2\nx2 = -9/2\nx3 = -23/6\nx4 = -1\nx5 = 4", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.806, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360037, "mode": "F", "reply": "x0 = 11/3\nx1 = -5/2\nx2 = -9/2\nx3 = -23/6\nx4 = -1\nx5 = 4", "gen_tokens": 43, "stop": "end_marker", "seconds": 2.245, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360037, "mode": "F", "reply": "x0 = 11/3\nx1 = -5/2\nx2 = -9/2\nx3 = -23/6\nx4 = -1\nx5 = 4", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.789, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360038, "mode": "F", "reply": "x0 = -1\nx1 = -10/3\nx2 = -16/3\nx3 = 17/2\nx4 = 2\nx5 = -11/3", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.666, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360038, "mode": "F", "reply": "x0 = -1\nx1 = -10/3\nx2 = -16/3\nx3 = 17/2\nx4 = 2\nx5 = -11/3", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.936, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360038, "mode": "F", "reply": "x0 = -1\nx1 = -10/3\nx2 = -16/3\nx3 = 17/2\nx4 = 2\nx5 = -11/3", "gen_tokens": 43, "stop": "end_marker", "seconds": 4.082, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360038, "mode": "F", "reply": "x0 = -1\nx1 = -10/3\nx2 = -16/3\nx3 = 17/2\nx4 = 2\nx5 = -11/3", "gen_tokens": 43, "stop": "end_marker", "seconds": 4.015, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360038, "mode": "F", "reply": "x0 = -1\nx1 = -10/3\nx2 = -16/3\nx3 = 17/2\nx4 = 2\nx5 = -11/3", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.956, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360039, "mode": "F", "reply": "x0 = -7\nx1 = 0\nx2 = -5\nx3 = -8\nx4 = -5\nx5 = -10.5", "gen_tokens": 37, "stop": "end_marker", "seconds": 3.476, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360039, "mode": "F", "reply": "x0 = -23/6\nx1 = 23/6\nx2 = -7/3\nx3 = -7/6\nx4 = -17/6\nx5 = 11/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.966, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360039, "mode": "F", "reply": "x0 = -23/6\nx1 = 23/6\nx2 = -3/2\nx3 = -7/6\nx4 = -13/3\nx5 = 11/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.97, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360039, "mode": "F", "reply": "x0 = -23/6\nx1 = 23/6\nx2 = -7/3\nx3 = -7/6\nx4 = -17/6\nx5 = 11/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.921, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360039, "mode": "F", "reply": "x0 = -23/6\nx1 = 23/6\nx2 = -3/2\nx3 = -7/6\nx4 = -13/3\nx5 = 11/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.957, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360040, "mode": "F", "reply": "x0 = -14/3\nx1 = 13/3\nx2 = -2/3\nx3 = -7/3\nx4 = -4\nx5 = 1", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.859, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360040, "mode": "F", "reply": "x0 = -14/3\nx1 = 13/3\nx2 = -2/3\nx3 = -7/3\nx4 = -4\nx5 = -4", "gen_tokens": 43, "stop": "end_marker", "seconds": 4.011, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360040, "mode": "F", "reply": "x0 = -14/3\nx1 = 13/3\nx2 = -2/3\nx3 = -7/3\nx4 = -4\nx5 = -2", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.935, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360040, "mode": "F", "reply": "x0 = -14/3\nx1 = 13/3\nx2 = -2/3\nx3 = -7/3\nx4 = -4\nx5 = -4/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.993, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360040, "mode": "F", "reply": "x0 = -14/3\nx1 = 13/3\nx2 = -2/3\nx3 = -7/3\nx4 = -4\nx5 = -2/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.991, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360041, "mode": "F", "reply": "x0 = -2\nx1 = -23/6\nx2 = -4\nx3 = 1/3\nx4 = 4/3\nx5 = -11/3", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.833, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360041, "mode": "F", "reply": "x0 = -2\nx1 = -23/6\nx2 = -4\nx3 = 1/3\nx4 = 4/3\nx5 = -5", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.888, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360041, "mode": "F", "reply": "x0 = -2\nx1 = -23/6\nx2 = -4\nx3 = 1/3\nx4 = 4/3\nx5 = -5", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.679, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360041, "mode": "F", "reply": "x0 = -2\nx1 = -23/6\nx2 = -4\nx3 = 1/3\nx4 = 4/3\nx5 = -5", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.605, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360041, "mode": "F", "reply": "x0 = -2\nx1 = -23/6\nx2 = -4\nx3 = 1/3\nx4 = 4/3\nx5 = -5", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.642, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360042, "mode": "F", "reply": "x0 = 11/2\nx1 = 3/2\nx2 = -7/2\nx3 = 3\nx4 = -17/3\nx5 = 23/6", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.808, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360042, "mode": "F", "reply": "x0 = 11/2\nx1 = 2\nx2 = -7/2\nx3 = 3\nx4 = -17/3\nx5 = 23/6", "gen_tokens": 43, "stop": "end_marker", "seconds": 4.041, "outcome": "passed"}
+{"text": "C", "tier": "M", "seed": 360042, "mode": "F", "reply": "x0 = 11/2\nx1 = 2\nx2 = -7/2\nx3 = 3\nx4 = -17/3\nx5 = 23/6", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.792, "outcome": "passed"}
+{"text": "E", "tier": "M", "seed": 360042, "mode": "F", "reply": "x0 = 11/2\nx1 = 2\nx2 = -7/2\nx3 = 3\nx4 = -17/3\nx5 = 23/6", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.736, "outcome": "passed"}
+{"text": "N", "tier": "M", "seed": 360042, "mode": "F", "reply": "x0 = 11/2\nx1 = 3/2\nx2 = -7/2\nx3 = 3\nx4 = -17/3\nx5 = 23/6", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.892, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360043, "mode": "F", "reply": "x0 = 5/6\nx1 = -16/3\nx2 = -11/2\nx3 = -35/6\nx4 = 1\nx5 = 5/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.851, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360043, "mode": "F", "reply": "x0 = 5/6\nx1 = -16/3\nx2 = -11/2\nx3 = -35/6\nx4 = 1\nx5 = 5", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.853, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360043, "mode": "F", "reply": "x0 = 5/6\nx1 = -16/3\nx2 = -11/2\nx3 = -35/6\nx4 = 1\nx5 = 5", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.995, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360043, "mode": "F", "reply": "x0 = 5/6\nx1 = -16/3\nx2 = -11/2\nx3 = -35/6\nx4 = 1\nx5 = 5", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.935, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360043, "mode": "F", "reply": "x0 = 5/6\nx1 = -16/3\nx2 = -11/2\nx3 = -35/6\nx4 = 1\nx5 = 5", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.897, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360044, "mode": "F", "reply": "x0 = 23/6\nx1 = -17/6\nx2 = 16/3\nx3 = 10/3\nx4 = -5/2\nx5 = -4/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.03, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360044, "mode": "F", "reply": "x0 = 23/6\nx1 = -17/6\nx2 = 16/3\nx3 = 10/3\nx4 = -5/2\nx5 = -5/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.009, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360044, "mode": "F", "reply": "x0 = 23/6\nx1 = -17/6\nx2 = 16/3\nx3 = 10/3\nx4 = -5/2\nx5 = -5/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.077, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360044, "mode": "F", "reply": "x0 = 23/6\nx1 = -17/6\nx2 = 16/3\nx3 = 10/3\nx4 = -5/2\nx5 = -5/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.239, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360044, "mode": "F", "reply": "x0 = 23/6\nx1 = -17/6\nx2 = 16/3\nx3 = 10/3\nx4 = -5/2\nx5 = -5/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 4.127, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360045, "mode": "F", "reply": "x0 = -5/2\nx1 = -4\nx2 = -1\nx3 = -5/2\nx4 = -3\nx5 = -13/2", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.826, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360045, "mode": "F", "reply": "x0 = -5/2\nx1 = -4\nx2 = -2\nx3 = -1/2\nx4 = 2\nx5 = -9/2", "gen_tokens": 41, "stop": "end_marker", "seconds": 4.017, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360045, "mode": "F", "reply": "x0 = -5/2\nx1 = -4\nx2 = -2\nx3 = -1/2\nx4 = 2\nx5 = -9/2", "gen_tokens": 41, "stop": "end_marker", "seconds": 4.045, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360045, "mode": "F", "reply": "x0 = -5/2\nx1 = -4\nx2 = -2\nx3 = -1/2\nx4 = 2\nx5 = -9/2", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.843, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360045, "mode": "F", "reply": "x0 = -5/2\nx1 = -4\nx2 = -2\nx3 = -1/2\nx4 = 2\nx5 = -9/2", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.81, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360046, "mode": "F", "reply": "x0 = 11/2\nx1 = 5\nx2 = 11/6\nx3 = -17/3\nx4 = 20/3\nx5 = -11/2", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.747, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360046, "mode": "F", "reply": "x0 = 0\nx1 = 0\nx2 = 0\nx3 = -31/3\nx4 = -43/6\nx5 = -29/3", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.805, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360046, "mode": "F", "reply": "x0 = 11/2\nx1 = 5\nx2 = 11/6\nx3 = -17/3\nx4 = 20/3\nx5 = -11/2", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.055, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360046, "mode": "F", "reply": "x0 = 0\nx1 = 0\nx2 = 0\nx3 = -31/3\nx4 = -43/6\nx5 = -29/3", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.833, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360046, "mode": "F", "reply": "x0 = 11/2\nx1 = 5\nx2 = 11/6\nx3 = -17/3\nx4 = 20/3\nx5 = -11/2", "gen_tokens": 45, "stop": "end_marker", "seconds": 4.068, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360047, "mode": "F", "reply": "x0 = 7\nx1 = 0\nx2 = 7\nx3 = 7\nx4 = 20/3\nx5 = 41/6", "gen_tokens": 39, "stop": "end_marker", "seconds": 3.426, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360047, "mode": "F", "reply": "x0 = 0\nx1 = -7\nx2 = 0\nx3 = 0\nx4 = -1\nx5 = -1/2", "gen_tokens": 37, "stop": "end_marker", "seconds": 3.555, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360047, "mode": "F", "reply": "x0 = 0\nx1 = -7\nx2 = 0\nx3 = 0\nx4 = -1\nx5 = -1/6\nx6 = 0", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.969, "outcome": "format_break"}
+{"text": "E", "tier": "M", "seed": 360047, "mode": "F", "reply": "x0 = 0\nx1 = -7\nx2 = 0\nx3 = 0\nx4 = -1\nx5 = -1\nx6 = 0", "gen_tokens": 41, "stop": "end_marker", "seconds": 3.884, "outcome": "format_break"}
+{"text": "N", "tier": "M", "seed": 360047, "mode": "F", "reply": "x0 = 0\nx1 = -7\nx2 = 0\nx3 = 0\nx4 = -1\nx5 = -1/6\nx6 = 0", "gen_tokens": 43, "stop": "end_marker", "seconds": 3.964, "outcome": "format_break"}
+{"text": "A", "tier": "M", "seed": 360048, "mode": "F", "reply": "x0 = -2\nx1 = 11/6\nx2 = -5/3\nx3 = -17/6\nx4 = 31/6\nx5 = -7/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.788, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360048, "mode": "F", "reply": "x0 = -2\nx1 = 11/6\nx2 = -5/3\nx3 = -17/6\nx4 = 31/6\nx5 = -7/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.783, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360048, "mode": "F", "reply": "x0 = -2\nx1 = 11/6\nx2 = -5/3\nx3 = -17/6\nx4 = 31/6\nx5 = -7/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.887, "outcome": "failed"}
+{"text": "E", "tier": "M", "seed": 360048, "mode": "F", "reply": "x0 = -2\nx1 = 11/6\nx2 = -5/3\nx3 = -17/6\nx4 = 31/6\nx5 = -7/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.836, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360048, "mode": "F", "reply": "x0 = -2\nx1 = 11/6\nx2 = -5/3\nx3 = -17/6\nx4 = 31/6\nx5 = -7/3", "gen_tokens": 45, "stop": "end_marker", "seconds": 3.915, "outcome": "failed"}
+{"text": "A", "tier": "M", "seed": 360049, "mode": "F", "reply": "x0 = -5/2\nx1 = 13/6\nx2 = -25/6\nx3 = -17/3\nx4 = -23/6\nx5 = -14/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.862, "outcome": "failed"}
+{"text": "B", "tier": "M", "seed": 360049, "mode": "F", "reply": "x0 = -5/2\nx1 = 13/6\nx2 = -25/6\nx3 = -17/3\nx4 = -7/3\nx5 = -5/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.933, "outcome": "failed"}
+{"text": "C", "tier": "M", "seed": 360049, "mode": "F", "reply": "x0 = -5/2\nx1 = 13/6\nx2 = -25/6\nx3 = -17/3\nx4 = -7/2\nx5 = -4\nx6 = 0", "gen_tokens": 51, "stop": "end_marker", "seconds": 4.126, "outcome": "format_break"}
+{"text": "E", "tier": "M", "seed": 360049, "mode": "F", "reply": "x0 = -5/2\nx1 = 13/6\nx2 = -25/6\nx3 = -17/3\nx4 = -23/6\nx5 = -10/3", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.945, "outcome": "failed"}
+{"text": "N", "tier": "M", "seed": 360049, "mode": "F", "reply": "x0 = -5/2\nx1 = 13/6\nx2 = -25/6\nx3 = -17/3\nx4 = -7/3\nx5 = -5/2", "gen_tokens": 47, "stop": "end_marker", "seconds": 3.904, "outcome": "failed"}
+{"text": "B", "tier": "S", "seed": 310000, "mode": "R", "reply": "x0 = 0\nx1 = -5/2\nx2 = 1\nx3 = -3", "gen_tokens": 783, "stop": "answer_closed", "seconds": 40.293, "outcome": "passed", "thinking_tokens": 781}
+{"text": "C", "tier": "S", "seed": 310000, "mode": "R", "reply": "x0 = 0\nx1 = -5/2\nx2 = 0\nx3 = -7/2", "gen_tokens": 986, "stop": "answer_closed", "seconds": 52.03, "outcome": "passed", "thinking_tokens": 984}
+{"text": "B", "tier": "M", "seed": 360000, "mode": "R", "reply": "x0 = 7\nx1 = 2\nx2 = 77/6\nx3 = 13/6\nx4 = 5\nx5 = 0", "gen_tokens": 1970, "stop": "answer_closed", "seconds": 102.583, "outcome": "passed", "thinking_tokens": 1968}
+{"text": "C", "tier": "M", "seed": 360000, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 106.486, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "B", "tier": "S", "seed": 310001, "mode": "R", "reply": "x0 = 0\nx1 = 5\nx2 = 1\nx3 = 1", "gen_tokens": 713, "stop": "answer_closed", "seconds": 38.206, "outcome": "passed", "thinking_tokens": 711}
+{"text": "C", "tier": "S", "seed": 310001, "mode": "R", "reply": "x0 = 0\nx1 = 5\nx2 = 1\nx3 = 1", "gen_tokens": 590, "stop": "answer_closed", "seconds": 31.323, "outcome": "passed", "thinking_tokens": 588}
+{"text": "B", "tier": "M", "seed": 360001, "mode": "R", "reply": "x0 = 0\nx1 = -4/3\nx2 = -2\nx3 = -20/3\nx4 = -47/6\nx5 = -13/3", "gen_tokens": 1604, "stop": "answer_closed", "seconds": 82.469, "outcome": "passed", "thinking_tokens": 1602}
+{"text": "C", "tier": "M", "seed": 360001, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 111.493, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "B", "tier": "S", "seed": 310002, "mode": "R", "reply": "x0 = 3\nx1 = 8\nx2 = 0\nx3 = 9/2", "gen_tokens": 767, "stop": "answer_closed", "seconds": 44.999, "outcome": "passed", "thinking_tokens": 765}
+{"text": "C", "tier": "S", "seed": 310002, "mode": "R", "reply": "x0 = -6\nx1 = 0\nx2 = -8\nx3 = -15/4", "gen_tokens": 854, "stop": "answer_closed", "seconds": 51.866, "outcome": "passed", "thinking_tokens": 852}
+{"text": "B", "tier": "M", "seed": 360002, "mode": "R", "reply": "x0 = 0\nx1 = -2\nx2 = 37/6\nx3 = 5/3\nx4 = -1\nx5 = 0", "gen_tokens": 1735, "stop": "answer_closed", "seconds": 103.503, "outcome": "passed", "thinking_tokens": 1733}
+{"text": "C", "tier": "M", "seed": 360002, "mode": "R", "reply": "x0 = 0\nx1 = -1/6\nx2 = 8\nx3 = 4\nx4 = 1\nx5 = 1", "gen_tokens": 1826, "stop": "answer_closed", "seconds": 109.272, "outcome": "passed", "thinking_tokens": 1824}
+{"text": "B", "tier": "S", "seed": 310003, "mode": "R", "reply": "x0 = 0\nx1 = 15/2\nx2 = 5\nx3 = 0", "gen_tokens": 937, "stop": "answer_closed", "seconds": 62.016, "outcome": "passed", "thinking_tokens": 935}
+{"text": "C", "tier": "S", "seed": 310003, "mode": "R", "reply": "x0 = 0\nx1 = 15/2\nx2 = 5\nx3 = 0", "gen_tokens": 931, "stop": "answer_closed", "seconds": 51.674, "outcome": "passed", "thinking_tokens": 929}
+{"text": "B", "tier": "M", "seed": 360003, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 112.091, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "C", "tier": "M", "seed": 360003, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 110.182, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "B", "tier": "S", "seed": 310004, "mode": "R", "reply": "x0 = 0\nx1 = 6\nx2 = 13/2\nx3 = 5/2", "gen_tokens": 836, "stop": "answer_closed", "seconds": 47.786, "outcome": "passed", "thinking_tokens": 834}
+{"text": "C", "tier": "S", "seed": 310004, "mode": "R", "reply": "x0 = 0\nx1 = 6\nx2 = 13/2\nx3 = 5/2", "gen_tokens": 905, "stop": "answer_closed", "seconds": 53.344, "outcome": "passed", "thinking_tokens": 903}
+{"text": "B", "tier": "M", "seed": 360004, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 111.881, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "C", "tier": "M", "seed": 360004, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 104.614, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "B", "tier": "S", "seed": 310005, "mode": "R", "reply": "x0 = 0\nx1 = 0\nx2 = -3\nx3 = -2", "gen_tokens": 565, "stop": "answer_closed", "seconds": 29.734, "outcome": "passed", "thinking_tokens": 563}
+{"text": "C", "tier": "S", "seed": 310005, "mode": "R", "reply": "x0 = 0\nx1 = 1/2\nx2 = -3\nx3 = -2", "gen_tokens": 538, "stop": "answer_closed", "seconds": 29.908, "outcome": "passed", "thinking_tokens": 536}
+{"text": "B", "tier": "M", "seed": 360005, "mode": "R", "reply": "x0 = 0\nx1 = 1\nx2 = 4\nx3 = 7\nx4 = 3\nx5 = 5", "gen_tokens": 1686, "stop": "answer_closed", "seconds": 95.274, "outcome": "passed", "thinking_tokens": 1684}
+{"text": "C", "tier": "M", "seed": 360005, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 99.884, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "B", "tier": "S", "seed": 310006, "mode": "R", "reply": "x0 = 0\nx1 = -1\nx2 = 0\nx3 = 2", "gen_tokens": 651, "stop": "answer_closed", "seconds": 31.775, "outcome": "passed", "thinking_tokens": 649}
+{"text": "C", "tier": "S", "seed": 310006, "mode": "R", "reply": "x0 = -2\nx1 = -3\nx2 = 0\nx3 = 0", "gen_tokens": 736, "stop": "answer_closed", "seconds": 35.766, "outcome": "passed", "thinking_tokens": 734}
+{"text": "B", "tier": "M", "seed": 360006, "mode": "R", "reply": "x0 = -1\nx1 = 0\nx2 = -5/6\nx3 = -13/6\nx", "gen_tokens": 2000, "stop": "cap", "seconds": 98.017, "outcome": "cut", "thinking_tokens": 1998}
+{"text": "C", "tier": "M", "seed": 360006, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 96.867, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "B", "tier": "S", "seed": 310007, "mode": "R", "reply": "x0 = 0\nx1 = 0\nx2 = 0\nx3 = -1/2", "gen_tokens": 611, "stop": "answer_closed", "seconds": 29.795, "outcome": "passed", "thinking_tokens": 609}
+{"text": "C", "tier": "S", "seed": 310007, "mode": "R", "reply": "x0 = 0\nx1 = 0\nx2 = 0\nx3 = -1/2", "gen_tokens": 645, "stop": "answer_closed", "seconds": 31.226, "outcome": "passed", "thinking_tokens": 643}
+{"text": "B", "tier": "M", "seed": 360007, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 99.272, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "C", "tier": "M", "seed": 360007, "mode": "R", "reply": "x0 = 0\nx1 = 0\nx2 = -2\nx3 = -6\nx4 = -2\nx5", "gen_tokens": 2000, "stop": "cap", "seconds": 99.277, "outcome": "cut", "thinking_tokens": 1998}
+{"text": "B", "tier": "S", "seed": 310008, "mode": "R", "reply": "x0 = 0\nx1 = -1\nx2 = -1\nx3 = -1", "gen_tokens": 533, "stop": "answer_closed", "seconds": 26.622, "outcome": "passed", "thinking_tokens": 531}
+{"text": "C", "tier": "S", "seed": 310008, "mode": "R", "reply": "x0 = 0\nx1 = -1\nx2 = -1\nx3 = -1", "gen_tokens": 588, "stop": "answer_closed", "seconds": 29.51, "outcome": "passed", "thinking_tokens": 586}
+{"text": "B", "tier": "M", "seed": 360008, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 99.453, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "C", "tier": "M", "seed": 360008, "mode": "R", "reply": "x0 = 0\nx1 = 8/3\nx2 = 5/3\nx3 = 41/6\nx4 = 13/3\nx5 = 5/6", "gen_tokens": 1753, "stop": "answer_closed", "seconds": 86.174, "outcome": "passed", "thinking_tokens": 1751}
+{"text": "B", "tier": "S", "seed": 310009, "mode": "R", "reply": "x0 = 0\nx1 = -6\nx2 = 0\nx3 = -5", "gen_tokens": 846, "stop": "answer_closed", "seconds": 41.76, "outcome": "passed", "thinking_tokens": 844}
+{"text": "C", "tier": "S", "seed": 310009, "mode": "R", "reply": "x0 = 6\nx1 = 0\nx2 = 7\nx3 = 3/2", "gen_tokens": 751, "stop": "answer_closed", "seconds": 37.216, "outcome": "passed", "thinking_tokens": 749}
+{"text": "B", "tier": "M", "seed": 360009, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 99.0, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "C", "tier": "M", "seed": 360009, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 101.425, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "B", "tier": "S", "seed": 310010, "mode": "R", "reply": "x0 = -4\nx1 = 0\nx2 = -3\nx3 = -2", "gen_tokens": 864, "stop": "answer_closed", "seconds": 45.165, "outcome": "passed", "thinking_tokens": 862}
+{"text": "C", "tier": "S", "seed": 310010, "mode": "R", "reply": "x0 = 0\nx1 = 7/2\nx2 = 0\nx3 = 0", "gen_tokens": 834, "stop": "answer_closed", "seconds": 40.526, "outcome": "passed", "thinking_tokens": 832}
+{"text": "B", "tier": "M", "seed": 360010, "mode": "R", "reply": "x0 =", "gen_tokens": 2000, "stop": "cap", "seconds": 97.271, "outcome": "cut", "thinking_tokens": 1998}
+{"text": "C", "tier": "M", "seed": 360010, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 101.915, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "B", "tier": "S", "seed": 310011, "mode": "R", "reply": "x0 = -3\nx1 = 0\nx2 = -1\nx3 = -5", "gen_tokens": 773, "stop": "answer_closed", "seconds": 42.693, "outcome": "passed", "thinking_tokens": 771}
+{"text": "C", "tier": "S", "seed": 310011, "mode": "R", "reply": "x0 = 1\nx1 = 5\nx2 = 3\nx3 = 0", "gen_tokens": 761, "stop": "answer_closed", "seconds": 40.345, "outcome": "passed", "thinking_tokens": 759}
+{"text": "B", "tier": "M", "seed": 360011, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 100.972, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "C", "tier": "M", "seed": 360011, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 98.937, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "B", "tier": "S", "seed": 310012, "mode": "R", "reply": "x0 = 0\nx1 = 4\nx2 = 5\nx3 = 4", "gen_tokens": 897, "stop": "answer_closed", "seconds": 44.118, "outcome": "passed", "thinking_tokens": 895}
+{"text": "C", "tier": "S", "seed": 310012, "mode": "R", "reply": "x0 = 0\nx1 = 1\nx2 = 5\nx3 = 4", "gen_tokens": 725, "stop": "answer_closed", "seconds": 36.487, "outcome": "passed", "thinking_tokens": 723}
+{"text": "B", "tier": "M", "seed": 360012, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 99.574, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "C", "tier": "M", "seed": 360012, "mode": "R", "reply": "x0 = 3/2\nx1 = 15/2\nx2 = 7\nx3 = 1\nx4 = 10\nx5 = 0", "gen_tokens": 1932, "stop": "answer_closed", "seconds": 96.512, "outcome": "passed", "thinking_tokens": 1930}
+{"text": "B", "tier": "S", "seed": 310013, "mode": "R", "reply": "x0 = 5/2\nx1 = 1\nx2 = 0\nx3 = 2", "gen_tokens": 927, "stop": "answer_closed", "seconds": 46.508, "outcome": "passed", "thinking_tokens": 925}
+{"text": "C", "tier": "S", "seed": 310013, "mode": "R", "reply": "x0 = 5/2\nx1 = 1\nx2 = 0\nx3 = 2", "gen_tokens": 823, "stop": "answer_closed", "seconds": 41.591, "outcome": "passed", "thinking_tokens": 821}
+{"text": "B", "tier": "M", "seed": 360013, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 103.231, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "C", "tier": "M", "seed": 360013, "mode": "R", "reply": "", "gen_tokens": 2000, "stop": "cap", "seconds": 106.544, "outcome": "no_answer", "thinking_tokens": 1998}
+{"text": "B", "tier": "S", "seed": 310014, "mode": "R", "reply": "x0 = 0\nx1 = 9/2\nx2 = 4\nx3 = 4", "gen_tokens": 603, "stop": "answer_closed", "seconds": 35.65, "outcome": "passed", "thinking_tokens": 601}
+{"text": "C", "tier": "S", "seed": 310014, "mode": "R", "reply": "x0 = 0\nx1 = 9/2\nx2 = 4\nx3 = 9/2", "gen_tokens": 747, "stop": "answer_closed", "seconds": 43.611, "outcome": "passed", "thinking_tokens": 745}
+{"text": "B", "tier": "M", "seed": 360014, "mode": "R", "reply": "x0 = 17/3\nx1 = 3\nx2 = 1\nx3 = 0\nx4 = -1\nx5 = 1", "gen_tokens": 1980, "stop": "answer_closed", "seconds": 113.087, "outcome": "passed", "thinking_tokens": 1978}
+{"text": "C", "tier": "M", "seed": 360014, "mode": "R", "reply": "x0 = 17/3\nx1 = 3\nx2 = 2\nx3 = 0\nx4 = 0\nx5 = 2", "gen_tokens": 1412, "stop": "answer_closed", "seconds": 79.892, "outcome": "passed", "thinking_tokens": 1410}

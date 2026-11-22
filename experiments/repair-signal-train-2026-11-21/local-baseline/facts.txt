@@ -1,0 +1,19 @@
+forced-answer calls: 500
+free-reasoning calls: 60
+free-reasoning calls with no thinking tokens: 0
+free-reasoning fewest thinking tokens in one call: 531
+free-reasoning fewest generated tokens in one call: 533
+free B tier S: 15 calls, passed 15, no answer 0, cut by the cap 0
+free B tier M: 15 calls, passed 5, no answer 8, cut by the cap 2
+free C tier S: 15 calls, passed 15, no answer 0, cut by the cap 0
+free C tier M: 15 calls, passed 4, no answer 10, cut by the cap 1
+mean milliseconds per call, forced answer: 3305
+mean milliseconds per call, free reasoning: 70678
+sampling calls of the full plan: 21000, training steps: 384
+hours of sampling for the full plan at the local mean per call: 19.28 (4627/240)
+that is above the 12 hour gate: yes
+tries at a cap of 96 with an empty answer (smoke.out, then smoke2.out A to D): 5
+calls of the two smoke runs that returned reasoning text: 7
+one-line arithmetic question: 82 completion tokens, answer '7/4'
+puzzle at a cap of 1500: 569 completion tokens, finished
+local layout equals codec.py ids on 15 prompts

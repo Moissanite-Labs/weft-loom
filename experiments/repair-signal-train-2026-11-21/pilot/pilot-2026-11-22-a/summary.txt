@@ -1,0 +1,74 @@
+files listed in SHA256SUMS: 10, hash mismatches: 0
+
+== The run ==
+run id pilot-2026-11-22-a, plan pilot, mode real, status complete
+plan id in the result file equals the fingerprint of the record's pilot plan: yes
+approval row equals the row the record prints for this run id: yes
+harness lock of the run equals the hashes of the record's harness files: yes
+receipt chain verifies: 3 receipts, head a25091be8e66dff527a2a67cb6b136da1794ebea14278e8a69f2f740925f412e
+
+== Outcomes, rescored from the replies ==
+model    tier    n    P    F    X   pass rate
+base     M      50   13   36    1   13/50
+base     S      50   18   31    1   18/50
+base     all   100   31   67    2   31/100
+adapter  M      50   19   31    0   19/50
+adapter  S      50   31   19    0   31/50
+adapter  all   100   50   50    0   50/100
+
+== Rescoring, one reply at a time ==
+each puzzle is rebuilt from its tier and seed, the reply text is parsed with the record's grammar and checked exactly
+rows rescored: 200, rows whose recorded outcome equals the rescored outcome: 200
+outcome string of the base model: 100 characters, P 31 F 67 X 2
+outcome string of the adapter model: 100 characters, P 50 F 50 X 0
+replies stored beside the receipts that equal the logged replies: 200
+
+== Paired counts, adapter against the untrained model on the same puzzles ==
+tier    both pass    adapter only    base only    neither
+M              8              11            5         26
+S             14              17            4         15
+all           22              28            9         41
+discordant pairs: 37 (adapter only 28, base only 9)
+exact sign test, one-sided (adapter above base): p = 22017789/17179869184 = 0.001282
+exact sign test, two-sided: p = 22017789/8589934592 = 0.002563
+exploratory: these 100 puzzles are training-range seeds, and the pilot is not part of any registered result
+
+== Time ==
+sampling: 514538026582 ns over 200 calls, sent one at a time
+seconds per sampling call: 257269013291/100000000000 = 2.573
+training: 56389111251 ns over 8 steps
+seconds per training step: 56389111251/8000000000 = 7.049
+the full plan has 21000 sampling calls and 384 training steps (driver.plan_calls on the plan of pilot_cli)
+sampling part: 5402649279111/100000000 s = 15.007 hours
+training part: 169167333753/62500000 s = 0.752 hours
+projected time of the full plan: 9455528355193/600000000000 hours = 15.759 hours, the gate allows 12
+
+== Pilot gates, recomputed ==
+gate                         result    recorded
+forced_opening_accepted      true      true
+    accepted 200 of 200 calls (rule: all)
+no_new_block_in_replies      true      true
+    new blocks 0 of 200 (rule: at most 1/20)
+format_breaks_low            true      true
+    adapter breaks 0 of 100 (rule: at most 1/5)
+adapter_pass_rate_testable   true      true
+    adapter pass rate 1/2 (rule: above 1/20, below 19/20)
+projected_time_ok            false     false
+    projected 15.759 hours (rule: at most 12)
+go                           false     false
+
+== Spend, from the ledger ==
+kind            rule plan tok. plan    ledger    dollars (exact)
+cached_prefill          -         -         0                  0
+prefill             63644     68218     68218    102327/10000000
+sample              19400     19400      7381       7381/2000000
+train               89505     96688     96688       18129/250000
+tokens in all      172549    184306    172287                   
+total spent: 108049/1250000 dollars = 0.0864, ceiling 1/2, planned (tokenizer) 924487/10000000 = 0.0924, planned (rule) 1727507/20000000 = 0.0864
+sampled tokens: 7381 returned, upper bound 19400 (the cap plus the end marker for each of 200 calls), 0.380 of the bound
+the ledger reserved 19400 sample tokens and refunded 12019
+the token ids returned in replies.jsonl add up to 7381
+the service's own bill has not been compared with this ledger
+
+== Verdict of this script ==
+problems found: 0

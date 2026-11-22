@@ -1,0 +1,6 @@
+{
+  "note": "SHA-256 of each vendored file. The loop refuses to run if a file differs.",
+  "files": {
+    "rsig.py": "e8053b587e5a779d4c5e2f4f5df07681a1874f94e9d9b4c5f1898ca745a4004b"
+  }
+}
