@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Wave 2 Symbiosis Probe S1: Two-Channel Simpson's Paradox, Fixed-Compute Survival,
-and Exact Rational Constraint-Excess Dynamics on LIVE Moissanite-Labs/weft-loom PR #38
+"""Wave 2 Symbiosis Probe S1: Post-Treatment Mediation via Open-Reasoning Escapes,
+Fixed-Compute Budget Crossover, Observed Principal Stratum, and Exact Rational
+Constraint-Excess Dynamics on LIVE Moissanite-Labs/weft-loom PR #38
 (Qwen3.8-27B-AD-Q4_K_M, Tiers S & M: 2,687 live LLM rounds across 200 instances).
 
 100% pure Python 3 stdlib (fractions.Fraction exact binomial sign tests & exact
@@ -53,6 +54,18 @@ def exact_binom_one_sided_ge(k: int, n: int) -> Fraction:
     return Fraction(num, 1 << n)
 
 
+def exact_binom_two_sided(k: int, n: int) -> Fraction:
+    """Exact rational two-sided binomial p-value for symmetric Bin(n, 1/2)."""
+    if isinstance(k, bool) or isinstance(n, bool) or not isinstance(k, int) or not isinstance(n, int):
+        raise TypeError("k and n must be exact int (not bool)")
+    if n < 0 or k < 0 or k > n:
+        raise ValueError(f"Invalid binomial parameters k={k}, n={n}")
+    if n == 0:
+        return Fraction(1, 1)
+    tail = exact_binom_one_sided_ge(max(k, n - k), n)
+    return min(Fraction(1, 1), 2 * tail)
+
+
 def exact_paired_sign_test(xs: Sequence[bool], ys: Sequence[bool]) -> Dict[str, Any]:
     """Exact paired sign test (McNemar exact binomial) in pure Fraction."""
     check(len(xs) == len(ys), "Paired sequences must have equal length")
@@ -61,6 +74,7 @@ def exact_paired_sign_test(xs: Sequence[bool], ys: Sequence[bool]) -> Dict[str, 
     n_disc = x_only + y_only
     p_x_gt_y = exact_binom_one_sided_ge(x_only, n_disc) if n_disc > 0 else Fraction(1, 1)
     p_y_gt_x = exact_binom_one_sided_ge(y_only, n_disc) if n_disc > 0 else Fraction(1, 1)
+    p_two = exact_binom_two_sided(x_only, n_disc) if n_disc > 0 else Fraction(1, 1)
     return {
         "x_only": x_only,
         "y_only": y_only,
@@ -69,6 +83,97 @@ def exact_paired_sign_test(xs: Sequence[bool], ys: Sequence[bool]) -> Dict[str, 
         "p_x_gt_y_float": float(p_x_gt_y),
         "p_y_gt_x_exact_frac": str(p_y_gt_x),
         "p_y_gt_x_float": float(p_y_gt_x),
+        "p_two_sided_exact_frac": str(p_two),
+        "p_two_sided_float": float(p_two),
+    }
+
+
+def evaluate_paired_trajectories(
+    trajs_c: Sequence[Sequence[Dict[str, Any]]],
+    trajs_d: Sequence[Sequence[Dict[str, Any]]],
+    budget_s: float = 30.0,
+) -> Dict[str, Any]:
+    """Summarize paired arm C vs D trajectories for fast-budget vs unbounded counts and escapes."""
+    check(len(trajs_c) == len(trajs_d) and len(trajs_c) > 0, "Trajectory pairs must be non-empty and equal length")
+    u_c: List[bool] = []
+    u_d: List[bool] = []
+    b_c: List[bool] = []
+    b_d: List[bool] = []
+    esc_c: List[bool] = []
+    esc_d: List[bool] = []
+    for seq_c, seq_d in zip(trajs_c, trajs_d):
+        for seq, u_out, b_out, e_out in ((seq_c, u_c, b_c, esc_c), (seq_d, u_d, b_d, esc_d)):
+            cum = 0.0
+            solve_t: float | None = None
+            escaped = False
+            for r in seq:
+                cum += float(r["seconds"])
+                if r["parse_error"] is not None:
+                    escaped = True
+                if r["verdict"] == "pass" and solve_t is None:
+                    solve_t = cum
+            u_out.append(solve_t is not None)
+            b_out.append(solve_t is not None and solve_t <= budget_s)
+            e_out.append(escaped)
+    return {
+        "n_instances": len(trajs_c),
+        "budget_test_C_vs_D": exact_paired_sign_test(b_c, b_d),
+        "unbounded_test_C_vs_D": exact_paired_sign_test(u_c, u_d),
+        "C_direct_no_escape": sum(1 for u, e in zip(u_c, esc_c) if u and not e),
+        "D_direct_no_escape": sum(1 for u, e in zip(u_d, esc_d) if u and not e),
+        "C_unbounded": sum(u_c),
+        "D_unbounded": sum(u_d),
+        "C_escaped_ever": sum(esc_c),
+        "D_escaped_ever": sum(esc_d),
+    }
+
+
+def synthetic_mediation_controls() -> Dict[str, Any]:
+    """Genuine synthetic negative and positive controls feeding synthetic trajectories."""
+    # Control 1: Identical synthetic arms must produce 0 discordant pairs (p = 1).
+    ident = [[{"seconds": 3.0, "parse_error": None, "verdict": "pass" if i < 10 else "fail"}] for i in range(20)]
+    res_ident = evaluate_paired_trajectories(ident, ident, budget_s=30.0)
+    check(
+        res_ident["budget_test_C_vs_D"]["n_discordant"] == 0
+        and res_ident["unbounded_test_C_vs_D"]["n_discordant"] == 0
+        and res_ident["budget_test_C_vs_D"]["p_x_gt_y_exact_frac"] == "1",
+        "Synthetic identical-arms control failed",
+    )
+
+    # Control 2: Constant-compute neutralization (all rounds 3.0s, zero escapes) eliminates any
+    # T<=30s vs unbounded crossover: direct_no_escape == unbounded identically for both arms.
+    c_const = [[{"seconds": 3.0, "parse_error": None, "verdict": "pass" if i < 14 else "fail"}] for i in range(20)]
+    d_const = [[{"seconds": 3.0, "parse_error": None, "verdict": "pass" if i < 10 else "fail"}] for i in range(20)]
+    res_const = evaluate_paired_trajectories(c_const, d_const, budget_s=30.0)
+    check(
+        res_const["C_escaped_ever"] == 0
+        and res_const["D_escaped_ever"] == 0
+        and res_const["C_direct_no_escape"] == res_const["C_unbounded"] == 14
+        and res_const["D_direct_no_escape"] == res_const["D_unbounded"] == 10
+        and res_const["budget_test_C_vs_D"]["x_only"] == res_const["unbounded_test_C_vs_D"]["x_only"] == 4,
+        "Synthetic constant-compute neutralization control failed",
+    )
+
+    # Control 3: Planted 10-vs-0 gap must be detected with exact p = 1/1024.
+    c_plant = [[{"seconds": 3.0, "parse_error": None, "verdict": "pass" if i < 10 else "fail"}] for i in range(20)]
+    d_plant = [[{"seconds": 3.0, "parse_error": None, "verdict": "fail"}] for _ in range(20)]
+    res_plant = evaluate_paired_trajectories(c_plant, d_plant, budget_s=30.0)
+    check(
+        res_plant["unbounded_test_C_vs_D"]["x_only"] == 10
+        and res_plant["unbounded_test_C_vs_D"]["y_only"] == 0
+        and res_plant["unbounded_test_C_vs_D"]["p_x_gt_y_exact_frac"] == "1/1024",
+        "Synthetic planted-gap control failed",
+    )
+
+    return {
+        "all_synthetic_controls_passed": True,
+        "identical_arms_discordant": res_ident["unbounded_test_C_vs_D"]["n_discordant"],
+        "constant_compute_escapes": res_const["C_escaped_ever"] + res_const["D_escaped_ever"],
+        "constant_compute_crossover_diff": (
+            (res_const["C_direct_no_escape"] - res_const["D_direct_no_escape"])
+            - (res_const["C_unbounded"] - res_const["D_unbounded"])
+        ),
+        "planted_10_vs_0_exact_p": res_plant["unbounded_test_C_vs_D"]["p_x_gt_y_exact_frac"],
     }
 
 
@@ -315,7 +420,7 @@ def analyze_tier(path: Path, tier: str, expected_solved: Dict[str, int]) -> Dict
             },
         }
 
-    # Exact Simpson's Paradox Difference Decomposition: C - D
+    # Exact Post-Treatment Mediation Difference Decomposition: C - D
     dc_total = Fraction(arm_stats["C"]["solved_unbounded_of_100"] - arm_stats["D"]["solved_unbounded_of_100"], 100)
     dc_direct = Fraction(arm_stats["C"]["two_channel_exact_decomposition"]["P_direct_no_escape"]) - Fraction(
         arm_stats["D"]["two_channel_exact_decomposition"]["P_direct_no_escape"]
@@ -324,6 +429,108 @@ def analyze_tier(path: Path, tier: str, expected_solved: Dict[str, int]) -> Dict
         arm_stats["D"]["two_channel_exact_decomposition"]["escape_channel_contribution"]
     )
     check(dc_total == dc_direct + dc_escape, f"C-D difference decomposition failed on Tier {tier}")
+
+    # Exact Stratum Pass-Rate Check (confirming no Simpson's paradox — per PR #38 CHECK.md):
+    # Conditioned on whether an arm had an unreadable round, compare pass RATES within each stratum.
+    c_no_esc_n = 100 - int(Fraction(arm_stats["C"]["two_channel_exact_decomposition"]["P_escape_ever"]) * 100)
+    d_no_esc_n = 100 - int(Fraction(arm_stats["D"]["two_channel_exact_decomposition"]["P_escape_ever"]) * 100)
+    c_no_esc_pass = int(Fraction(arm_stats["C"]["two_channel_exact_decomposition"]["P_direct_no_escape"]) * 100)
+    d_no_esc_pass = int(Fraction(arm_stats["D"]["two_channel_exact_decomposition"]["P_direct_no_escape"]) * 100)
+    c_esc_n = 100 - c_no_esc_n
+    d_esc_n = 100 - d_no_esc_n
+    c_esc_pass = arm_stats["C"]["solved_unbounded_of_100"] - c_no_esc_pass
+    d_esc_pass = arm_stats["D"]["solved_unbounded_of_100"] - d_no_esc_pass
+
+    c_rate_no_esc = Fraction(c_no_esc_pass, c_no_esc_n)
+    d_rate_no_esc = Fraction(d_no_esc_pass, d_no_esc_n)
+    c_rate_after_esc = Fraction(c_esc_pass, c_esc_n)
+    d_rate_after_esc = Fraction(d_esc_pass, d_esc_n)
+    stratum_rates = {
+        "C_pass_rate_no_escape": str(c_rate_no_esc),
+        "D_pass_rate_no_escape": str(d_rate_no_esc),
+        "C_minus_D_rate_no_escape_exact": str(c_rate_no_esc - d_rate_no_esc),
+        "C_pass_rate_after_escape": str(c_rate_after_esc),
+        "D_pass_rate_after_escape": str(d_rate_after_esc),
+        "C_minus_D_rate_after_escape_exact": str(c_rate_after_esc - d_rate_after_esc),
+        "C_minus_D_rate_overall_exact": str(dc_total),
+        "simpson_paradox_holds": bool(
+            (c_rate_no_esc > d_rate_no_esc and c_rate_after_esc > d_rate_after_esc and dc_total < 0)
+            or (c_rate_no_esc < d_rate_no_esc and c_rate_after_esc < d_rate_after_esc and dc_total > 0)
+        ),
+    }
+
+    # Observed Principal Stratum (Never-Escaper Set: neither C nor D had any unreadable round,
+    # credited to PR #38 outside-check-pr42/CHECK.md).
+    ne_c_pass: List[bool] = []
+    ne_d_pass: List[bool] = []
+    for i in insts:
+        ec = any(r["parse_error"] is not None for r in by_ai[("C", i)])
+        ed = any(r["parse_error"] is not None for r in by_ai[("D", i)])
+        if not ec and not ed:
+            ne_c_pass.append(any(r["verdict"] == "pass" for r in by_ai[("C", i)]))
+            ne_d_pass.append(any(r["verdict"] == "pass" for r in by_ai[("D", i)]))
+    principal_stratum = {
+        "n_never_escaped_in_either_C_or_D": len(ne_c_pass),
+        "C_solved": sum(ne_c_pass),
+        "D_solved": sum(ne_d_pass),
+        "exact_paired_sign_test_C_vs_D": exact_paired_sign_test(ne_c_pass, ne_d_pass),
+    }
+
+    # Shared Both-Readable R1-Fail -> R2 L1 Constraint-Excess Contraction (computed explicitly here
+    # alongside per-arm readable rates, closing PR #38 CHECK.md's script/prose audit item).
+    shared_n = 0
+    shared_c_imp = 0
+    shared_d_imp = 0
+    shared_c_lt_d_vec: List[bool] = []
+    shared_d_lt_c_vec: List[bool] = []
+    for i in insts:
+        sc, sd = by_ai[("C", i)], by_ai[("D", i)]
+        if (
+            sc[0]["verdict"] == "fail"
+            and sc[0]["parse_error"] is None
+            and len(sc) >= 2
+            and sc[1]["parse_error"] is None
+            and sd[0]["verdict"] == "fail"
+            and sd[0]["parse_error"] is None
+            and len(sd) >= 2
+            and sd[1]["parse_error"] is None
+        ):
+            shared_n += 1
+            v1 = sum((Fraction(v["excess"]) for v in sc[0]["violations"]), Fraction(0))
+            vc = Fraction(0) if sc[1]["verdict"] == "pass" else sum((Fraction(v["excess"]) for v in sc[1]["violations"]), Fraction(0))
+            vd = Fraction(0) if sd[1]["verdict"] == "pass" else sum((Fraction(v["excess"]) for v in sd[1]["violations"]), Fraction(0))
+            if vc < v1:
+                shared_c_imp += 1
+            if vd < v1:
+                shared_d_imp += 1
+            shared_c_lt_d_vec.append(vc < vd)
+            shared_d_lt_c_vec.append(vd < vc)
+    c_r2_read_n = (
+        arm_stats["C"]["r1_to_r2_readable_exact_L1_contraction"]["improved"]
+        + arm_stats["C"]["r1_to_r2_readable_exact_L1_contraction"]["same"]
+        + arm_stats["C"]["r1_to_r2_readable_exact_L1_contraction"]["worsened"]
+    )
+    d_r2_read_n = (
+        arm_stats["D"]["r1_to_r2_readable_exact_L1_contraction"]["improved"]
+        + arm_stats["D"]["r1_to_r2_readable_exact_L1_contraction"]["same"]
+        + arm_stats["D"]["r1_to_r2_readable_exact_L1_contraction"]["worsened"]
+    )
+    shared_l1 = {
+        "per_arm_C_readable_improved_frac": str(
+            Fraction(arm_stats["C"]["r1_to_r2_readable_exact_L1_contraction"]["improved"], c_r2_read_n)
+        ),
+        "per_arm_C_readable_denom": c_r2_read_n,
+        "per_arm_D_readable_improved_frac": str(
+            Fraction(arm_stats["D"]["r1_to_r2_readable_exact_L1_contraction"]["improved"], d_r2_read_n)
+        ),
+        "per_arm_D_readable_denom": d_r2_read_n,
+        "shared_both_readable_n": shared_n,
+        "shared_C_improved": shared_c_imp,
+        "shared_D_improved": shared_d_imp,
+        "shared_C_improved_frac": str(Fraction(shared_c_imp, shared_n)),
+        "shared_D_improved_frac": str(Fraction(shared_d_imp, shared_n)),
+        "strict_C_lt_D_vs_D_lt_C": exact_paired_sign_test(shared_c_lt_d_vec, shared_d_lt_c_vec),
+    }
 
     paired = {
         "fixed_compute_T30s_C_vs_D": exact_paired_sign_test(vec_t30["C"], vec_t30["D"]),
@@ -364,15 +571,22 @@ def analyze_tier(path: Path, tier: str, expected_solved: Dict[str, int]) -> Dict
         "n_instances": len(insts),
         "r1_identical_across_all_4_arms": r1_identical,
         "arms": arm_stats,
-        "simpson_paradox_C_minus_D_exact": {
+        "mediation_and_compute_crossover_C_minus_D_exact": {
             "Delta_total": str(dc_total),
-            "Delta_direct_fast_channel": str(dc_direct),
-            "Delta_escape_slow_channel": str(dc_escape),
+            "Delta_direct_no_escape_count_share": str(dc_direct),
+            "Delta_escape_channel_count_share": str(dc_escape),
             "compute_ratio_D_over_C": round(
                 arm_stats["D"]["total_wall_clock_seconds"] / arm_stats["C"]["total_wall_clock_seconds"], 4
             ),
-            "sign_reversal_direct_positive_total_negative": (dc_direct > 0 and dc_total < 0),
+            "compute_budget_sign_reversal_T30s_vs_unbounded": (
+                arm_stats["C"]["fixed_compute_survival_counts"]["30"]
+                > arm_stats["D"]["fixed_compute_survival_counts"]["30"]
+                and dc_total < 0
+            ),
         },
+        "stratum_rate_check_no_simpson_paradox": stratum_rates,
+        "observed_principal_stratum_never_escaped_CD": principal_stratum,
+        "shared_both_readable_R1fail_R2_L1_CD": shared_l1,
         "exact_paired_sign_tests": paired,
         "t4_permutation_5000": {
             "T30s_C_minus_D": perm_t30_cd,
@@ -405,6 +619,7 @@ def r3_negative_controls() -> Dict[str, Any]:
 
 def main() -> None:
     r3 = r3_negative_controls()
+    synth_ctrls = synthetic_mediation_controls()
     tier_s = analyze_tier(
         DATA_DIR / "Qwen3.8-27B-AD-Q4_K_M-S.jsonl",
         "S",
@@ -421,36 +636,42 @@ def main() -> None:
     c_only_pool = tier_s["raw_r2_escape_vectors_CD"]["C_only"] + tier_m["raw_r2_escape_vectors_CD"]["C_only"]
     p_pool = exact_binom_one_sided_ge(d_only_pool, d_only_pool + c_only_pool)
 
-    # Key assertions verifying the Double-Significant Simpson's Paradox on Tier S and replication on Tier M
+    # Observed-output pins verifying Tier S post-treatment mediation, compute-budget crossover,
+    # non-Simpson stratum rates, observed principal stratum (66 instances), and pooled escape effect.
     check(
-        tier_s["simpson_paradox_C_minus_D_exact"]["sign_reversal_direct_positive_total_negative"],
-        "Expected exact Simpson sign reversal on Tier S",
+        not tier_s["stratum_rate_check_no_simpson_paradox"]["simpson_paradox_holds"]
+        and tier_s["stratum_rate_check_no_simpson_paradox"]["C_minus_D_rate_no_escape_exact"] == "-16/2881",
+        "Expected exact non-Simpson stratum rate diff -16/2881 on Tier S",
+    )
+    check(
+        tier_s["observed_principal_stratum_never_escaped_CD"]["n_never_escaped_in_either_C_or_D"] == 66
+        and tier_s["observed_principal_stratum_never_escaped_CD"]["C_solved"] == 44
+        and tier_s["observed_principal_stratum_never_escaped_CD"]["D_solved"] == 43,
+        "Expected 66-instance observed principal stratum (44 vs 43) on Tier S",
+    )
+    check(
+        tier_s["mediation_and_compute_crossover_C_minus_D_exact"]["compute_budget_sign_reversal_T30s_vs_unbounded"],
+        "Expected T<=30s vs unbounded compute-budget sign crossover on Tier S",
     )
     check(
         tier_s["exact_paired_sign_tests"]["fixed_compute_T30s_C_vs_D"]["p_x_gt_y_float"] < 0.005,
-        "Expected C > D p < 0.005 at T <= 30s on Tier S",
-    )
-    check(
-        tier_s["exact_paired_sign_tests"]["unbounded_4round_D_vs_C"]["p_x_gt_y_float"] < 0.05,
-        "Expected D > C p < 0.05 unbounded on Tier S",
+        "Expected C > D one-sided p < 0.005 at T <= 30s on Tier S",
     )
     check(
         d_only_pool == 37 and c_only_pool == 1 and float(p_pool) < 1e-9,
         f"Expected pooled 37 vs 1 D>C CoT escape, got {d_only_pool} vs {c_only_pool}",
     )
-
-    # Negative control: synthetic constant-compute neutralization destroys the T<=30s vs unbounded reversal
-    # (If every round took 3.0s with no CoT escape channel, direct pass counts = unbounded counts -> 0 reversal!)
-    s_direct_only_cd = (
+    s_t30_cd = (
         tier_s["arms"]["C"]["fixed_compute_survival_counts"]["30"]
         - tier_s["arms"]["D"]["fixed_compute_survival_counts"]["30"]
     )
-    check(s_direct_only_cd == 12, f"Expected T<=30s C-D = +12, got {s_direct_only_cd}")
+    check(s_t30_cd == 12, f"Expected observed Tier S T<=30s C-D = +12, got {s_t30_cd}")
 
     payload: Dict[str, Any] = {
         "probe": "probe_s1_repair_signal_two_channel",
         "target_upstream": "Moissanite-Labs/weft-loom PR #38 (record/repair-signal-2026-11-20, Qwen3.8-27B-AD-Q4_K_M)",
         "r3_negative_controls": r3,
+        "synthetic_trajectory_controls": synth_ctrls,
         "tier_S": tier_s,
         "tier_M": tier_m,
         "pooled_S_plus_M_R2_CoT_escape_D_vs_C": {
@@ -461,10 +682,14 @@ def main() -> None:
             "p_D_gt_C_float": float(p_pool),
         },
         "symbiotic_takeaway_for_aletheia_and_autoresearch": (
-            "Compute-Leakage Simpson's Paradox: Unbounded round-count evaluation mixed a 3.0s fast direct-repair "
-            "channel (where true-sign C beats sign-flipped D 56 vs 44, paired 15 vs 3, p=0.00377, spending 1.74x less "
-            "compute) with a 79.6s format-breaking open-CoT escape channel triggered 37 vs 1 (p=1.42e-10 pooled S+M) "
-            "by sign-flipped cognitive dissonance, inverting the headline verdict to D > C (77 vs 69, p=0.0287)."
+            "Post-Treatment Mediation via Open-Reasoning Escapes & Compute-Budget Crossover (not Simpson's paradox): "
+            "On Qwen3.8-27B Tier S, D >= C within both escape strata (56/86 vs 44/67 = -16/2881 no-escape; 13/14 vs "
+            "33/33 after-escape) and on the 66-instance observed never-escaper principal stratum C and D tie (44 vs "
+            "43, 3 vs 2, p=1/2). Instead, sign-flipped D triggers 80s format-breaking open-reasoning escapes 20 vs 0 "
+            "on Tier S and 17 vs 1 on Tier M (pooled 37 vs 1, p=1.42e-10), causing a wall-clock compute-budget "
+            "crossover from C > D at T<=30s (56 vs 44, 15 vs 3, one-sided p=0.00377; 1.736x less compute) to D > C "
+            "unbounded (77 vs 69, 11 vs 3, two-sided p=0.0574), with PR #38's lenient parse showing 7/9 of R2 C-only "
+            "passes already contained a satisfying assignment inside D's unreadable 54.5-86.0s reply."
         ),
     }
 
@@ -472,12 +697,13 @@ def main() -> None:
     OUT_PATH.write_text(canonical, encoding="utf-8")
     digest = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
-    print("=== PROBE S1 COMPLETE: WEFT-LOOM PR #38 TWO-CHANNEL SIMPSON'S PARADOX ===")
-    print(f"Tier S T<=30s (fast channel): A=23, B=48, C=56, D=44 | C>D 15 vs 3 (p={tier_s['exact_paired_sign_tests']['fixed_compute_T30s_C_vs_D']['p_x_gt_y_float']:.5f})")
-    print(f"Tier S R2 direct solve:       A= 1, B=16, C=21, D=14 | C>D  9 vs 2 (p={tier_s['exact_paired_sign_tests']['r2_direct_solve_C_vs_D']['p_x_gt_y_float']:.5f})")
+    print("=== PROBE S1 COMPLETE: WEFT-LOOM PR #38 POST-TREATMENT MEDIATION & COMPUTE CROSSOVER ===")
+    print(f"Tier S T<=30s (fast budget):  A=23, B=48, C=56, D=44 | C>D 15 vs 3 (one-sided p={tier_s['exact_paired_sign_tests']['fixed_compute_T30s_C_vs_D']['p_x_gt_y_float']:.5f})")
+    print(f"Tier S observed principal:    n=66 never-escaped | C=44 vs D=43 (3 vs 2, p={tier_s['observed_principal_stratum_never_escaped_CD']['exact_paired_sign_test_C_vs_D']['p_x_gt_y_exact_frac']})")
+    print(f"Tier S stratum rates (no SP): no-escape C-D={tier_s['stratum_rate_check_no_simpson_paradox']['C_minus_D_rate_no_escape_exact']}, after-escape C-D={tier_s['stratum_rate_check_no_simpson_paradox']['C_minus_D_rate_after_escape_exact']}")
     print(f"Tier S+M R2 CoT escape (80s): D>C = {d_only_pool} vs {c_only_pool} (exact p={float(p_pool):.3e})")
-    print(f"Tier S unbounded 4-round:     A=65, B=75, C=69, D=77 | D>C 11 vs 3 (p={tier_s['exact_paired_sign_tests']['unbounded_4round_D_vs_C']['p_x_gt_y_float']:.5f})")
-    print(f"Compute spent (Tier S):       C={tier_s['arms']['C']['total_wall_clock_seconds']}s vs D={tier_s['arms']['D']['total_wall_clock_seconds']}s ({tier_s['simpson_paradox_C_minus_D_exact']['compute_ratio_D_over_C']}x)")
+    print(f"Tier S unbounded 4-round:     A=65, B=75, C=69, D=77 | D>C 11 vs 3 (two-sided p={tier_s['exact_paired_sign_tests']['unbounded_4round_D_vs_C']['p_two_sided_float']:.5f})")
+    print(f"Compute spent (Tier S):       C={tier_s['arms']['C']['total_wall_clock_seconds']}s vs D={tier_s['arms']['D']['total_wall_clock_seconds']}s ({tier_s['mediation_and_compute_crossover_C_minus_D_exact']['compute_ratio_D_over_C']}x)")
     print(f"Saved: {OUT_PATH}")
     print(f"File SHA-256: {digest}")
 
