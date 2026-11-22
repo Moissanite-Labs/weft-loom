@@ -2,7 +2,7 @@
 
 Status: registered when this file is merged to the default branch, and the merge commit fixes the text. Edits made in answer to review before the merge are part of review.
 
-No model has been trained, and the registered model has not been sampled on the paid service. A local quantised copy of the model was sampled once, for free, on pilot evaluation seeds only (see "What the local model did"). A paid run starts only after the owner approves that run.
+No model has been trained, and the registered model has not been sampled on the paid service. A local quantised copy of the model was sampled once, for free, on pilot evaluation seeds only (see "What the local model did"). A paid run starts only after the owner approves that run. That was the state when the plan was written. One pilot then ran on the paid service on 2026-11-22: see the last revision note.
 
 Every number or setting marked (choice) is a decision made while drafting. Every number marked (measurement) was counted from real files by a script in this folder. Every number marked (arithmetic) follows from stated inputs.
 A statement marked (expected) is a belief that no script here checks.
@@ -372,6 +372,12 @@ Changes made on 2026-11-22 (UTC), before any registration, after a third indepen
 - The free-reasoning cuts in tier M are added, the dates are given in UTC, and the projected sampling time at the local speed is printed.
 - The pilot's new-block count now covers any special id of the tokenizer, not only the seven named markers.
 
+Pilot run on 2026-11-22 (UTC), after the changes above. No plan field and no gate value is changed:
+
+- The pilot ran once on the real service as run id pilot-2026-11-22-a, with the owner's approval and a ceiling of 0.50 dollars, on the code of commit a868e96. Its files and a script that rescores every reply are in the folder `pilot/`. The pilot is not part of the registered result.
+- The forced opening, new blocks, format and testable gates passed. The time gate failed: the full plan projects to 15.759 hours against the 12 allowed, from 2.573 seconds per sampling call sent one at a time, 7.049 seconds per training step, 21,000 calls and 384 steps. The verdict is a no-go.
+- By the section "After the pilot", the full run waits for a dated change to the plan that names the time gate, the change and the reason, then a new pilot under a new run id, then a new approval. No such change is made here.
+
 ## Statement
 
-No result exists yet. This file was written before any model was trained or evaluated in this loop. The only measurements are the exploratory local ones under "What the local model did". From the merge onward, later changes go in a dated amendments section at the end and never replace the text above it.
+No registered result exists yet. This file was written before any model was trained or evaluated in this loop. The only measurements are the exploratory local ones under "What the local model did" and the one pilot run named in the last revision note. From the merge onward, later changes go in a dated amendments section at the end and never replace the text above it.

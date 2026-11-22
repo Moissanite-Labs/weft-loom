@@ -4,13 +4,15 @@
 
 When a model must repair a rejected answer to a rational difference-constraint puzzle, and may answer only with the repaired assignment under one small token cap, does training on feedback that gives the exact amount of each violation let it repair more often than training on feedback that names only the violated constraints?
 
-The record holds the preregistered plan and the training loop that would run it on Inkling 2 Mini through the Tinker service, with a harness that is built and tested but has not been used on any model. 
+The record holds the preregistered plan and the training loop that would run it on Inkling 2 Mini through the Tinker service. The harness is built and tested, and it has made one pilot run on the real service (see "Pilot run"). The pilot was a no-go, and the registered run has not started. 
 
 Every prompt that is sampled from ends with the model's turn already opened for an answer (the forced opening), because the untrained model opened a thinking block in every local call that left the opening to it, and none of the four switches tried turned that off.
 
 ## Status
 
-`design`. The plan and the code exist. No model has been trained, and nothing here has called a paid service or read a key. The untrained model was sampled once, for free, on pilot evaluation seeds only, with a local quantised copy: see [local-baseline](local-baseline/README.md). That is an exploratory measurement and not a result.
+`pilot`. The plan and the code exist, and one pilot run was made on the real service on 2026-11-22 with an approved ceiling of 0.50 dollars: see "Pilot run". It was a no-go on the time gate.
+
+The registered run has not started and no registered result exists. The untrained model was also sampled once, for free, on pilot evaluation seeds only, with a local quantised copy: see [local-baseline](local-baseline/README.md). Both are exploratory measurements and not results.
 
 ## Preregistration
 
@@ -46,7 +48,7 @@ python3 -I -B checks/rule2_ties.py
 python3 -I -B checks/targets.py
 ```
 
-`python3 -I -B local-baseline/check_seeds.py` checks that the committed local baseline holds pilot evaluation seeds only. `python3 -I -B local-baseline/facts.py` prints the free-reasoning counts, the time per call and what it projects for the full plan, and the smoke-run facts (output in `local-baseline/facts.txt`).
+`python3 -I -B pilot/summarize.py` prints the summary of the committed pilot run and rescores its 200 replies (output in `pilot/pilot-2026-11-22-a/summary.txt`, and it exits 1 if any check disagrees). `python3 -I -B local-baseline/check_seeds.py` checks that the committed local baseline holds pilot evaluation seeds only. `python3 -I -B local-baseline/facts.py` prints the free-reasoning counts, the time per call and what it projects for the full plan, and the smoke-run facts (output in `local-baseline/facts.txt`).
 
 `cost.py --venv-python PATH` counts with the real tokenizer through a worker that imports tml_renderers. The layout test in `tests/test_layout_real.py` also needs that package and is skipped without it (7 tests). The layout test and the tokenizer cost count were run with a Python that has the package, and all 7 layout tests passed.
 
@@ -107,7 +109,7 @@ Its output for the installed library is `data/tinker-api-check.txt`. It found tw
 
 ## Results
 
-None yet. No model has produced a result for this question.
+None yet. No model has produced a registered result for this question. The pilot run below is exploratory and is not one.
 
 The dry run checks the harness with stand-in policies. It says nothing about any model. It uses 40 training, 200 first held-out and 200 second held-out episodes, and ends with `44 checks, 0 failed`. The chain of receipts for the stand-in policies has 36 lines and verifies. Held-out set 1 at cap 96, each cell passed over episodes:
 
@@ -123,7 +125,7 @@ The verbose policy breaks the format in all 200 replies in every text, and that 
 
 The dry run's 44 checks show that the exact checker, the sign test, the ratchet, the latch, the receipt chain and the budget guards each behave as designed. The table shows that the C, E and N texts separate a policy that reads the amounts from one that does not. The oracle scores 0 on N because its sign convention is written into the policy, and that is not a property of any model.
 
-The test suite runs 429 tests (9 skipped without the service library and the tokenizer package) and passes. `mutate.py` removes 339 guards one at a time and every one is caught by a failing test. These too check the harness only.
+The test suite runs 487 tests (9 skipped without the service library and the tokenizer package) and passes. `mutate.py` removes 392 guards one at a time and every one is caught by a failing test. These too check the harness only.
 
 The dry run also runs the whole registered procedure against a fake client twice. With a gain built in for C, the verdict is `support`, and the second held-out set is touched once. With no gain, the verdict is `cannot_test` and the second set is never touched. The fake pilot reports 200 calls and 8 steps. These are properties of the fake.
 
@@ -140,19 +142,84 @@ Prices are the rates published in the Tinker model table (https://tinker-docs.th
 
 The exact full-plan cost with the tokenizer is 26823111/5000000 dollars. The plan sets a ceiling of 0.50 dollars for the pilot and 12.00 for the full run.
 
+## Pilot run
+
+The run id `pilot-2026-11-22-a` ran once against the real service on 2026-11-22 from 08:24 to 08:34 UTC and exited 0 (`console-output.txt`). The code was this record at commit a868e96. The owner approved the run with a ceiling of 0.50 dollars, and `APPROVAL-NOTE.md` quotes the approval. The files are in [pilot/pilot-2026-11-22-a/](pilot/pilot-2026-11-22-a/), with a `SHA256SUMS` file.
+
+`python3 -I -B pilot/summarize.py` reads only those files and prints `summary.txt`. It rescores all 200 logged replies from their seeds with the record's grammar and exact checker, and every recorded outcome agrees. Every number in this section is printed there or sits in a committed file.
+
+The pilot is exploratory. It is not part of any registered result and it says nothing about the hypothesis. Its 100 puzzles are training-range seeds. The adapter was trained on text C only, with 256 examples and 8 steps, and no adapter was trained on text B, so nothing here compares C with B.
+
+### Gates
+
+| Gate | Pass if | Measured | Result |
+|---|---|---|---|
+| Forced opening | all 200 calls accepted | 200 of 200 | true |
+| New blocks | at most 1/20 of the replies open a block | 0 of 200 | true |
+| Format | the adapter breaks the format in at most 1/5 | 0 of 100 | true |
+| Testable | the adapter's pass rate is above 1/20 and below 19/20 | 50 of 100 | true |
+| Time | projected time of the full plan at most 12 hours | 15.759 hours | false |
+| Go | all five | | false |
+
+The verdict is a no-go, and it rests on the time gate alone.
+
+### Results by tier
+
+Both models answered under the same cap with the forced opening, on the same 100 puzzles.
+
+| Model | Tier S | Tier M | All | Format breaks |
+|---|---|---|---|---|
+| Untrained model | 18 of 50 | 13 of 50 | 31 of 100 | 2 |
+| Adapter trained on text C | 31 of 50 | 19 of 50 | 50 of 100 | 0 |
+
+### Paired counts
+
+On the same puzzles, both passed 22, only the adapter passed 28, only the untrained model passed 9, and neither passed 41. Among the 37 puzzles where they differ, the exact sign test gives p = 22017789/17179869184 (0.0013) one-sided and 22017789/8589934592 (0.0026) two-sided. This is a descriptive count of a tuned adapter against the untrained model on training-range puzzles. It is not the registered comparison.
+
+### Time and projection
+
+Sampling calls were sent one at a time. A call took 257269013291/100000000000 seconds (2.573) and a training step 56389111251/8000000000 seconds (7.049), measured over 200 calls and 8 steps. The full plan has 21,000 sampling calls and 384 steps, counted from the plan in the code. That projects to 15.759 hours, of which 15.007 are sampling and 0.752 are training. The gate allows 12.
+
+### Spend
+
+| Kind | Planned tokens (tokenizer count) | Ledger tokens | Dollars |
+|---|---|---|---|
+| train | 96,688 | 96,688 | 18129/250000 |
+| prefill | 68,218 | 68,218 | 102327/10000000 |
+| sample | 19,400 (upper bound) | 7,381 | 7381/2000000 |
+
+The total spent was 108049/1250000 dollars (0.0864) against a plan of 924487/10000000 (0.0924) and a ceiling of 0.50. The sampled tokens were 0.380 of their upper bound. The ledger's train and prefill tokens are counts of the ids the client sent, and its sample tokens are the ids the service returned.
+
+### What the pilot confirmed and what it did not
+
+It confirmed that the service accepted a prompt ending with the forced opening in 200 of 200 calls, that no reply opened a block of its own, and that the adapter broke the format in 0 of 100 replies. Greedy sampling with stop ids, the checkpoint save and the adapter sampler all worked. The untrained model's replies parsed in 98 of 100.
+
+It did not compare the service's own bill with the ledger. That comparison has not been made. It did not test sampling in parallel, and its step time comes from 8 steps. It did not show that the tokenizer carried by tml_renderers matches the Mini model, because no count from the service was compared with the tokenizer's.
+
+### After the no-go
+
+By the plan's own rule (PREREG.md, "After the pilot") the full run must not start after this no-go. The plan is first changed by a dated amendment that names the failed gate, the change and the reason. A new pilot then runs under a new run id with its own approval, and the full run is approved only after a go of that rerun.
+
+The team can choose among three ways forward. This record does not choose.
+
+- Sample in parallel. A new small pilot sends the sampling calls at the same time, to test that path. The ledger, the order of replies and the service's limits are untested for it, and the projection then rests on what that pilot measures.
+- Keep it sequential. Accept about 16 hours of projected time and change the time gate for that stated reason, in a dated amendment, then run a new pilot.
+- Shrink the held-out sets. This cuts the sampling calls, which are most of the projected time, and loses power. The power table in PREREG.md shows what each size can see.
+
 ## Limits
 
-- Nothing was run against the real service. The calls are compared with the installed library's signatures by `checks/tinker_api_check.py`, and the logic is tested against fakes only.
-- The sampling calls, the checkpoint save and the base sampler have no earlier run against the real service behind them, because neither earlier script makes them. Whether the service accepts greedy sampling (temperature 0.0) with integer stop ids for this model cannot be settled from the installed code. The order of calls, the time per sampling call and the step time are unmeasured.
+- The calls are compared with the installed library's signatures by `checks/tinker_api_check.py`, and the logic is tested against fakes. Only the one pilot run has used the real service (see "Pilot run"). The registered run has not.
+- The pilot ran the sampling calls, the checkpoint save and the base sampler once against the real service, and the service accepted greedy sampling with integer stop ids for this model. The time per sampling call and per step were measured once, for sampling calls sent one at a time and for 8 training steps. Another day or another way of sending calls may give other times.
 - Whether the tokenizer carried by tml_renderers matches the Mini model is a guess. The chat layout matches the renderer id for id, but whether the service applies the same layout to a tuned model is not checked. The pilot is there to check it.
 - Real billing rules are not verified. The cost table is arithmetic at published prices, and the sampling part is an upper bound. The forced opening moves two tokens per call from the training target to the prompt, so training tokens are unchanged and prefill grows by two tokens per call.
-- The model card says minimum reasoning effort does not fully disable reasoning, and a local copy shows four switches that do not turn it off. The forced opening is the control. Whether the service accepts a prompt that ends with the opening is not checked, and a refused opening would stop the pilot with an error.
+- The model card says minimum reasoning effort does not fully disable reasoning, and a local copy shows four switches that do not turn it off. The forced opening is the control. The service accepted a prompt that ends with the opening in all 200 pilot calls.
 - The pilot gate values (at most 5 percent of replies opening a block of their own, 20 percent format breaks, a pass rate between 5 and 95 percent, 12 hours projected) are choices and not measurements.
 - The local baseline is one greedy run of a quantised copy on 50 episodes per cell. The renderer has no completion prompt that ends with the opening, so the layout test builds that comparison from its completion prompt plus the two opening ids.
 - The gates are code that the same agent can edit. `ratchet.py`, `latch.py` and `driver.py` are not in the harness hash. The latch tokens live in memory, and the head of the receipt chain is pinned in memory unless it is kept elsewhere.
 - Rescoring proves that recorded outcomes follow from recorded replies. Invented replies would pass it.
 - The full run does not check that a pilot gave a go. The go is the owner's call and the full run must not start after a no-go (PREREG.md, "After the pilot"). At the local speed the time gate would fail, and the service's speed is unknown.
 - The service library retries requests itself (10 retries by default, and a request can wait up to 120 minutes without progress), and the meter cannot see these. A retried request that the server already served could be billed twice, and a stuck request can hold the run for hours. The runner does not change these settings. After the run, compare the spend in the service console with the ledger's total.
+- The service's own bill for the pilot has not been compared with its ledger.
 - A service that returns more tokens than asked for stops the run at the first such reply, after that reply is counted in full. The overshoot is that one reply's excess, which has no upper limit.
 - The run lock is `flock`, so it works on macOS and Linux only, and it covers one ledger file: two copies of the approvals file in two places make two ledgers. An overrun followed by a crash before its ledger line is written loses those extra tokens from the ledger.
 - The mark that tells `run_registered` a run's token counts came from `start_run` is set in ordinary code that the same agent can edit.
@@ -189,10 +256,13 @@ This record keeps the puzzle generator, the exact checker and the texts for A an
 - `checks/tinker_api_check.py`: the static comparison of the backend with the installed service library.
 - `cost.py`, `power.py`, `dryrun.py`, `mutate.py`, `tests/`, `checks/`: the checks. `mutate.py` removes each guard by an exact text substitution and requires a test to fail.
 - `vendor/`: the pinned generator and checker.
+- `pilot/`: the pilot run of 2026-11-22 (`pilot-2026-11-22-a/`: the output files unchanged, the spend ledger, the approval row and note, `SHA256SUMS` and `summary.txt`) and `summarize.py`, which reads them, rescores every reply and prints the summary. `tests/test_pilot_summary.py` tests it.
 - `local-baseline/`: the free local measurement of the untrained model on pilot evaluation seeds, with its script, data, README, the sanitized smoke and run logs under `logs/`, and `facts.py` with its output `facts.txt`, which print the numbers the plan quotes from them.
 
 ## Disclosure
 
 The code, tests and plan were written and run by AI agent sessions under the direction of the research team's human owner, with independent review rounds by other agent sessions. The plan went through two such reviews before registration, and the revision notes in `PREREG.md` list what they changed.
 
-A third independent review found seven points to fix and four small ones. The fixes made for it (the run lock and plan binding in the backend, the single decision procedure, the removal of the old local responder, the committed logs and the rewording of the local section) have not been reviewed by a second agent. No human has line-reviewed the code. No paid service was called.
+A third independent review found seven points to fix and four small ones. The fixes made for it (the run lock and plan binding in the backend, the single decision procedure, the removal of the old local responder, the committed logs and the rewording of the local section) have not been reviewed by a second agent. No human has line-reviewed the code.
+
+The code and plan were written without calling a paid service. The one pilot run on the real service was approved by the owner, and "Pilot run" describes it.

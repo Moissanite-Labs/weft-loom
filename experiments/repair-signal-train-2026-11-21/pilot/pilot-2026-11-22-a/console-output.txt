@@ -1,0 +1,4 @@
+start 2026-11-22T08:24:19Z
+planned cost 924487/10000000 dollars (about 0.0924, token counts from the tokenizer), ceiling 1/2 dollars
+pilot complete: go=false, spent 108049/1250000 dollars, results in the output folder, file pilot-result.json
+end 2026-11-22T08:34:02Z rc=0

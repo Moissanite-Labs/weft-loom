@@ -1,0 +1,72 @@
+{
+ "ceiling_usd": "1/2",
+ "error": "",
+ "gates": {
+  "adapter_pass_rate_testable": "true",
+  "forced_opening_accepted": "true",
+  "format_breaks_low": "true",
+  "go": "false",
+  "no_new_block_in_replies": "true",
+  "projected_time_ok": "false"
+ },
+ "go": "false",
+ "measurements": {
+  "accepted": 200,
+  "adapter_format_broken": 0,
+  "adapter_n": 100,
+  "adapter_passed": 50,
+  "base_format_broken": 2,
+  "base_passed": 31,
+  "calls": 200,
+  "new_block": 0,
+  "sample_ns": 514538026582,
+  "steps": 8,
+  "train_ns": 56389111251
+ },
+ "mode": "real",
+ "outcomes": {
+  "adapter": {
+   "F": 50,
+   "P": 50,
+   "X": 0
+  },
+  "base": {
+   "F": 67,
+   "P": 31,
+   "X": 2
+  }
+ },
+ "plan": "pilot",
+ "plan_id": "588a6b6c0082ae7a1b898dade6d4ec713ead807eceeef967a4e927e341c57aa0",
+ "planned_cost_usd": "924487/10000000",
+ "replies_logged": 200,
+ "run_id": "pilot-2026-11-22-a",
+ "spend": {
+  "by_kind": {
+   "cached_prefill": {
+    "tokens": 0,
+    "usd": "0"
+   },
+   "prefill": {
+    "tokens": 68218,
+    "usd": "102327/10000000"
+   },
+   "sample": {
+    "tokens": 7381,
+    "usd": "7381/2000000"
+   },
+   "train": {
+    "tokens": 96688,
+    "usd": "18129/250000"
+   }
+  },
+  "total_usd": "108049/1250000"
+ },
+ "status": "complete",
+ "timing": {
+  "sampling_calls": 200,
+  "sampling_ns_total": 514538026582,
+  "train_ns_total": 56389111251,
+  "train_steps": 8
+ }
+}
