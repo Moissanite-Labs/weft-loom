@@ -299,6 +299,30 @@ class EvaluationBindingTests(Bound):
             self.evaluate(base, "adapter:C:seed0")
         self.assertEqual(self.calls(), before)
 
+    def test_the_untrained_model_cannot_take_an_adapter_descriptor_even_before_training(self):
+        base = self.run.base_sampler()
+        for name in ("adapter:C:seed0", "adapter:C:seed1", "pilot:adapter:C"):
+            before = self.calls()
+            with self.assertRaises(RT.RatchetRefused):
+                self.evaluate(base, name)
+            self.assertEqual(self.calls(), before)
+        self.assertEqual(self.evals(), [])
+        self.assertEqual(self.rt.require_model({"model": "untrained"}, "pilot:base-model"), {"model": "untrained"})
+
+    def test_the_untrained_model_cannot_take_any_descriptor_a_training_receipt_names(self):
+        self.rt.record_training("run-b", {"label": "X-s0", "arm": "C", "seed": 0, "descriptor": "plain-name",
+                                          "steps": 2, "sampler_source": "object", "sampler_id": ""})
+        with self.assertRaises(RT.RatchetRefused):
+            self.rt.require_model({"model": "untrained"}, "plain-name")
+
+    def test_a_descriptor_already_used_by_an_evaluation_cannot_name_a_new_adapter(self):
+        self.evaluate(self.run.base_sampler(), "named-before-training")
+        with self.assertRaises(RT.RatchetRefused):
+            self.rt.record_training("run-b", {"label": "C-s0", "arm": "C", "seed": 0,
+                                              "descriptor": "named-before-training", "steps": 2,
+                                              "sampler_source": "object", "sampler_id": ""})
+        self.assertEqual(self.trains(), [])
+
     def test_an_adapter_cannot_be_recorded_as_the_untrained_model(self):
         # the run knows the sampler is an adapter, so a binding saying untrained cannot come from it,
         # and a hand-made one is refused by the descriptor

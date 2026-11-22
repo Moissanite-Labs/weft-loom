@@ -24,7 +24,9 @@ and an identifier of the sampler. The installed library (tinker 0.39.0) gives a
 saved checkpoint no public identifier: save_weights_and_get_sampling_client
 returns a SamplingClient, and the nearest public thing is
 SamplingClient.get_sampler_handle(), a credential-free string that encodes the
-session and sampling session ids. The identifier is the SHA-256 of that string,
+session and sampling session ids and also the base URL, header overrides and
+client configuration, including server flags the library refreshes
+periodically. The identifier is the SHA-256 of that string,
 read once at save time (source "handle"), or empty with source "object" if the
 client offers no handle or it raises. Two different sampler objects that give
 the same handle, or the same object for two arms, are refused at save time.
@@ -32,7 +34,8 @@ What is guaranteed: an evaluation is recorded only for a sampler object this
 run issued after training steps of that arm, under the arm's own receipt. What
 is not: that the service's weights behind the sampler are those steps, and that
 the handle is stable or unique on the real service (not observed: no client was
-built).
+built). The identifier is read once and compared with itself inside one run; it is
+not expected to be reproducible from the same sampler in a later process.
 
 The spend is kept in an append-only ledger file beside the approvals file (its
 path plus ".spend.jsonl"; there is no other way to name a ledger). A reservation

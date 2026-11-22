@@ -203,9 +203,14 @@ class Ratchet:
         seed, descriptor, steps, sampler_source and sampler_id (what
         TinkerRun.binding returns, plus the arm, seed and descriptor). A label
         or descriptor that already has a train receipt in this chain is refused,
-        so a name never means two adapters."""
+        so a name never means two adapters. A descriptor that an earlier
+        evaluation receipt used is refused too."""
         self.check_lock()
         body = _train_body(run_id, info)
+        for b in receipts.bodies(self.receipts_path):
+            if b.get("kind") == "eval" and b.get("descriptor") == body["descriptor"]:
+                raise RatchetRefused("an evaluation under descriptor %r is already in this chain, so it cannot "
+                                     "name a new adapter" % (body["descriptor"],))
         for b in self._train_bodies():
             if b["label"] == body["label"] or b["descriptor"] == body["descriptor"]:
                 raise RatchetRefused("this chain already holds a training receipt for %r" % (body["label"],))
@@ -227,6 +232,9 @@ class Ratchet:
         if model["model"] == "untrained":
             if set(model) != {"model"}:
                 raise RatchetRefused("an untrained model carries no other field")
+            if "adapter" in str(descriptor).split(":"):
+                raise RatchetRefused("descriptor %r is reserved for adapters, not the untrained model"
+                                     % (descriptor,))
             if any(b["descriptor"] == descriptor for b in trained):
                 raise RatchetRefused("descriptor %r names a trained adapter, not the untrained model" % (descriptor,))
             return {"model": "untrained"}

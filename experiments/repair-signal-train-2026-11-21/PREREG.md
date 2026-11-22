@@ -342,8 +342,13 @@ A sixth guard, added on 2026-11-22 before any registered run, binds each evaluat
 - An adapter is evaluated only after the run trained it, saved its one checkpoint and wrote a training receipt for it: label, text, seed, descriptor, step count and an identifier of the sampler.
 - The evaluation receipt must name the same descriptor, label, step count and identifier, and the check is made before any sampling call. The untrained model's evaluations are marked as such.
 - The installed service library (version 0.39.0) gives a saved checkpoint no public identifier. The identifier is the SHA-256 of the sampler handle the library offers, read once when the checkpoint is saved, and the run also holds the sampler object itself.
+- The handle also encodes client configuration that the library refreshes, so the identifier is consistent inside one run and is not expected to be reproducible later.
 
-What is guaranteed: no evaluation is recorded for a sampler object this run did not issue after training that arm, under that arm's own receipt.
+What is guaranteed: no evaluation made through the driver (`evaluate_recorded`, `run_pilot`, `run_registered`) is recorded for a sampler object this run did not issue after training that arm, under that arm's own receipt.
+
+The second-set models are read from the responders that sample.
+
+The untrained model cannot be recorded under an adapter's descriptor. `ratchet.record` trusts the model description its caller passes.
 
 What is not guaranteed: that the service's weights behind the sampler are the weights of those steps, and that the handle is stable or unique on the real service, which no run has observed.
 

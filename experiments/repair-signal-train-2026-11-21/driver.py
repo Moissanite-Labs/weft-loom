@@ -313,8 +313,7 @@ def run_registered(run, ratchet, codec, run_id, plan, config, decision_id=DECISI
                ("B", responder(run, samplers[("B", 0)], codec, cap), "B", b0),
                ("E", responder(run, samplers[("C", 0)], codec, cap), "E", c0),
                ("N", responder(run, samplers[("C", 0)], codec, cap), "N", c0)]
-    models = {"C": run.binding(samplers[("C", 0)]), "B": run.binding(samplers[("B", 0)]),
-              "E": run.binding(samplers[("C", 0)]), "N": run.binding(samplers[("C", 0)])}
+    models = {key: run.binding(resp.sampler) for key, resp, _arm, _desc in entries}   # from what samples
     got = ratchet.second_set_results(decision_id, h2, entries, config, models)
     summary["set2"] = compare_all(ratchet, "set2-seed0", got["C"], got["B"], {"E": got["E"], "N": got["N"]})
     v2, why2 = judge(summary["set2"])

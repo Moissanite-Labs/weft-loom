@@ -173,9 +173,15 @@ Every evaluation goes through `driver.evaluate_recorded`. It asks the run which 
 
 The installed library (tinker 0.39.0) gives a saved checkpoint no public identifier. The save returns a sampling client, and the nearest public name is `SamplingClient.get_sampler_handle()`, a credential-free string. The identifier is the SHA-256 of that string, read once at save time.
 
+The string also encodes the base URL, header overrides and client configuration, and the library refreshes some of that periodically, so the identifier is consistent inside one run and is not expected to be reproducible from the same sampler later.
+
 A client with no handle, or one that raises, gets the source `object` and an empty identifier. The binding then rests on the sampler object and the order of the receipts alone. `checks/tinker_api_check.py` compares the handle call with the installed library and records the missing checkpoint id as unsettled.
 
-What is guaranteed: an evaluation is recorded only for a sampler object this run issued, after training steps of that arm, under that arm's own training receipt.
+What is guaranteed: an evaluation made through `driver.evaluate_recorded`, `driver.run_pilot` or `driver.run_registered` is recorded only for a sampler object this run issued, after training steps of that arm, under that arm's own training receipt.
+
+In the second-set touch the models are read from the responders that sample. `ratchet.record` itself trusts the model description its caller passes, so a caller that bypasses the driver is not covered.
+
+The untrained model cannot be recorded under a descriptor that names an adapter, and a descriptor an earlier evaluation used cannot later name a trained adapter.
 
 What is not:
 
