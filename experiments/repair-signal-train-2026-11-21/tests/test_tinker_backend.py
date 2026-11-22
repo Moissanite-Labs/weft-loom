@@ -133,7 +133,7 @@ class BudgetTests(Base):
             T.cost_usd("rent", 1)
 
     def test_training_counts_tokens_and_stops_before_the_ceiling(self):
-        self.approve(ceiling="0.0900")                                  # budget is 0.0865
+        self.approve(ceiling="0.0900")                                  # budget is 0.0864
         svc = fakes.FakeService()
         run = self.run_(service=svc)
         run.start_arm("C")
@@ -203,20 +203,17 @@ class RunTests(Base):
         return C.Codec(fakes.FakeTokenizer())
 
     def encode(self, text):
-        return self.codec().target_ids(text)               # the turn opening, the reply, the end marker
-
-    def opening(self):
-        return self.encode("")[:2]
+        return self.codec().target_ids(text)               # the reply and the end marker (the opening is in the prompt)
 
     def test_sampling_counts_prompt_and_returned_tokens_and_obeys_the_cap(self):
-        sampler = fakes.FakeSampler(reply_tokens=self.opening() + [ord("a")] * 500, overrun=True)
+        sampler = fakes.FakeSampler(reply_tokens=[ord("a")] * 500, overrun=True)
         s = E.build_set("heldout1", {"S": 1})
         resp = T.TinkerResponder(self.run, sampler, self.codec(), 7)
         text, n, was_cut = resp(E.View(s.episodes[0], "C"))
         self.assertEqual((text, n, was_cut), ("a" * 7, 7, True))      # cut at the cap: reported, so it counts as a format break
-        self.assertEqual(resp.stats, {"calls": 1, "opening_seen": 1, "cut": 1})
-        self.assertEqual(sampler.calls[0][2], 10)                      # the cap plus the turn opening and the end marker
-        self.assertEqual(self.run.meter.tokens["sample"], 502)         # counted as returned
+        self.assertEqual(resp.stats, {"calls": 1, "accepted": 1, "new_block": 0, "cut": 1})
+        self.assertEqual(sampler.calls[0][2], 8)                       # the cap plus the end marker
+        self.assertEqual(self.run.meter.tokens["sample"], 500)         # counted as returned
         self.assertEqual(self.run.meter.tokens["prefill"], sampler.calls[0][0])
         self.assertGreater(sampler.calls[0][0], 50)
 
@@ -227,25 +224,48 @@ class RunTests(Base):
         ids = sampler.prompts[0]
         c = self.codec()
         self.assertEqual(ids[:2], [c.role["system"], c.content])
-        self.assertEqual(ids[-1], c.end)                               # the last user message; the model opens its own turn
+        self.assertEqual(ids[-2:], [c.role["assistant"], c.content])   # the forced opening of the model's turn
+        self.assertEqual(ids[-3], c.end)                               # the last user message ends before it
         self.assertEqual(ids.count(c.end), 4)                          # system, user, model, user
         self.assertEqual(sampler.stops[0], [c.end, c.eos])
         self.assertEqual(ids, c.prompt_ids(E.View(s.episodes[0], "C").messages))
 
     def test_the_reply_is_cut_at_the_end_marker(self):
-        sampler = fakes.FakeSampler(reply_tokens=self.encode("x0 = 1") + [ord("z")] * 5)         # opening, reply, end, junk
+        sampler = fakes.FakeSampler(reply_tokens=self.encode("x0 = 1") + [ord("z")] * 5)         # reply, end, junk
         s = E.build_set("heldout1", {"S": 1})
         resp = T.TinkerResponder(self.run, sampler, self.codec(), 96)
         text, n, was_cut = resp(E.View(s.episodes[0], "C"))
         self.assertEqual((text, n, was_cut), ("x0 = 1", 6, False))
-        self.assertEqual(resp.stats, {"calls": 1, "opening_seen": 1, "cut": 0})
+        self.assertEqual(resp.stats, {"calls": 1, "accepted": 1, "new_block": 0, "cut": 0})
 
-    def test_a_reply_without_the_turn_opening_is_counted_as_such(self):
-        sampler = fakes.FakeSampler(reply_tokens=[ord("a"), self.codec().end])
+    def test_a_reply_that_opens_a_new_block_is_counted_and_cannot_parse(self):
+        c = self.codec()
         s = E.build_set("heldout1", {"S": 1})
-        resp = T.TinkerResponder(self.run, sampler, self.codec(), 96)
+        for block in ([c.thinking], [c.role["assistant"], c.content], [c.content]):
+            sampler = fakes.FakeSampler(reply_tokens=block + self.encode("x0 = 1\nx1 = 2\nx2 = 3\nx3 = 4"))
+            resp = T.TinkerResponder(self.run, sampler, c, 96)
+            text, n, was_cut = resp(E.View(s.episodes[0], "C"))
+            self.assertEqual(resp.stats, {"calls": 1, "accepted": 1, "new_block": 1, "cut": 0})
+            self.assertTrue(text.startswith("<|"))
+            self.assertEqual(V.outcome_of(V.ep_mod.rsig(), s.episodes[0], text, was_cut), "X")
+
+    def test_a_marker_after_the_end_marker_is_not_a_new_block(self):
+        c = self.codec()
+        sampler = fakes.FakeSampler(reply_tokens=[ord("a"), c.end, c.thinking])
+        s = E.build_set("heldout1", {"S": 1})
+        resp = T.TinkerResponder(self.run, sampler, c, 96)
         resp(E.View(s.episodes[0], "C"))
-        self.assertEqual(resp.stats, {"calls": 1, "opening_seen": 0, "cut": 0})
+        self.assertEqual(resp.stats["new_block"], 0)
+
+    def test_a_response_with_other_than_one_sequence_is_refused(self):
+        class Two(fakes.FakeSampler):
+            def sample(self, prompt, num_samples, sampling_params):
+                fut = super().sample(prompt, num_samples, sampling_params)
+                fut._value.sequences = fut._value.sequences * 2
+                return fut
+        s = E.build_set("heldout1", {"S": 1})
+        with self.assertRaises(T.BackendError):
+            T.TinkerResponder(self.run, Two(), self.codec(), 96)(E.View(s.episodes[0], "C"))
 
     def test_sampling_reserves_the_cap_and_stops_before_the_ceiling(self):
         self.approve(ceiling="0.0866")
@@ -263,7 +283,7 @@ class RunTests(Base):
         r = V.evaluate_arm(T.TinkerResponder(self.run, sampler, self.codec(), 96), s, "C", 96, "tinker-fake")
         self.assertEqual((r.n, r.format_broken), (3, 0))
         self.assertEqual(self.run.meter.tokens["prefill"], sum(c[0] for c in sampler.calls))
-        self.assertEqual(self.run.meter.tokens["sample"], 3 * 30)      # 3 x (the opening, 27 characters, the end marker)
+        self.assertEqual(self.run.meter.tokens["sample"], 3 * 28)      # 3 x (27 characters, the end marker)
 
     def test_base_sampler_is_not_a_checkpoint(self):
         self.run.base_sampler()
@@ -367,9 +387,9 @@ class LedgerTests(Base):
     def test_the_whole_plan_must_fit_under_what_is_left(self):
         first = self.start(plan_id="p")
         first.meter.reserve("train", 1200000)                 # $0.90 of the $1.00
-        with self.assertRaises(T.BudgetError):                # the plan costs $0.0865 and only $0.10 is left: fits
+        with self.assertRaises(T.BudgetError):                # the plan costs $0.0864 and only $0.10 is left: fits
             self.start(plan_id="p", resume=True, plan={"train": 200000, "prefill": 10, "sample": 10})
-        self.start(plan_id="p", resume=True)                  # the default plan costs $0.0865: fits
+        self.start(plan_id="p", resume=True)                  # the default plan costs $0.0864: fits
 
     def test_a_start_that_is_refused_writes_nothing(self):
         self.start(plan_id="p")

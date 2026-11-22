@@ -312,18 +312,22 @@ class TinkerRun:
 
 
 class TinkerResponder:
-    """Evaluation responder: samples one reply with at most `cap` reply tokens
-    (plus the turn opening and the end marker), and counts prompt and returned
-    tokens against the meter. codec is a codec.Codec: prompts carry real special tokens, and
-    sampling stops on the end marker."""
+    """Evaluation responder: samples one reply with at most `cap` answer tokens
+    (plus the end marker), and counts prompt and returned tokens against the
+    meter. codec is a codec.Codec: prompts carry real special tokens and end
+    with the forced opening of the model's turn, so the sample is the answer
+    block's content, and sampling stops on the end marker.
+    stats: calls; accepted (the service answered the forced-opening prompt with
+    one sequence of ids); new_block (replies that hold a marker id, such as a
+    new thinking block); cut."""
 
     def __init__(self, run, sampler, codec, cap):
         self.run, self.sampler, self.codec, self.cap = run, sampler, codec, cap
-        self.stats = {"calls": 0, "opening_seen": 0, "cut": 0}
+        self.stats = {"calls": 0, "accepted": 0, "new_block": 0, "cut": 0}
 
     def __call__(self, view):
         ids = self.codec.prompt_ids(view.messages)
-        limit = self.cap + codec_mod.REPLY_OVERHEAD    # the turn opening, the reply, the end marker
+        limit = self.cap + codec_mod.REPLY_OVERHEAD    # the reply and the end marker
         meter = self.run.meter
         meter.reserve("prefill", len(ids))
         meter.reserve("sample", limit)                 # upper bound, settled below
@@ -332,11 +336,15 @@ class TinkerResponder:
             prompt=types.ModelInput.from_ints(tokens=ids), num_samples=1,
             sampling_params=types.SamplingParams(max_tokens=limit, temperature=0.0,
                                                  stop=self.codec.stop_ids())).result())
-        out = list(resp.sequences[0].tokens)
+        seqs = resp.sequences
+        if len(seqs) != 1:
+            raise BackendError("the service returned %d sequences for one sample" % len(seqs))
+        out = list(seqs[0].tokens)
         meter.settle("sample", limit, len(out))        # counted as returned, even over the limit
         text, count, was_cut = self.codec.reply(out, self.cap)
         self.stats["calls"] += 1
-        self.stats["opening_seen"] += 1 if self.codec.has_opening(out) else 0
+        self.stats["accepted"] += 1
+        self.stats["new_block"] += 1 if self.codec.opens_new_block(out) else 0
         self.stats["cut"] += 1 if was_cut else 0
         return text, count, was_cut                    # a cut reply is a format break (evaluate.py)
 

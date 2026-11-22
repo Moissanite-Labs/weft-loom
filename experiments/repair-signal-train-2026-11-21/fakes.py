@@ -39,7 +39,7 @@ class FakeSamplingParams:
 
 class FakeTokenizer:
     """One id per character (its code point), and special ids from 1000 up."""
-    SPECIALS = {"message_user": 1000, "message_model": 1001, "message_system": 1002, "content_text": 1004,
+    SPECIALS = {"message_user": 1000, "message_model": 1001, "message_system": 1002, "content_text": 1004, "content_thinking": 1005,
                 "end_message": 1010, "content_model_end_sampling": 1006}
 
     def encode_ordinary(self, text):

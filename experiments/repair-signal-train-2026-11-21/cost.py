@@ -8,14 +8,16 @@ evaluate.PIECE (one piece per digit, per run of letters, per other mark).
 Chat markers are special tokens and are not run through the tokenizer. Their
 counts come from codec.py, which builds the ids the paid path sends: each
 message adds MARKERS_PER_MESSAGE tokens (role, content marker, end), the
-system line is one more message, and a reply (the training target and what the
-model writes) adds REPLY_OVERHEAD tokens: its turn opening and its end marker. tests/test_layout_real.py checks these counts against
+system line is one more message, every prompt ends with the forced opening of
+the model's turn (OPENING_TOKENS: the model role and content markers), and a
+reply (the training target and what the model writes) adds REPLY_OVERHEAD
+tokens: its end marker. tests/test_layout_real.py checks these counts against
 the tml_renderers renderer, id for id, when that package can be imported.
 
 Cost: tokens times the published price per million, as exact fractions.
 Training bills every token of the prompt and the target (forward and backward).
-Evaluation bills prefill for each prompt and, as an upper bound, `cap` plus
-REPLY_OVERHEAD sampled tokens per episode.
+Evaluation bills prefill for each prompt (with the forced opening) and, as an
+upper bound, `cap` plus REPLY_OVERHEAD sampled tokens per episode.
 
     python3 cost.py [--venv-python PATH] [--examples N] [--seeds K] [--cap C]
 """
@@ -144,7 +146,7 @@ def _tokens(counter, epset, arm):
         flat += msgs + [tgt]
     uniq = sorted(set(flat))
     got = dict(zip(uniq, counter.count(uniq)))
-    sys_tokens = got[codec.SYSTEM_LINE] + codec.MARKERS_PER_MESSAGE
+    sys_tokens = got[codec.SYSTEM_LINE] + codec.MARKERS_PER_MESSAGE + codec.OPENING_TOKENS
     out = []
     for msgs, tgt in rows:
         prompt = sys_tokens + sum(got[m] + codec.MARKERS_PER_MESSAGE for m in msgs)

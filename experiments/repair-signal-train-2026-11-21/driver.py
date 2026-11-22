@@ -6,6 +6,10 @@ itself: it works through a tinker_backend.TinkerRun, whose construction needs an
 approval for the run id and a budget under the ceiling. start_run builds that
 run with the plan computed from cost.py for this configuration.
 
+Every prompt that is sampled from, for the untrained model and every adapter,
+ends with the forced opening of the model's turn (codec.Codec.prompt_ids), so
+the cap of reply tokens counts answer tokens only, for every arm alike.
+
 Order of a registered run (run_registered):
   1. the untrained model on held-out set 1, every text (exploratory baseline)
   2. for each training seed and each arm A, B, C: train 64 steps, save the one
@@ -61,7 +65,7 @@ Gates = namedtuple("Gates", "min_discordant rate_low rate_high")
 GATES = Gates(power.MIN_DISCORDANT, Fraction(1, 20), Fraction(19, 20))
 
 # Pilot gates (choices, PREREG.md). The pilot passes only if all hold.
-PILOT_MIN_OPENING = Fraction(19, 20)         # replies that begin with the model's own turn opening
+PILOT_MAX_NEW_BLOCK = Fraction(1, 20)        # replies that open a new block of their own, among all sampled replies
 PILOT_MAX_FORMAT_BREAK = Fraction(1, 5)      # adapter format breaks, text C
 PILOT_RATE_LOW, PILOT_RATE_HIGH = Fraction(1, 20), Fraction(19, 20)    # adapter pass rate must be testable
 PILOT_MAX_HOURS = 12                         # projected sampling plus training time of the full plan
@@ -210,7 +214,7 @@ def control_readings(cmp_):
 
 def set2_bound(plan, codec, h2):
     """Upper bound, in plan tokens, of the four set-2 evaluations of the registered decision:
-    prefill for every prompt, and the full cap plus overhead sampled per reply."""
+    prefill for every prompt, and the full cap plus the end marker sampled per reply."""
     prefill = 0
     for text in ("C", "B", "E", "N"):
         prefill += sum(len(codec.prompt_ids(ep_mod.render(ep, text).messages)) for ep in h2.episodes)
@@ -296,13 +300,14 @@ def plan_calls(plan):
 
 def pilot_verdict(m, full_calls, full_steps):
     """The pilot's gates as exact comparisons. m holds integers from run_pilot:
-    adapter n, passed, format_broken; opening_seen and calls (sampling), sample_ns
+    adapter n, passed, format_broken; accepted, new_block and calls (sampling), sample_ns
     and train_ns totals with steps. Returns {gate: bool, ..., "go": bool}."""
     n = m["adapter_n"]
     rate = Fraction(m["adapter_passed"], n)
     projected = Fraction(m["sample_ns"], m["calls"]) * full_calls + Fraction(m["train_ns"], m["steps"]) * full_steps
     gates = {
-        "layout_opening_seen": Fraction(m["opening_seen"], m["calls"]) >= PILOT_MIN_OPENING,
+        "forced_opening_accepted": m["accepted"] == m["calls"],
+        "no_new_block_in_replies": Fraction(m["new_block"], m["calls"]) <= PILOT_MAX_NEW_BLOCK,
         "format_breaks_low": Fraction(m["adapter_format_broken"], n) <= PILOT_MAX_FORMAT_BREAK,
         "adapter_pass_rate_testable": PILOT_RATE_LOW < rate < PILOT_RATE_HIGH,
         "projected_time_ok": projected <= PILOT_MAX_HOURS * NS_PER_HOUR,
@@ -337,7 +342,8 @@ def run_pilot(run, ratchet, codec, run_id, plan, config, full_plan, clock=time.p
     base_result, base_ns, base_stats = out["base"]
     m = {"adapter_n": result.n, "adapter_passed": result.passed, "adapter_format_broken": result.format_broken,
          "base_passed": base_result.passed, "base_format_broken": base_result.format_broken,
-         "opening_seen": stats["opening_seen"] + base_stats["opening_seen"],
+         "accepted": stats["accepted"] + base_stats["accepted"],
+         "new_block": stats["new_block"] + base_stats["new_block"],
          "calls": stats["calls"] + base_stats["calls"], "sample_ns": sum(call_ns) + sum(base_ns),
          "train_ns": sum(step_ns), "steps": steps}
     full_calls, full_steps = plan_calls(full_plan)

@@ -78,10 +78,10 @@ class PreregMatchesCodeTests(unittest.TestCase):
             self.assertIn(needle, self.text)
 
     def test_the_pilot_gates_in_the_prereg_are_the_ones_in_the_driver(self):
-        self.assertEqual((driver.PILOT_MIN_OPENING, driver.PILOT_MAX_FORMAT_BREAK, driver.PILOT_RATE_LOW,
+        self.assertEqual((driver.PILOT_MAX_NEW_BLOCK, driver.PILOT_MAX_FORMAT_BREAK, driver.PILOT_RATE_LOW,
                           driver.PILOT_RATE_HIGH, driver.PILOT_MAX_HOURS),
-                         (Fraction(19, 20), Fraction(1, 5), Fraction(1, 20), Fraction(19, 20), 12))
-        for needle in ("at least 95 percent of the 200 sampled replies", "20 percent or fewer of its 100 replies",
+                         (Fraction(1, 20), Fraction(1, 5), Fraction(1, 20), Fraction(19, 20), 12))
+        for needle in ("every one of the 200 calls", "at most 5 percent of the 200 sampled replies", "20 percent or fewer of its 100 replies",
                        "above 5 percent and below 95 percent", "at most 12 hours", "21,000 calls", "384 steps"):
             self.assertIn(needle, self.text)
         self.assertEqual(driver.plan_calls(__import__("cost").full_plan(2048, 2, 96)), (21000, 384))

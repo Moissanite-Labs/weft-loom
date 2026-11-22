@@ -1,48 +1,48 @@
 Plan pilot (token source: rule)
 item                                                 kind           tokens      $/M        dollars
 train C: 256 examples x 1 epoch x 1 seed             train           89505    0.750         0.0671
-eval prefill base model, text C on e1 x1             prefill         31622    0.150         0.0047
-eval sample base model, text C (cap 96, upper bound) sample           9900    0.500         0.0050
-eval prefill adapter C, text C on e1 x1              prefill         31622    0.150         0.0047
-eval sample adapter C, text C (cap 96, upper bound)  sample           9900    0.500         0.0050
-TOTAL                                                               172549                  0.0865
-exact total: 1730307/20000000 dollars
+eval prefill base model, text C on e1 x1             prefill         31822    0.150         0.0048
+eval sample base model, text C (cap 96, upper bound) sample           9700    0.500         0.0049
+eval prefill adapter C, text C on e1 x1              prefill         31822    0.150         0.0048
+eval sample adapter C, text C (cap 96, upper bound)  sample           9700    0.500         0.0049
+TOTAL                                                               172549                  0.0864
+exact total: 1727507/20000000 dollars
 
 Plan full (token source: rule)
 item                                                 kind           tokens      $/M        dollars
 train A: 2048 examples x 1 epoch x 2 seed            train         1260168    0.750         0.9451
 train B: 2048 examples x 1 epoch x 2 seed            train         1380098    0.750         1.0351
 train C: 2048 examples x 1 epoch x 2 seed            train         1429420    0.750         1.0721
-eval prefill base model, text A on e1 x1             prefill        273858    0.150         0.0411
-eval sample base model, text A (cap 96, upper bound) sample          99000    0.500         0.0495
-eval prefill base model, text B on e1 x1             prefill        303139    0.150         0.0455
-eval sample base model, text B (cap 96, upper bound) sample          99000    0.500         0.0495
-eval prefill base model, text C on e1 x1             prefill        315365    0.150         0.0473
-eval sample base model, text C (cap 96, upper bound) sample          99000    0.500         0.0495
-eval prefill base model, text E on e1 x1             prefill        315262    0.150         0.0473
-eval sample base model, text E (cap 96, upper bound) sample          99000    0.500         0.0495
-eval prefill base model, text N on e1 x1             prefill        315365    0.150         0.0473
-eval sample base model, text N (cap 96, upper bound) sample          99000    0.500         0.0495
-eval prefill adapter A, text A on e1 x2              prefill        547716    0.150         0.0822
-eval sample adapter A, text A (cap 96, upper bound)  sample         198000    0.500         0.0990
-eval prefill adapter B, text B on e1 x2              prefill        606278    0.150         0.0909
-eval sample adapter B, text B (cap 96, upper bound)  sample         198000    0.500         0.0990
-eval prefill adapter C, text C on e1 x2              prefill        630730    0.150         0.0946
-eval sample adapter C, text C (cap 96, upper bound)  sample         198000    0.500         0.0990
-eval prefill adapter C, text B (control) on e1 x2    prefill        606278    0.150         0.0909
-eval sample adapter C, text B (control) (cap 96, upper bound) sample         198000    0.500         0.0990
-eval prefill adapter C, text E (control) on e1 x2    prefill        630524    0.150         0.0946
-eval sample adapter C, text E (control) (cap 96, upper bound) sample         198000    0.500         0.0990
-eval prefill adapter C, text N (control) on e1 x2    prefill        630730    0.150         0.0946
-eval sample adapter C, text N (control) (cap 96, upper bound) sample         198000    0.500         0.0990
-eval prefill adapter C, text C on e2 x1              prefill        315117    0.150         0.0473
-eval sample adapter C, text C (cap 96, upper bound)  sample          99000    0.500         0.0495
-eval prefill adapter B, text B on e2 x1              prefill        303095    0.150         0.0455
-eval sample adapter B, text B (cap 96, upper bound)  sample          99000    0.500         0.0495
-eval prefill adapter C, text E (control) on e2 x1    prefill        315073    0.150         0.0473
-eval sample adapter C, text E (control) (cap 96, upper bound) sample          99000    0.500         0.0495
-eval prefill adapter C, text N (control) on e2 x1    prefill        315117    0.150         0.0473
-eval sample adapter C, text N (control) (cap 96, upper bound) sample          99000    0.500         0.0495
-TOTAL                                                             12572333                  5.0553
-exact total: 101106231/20000000 dollars
+eval prefill base model, text A on e1 x1             prefill        275858    0.150         0.0414
+eval sample base model, text A (cap 96, upper bound) sample          97000    0.500         0.0485
+eval prefill base model, text B on e1 x1             prefill        305139    0.150         0.0458
+eval sample base model, text B (cap 96, upper bound) sample          97000    0.500         0.0485
+eval prefill base model, text C on e1 x1             prefill        317365    0.150         0.0476
+eval sample base model, text C (cap 96, upper bound) sample          97000    0.500         0.0485
+eval prefill base model, text E on e1 x1             prefill        317262    0.150         0.0476
+eval sample base model, text E (cap 96, upper bound) sample          97000    0.500         0.0485
+eval prefill base model, text N on e1 x1             prefill        317365    0.150         0.0476
+eval sample base model, text N (cap 96, upper bound) sample          97000    0.500         0.0485
+eval prefill adapter A, text A on e1 x2              prefill        551716    0.150         0.0828
+eval sample adapter A, text A (cap 96, upper bound)  sample         194000    0.500         0.0970
+eval prefill adapter B, text B on e1 x2              prefill        610278    0.150         0.0915
+eval sample adapter B, text B (cap 96, upper bound)  sample         194000    0.500         0.0970
+eval prefill adapter C, text C on e1 x2              prefill        634730    0.150         0.0952
+eval sample adapter C, text C (cap 96, upper bound)  sample         194000    0.500         0.0970
+eval prefill adapter C, text B (control) on e1 x2    prefill        610278    0.150         0.0915
+eval sample adapter C, text B (control) (cap 96, upper bound) sample         194000    0.500         0.0970
+eval prefill adapter C, text E (control) on e1 x2    prefill        634524    0.150         0.0952
+eval sample adapter C, text E (control) (cap 96, upper bound) sample         194000    0.500         0.0970
+eval prefill adapter C, text N (control) on e1 x2    prefill        634730    0.150         0.0952
+eval sample adapter C, text N (control) (cap 96, upper bound) sample         194000    0.500         0.0970
+eval prefill adapter C, text C on e2 x1              prefill        317117    0.150         0.0476
+eval sample adapter C, text C (cap 96, upper bound)  sample          97000    0.500         0.0485
+eval prefill adapter B, text B on e2 x1              prefill        305095    0.150         0.0458
+eval sample adapter B, text B (cap 96, upper bound)  sample          97000    0.500         0.0485
+eval prefill adapter C, text E (control) on e2 x1    prefill        317073    0.150         0.0476
+eval sample adapter C, text E (control) (cap 96, upper bound) sample          97000    0.500         0.0485
+eval prefill adapter C, text N (control) on e2 x1    prefill        317117    0.150         0.0476
+eval sample adapter C, text N (control) (cap 96, upper bound) sample          97000    0.500         0.0485
+TOTAL                                                             12572333                  5.0406
+exact total: 100812231/20000000 dollars
 

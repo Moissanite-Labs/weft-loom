@@ -4,11 +4,11 @@
 
 When a model must repair a rejected answer to a rational difference-constraint puzzle, and may answer only with the repaired assignment under one small token cap, does training on feedback that gives the exact amount of each violation let it repair more often than training on feedback that names only the violated constraints?
 
-The record holds the preregistered plan and the training loop that would run it on Inkling 2 Mini through the Tinker service, with a harness that is built and tested but has not been used on any model.
+The record holds the preregistered plan and the training loop that would run it on Inkling 2 Mini through the Tinker service, with a harness that is built and tested but has not been used on any model. Every prompt that is sampled from ends with the model's turn already opened for an answer (the forced opening), because the untrained model always opens a thinking block and no switch turns it off.
 
 ## Status
 
-`design`. The plan and the code exist. No model has been trained, sampled or scored, and nothing here has called a paid service or read a key.
+`design`. The plan and the code exist. No model has been trained, and nothing here has called a paid service or read a key. The untrained model was sampled once, for free, on pilot evaluation seeds only, with a local quantised copy: see [local-baseline](local-baseline/README.md). That is an exploratory measurement and not a result.
 
 ## Preregistration
 
@@ -44,6 +44,8 @@ python3 -I -B checks/rule2_ties.py
 python3 -I -B checks/targets.py
 ```
 
+`python3 -I -B local-baseline/check_seeds.py` checks that the committed local baseline holds pilot evaluation seeds only.
+
 `cost.py --venv-python PATH` counts with the real tokenizer through a worker that imports tml_renderers. The layout test in `tests/test_layout_real.py` also needs that package and is skipped without it (6 tests). The layout test and the tokenizer cost count were run once with a Python that has the package, and all 6 layout tests passed.
 
 The outputs are committed under `data/`: `dryrun.txt` (`dryrun.py`), `cost-rule.txt` (`cost.py`), `cost-tokenizer.txt` (`cost.py --venv-python PATH`, with a Python that has tml_renderers), `targets.txt`, `e_floor.txt`, `rule2_ties.txt` and `power-400.txt` (the script of the same name, run as listed above).
@@ -54,7 +56,7 @@ The dry run is deterministic and runs on any machine. It was run here on one App
 
 None yet. No model has produced a result for this question.
 
-The dry run checks the harness with stand-in policies. It says nothing about any model. It uses 40 training, 200 first held-out and 200 second held-out episodes, and ends with `40 checks, 0 failed`. The chain of receipts for the stand-in policies has 36 lines and verifies. Held-out set 1 at cap 96, each cell passed over episodes:
+The dry run checks the harness with stand-in policies. It says nothing about any model. It uses 40 training, 200 first held-out and 200 second held-out episodes, and ends with `41 checks, 0 failed`. The chain of receipts for the stand-in policies has 36 lines and verifies. Held-out set 1 at cap 96, each cell passed over episodes:
 
 | Stand-in policy | A | B | C | E | N |
 |---|---|---|---|---|---|
@@ -66,9 +68,9 @@ The dry run checks the harness with stand-in policies. It says nothing about any
 
 The verbose policy breaks the format in all 200 replies in every text, and that is counted apart from a failed repair.
 
-The dry run's 40 checks show that the exact checker, the sign test, the ratchet, the latch, the receipt chain and the budget guards each behave as designed. The table shows that the C, E and N texts separate a policy that reads the amounts from one that does not. The oracle scores 0 on N because its sign convention is written into the policy, and that is not a property of any model.
+The dry run's 41 checks show that the exact checker, the sign test, the ratchet, the latch, the receipt chain and the budget guards each behave as designed. The table shows that the C, E and N texts separate a policy that reads the amounts from one that does not. The oracle scores 0 on N because its sign convention is written into the policy, and that is not a property of any model.
 
-The test suite runs 335 tests (6 skipped without the tokenizer package) and passes. `mutate.py` removes 279 guards one at a time and every one is caught by a failing test. These too check the harness only.
+The test suite runs 346 tests (6 skipped without the tokenizer package) and passes. `mutate.py` removes 288 guards one at a time and every one is caught by a failing test. These too check the harness only.
 
 The dry run also runs the whole registered procedure against a fake client twice. With a gain built in for C, the verdict is `support`, and the second held-out set is touched once. With no gain, the verdict is `cannot_test` and the second set is never touched. The fake pilot reports 200 calls and 8 steps. These are properties of the fake.
 
@@ -80,18 +82,19 @@ Prices are the rates published in the Tinker model table (https://tinker-docs.th
 
 | Plan | Tokens (rule) | Dollars (rule) | Tokens (tokenizer) | Dollars (tokenizer) |
 |---|---|---|---|---|
-| Pilot, one adapter, 256 examples | 172,549 | 0.0865 | 184,306 | 0.0926 |
-| Full plan, three texts, two seeds | 12,572,333 | 5.0553 | 13,385,972 | 5.3793 |
+| Pilot, one adapter, 256 examples | 172,549 | 0.0864 | 184,306 | 0.0924 |
+| Full plan, three texts, two seeds | 12,572,333 | 5.0406 | 13,385,972 | 5.3646 |
 
-The exact full-plan cost with the tokenizer is 26896611/5000000 dollars. The plan sets a ceiling of 0.50 dollars for the pilot and 12.00 for the full run.
+The exact full-plan cost with the tokenizer is 26823111/5000000 dollars. The plan sets a ceiling of 0.50 dollars for the pilot and 12.00 for the full run.
 
 ## Limits
 
 - Nothing was run against the real service. The calls follow the installed library's signatures and are tested against fakes only. The order of calls, the time per sampling call and the step time are unmeasured.
 - Whether the tokenizer carried by tml_renderers matches the Mini model is a guess. The chat layout matches the renderer id for id, but whether the service applies the same layout to a tuned model is not checked. The pilot is there to check it.
-- Real billing rules are not verified. The cost table is arithmetic at published prices, and the sampling part is an upper bound.
-- The model card says minimum reasoning effort does not fully disable reasoning. The reply cap is the control, and the format-break count shows how often it bites.
-- The pilot gate values (95 percent of replies opening with the model's turn, 20 percent format breaks, a pass rate between 5 and 95 percent, 12 hours projected) are choices and not measurements.
+- Real billing rules are not verified. The cost table is arithmetic at published prices, and the sampling part is an upper bound. The forced opening moves two tokens per call from the training target to the prompt, so training tokens are unchanged and prefill grows by two tokens per call.
+- The model card says minimum reasoning effort does not fully disable reasoning, and a local copy shows four switches that do not turn it off. The forced opening is the control. Whether the service accepts a prompt that ends with the opening is not checked, and the first pilot gate measures it.
+- The pilot gate values (at most 5 percent of replies opening a block of their own, 20 percent format breaks, a pass rate between 5 and 95 percent, 12 hours projected) are choices and not measurements.
+- The local baseline is one greedy run of a quantised copy on 50 episodes per cell. The renderer has no completion prompt that ends with the opening, so the layout test builds that comparison from its completion prompt plus the two opening ids.
 - The gates are code that the same agent can edit. `ratchet.py`, `latch.py` and `driver.py` are not in the harness hash. The latch tokens live in memory, and the head of the receipt chain is pinned in memory unless it is kept elsewhere.
 - Rescoring proves that recorded outcomes follow from recorded replies. Invented replies would pass it.
 - The approvals file that allows a paid run belongs to the owner, in a place the agent cannot write. The code cannot enforce that.
@@ -102,13 +105,13 @@ The exact full-plan cost with the tokenizer is 26896611/5000000 dollars. The pla
 
 The earlier experiment is the folder `repair-signal-2026-11-20`, which is in open pull request 38 of this repository and may not be on the default branch yet. It tested the same idea without training and did not support it. A separate open pull request, 42, audits that record's compute confound.
 
-Its main confound was that one model escaped into long open reasoning, which the other arms could not use equally.
+Its main confound was that one model escaped into long open reasoning, which the other arms could not use equally. The forced opening removes that route at the start of every reply, and the pilot counts replies that open a block later.
 
 This record keeps the puzzle generator, the exact checker and the texts for A and B from that experiment, vendored in `vendor/rsig.py` with its SHA-256 pinned in `vendor/MANIFEST.json`. `vendor_loader.py` refuses to load it if the hash differs. The seed ranges here are disjoint from the earlier registered ranges.
 
 ## Research method followed
 
-- One compute cap for every comparison. Every reply is capped at 96 tokens, and the ratchet refuses a comparison made at a different cap.
+- One compute cap for every comparison. Every reply is capped at 96 answer tokens after the forced opening, for the untrained baseline and every adapter alike, and the ratchet refuses a comparison made at a different cap. A free-reasoning run is a different budget and is only a reference line.
 - A locked harness. The evaluation code, episode builder, vendored generator and decision registry are pinned by hash in every receipt.
 - Chained receipts without floats. Each line holds the hash of the line before it, and rates are stored as a numerator and a denominator.
 - An unchanged candidate is rejected, by descriptor or by identical replies.
@@ -125,6 +128,7 @@ This record keeps the puzzle generator, the exact checker and the texts for A an
 - `driver.py`, `tinker_backend.py`, `local_backend.py`, `fakes.py`: the run, the paid backend and test doubles. The paid backend refuses to start without an owner approval for the exact run id.
 - `cost.py`, `power.py`, `dryrun.py`, `mutate.py`, `tests/`, `checks/`: the checks. `mutate.py` removes each guard by an exact text substitution and requires a test to fail.
 - `vendor/`: the pinned generator and checker.
+- `local-baseline/`: the free local measurement of the untrained model on pilot evaluation seeds, with its script, data and README.
 
 ## Disclosure
 

@@ -2,7 +2,9 @@
 
 Status: registered when this file is merged to the default branch, and the merge commit fixes the text. Edits made in answer to review before the merge are part of review.
 
-No model has been trained, sampled or scored. A paid run starts only after the owner approves that run. Every number or setting marked (choice) is a decision made while drafting. Every number marked (measurement) was counted from real files by a script in this folder. Every number marked (arithmetic) follows from stated inputs.
+No model has been trained, and the registered model has not been sampled on the paid service. A local quantised copy of the model was sampled once, for free, on pilot evaluation seeds only (see "What the local model did"). A paid run starts only after the owner approves that run.
+
+Every number or setting marked (choice) is a decision made while drafting. Every number marked (measurement) was counted from real files by a script in this folder. Every number marked (arithmetic) follows from stated inputs.
 A statement marked (expected) is a belief that no script here checks.
 
 ## Question
@@ -11,7 +13,9 @@ When a model must repair a rejected answer to a rational difference-constraint p
 
 ## Why this run
 
-The finished experiment tested the same idea without training and did not support it. Its main confound was that one model escaped into long open reasoning, which the other arms could not use equally. Here every arm answers under the same cap with answer text only, and training gives each arm the chance to learn to use its own feedback.
+The finished experiment tested the same idea without training and did not support it. Its main confound was that one model escaped into long open reasoning, which the other arms could not use equally.
+
+Here every arm answers under the same cap with answer text only. The prompt of every arm ends with the model's turn already opened for an answer, so no arm can spend its cap on a thinking block. Training gives each arm the chance to learn to use its own feedback.
 
 ## Model and training
 
@@ -20,8 +24,9 @@ The finished experiment tested the same idea without training and did not suppor
 - One epoch of plain cross-entropy on the target, loss on the target tokens only. Batch 32 (choice), so 64 steps per adapter (arithmetic from 2048 examples).
 - AdamW, learning rate 1e-3 (choice, taken from an earlier smoke script and not tuned).
 - Two training seeds (choice). Each trains its own three adapters, one per trained text.
-- Chat layout: role and end markers are special tokens, not text. Prompts and targets are built by codec.py and checked id for id against the tml_renderers Inkling2 renderer (measurement, tests/test_layout_real.py). The target is the model's whole turn: its opening, the reply and the end marker.
-- System line: `Thinking effort level: 0`, the text the renderer writes for effort 0.0 (choice). The model card says minimum effort does not fully disable reasoning, so the cap below is the control.
+- Chat layout: role and end markers are special tokens, not text. Prompts and targets are built by codec.py and checked id for id against the tml_renderers Inkling2 renderer (measurement, tests/test_layout_real.py). Every prompt ends with the forced opening, the model role marker followed by the text content marker, which carries no loss. The target is the reply followed by the end marker.
+- The renderer has no form of its completion prompt that ends with the opening. The offline check therefore compares the prompt with the renderer's completion prompt plus the two opening ids, and compares the prompt and target together with the renderer's own SFT ids of the whole turn.
+- System line: `Thinking effort level: 0`, the text the renderer writes for effort 0.0 (choice). The model card says minimum effort does not fully disable reasoning, and the local measurements below show that no switch turns it off. The forced opening below is the control.
 - Sampling: greedy, temperature 0.0, one sample per episode (choice).
 - Stop tokens: both end_message and content_model_end_sampling (choice). The renderer's own stop is content_model_end_sampling alone. Stopping on end_message as well ends the reply at the end of the model's message.
 
@@ -96,8 +101,56 @@ The same episodes are used in every comparison, so comparisons are paired. The t
 
 ## Compute cap
 
-Every reply is capped at 96 tokens (choice) and every comparison uses the same cap. The turn opening and the end marker do not count against the cap. A reply must be the answer only, one line per variable, with decimals and fractions read as exact rationals, and an optional leading plus sign is allowed. A reply that breaks the format is counted as its own outcome and is not a failed repair.
+Every reply is capped at 96 tokens (choice) and every comparison uses the same cap.
+
+The forced opening is in the prompt and the end marker is not counted. The cap counts answer tokens only, for every arm alike, and a call asks the service for at most 97 tokens.
+
+A reply must be the answer only, one line per variable, with decimals and fractions read as exact rationals, and an optional leading plus sign is allowed. A reply that breaks the format is counted as its own outcome and is not a failed repair.
 A reply that had to be cut at the cap is counted as a format break even if the cut text still parses, because the cut can land inside the last number and leave a different but valid value (it is stored with a cut flag, and the cut replies are counted).
+
+## The forced opening and the thinking block
+
+Every prompt that is sampled from ends with the model's turn opened for an answer: the model role marker followed by the text content marker (choice). This holds for every adapter, every text, the untrained baseline and the pilot. The plan does not rely on training to make an adapter answer directly, and an adapter that sometimes opens a thinking block cannot lose replies to the cap for that reason.
+
+A reply that opens a block of its own, shown by any marker id before the end marker such as a thinking marker, is written into the stored text as `<|name|>`, so it breaks the reply grammar. The pilot counts such replies.
+
+### What the local model did
+
+These are exploratory measurements, made for free on 2026-11-21 and 2026-11-22 with a local quantised copy of the model (Q8_0, llama.cpp tag b12613), which is not the model the service runs.
+
+They use the pilot evaluation seeds only (tier S 310000 to 310049, tier M 360000 to 360049), one greedy run, and a text layout built locally that gave the same token ids as codec.py on 15 prompts. The files are in `local-baseline/`.
+
+The untrained model always opens a thinking block before its answer. Four switches failed to turn that off: the server's reasoning flag, reasoning_effort none in the request, the same as a template argument, and enable_thinking false. On a puzzle-shaped request with a cap of 96 tokens it never reached an answer, in 5 of 5 tries.
+
+A one-line arithmetic question did reach its answer in 82 tokens. With a cap of 1500 tokens it wrote about 570 tokens and answered one test puzzle correctly.
+
+With the answer block forced and a cap of 96 tokens, passed out of 50 per cell:
+
+| Text | Passed, tier S | Passed, tier M | Format breaks, S and M | Cut by the cap, S and M |
+|---|---|---|---|---|
+| A | 10 | 0 | 1, 0 | 0, 0 |
+| B | 19 | 9 | 1, 0 | 0, 1 |
+| C | 19 | 9 | 1, 2 | 0, 0 |
+| E | 19 | 13 | 1, 1 | 0, 0 |
+| N | 21 | 7 | 1, 1 | 0, 0 |
+
+The format breaks are counted without the cut replies. Under the plan's rule a cut reply is a format break too.
+
+Paired over the 100 episodes, text C against text B: only C passed 4, only B passed 4, both passed 24 and neither passed 68.
+
+Free reasoning is a different compute budget, so it is a reference line only and is never compared with the capped arms. With up to 2000 tokens on texts B and C, on the first 15 episodes of each tier, the model passed 15 of 15 in tier S for both texts, with a median of 773 (B) and 751 (C) generated tokens.
+
+In tier M it passed 5 of 15 (B) and 4 of 15 (C). Reasoning ran past 2000 tokens before any answer in 8 (B) and 10 (C) of those calls.
+
+That run was stopped at its time budget after 60 of 80 planned calls. 
+
+A call took about 3.3 seconds with the answer forced and about 71 seconds with free reasoning.
+
+What this shows and does not show:
+
+- Under the cap, the untrained model does not use the amounts. Text C passes as often as text B, and the texts with wrong amounts (E) and flipped signs (N) pass about as often.
+- The capped pass rates are neither at the floor nor at the ceiling, between 14 and 42 percent for B, C, E and N in each tier. Only text A in tier M is at 0 of 50.
+- It does not test the hypothesis, which is about what training adds. It is one run of 50 episodes per cell on a quantised copy, and the service's model may behave differently.
 
 ## Primary comparison and the decision rule
 
@@ -177,7 +230,7 @@ These are one of many looks and are not findings.
 
 - Tier S against tier M.
 - A against B.
-- The untrained model on each of the five texts, as a baseline for what training added.
+- The untrained model on each of the five texts, with the same forced opening and the same cap of 96, on held-out set 1, as a baseline for what training added. A free-reasoning baseline is a different compute budget. It is reported only as a reference line and is never compared with the capped arms.
 - Learning curves over the 64 steps, if loss is logged.
 - Whether the repaired answer moves the summed violation down when it does not pass.
 - Any effect of LoRA rank.
@@ -200,14 +253,14 @@ The ceiling is therefore a total for the run id across restarts. The approvals f
 
 | Item | Tokens | Dollars | Kind |
 |---|---|---|---|
-| Pilot (one adapter, 256 examples, base model and adapter on 100 episodes each) | 184,306 | 0.0926 | tokens counted with the local tokenizer, dollars arithmetic at the published prices |
-| Full plan (three trained texts, 2048 examples, two seeds, both held-out sets, controls) | 13,385,972 | 5.3793 | same |
+| Pilot (one adapter, 256 examples, base model and adapter on 100 episodes each) | 184,306 | 0.0924 | tokens counted with the local tokenizer, dollars arithmetic at the published prices |
+| Full plan (three trained texts, 2048 examples, two seeds, both held-out sets, controls) | 13,385,972 | 5.3646 | same |
 | Pilot ceiling | | 0.50 | choice |
 | Full run ceiling | | 12.00 | choice |
 
-The exact full-plan cost is 26896611/5000000 dollars (arithmetic). Prices are the published rates for the 64K context: 0.75 dollars per million training tokens, 0.15 per million prefill tokens and 0.50 per million sampled tokens.
+The exact full-plan cost is 26823111/5000000 dollars (arithmetic). Prices are the published rates for the 64K context: 0.75 dollars per million training tokens, 0.15 per million prefill tokens and 0.50 per million sampled tokens.
 
-The sampling figure assumes the full cap plus the turn opening and the end marker is sampled for every reply, so it is an upper bound. The meter counts the tokens a call returns, not the cap. The token counts use the tokenizer carried by tml_renderers, and whether it matches the Mini model is not verified.
+The sampling figure assumes the full cap plus the end marker is sampled for every reply, so it is an upper bound. Every prompt carries the two opening ids, which count as prefill. The meter counts the tokens a call returns, not the cap. The token counts use the tokenizer carried by tml_renderers, and whether it matches the Mini model is not verified.
 
 The pilot has one job. It checks the chat layout, the tokenizer, the step time, the time per sampling call and the format-break rate before any larger spend. Its results are not part of the registered result and its episodes are not reused.
 
@@ -216,12 +269,13 @@ Its gates, all required for a go (choices):
 
 | Gate | Pass if |
 |---|---|
-| Layout | at least 95 percent of the 200 sampled replies begin with the model's own turn opening, which the prompt leaves for the model to write |
+| Forced opening | the service accepted every one of the 200 calls, whose prompts end with the forced opening (no call was refused, and each returned one sequence) |
+| New blocks | at most 5 percent of the 200 sampled replies open a block of their own (a marker id before the end marker, such as a thinking block) |
 | Format | the adapter breaks the format in 20 percent or fewer of its 100 replies |
 | Testable | the adapter's pass rate on the 100 episodes is above 5 percent and below 95 percent |
 | Time | the sampling time per call times the 21,000 calls of the full plan, plus the step time times its 384 steps, is at most 12 hours |
 
-The call and step counts come from the plan (driver.plan_calls). The offline layout check against the renderer is a separate test and does not replace the first gate, which measures what the service does.
+The call and step counts come from the plan (driver.plan_calls). The offline layout check against the renderer is a separate test and does not replace the first two gates, which measure what the service does. A service that refused the forced opening would raise an error in the call and stop the pilot, so the first gate records that no call failed.
 
 ## Gates
 
@@ -258,6 +312,15 @@ Changes made after a second independent review on 2026-11-21, before any registr
 - A reply cut at the cap counts as a format break.
 - Choices now marked: sampling temperature, the system line, the stop tokens, the tie-break in rule 2 (now written out, with its tie counts). The dependence statement for the whole-rule power is labelled expected. The minimal detectable effects are printed by code. The wording about E's amounts is "similar size". The C adapter on text B moved from the exploratory list to the interpretive controls.
 
+Changes made on 2026-11-22, before any registration, after the local measurements above:
+
+- The prompt of every sampled arm now ends with the forced opening (the model role marker and the text content marker). The untrained model always opens a thinking block and no switch turns it off.
+- Before this change the plan left the opening for the model to write. An untrained baseline would have scored zero for a reason unrelated to the question, and an adapter that opened a thinking block would have lost replies to the cap.
+- In training the two opening ids are part of the prompt without loss, and the target is the reply followed by the end marker.
+- The pilot gate that 95 percent of replies begin with the model's own turn opening is replaced by two gates: the service accepted the forced opening, and at most 5 percent of replies open a block of their own.
+- The exploratory baseline is defined: the untrained model on each text with the same forced opening and cap. A free-reasoning baseline is a reference line only.
+- A section on the thinking block records the local measurements, marked exploratory. Costs, test counts and dry-run counts were recomputed.
+
 ## Statement
 
-No result exists yet. This file was written before any model was trained or evaluated in this loop. From the merge onward, later changes go in a dated amendments section at the end and never replace the text above it.
+No result exists yet. This file was written before any model was trained or evaluated in this loop. The only measurements are the exploratory local ones under "What the local model did". From the merge onward, later changes go in a dated amendments section at the end and never replace the text above it.

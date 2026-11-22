@@ -145,8 +145,13 @@ def pilot_checks(out):
     got = driver.run_pilot(run_, rt, codec, "pilot-dry", pilot, {"cap": CAP}, big, clock=lambda: next(ticks))
     m = got["measurements"]
     print("pilot measurements: %s" % json.dumps(m, sort_keys=True))
-    check("pilot: measures calls, steps, openings and format breaks, and every gate holds",
-          got["gates"]["go"] and (m["calls"], m["steps"], m["opening_seen"], m["adapter_format_broken"]) == (200, 8, 200, 0))
+    check("pilot: measures calls, steps, accepted forced openings, new blocks and format breaks, and every gate holds",
+          got["gates"]["go"] and (m["calls"], m["steps"], m["accepted"], m["new_block"], m["adapter_format_broken"])
+          == (200, 8, 200, 0, 0))
+    opening = codec.opening_ids()
+    check("pilot: every prompt sampled from, base model and adapter, ends with the forced opening of the model's turn",
+          all(p[-2:] == opening for smp in (sampler, svc.base) for p in smp.prompts) and len(sampler.prompts) == 100
+          and len(svc.base.prompts) == 100)
     check("pilot: evaluates on training-range seeds only and never touches a held-out set",
           got["results"]["adapter"].set_kind == "train" and rt.latch.touched() == []
           and not [b for b in receipts.bodies(rt.receipts_path) if str(b.get("set_kind", "")).startswith("heldout")])

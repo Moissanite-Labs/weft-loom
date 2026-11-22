@@ -241,7 +241,8 @@ class RegisteredRunTests(Fixture):
             self.assertTrue(smp.prompts)
             for p, stop in zip(smp.prompts, smp.stops):
                 self.assertEqual(p[:2], [self.codec.role["system"], self.codec.content])
-                self.assertEqual(p[-1], self.codec.end)
+                self.assertEqual(p[-2:], [self.codec.role["assistant"], self.codec.content])   # the forced opening, every arm
+                self.assertEqual(p[-3], self.codec.end)
                 self.assertEqual(stop, [self.codec.end, self.codec.eos])
 
     def test_the_first_set_evaluations_are_the_registered_ones(self):
@@ -717,7 +718,7 @@ class PilotTests(Fixture):
         m = out["measurements"]
         self.assertEqual((m["adapter_n"], m["adapter_passed"], m["adapter_format_broken"]), (100, 60, 0))
         self.assertEqual((m["base_passed"], m["base_format_broken"]), (0, 0))
-        self.assertEqual((m["calls"], m["opening_seen"], m["steps"]), (200, 200, 8))
+        self.assertEqual((m["calls"], m["accepted"], m["new_block"], m["steps"]), (200, 200, 0, 8))
         self.assertEqual((m["sample_ns"], m["train_ns"]), (200 * 1000, 8 * 1000))
         self.assertTrue(out["gates"]["go"])
         body = receipts.bodies(rt.receipts_path)[-1]
@@ -769,21 +770,23 @@ class PilotTests(Fixture):
         self.assertFalse(out["gates"]["go"])
 
     def good_m(self):
-        return {"adapter_n": 100, "adapter_passed": 60, "adapter_format_broken": 0, "opening_seen": 200, "calls": 200,
+        return {"adapter_n": 100, "adapter_passed": 60, "adapter_format_broken": 0, "accepted": 200, "new_block": 0, "calls": 200,
                 "sample_ns": 200 * 10**9, "train_ns": 8 * 10**9, "steps": 8}
 
     def test_the_pilot_gates_at_their_boundaries(self):
         ok = D.pilot_verdict(self.good_m(), 21000, 384)
         self.assertTrue(ok["go"])
-        self.assertEqual(set(ok), {"layout_opening_seen", "format_breaks_low", "adapter_pass_rate_testable",
+        self.assertEqual(set(ok), {"forced_opening_accepted", "no_new_block_in_replies", "format_breaks_low", "adapter_pass_rate_testable",
                                    "projected_time_ok", "go"})
-        for field, value, gate in (("opening_seen", 189, "layout_opening_seen"), ("adapter_format_broken", 21, "format_breaks_low"),
+        for field, value, gate in (("accepted", 199, "forced_opening_accepted"), ("new_block", 11, "no_new_block_in_replies"),
+                                   ("adapter_format_broken", 21, "format_breaks_low"),
                                    ("adapter_passed", 5, "adapter_pass_rate_testable"),
                                    ("adapter_passed", 95, "adapter_pass_rate_testable")):
             got = D.pilot_verdict(dict(self.good_m(), **{field: value}), 21000, 384)
             self.assertFalse(got[gate], (field, value))
             self.assertFalse(got["go"])
-        for field, value, gate in (("opening_seen", 190, "layout_opening_seen"), ("adapter_format_broken", 20, "format_breaks_low"),
+        for field, value, gate in (("accepted", 200, "forced_opening_accepted"), ("new_block", 10, "no_new_block_in_replies"),
+                                   ("adapter_format_broken", 20, "format_breaks_low"),
                                    ("adapter_passed", 6, "adapter_pass_rate_testable"),
                                    ("adapter_passed", 94, "adapter_pass_rate_testable")):
             self.assertTrue(D.pilot_verdict(dict(self.good_m(), **{field: value}), 21000, 384)[gate], (field, value))

@@ -36,9 +36,10 @@ class CostTests(unittest.TestCase):
         for arm in plan.arms:
             for ep in train.episodes:
                 r = E.render(ep, arm)
+                # each message: 3 markers; the prompt ends with the 2-token forced opening; the target adds 1 end marker
                 prompt = (V.count_pieces(codec.SYSTEM_LINE) + 3
-                          + sum(V.count_pieces(m["content"]) + 3 for m in r.messages))
-                want += prompt + V.count_pieces(r.target_text) + 3
+                          + sum(V.count_pieces(m["content"]) + 3 for m in r.messages) + 2)
+                want += prompt + V.count_pieces(r.target_text) + 1
         self.assertEqual(totals["train"], want * 2)
 
     def test_the_marker_counts_are_those_of_the_codec(self):
@@ -48,7 +49,7 @@ class CostTests(unittest.TestCase):
         system = len(codec.SYSTEM_LINE) + codec.MARKERS_PER_MESSAGE
         user = 2 + codec.MARKERS_PER_MESSAGE
         self.assertEqual(len(c.prompt_ids([{"role": "user", "content": "ab"}])),
-                         system + user)
+                         system + user + codec.OPENING_TOKENS)
         self.assertEqual(len(c.target_ids("ab")), 2 + codec.REPLY_OVERHEAD)
 
     def test_the_prompt_count_equals_the_codec_ids_with_a_character_tokenizer(self):
@@ -65,19 +66,19 @@ class CostTests(unittest.TestCase):
         p, t = c.train_ids(r.messages, r.target_text)
         self.assertEqual(got, (len(p), len(t)))
 
-    def test_eval_sampling_is_the_cap_plus_the_turn_opening_and_end_marker_times_the_runs(self):
+    def test_eval_sampling_is_the_cap_plus_the_end_marker_times_the_runs(self):
         plan = small_plan(arms=("C",), train={"S": 2}, seeds=3, e1={"S": 2, "M": 2}, e2={"S": 5}, cap=50,
                           evals=[cost.Eval("a", "C", "e1", 4), cost.Eval("b", "C", "e2", 3)])
         totals, _ = cost.plan_counts(plan, rule_counter())
-        self.assertEqual(totals["sample"], 53 * (4 * 4 + 5 * 3))
+        self.assertEqual(totals["sample"], 51 * (4 * 4 + 5 * 3))
 
     def test_prefill_is_counted_per_text_and_run(self):
         plan = small_plan(arms=("C",), train={"S": 2}, seeds=1, e1={"S": 3},
                           evals=[cost.Eval("a", "C", "e1", 2), cost.Eval("b", "A", "e1", 1)])
         totals, items = cost.plan_counts(plan, rule_counter())
         ev = E.build_set("heldout1", {"S": 3})
-        c_prompts = sum(V.count_pieces(codec.SYSTEM_LINE) + 3 + sum(V.count_pieces(m["content"]) + 3 for m in E.render(ep, "C").messages) for ep in ev.episodes)
-        a_prompts = sum(V.count_pieces(codec.SYSTEM_LINE) + 3 + sum(V.count_pieces(m["content"]) + 3 for m in E.render(ep, "A").messages) for ep in ev.episodes)
+        c_prompts = sum(V.count_pieces(codec.SYSTEM_LINE) + 3 + sum(V.count_pieces(m["content"]) + 3 for m in E.render(ep, "C").messages) + 2 for ep in ev.episodes)
+        a_prompts = sum(V.count_pieces(codec.SYSTEM_LINE) + 3 + sum(V.count_pieces(m["content"]) + 3 for m in E.render(ep, "A").messages) + 2 for ep in ev.episodes)
         self.assertEqual(totals["prefill"], 2 * c_prompts + a_prompts)
 
     def test_table_total_equals_backend_planned_cost(self):

@@ -47,8 +47,8 @@ class RealLayoutTests(unittest.TestCase):
 
     def test_marker_ids_are_special_and_distinct(self):
         c = self.c
-        ids = [c.role["user"], c.role["assistant"], c.role["system"], c.content, c.end, c.eos]
-        self.assertEqual(len(set(ids)), 6)
+        ids = [c.role["user"], c.role["assistant"], c.role["system"], c.content, c.end, c.eos, c.thinking]
+        self.assertEqual(len(set(ids)), 7)
         self.assertTrue(all(self.tk.is_special_token(i) for i in ids))
         self.assertEqual(self.r.stop(), [c.eos])
 
@@ -57,13 +57,20 @@ class RealLayoutTests(unittest.TestCase):
         self.assertNotIn(self.c.end, ordinary)
         self.assertGreater(len(ordinary), 1)
 
-    def test_prompt_ids_equal_the_renderers_completion_prompt(self):
+    def test_prompt_ids_equal_the_renderers_completion_prompt_plus_the_forced_opening(self):
+        # The renderer has no form of the completion prompt that ends with the model's turn
+        # opened: its prompt ends at the last end marker. The comparison is therefore the
+        # renderer's completion prompt plus the two opening ids, and the SFT test below pins the
+        # same two ids to the renderer's own model turn.
         for arm in E.ARMS:
             for ep in self.eps:
                 rd = E.render(ep, arm)
                 msgs = [self.msg(m["role"], m["content"]) for m in rd.messages]
                 spans, _parser = self.r.render_for_completion_with_effort(msgs, 0.0)
-                self.assertEqual(self.c.prompt_ids(rd.messages), _ids(spans), (arm, ep.id))
+                want = _ids(spans)
+                self.assertEqual(want[-1], self.c.end)
+                self.assertEqual(self.c.prompt_ids(rd.messages), want + [self.c.role["assistant"], self.c.content],
+                                 (arm, ep.id))
 
     def test_training_ids_equal_the_renderers_sft_ids_with_loss_on_the_reply(self):
         for arm in E.TRAIN_ARMS:
@@ -75,15 +82,18 @@ class RealLayoutTests(unittest.TestCase):
                 want = _ids(ex[0].input_token_spans)
                 prompt_ids, target_ids = self.c.train_ids(rd.messages, rd.target_text)
                 self.assertEqual(prompt_ids + target_ids, want)
-                # the renderer puts loss on the last model message, opening and end marker included, as the
-                # target does (it also puts loss on the failed attempt, which the datum does not)
+                # the renderer puts loss on the last model message, opening and end marker included. The
+                # target here is the reply and the end marker, and the opening is in the prompt without
+                # loss. The renderer also puts loss on the failed attempt, which the datum does not.
                 weights = ex[0].per_token_loss_weight_unshifted
                 self.assertEqual(weights[-len(target_ids):], [1.0] * len(target_ids))
+                self.assertEqual(prompt_ids[-2:], _ids(ex[0].input_token_spans)[len(prompt_ids) - 2:len(prompt_ids)])
+                self.assertEqual(weights[len(prompt_ids) - 2:len(prompt_ids)], [1.0, 1.0])
 
     def test_the_parser_reads_a_reply_the_way_the_codec_does(self):
         spans, parser = self.r.render_for_completion([self.msg("user", "hi")])
-        sampled = self.c.target_ids("x0 = 1\nx1 = 2")            # a model turn: opening, reply, end marker
-        parsed = parser.parse_tokens(sampled)
+        sampled = self.c.target_ids("x0 = 1\nx1 = 2")            # what the service returns after the forced opening
+        parsed = parser.parse_tokens(self.c.opening_ids() + sampled)      # the renderer's parser reads the whole turn
         self.assertEqual(parsed.messages[0].content.text, "x0 = 1\nx1 = 2")
         self.assertEqual(self.c.reply(sampled, 96)[0], "x0 = 1\nx1 = 2")
 
