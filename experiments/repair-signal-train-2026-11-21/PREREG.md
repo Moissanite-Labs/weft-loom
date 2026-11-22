@@ -1,6 +1,8 @@
 # Preregistration: exact amounts in repair, trained at a fixed cap
 
-Status: registered by the commit that adds this file to the repository. No model has been trained, sampled or scored. A paid run starts only after the owner approves that run. Every number or setting marked (choice) is a decision made while drafting. Every number marked (measurement) was counted from real files by a script in this folder. Every number marked (arithmetic) follows from stated inputs.
+Status: registered when this file is merged to the default branch, and the merge commit fixes the text. Edits made in answer to review before the merge are part of review.
+
+No model has been trained, sampled or scored. A paid run starts only after the owner approves that run. Every number or setting marked (choice) is a decision made while drafting. Every number marked (measurement) was counted from real files by a script in this folder. Every number marked (arithmetic) follows from stated inputs.
 A statement marked (expected) is a belief that no script here checks.
 
 ## Question
@@ -46,14 +48,16 @@ One canonical repair is the target in every arm, so the arms differ only in what
 Pairs never move one variable twice. The first passing move in that order is the target (choice, the tie-break).
 3. Else the planted solution.
 
-In the training set the rules give 1450, 491 and 107 of 2048 targets (71 percent, 24 percent and 5 percent, measurement). Rule 2 has a tie in its first place, another passing move of the same total size that gives a different repaired answer, in 159 of the 491 training episodes where it fires, 90 of 259 in the first held-out set and 73 of 244 in the second (measurement, checks/rule2_ties.py).
+In the training set the rules give 1450, 491 and 107 of 2048 targets (71 percent, 24 percent and 5 percent, measurement).
+
+Rule 2 has a tie in its first place, another passing move of the same total size that gives a different repaired answer, in 159 of the 491 training episodes where it fires, 90 of 259 in the first held-out set and 73 of 244 in the second (measurement, checks/rule2_ties.py). The split and the means come from checks/targets.py.
 The order above decides these, and a different order would give a different target in those episodes. The order uses only the roles of the violated constraints, which every text shows, so it gives no arm information that another arm lacks. The planted point alone, which an earlier draft used, equals a repair that C can reproduce in only 557 of 2048 episodes (a reviewer's count).
 
 ## Mechanism and what it predicts
 
 The cheap rule for C is: move the variable shared by all violated constraints by the largest amount. It is exact when one variable was moved (440 of 440 episodes in the first held-out set, measurement).
 
-It is partial when two were moved: it applies and passes in 251 of 560 episodes of the first held-out set, a small search finds the repair in 259 more, and 50 need the planted point. A rule of one subtraction per violated constraint passes only 476 of 1000 episodes there, so it is not the mechanism.
+It is partial when two were moved: it applies and passes in 251 of 560 episodes of the first held-out set, a small search finds the repair in 259 more, and 50 need the planted point. A rule of one subtraction per violated constraint passes only 476 of 1000 episodes there, so it is not the mechanism (measurement, checks/targets.py).
 
 From B the same excess is two subtractions away (the attempt's values give x_u - x_w - c), so B asks for a little more arithmetic, not a full recomputation. The gap between C and B may therefore be small. This is a prediction, not a result.
 
@@ -256,4 +260,4 @@ Changes made after a second independent review on 2026-11-21, before any registr
 
 ## Statement
 
-No result exists yet. This file was written before any model was trained or evaluated in this loop. Later changes go in a dated amendments section at the end and never replace the text above it.
+No result exists yet. This file was written before any model was trained or evaluated in this loop. From the merge onward, later changes go in a dated amendments section at the end and never replace the text above it.

@@ -1,0 +1,4 @@
+set           episodes  by search same-size passing move  same size, different answer
+training          2048        491                    159                          159
+held-out 1        1000        259                     90                           90
+held-out 2        1000        244                     73                           73

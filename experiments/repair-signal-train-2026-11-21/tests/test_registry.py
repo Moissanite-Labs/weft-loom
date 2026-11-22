@@ -131,6 +131,26 @@ class PreregMatchesCodeTests(unittest.TestCase):
         for needle in ("159 of the 491", "90 of 259", "73 of 244"):
             self.assertIn(needle, self.text)
 
+    def test_the_target_counts_in_the_prereg_are_what_the_script_prints(self):
+        sys.path.insert(0, os.path.join(_setup.LOOP, "checks"))
+        try:
+            import targets
+        finally:
+            sys.path.pop(0)
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            self.assertEqual(targets.main(), 0)
+        out = buf.getvalue()
+        for pattern in (r"train_rule_max-excess +1450\n", r"train_rule_search +491\n", r"train_rule_planted +107\n",
+                        r"mean_amount_C 1\.4115\n", r"mean_amount_E 1\.4657\n",
+                        r"moved_1 total 440 +max-excess 440 +search 0 +planted 0\n",
+                        r"moved_2 total 560 +max-excess 251 +search 259 +planted 50\n",
+                        r"one_subtraction_per_violation 476 of 1000\n"):
+            self.assertRegex(out, pattern)
+        for needle in ("1450, 491 and 107 of 2048", "1.466 against 1.412", "440 of 440 episodes", "251 of 560",
+                       "259 more, and 50 need the planted point", "476 of 1000"):
+            self.assertIn(needle, self.text)
+
     def test_the_minimal_effects_in_the_prereg_are_the_exact_ones(self):
         self.assertIn("4.5 points at 15 percent discordant, 5.5 points at 25 percent and 6.5 points at 35 percent", self.text)
         for share, halves in ((15, 9), (25, 11), (35, 13)):

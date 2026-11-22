@@ -12,13 +12,14 @@ The record holds the preregistered plan and the training loop that would run it 
 
 ## Preregistration
 
-[PREREG.md](PREREG.md). It is registered by the commit that adds it. A paid run starts only after the owner approves that run, with its own run id and spend ceiling. The registered decision id is in `decisions.json`, and the plan cites the SHA-256 of that file (a test checks that the two agree).
+[PREREG.md](PREREG.md). It is registered when this record is merged to the default branch, and until then edits made in answer to review are part of review. A paid run starts only after the owner approves that run, with its own run id and spend ceiling. The registered decision id is in `decisions.json`, and the plan cites the SHA-256 of that file (a test checks that the two agree).
 
 ## How to rerun
 
 Requirements: Python 3.10 or newer and the standard library. The paid backend imports its service library only when it builds a real client, so nothing below needs a key or a network.
 
-Run these from this folder. 
+Run these from this folder.
+
 ```
 python3 -I -B dryrun.py
 python3 -I -B -m unittest discover -s tests
@@ -28,16 +29,24 @@ python3 -I -B cost.py
 
 Output is identical under `python3 -I -B`, `python3 -I -O -B` and `python3 -I -B -W error`. The dry run also takes `--record PATH`, which checks the vendored `vendor/rsig.py` against the same file in the earlier record.
 
-The plan's other numbers come from these scripts. `power.py 1000` is exact and takes a few minutes. `checks/power_crosscheck.py` needs scipy, shares no code with `power.py` and agrees with it to 0.000035. `checks/e_floor.py` and `checks/rule2_ties.py` print the chance floor on text E and the tie counts in the canonical repair.
+The plan's other numbers come from these scripts. `power.py 1000` is exact and takes a few minutes. `checks/power_crosscheck.py` needs scipy, shares no code with `power.py` and agrees with it to 0.000035.
+
+`checks/e_floor.py` and `checks/rule2_ties.py` print the chance floor on text E and the tie counts in the canonical repair.
+
+`checks/targets.py` prints the rule split of the training targets, the mean amounts of texts C and E, the coverage of the first rule by the number of variables moved, and the one-subtraction count. `power.py 400` prints the 0.35 the plan quotes for the earlier set size.
 
 ```
 python3 -I -B power.py 1000
+python3 -I -B power.py 400
 python3 -I -B checks/power_crosscheck.py
 python3 -I -B checks/e_floor.py
 python3 -I -B checks/rule2_ties.py
+python3 -I -B checks/targets.py
 ```
 
 `cost.py --venv-python PATH` counts with the real tokenizer through a worker that imports tml_renderers. The layout test in `tests/test_layout_real.py` also needs that package and is skipped without it (6 tests). The layout test and the tokenizer cost count were run once with a Python that has the package, and all 6 layout tests passed.
+
+The outputs are committed under `data/`: `dryrun.txt` (`dryrun.py`), `cost-rule.txt` (`cost.py`), `cost-tokenizer.txt` (`cost.py --venv-python PATH`, with a Python that has tml_renderers), `targets.txt`, `e_floor.txt`, `rule2_ties.txt` and `power-400.txt` (the script of the same name, run as listed above).
 
 The dry run is deterministic and runs on any machine. It was run here on one Apple laptop with the system Python.
 
@@ -45,7 +54,7 @@ The dry run is deterministic and runs on any machine. It was run here on one App
 
 None yet. No model has produced a result for this question.
 
-The dry run checks the harness with stand-in policies. It says nothing about any model. It uses 40 training, 200 first held-out and 200 second held-out episodes, and ends with `40 checks, 0 failed`. Held-out set 1 at cap 96, each cell passed over episodes:
+The dry run checks the harness with stand-in policies. It says nothing about any model. It uses 40 training, 200 first held-out and 200 second held-out episodes, and ends with `40 checks, 0 failed`. The chain of receipts for the stand-in policies has 36 lines and verifies. Held-out set 1 at cap 96, each cell passed over episodes:
 
 | Stand-in policy | A | B | C | E | N |
 |---|---|---|---|---|---|
@@ -57,15 +66,17 @@ The dry run checks the harness with stand-in policies. It says nothing about any
 
 The verbose policy breaks the format in all 200 replies in every text, and that is counted apart from a failed repair.
 
-The table shows that the exact checker, the five texts, the sign test, the ratchet, the latch, the receipt chain and the budget guards each behave as designed, and that the C, E and N texts separate a policy that reads the amounts from one that does not. The oracle scores 0 on N because its sign convention is written into the policy, and that is not a property of any model.
+The dry run's 40 checks show that the exact checker, the sign test, the ratchet, the latch, the receipt chain and the budget guards each behave as designed. The table shows that the C, E and N texts separate a policy that reads the amounts from one that does not. The oracle scores 0 on N because its sign convention is written into the policy, and that is not a property of any model.
 
 The test suite runs 335 tests (6 skipped without the tokenizer package) and passes. `mutate.py` removes 279 guards one at a time and every one is caught by a failing test. These too check the harness only.
 
-The dry run also runs the whole registered procedure against a fake client twice. With a gain built in for C, the verdict is `support`, the second held-out set is touched once, and the receipt chain has 36 lines. With no gain, the verdict is `cannot_test` and the second set is never touched. The fake pilot reports 200 calls and 8 steps. These are properties of the fake.
+The dry run also runs the whole registered procedure against a fake client twice. With a gain built in for C, the verdict is `support`, and the second held-out set is touched once. With no gain, the verdict is `cannot_test` and the second set is never touched. The fake pilot reports 200 calls and 8 steps. These are properties of the fake.
 
 ### Cost of the plan
 
-`cost.py` prints the cost of the pilot and of the full plan, with every item. The totals are below. The rule count is the documented counting rule in `evaluate.py`. The tokenizer count uses the one carried by tml_renderers. Prices are the published rates for the 64K context: 0.75 dollars per million training tokens, 0.15 per million prefill tokens and 0.50 per million sampled tokens.
+`cost.py` prints the cost of the pilot and of the full plan, with every item. The totals are below. The rule count is the documented counting rule in `evaluate.py`. The tokenizer count uses the one carried by tml_renderers.
+
+Prices are the rates published in the Tinker model table (https://tinker-docs.thinkingmachines.ai/tinker/models.json) for the 64K context, read on 2026-11-21: 0.75 dollars per million training tokens, 0.15 per million prefill tokens and 0.50 per million sampled tokens.
 
 | Plan | Tokens (rule) | Dollars (rule) | Tokens (tokenizer) | Dollars (tokenizer) |
 |---|---|---|---|---|
@@ -89,7 +100,7 @@ The exact full-plan cost with the tokenizer is 26896611/5000000 dollars. The pla
 
 ## Relation to the earlier experiment
 
-The earlier experiment is the folder `repair-signal-2026-11-20`, which is in an open pull request and may not be on the default branch yet. It tested the same idea without training and did not support it.
+The earlier experiment is the folder `repair-signal-2026-11-20`, which is in open pull request 38 of this repository and may not be on the default branch yet. It tested the same idea without training and did not support it. A separate open pull request, 42, audits that record's compute confound.
 
 Its main confound was that one model escaped into long open reasoning, which the other arms could not use equally.
 
@@ -117,4 +128,6 @@ This record keeps the puzzle generator, the exact checker and the texts for A an
 
 ## Disclosure
 
-The code, tests and plan were written and run by AI agent sessions under the direction of the research team's human owner, with independent review rounds by other agent sessions. The plan went through two such reviews before registration, and the revision notes in `PREREG.md` list what they changed. No human has line-reviewed the code. No paid service was called.
+The code, tests and plan were written and run by AI agent sessions under the direction of the research team's human owner, with independent review rounds by other agent sessions. The plan went through two such reviews before registration, and the revision notes in `PREREG.md` list what they changed.
+
+The fixes made after the second review, 18 files changed and two check scripts added, have not been reviewed by a second agent. No human has line-reviewed the code. No paid service was called.
