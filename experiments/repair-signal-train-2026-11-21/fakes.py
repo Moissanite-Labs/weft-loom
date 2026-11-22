@@ -1,5 +1,9 @@
 """Fake service client, used by the dry run and the tests. Nothing here
-touches a network, a key or a model."""
+touches a network, a key or a model.
+
+The method and argument names follow the installed client library (tinker
+0.39.0), and checks/tinker_api_check.py compares them with it: client creation
+and checkpoint saving return a future, and the client is its .result()."""
 
 
 class FakeFuture:
@@ -28,12 +32,12 @@ class FakeDatum:
 
 
 class FakeAdam:
-    def __init__(self, learning_rate):
+    def __init__(self, learning_rate=0.0001, beta1=0.9, beta2=0.95, eps=1e-12, weight_decay=0.0, grad_clip_norm=0.0):
         self.learning_rate = learning_rate
 
 
 class FakeSamplingParams:
-    def __init__(self, max_tokens, temperature, stop=None):
+    def __init__(self, max_tokens=None, seed=None, stop=None, temperature=1, top_k=-1, top_p=1):
         self.max_tokens, self.temperature, self.stop = max_tokens, temperature, stop
 
 
@@ -79,7 +83,8 @@ class FakeSampler:
         self.overrun = overrun      # a misbehaving server that ignores max_tokens
         self.calls, self.prompts, self.stops = [], [], []
 
-    def sample(self, prompt, num_samples, sampling_params):
+    def sample(self, prompt, num_samples, sampling_params, include_prompt_logprobs=False, topk_prompt_logprobs=0,
+               topk_sample_logprobs=0, target_prompt_logprobs=None, prompt_alt_tokens_k=0, prompt_logprobs_last_n=None):
         self.calls.append((prompt.length, num_samples, sampling_params.max_tokens))
         self.prompts.append(list(prompt.tokens))
         self.stops.append(sampling_params.stop)
@@ -95,9 +100,9 @@ class ScriptedSampler(FakeSampler):
         super().__init__()
         self.texts, self.encode = list(texts), encode
 
-    def sample(self, prompt, num_samples, sampling_params):
+    def sample(self, prompt, num_samples, sampling_params, **kw):
         self.reply_tokens = list(self.encode(self.texts[len(self.calls) % len(self.texts)]))
-        return super().sample(prompt, num_samples, sampling_params)
+        return super().sample(prompt, num_samples, sampling_params, **kw)
 
 
 class FakeTrainingClient:
@@ -106,17 +111,19 @@ class FakeTrainingClient:
         self.saved = 0
         self.sampler = sampler
 
-    def forward_backward(self, data, loss_fn):
+    def forward_backward(self, data, loss_fn, loss_fn_config=None):
         self.calls.append(("forward_backward", len(data), loss_fn))
         if self.fail_with is not None:
             raise self.fail_with
         return FakeFuture(None)
 
-    def optim_step(self, adam):
+    def optim_step(self, optim_params=None, *, adam_params=None):
+        adam = optim_params if optim_params is not None else adam_params
         self.calls.append(("optim_step", adam.learning_rate))
         return FakeFuture(None)
 
-    def save_weights_and_get_sampling_client(self):
+    def save_weights_and_get_sampling_client(self, name=None, retry_config=None, record_stability_info=False,
+                                             kind="snapshot"):
         self.saved += 1
         return FakeFuture(self.sampler if self.sampler is not None else FakeSampler())
 
@@ -130,13 +137,15 @@ class FakeService:
         self.clients = []
         self.checkpoint_samplers, self.base = list(checkpoint_samplers or []), base
 
-    def create_lora_training_client(self, **kw):
-        self.created.append(kw)
+    def create_lora_training_client(self, base_model, rank=32, seed=None, train_mlp=True, train_attn=True,
+                                    train_unembed=True, user_metadata=None, optimizer=None):
+        self.created.append(dict(base_model=base_model, rank=rank, seed=seed, train_mlp=train_mlp,
+                                 train_attn=train_attn, train_unembed=train_unembed))
         i = len(self.clients)
         sampler = self.checkpoint_samplers[i] if i < len(self.checkpoint_samplers) else None
         client = FakeTrainingClient(self.fail_with, sampler)
         self.clients.append(client)
-        return client
+        return FakeFuture(client)
 
-    def create_sampling_client(self, **kw):
-        return self.base if self.base is not None else FakeSampler()
+    def create_sampling_client(self, model_path=None, base_model=None, retry_config=None, record_stability_info=False):
+        return FakeFuture(self.base if self.base is not None else FakeSampler())

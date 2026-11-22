@@ -114,7 +114,7 @@ class TrainArmTests(Fixture):
                 seen.extend(data)
                 return super().forward_backward(data, loss_fn)
         svc = fakes.FakeService()
-        svc.create_lora_training_client = lambda **kw: svc.clients.append(Spy()) or svc.clients[-1]
+        svc.create_lora_training_client = lambda **kw: svc.clients.append(Spy()) or fakes.FakeFuture(svc.clients[-1])
         run = self.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
         train = E.build_set("train", {"S": 32})
         D.train_arm(run, "B-s0", self.codec, train, "B", 0)
@@ -140,7 +140,7 @@ class TrainArmTests(Fixture):
                 seen.append([tuple(d.loss_fn_inputs["target_tokens"]) for d in data])
                 return super().forward_backward(data, loss_fn)
         svc = fakes.FakeService()
-        svc.create_lora_training_client = lambda **kw: svc.clients.append(Spy()) or svc.clients[-1]
+        svc.create_lora_training_client = lambda **kw: svc.clients.append(Spy()) or fakes.FakeFuture(svc.clients[-1])
         run = self.start_run("run-d", self.approvals(), self.plan, cost.Counter(rule_only=True), svc, fakes.FakeTypes)
         train = E.build_set("train", {"S": 32, "M": 32})
         D.train_arm(run, "C-s0", self.codec, train, "C", 0)
@@ -819,7 +819,7 @@ class PilotTests(Fixture):
                 seen.extend(tuple(d.loss_fn_inputs["target_tokens"]) for d in data)
                 return super().forward_backward(data, loss_fn)
         svc, _sampler = self.service_for(self.win[:60] + self.fails[60:])
-        svc.create_lora_training_client = lambda **kw: svc.clients.append(Spy(sampler=_sampler)) or svc.clients[-1]
+        svc.create_lora_training_client = lambda **kw: svc.clients.append(Spy(sampler=_sampler)) or fakes.FakeFuture(svc.clients[-1])
         run = self.start(svc)
         D.run_pilot(run, self.ratchet("pilot"), self.codec, "pilot-1", self.pilot, {"cap": CAP},
                     cost.full_plan(2048, 2, CAP), clock=self.clock())

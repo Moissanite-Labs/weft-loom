@@ -325,6 +325,25 @@ MUTATIONS = [
     ("codec: end marker counted twice in the reply overhead", "codec.py", "REPLY_OVERHEAD = END_TOKENS", "REPLY_OVERHEAD = END_TOKENS + 1", "test_codec"),
     ('driver: the pilot gate on new blocks changed', 'driver.py', 'Fraction(m["new_block"], m["calls"]) <= PILOT_MAX_NEW_BLOCK', 'Fraction(m["new_block"], m["calls"]) < PILOT_MAX_NEW_BLOCK', 'test_driver'),
     ('driver: the pilot gate on the accepted opening is slack', 'driver.py', 'm["accepted"] == m["calls"]', 'm["accepted"] >= 0', 'test_driver'),
+    # pilot_cli.py: the runner's refusals, redaction and output guards
+    ("pilot_cli: a used out directory accepted", "pilot_cli.py", "    if os.path.exists(out) and (not os.path.isdir(out) or os.listdir(out)):", "    if False:", "test_pilot_cli"),
+    ("pilot_cli: real mode without the key variable", "pilot_cli.py", "    if not opts[\"fake\"] and not env.get(KEY_VAR):", "    if False:", "test_pilot_cli"),
+    ("pilot_cli: any approved ceiling accepted", "pilot_cli.py", "    if approval.ceiling > PILOT_CEILING:", "    if False:", "test_pilot_cli"),
+    ("pilot_cli: a request for another episode or text accepted", "pilot_cli.py", "        if view.arm != \"C\" or view.messages != want.messages:", "        if False:", "test_pilot_cli"),
+    ("pilot_cli: more requests than evaluation episodes", "pilot_cli.py", "        if self.i >= len(self.expected.episodes):", "        if False:", "test_pilot_cli"),
+    ("pilot_cli: a plan other than the pilot recorded", "pilot_cli.py", "    if plan.name != \"pilot\" or plan.eval2_counts:", "    if False:", "test_pilot_cli"),
+    ("pilot_cli: a held-out evaluation set accepted", "pilot_cli.py", "    if expected.kind != \"train\":", "    if False:", "test_pilot_cli"),
+    ("pilot_cli: a third sampling model accepted", "pilot_cli.py", "        if len(made) >= len(MODEL_ORDER):", "        if False:", "test_pilot_cli"),
+    ("pilot_cli: logged replies not checked against the outcomes", "pilot_cli.py", "                    if \"\".join(rec.outcomes) != got[\"results\"][name].outcomes:", "                    if False:", "test_pilot_cli"),
+    ("pilot_cli: floats allowed in the result file", "pilot_cli.py", "    receipts.check_plain(res, \"pilot-result\")          # integers and strings only", "    pass", "test_pilot_cli"),
+    ("pilot_cli: the key value kept in error text", "pilot_cli.py", "    if key:\n        text = text.replace(key, \"[REDACTED]\")", "    if False:\n        text = text.replace(key, \"[REDACTED]\")", "test_pilot_cli"),
+    ("pilot_cli: error text not redacted", "pilot_cli.py", "    return tinker_backend.redact(text)", "    return text", "test_pilot_cli"),
+    ("pilot_cli: an interrupt is not an incomplete run", "pilot_cli.py", "    except (Exception, KeyboardInterrupt) as exc:", "    except Exception as exc:", "test_pilot_cli"),
+    ("pilot_cli: a start that fails is not a refusal", "pilot_cli.py", "    except (Exception,) as exc:             # nothing was spent: the run did not start", "    except ZeroDivisionError as exc:", "test_pilot_cli"),
+    ("pilot_cli: replies not flushed as they arrive", "pilot_cli.py", "        self.fh.flush()\n", "", "test_pilot_cli"),
+    ("pilot_cli: fake factories left in place", "pilot_cli.py", "        tinker_backend._real_service, tinker_backend._real_types = saved", "        pass", "test_pilot_cli"),
+    ("tinker: training client not taken from its future", "tinker_backend.py", "            train_unembed=train_unembed).result())", "            train_unembed=train_unembed))", "test_tinker_backend"),
+    ("tinker: base sampler not taken from its future", "tinker_backend.py", "create_sampling_client(base_model=MODEL_ID).result())", "create_sampling_client(base_model=MODEL_ID))", "test_tinker_backend"),
 ]
 
 

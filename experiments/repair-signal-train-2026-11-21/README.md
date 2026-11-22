@@ -50,9 +50,56 @@ python3 -I -B checks/targets.py
 
 `cost.py --venv-python PATH` counts with the real tokenizer through a worker that imports tml_renderers. The layout test in `tests/test_layout_real.py` also needs that package and is skipped without it (7 tests). The layout test and the tokenizer cost count were run with a Python that has the package, and all 7 layout tests passed.
 
-The outputs are committed under `data/`: `dryrun.txt` (`dryrun.py`), `cost-rule.txt` (`cost.py`), `cost-tokenizer.txt` (`cost.py --venv-python PATH`, with a Python that has tml_renderers), `targets.txt`, `e_floor.txt`, `rule2_ties.txt` and `power-400.txt` (the script of the same name, run as listed above).
+Two more tests need the service library or the tokenizer package: the conformance test in `tests/test_api_check.py` and the real-tokenizer cost test in `tests/test_pilot_cli.py`. Both passed with that Python, and are skipped without it.
+
+The outputs are committed under `data/`: `dryrun.txt` (`dryrun.py`), `cost-rule.txt` (`cost.py`), `cost-tokenizer.txt` (`cost.py --venv-python PATH`, with a Python that has tml_renderers), `targets.txt`, `e_floor.txt`, `rule2_ties.txt`, `power-400.txt` (the script of the same name, run as listed above) and `tinker-api-check.txt` (`checks/tinker_api_check.py`, run with a Python that has the service library).
 
 The dry run is deterministic and runs on any machine. It was run here on one Apple laptop with the system Python.
+
+## How to run the pilot
+
+The owner approves the pilot (one adapter trained on text C with 256 examples, the untrained model and the adapter each sampled on the 100 pilot evaluation puzzles, ceiling 0.50 dollars) and starts it. The steps:
+
+1. Print the approval row for a new run id. This prints one line and does nothing else.
+
+```
+python3 -I -B pilot_cli.py --run-id PILOT-RUN-ID --print-approval-row
+```
+
+The row names the run id, the plan `pilot`, the plan's fingerprint and the ceiling "0.50".
+
+2. The owner puts that row in the `approvals` list of an approvals file, as `{"approvals": [ROW]}`. The file lives outside this repository, in a place the agent cannot write. The spend ledger and its lock file are written beside it.
+
+3. In the shell that will run the command, set `TINKER_API_KEY` to the service key. The runner takes the key only from that variable. It refuses to start when the variable is empty, so the library cannot fall back to a stored credentials file. It never prints the variable or writes it anywhere, and every error text is passed through the backend's `redact` function and has the variable's value removed before it is printed or written.
+
+4. Run the pilot from this folder with a Python that has the service library and `tml_renderers`, and a new or empty output directory.
+
+```
+PATH-TO-VENV-PYTHON -I -B pilot_cli.py --approvals PATH-TO-APPROVALS --run-id PILOT-RUN-ID --out NEW-OUTPUT-DIR
+```
+
+The runner checks the approval, the plan, the ceiling and the lock, and prints the planned cost and the ceiling. Only then does it build the service client. The pilot trains one adapter, samples the base model and the adapter on training-range seeds only, and projects the time of the full plan from what it measured.
+
+5. Read what comes out in the output directory.
+
+| File | Content |
+|---|---|
+| `pilot-result.json` | integers and strings only: every measurement, every gate as the string "true" or "false", the go verdict, counts by outcome for the base model and the adapter, tokens and exact dollars by kind from the spend ledger, and the time per training step and per sampling call as integer nanosecond totals with their counts |
+| `replies.jsonl` | one line per sampled reply, written as it arrives: which model, tier, seed, the reply text, the outcome |
+| `receipts.jsonl` | the chain of receipts, with the stored replies and the harness lock beside it |
+| `pilot-summary.md` | a short table for a person |
+
+A finished pilot exits 0, whether the gates give a go or a no-go.
+
+If an error stops the run after it has started, the runner still writes what it has, marks `pilot-result.json` as `incomplete` with the redacted error text, and exits 1. A refusal before the start (no approval row, wrong plan, a ceiling too low or above 0.50, a used output directory, no key) exits 2 and writes nothing. `--fake` runs the same code path against `fakes.py`, with no key and no network, and the tests use it.
+
+Before the first real run, run the conformance check of the backend against the installed library (it builds no client and needs no key). It prints one line per call and exits 1 on a mismatch. `--old-scripts` names the earlier scripts the backend was adapted from, to list each call they make differently.
+
+```
+PATH-TO-VENV-PYTHON -I checks/tinker_api_check.py --old-scripts EARLIER-SCRIPT-1 EARLIER-SCRIPT-2
+```
+
+Its output for the installed library is `data/tinker-api-check.txt`. It found two mismatches in the backend, now fixed: `create_lora_training_client` and `create_sampling_client` return a future of the client in tinker 0.39.0, and the backend used that future as the client. The fake client now returns futures too, and takes the same argument names as the library.
 
 ## Results
 
@@ -72,7 +119,7 @@ The verbose policy breaks the format in all 200 replies in every text, and that 
 
 The dry run's 44 checks show that the exact checker, the sign test, the ratchet, the latch, the receipt chain and the budget guards each behave as designed. The table shows that the C, E and N texts separate a policy that reads the amounts from one that does not. The oracle scores 0 on N because its sign convention is written into the policy, and that is not a property of any model.
 
-The test suite runs 359 tests (7 skipped without the tokenizer package) and passes. `mutate.py` removes 301 guards one at a time and every one is caught by a failing test. These too check the harness only.
+The test suite runs 414 tests (9 skipped without the service library and the tokenizer package) and passes. `mutate.py` removes 319 guards one at a time and every one is caught by a failing test. These too check the harness only.
 
 The dry run also runs the whole registered procedure against a fake client twice. With a gain built in for C, the verdict is `support`, and the second held-out set is touched once. With no gain, the verdict is `cannot_test` and the second set is never touched. The fake pilot reports 200 calls and 8 steps. These are properties of the fake.
 
@@ -91,7 +138,8 @@ The exact full-plan cost with the tokenizer is 26823111/5000000 dollars. The pla
 
 ## Limits
 
-- Nothing was run against the real service. The calls follow the installed library's signatures and are tested against fakes only. The order of calls, the time per sampling call and the step time are unmeasured.
+- Nothing was run against the real service. The calls are compared with the installed library's signatures by `checks/tinker_api_check.py`, and the logic is tested against fakes only.
+- The sampling calls, the checkpoint save and the base sampler have no earlier run against the real service behind them, because neither earlier script makes them. Whether the service accepts greedy sampling (temperature 0.0) with integer stop ids for this model cannot be settled from the installed code. The order of calls, the time per sampling call and the step time are unmeasured.
 - Whether the tokenizer carried by tml_renderers matches the Mini model is a guess. The chat layout matches the renderer id for id, but whether the service applies the same layout to a tuned model is not checked. The pilot is there to check it.
 - Real billing rules are not verified. The cost table is arithmetic at published prices, and the sampling part is an upper bound. The forced opening moves two tokens per call from the training target to the prompt, so training tokens are unchanged and prefill grows by two tokens per call.
 - The model card says minimum reasoning effort does not fully disable reasoning, and a local copy shows four switches that do not turn it off. The forced opening is the control. Whether the service accepts a prompt that ends with the opening is not checked, and a refused opening would stop the pilot with an error.
@@ -130,7 +178,9 @@ This record keeps the puzzle generator, the exact checker and the texts for A an
 - `PREREG.md`: the plan, with its dated revision notes.
 - `episodes.py`, `codec.py`, `evaluate.py`, `reference_policies.py`: episodes, token layout, the locked evaluation and the stand-in policies.
 - `receipts.py`, `latch.py`, `ratchet.py`, `decisions.json`: the receipt chain, the once-only touch and the accept rule.
+- `pilot_cli.py`: the command line runner of the pilot (see "How to run the pilot"). It refuses a used output directory, a missing key and any approval that is not the pilot's, logs every raw reply, and writes the result file with integers and strings only.
 - `driver.py`, `tinker_backend.py`, `fakes.py`: the run, the paid backend and test doubles. The paid backend refuses to start without an owner approval for the exact run id and the exact plan, and it holds a lock so that only one process uses a ledger at a time. The only sampling path is the paid backend's responder, which builds every prompt with `codec.py`, forced opening included.
+- `checks/tinker_api_check.py`: the static comparison of the backend with the installed service library.
 - `cost.py`, `power.py`, `dryrun.py`, `mutate.py`, `tests/`, `checks/`: the checks. `mutate.py` removes each guard by an exact text substitution and requires a test to fail.
 - `vendor/`: the pinned generator and checker.
 - `local-baseline/`: the free local measurement of the untrained model on pilot evaluation seeds, with its script, data, README, the sanitized smoke and run logs under `logs/`, and `facts.py` with its output `facts.txt`, which print the numbers the plan quotes from them.

@@ -187,6 +187,16 @@ class RunTests(Base):
         self.run.start_arm("C")
         self.assertEqual(self.svc.created[0]["rank"], 8)
 
+    def test_the_training_client_and_the_base_sampler_are_the_results_of_the_library_futures(self):
+        base = fakes.FakeSampler()
+        svc = fakes.FakeService(base=base)
+        self.approve("run-2", ceiling="5.00")
+        self.run.close()                                  # setUp's run holds the lock
+        run = self.run_("run-2", service=svc)
+        self.assertIs(run.base_sampler(), base)
+        run.start_arm("C")
+        self.assertIs(run.clients["C"], svc.clients[0])
+
     def test_one_training_client_per_label(self):
         self.run.start_arm("C")
         with self.assertRaises(T.BackendError):
@@ -362,7 +372,7 @@ class LedgerTests(Base):
                 seen.append([r["ev"] for r in outer.lines()])
                 return super().forward_backward(data, loss_fn)
         svc = fakes.FakeService()
-        svc.create_lora_training_client = lambda **kw: svc.clients.append(Spy()) or svc.clients[-1]
+        svc.create_lora_training_client = lambda **kw: svc.clients.append(Spy()) or fakes.FakeFuture(svc.clients[-1])
         run = self.start(service=svc)
         run.start_arm("C")
         run.train_step("C", [T.make_datum(fakes.FakeTypes, [1, 2, 3], [4])], 1e-3)

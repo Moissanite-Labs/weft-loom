@@ -2,8 +2,9 @@
 
 Adapted from the earlier smoke and training scripts (create a LoRA training
 client, forward_backward then optim_step, sample for evaluation). Built and
-unit-tested against a fake client only. Nothing here has been run against the
-real service.
+unit-tested against a fake client only, and its calls are compared with the
+installed client library by checks/tinker_api_check.py. Nothing here has been
+run against the real service.
 
 It refuses to start unless
   (a) an approvals file names this exact run id with a spend ceiling in dollars,
@@ -352,9 +353,10 @@ class TinkerRun:
     def start_arm(self, label, rank=8, seed=0, train_mlp=True, train_attn=True, train_unembed=True):
         if label in self.clients:
             raise BackendError("arm %r already has a training client" % (label,))
-        self.clients[label] = _guard(
-            self.service.create_lora_training_client, base_model=MODEL_ID, rank=rank, seed=seed,
-            train_mlp=train_mlp, train_attn=train_attn, train_unembed=train_unembed)
+        # the library returns a future of the client, and the client is its result
+        self.clients[label] = _guard(lambda: self.service.create_lora_training_client(
+            base_model=MODEL_ID, rank=rank, seed=seed, train_mlp=train_mlp, train_attn=train_attn,
+            train_unembed=train_unembed).result())
 
     def train_step(self, label, datums, learning_rate):
         # a datum drops the last token of the sequence from its input, but the
@@ -375,7 +377,7 @@ class TinkerRun:
         return _guard(lambda: self.clients[label].save_weights_and_get_sampling_client().result())
 
     def base_sampler(self):
-        return _guard(lambda: self.service.create_sampling_client(base_model=MODEL_ID))
+        return _guard(lambda: self.service.create_sampling_client(base_model=MODEL_ID).result())
 
 
 class TinkerResponder:
