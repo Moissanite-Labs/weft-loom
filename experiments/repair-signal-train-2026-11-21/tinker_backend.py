@@ -350,10 +350,26 @@ def make_datum(types_mod, prompt_ids, target_ids):
                            loss_fn_inputs=dict(weights=w[1:], target_tokens=t[1:]))
 
 
+def no_retry_config(types_mod):
+    """The library's RetryConfig with its whole-call retry loop switched off. A retry of a
+    sampling call is a new request that the service bills again and the meter cannot see
+    (README, "Parallel sampling"). The fakes carry their own RetryConfig on the types object."""
+    cls = getattr(types_mod, "RetryConfig", None)
+    if cls is None:
+        from tinker.lib.retry_handler import RetryConfig as cls
+    return cls(enable_retry_logic=False)
+
+
 class TinkerRun:
+    """sample_retries: False builds every sampling client with the library's retry loop
+    switched off, so each billed sample is a call the meter reserved and a transient service
+    error stops the run (a plan with a window above 1 does this, see PREREG.md). True keeps
+    the library's own retries, as the first pilot ran."""
+
     def __init__(self, run_id, approvals_path, plan_tokens, plan_name, plan_id, service=None, types_mod=None,
-                 resume=False):
+                 resume=False, sample_retries=True):
         self.lock_fd = None
+        self.sample_retries = bool(sample_retries)
         approval = load_approval(approvals_path, run_id)            # (a)
         if approval.plan != plan_name or approval.plan_id != plan_id:
             raise ApprovalError("run id %r is approved for another plan than the one given" % (run_id,))
@@ -422,7 +438,8 @@ class TinkerRun:
         if self.checkpoints.get(label, 0) >= 1:
             raise BackendError("arm %r already saved its one checkpoint" % (label,))
         self.checkpoints[label] = self.checkpoints.get(label, 0) + 1
-        sampler = _guard(lambda: self.clients[label].save_weights_and_get_sampling_client().result())
+        sampler = _guard(lambda: self.clients[label].save_weights_and_get_sampling_client(
+            retry_config=self._retry_config()).result())
         source, ident = sampler_identifier(sampler)
         self._refuse_reuse(sampler, source, ident)
         self.issued.append({"model": "adapter", "label": label, "steps": self.steps.get(label, 0),
@@ -430,7 +447,8 @@ class TinkerRun:
         return sampler
 
     def base_sampler(self):
-        sampler = _guard(lambda: self.service.create_sampling_client(base_model=MODEL_ID).result())
+        sampler = _guard(lambda: self.service.create_sampling_client(
+            base_model=MODEL_ID, retry_config=self._retry_config()).result())
         for e in self.issued:
             if e["sampler"] is sampler and e["model"] == "untrained":
                 return sampler
@@ -439,6 +457,11 @@ class TinkerRun:
         self.issued.append({"model": "untrained", "sampler": sampler, "sampler_source": source,
                             "sampler_id": ident})
         return sampler
+
+    def _retry_config(self):
+        """The retry_config of the two client calls that make a sampling client. None is the
+        library's default (its own retries on), the same as leaving the argument out."""
+        return None if self.sample_retries else no_retry_config(self.types)
 
     def _refuse_reuse(self, sampler, source, ident):
         for e in self.issued:
@@ -505,10 +528,14 @@ class TinkerResponder:
                                                  stop=self.codec.stop_ids())).result())
         seqs = resp.sequences
         self.last_returned = [list(sq.tokens) for sq in seqs]
+        # every returned token is billed, so the reservation is settled against all sequences
+        # before a wrong sequence count is refused
+        used = sum(len(q) for q in self.last_returned)
         if len(seqs) != 1:
+            meter.settle("sample", limit, used)
             raise BackendError("the service returned %d sequences for one sample" % len(seqs))
         out = self.last_returned[0]
-        meter.settle("sample", limit, len(out))        # counted as returned, even over the limit
+        meter.settle("sample", limit, used)            # counted as returned, even over the limit
         text, count, was_cut = self.codec.reply(out, self.cap)
         self.stats["calls"] += 1
         self.stats["accepted"] += 1
@@ -565,10 +592,18 @@ class WindowedResponder(TinkerResponder):
         the calls in flight are settled, and then the run stops.
       - a process killed with calls in flight leaves their reservations in the
         ledger, and a restart counts them as spent (the full limit each).
-      - KeyboardInterrupt is not caught: it leaves the calls in flight
-        unsettled, which keeps their reservations (an upper bound).
+      - KeyboardInterrupt (which the runner also raises for SIGTERM and SIGHUP) is not caught
+        here, and the driver's finally block calls finish(), so an interrupt waits for every
+        call in flight and settles it. That can take as long as the slowest call, with no
+        timeout of its own when the library's retries are off. A second interrupt during the
+        wait leaves the calls not yet settled at their full reservation (an upper bound). An
+        oversize reply found while the calls are drained raises BudgetStop in place of the
+        interrupt.
     `finish()` settles whatever is still in flight and is called by the driver
     when an evaluation ends for any reason.
+    With every reply oversize, up to `window` replies can be in flight when the first
+    one is read, so the spend past the ceiling is the sum of the excess of up to `window`
+    replies, each without an upper limit.
 
     A window of 1 sends, waits and settles one call at a time, so its ledger
     rows, replies and stats are those of TinkerResponder (a test compares them).
@@ -583,6 +618,8 @@ class WindowedResponder(TinkerResponder):
         self.pending = deque()
         self.attempted = set()
         self.returned_ids = {}
+        self.collect_failed = set()
+        self.failed_send = None    # index of a look-ahead call whose send failed (it has no reply to log)
         self.orphans = []
         self.max_in_flight = 0
         self.stopped = False
@@ -594,10 +631,14 @@ class WindowedResponder(TinkerResponder):
         self.run.meter.reserve("sample", limit)        # upper bound, settled when the reply is read
         types = self.run.types
         self.attempted.add(index)
-        future = _guard(lambda: self.sampler.sample(
-            prompt=types.ModelInput.from_ints(tokens=ids), num_samples=1,
-            sampling_params=types.SamplingParams(max_tokens=limit, temperature=0.0,
-                                                 stop=self.codec.stop_ids())))
+        try:
+            future = _guard(lambda: self.sampler.sample(
+                prompt=types.ModelInput.from_ints(tokens=ids), num_samples=1,
+                sampling_params=types.SamplingParams(max_tokens=limit, temperature=0.0,
+                                                     stop=self.codec.stop_ids())))
+        except BaseException:
+            self.failed_send = index
+            raise
         self.pending.append(_Flight(index, limit, future))
         self.sent += 1
         self.max_in_flight = max(self.max_in_flight, len(self.pending))
@@ -610,11 +651,12 @@ class WindowedResponder(TinkerResponder):
         """Waits for one call and settles it. Returns the ids of its one sequence."""
         resp = _guard(flight.future.result)
         self.returned_ids[flight.index] = [list(sq.tokens) for sq in resp.sequences]
-        if len(self.returned_ids[flight.index]) != 1:
-            raise BackendError("the service returned %d sequences for one sample" % len(resp.sequences))
-        out = self.returned_ids[flight.index][0]
-        self.run.meter.settle("sample", flight.limit, len(out))   # counted as returned, even over the limit
-        return out
+        got = self.returned_ids[flight.index]
+        used = sum(len(q) for q in got)                # every returned token is billed
+        self.run.meter.settle("sample", flight.limit, used)       # counted as returned, even over the limit
+        if len(got) != 1:
+            raise BackendError("the service returned %d sequences for one sample" % len(got))
+        return got[0]
 
     def _settle_all(self, first=None):
         """Waits for and settles every call in flight. Returns the first error,
@@ -624,16 +666,28 @@ class WindowedResponder(TinkerResponder):
             try:
                 self._collect(flight)
             except Exception as exc:
+                self.collect_failed.add(flight.index)
                 first = first or exc
             self.orphans.append({"index": flight.index, "returned": self.returned_ids.get(flight.index)})
         return first
 
     def _fail(self, exc, index):
+        """Settles the calls in flight and raises the first error. The head call (the reply
+        asked for) is logged as raised when its own call failed or was already read. When it
+        was still waiting in the window and came back whole, because something else failed
+        (a look-ahead send, the check of the view), it is listed as an orphan, paid for and
+        not handed back."""
         self.stopped = True
+        head_waiting = any(f.index == index for f in self.pending)
         err = self._settle_all(exc)
-        self.last_returned = self.returned_ids.get(index)
-        self.reached = index in self.attempted
-        self.orphans = [o for o in self.orphans if o["index"] != index]
+        if index == self.failed_send:
+            self.failed_send = None                    # the head's own send: logged as raised below
+        if head_waiting and index in self.returned_ids and index not in self.collect_failed:
+            self.last_returned, self.reached = None, False
+        else:
+            self.last_returned = self.returned_ids.get(index)
+            self.reached = index in self.attempted
+            self.orphans = [o for o in self.orphans if o["index"] != index]
         raise err
 
     def finish(self):

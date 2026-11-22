@@ -950,23 +950,33 @@ class WindowedPilotTests(Fixture):
         t = iter(range(0, 10**9, 1000))
         return lambda: next(t)
 
-    def run_it(self, base_texts, adapter_texts=None, plan=None):
+    def reference(self, texts=None, cuts=None):
+        """What the first pilot's replies of the untrained model would be: by default the same as self.fails."""
+        texts = self.fails if texts is None else texts
+        return D.Reference([ep.id for ep in self.eval.episodes], texts, cuts or [0] * len(texts))
+
+    def run_it(self, base_texts, adapter_texts=None, plan=None, reference=None):
         plan = plan or self.pilot
         enc = self.codec.target_ids
         adapter = fakes.ScriptedSampler(adapter_texts or (self.win[:60] + self.fails[60:]), enc)
         svc = fakes.FakeService(checkpoint_samplers=[adapter], base=fakes.ScriptedSampler(base_texts, enc))
-        run = self.start_run("pilot-w", self.approvals("pilot-w", plan=plan), plan, cost.Counter(rule_only=True), svc,
+        self.runs = getattr(self, "runs", 0) + 1          # a test may run the pilot more than once
+        rid = "pilot-w" if self.runs == 1 else "pilot-w%d" % self.runs
+        run = self.start_run(rid, self.approvals(rid, plan=plan), plan, cost.Counter(rule_only=True), svc,
                              fakes.FakeTypes)
-        rt = self.ratchet("pilot")
-        out = D.run_pilot(run, rt, self.codec, "pilot-w", plan, {"cap": CAP}, cost.full_plan(2048, 2, CAP, window=8),
-                          clock=self.clock())
+        rt = self.ratchet("pilot" if self.runs == 1 else "pilot%d" % self.runs)
+        if reference is None and plan.window > 1:
+            reference = self.reference()
+        out = D.run_pilot(run, rt, self.codec, rid, plan, {"cap": CAP}, cost.full_plan(2048, 2, CAP, window=8),
+                          clock=self.clock(), reference=reference)
         return out, run, rt, svc
 
     def test_the_window_check_samples_the_base_model_again_one_call_at_a_time_and_the_replies_agree(self):
         out, run, rt, svc = self.run_it(self.fails)
         m = out["measurements"]
         self.assertEqual((m["window"], m["window_check_calls"], m["window_check_differing"]), (8, 100, 0))
-        self.assertTrue(out["gates"]["windowed_replies_equal"])
+        self.assertEqual((m["ref_differing_sequential"], m["ref_differing_windowed"]), (0, 0))
+        self.assertTrue(out["gates"]["window_adds_no_differences"])
         self.assertTrue(out["gates"]["go"])
         self.assertEqual(set(out["results"]), {"base", "base-sequential", "adapter"})
         a, b = out["results"]["base"], out["results"]["base-sequential"]
@@ -978,21 +988,80 @@ class WindowedPilotTests(Fixture):
                          ["pilot:base-model", "pilot:base-model-sequential", "pilot:adapter:C"])
         self.assertEqual(bodies[-1], dict({"kind": "pilot", "run_id": "pilot-w", "go": 1}, **m))
 
-    def test_replies_that_differ_between_the_two_ways_are_counted_and_are_not_a_go(self):
-        # the second evaluation of the base model sees other replies than the first on every puzzle
-        out, *_ = self.run_it(self.fails + self.win)
+    def test_replies_that_the_window_changes_are_counted_and_are_not_a_go(self):
+        # the windowed evaluation sees other replies than the one-at-a-time evaluation and than the first pilot on every puzzle
+        out, *_ = self.run_it(self.win + self.fails)
         m = out["measurements"]
         self.assertEqual((m["window_check_calls"], m["window_check_differing"]), (100, 100))
-        self.assertFalse(out["gates"]["windowed_replies_equal"])
+        self.assertEqual((m["ref_differing_sequential"], m["ref_differing_windowed"]), (0, 100))
+        self.assertFalse(out["gates"]["window_adds_no_differences"])
         self.assertFalse(out["gates"]["go"])
         self.assertTrue(out["gates"]["forced_opening_accepted"])
+
+    def test_a_sequential_run_that_differs_from_the_windowed_run_and_from_the_first_pilot_is_the_service_not_the_window(self):
+        # the windowed run agrees with the first pilot on all puzzles, and the sequential run now agrees with neither
+        out, *_ = self.run_it(self.fails + self.win)
+        m = out["measurements"]
+        self.assertEqual((m["window_check_differing"], m["ref_differing_sequential"], m["ref_differing_windowed"]),
+                         (100, 100, 0))
+        self.assertTrue(out["gates"]["window_adds_no_differences"])
+        self.assertTrue(out["gates"]["go"])
 
     def test_one_differing_reply_is_enough_to_fail_the_check(self):
         other = list(self.fails)
         other[41] = self.win[41]
-        out, *_ = self.run_it(self.fails + other)
+        out, *_ = self.run_it(other + self.fails)
         self.assertEqual(out["measurements"]["window_check_differing"], 1)
-        self.assertFalse(out["gates"]["windowed_replies_equal"])
+        self.assertFalse(out["gates"]["window_adds_no_differences"])
+
+    def test_a_difference_that_the_sequential_run_also_shows_against_the_first_pilot_is_not_the_windows(self):
+        # the service is not deterministic: the sequential run now differs from the first pilot on puzzle 41, and the
+        # windowed run differs from the sequential one on that same puzzle and no other. The window adds nothing.
+        seq = list(self.fails)
+        seq[41] = self.win[41]
+        out, *_ = self.run_it(self.fails + seq)
+        m = out["measurements"]
+        self.assertEqual((m["window_check_differing"], m["ref_differing_sequential"], m["ref_differing_windowed"]),
+                         (1, 1, 0))
+        self.assertTrue(out["gates"]["window_adds_no_differences"])
+        self.assertTrue(out["gates"]["go"])
+        # but a window that differs on more puzzles than the sequential run does against the first pilot is flagged
+        seq2 = list(self.fails)
+        seq2[41], seq2[42] = self.win[41], self.win[42]
+        out, *_ = self.run_it(self.fails + seq2, reference=self.reference(seq2[:42] + self.fails[42:]))
+        m = out["measurements"]
+        self.assertEqual((m["window_check_differing"], m["ref_differing_sequential"]), (2, 1))
+        self.assertFalse(out["gates"]["window_adds_no_differences"])
+
+    def test_the_three_counts_are_taken_against_the_reference_replies_of_the_first_pilot(self):
+        ref = list(self.fails)
+        ref[3] = self.win[3]
+        out, *_ = self.run_it(self.fails, reference=self.reference(ref))
+        m = out["measurements"]
+        self.assertEqual((m["window_check_differing"], m["ref_differing_sequential"], m["ref_differing_windowed"]),
+                         (0, 1, 1))
+        self.assertTrue(out["gates"]["window_adds_no_differences"])
+        cut = self.reference(cuts=[1] + [0] * 99)                     # a difference in the cut flag alone counts
+        out, *_ = self.run_it(self.fails, reference=cut)
+        self.assertEqual(out["measurements"]["ref_differing_sequential"], 1)
+
+    def test_a_pilot_with_a_window_needs_a_reference_for_its_own_puzzles_and_refuses_before_any_call(self):
+        enc = self.codec.target_ids
+        for n, (ref, text) in enumerate(((None, "needs the reference"),
+                                         (D.Reference(["other-%d" % i for i in range(100)], self.fails, [0] * 100),
+                                          "not for the pilot"))):
+            svc = fakes.FakeService(base=fakes.ScriptedSampler(self.fails, enc))
+            rid = "pilot-r%d" % n
+            run = self.start_run(rid, self.approvals(rid, plan=self.pilot), self.pilot,
+                                 cost.Counter(rule_only=True), svc, fakes.FakeTypes)
+            with self.assertRaises(D.DriverError) as cm:
+                D.run_pilot(run, self.ratchet("pilot%d" % n), self.codec, rid, self.pilot, {"cap": CAP},
+                            cost.full_plan(2048, 2, CAP, window=8), reference=ref)
+            self.assertIn(text, str(cm.exception))
+            self.assertEqual(svc.clients, [])
+            self.assertEqual(run.meter.tokens["prefill"], 0)
+        with self.assertRaises(D.DriverError):
+            D.Reference(["a"], ["x", "y"], [0])
 
     def test_a_difference_in_the_cut_flag_alone_fails_the_check(self):
         # the same text after the cut, but one reply was cut at the cap and the other was not
@@ -1001,12 +1070,12 @@ class WindowedPilotTests(Fixture):
         first[7] = exact
         second = list(first)
         second[7] = exact + "x"                      # one piece over the cap: cut back to the same text
-        out, *_ = self.run_it(first + second)
+        out, *_ = self.run_it(second + first, reference=self.reference(first))      # the windowed one is the cut one
         a, b = out["results"]["base"], out["results"]["base-sequential"]
         self.assertEqual(a.texts, b.texts)
         self.assertNotEqual(a.cuts, b.cuts)
         self.assertEqual(out["measurements"]["window_check_differing"], 1)
-        self.assertFalse(out["gates"]["windowed_replies_equal"])
+        self.assertFalse(out["gates"]["window_adds_no_differences"])
 
     def test_the_measured_evaluations_use_the_window_and_the_check_sends_one_call_at_a_time(self):
         seen = []
@@ -1029,7 +1098,7 @@ class WindowedPilotTests(Fixture):
         run = self.start_run("pilot-w", self.approvals("pilot-w", plan=self.pilot), self.pilot,
                              cost.Counter(rule_only=True), svc, fakes.FakeTypes)
         D.run_pilot(run, self.ratchet("pilot"), self.codec, "pilot-w", self.pilot, {"cap": CAP},
-                    cost.full_plan(2048, 2, CAP, window=8), clock=self.clock())
+                    cost.full_plan(2048, 2, CAP, window=8), clock=self.clock(), reference=self.reference())
         self.assertEqual(len(seen), 200)
         self.assertEqual(max(seen[:100]), 7)                  # the windowed evaluation: 8 in flight at the eighth send
         self.assertEqual(max(seen[100:]), 0)                  # the check: each call is sent after the one before is back
@@ -1063,26 +1132,43 @@ class WindowedPilotTests(Fixture):
     def test_the_projection_divides_the_whole_evaluation_time_by_its_calls(self):
         m = {"adapter_n": 100, "adapter_passed": 60, "adapter_format_broken": 0, "accepted": 200, "new_block": 0,
              "calls": 200, "sample_ns": 200 * 10**9, "train_ns": 8 * 10**9, "steps": 8,
-             "window_check_calls": 100, "window_check_differing": 0}
+             "window_check_calls": 100, "window_check_differing": 0, "ref_differing_sequential": 0,
+             "ref_differing_windowed": 0}
         got = D.pilot_verdict(m, 21000, 384)
-        self.assertTrue(got["windowed_replies_equal"])
+        self.assertTrue(got["window_adds_no_differences"])
         self.assertEqual(set(got), {"forced_opening_accepted", "no_new_block_in_replies", "format_breaks_low",
-                                    "adapter_pass_rate_testable", "projected_time_ok", "windowed_replies_equal", "go"})
+                                    "adapter_pass_rate_testable", "projected_time_ok", "window_adds_no_differences", "go"})
         self.assertTrue(got["projected_time_ok"])                                  # 1 s a call: 21000 s plus 384 s
         slower = D.pilot_verdict(dict(m, sample_ns=200 * 2 * 10**9), 21000, 384)
         self.assertTrue(slower["projected_time_ok"])                               # 2 s a call: 11.77 hours
         self.assertFalse(D.pilot_verdict(dict(m, sample_ns=200 * 3 * 10**9), 21000, 384)["projected_time_ok"])
         for field, value in (("window_check_calls", 99), ("window_check_differing", 1)):
             bad = D.pilot_verdict(dict(m, **{field: value}), 21000, 384)
-            self.assertFalse(bad["windowed_replies_equal"], field)
+            self.assertFalse(bad["window_adds_no_differences"], field)
             self.assertFalse(bad["go"], field)
+        # the rule is a comparison of the two counts: equal counts pass, one more for the window fails
+        for window_diff, seq_diff, want in ((3, 3, True), (3, 4, True), (4, 3, False), (0, 0, True)):
+            got = D.pilot_verdict(dict(m, window_check_differing=window_diff, ref_differing_sequential=seq_diff),
+                                  21000, 384)
+            self.assertEqual(got["window_adds_no_differences"], want, (window_diff, seq_diff))
 
     def test_a_window_of_one_has_no_window_check_and_no_such_gate(self):
         plan = cost.pilot_plan(CAP, 1)
         out, run, rt, svc = self.run_it(self.fails, plan=plan)
-        self.assertNotIn("windowed_replies_equal", out["gates"])
+        self.assertNotIn("window_adds_no_differences", out["gates"])
         self.assertEqual(set(out["results"]), {"base", "adapter"})
         self.assertEqual(out["measurements"]["window"], 1)
+
+    def test_start_run_switches_the_library_retries_off_for_a_window_above_one_only(self):
+        for window, retries in ((1, True), (2, False), (8, False)):
+            plan = cost.pilot_plan(CAP, window)
+            svc = fakes.FakeService(base=fakes.ScriptedSampler(self.fails, self.codec.target_ids))
+            rid = "pilot-w%d" % window
+            run = self.start_run(rid, self.approvals(rid, plan=plan), plan, cost.Counter(rule_only=True),
+                                 svc, fakes.FakeTypes)
+            self.assertIs(run.sample_retries, retries, window)
+            run.base_sampler()
+            self.assertEqual([c is None for c in svc.retry_configs], [retries], window)
 
     def test_the_pilot_plan_refuses_to_run_under_another_window(self):
         enc = self.codec.target_ids

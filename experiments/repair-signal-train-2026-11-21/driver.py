@@ -125,7 +125,8 @@ def start_run(run_id, approvals_path, plan, counter, service=None, types_mod=Non
     run is marked with the fingerprint of the plan that was counted."""
     totals, _items = cost.plan_counts(plan, counter)
     fingerprint = plan_fingerprint(plan)
-    run = tinker_backend.TinkerRun(run_id, approvals_path, totals, plan.name, fingerprint, service, types_mod, resume)
+    run = tinker_backend.TinkerRun(run_id, approvals_path, totals, plan.name, fingerprint, service, types_mod, resume,
+                                   sample_retries=plan.window == 1)
     run.counted_plan = fingerprint
     return run
 
@@ -399,8 +400,14 @@ def pilot_verdict(m, full_calls, full_steps):
     adapter n, passed, format_broken; accepted, new_block and calls (sampling), sample_ns
     and train_ns totals with steps. sample_ns is the wall-clock time of the evaluations as
     wholes, so sample_ns over calls is the time per call at the plan's window. When m holds
-    window_check_calls (a plan with a window above 1), one more gate requires that the
-    windowed and the one-at-a-time replies of the untrained model agree on every puzzle.
+    window_check_calls (a plan with a window above 1), one more gate applies, decided in advance:
+    the window may not add differences. Three counts are compared over the same puzzles:
+    window_check_differing (windowed against one at a time now), ref_differing_sequential (one at
+    a time now against the first pilot's replies) and ref_differing_windowed (windowed against the
+    first pilot's replies). The gate passes when the windowed replies differ from the sequential
+    ones in no more puzzles than the sequential replies differ from the first pilot's. Zero
+    against a positive count is a pass, and a positive count of the second kind is information
+    about the service, not a failure of the window.
     Returns {gate: bool, ..., "go": bool}."""
     n = m["adapter_n"]
     rate = Fraction(m["adapter_passed"], n)
@@ -413,7 +420,8 @@ def pilot_verdict(m, full_calls, full_steps):
         "projected_time_ok": projected <= PILOT_MAX_HOURS * NS_PER_HOUR,
     }
     if "window_check_calls" in m:
-        gates["windowed_replies_equal"] = m["window_check_calls"] == n and m["window_check_differing"] == 0
+        gates["window_adds_no_differences"] = (m["window_check_calls"] == n
+                                               and m["window_check_differing"] <= m["ref_differing_sequential"])
     gates["go"] = all(gates.values())
     return gates
 
@@ -426,7 +434,17 @@ def differing_replies(a, b):
     return sum(1 for i in range(len(a.texts)) if a.texts[i] != b.texts[i] or a.cuts[i] != b.cuts[i])
 
 
-def run_pilot(run, ratchet, codec, run_id, plan, config, full_plan, clock=time.perf_counter_ns):
+class Reference:
+    """Replies of an earlier evaluation of the same puzzles: episode ids, reply texts and cut flags."""
+
+    def __init__(self, episode_ids, texts, cuts):
+        # cut flags as an evaluation result keeps them: a string of 0 and 1, one per puzzle
+        self.episode_ids, self.texts, self.cuts = list(episode_ids), list(texts), "".join("1" if c else "0" for c in cuts)
+        if not len(self.episode_ids) == len(self.texts) == len(self.cuts):
+            raise DriverError("the reference replies have unequal lengths")
+
+
+def run_pilot(run, ratchet, codec, run_id, plan, config, full_plan, clock=time.perf_counter_ns, reference=None):
     """The pilot: the base model and one adapter trained on text C, both on the
     pilot's evaluation episodes (training-range seeds) in text C. It measures
     what the pilot gates on, writes the measurements as a receipt, and returns
@@ -437,10 +455,16 @@ def run_pilot(run, ratchet, codec, run_id, plan, config, full_plan, clock=time.p
     evaluations, so sample_ns over calls is the time per call at that window.
     With a window above 1 the untrained model is also sampled one call at a
     time on the same puzzles (the plan carries that evaluation, so it is
-    counted in the cost), and the two sets of replies must be identical."""
+    counted in the cost). The windowed and sequential replies are compared with each other and
+    with `reference` (the first pilot's replies of the untrained model on the same puzzles, free
+    to read), which a window above 1 requires."""
     require_plan_run(run, plan, "pilot")
+    if plan.window > 1 and reference is None:
+        raise DriverError("a pilot with a window above 1 needs the reference replies of the first pilot")
     train = ep_mod.build_set("train", plan.train_counts, plan.train_offset)
     ev = ep_mod.build_set("train", plan.eval1_counts, plan.eval1_offset)
+    if reference is not None and reference.episode_ids != [ep.id for ep in ev.episodes]:
+        raise DriverError("the reference replies are not for the pilot's evaluation puzzles")
     ratchet.lock_harness()
     out = {}
 
@@ -479,6 +503,8 @@ def run_pilot(run, ratchet, codec, run_id, plan, config, full_plan, clock=time.p
         check = out["base-sequential"]
         m["window_check_calls"] = check[0].n
         m["window_check_differing"] = differing_replies(base_result, check[0])
+        m["ref_differing_sequential"] = differing_replies(check[0], reference)
+        m["ref_differing_windowed"] = differing_replies(base_result, reference)
         m["window_check_ns"] = check[3]
     full_calls, full_steps = plan_calls(full_plan)
     gates = pilot_verdict(m, full_calls, full_steps)

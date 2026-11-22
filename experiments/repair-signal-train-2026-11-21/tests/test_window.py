@@ -260,8 +260,42 @@ class WindowTests(unittest.TestCase):
         self.assertEqual((env.count("reserve", "sample"), env.count("adjust", "sample")), (5, 4))
         self.assertEqual(env.tokens()["sample"], sum(self.actual[:4]) + LIMIT)   # the unsent call stays reserved
         self.assertEqual(env.count("reserve", "prefill"), 5)
-        self.assertEqual(sorted(o["index"] for o in resp.orphans), [1, 2, 3])
-        self.assertEqual(resp.last_returned, [self.replies[tuple(self.ids[0])]])  # the first reply was paid for and kept
+        # the head (call 0) came back whole and was not handed back because the look-ahead send failed:
+        # it is an orphan, paid for, and is not reported as a call that raised
+        self.assertEqual(sorted(o["index"] for o in resp.orphans), [0, 1, 2, 3])
+        self.assertEqual([o["returned"] for o in resp.orphans if o["index"] == 0], [[self.replies[tuple(self.ids[0])]]])
+        self.assertEqual((resp.last_returned, resp.reached), (None, False))
+        self.assertEqual(resp.failed_send, 4)                                    # the send that failed has no reply to log
+
+    def test_a_head_whose_own_call_failed_stays_a_failed_call_when_a_look_ahead_send_fails_too(self):
+        env = Env(self, self.sampler(fail_result=[1], fail_send=[4]))
+        resp = self.responder(env, 4)
+        with self.assertRaises(T.BackendError) as cm:
+            drive(resp, self.views)
+        self.assertIn("could not be sent", str(cm.exception))                     # the error that stopped the run, first
+        self.assertEqual(resp.failed_send, 4)
+        self.assertEqual(sorted(o["index"] for o in resp.orphans), [2, 3])         # the head is not an orphan: it raised
+        self.assertEqual((resp.last_returned, resp.reached), (None, True))
+        self.assertEqual(env.sampler.outstanding, 0)
+
+    def test_a_head_that_came_back_oversize_stays_a_failed_call_when_a_look_ahead_send_fails_too(self):
+        env = Env(self, self.sampler(oversize=[1], fail_send=[4]))
+        resp = self.responder(env, 4)
+        with self.assertRaises(T.BackendError) as cm:
+            drive(resp, self.views)
+        self.assertIn("could not be sent", str(cm.exception))
+        self.assertEqual(sorted(o["index"] for o in resp.orphans), [2, 3])
+        padded = self.replies[tuple(self.ids[1])] + [7] * (LIMIT + 1 - self.actual[1])
+        self.assertEqual((resp.last_returned, resp.reached), ([padded], True))      # its ids were paid for, and kept
+        self.assertEqual(env.tokens()["sample"], self.actual[0] + (LIMIT + 1) + self.actual[2] + self.actual[3] + LIMIT)   # the unsent call 4 keeps its limit
+
+    def test_a_head_whose_own_send_failed_is_not_also_a_failed_look_ahead(self):
+        env = Env(self, self.sampler(fail_send=[0]))
+        resp = self.responder(env, 4)
+        with self.assertRaises(T.BackendError):
+            resp(self.views[0])
+        self.assertIsNone(resp.failed_send)
+        self.assertEqual((resp.last_returned, resp.reached, resp.orphans), (None, True, []))
 
     def test_a_reply_over_its_limit_stops_the_run_after_the_calls_in_flight_are_settled(self):
         for window in (1, 4, 8):
@@ -301,13 +335,44 @@ class WindowTests(unittest.TestCase):
             self.assertEqual((len(resp.pending), resp.stopped, env.sampler.outstanding), (0, True, 0), fail)
 
     def test_an_answer_with_two_sequences_for_one_sample_is_refused_and_the_window_is_settled(self):
-        env = Env(self, self.sampler(two_sequences=[1]))
+        # replies of 2 ids, so that both sequences together stay under the limit of 97
+        env = Env(self, fakes.WindowSampler(reply_for=lambda toks: [1, 2], two_sequences=[1]))
         resp = self.responder(env, 4)
         with self.assertRaises(T.BackendError) as cm:
             drive(resp, self.views)
         self.assertIn("returned 2 sequences", str(cm.exception))
         self.assertEqual(env.sampler.outstanding, 0)
         self.assertEqual(resp.stats["calls"], 1)
+        # every returned token is billed: call 1 held two sequences of 2 ids, and the other calls 2 ids each
+        self.assertEqual(env.tokens()["sample"], 2 * 5 + 2)
+
+    def test_two_sequences_that_together_pass_the_limit_are_counted_in_full_whether_or_not_each_does(self):
+        # a normal reply of the puzzle (about 54 ids) twice is over the limit of 97 though each sequence is under it
+        for window in (1, 4):
+            env = Env(self, self.sampler(two_sequences=[1]))
+            resp = self.responder(env, window)
+            with self.assertRaises(T.BudgetStop):
+                drive(resp, self.views)
+            sent = len(env.sampler.calls)
+            want = sum(self.actual[i] * (2 if i == 1 else 1) for i in range(sent))
+            self.assertEqual(env.tokens()["sample"], want, window)                  # the ledger holds every returned token
+            self.assertEqual((env.count("reserve", "sample"), env.count("adjust", "sample")), (sent, sent), window)
+            self.assertEqual(env.sampler.outstanding, 0, window)
+
+    def test_the_sequential_responder_settles_a_wrong_sequence_count_against_every_returned_token(self):
+        for toks, error in (([1, 2], T.BackendError), ([5] * 60, T.BudgetStop)):
+            sampler = fakes.FakeSampler(reply_tokens=toks)
+            orig = sampler.sample
+
+            def two(*a, _orig=orig, **kw):
+                fut = _orig(*a, **kw)
+                fut._value.sequences = fut._value.sequences * 2
+                return fut
+            sampler.sample = two
+            env = Env(self, sampler)
+            with self.assertRaises(error):
+                T.TinkerResponder(env.run, sampler, self.codec, CAP)(self.views[0])
+            self.assertEqual(env.tokens()["sample"], 2 * len(toks))                  # not one limit held and one sequence counted
 
     def test_the_stats_of_a_window_count_new_blocks_and_cut_replies_as_the_sequential_responder_does(self):
         replies = dict(self.replies)
@@ -399,6 +464,84 @@ class WindowTests(unittest.TestCase):
         self.assertEqual(sampler.outstanding, 0)
         self.assertEqual(env.count("reserve", "sample"), env.count("adjust", "sample"))
 
+    def evaluation_with_a_ratchet(self, env, sampler):
+        rt = RT.Ratchet(os.path.join(env.dir, "r.jsonl"), os.path.join(env.dir, "l.jsonl"),
+                        os.path.join(env.dir, "lock.json"), CAP)
+        rt.lock_harness()
+        return rt, env.run.base_sampler()
+
+    def test_an_interrupt_waits_for_the_calls_in_flight_and_settles_them(self):
+        sampler = self.sampler()
+        env = Env(self, sampler)
+        rt, base = self.evaluation_with_a_ratchet(env, sampler)
+        real = V.evaluate_arm
+
+        def interrupted(resp, *a, **kw):
+            resp(self.views[0])
+            resp(self.views[1])
+            raise KeyboardInterrupt()
+        V.evaluate_arm = interrupted
+        self.addCleanup(setattr, V, "evaluate_arm", real)
+        with self.assertRaises(KeyboardInterrupt):
+            D.evaluate_recorded(rt, env.run, base, self.codec, self.epset, "C", "pilot:base-model", "run-w", {}, 6)
+        self.assertEqual(sampler.outstanding, 0)                                  # the calls in flight were awaited
+        sent = len(sampler.calls)
+        self.assertGreater(sent, 2)
+        self.assertEqual((env.count("reserve", "sample"), env.count("adjust", "sample")), (sent, sent))
+        self.assertEqual(env.tokens()["sample"], sum(self.actual[:sent]))        # and settled to what they used
+
+    def test_an_oversize_reply_found_while_draining_replaces_the_interrupt(self):
+        sampler = self.sampler(oversize=[4])
+        env = Env(self, sampler)
+        rt, base = self.evaluation_with_a_ratchet(env, sampler)
+        real = V.evaluate_arm
+
+        def interrupted(resp, *a, **kw):
+            resp(self.views[0])
+            raise KeyboardInterrupt()
+        V.evaluate_arm = interrupted
+        self.addCleanup(setattr, V, "evaluate_arm", real)
+        with self.assertRaises(T.BudgetStop):
+            D.evaluate_recorded(rt, env.run, base, self.codec, self.epset, "C", "pilot:base-model", "run-w", {}, 6)
+        self.assertEqual(sampler.outstanding, 0)
+
+    def test_a_second_interrupt_during_the_wait_leaves_the_calls_not_yet_settled_at_their_full_reservation(self):
+        class Impatient(fakes.WindowSampler):
+            def sample(self, *a, **kw):
+                fut = super().sample(*a, **kw)
+                if fut.index == 3:                                                # the second interrupt arrives here
+                    def stop(timeout=None):
+                        raise KeyboardInterrupt()
+                    fut.result = stop
+                return fut
+        sampler = Impatient(reply_for=self.reply_for)
+        env = Env(self, sampler)
+        resp = self.responder(env, 6)
+        drive(resp, self.views, 1)
+        with self.assertRaises(KeyboardInterrupt):
+            resp.finish()
+        # calls 1 and 2 were settled; call 3 and the calls after it keep their full limit: an upper bound
+        sent = len(sampler.calls)
+        self.assertEqual(sent, 6)
+        unsettled = env.count("reserve", "sample") - env.count("adjust", "sample")
+        self.assertEqual(unsettled, sent - 3)
+        self.assertEqual(env.tokens()["sample"], sum(self.actual[:3]) + (sent - 3) * LIMIT)
+
+    def test_with_every_reply_oversize_the_overshoot_is_the_excess_of_every_call_in_flight(self):
+        # each reply is over its limit by 1 id, so with a window of W the first oversize reply is read while up to W calls are
+        # in flight, and every one of them comes back oversize before the run stops
+        for window in (1, 2, 4, 8):
+            env = Env(self, self.sampler(oversize=range(self.n)))
+            resp = self.responder(env, window)
+            with self.assertRaises(T.BudgetStop):
+                drive(resp, self.views)
+            sent = len(env.sampler.calls)
+            self.assertEqual(sent, window, window)
+            reserved = sent * LIMIT
+            self.assertEqual(env.tokens()["sample"] - reserved, sent, window)         # the excess is the sum over the window
+            self.assertEqual(env.run.meter.tokens["sample"], env.tokens()["sample"], window)
+            self.assertEqual(env.sampler.outstanding, 0, window)
+
     def test_the_window_must_be_a_whole_number_from_one_to_the_largest(self):
         for bad in (0, -1, T.MAX_WINDOW + 1, True, 2.0, "8", None):
             with self.assertRaises(T.BackendError, msg=repr(bad)):
@@ -459,6 +602,44 @@ class KilledWithCallsInFlightTests(unittest.TestCase):
         self.assertEqual(run.meter.tokens["sample"], window * LIMIT)
         with self.assertRaises(T.ApprovalError):                                  # and without resume it is refused
             T.TinkerRun("run-k", approvals, PLAN_TOKENS, "test", PID, fakes.FakeService(), fakes.FakeTypes)
+
+
+class RetryTests(unittest.TestCase):
+    def make(self, **kw):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        path = os.path.join(tmp.name, "approvals.json")
+        with open(path, "w") as fh:
+            json.dump({"approvals": [{"run_id": "run-w", "ceiling_usd": "5.00", "plan": "test", "plan_id": PID}]}, fh)
+        svc = fakes.FakeService(base=fakes.FakeSampler(), checkpoint_samplers=[fakes.FakeSampler()])
+        run = T.TinkerRun("run-w", path, PLAN_TOKENS, "test", PID, svc, fakes.FakeTypes, **kw)
+        self.addCleanup(run.close)
+        return run, svc
+
+    def test_the_library_retries_stay_as_they_are_unless_the_run_switches_them_off(self):
+        run, svc = self.make()
+        run.start_arm("a")
+        run.base_sampler()
+        run.checkpoint_sampler("a")
+        self.assertEqual((svc.retry_configs, svc.clients[0].retry_configs), ([None], [None]))
+
+    def test_a_run_without_sample_retries_builds_both_kinds_of_sampling_client_with_the_retry_loop_off(self):
+        run, svc = self.make(sample_retries=False)
+        run.start_arm("a")
+        run.base_sampler()
+        run.checkpoint_sampler("a")
+        got = svc.retry_configs + svc.clients[0].retry_configs
+        self.assertEqual(len(got), 2)
+        for cfg in got:
+            self.assertIs(cfg.enable_retry_logic, False)
+
+    @unittest.skipUnless(__import__("importlib").util.find_spec("tinker"), "needs the service library")
+    def test_the_real_library_config_with_the_retry_loop_off_survives_the_clients_own_rewrite(self):
+        import dataclasses
+        cfg = T.no_retry_config(object())                  # an object without RetryConfig: the library's is used
+        self.assertIs(cfg.enable_retry_logic, False)
+        self.assertIs(dataclasses.replace(cfg, max_connections=None).enable_retry_logic, False)
+        self.assertIs(dataclasses.replace(cfg, max_connections=7, enable_stuck_detection=False).enable_retry_logic, False)
 
 
 class FakeFidelityTests(unittest.TestCase):

@@ -60,7 +60,15 @@ class FakeTokenizer:
         return 1000 <= i <= 1020
 
 
+class FakeRetryConfig:
+    """Stands for tinker.lib.retry_handler.RetryConfig: only the switch the backend sets."""
+
+    def __init__(self, enable_retry_logic=True):
+        self.enable_retry_logic = enable_retry_logic
+
+
 class FakeTypes:
+    RetryConfig = FakeRetryConfig
     ModelInput = FakeModelInput
     Datum = FakeDatum
     AdamParams = FakeAdam
@@ -196,6 +204,7 @@ class FakeTrainingClient:
     def __init__(self, fail_with=None, sampler=None):
         self.calls, self.fail_with = [], fail_with
         self.saved = 0
+        self.retry_configs = []       # the retry_config of each sampling client this client made
         self.sampler = sampler
 
     def forward_backward(self, data, loss_fn, loss_fn_config=None):
@@ -212,6 +221,7 @@ class FakeTrainingClient:
     def save_weights_and_get_sampling_client(self, name=None, retry_config=None, record_stability_info=False,
                                              kind="snapshot"):
         self.saved += 1
+        self.retry_configs.append(retry_config)
         return FakeFuture(self.sampler if self.sampler is not None else FakeSampler())
 
 
@@ -222,6 +232,7 @@ class FakeService:
     def __init__(self, fail_with=None, checkpoint_samplers=None, base=None):
         self.created, self.fail_with = [], fail_with
         self.clients = []
+        self.retry_configs = []       # the retry_config of each base sampling client this service made
         self.checkpoint_samplers, self.base = list(checkpoint_samplers or []), base
 
     def create_lora_training_client(self, base_model, rank=32, seed=None, train_mlp=True, train_attn=True,
@@ -235,4 +246,5 @@ class FakeService:
         return FakeFuture(client)
 
     def create_sampling_client(self, model_path=None, base_model=None, retry_config=None, record_stability_info=False):
+        self.retry_configs.append(retry_config)
         return FakeFuture(self.base if self.base is not None else FakeSampler())

@@ -3,12 +3,15 @@
     python3 pilot_cli.py --run-id ID --print-approval-row [--window N]
     python3 pilot_cli.py --approvals PATH --run-id ID --out DIR [--fake] [--window N]
 
---window N is the number of sampling calls in flight at once (default 8, a choice
-of the proposal this branch holds, not approved). The window is part of the plan
-fingerprint, so the approval row names it. A window above 1 adds one evaluation
-to the pilot: the untrained model sampled one call at a time on the same puzzles,
-whose replies must equal the windowed ones. A window of 1 is the plan of the
-first pilot.
+--window N is the number of sampling calls in flight at once. The default is 1,
+the plan of the first pilot, so the default prints the approved plan's row. A window
+above 1 is the proposal this branch holds (8 is its choice), not approved. The window
+is part of the plan fingerprint, so the approval row names it. A window above 1 adds
+one evaluation to the pilot: the untrained model sampled one call at a time on the
+same puzzles. Its replies are compared with the windowed ones and with the first
+pilot's committed replies (see driver.pilot_verdict), and the sampling clients are
+built with the library's retries off. The runner reads the first pilot's replies from
+this folder and refuses to start if the file differs from its pinned hash.
 
 --print-approval-row prints the one JSON row the owner puts in the approvals
 file for this run id and the pilot plan, with the pilot ceiling, and stops.
@@ -38,16 +41,20 @@ plan, the ceiling and the lock have all been checked.
                       count exactly as the service returned them. A call that raised
                       after the service was reached has a row with status
                       "raised" and an empty outcome. With a window, a call that was
-                      in flight when another failed has a row with status "drained"
-                      and the ids it returned (or none), and its model
+                      in flight when another failed, or whose own reply was ready when
+                      a look-ahead send failed, has a row with status "drained" and
+                      the ids it returned (or none), and a look-ahead send that failed
+                      has a row with status "send_failed" and no ids
   receipts.jsonl      the chain of receipts (with its stored replies and lock)
   pilot-summary.md    a short table a person can read
 On any error after the run has started the same files are written with what
 exists, the result says "incomplete" with the redacted error, and the exit
 status is 1. Refusals before the run starts exit with status 2, write no file
 and make no --out directory (it is made only after the run has started).
-SIGINT, SIGTERM and SIGHUP are treated alike: the run is written as incomplete
-with the error "interrupted". A finished pilot exits 0, whether the gates give a go or a no-go.
+SIGINT, SIGTERM and SIGHUP are treated alike: the calls in flight are awaited and
+settled first (which can take as long as the slowest call), then the run is written as
+incomplete with the error "interrupted". A second interrupt during that wait leaves
+the unsettled calls at their full reservation. A finished pilot exits 0, whether the gates give a go or a no-go.
 
 --fake runs the same code path against fakes.py (no key, no network).
 
@@ -57,6 +64,7 @@ holds a second set, and refuses any reply request that is not the next episode
 of that training-range set.
 """
 import contextlib
+import hashlib
 import json
 import os
 import signal
@@ -76,7 +84,10 @@ import tinker_backend  # noqa: E402
 KEY_VAR = "TINKER_API_KEY"
 PILOT_CEILING = Fraction(1, 2)                  # the pilot's registered ceiling in dollars (PREREG.md, Spend)
 FULL_EXAMPLES, FULL_SEEDS = 2048, 2             # the full plan the time projection is made for
-PILOT_WINDOW = cost.PROPOSED_WINDOW             # the window of the proposed pilot (a choice, not approved)
+DEFAULT_WINDOW = 1                              # the plan of the first pilot; --window 8 is the proposal (cost.PROPOSED_WINDOW)
+PILOT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pilot", "pilot-2026-11-22-a")
+FIRST_PILOT_REPLIES = os.path.join(PILOT_DIR, "replies.jsonl")
+FIRST_PILOT_REPLIES_SHA256 = "577d90ddd50e2202da2dcb3d731c82e103e631060775999de496b70f6ebde824"   # as in its SHA256SUMS
 MODEL_ORDER = ("base", "adapter")               # the order run_pilot samples its models in with a window of 1
 WINDOWED_ORDER = ("base", "base-sequential", "adapter")     # and with a window above 1
 
@@ -88,6 +99,29 @@ EXIT_OK, EXIT_ERROR, EXIT_REFUSED = 0, 1, 2
 
 class PilotCliError(Exception):
     pass
+
+
+def load_reference(path=None, sha256=None, model="base"):
+    """The first pilot's replies of one model as a driver.Reference. The file must hash to
+    the pinned value, and every row of the model must be an ok row."""
+    path = FIRST_PILOT_REPLIES if path is None else path
+    sha256 = FIRST_PILOT_REPLIES_SHA256 if sha256 is None else sha256
+    try:
+        with open(path, "rb") as fh:
+            raw = fh.read()
+    except OSError as exc:
+        raise PilotCliError("the first pilot's replies cannot be read: %s" % exc.strerror)
+    if hashlib.sha256(raw).hexdigest() != sha256:
+        raise PilotCliError("the first pilot's replies do not match their pinned hash")
+    try:
+        rows = [json.loads(line) for line in raw.decode("utf-8").splitlines() if line]
+        rows = [r for r in rows if r["model"] == model]
+        if any(r["status"] != "ok" for r in rows):
+            raise PilotCliError("a reply of the first pilot is not an ok row")
+        return driver.Reference([r["episode_id"] for r in rows], [r["reply"] for r in rows],
+                                [r["cut"] for r in rows])
+    except (ValueError, KeyError, TypeError) as exc:
+        raise PilotCliError("the first pilot's replies are malformed: %s" % type(exc).__name__)
 
 
 def scrub(exc, env):
@@ -162,6 +196,14 @@ class Recording:
                                 "returned_tokens": sum(len(q) for q in o["returned"]) if o["returned"] else 0})
         if hasattr(self.inner, "orphans"):
             self.inner.orphans = []
+        failed = getattr(self.inner, "failed_send", None)      # a look-ahead call whose send failed: reserved, no reply
+        if failed is not None and 0 <= failed < len(self.expected.episodes):
+            ep = self.expected.episodes[failed]
+            self.log.write({"model": self.model, "episode_id": ep.id, "tier": ep.tier, "seed": ep.seed, "arm": "C",
+                            "status": "send_failed", "reply": "", "tokens": 0, "cut": 0, "outcome": "",
+                            "returned": None, "returned_tokens": 0})
+        if hasattr(self.inner, "failed_send"):
+            self.inner.failed_send = None
 
     def __call__(self, view):
         if self.i >= len(self.expected.episodes):
@@ -265,8 +307,11 @@ def summary_text(res):
                      t["train_ns_total"])]
         m = res["measurements"]
         if "window_check_calls" in m:
-            lines += ["", "Window check: %d replies of the untrained model sampled one call at a time, %d differ from "
-                      "the windowed replies." % (m["window_check_calls"], m["window_check_differing"])]
+            lines += ["", "Window check: %d replies of the untrained model sampled one call at a time. "
+                      "Differing puzzles: windowed against sequential %d, sequential against the first pilot %d, "
+                      "windowed against the first pilot %d."
+                      % (m["window_check_calls"], m["window_check_differing"], m["ref_differing_sequential"],
+                         m["ref_differing_windowed"])]
     lines += ["", "| Spend | Tokens | Dollars |", "|---|---|---|"]
     for kind, row in res["spend"]["by_kind"].items():
         lines.append("| %s | %d | %s |" % (kind, row["tokens"], row["usd"]))
@@ -309,7 +354,7 @@ def fake_backend(plan, codec):
 
 
 def parse_args(argv):
-    opts = {"approvals": None, "run_id": None, "out": None, "fake": False, "print_row": False, "window": PILOT_WINDOW}
+    opts = {"approvals": None, "run_id": None, "out": None, "fake": False, "print_row": False, "window": DEFAULT_WINDOW}
     flags = {"--approvals": "approvals", "--run-id": "run_id", "--out": "out", "--window": "window"}
     i = 0
     while i < len(argv):
@@ -397,6 +442,7 @@ def _main(argv, env):
             return EXIT_OK
         plan, codec, counter, approval, planned = prepare(opts, env, cap, out_msg)
         big = cost.full_plan(FULL_EXAMPLES, FULL_SEEDS, cap, window=opts["window"])
+        reference = load_reference() if plan.window > 1 else None
     except (PilotCliError, tinker_backend.ApprovalError, tinker_backend.BudgetError, tinker_backend.BudgetStop,
             driver.DriverError, OSError) as exc:
         print("refused: %s" % scrub(exc, env), file=sys.stderr)
@@ -426,7 +472,7 @@ def _main(argv, env):
             log = ReplyLog(os.path.join(out, "replies.jsonl"))
             with recording(plan, log) as made:
                 got = driver.run_pilot(run, rt, codec, run_id, plan, {"cap": cap, "plan_id": plan_id, "mode": mode},
-                                       big)
+                                       big, reference=reference)
                 for rec, name in zip(made, model_order(plan)):
                     if "".join(rec.outcomes) != got["results"][name].outcomes:
                         raise PilotCliError("the logged replies of the %s model do not give its recorded outcomes" % name)
