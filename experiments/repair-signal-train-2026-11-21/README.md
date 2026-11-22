@@ -146,7 +146,7 @@ The exact full-plan cost with the tokenizer is 26823111/5000000 dollars. The pla
 
 The run id `pilot-2026-11-22-a` ran once against the real service on 2026-11-22 from 08:24 to 08:34 UTC and exited 0 (`console-output.txt`). The code was this record at commit a868e96. The owner approved the run with a ceiling of 0.50 dollars, and `APPROVAL-NOTE.md` quotes the approval. The files are in [pilot/pilot-2026-11-22-a/](pilot/pilot-2026-11-22-a/), with a `SHA256SUMS` file.
 
-`python3 -I -B pilot/summarize.py` reads only those files and prints `summary.txt`. It rescores all 200 logged replies from their seeds with the record's grammar and exact checker, and every recorded outcome agrees. Every number in this section is printed there or sits in a committed file.
+`python3 -I -B pilot/summarize.py` reads only those files and the record's own code and data, and prints `summary.txt`. It rescores all 200 logged replies from their seeds with the record's grammar and exact checker, and every recorded outcome agrees. Every number in this section is printed there or sits in a committed file.
 
 The pilot is exploratory. It is not part of any registered result and it says nothing about the hypothesis. Its 100 puzzles are training-range seeds. The adapter was trained on text C only, with 256 examples and 8 steps, and no adapter was trained on text B, so nothing here compares C with B.
 
@@ -165,7 +165,7 @@ The verdict is a no-go, and it rests on the time gate alone.
 
 ### Results by tier
 
-Both models answered under the same cap with the forced opening, on the same 100 puzzles.
+Both models answered under the same cap with the forced opening, on the same 100 puzzles. It is one adapter, trained with one seed on text C and tested on text C. The untrained model was also shown text C. The 100 puzzles come from the training seed range but are not among the 256 the adapter was trained on. The p-value below treats puzzles as the unit and says nothing about variation between training seeds.
 
 | Model | Tier S | Tier M | All | Format breaks |
 |---|---|---|---|---|
@@ -210,14 +210,14 @@ The team can choose among three ways forward. This record does not choose.
 
 - The calls are compared with the installed library's signatures by `checks/tinker_api_check.py`, and the logic is tested against fakes. Only the one pilot run has used the real service (see "Pilot run"). The registered run has not.
 - The pilot ran the sampling calls, the checkpoint save and the base sampler once against the real service, and the service accepted greedy sampling with integer stop ids for this model. The time per sampling call and per step were measured once, for sampling calls sent one at a time and for 8 training steps. Another day or another way of sending calls may give other times.
-- Whether the tokenizer carried by tml_renderers matches the Mini model is a guess. The chat layout matches the renderer id for id, but whether the service applies the same layout to a tuned model is not checked. The pilot is there to check it.
+- Whether the tokenizer carried by tml_renderers matches the Mini model is a guess. The chat layout matches the renderer id for id, but whether the service applies the same layout to a tuned model is not checked. The pilot ran but did not check it, because no token count from the service was compared with the tokenizer's.
 - Real billing rules are not verified. The cost table is arithmetic at published prices, and the sampling part is an upper bound. The forced opening moves two tokens per call from the training target to the prompt, so training tokens are unchanged and prefill grows by two tokens per call.
 - The model card says minimum reasoning effort does not fully disable reasoning, and a local copy shows four switches that do not turn it off. The forced opening is the control. The service accepted a prompt that ends with the opening in all 200 pilot calls.
 - The pilot gate values (at most 5 percent of replies opening a block of their own, 20 percent format breaks, a pass rate between 5 and 95 percent, 12 hours projected) are choices and not measurements.
 - The local baseline is one greedy run of a quantised copy on 50 episodes per cell. The renderer has no completion prompt that ends with the opening, so the layout test builds that comparison from its completion prompt plus the two opening ids.
 - The gates are code that the same agent can edit. `ratchet.py`, `latch.py` and `driver.py` are not in the harness hash. The latch tokens live in memory, and the head of the receipt chain is pinned in memory unless it is kept elsewhere.
 - Rescoring proves that recorded outcomes follow from recorded replies. Invented replies would pass it.
-- The full run does not check that a pilot gave a go. The go is the owner's call and the full run must not start after a no-go (PREREG.md, "After the pilot"). At the local speed the time gate would fail, and the service's speed is unknown.
+- The full run does not check that a pilot gave a go. The go is the owner's call and the full run must not start after a no-go (PREREG.md, "After the pilot"). The service took 2.573 seconds per sampling call sent one at a time, so the time gate failed in pilot-2026-11-22-a.
 - The service library retries requests itself (10 retries by default, and a request can wait up to 120 minutes without progress), and the meter cannot see these. A retried request that the server already served could be billed twice, and a stuck request can hold the run for hours. The runner does not change these settings. After the run, compare the spend in the service console with the ledger's total.
 - The service's own bill for the pilot has not been compared with its ledger.
 - A service that returns more tokens than asked for stops the run at the first such reply, after that reply is counted in full. The overshoot is that one reply's excess, which has no upper limit.

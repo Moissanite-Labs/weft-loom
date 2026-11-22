@@ -1,6 +1,6 @@
 # Approval for run id pilot-2026-11-22-a
 
-The owner approved the pilot in a working session on 2026-11-22, about 04:25 UTC, in these words:
+The owner approved the pilot in a working session on 2026-11-22, in these words:
 
 "run the pilot first then report results to the repo. the team will decide if spend is worth, then fill the account with creds if needed."
 

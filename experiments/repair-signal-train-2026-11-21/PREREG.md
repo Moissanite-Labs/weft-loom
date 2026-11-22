@@ -377,6 +377,7 @@ Pilot run on 2026-11-22 (UTC), after the changes above. No plan field and no gat
 - The pilot ran once on the real service as run id pilot-2026-11-22-a, with the owner's approval and a ceiling of 0.50 dollars, on the code of commit a868e96. Its files and a script that rescores every reply are in the folder `pilot/`. The pilot is not part of the registered result.
 - The forced opening, new blocks, format and testable gates passed. The time gate failed: the full plan projects to 15.759 hours against the 12 allowed, from 2.573 seconds per sampling call sent one at a time, 7.049 seconds per training step, 21,000 calls and 384 steps. The verdict is a no-go.
 - By the section "After the pilot", the full run waits for a dated change to the plan that names the time gate, the change and the reason, then a new pilot under a new run id, then a new approval. No such change is made here.
+- The pilot did not compare any token count from the service with the tokenizer, and the service bill has not been compared with the ledger.
 
 ## Statement
 

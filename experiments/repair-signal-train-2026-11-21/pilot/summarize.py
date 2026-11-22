@@ -14,7 +14,7 @@ of the full plan, each pilot gate recomputed from the measurements, tokens and
 dollars by kind against the plan, and the sampled tokens against their upper
 bound.
 
-It also rescoring every logged reply on its own: the puzzle is rebuilt from its
+It also rescores every logged reply on its own: the puzzle is rebuilt from its
 tier and seed with the record's episode builder, the saved reply text is parsed
 with the record's grammar, and the exact checker decides. The result must equal
 the recorded outcome in all 200 rows.
