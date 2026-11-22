@@ -8,8 +8,11 @@ file for this run id and the pilot plan, with the pilot ceiling, and stops.
 
 The real mode takes the service key only from the environment variable the
 client library reads. It never opens a key file, never prints the variable, and
-passes every exception text through the backend's redact function (and removes
-the variable's own value from it) before the text is printed or written.
+passes every exception text through the backend's redact function before the
+text is printed or written. The runner registers the variable's value with the
+backend first, so redact removes the key's own value, whatever characters it
+holds, before the pattern and the 400-character cut apply, including for errors
+raised inside a service call.
 It refuses to start unless the variable is set and non-empty, so the library
 cannot fall back to a stored credentials file.
 
@@ -21,13 +24,19 @@ plan, the ceiling and the lock have all been checked.
   pilot-result.json   integers and strings only: measurements, gates, counts by
                       outcome, tokens and exact dollars spent by kind (from the
                       spend ledger), time totals in nanoseconds with their counts
-  replies.jsonl       one line per sampled reply, written as each reply arrives
+  replies.jsonl       one line per call that reached the service, written as each
+                      call ends: the decoded reply, and the ids and their count
+                      exactly as the service returned them. A call that raised
+                      after the service was reached has a row with status
+                      "raised" and an empty outcome
   receipts.jsonl      the chain of receipts (with its stored replies and lock)
   pilot-summary.md    a short table a person can read
 On any error after the run has started the same files are written with what
 exists, the result says "incomplete" with the redacted error, and the exit
-status is 1. Refusals before the run starts exit with status 2 and write
-nothing. A finished pilot exits 0, whether the gates give a go or a no-go.
+status is 1. Refusals before the run starts exit with status 2, write no file
+and make no --out directory (it is made only after the run has started).
+SIGINT, SIGTERM and SIGHUP are treated alike: the run is written as incomplete
+with the error "interrupted". A finished pilot exits 0, whether the gates give a go or a no-go.
 
 --fake runs the same code path against fakes.py (no key, no network).
 
@@ -39,6 +48,7 @@ of that training-range set.
 import contextlib
 import json
 import os
+import signal
 import sys
 from fractions import Fraction
 
@@ -65,7 +75,8 @@ class PilotCliError(Exception):
 
 def scrub(exc, env):
     """Text of an exception that is safe to print or store: the key variable's own
-    value removed, then the backend's redact."""
+    value removed, then the backend's redact (which also removes the values main
+    registered, before the pattern and the length cut)."""
     text = "%s: %s" % (type(exc).__name__, exc)
     key = env.get(KEY_VAR, "")
     if key:
@@ -123,13 +134,23 @@ class Recording:
         want = ep_mod.View(ep, "C")
         if view.arm != "C" or view.messages != want.messages:
             raise PilotCliError("a reply was requested for something other than the next pilot evaluation episode")
-        text, count, was_cut = self.inner(view)
+        try:
+            text, count, was_cut = self.inner(view)
+        except BaseException:
+            if getattr(self.inner, "reached", False):       # paid for, so it is evidence
+                self._write(ep, "raised", "", 0, 0, "")
+            raise
         self.i += 1
         outcome = evaluate.outcome_of(ep_mod.rsig(), ep, text, was_cut)
         self.outcomes.append(outcome)
-        self.log.write({"model": self.model, "episode_id": ep.id, "tier": ep.tier, "seed": ep.seed, "arm": "C",
-                        "reply": text, "tokens": count, "cut": 1 if was_cut else 0, "outcome": outcome})
+        self._write(ep, "ok", text, count, 1 if was_cut else 0, outcome)
         return text, count, was_cut
+
+    def _write(self, ep, status, text, count, cut, outcome):
+        got = getattr(self.inner, "last_returned", None)     # the ids exactly as the service returned them
+        self.log.write({"model": self.model, "episode_id": ep.id, "tier": ep.tier, "seed": ep.seed, "arm": "C",
+                        "status": status, "reply": text, "tokens": count, "cut": cut, "outcome": outcome,
+                        "returned": got, "returned_tokens": sum(len(q) for q in got) if got else 0})
 
 
 @contextlib.contextmanager
@@ -172,10 +193,10 @@ def counts_by_outcome(outcomes):
     return {k: outcomes.count(k) for k in ("P", "F", "X")}
 
 
-def build_result(run_id, plan_id, ceiling, planned, mode, spend, error, got, made):
+def build_result(run_id, plan_id, ceiling, planned, mode, spend, error, got, rows_logged):
     res = {"status": "incomplete" if error else "complete", "error": error, "run_id": run_id, "plan": "pilot",
            "plan_id": plan_id, "mode": mode, "ceiling_usd": str(ceiling), "planned_cost_usd": str(planned),
-           "spend": spend, "replies_logged": sum(len(r.outcomes) for r in made)}
+           "spend": spend, "replies_logged": rows_logged}
     if got is not None:
         m = got["measurements"]
         res["measurements"] = {k: m[k] for k in sorted(m)}
@@ -276,11 +297,9 @@ def prepare(opts, env, cap, out_msg):
     if approval.ceiling > PILOT_CEILING:
         raise PilotCliError("the approved ceiling %s is above the pilot's registered ceiling %s" % (
             approval.ceiling, PILOT_CEILING))
-    if opts["fake"]:
-        tok, counter = fakes.FakeTokenizer(), cost.Counter(rule_only=True)
-    else:
-        tok = tinker_backend.real_tokenizer()
-        counter = TokenizerCounter(tok)
+    # the fake tokenizer meters one token per character, so the fake plan counts that too
+    tok = fakes.FakeTokenizer() if opts["fake"] else tinker_backend.real_tokenizer()
+    counter = TokenizerCounter(tok)
     codec = driver.check_codec(tok)
     totals, _items = cost.plan_counts(plan, counter)
     planned = tinker_backend.planned_cost(totals)
@@ -289,9 +308,31 @@ def prepare(opts, env, cap, out_msg):
     return plan, codec, counter, approval, planned
 
 
+def _interrupt(signum, _frame):
+    raise KeyboardInterrupt()
+
+
 def main(argv=None, env=None):
-    argv = sys.argv[1:] if argv is None else list(argv)
+    """Registers the key's value with the backend's redact and turns SIGTERM and SIGHUP into the same
+    interrupt as SIGINT for the length of the run, then runs the pilot."""
     env = os.environ if env is None else env
+    tinker_backend.set_secret_values([env.get(KEY_VAR, "")])
+    old = {}
+    for sig in (signal.SIGTERM, signal.SIGHUP):
+        try:
+            old[sig] = signal.signal(sig, _interrupt)
+        except ValueError:                  # not the main thread: the handlers cannot be set
+            pass
+    try:
+        return _main(argv, env)
+    finally:
+        for sig, handler in old.items():
+            signal.signal(sig, handler)
+        tinker_backend.set_secret_values([])
+
+
+def _main(argv, env):
+    argv = sys.argv[1:] if argv is None else list(argv)
     out_msg = print
     try:
         opts = parse_args(argv)
@@ -303,7 +344,6 @@ def main(argv=None, env=None):
             return EXIT_OK
         plan, codec, counter, approval, planned = prepare(opts, env, cap, out_msg)
         big = cost.full_plan(FULL_EXAMPLES, FULL_SEEDS, cap)
-        os.makedirs(opts["out"], exist_ok=True)
     except (PilotCliError, tinker_backend.ApprovalError, tinker_backend.BudgetError, tinker_backend.BudgetStop,
             driver.DriverError, OSError) as exc:
         print("refused: %s" % scrub(exc, env), file=sys.stderr)
@@ -318,6 +358,12 @@ def main(argv=None, env=None):
         with fake_backend(plan, codec) if opts["fake"] else contextlib.nullcontext():
             run = driver.start_run(run_id, opts["approvals"], plan, counter)
     except (Exception,) as exc:             # nothing was spent: the run did not start
+        print("refused: %s" % scrub(exc, env), file=sys.stderr)
+        return EXIT_REFUSED
+    try:
+        os.makedirs(out, exist_ok=True)     # only now: a refusal above leaves no directory behind
+    except OSError as exc:
+        run.close()
         print("refused: %s" % scrub(exc, env), file=sys.stderr)
         return EXIT_REFUSED
     try:
@@ -342,7 +388,8 @@ def main(argv=None, env=None):
     except (Exception,) as exc:
         spend = {"by_kind": {}, "total_usd": "0"}
         error = error or "the spend ledger could not be read: %s" % scrub(exc, env)
-    res = build_result(run_id, plan_id, approval.ceiling, planned, mode, spend, error, got, made)
+    res = build_result(run_id, plan_id, approval.ceiling, planned, mode, spend, error, got,
+                       log.count if log is not None else 0)
     write_outputs(out, res)
     if error:
         print("pilot incomplete: %s" % error, file=sys.stderr)

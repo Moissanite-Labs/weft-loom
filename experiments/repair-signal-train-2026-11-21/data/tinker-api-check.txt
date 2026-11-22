@@ -1,15 +1,15 @@
 tinker 0.39.0
-OK         tinker_backend.py:304 Datum                          arguments match
-OK         tinker_backend.py:367 forward_backward               arguments match; loss 'cross_entropy' is a defined loss name; returns APIFuture, used through .result()
-OK         tinker_backend.py:368 optim_step                     arguments match; returns APIFuture, used through .result()
-OK         tinker_backend.py:304 from_ints                      arguments match
-OK         tinker_backend.py:368 AdamParams                     arguments match
-OK         tinker_backend.py:357 create_lora_training_client    arguments match; returns BackcompatTrainingClientFuture, used through .result()
-OK         tinker_backend.py:377 save_weights_and_get_sampling_client arguments match; returns BackcompatSamplingClientFuture, used through .result()
-OK         tinker_backend.py:380 create_sampling_client         arguments match; returns BackcompatSamplingClientFuture, used through .result()
-OK         tinker_backend.py:404 sample                         arguments match; returns APIFuture, used through .result()
-OK         tinker_backend.py:405 from_ints                      arguments match
-OK         tinker_backend.py:406 SamplingParams                 arguments match
+OK         tinker_backend.py:321 Datum                          arguments match
+OK         tinker_backend.py:384 forward_backward               arguments match; loss 'cross_entropy' is a defined loss name; returns APIFuture, used through .result()
+OK         tinker_backend.py:385 optim_step                     arguments match; returns APIFuture, used through .result()
+OK         tinker_backend.py:321 from_ints                      arguments match
+OK         tinker_backend.py:385 AdamParams                     arguments match
+OK         tinker_backend.py:374 create_lora_training_client    arguments match; returns BackcompatTrainingClientFuture, used through .result()
+OK         tinker_backend.py:394 save_weights_and_get_sampling_client arguments match; returns BackcompatSamplingClientFuture, used through .result()
+OK         tinker_backend.py:397 create_sampling_client         arguments match; returns BackcompatSamplingClientFuture, used through .result()
+OK         tinker_backend.py:428 sample                         arguments match; returns APIFuture, used through .result()
+OK         tinker_backend.py:429 from_ints                      arguments match
+OK         tinker_backend.py:430 SamplingParams                 arguments match
 OK         SampleResponse.sequences                             a field of the response (a sequence of SampledSequence)
 OK         SampledSequence.tokens                               a property returning typing.List[int]
 OK         ModelInput.length                                    present (the backend bills sum(length + 1))

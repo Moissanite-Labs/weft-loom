@@ -259,7 +259,7 @@ Before the touch the code checks that the ceiling left covers the four set-2 eva
 If spending reaches the ceiling, the run stops before the call that would reach it, the report says it is incomplete, and no decision is made from partial results.
 
 The spend is kept in an append-only ledger, written and flushed to disk before each call and settled after it. A new process for the same run id reads the ledger and counts all earlier spend against the ceiling.
-A run id that has already started refuses to start again unless the owner asks for a resume, the plan must be the same plan (a hash of the whole plan is stored), a restart runs the plan again from the start, and the whole plan must fit under what is left of the ceiling. A service that returns more tokens than the limit asked for is counted in full and then stops the run.
+A run id that has already started refuses to start again unless the owner asks for a resume, the plan must be the same plan (a hash of the whole plan is stored), a restart runs the plan again from the start, and the whole plan must fit under what is left of the ceiling. A service that returns more tokens than the limit asked for is counted in full and stops the run at the first such reply.
 The ceiling is therefore a total for the run id across restarts.
 
 Two limits of the ledger are closed in code and stated here. At most one process may hold a ledger: a run takes an exclusive lock (`flock`, macOS and Linux) on a lock file beside the ledger from its start until it is closed or the process ends, and a second process is refused.

@@ -45,7 +45,10 @@ is already a fault, and the loss is the overrun only, so this is accepted.
 
 This module never reads, prints or stores a key. The service library finds its
 own credentials when the real client is built. Errors are passed through
-redact() before they leave this module.
+redact() before they leave this module. redact first removes any exact values
+the caller registered with set_secret_values (the runner registers the key
+variable's value), then applies the pattern, then cuts to 400 characters, so a
+key with characters outside the pattern is removed whole.
 
 Approvals file (JSON):
     {"approvals": [{"run_id": "RUN-ID", "ceiling_usd": "5.00",
@@ -96,8 +99,22 @@ class BackendError(Exception):
 _SECRETISH = re.compile(r"tml-[A-Za-z0-9_\-\.]+|[A-Za-z0-9_\-]{32,}|(?i:api[_-]?key)\s*[=:]\s*\S+")
 
 
+_SECRET_VALUES = ()
+
+
+def set_secret_values(values):
+    """Registers exact strings (the service key) that redact removes by value
+    before the pattern and the length cut, longest first. The caller reads the
+    key, this module only holds what it is told to hide. An empty list clears it."""
+    global _SECRET_VALUES
+    _SECRET_VALUES = tuple(sorted({v for v in values if isinstance(v, str) and v}, key=len, reverse=True))
+
+
 def redact(text):
-    return _SECRETISH.sub("[REDACTED]", str(text))[:400]
+    text = str(text)
+    for value in _SECRET_VALUES:
+        text = text.replace(value, "[REDACTED]")
+    return _SECRETISH.sub("[REDACTED]", text)[:400]
 
 
 def cost_usd(kind, tokens):
@@ -275,8 +292,9 @@ class Meter:
 
     def settle(self, kind, reserved, actual):
         """Replaces a reservation by what the service really used. More than
-        reserved is counted in full, then the run stops if that reached the
-        ceiling."""
+        reserved is counted in full, then the run stops at once: a service that
+        returns more than it was asked for is faulty, and the next call could
+        overrun again without limit."""
         if actual <= reserved:
             self.refund(kind, reserved - actual)
             return
@@ -284,8 +302,7 @@ class Meter:
         self._log("adjust", kind, extra)
         self.spent += cost_usd(kind, extra)
         self.tokens[kind] += extra
-        if self.spent >= self.ceiling:
-            raise BudgetStop("the service returned %d %s tokens, more than the %d reserved" % (actual, kind, reserved))
+        raise BudgetStop("the service returned %d %s tokens, more than the %d reserved" % (actual, kind, reserved))
 
 
 def _guard(fn, *a, **kw):
@@ -386,6 +403,10 @@ class TinkerResponder:
     meter. codec is a codec.Codec: prompts carry real special tokens and end
     with the forced opening of the model's turn, so the sample is the answer
     block's content, and sampling stops on the end marker.
+    last_returned: the ids of every sequence the service returned for the latest
+    call (None before the service answers), set before the meter settles so a
+    call that raises afterwards still has its ids; reached: True once the
+    request was handed to the service. Both are reset at the start of each call.
     stats: calls; accepted (the service answered the forced-opening prompt with
     one sequence of ids); new_block (replies that hold a marker id, such as a
     new thinking block); cut."""
@@ -393,22 +414,26 @@ class TinkerResponder:
     def __init__(self, run, sampler, codec, cap):
         self.run, self.sampler, self.codec, self.cap = run, sampler, codec, cap
         self.stats = {"calls": 0, "accepted": 0, "new_block": 0, "cut": 0}
+        self.last_returned, self.reached = None, False
 
     def __call__(self, view):
+        self.last_returned, self.reached = None, False
         ids = self.codec.prompt_ids(view.messages)
         limit = self.cap + codec_mod.REPLY_OVERHEAD    # the reply and the end marker
         meter = self.run.meter
         meter.reserve("prefill", len(ids))
         meter.reserve("sample", limit)                 # upper bound, settled below
         types = self.run.types
+        self.reached = True
         resp = _guard(lambda: self.sampler.sample(
             prompt=types.ModelInput.from_ints(tokens=ids), num_samples=1,
             sampling_params=types.SamplingParams(max_tokens=limit, temperature=0.0,
                                                  stop=self.codec.stop_ids())).result())
         seqs = resp.sequences
+        self.last_returned = [list(sq.tokens) for sq in seqs]
         if len(seqs) != 1:
             raise BackendError("the service returned %d sequences for one sample" % len(seqs))
-        out = list(seqs[0].tokens)
+        out = self.last_returned[0]
         meter.settle("sample", limit, len(out))        # counted as returned, even over the limit
         text, count, was_cut = self.codec.reply(out, self.cap)
         self.stats["calls"] += 1

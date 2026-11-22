@@ -70,7 +70,9 @@ The row names the run id, the plan `pilot`, the plan's fingerprint and the ceili
 
 2. The owner puts that row in the `approvals` list of an approvals file, as `{"approvals": [ROW]}`. The file lives outside this repository, in a place the agent cannot write. The spend ledger and its lock file are written beside it.
 
-3. In the shell that will run the command, set `TINKER_API_KEY` to the service key. The runner takes the key only from that variable. It refuses to start when the variable is empty, so the library cannot fall back to a stored credentials file. It never prints the variable or writes it anywhere, and every error text is passed through the backend's `redact` function and has the variable's value removed before it is printed or written.
+3. In the shell that will run the command, set `TINKER_API_KEY` to the service key. The runner takes the key only from that variable. It refuses to start when the variable is empty, so the library cannot fall back to a stored credentials file. It never prints or writes the variable.
+
+   The runner registers the variable's value with the backend. Every error text, even one raised inside a service call, loses that exact value first, whatever characters it holds, and then goes through the `redact` pattern and its 400-character cut.
 
 4. Run the pilot from this folder with a Python that has the service library and `tml_renderers`, and a new or empty output directory.
 
@@ -85,13 +87,15 @@ The runner checks the approval, the plan, the ceiling and the lock, and prints t
 | File | Content |
 |---|---|
 | `pilot-result.json` | integers and strings only: every measurement, every gate as the string "true" or "false", the go verdict, counts by outcome for the base model and the adapter, tokens and exact dollars by kind from the spend ledger, and the time per training step and per sampling call as integer nanosecond totals with their counts |
-| `replies.jsonl` | one line per sampled reply, written as it arrives: which model, tier, seed, the reply text, the outcome |
+| `replies.jsonl` | one line per call that reached the service, written as the call ends: which model, tier, seed, the decoded reply, the outcome, and `returned`, the token ids of every sequence exactly as the service returned them, with `returned_tokens` their count. A paid call that then raised (an overrun, a wrong number of sequences) has a row with status `raised` and an empty outcome. A call that failed inside the service before any answer has `returned` null |
 | `receipts.jsonl` | the chain of receipts, with the stored replies and the harness lock beside it |
 | `pilot-summary.md` | a short table for a person |
 
 A finished pilot exits 0, whether the gates give a go or a no-go.
 
-If an error stops the run after it has started, the runner still writes what it has, marks `pilot-result.json` as `incomplete` with the redacted error text, and exits 1. A refusal before the start (no approval row, wrong plan, a ceiling too low or above 0.50, a used output directory, no key) exits 2 and writes nothing. `--fake` runs the same code path against `fakes.py`, with no key and no network, and the tests use it.
+If an error stops the run after it has started, the runner still writes what it has, marks `pilot-result.json` as `incomplete` with the redacted error text, and exits 1. SIGINT, SIGTERM and SIGHUP give the same result with the error `interrupted`.
+
+A refusal before the start (no approval row, wrong plan, a ceiling too low or above 0.50, a used output directory, no key) exits 2 and writes no file. The output directory is made only after the run has started. `--fake` runs the same code path against `fakes.py`, with no key and no network, and the tests use it.
 
 Before the first real run, run the conformance check of the backend against the installed library (it builds no client and needs no key). It prints one line per call and exits 1 on a mismatch. `--old-scripts` names the earlier scripts the backend was adapted from, to list each call they make differently.
 
@@ -119,7 +123,7 @@ The verbose policy breaks the format in all 200 replies in every text, and that 
 
 The dry run's 44 checks show that the exact checker, the sign test, the ratchet, the latch, the receipt chain and the budget guards each behave as designed. The table shows that the C, E and N texts separate a policy that reads the amounts from one that does not. The oracle scores 0 on N because its sign convention is written into the policy, and that is not a property of any model.
 
-The test suite runs 414 tests (9 skipped without the service library and the tokenizer package) and passes. `mutate.py` removes 319 guards one at a time and every one is caught by a failing test. These too check the harness only.
+The test suite runs 429 tests (9 skipped without the service library and the tokenizer package) and passes. `mutate.py` removes 339 guards one at a time and every one is caught by a failing test. These too check the harness only.
 
 The dry run also runs the whole registered procedure against a fake client twice. With a gain built in for C, the verdict is `support`, and the second held-out set is touched once. With no gain, the verdict is `cannot_test` and the second set is never touched. The fake pilot reports 200 calls and 8 steps. These are properties of the fake.
 
@@ -148,6 +152,8 @@ The exact full-plan cost with the tokenizer is 26823111/5000000 dollars. The pla
 - The gates are code that the same agent can edit. `ratchet.py`, `latch.py` and `driver.py` are not in the harness hash. The latch tokens live in memory, and the head of the receipt chain is pinned in memory unless it is kept elsewhere.
 - Rescoring proves that recorded outcomes follow from recorded replies. Invented replies would pass it.
 - The full run does not check that a pilot gave a go. The go is the owner's call and the full run must not start after a no-go (PREREG.md, "After the pilot"). At the local speed the time gate would fail, and the service's speed is unknown.
+- The service library retries requests itself (10 retries by default, and a request can wait up to 120 minutes without progress), and the meter cannot see these. A retried request that the server already served could be billed twice, and a stuck request can hold the run for hours. The runner does not change these settings. After the run, compare the spend in the service console with the ledger's total.
+- A service that returns more tokens than asked for stops the run at the first such reply, after that reply is counted in full. The overshoot is that one reply's excess, which has no upper limit.
 - The run lock is `flock`, so it works on macOS and Linux only, and it covers one ledger file: two copies of the approvals file in two places make two ledgers. An overrun followed by a crash before its ledger line is written loses those extra tokens from the ledger.
 - The mark that tells `run_registered` a run's token counts came from `start_run` is set in ordinary code that the same agent can edit.
 - The approvals file that allows a paid run belongs to the owner, in a place the agent cannot write. The code cannot enforce that.

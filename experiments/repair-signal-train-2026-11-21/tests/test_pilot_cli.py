@@ -2,6 +2,7 @@ import contextlib
 import io
 import json
 import os
+import signal
 import tempfile
 import types
 import unittest
@@ -115,7 +116,10 @@ class FakeRunTests(Base):
         self.assertEqual(len(rows), 200)
         self.assertEqual([r["model"] for r in rows], ["base"] * 100 + ["adapter"] * 100)
         self.assertEqual(sorted(rows[0]), sorted(["arm", "cut", "episode_id", "reply", "seed", "tier", "tokens",
-                                                  "outcome", "model"]))
+                                                  "outcome", "model", "status", "returned", "returned_tokens"]))
+        for r in rows:
+            self.assertEqual((r["status"], len(r["returned"]), r["returned_tokens"]), ("ok", 1, len(r["returned"][0])))
+            self.assertGreaterEqual(r["returned_tokens"], r["tokens"])
         ev = E.build_set("train", self.plan.eval1_counts, self.plan.eval1_offset)
         self.assertEqual([r["episode_id"] for r in rows[:100]], [ep.id for ep in ev.episodes])
         self.assertTrue(all(r["episode_id"].startswith("train-") for r in rows))
@@ -123,6 +127,15 @@ class FakeRunTests(Base):
         for name in P.MODEL_ORDER:
             mine = "".join(r["outcome"] for r in rows if r["model"] == name)
             self.assertEqual(P.counts_by_outcome(mine), res["outcomes"][name])
+
+    def test_the_planned_cost_describes_the_fake_run(self):
+        self.run_fake()
+        res = self.result()
+        totals, _items = cost.plan_counts(self.plan, P.TokenizerCounter(fakes.FakeTokenizer()))
+        self.assertEqual(res["planned_cost_usd"], str(T.planned_cost(totals)))
+        by = res["spend"]["by_kind"]
+        self.assertEqual((by["train"]["tokens"], by["prefill"]["tokens"]), (totals["train"], totals["prefill"]))
+        self.assertLessEqual(by["sample"]["tokens"], totals["sample"])
 
     def test_the_result_has_no_floats_only_integers_and_strings(self):
         self.run_fake()
@@ -335,7 +348,15 @@ class RefusalTests(Base):
         code, _out, err = self.run_cli(self.fake_args(out=out2))
         self.assertEqual(code, P.EXIT_REFUSED)
         self.assertIn("already started", err)
-        self.assertEqual(os.listdir(out2), [])
+        self.assertFalse(os.path.exists(out2))
+
+    def test_a_refusal_from_the_start_checks_makes_no_out_directory(self):
+        self.approve(ceiling="0.05")                        # below the planned cost: start_run refuses
+        code, _out, err = self.run_cli(self.fake_args())
+        self.assertEqual(code, P.EXIT_REFUSED)
+        self.assertIn("refused: ", err)
+        self.assertFalse(os.path.exists(self.out))
+        self.assertNotIn("approvals.json.spend.jsonl", os.listdir(os.path.dirname(self.approvals)))   # nothing spent
 
 
 class ApprovalRowTests(Base):
@@ -388,6 +409,33 @@ class RedactionTests(Base):
         self.assertEqual(res["status"], "incomplete")
         self.assertIn("[REDACTED]", res["error"])
 
+    PLANT = "tml-PLANTED+k3y/0123456789abc=def"           # characters the backend's pattern does not match
+
+    def assertNoFragment(self, *texts):
+        for t in texts:
+            self.assertNotIn("k3y", t)
+            self.assertNotIn("0123456789abc", t)
+        for path in self.files_under(self.dir):
+            with open(path, "rb") as fh:
+                data = fh.read()
+            self.assertNotIn(b"k3y", data, path)
+            self.assertNotIn(b"0123456789abc", data, path)
+
+    def test_a_key_outside_the_pattern_does_not_leak_from_a_guarded_service_call(self):
+        self.approve()
+        svc = self.failing_service("auth failed for key %s please retry" % self.PLANT)
+        code, out, err = self.run_cli(["--approvals", self.approvals, "--run-id", "pilot-1", "--out", self.out],
+                                      {P.KEY_VAR: self.PLANT}, self.real_mode_patches(svc))
+        self.assertEqual(code, P.EXIT_ERROR)
+        self.assertIn("please retry", err)
+        self.assertNoKey(self.PLANT, out, err)
+        self.assertNoFragment(out, err)
+
+    def test_the_registered_key_is_cleared_when_the_run_ends(self):
+        self.approve()
+        self.run_cli(self.fake_args(), {P.KEY_VAR: self.PLANT})
+        self.assertIn("k3y", T.redact("x " + self.PLANT))
+
     def test_a_key_of_no_known_shape_is_removed_by_value(self):
         self.approve()
         with mock.patch.object(driver, "run_pilot", side_effect=ValueError("bad header key=%s end" % SHORT_KEY)):
@@ -429,6 +477,41 @@ class RedactionTests(Base):
 
 
 class IncompleteRunTests(Base):
+    def test_sigterm_and_sighup_are_an_incomplete_run_and_the_handlers_are_put_back(self):
+        def mine(signum, frame):
+            pass
+        old = signal.signal(signal.SIGTERM, mine), signal.signal(signal.SIGHUP, mine)
+        self.addCleanup(signal.signal, signal.SIGTERM, old[0])
+        self.addCleanup(signal.signal, signal.SIGHUP, old[1])
+        before = mine, mine                                  # what main must put back
+        for n, sig in enumerate((signal.SIGTERM, signal.SIGHUP)):
+            run_id = "pilot-%d" % n
+            self.approve(run_id=run_id)
+            out = os.path.join(self.dir, "o%d" % n)
+            with mock.patch.object(driver, "run_pilot", side_effect=lambda *a, sig=sig: os.kill(os.getpid(), sig)):
+                code, _out, err = self.run_cli(self.fake_args(run_id, out=out))
+            self.assertEqual((code, signal.getsignal(signal.SIGTERM), signal.getsignal(signal.SIGHUP)),
+                             (P.EXIT_ERROR, before[0], before[1]))
+            with open(os.path.join(out, "pilot-result.json"), encoding="utf-8") as fh:
+                self.assertEqual(json.load(fh)["error"], "interrupted")
+
+    def test_a_paid_call_that_raised_is_logged_with_its_ids(self):
+        self.approve()
+        base = fakes.FakeSampler(reply_tokens=[ord("a")] * 500, overrun=True)      # a service that ignores max_tokens
+        svc = fakes.FakeService(checkpoint_samplers=[], base=base)
+        with mock.patch.object(P, "fake_service", lambda *a: svc):
+            code, _out, err = self.run_cli(self.fake_args())
+        self.assertEqual(code, P.EXIT_ERROR)
+        self.assertIn("more than the", err)
+        with open(os.path.join(self.out, "replies.jsonl"), encoding="utf-8") as fh:
+            rows = [json.loads(line) for line in fh]
+        self.assertEqual(len(rows), 1)                                   # one paid call, stopped by the first overrun
+        self.assertEqual((rows[0]["status"], rows[0]["outcome"], rows[0]["reply"]), ("raised", "", ""))
+        self.assertEqual((rows[0]["returned"], rows[0]["returned_tokens"]), ([[ord("a")] * 500], 500))
+        res = self.result()
+        self.assertEqual((res["replies_logged"], res["spend"]["by_kind"]["sample"]["tokens"]), (1, 500))
+        self.assertEqual(len(base.calls), 1)
+
     def test_an_error_after_the_start_writes_what_exists_and_exits_nonzero(self):
         self.approve()
         codec = driver.check_codec(fakes.FakeTokenizer())
@@ -487,6 +570,43 @@ class WriteOutputTests(Base):
 
 
 class RecordingTests(Base):
+    def test_a_call_that_raised_before_the_service_was_reached_is_not_logged(self):
+        log = self.log("early.jsonl")
+
+        def inner(view):
+            raise RuntimeError("stopped before the service")
+        inner.stats, inner.reached, inner.last_returned = {}, False, None
+        rec = P.Recording(inner, self.ev, "base", log)
+        with self.assertRaises(RuntimeError):
+            rec(E.View(self.ev.episodes[0], "C"))
+        self.assertEqual((log.count, rec.i), (0, 0))
+
+    def test_an_interrupt_after_the_service_was_reached_is_logged_too(self):
+        log = self.log("intr.jsonl")
+
+        def inner(view):
+            raise KeyboardInterrupt()
+        inner.stats, inner.reached, inner.last_returned = {}, True, None
+        rec = P.Recording(inner, self.ev, "base", log)
+        with self.assertRaises(KeyboardInterrupt):
+            rec(E.View(self.ev.episodes[0], "C"))
+        self.assertEqual(log.count, 1)
+
+    def test_a_call_that_raised_after_the_service_was_reached_is_logged_once_and_re_raised(self):
+        log = self.log("late.jsonl")
+
+        def inner(view):
+            raise RuntimeError("settle failed")
+        inner.stats, inner.reached, inner.last_returned = {}, True, [[7, 8, 9]]
+        rec = P.Recording(inner, self.ev, "base", log)
+        with self.assertRaises(RuntimeError):
+            rec(E.View(self.ev.episodes[0], "C"))
+        self.assertEqual((log.count, rec.i, rec.outcomes), (1, 0, []))
+        with open(os.path.join(self.dir, "late.jsonl"), encoding="utf-8") as fh:
+            row = json.loads(fh.read())
+        self.assertEqual((row["status"], row["returned"], row["returned_tokens"], row["episode_id"]),
+                         ("raised", [[7, 8, 9]], 3, self.ev.episodes[0].id))
+
     def setUp(self):
         super().setUp()
         self.codec = driver.check_codec(fakes.FakeTokenizer())

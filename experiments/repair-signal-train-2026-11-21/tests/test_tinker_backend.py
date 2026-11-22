@@ -126,12 +126,15 @@ class BudgetTests(Base):
         m.reserve("sample", 100)
         m.settle("sample", 100, 30)
         self.assertEqual((m.tokens["sample"], m.spent), (30, Fraction(30, 2 * 10**6)))
-        m.settle("sample", 30, 500)                      # a server that ignored max_tokens
-        self.assertEqual((m.tokens["sample"], m.spent), (500, Fraction(500, 2 * 10**6)))
-        m.settle("sample", 500, 500)
-        self.assertEqual(m.tokens["sample"], 500)
+        m.settle("sample", 30, 30)
+        self.assertEqual((m.tokens["sample"], m.spent), (30, Fraction(30, 2 * 10**6)))
 
-    def test_an_overrun_that_reaches_the_ceiling_stops_the_run_after_counting(self):
+    def test_the_first_overrun_stops_the_run_after_counting_it_in_full(self):
+        m = T.Meter(Fraction(1))                           # far below the ceiling
+        m.reserve("sample", 30)
+        with self.assertRaises(T.BudgetStop):
+            m.settle("sample", 30, 500)                    # a server that ignored max_tokens
+        self.assertEqual((m.tokens["sample"], m.spent), (500, Fraction(500, 2 * 10**6)))
         m = T.Meter(Fraction(1, 10**6))                   # room for under 2 sampled tokens
         m.reserve("sample", 1)
         with self.assertRaises(T.BudgetStop):
@@ -229,16 +232,60 @@ class RunTests(Base):
         return self.codec().target_ids(text)               # the reply and the end marker (the opening is in the prompt)
 
     def test_sampling_counts_prompt_and_returned_tokens_and_obeys_the_cap(self):
-        sampler = fakes.FakeSampler(reply_tokens=[ord("a")] * 500, overrun=True)
+        sampler = fakes.FakeSampler(reply_tokens=[ord("a")] * 500)
         s = E.build_set("heldout1", {"S": 1})
         resp = T.TinkerResponder(self.run, sampler, self.codec(), 7)
         text, n, was_cut = resp(E.View(s.episodes[0], "C"))
         self.assertEqual((text, n, was_cut), ("a" * 7, 7, True))      # cut at the cap: reported, so it counts as a format break
         self.assertEqual(resp.stats, {"calls": 1, "accepted": 1, "new_block": 0, "cut": 1})
         self.assertEqual(sampler.calls[0][2], 8)                       # the cap plus the end marker
-        self.assertEqual(self.run.meter.tokens["sample"], 500)         # counted as returned
+        self.assertEqual(self.run.meter.tokens["sample"], 8)           # counted as returned
         self.assertEqual(self.run.meter.tokens["prefill"], sampler.calls[0][0])
         self.assertGreater(sampler.calls[0][0], 50)
+
+    def test_an_overrun_stops_the_run_at_once_and_keeps_the_returned_ids(self):
+        sampler = fakes.FakeSampler(reply_tokens=[ord("a")] * 500, overrun=True)
+        s = E.build_set("heldout1", {"S": 1})
+        resp = T.TinkerResponder(self.run, sampler, self.codec(), 7)
+        with self.assertRaises(T.BudgetStop):
+            resp(E.View(s.episodes[0], "C"))
+        self.assertEqual(self.run.meter.tokens["sample"], 500)         # counted as returned
+        self.assertEqual((resp.reached, resp.last_returned), (True, [[ord("a")] * 500]))
+        self.assertEqual(resp.stats["calls"], 0)
+
+    def test_the_returned_ids_are_kept_whole_and_reset_for_each_call(self):
+        ids = self.encode("x0 = 1") + [ord("z")] * 5              # reply, end marker, then ids after it
+        sampler = fakes.FakeSampler(reply_tokens=ids)
+        s = E.build_set("heldout1", {"S": 1})
+        resp = T.TinkerResponder(self.run, sampler, self.codec(), 96)
+        self.assertEqual((resp.reached, resp.last_returned), (False, None))
+        resp(E.View(s.episodes[0], "C"))
+        self.assertEqual((resp.reached, resp.last_returned), (True, [ids]))
+        sampler.reply_tokens = [1, 2]
+        resp(E.View(s.episodes[0], "C"))
+        self.assertEqual(resp.last_returned, [[1, 2]])
+        self.run.meter.spent = self.run.meter.ceiling - Fraction(1, 10**9)   # the next call stops before the service
+        with self.assertRaises(T.BudgetStop):
+            resp(E.View(s.episodes[0], "C"))
+        self.assertEqual((resp.reached, resp.last_returned), (False, None))   # nothing is left from the call before
+
+    def test_a_call_that_stops_before_the_service_is_reached_says_so(self):
+        s = E.build_set("heldout1", {"S": 1})
+        self.run.meter.spent = self.run.meter.ceiling - Fraction(1, 10**9)     # no room for the call
+        resp = T.TinkerResponder(self.run, fakes.FakeSampler(), self.codec(), 96)
+        with self.assertRaises(T.BudgetStop):
+            resp(E.View(s.episodes[0], "C"))
+        self.assertEqual((resp.reached, resp.last_returned), (False, None))
+
+    def test_a_service_error_after_the_request_was_made_is_reached_without_ids(self):
+        class Boom:
+            def sample(self, *a, **kw):
+                raise RuntimeError("down")
+        s = E.build_set("heldout1", {"S": 1})
+        resp = T.TinkerResponder(self.run, Boom(), self.codec(), 96)
+        with self.assertRaises(T.BackendError):
+            resp(E.View(s.episodes[0], "C"))
+        self.assertEqual((resp.reached, resp.last_returned), (True, None))
 
     def test_the_prompt_carries_special_ids_and_sampling_stops_on_the_end_marker(self):
         sampler = fakes.FakeSampler(reply_tokens=self.encode("x0 = 1"))
@@ -359,7 +406,8 @@ class LedgerTests(Base):
     def test_an_overrun_is_written_as_extra_tokens(self):
         run = self.start()
         run.meter.reserve("sample", 10)
-        run.meter.settle("sample", 10, 25)
+        with self.assertRaises(T.BudgetStop):
+            run.meter.settle("sample", 10, 25)
         self.assertEqual(self.lines()[-1]["tokens"], 15)
         self.assertEqual(T.Ledger(self.ledger, "run-1").replay()[1]["sample"], 25)
 
@@ -463,7 +511,8 @@ class LedgerTests(Base):
             run.meter.reserve("train", 5)
             run.meter.settle("sample", 0, 0)
             run.meter.reserve("sample", 5)
-            run.meter.settle("sample", 5, 9)
+            with self.assertRaises(T.BudgetStop):
+                run.meter.settle("sample", 5, 9)
         self.assertEqual(sync.call_count, 4)
 
     def test_a_ledger_that_cannot_be_written_stops_before_any_call(self):
@@ -630,6 +679,32 @@ class SecretTests(Base):
         self.assertEqual(buf.getvalue(), "")
         self.assertTrue(cm.exception.__suppress_context__)
         self.assertIsNone(cm.exception.__cause__)
+
+    def test_a_registered_key_is_removed_whole_before_the_pattern_and_the_cut(self):
+        key = "tml-PLANTED+k3y/0123456789abc=def"                      # holds characters the pattern does not match
+        self.addCleanup(T.set_secret_values, [])
+        T.set_secret_values([key])
+        self.assertNotIn("k3y", T.redact("auth failed for key %s please retry" % key))
+        self.assertNotIn("0123456789abc", T.redact("x" * 380 + key))   # a key that straddles the 400 cut
+        T.set_secret_values([])
+        self.assertIn("k3y", T.redact("auth failed for key %s" % key))   # the control: unregistered, it leaks
+        T.set_secret_values([key, key + "+more", "", None])
+        self.assertEqual(T.redact(key + "+more"), "[REDACTED]")        # the longest value first
+
+    def test_a_registered_key_does_not_leak_through_the_guard_path(self):
+        key = "tml-PLANTED+k3y/0123456789abc=def"
+        self.addCleanup(T.set_secret_values, [])
+        T.set_secret_values([key])
+        self.approve(ceiling="5.00")
+        svc = fakes.FakeService(fail_with=RuntimeError("auth failed for key %s please retry" % key))
+        run = self.run_(service=svc)
+        run.start_arm("C")
+        d = T.make_datum(fakes.FakeTypes, [1, 2], [3])
+        with self.assertRaises(T.BackendError) as cm:
+            run.train_step("C", [d], 1e-3)
+        self.assertNotIn("k3y", str(cm.exception))
+        self.assertNotIn("0123456789abc", str(cm.exception))
+        self.assertIn("please retry", str(cm.exception))
 
     def test_source_never_reads_environment_or_key_files(self):
         with open(T.__file__.replace(".pyc", ".py"), "r", encoding="utf-8") as fh:
