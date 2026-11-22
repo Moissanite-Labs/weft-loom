@@ -128,7 +128,7 @@ The verbose policy breaks the format in all 200 replies in every text, and that 
 
 The dry run's 46 checks show that the exact checker, the sign test, the ratchet, the latch, the receipt chain and the budget guards each behave as designed. The table shows that the C, E and N texts separate a policy that reads the amounts from one that does not. The oracle scores 0 on N because its sign convention is written into the policy, and that is not a property of any model.
 
-The test suite runs 539 tests (9 skipped without the service library and the tokenizer package) and passes. `mutate.py` removes 444 guards one at a time and every one is caught by a failing test. These too check the harness only.
+The test suite runs 542 tests (9 skipped without the service library and the tokenizer package) and passes. `mutate.py` removes 448 guards one at a time and every one is caught by a failing test. These too check the harness only.
 
 The dry run also runs the whole registered procedure against a fake client twice. With a gain built in for C, the verdict is `support`, and the second held-out set is touched once. With no gain, the verdict is `cannot_test` and the second set is never touched. The fake pilot reports 200 calls and 8 steps. These are properties of the fake.
 
