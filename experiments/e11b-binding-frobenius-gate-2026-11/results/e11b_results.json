@@ -1,0 +1,1820 @@
+{
+  "experiment": "E11b",
+  "parent": "E11",
+  "weft_reference": "https://github.com/Moissanite-Labs/weft/pull/201",
+  "prereg": "PREREG.md",
+  "commit": "cdefaef189b36574e14955598b51ce5fcde9ae99",
+  "elapsed_s": 4.407,
+  "seeds_cross": [
+    17,
+    29,
+    43,
+    101,
+    202
+  ],
+  "r_fractions": [
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "per_seed_cross": [
+    {
+      "seed": 17,
+      "mode": "cross_seed",
+      "delta_frobenius_plastic": 3.278883868758208,
+      "raw_coord": {
+        "new_task_accuracy": 0.6171875,
+        "iid_all_kept_pass": false,
+        "shifted_probe_pass_count": 1,
+        "retention_by_probe": {
+          "iid": {
+            "task0_drop": 0.056640625,
+            "task0_pass": 1.0,
+            "task1_drop": 0.107421875,
+            "task1_pass": 0.0,
+            "task2_drop": 0.099609375,
+            "task2_pass": 1.0
+          },
+          "scale_1p5": {
+            "task0_drop": 0.056640625,
+            "task0_pass": 1.0,
+            "task1_drop": 0.0859375,
+            "task1_pass": 1.0,
+            "task2_drop": 0.0859375,
+            "task2_pass": 1.0
+          },
+          "shift_pos": {
+            "task0_drop": 0.0546875,
+            "task0_pass": 1.0,
+            "task1_drop": 0.11328125,
+            "task1_pass": 0.0,
+            "task2_drop": 0.1015625,
+            "task2_pass": 0.0
+          },
+          "rotate": {
+            "task0_drop": 0.060546875,
+            "task0_pass": 1.0,
+            "task1_drop": 0.107421875,
+            "task1_pass": 0.0,
+            "task2_drop": 0.09375,
+            "task2_pass": 1.0
+          },
+          "sparse": {
+            "task0_drop": 0.04296875,
+            "task0_pass": 1.0,
+            "task1_drop": 0.16796875,
+            "task1_pass": 0.0,
+            "task2_drop": 0.03125,
+            "task2_pass": 1.0
+          }
+        },
+        "nonlinear_drift_new_task_mae": 0.9400403686597877,
+        "training_steps_b": 0
+      },
+      "frobenius_by_fraction": {
+        "f0.1": {
+          "new_task_accuracy": 0.357421875,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.009765625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.013671875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.001953125,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.009765625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0,
+              "task1_pass": 1.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.001953125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.001953125,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.00390625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.01171875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.001953125,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.021484375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.001953125,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.01305975646561951,
+          "training_steps_b": 0,
+          "r_fraction": 0.1,
+          "r_gate": 0.32788838687582084,
+          "clip_bound": true,
+          "post_clip_norm": 0.32788838687582084,
+          "delta_frobenius_plastic": 3.278883868758208
+        },
+        "f0.25": {
+          "new_task_accuracy": 0.388671875,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.015625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.03515625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.013671875,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.013671875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.01953125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.015625,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.009765625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.029296875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.015625,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.013671875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.03125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.015625,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.0,
+              "task0_pass": 1.0,
+              "task1_drop": 0.04296875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.001953125,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.0897831531115001,
+          "training_steps_b": 0,
+          "r_fraction": 0.25,
+          "r_gate": 0.819720967189552,
+          "clip_bound": true,
+          "post_clip_norm": 0.819720967189552,
+          "delta_frobenius_plastic": 3.278883868758208
+        },
+        "f0.5": {
+          "new_task_accuracy": 0.537109375,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.033203125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.06640625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.033203125,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.025390625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.04296875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.046875,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.0234375,
+              "task0_pass": 1.0,
+              "task1_drop": 0.068359375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.046875,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.03515625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.064453125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.0390625,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.015625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.091796875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.009765625,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.4206223929283157,
+          "training_steps_b": 0,
+          "r_fraction": 0.5,
+          "r_gate": 1.639441934379104,
+          "clip_bound": true,
+          "post_clip_norm": 1.639441934379104,
+          "delta_frobenius_plastic": 3.278883868758208
+        },
+        "f0.75": {
+          "new_task_accuracy": 0.61328125,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 3,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.046875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.08984375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.068359375,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.04296875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.06640625,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.04296875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.091796875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.068359375,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.04296875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0859375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.05859375,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.029296875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.1328125,
+              "task1_pass": 0.0,
+              "task2_drop": 0.021484375,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.7404858368983691,
+          "training_steps_b": 0,
+          "r_fraction": 0.75,
+          "r_gate": 2.4591629015686562,
+          "clip_bound": true,
+          "post_clip_norm": 2.459162901568657,
+          "delta_frobenius_plastic": 3.278883868758208
+        },
+        "f1": {
+          "new_task_accuracy": 0.6171875,
+          "iid_all_kept_pass": false,
+          "shifted_probe_pass_count": 1,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.056640625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.107421875,
+              "task1_pass": 0.0,
+              "task2_drop": 0.099609375,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.056640625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0859375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.0859375,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.0546875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.11328125,
+              "task1_pass": 0.0,
+              "task2_drop": 0.1015625,
+              "task2_pass": 0.0
+            },
+            "rotate": {
+              "task0_drop": 0.060546875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.107421875,
+              "task1_pass": 0.0,
+              "task2_drop": 0.09375,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.04296875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.16796875,
+              "task1_pass": 0.0,
+              "task2_drop": 0.03125,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.9400403686597877,
+          "training_steps_b": 0,
+          "r_fraction": 1.0,
+          "r_gate": 3.278883868758208,
+          "clip_bound": false,
+          "post_clip_norm": 3.278883868758208,
+          "delta_frobenius_plastic": 3.278883868758208
+        }
+      }
+    },
+    {
+      "seed": 29,
+      "mode": "cross_seed",
+      "delta_frobenius_plastic": 3.6757230128439824,
+      "raw_coord": {
+        "new_task_accuracy": 0.748046875,
+        "iid_all_kept_pass": true,
+        "shifted_probe_pass_count": 2,
+        "retention_by_probe": {
+          "iid": {
+            "task0_drop": 0.056640625,
+            "task0_pass": 1.0,
+            "task1_drop": 0.072265625,
+            "task1_pass": 1.0,
+            "task2_drop": 0.033203125,
+            "task2_pass": 1.0
+          },
+          "scale_1p5": {
+            "task0_drop": 0.05078125,
+            "task0_pass": 1.0,
+            "task1_drop": 0.08203125,
+            "task1_pass": 1.0,
+            "task2_drop": 0.048828125,
+            "task2_pass": 1.0
+          },
+          "shift_pos": {
+            "task0_drop": 0.078125,
+            "task0_pass": 1.0,
+            "task1_drop": 0.1015625,
+            "task1_pass": 0.0,
+            "task2_drop": 0.0859375,
+            "task2_pass": 1.0
+          },
+          "rotate": {
+            "task0_drop": 0.072265625,
+            "task0_pass": 1.0,
+            "task1_drop": 0.09765625,
+            "task1_pass": 1.0,
+            "task2_drop": 0.0625,
+            "task2_pass": 1.0
+          },
+          "sparse": {
+            "task0_drop": 0.11328125,
+            "task0_pass": 0.0,
+            "task1_drop": 0.056640625,
+            "task1_pass": 1.0,
+            "task2_drop": 0.091796875,
+            "task2_pass": 1.0
+          }
+        },
+        "nonlinear_drift_new_task_mae": 0.6119993204603129,
+        "training_steps_b": 0
+      },
+      "frobenius_by_fraction": {
+        "f0.1": {
+          "new_task_accuracy": 0.671875,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.00390625,
+              "task0_pass": 1.0,
+              "task1_drop": -0.001953125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.00390625,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.00390625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.00390625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.00390625,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.0078125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.005859375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.001953125,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.01171875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.00390625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.0,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.009765625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0,
+              "task1_pass": 1.0,
+              "task2_drop": -0.001953125,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.010170334362635283,
+          "training_steps_b": 0,
+          "r_fraction": 0.1,
+          "r_gate": 0.3675723012843983,
+          "clip_bound": true,
+          "post_clip_norm": 0.3675723012843984,
+          "delta_frobenius_plastic": 3.6757230128439824
+        },
+        "f0.25": {
+          "new_task_accuracy": 0.671875,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.009765625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0078125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.01171875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.005859375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.021484375,
+              "task0_pass": 1.0,
+              "task1_drop": 0.025390625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.009765625,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.015625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.015625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.01953125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0078125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.06482856756631969,
+          "training_steps_b": 0,
+          "r_fraction": 0.25,
+          "r_gate": 0.9189307532109956,
+          "clip_bound": true,
+          "post_clip_norm": 0.9189307532109956,
+          "delta_frobenius_plastic": 3.6757230128439824
+        },
+        "f0.5": {
+          "new_task_accuracy": 0.720703125,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.021484375,
+              "task0_pass": 1.0,
+              "task1_drop": 0.02734375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.0078125,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.0234375,
+              "task0_pass": 1.0,
+              "task1_drop": 0.033203125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.021484375,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.044921875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.052734375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.03125,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.03515625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0390625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.015625,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.056640625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.02734375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.01953125,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.21881136346820984,
+          "training_steps_b": 0,
+          "r_fraction": 0.5,
+          "r_gate": 1.8378615064219912,
+          "clip_bound": true,
+          "post_clip_norm": 1.8378615064219912,
+          "delta_frobenius_plastic": 3.6757230128439824
+        },
+        "f0.75": {
+          "new_task_accuracy": 0.7421875,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.03515625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.052734375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.021484375,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.041015625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.056640625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.03515625,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.06640625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.078125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.05078125,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.048828125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.06640625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.029296875,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.083984375,
+              "task0_pass": 1.0,
+              "task1_drop": 0.041015625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.041015625,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.42291878765690183,
+          "training_steps_b": 0,
+          "r_fraction": 0.75,
+          "r_gate": 2.756792259632987,
+          "clip_bound": true,
+          "post_clip_norm": 2.756792259632987,
+          "delta_frobenius_plastic": 3.6757230128439824
+        },
+        "f1": {
+          "new_task_accuracy": 0.748046875,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 2,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.056640625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.072265625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.033203125,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.05078125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.08203125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.048828125,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.078125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.1015625,
+              "task1_pass": 0.0,
+              "task2_drop": 0.0859375,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.072265625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.09765625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.0625,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.11328125,
+              "task0_pass": 0.0,
+              "task1_drop": 0.056640625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.091796875,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.6119993204603129,
+          "training_steps_b": 0,
+          "r_fraction": 1.0,
+          "r_gate": 3.6757230128439824,
+          "clip_bound": false,
+          "post_clip_norm": 3.6757230128439824,
+          "delta_frobenius_plastic": 3.6757230128439824
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "mode": "cross_seed",
+      "delta_frobenius_plastic": 3.3849690155125383,
+      "raw_coord": {
+        "new_task_accuracy": 0.66796875,
+        "iid_all_kept_pass": false,
+        "shifted_probe_pass_count": 0,
+        "retention_by_probe": {
+          "iid": {
+            "task0_drop": 0.1484375,
+            "task0_pass": 0.0,
+            "task1_drop": 0.060546875,
+            "task1_pass": 1.0,
+            "task2_drop": 0.044921875,
+            "task2_pass": 1.0
+          },
+          "scale_1p5": {
+            "task0_drop": 0.12890625,
+            "task0_pass": 0.0,
+            "task1_drop": 0.072265625,
+            "task1_pass": 1.0,
+            "task2_drop": 0.05078125,
+            "task2_pass": 1.0
+          },
+          "shift_pos": {
+            "task0_drop": 0.111328125,
+            "task0_pass": 0.0,
+            "task1_drop": 0.08984375,
+            "task1_pass": 1.0,
+            "task2_drop": 0.044921875,
+            "task2_pass": 1.0
+          },
+          "rotate": {
+            "task0_drop": 0.111328125,
+            "task0_pass": 0.0,
+            "task1_drop": 0.04296875,
+            "task1_pass": 1.0,
+            "task2_drop": 0.080078125,
+            "task2_pass": 1.0
+          },
+          "sparse": {
+            "task0_drop": 0.154296875,
+            "task0_pass": 0.0,
+            "task1_drop": 0.060546875,
+            "task1_pass": 1.0,
+            "task2_drop": 0.177734375,
+            "task2_pass": 0.0
+          }
+        },
+        "nonlinear_drift_new_task_mae": 1.1236992859070434,
+        "training_steps_b": 0
+      },
+      "frobenius_by_fraction": {
+        "f0.1": {
+          "new_task_accuracy": 0.515625,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.0,
+              "task0_pass": 1.0,
+              "task1_drop": -0.001953125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.001953125,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.0078125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0,
+              "task1_pass": 1.0,
+              "task2_drop": -0.001953125,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.015625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.005859375,
+              "task1_pass": 1.0,
+              "task2_drop": -0.001953125,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.0,
+              "task0_pass": 1.0,
+              "task1_drop": -0.00390625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.009765625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.001953125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.0,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.019150333379629604,
+          "training_steps_b": 0,
+          "r_fraction": 0.1,
+          "r_gate": 0.33849690155125384,
+          "clip_bound": true,
+          "post_clip_norm": 0.3384969015512538,
+          "delta_frobenius_plastic": 3.3849690155125383
+        },
+        "f0.25": {
+          "new_task_accuracy": 0.509765625,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.01953125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.00390625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.00390625,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.013671875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.01171875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.03515625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.009765625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.013671875,
+              "task0_pass": 1.0,
+              "task1_drop": -0.00390625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.017578125,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.02734375,
+              "task0_pass": 1.0,
+              "task1_drop": 0.00390625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.017578125,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.10834426484127199,
+          "training_steps_b": 0,
+          "r_fraction": 0.25,
+          "r_gate": 0.8462422538781346,
+          "clip_bound": true,
+          "post_clip_norm": 0.8462422538781346,
+          "delta_frobenius_plastic": 3.3849690155125383
+        },
+        "f0.5": {
+          "new_task_accuracy": 0.54296875,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.068359375,
+              "task0_pass": 1.0,
+              "task1_drop": 0.017578125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.0234375,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.04296875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.029296875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.01171875,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.056640625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.04296875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.044921875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.005859375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.025390625,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.0859375,
+              "task0_pass": 1.0,
+              "task1_drop": 0.013671875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.044921875,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.4432053288829071,
+          "training_steps_b": 0,
+          "r_fraction": 0.5,
+          "r_gate": 1.6924845077562691,
+          "clip_bound": true,
+          "post_clip_norm": 1.6924845077562691,
+          "delta_frobenius_plastic": 3.3849690155125383
+        },
+        "f0.75": {
+          "new_task_accuracy": 0.623046875,
+          "iid_all_kept_pass": false,
+          "shifted_probe_pass_count": 3,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.115234375,
+              "task0_pass": 0.0,
+              "task1_drop": 0.044921875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.037109375,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.08203125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.052734375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.03125,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.07421875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.06640625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.025390625,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.080078125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.021484375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.046875,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.123046875,
+              "task0_pass": 0.0,
+              "task1_drop": 0.033203125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.12109375,
+              "task2_pass": 0.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.8399109431198808,
+          "training_steps_b": 0,
+          "r_fraction": 0.75,
+          "r_gate": 2.5387267616344036,
+          "clip_bound": true,
+          "post_clip_norm": 2.5387267616344036,
+          "delta_frobenius_plastic": 3.3849690155125383
+        },
+        "f1": {
+          "new_task_accuracy": 0.66796875,
+          "iid_all_kept_pass": false,
+          "shifted_probe_pass_count": 0,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.1484375,
+              "task0_pass": 0.0,
+              "task1_drop": 0.060546875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.044921875,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.12890625,
+              "task0_pass": 0.0,
+              "task1_drop": 0.072265625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.05078125,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.111328125,
+              "task0_pass": 0.0,
+              "task1_drop": 0.08984375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.044921875,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.111328125,
+              "task0_pass": 0.0,
+              "task1_drop": 0.04296875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.080078125,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.154296875,
+              "task0_pass": 0.0,
+              "task1_drop": 0.060546875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.177734375,
+              "task2_pass": 0.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 1.1236992859070434,
+          "training_steps_b": 0,
+          "r_fraction": 1.0,
+          "r_gate": 3.3849690155125383,
+          "clip_bound": false,
+          "post_clip_norm": 3.3849690155125383,
+          "delta_frobenius_plastic": 3.3849690155125383
+        }
+      }
+    },
+    {
+      "seed": 101,
+      "mode": "cross_seed",
+      "delta_frobenius_plastic": 4.128179254895546,
+      "raw_coord": {
+        "new_task_accuracy": 0.6171875,
+        "iid_all_kept_pass": true,
+        "shifted_probe_pass_count": 2,
+        "retention_by_probe": {
+          "iid": {
+            "task0_drop": 0.025390625,
+            "task0_pass": 1.0,
+            "task1_drop": 0.0859375,
+            "task1_pass": 1.0,
+            "task2_drop": 0.029296875,
+            "task2_pass": 1.0
+          },
+          "scale_1p5": {
+            "task0_drop": 0.005859375,
+            "task0_pass": 1.0,
+            "task1_drop": 0.080078125,
+            "task1_pass": 1.0,
+            "task2_drop": 0.01171875,
+            "task2_pass": 1.0
+          },
+          "shift_pos": {
+            "task0_drop": 0.0234375,
+            "task0_pass": 1.0,
+            "task1_drop": 0.10546875,
+            "task1_pass": 0.0,
+            "task2_drop": 0.013671875,
+            "task2_pass": 1.0
+          },
+          "rotate": {
+            "task0_drop": 0.029296875,
+            "task0_pass": 1.0,
+            "task1_drop": 0.087890625,
+            "task1_pass": 1.0,
+            "task2_drop": 0.025390625,
+            "task2_pass": 1.0
+          },
+          "sparse": {
+            "task0_drop": 0.025390625,
+            "task0_pass": 1.0,
+            "task1_drop": 0.12890625,
+            "task1_pass": 0.0,
+            "task2_drop": 0.005859375,
+            "task2_pass": 1.0
+          }
+        },
+        "nonlinear_drift_new_task_mae": 0.6856286099983085,
+        "training_steps_b": 0
+      },
+      "frobenius_by_fraction": {
+        "f0.1": {
+          "new_task_accuracy": 0.486328125,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.0,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0,
+              "task1_pass": 1.0,
+              "task2_drop": 0.001953125,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": -0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.005859375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.0,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": -0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.00390625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.00390625,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.0,
+              "task0_pass": 1.0,
+              "task1_drop": 0.005859375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.001953125,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.0,
+              "task0_pass": 1.0,
+              "task1_drop": 0.01171875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.0,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.009474108828118385,
+          "training_steps_b": 0,
+          "r_fraction": 0.1,
+          "r_gate": 0.4128179254895546,
+          "clip_bound": true,
+          "post_clip_norm": 0.4128179254895546,
+          "delta_frobenius_plastic": 4.128179254895546
+        },
+        "f0.25": {
+          "new_task_accuracy": 0.494140625,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.00390625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.02734375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": -0.00390625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.017578125,
+              "task1_pass": 1.0,
+              "task2_drop": -0.001953125,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": -0.0078125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0234375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.00390625,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.00390625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.017578125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.001953125,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.037109375,
+              "task1_pass": 1.0,
+              "task2_drop": -0.001953125,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.06741551490423288,
+          "training_steps_b": 0,
+          "r_fraction": 0.25,
+          "r_gate": 1.0320448137238865,
+          "clip_bound": true,
+          "post_clip_norm": 1.0320448137238865,
+          "delta_frobenius_plastic": 4.128179254895546
+        },
+        "f0.5": {
+          "new_task_accuracy": 0.53515625,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.01171875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.052734375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.0078125,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": -0.00390625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.033203125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.00390625,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": -0.00390625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.048828125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.013671875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.044921875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.0078125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.072265625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.001953125,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.28039452050378755,
+          "training_steps_b": 0,
+          "r_fraction": 0.5,
+          "r_gate": 2.064089627447773,
+          "clip_bound": true,
+          "post_clip_norm": 2.064089627447773,
+          "delta_frobenius_plastic": 4.128179254895546
+        },
+        "f0.75": {
+          "new_task_accuracy": 0.583984375,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 3,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.017578125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0703125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.01953125,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.0,
+              "task0_pass": 1.0,
+              "task1_drop": 0.05078125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.00390625,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.009765625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.078125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.009765625,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.015625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.072265625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.01953125,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.021484375,
+              "task0_pass": 1.0,
+              "task1_drop": 0.107421875,
+              "task1_pass": 0.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.47238189481257975,
+          "training_steps_b": 0,
+          "r_fraction": 0.75,
+          "r_gate": 3.0961344411716594,
+          "clip_bound": true,
+          "post_clip_norm": 3.0961344411716594,
+          "delta_frobenius_plastic": 4.128179254895546
+        },
+        "f1": {
+          "new_task_accuracy": 0.6171875,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 2,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.025390625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0859375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.029296875,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.005859375,
+              "task0_pass": 1.0,
+              "task1_drop": 0.080078125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.01171875,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.0234375,
+              "task0_pass": 1.0,
+              "task1_drop": 0.10546875,
+              "task1_pass": 0.0,
+              "task2_drop": 0.013671875,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.029296875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.087890625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.025390625,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.025390625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.12890625,
+              "task1_pass": 0.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.6856286099983085,
+          "training_steps_b": 0,
+          "r_fraction": 1.0,
+          "r_gate": 4.128179254895546,
+          "clip_bound": false,
+          "post_clip_norm": 4.128179254895546,
+          "delta_frobenius_plastic": 4.128179254895546
+        }
+      }
+    },
+    {
+      "seed": 202,
+      "mode": "cross_seed",
+      "delta_frobenius_plastic": 3.398021048226207,
+      "raw_coord": {
+        "new_task_accuracy": 0.435546875,
+        "iid_all_kept_pass": true,
+        "shifted_probe_pass_count": 4,
+        "retention_by_probe": {
+          "iid": {
+            "task0_drop": 0.013671875,
+            "task0_pass": 1.0,
+            "task1_drop": 0.03125,
+            "task1_pass": 1.0,
+            "task2_drop": 0.021484375,
+            "task2_pass": 1.0
+          },
+          "scale_1p5": {
+            "task0_drop": 0.021484375,
+            "task0_pass": 1.0,
+            "task1_drop": 0.02734375,
+            "task1_pass": 1.0,
+            "task2_drop": 0.025390625,
+            "task2_pass": 1.0
+          },
+          "shift_pos": {
+            "task0_drop": 0.001953125,
+            "task0_pass": 1.0,
+            "task1_drop": 0.0625,
+            "task1_pass": 1.0,
+            "task2_drop": 0.013671875,
+            "task2_pass": 1.0
+          },
+          "rotate": {
+            "task0_drop": 0.01171875,
+            "task0_pass": 1.0,
+            "task1_drop": 0.041015625,
+            "task1_pass": 1.0,
+            "task2_drop": 0.021484375,
+            "task2_pass": 1.0
+          },
+          "sparse": {
+            "task0_drop": 0.013671875,
+            "task0_pass": 1.0,
+            "task1_drop": 0.037109375,
+            "task1_pass": 1.0,
+            "task2_drop": 0.021484375,
+            "task2_pass": 1.0
+          }
+        },
+        "nonlinear_drift_new_task_mae": 1.0563768483283749,
+        "training_steps_b": 0
+      },
+      "frobenius_by_fraction": {
+        "f0.1": {
+          "new_task_accuracy": 0.51953125,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": -0.0078125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.001953125,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": -0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": -0.001953125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.001953125,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": -0.005859375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.0,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": -0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.001953125,
+              "task1_pass": 1.0,
+              "task2_drop": -0.001953125,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.00390625,
+              "task0_pass": 1.0,
+              "task1_drop": -0.00390625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.0,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.022316972246735057,
+          "training_steps_b": 0,
+          "r_fraction": 0.1,
+          "r_gate": 0.33980210482262074,
+          "clip_bound": true,
+          "post_clip_norm": 0.33980210482262074,
+          "delta_frobenius_plastic": 3.398021048226207
+        },
+        "f0.25": {
+          "new_task_accuracy": 0.478515625,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.0,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0,
+              "task1_pass": 1.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": -0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0,
+              "task1_pass": 1.0,
+              "task2_drop": 0.001953125,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.00390625,
+              "task0_pass": 1.0,
+              "task1_drop": -0.00390625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.001953125,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.001953125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.00390625,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.005859375,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0,
+              "task1_pass": 1.0,
+              "task2_drop": 0.00390625,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.1257228788249106,
+          "training_steps_b": 0,
+          "r_fraction": 0.25,
+          "r_gate": 0.8495052620565517,
+          "clip_bound": true,
+          "post_clip_norm": 0.8495052620565517,
+          "delta_frobenius_plastic": 3.398021048226207
+        },
+        "f0.5": {
+          "new_task_accuracy": 0.435546875,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0078125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.0078125,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.001953125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.0078125,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.009765625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.0,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0078125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.009765625,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.009765625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.005859375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.009765625,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.3859289138619463,
+          "training_steps_b": 0,
+          "r_fraction": 0.5,
+          "r_gate": 1.6990105241131035,
+          "clip_bound": true,
+          "post_clip_norm": 1.6990105241131035,
+          "delta_frobenius_plastic": 3.398021048226207
+        },
+        "f0.75": {
+          "new_task_accuracy": 0.431640625,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.0078125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.01953125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.01171875,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.015625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.01171875,
+              "task1_pass": 1.0,
+              "task2_drop": 0.017578125,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.03515625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.005859375,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.009765625,
+              "task0_pass": 1.0,
+              "task1_drop": 0.02734375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.017578125,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.005859375,
+              "task0_pass": 1.0,
+              "task1_drop": 0.021484375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.013671875,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 0.7056839268505714,
+          "training_steps_b": 0,
+          "r_fraction": 0.75,
+          "r_gate": 2.5485157861696552,
+          "clip_bound": true,
+          "post_clip_norm": 2.5485157861696557,
+          "delta_frobenius_plastic": 3.398021048226207
+        },
+        "f1": {
+          "new_task_accuracy": 0.435546875,
+          "iid_all_kept_pass": true,
+          "shifted_probe_pass_count": 4,
+          "retention_by_probe": {
+            "iid": {
+              "task0_drop": 0.013671875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.03125,
+              "task1_pass": 1.0,
+              "task2_drop": 0.021484375,
+              "task2_pass": 1.0
+            },
+            "scale_1p5": {
+              "task0_drop": 0.021484375,
+              "task0_pass": 1.0,
+              "task1_drop": 0.02734375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.025390625,
+              "task2_pass": 1.0
+            },
+            "shift_pos": {
+              "task0_drop": 0.001953125,
+              "task0_pass": 1.0,
+              "task1_drop": 0.0625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.013671875,
+              "task2_pass": 1.0
+            },
+            "rotate": {
+              "task0_drop": 0.01171875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.041015625,
+              "task1_pass": 1.0,
+              "task2_drop": 0.021484375,
+              "task2_pass": 1.0
+            },
+            "sparse": {
+              "task0_drop": 0.013671875,
+              "task0_pass": 1.0,
+              "task1_drop": 0.037109375,
+              "task1_pass": 1.0,
+              "task2_drop": 0.021484375,
+              "task2_pass": 1.0
+            }
+          },
+          "nonlinear_drift_new_task_mae": 1.0563768483283749,
+          "training_steps_b": 0,
+          "r_fraction": 1.0,
+          "r_gate": 3.398021048226207,
+          "clip_bound": false,
+          "post_clip_norm": 3.398021048226207,
+          "delta_frobenius_plastic": 3.398021048226207
+        }
+      }
+    }
+  ],
+  "aggregate_cross_seed": {
+    "raw_coord": {
+      "new_task_accuracy_mean": 0.6171875,
+      "new_task_accuracy_std": 0.11477829501624398,
+      "new_task_accuracy_per_seed": [
+        0.6171875,
+        0.748046875,
+        0.66796875,
+        0.6171875,
+        0.435546875
+      ],
+      "shifted_pass_mean": 1.8,
+      "shifted_pass_per_seed": [
+        1,
+        2,
+        0,
+        2,
+        4
+      ],
+      "iid_retention_rate": 0.6,
+      "bar_new_task_080": false,
+      "bar_shifted_3of4": false,
+      "bar_iid_1p0": false
+    },
+    "f0.1": {
+      "new_task_accuracy_mean": 0.51015625,
+      "new_task_accuracy_std": 0.11198919680127772,
+      "new_task_accuracy_per_seed": [
+        0.357421875,
+        0.671875,
+        0.515625,
+        0.486328125,
+        0.51953125
+      ],
+      "shifted_pass_mean": 4.0,
+      "shifted_pass_per_seed": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "iid_retention_rate": 1.0,
+      "bar_new_task_080": false,
+      "bar_shifted_3of4": true,
+      "bar_iid_1p0": true,
+      "clip_bound_rate": 1.0,
+      "post_clip_norm_mean": 0.35731552400472966
+    },
+    "f0.25": {
+      "new_task_accuracy_mean": 0.50859375,
+      "new_task_accuracy_std": 0.10266082799913875,
+      "new_task_accuracy_per_seed": [
+        0.388671875,
+        0.671875,
+        0.509765625,
+        0.494140625,
+        0.478515625
+      ],
+      "shifted_pass_mean": 4.0,
+      "shifted_pass_per_seed": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "iid_retention_rate": 1.0,
+      "bar_new_task_080": false,
+      "bar_shifted_3of4": true,
+      "bar_iid_1p0": true,
+      "clip_bound_rate": 1.0,
+      "post_clip_norm_mean": 0.8932888100118241
+    },
+    "f0.5": {
+      "new_task_accuracy_mean": 0.554296875,
+      "new_task_accuracy_std": 0.103177883575792,
+      "new_task_accuracy_per_seed": [
+        0.537109375,
+        0.720703125,
+        0.54296875,
+        0.53515625,
+        0.435546875
+      ],
+      "shifted_pass_mean": 4.0,
+      "shifted_pass_per_seed": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "iid_retention_rate": 1.0,
+      "bar_new_task_080": false,
+      "bar_shifted_3of4": true,
+      "bar_iid_1p0": true,
+      "clip_bound_rate": 1.0,
+      "post_clip_norm_mean": 1.7865776200236483
+    },
+    "f0.75": {
+      "new_task_accuracy_mean": 0.598828125,
+      "new_task_accuracy_std": 0.11126471604301524,
+      "new_task_accuracy_per_seed": [
+        0.61328125,
+        0.7421875,
+        0.623046875,
+        0.583984375,
+        0.431640625
+      ],
+      "shifted_pass_mean": 3.4,
+      "shifted_pass_per_seed": [
+        3,
+        4,
+        3,
+        3,
+        4
+      ],
+      "iid_retention_rate": 0.8,
+      "bar_new_task_080": false,
+      "bar_shifted_3of4": true,
+      "bar_iid_1p0": false,
+      "clip_bound_rate": 1.0,
+      "post_clip_norm_mean": 2.679866430035472
+    },
+    "f1": {
+      "new_task_accuracy_mean": 0.6171875,
+      "new_task_accuracy_std": 0.11477829501624398,
+      "new_task_accuracy_per_seed": [
+        0.6171875,
+        0.748046875,
+        0.66796875,
+        0.6171875,
+        0.435546875
+      ],
+      "shifted_pass_mean": 1.8,
+      "shifted_pass_per_seed": [
+        1,
+        2,
+        0,
+        2,
+        4
+      ],
+      "iid_retention_rate": 0.6,
+      "bar_new_task_080": false,
+      "bar_shifted_3of4": false,
+      "bar_iid_1p0": false,
+      "clip_bound_rate": 0.0,
+      "post_clip_norm_mean": 3.5731552400472966
+    }
+  },
+  "sanity_checks": {
+    "f1_matches_raw_coord_every_seed": true,
+    "post_clip_norm_nondecreasing_in_f_every_seed": true,
+    "per_seed_f1_match": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "constants": {
+    "RETENTION_TOL": 0.1,
+    "NEW_TASK_ACC_BAR": 0.8,
+    "SHIFTED_PASS_NEED": 3
+  }
+}

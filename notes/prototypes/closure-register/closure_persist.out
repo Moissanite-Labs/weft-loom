@@ -1,0 +1,19 @@
+Self-test passed: tree against enumeration (2x2, 2x3, 3x3), largest gap against entrywise change (300 pairs), reordering (50 pairs).
+
+Host | fine-tune length | fine-tune largest gap (lower) | fine-tune summed gap (lower) | breaking length (upper) | breaking largest gap (upper) | breaking summed gap (upper) | sector 1 | sector 2
+   0 |           8.7288 |                        0.1810 |                       1.1259 |                  0.3000 |                       0.0188 |                      0.0564 | not closed | closed
+   1 |           8.7111 |                        0.1503 |                       0.9019 |                  0.3000 |                       0.0196 |                      0.0545 | not closed | closed
+   2 |           8.5705 |                        0.1651 |                       0.9724 |                  0.3000 |                       0.0236 |                      0.0570 | not closed | closed
+   3 |           9.0308 |                        0.3083 |                       1.1094 |                  0.1000 |                       0.0104 |                      0.0247 | closed     | closed
+   4 |           8.7421 |                        0.2902 |                       1.0624 |                  0.3000 |                       0.0168 |                      0.0576 | not closed | closed
+   5 |           8.0606 |                        0.1912 |                       0.8968 |                  0.3000 |                       0.0263 |                      0.0572 | not closed | closed
+   6 |           9.2243 |                        0.2127 |                       1.0994 |                  0.3000 |                       0.0156 |                      0.0451 | not closed | closed
+   7 |           9.0342 |                        0.1827 |                       0.9953 |                  0.3000 |                       0.0253 |                      0.0555 | not closed | closed
+   8 |           8.6087 |                        0.1926 |                       1.0749 |                  0.3000 |                       0.0215 |                      0.0565 | not closed | closed
+   9 |           9.1177 |                        0.1721 |                       1.0233 |                  0.3000 |                       0.0191 |                      0.0650 | not closed | closed
+  10 |           8.8394 |                        0.1968 |                       1.0046 |                  0.3000 |                       0.0261 |                      0.0523 | not closed | closed
+  11 |           8.6848 |                        0.2033 |                       0.9191 |                  0.3000 |                       0.0163 |                      0.0438 | not closed | closed
+
+Sector 1 (largest gap): closed on 1 of 12 hosts. Plan predicted at least 8: fails.
+Sector 2 (summed gap): closed on 12 of 12 hosts. Plan predicted at least 10: holds.
+The breaking move was rebuilt on every host and matches its recorded length, change and drop.

@@ -1,0 +1,268 @@
+{
+ "results": "data/results.json",
+ "programs": {
+  "study.py": "06f17ce7a700f22dcc51b31b8f319fa64edee7e1a12117c3b03af168dcc273b7",
+  "heddle.py": "7dee84700fc2eae176739b2734894b0f9545d72afa97cb226e344115f4a60858"
+ },
+ "pass_mark": 11,
+ "arms": {
+  "random": {
+   "H1a label within 1.1 up to travel 0.6": {
+    "held": 12,
+    "of": 12,
+    "min": 1.0296803190042798,
+    "max": 1.084700600203217,
+    "misses": []
+   },
+   "H1b label within 1.25 at travel 0.9": {
+    "held": 12,
+    "of": 12,
+    "min": 1.0406575592284977,
+    "max": 1.1248787557830195,
+    "misses": []
+   },
+   "H1c label outside 1.1 at travel 2.5": {
+    "held": 12,
+    "of": 12,
+    "min": 1.1487960414364975,
+    "max": 1.4436876635245848,
+    "misses": []
+   },
+   "H2a two treadles add within 0.06 up to travel 0.3": {
+    "held": 12,
+    "of": 12,
+    "min": 0.025302349688532753,
+    "max": 0.05317224095389185,
+    "misses": []
+   },
+   "H2b two treadles add within 0.2 at travel 0.9": {
+    "held": 12,
+    "of": 12,
+    "min": 0.07269290534293402,
+    "max": 0.13769319100947225,
+    "misses": []
+   },
+   "H3a 4 heddles: pinned points move under 0.1 of unpinned": {
+    "held": 12,
+    "of": 12,
+    "min": 0.005213551414491066,
+    "max": 0.05790526368305076,
+    "misses": []
+   },
+   "H3b 4 heddles: points 4 cells away move under 0.6 of unpinned": {
+    "held": 10,
+    "of": 12,
+    "min": 0.1588417759790323,
+    "max": 0.6307329012843226,
+    "misses": [
+     103,
+     108
+    ]
+   },
+   "H3c 16 heddles: mean share under 0.7 of open": {
+    "held": 12,
+    "of": 12,
+    "min": 0.2771674873721972,
+    "max": 0.5940368393352146,
+    "misses": []
+   },
+   "H4a hidden from 4x4 probes: 5 times more change elsewhere": {
+    "held": 12,
+    "of": 12,
+    "min": 6.1433735343885925,
+    "max": 13.26597604443421,
+    "misses": []
+   },
+   "H4b more known probes, less room: change elsewhere falls at every step": {
+    "held": 12,
+    "of": 12,
+    "min": 0.054590962708730116,
+    "max": 0.08239409781728828,
+    "misses": []
+   },
+   "H4c hidden from 10x10: 64 fresh probes see under 0.9 of the search's worst": {
+    "held": 12,
+    "of": 12,
+    "min": 0.17831492897237042,
+    "max": 0.7931730078847462,
+    "misses": []
+   },
+   "H5a worst direction at least 4 times a typical one (kappa)": {
+    "held": 12,
+    "of": 12,
+    "min": 5.509788701909175,
+    "max": 6.7760863029035985,
+    "misses": []
+   },
+   "H5b all 20 random moves at the gate's radius break the claim": {
+    "held": 12,
+    "of": 12,
+    "min": 20.0,
+    "max": 20.0,
+    "misses": []
+   },
+   "H5c proved radius 2 to 10 times under the breaking radius; bound never exceeded": {
+    "held": 12,
+    "of": 12,
+    "min": 3.3061860492352073,
+    "max": 4.629187279756527,
+    "misses": []
+   },
+   "H7a no pick with tension under 0.7 snaps": {
+    "held": 12,
+    "of": 12,
+    "min": 0.0,
+    "max": 0.0,
+    "misses": []
+   },
+   "H7b every pick with tension 1.0 or more snaps": {
+    "held": 12,
+    "of": 12,
+    "min": 0.0,
+    "max": 0.0,
+    "misses": []
+   },
+   "H7c the search's worst input is within 1.25 of the forecast": {
+    "held": 11,
+    "of": 12,
+    "min": 1.094256487577111,
+    "max": 1.3558583622263303,
+    "misses": [
+     104
+    ]
+   }
+  },
+  "fitted": {
+   "H1a label within 1.1 up to travel 0.6": {
+    "held": 11,
+    "of": 12,
+    "min": 1.018945339636384,
+    "max": 1.2129063245549112,
+    "misses": [
+     103
+    ]
+   },
+   "H1b label within 1.25 at travel 0.9": {
+    "held": 11,
+    "of": 12,
+    "min": 1.027579603901552,
+    "max": 1.3593221015152188,
+    "misses": [
+     103
+    ]
+   },
+   "H1c label outside 1.1 at travel 2.5": {
+    "held": 12,
+    "of": 12,
+    "min": 1.101210369041358,
+    "max": 2.78961402258119,
+    "misses": []
+   },
+   "H2a two treadles add within 0.06 up to travel 0.3": {
+    "held": 12,
+    "of": 12,
+    "min": 0.017143309574367858,
+    "max": 0.04335122574403539,
+    "misses": []
+   },
+   "H2b two treadles add within 0.2 at travel 0.9": {
+    "held": 12,
+    "of": 12,
+    "min": 0.05083441987642463,
+    "max": 0.12317712150129476,
+    "misses": []
+   },
+   "H3a 4 heddles: pinned points move under 0.1 of unpinned": {
+    "held": 12,
+    "of": 12,
+    "min": 0.010451964688091545,
+    "max": 0.04892339381989845,
+    "misses": []
+   },
+   "H3b 4 heddles: points 4 cells away move under 0.6 of unpinned": {
+    "held": 11,
+    "of": 12,
+    "min": 0.25044749363196817,
+    "max": 0.6864753993491811,
+    "misses": [
+     102
+    ]
+   },
+   "H3c 16 heddles: mean share under 0.7 of open": {
+    "held": 12,
+    "of": 12,
+    "min": 0.30010781310001483,
+    "max": 0.5966623849234551,
+    "misses": []
+   },
+   "H4a hidden from 4x4 probes: 5 times more change elsewhere": {
+    "held": 10,
+    "of": 12,
+    "min": 4.588521823261731,
+    "max": 11.952209817727839,
+    "misses": [
+     104,
+     109
+    ]
+   },
+   "H4b more known probes, less room: change elsewhere falls at every step": {
+    "held": 12,
+    "of": 12,
+    "min": 0.045348865717053766,
+    "max": 0.07446593838422813,
+    "misses": []
+   },
+   "H4c hidden from 10x10: 64 fresh probes see under 0.9 of the search's worst": {
+    "held": 12,
+    "of": 12,
+    "min": 0.12716303713353397,
+    "max": 0.806493733894697,
+    "misses": []
+   },
+   "H5a worst direction at least 4 times a typical one (kappa)": {
+    "held": 12,
+    "of": 12,
+    "min": 6.086350506557072,
+    "max": 7.648213466561431,
+    "misses": []
+   },
+   "H5b all 20 random moves at the gate's radius break the claim": {
+    "held": 12,
+    "of": 12,
+    "min": 20.0,
+    "max": 20.0,
+    "misses": []
+   },
+   "H5c proved radius 2 to 10 times under the breaking radius; bound never exceeded": {
+    "held": 12,
+    "of": 12,
+    "min": 2.69101337379414,
+    "max": 5.198120683687114,
+    "misses": []
+   },
+   "H7a no pick with tension under 0.7 snaps": {
+    "held": 12,
+    "of": 12,
+    "min": 0.0,
+    "max": 0.0,
+    "misses": []
+   },
+   "H7b every pick with tension 1.0 or more snaps": {
+    "held": 11,
+    "of": 12,
+    "min": 0.0,
+    "max": 1.0,
+    "misses": [
+     102
+    ]
+   },
+   "H7c the search's worst input is within 1.25 of the forecast": {
+    "held": 12,
+    "of": 12,
+    "min": 1.0823178341383046,
+    "max": 1.2439560079171417,
+    "misses": []
+   }
+  }
+ }
+}
