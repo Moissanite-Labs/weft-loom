@@ -9,7 +9,9 @@ reads the same rows as block2/analyze_a.py and changes nothing.
    archives at the same moment; one shard crashed on that race before any model call, and
    this check shows that no running shard read a half-unpacked harness.)
 2. Every planned row is present exactly once, and no secret repeats.
-3. Model errors, refused calls and reruns, by row kind.
+3. Model errors, refused calls and reruns, by row kind, and the rows that had a usage-limit
+   rerun anywhere (the account ran out of allowance for a while during the run; the
+   frozen code waits, probes, and reruns the cut episode or build from the start).
 4. Spend by the rows' own counts, against the ledger total if given.
 """
 import glob
@@ -59,11 +61,18 @@ def main(argv):
             rep = r.get(key) or {}
             errors[f"{key.split('_')[0]} benchmark model errors"] += rep.get("model_errors") or 0
             errors[f"{key.split('_')[0]} episode reruns"] += sum(e.get("reruns") or 0 for e in rep.get("episodes", []))
+            errors[f"{key.split('_')[0]} episode usage-limit reruns"] += sum(e.get("limit_reruns") or 0 for e in rep.get("episodes", []))
             errors[f"{key.split('_')[0]} episode timeouts"] += sum(1 for e in rep.get("episodes", []) if e.get("timed_out"))
         errors["build reruns"] += r.get("build_reruns") or 0
         errors["build usage-limit reruns"] += r.get("build_limit_reruns") or 0
         errors["build timeouts"] += 1 if r.get("build_timed_out") else 0
+        errors["boot usage-limit reruns"] += (r.get("boot") or {}).get("limit_reruns") or 0
     print("3. " + ", ".join(f"{k} {v}" for k, v in sorted(errors.items())))
+    hit = [r for r in rows if r.get("build_limit_reruns") or (r.get("boot") or {}).get("limit_reruns")
+           or any(e.get("limit_reruns") for key in ("inc_report", "cand_report", "base_report")
+                  for e in (r.get(key) or {}).get("episodes", []))]
+    print(f"   rows with a usage-limit rerun anywhere: {len(hit)}"
+          + "".join(f"\n   {r['run']} {r['slot']} rep {r['rep']}: {r.get('outcome')}" for r in hit))
     outcomes = Counter(r.get("outcome") for r in rows)
     print("   outcomes: " + ", ".join(f"{k} {v}" for k, v in sorted(outcomes.items(), key=str)))
     usd = sum(r.get("usd") or 0 for r in rows)
