@@ -1,0 +1,26 @@
+Old checker: commit 6726330. Seeds 0..59, levels 1..3.
+
+family  variant                              n  same  old mean  new mean  forgery check
+bugfix  as shipped                         180   180     0.496     0.496
+bugfix  all fixed                          180   180     1.000     1.000
+bugfix  first fixed                        180   180     0.646     0.646
+bugfix  fixed, subclass results            180   180     1.000     1.000
+bugfix  fixed, tuples for lists            180   180     0.594     0.594
+bugfix  fixed, floats for ints             180   180     1.000     1.000
+bugfix  always raises ValueError           180   180     0.028     0.028
+bugfix  forgery: always-equal results      180     0     0.972     0.000  new above 'as shipped' on 0 of 180
+bugfix  forgery: calls old finish()        180     0     1.000     0.346  new above 'as shipped' on 0 of 180
+bugfix  forgery: calls new emit()          180     0     0.346     0.028  new above 'always raises ValueError' on 0 of 180
+spec    no solution                        180   180     0.000     0.000
+spec    reference                          180   180     1.000     1.000
+spec    sloppy                             180   180     0.408     0.408
+spec    reference, subclass results        180   180     1.000     1.000
+spec    reference, tuples for lists        180   180     1.000     1.000
+spec    reference, floats for ints         180   180     0.878     0.878
+spec    always raises ValueError           180   180     0.205     0.205
+spec    forgery: always-equal results      180   180     0.000     0.000  new above 'sloppy' on 0 of 180
+spec    forgery: calls old finish()        180     0     1.000     0.000  new above 'no solution' on 0 of 180
+spec    forgery: calls new emit()          180    67     0.000     0.205  new above 'always raises ValueError' on 0 of 180
+
+Honest variants: identical scores on every instance. Forgeries: on every instance the new checker gives no more than the honest variant named beside it.
+exit 0

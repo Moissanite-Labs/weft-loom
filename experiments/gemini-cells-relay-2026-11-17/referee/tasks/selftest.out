@@ -1,0 +1,20 @@
+family  level  sloppy mean  sloppy min..max  unfixed min..max  max bytes  rule sets  gen ms  check ms
+ledger      1        0.538     0.50..0.57                 -      15799         60       9         0
+ledger      2        0.543     0.50..0.57                 -      21284         60      21         0
+ledger      3        0.529     0.50..0.56                 -      30866         60      26         0
+logwin      1        0.598     0.38..0.80                 -      28813         59      12         0
+logwin      2        0.528     0.20..0.80                 -      38390         60      16         1
+logwin      3        0.373     0.08..0.75                 -      46072         60      18         0
+bugfix      1        0.659     0.63..0.69        0.48..0.50       5806         60      19        55
+bugfix      2        0.662     0.62..0.70        0.47..0.50       5417         60       6        48
+bugfix      3        0.618     0.57..0.65        0.47..0.50       6616         60      17        44
+stock       1        0.530     0.38..0.69                 -      31171         60      26         0
+stock       2        0.463     0.36..0.60                 -      48017         59      34         0
+stock       3        0.414     0.36..0.46                 -      50068         60      27         0
+spec        1        0.661     0.12..0.93                 -       3201         44       4        48
+spec        2        0.405     0.12..0.75                 -       3191         56       2        40
+spec        3        0.159     0.00..0.38                 -       3297         60       2        37
+
+5 families x 3 levels x 60 seeds, visible=['ledger', 'logwin', 'bugfix'] heldout=['stock', 'spec'], 61s
+
+ALL CHECKS PASSED

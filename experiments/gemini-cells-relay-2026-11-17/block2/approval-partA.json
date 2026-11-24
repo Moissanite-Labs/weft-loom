@@ -1,0 +1,8 @@
+{
+  "plan_sha256": "9bc7bcd83f88550e831c7b18816005eeedfc05d8fcc9624461ffb9b94baceb03",
+  "tag": "partA",
+  "root": "/srv/gc-block2/partA",
+  "cap_usd": 20,
+  "approved_by": "the owner, in the session's chat, answering the question about part A",
+  "date": "2026-11-24"
+}

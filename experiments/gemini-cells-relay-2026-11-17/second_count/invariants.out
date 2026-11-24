@@ -1,0 +1,61 @@
+INVARIANT CHECKS (checked / violations)
+  15 / 0  kinds are start,2 baseline,6 turn,2 exam,end
+  15 / 0  sha256(revealed secret) == start.secret_sha256
+  15 / 0  config margin 0.02, 3 per family, level 3, 3 calls
+  30 / 0  baseline seeds == hash(secret|base|slot)
+  30 / 0  baseline harness == seed
+  92 / 0  benchmark report: zero model errors
+  90 / 0  builder slot alternates A,B,A,..
+  90 / 0  target slot is as the arm says (solo: self, twin: other)
+  72 / 0  other arms: builder_harness == builder's committed harness
+  18 / 0  solo-pair: builder == target
+  72 / 0  non-stack: base == target's committed harness
+  90 / 0  target_before == target's committed harness
+  90 / 0  edited == (candidate != base)
+  90 / 0  noop <=> candidate == target_before
+  90 / 0  build turn: zero model errors
+  90 / 0  build turn rc == 0
+  62 / 0  gated candidate has a boot row
+  62 / 0  old and new harness ran the same 9 instances
+  62 / 0  turn seeds == hash(secret|candidate hash|t)
+  62 / 0  inc/cand == mean of the 9 episode scores (to 4 dp)
+  62 / 0  commit <=> cand >= inc - 0.02 (logged means)
+  62 / 0  commit <=> cand >= inc - 0.02 (means recomputed from episodes)
+  90 / 0  harness_after: target replaced only on commit, builder slot untouched (twin)
+  90 / 0  example-task seed is not an exam seed (900000..900007)
+  28 / 0  noop has no boot and no benchmark
+  15 / 0  end.harness == state after turn 6
+  30 / 0  exam row harness == final harness of its slot
+  30 / 0  exam instances are the fixed 36 (900000+i)
+  30 / 2  exam report: zero model errors (log.jsonl)
+  15 / 0  same final harness <=> identical exam report for A and B
+  15 / 0  end.calls == baseline + builds + boots + gate benchmarks + exam (shared exam once)
+  15 / 0  end.model_errors == sum of logged model errors
+  42 / 0  snapshot of seed/final harness exists and re-hashes to its name
+  18 / 0  twin-fixed-builder: builder_harness == seed
+  18 / 0  stack: base == builder's committed harness
+   2 / 0  resit: harness == final harness, fixed 36 instances, zero model errors
+   1 / 0  no gate/baseline seed is >= 800000 (exam seeds start at 900000)
+
+VIOLATIONS
+   ('exam report: zero model errors (log.jsonl)', 'twin-stack-collective-r2 exam A')
+   ('exam report: zero model errors (log.jsonl)', 'twin-stack-collective-r2 exam B')
+
+NOTES
+example-task seeds: 90 turns, range 499170..16576681, equal to a gate/baseline seed of any run: 0, in exam range: 0
+   usd_gap(end - logged parts, = boot cost not logged) ('solo-pair-r0', 0.0025)
+   usd_gap(end - logged parts, = boot cost not logged) ('solo-pair-r1', 0.0021)
+   usd_gap(end - logged parts, = boot cost not logged) ('solo-pair-r2', 0.0067)
+   usd_gap(end - logged parts, = boot cost not logged) ('twin-fixed-builder-r0', 0.0039)
+   usd_gap(end - logged parts, = boot cost not logged) ('twin-fixed-builder-r1', 0.0059)
+   usd_gap(end - logged parts, = boot cost not logged) ('twin-fixed-builder-r2', 0.0031)
+   usd_gap(end - logged parts, = boot cost not logged) ('twin-free-collective-r0', 0.0046)
+   usd_gap(end - logged parts, = boot cost not logged) ('twin-free-collective-r1', 0.0075)
+   usd_gap(end - logged parts, = boot cost not logged) ('twin-free-collective-r2', 0.0032)
+   usd_gap(end - logged parts, = boot cost not logged) ('twin-free-rival-r0', 0.005)
+   usd_gap(end - logged parts, = boot cost not logged) ('twin-free-rival-r1', 0.0063)
+   usd_gap(end - logged parts, = boot cost not logged) ('twin-free-rival-r2', 0.0051)
+   usd_gap(end - logged parts, = boot cost not logged) ('twin-stack-collective-r0', 0.0038)
+   usd_gap(end - logged parts, = boot cost not logged) ('twin-stack-collective-r1', 0.0025)
+   usd_gap(end - logged parts, = boot cost not logged) ('twin-stack-collective-r2', 0.0035)
+distinct (family, seed) gate/baseline instances over 15 runs: 827

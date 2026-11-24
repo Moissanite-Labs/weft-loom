@@ -1,0 +1,55 @@
+test_exhaustive_equals_collective_T_10_12 (test_game.FirstBest.test_exhaustive_equals_collective_T_10_12) ... 
+  [first-best] T in {10, 12}: 96 solver runs equal the exhaustive search
+ok
+test_exhaustive_equals_collective_T_up_to_8 (test_game.FirstBest.test_exhaustive_equals_collective_T_up_to_8) ... 
+  [first-best] T <= 8: 192 solver runs equal the exhaustive search
+ok
+test_no_regime_beats_first_best_without_sabotage (test_game.FirstBest.test_no_regime_beats_first_best_without_sabotage) ... ok
+test_with_sabotage_small (test_game.FirstBest.test_with_sabotage_small) ... 
+  [first-best] S = 1, T <= 6: 72 solver runs equal the exhaustive search with sabotage
+ok
+test_T2_G3_cross_and_rival (test_game.HandDerived.test_T2_G3_cross_and_rival) ... ok
+test_T2_collective (test_game.HandDerived.test_T2_collective) ... ok
+test_T2_collective_G1 (test_game.HandDerived.test_T2_collective_G1) ... ok
+test_T2_cross (test_game.HandDerived.test_T2_cross) ... ok
+test_T2_rival (test_game.HandDerived.test_T2_rival) ... ok
+test_T4_collective_G0 (test_game.HandDerived.test_T4_collective_G0) ... ok
+test_T4_cross_G3_timing_tie (test_game.HandDerived.test_T4_cross_G3_timing_tie) ... ok
+test_greedy_G3_uses_cap_then_narrow (test_game.HandDerived.test_greedy_G3_uses_cap_then_narrow) ... ok
+test_roundtrip_T2 (test_game.HandDerived.test_roundtrip_T2) ... ok
+test_sabotage_rival_off_path (test_game.HandDerived.test_sabotage_rival_off_path) ... ok
+test_summed_T2 (test_game.HandDerived.test_summed_T2) ... ok
+test_rows_match_fresh_solve (test_game.JsonFile.test_rows_match_fresh_solve) ... ok
+test_greedy_is_myopically_optimal (test_game.MyopicRules.test_greedy_is_myopically_optimal) ... ok
+test_roundtrip_last_turn_is_greedy (test_game.MyopicRules.test_roundtrip_last_turn_is_greedy) ... ok
+test_roundtrip_zero_is_greedy (test_game.MyopicRules.test_roundtrip_zero_is_greedy) ... ok
+test_describe_exceptions_is_exact (test_game.ReportHelpers.test_describe_exceptions_is_exact) ... ok
+test_describe_exceptions_marks_inseparable (test_game.ReportHelpers.test_describe_exceptions_marks_inseparable) ... ok
+test_describe_exceptions_single_box (test_game.ReportHelpers.test_describe_exceptions_single_box) ... ok
+test_evaluate_verdict_words (test_game.ReportHelpers.test_evaluate_verdict_words) ... ok
+test_every_node (test_game.RivalZeroSum.test_every_node) ... 
+  [zero-sum] literal nodes 744152, reduced nodes 38976, all sum to 0
+ok
+test_moves_and_steps (test_game.RulesAgainstReference.test_moves_and_steps) ... ok
+test_no_sabotage_move_at_zero (test_game.RulesAgainstReference.test_no_sabotage_move_at_zero) ... ok
+test_payoff (test_game.RulesAgainstReference.test_payoff) ... ok
+test_f_does_not_change_the_move (test_game.SolverAgreement.test_f_does_not_change_the_move) ... ok
+test_literal_equals_reduced_T_up_to_8 (test_game.SolverAgreement.test_literal_equals_reduced_T_up_to_8) ... ok
+test_literal_equals_reduced_other_sabotage_reading (test_game.SolverAgreement.test_literal_equals_reduced_other_sabotage_reading) ... ok
+test_literal_equals_reduced_without_cap (test_game.SolverAgreement.test_literal_equals_reduced_without_cap) ... ok
+test_literal_solver (test_game.SubgamePerfection.test_literal_solver) ... 
+  [SPE literal solver] cases 384, decision nodes 70884 (of which reachable 4140), deviations tried 104004, improving 0
+ok
+test_other_sabotage_reading (test_game.SubgamePerfection.test_other_sabotage_reading) ... 
+  [SPE S = 2, literal solver] cases 192, decision nodes 35544, deviations tried 57444, improving 0
+
+  [SPE S = 2, reduced solver] cases 192, decision nodes 35544, deviations tried 57444, improving 0
+ok
+test_reduced_solver (test_game.SubgamePerfection.test_reduced_solver) ... 
+  [SPE reduced solver] cases 384, decision nodes 70884 (of which reachable 4140), deviations tried 104004, improving 0
+ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 7.191s
+
+OK

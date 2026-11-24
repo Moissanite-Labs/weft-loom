@@ -1,0 +1,28 @@
+sandbox: unshare(mount,net,pid) + tmpfs over /home,/root,/tmp,/srv,/mnt,/media,/var/tmp,/run + setpriv uid 65534
+PASS runs as uid 65534 
+PASS no outside network (1.1.1.1:53) 
+PASS no host loopback (the session proxy port) 
+PASS the only network interface is an unconfigured loopback ['lo']
+PASS /home is empty or unreadable 
+PASS /root is empty or unreadable 
+PASS /srv is empty or unreadable 
+PASS /tmp is empty or unreadable 
+PASS /mnt is empty or unreadable 
+PASS /run is empty or unreadable 
+PASS the repository is not visible 
+PASS the run root is not visible 
+PASS no credential or proxy variables in the environment []
+PASS the environment holds only shell basics ['HOME', 'LANG', 'OLDPWD', 'PATH', 'PWD', 'PYTHONDONTWRITEBYTECODE', 'SHLVL']
+PASS cannot write /usr/x 
+PASS cannot write /etc/x 
+PASS cannot write /cell/x 
+PASS cannot write /cell/harness/x 
+PASS cannot write /cell/harness/agent.py 
+PASS cannot write /opt/x 
+PASS cannot write /var/x 
+PASS can write its own work folder 
+PASS sees only its own processes 1 pids
+PASS cannot unmount the masks 
+PASS cannot become root 
+PASS cannot read the host's process environment 
+26 of 26 checks passed

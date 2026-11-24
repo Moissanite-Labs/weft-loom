@@ -1,0 +1,472 @@
+{
+ "label": "ref",
+ "harness": "calibration/ref-harness",
+ "repeats": 2,
+ "calls_cap": 3,
+ "level": 3,
+ "visible": [
+  0.9167,
+  0.8074
+ ],
+ "heldout": [
+  0.8333,
+  0.75
+ ],
+ "by_family": [
+  {
+   "bugfix": 0.875,
+   "ledger": 0.875,
+   "logwin": 1.0,
+   "spec": 0.6667,
+   "stock": 1.0
+  },
+  {
+   "bugfix": 0.7973,
+   "ledger": 0.75,
+   "logwin": 0.875,
+   "spec": 0.6667,
+   "stock": 0.8333
+  }
+ ],
+ "calls": 92,
+ "usd": 0.1559,
+ "model_errors": 0,
+ "episodes": [
+  [
+   {
+    "family": "ledger",
+    "seed": 900000,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "ledger",
+    "seed": 900001,
+    "score": 0.0,
+    "calls": 1
+   },
+   {
+    "family": "ledger",
+    "seed": 900002,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "ledger",
+    "seed": 900003,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "ledger",
+    "seed": 900004,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "ledger",
+    "seed": 900005,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "ledger",
+    "seed": 900006,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "ledger",
+    "seed": 900007,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "logwin",
+    "seed": 900000,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "logwin",
+    "seed": 900001,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "logwin",
+    "seed": 900002,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "logwin",
+    "seed": 900003,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "logwin",
+    "seed": 900004,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "logwin",
+    "seed": 900005,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "logwin",
+    "seed": 900006,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "logwin",
+    "seed": 900007,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "bugfix",
+    "seed": 900000,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "bugfix",
+    "seed": 900001,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "bugfix",
+    "seed": 900002,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "bugfix",
+    "seed": 900003,
+    "score": 0.0,
+    "calls": 1
+   },
+   {
+    "family": "bugfix",
+    "seed": 900004,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "bugfix",
+    "seed": 900005,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "bugfix",
+    "seed": 900006,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "bugfix",
+    "seed": 900007,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "stock",
+    "seed": 900000,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "stock",
+    "seed": 900001,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "stock",
+    "seed": 900002,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "stock",
+    "seed": 900003,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "stock",
+    "seed": 900004,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "stock",
+    "seed": 900005,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "spec",
+    "seed": 900000,
+    "score": 0.0,
+    "calls": 1
+   },
+   {
+    "family": "spec",
+    "seed": 900001,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "spec",
+    "seed": 900002,
+    "score": 0.0,
+    "calls": 1
+   },
+   {
+    "family": "spec",
+    "seed": 900003,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "spec",
+    "seed": 900004,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "spec",
+    "seed": 900005,
+    "score": 1.0,
+    "calls": 1
+   }
+  ],
+  [
+   {
+    "family": "ledger",
+    "seed": 900000,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "ledger",
+    "seed": 900001,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "ledger",
+    "seed": 900002,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "ledger",
+    "seed": 900003,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "ledger",
+    "seed": 900004,
+    "score": 0.0,
+    "calls": 1
+   },
+   {
+    "family": "ledger",
+    "seed": 900005,
+    "score": 0.0,
+    "calls": 1
+   },
+   {
+    "family": "ledger",
+    "seed": 900006,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "ledger",
+    "seed": 900007,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "logwin",
+    "seed": 900000,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "logwin",
+    "seed": 900001,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "logwin",
+    "seed": 900002,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "logwin",
+    "seed": 900003,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "logwin",
+    "seed": 900004,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "logwin",
+    "seed": 900005,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "logwin",
+    "seed": 900006,
+    "score": 0.0,
+    "calls": 1
+   },
+   {
+    "family": "logwin",
+    "seed": 900007,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "bugfix",
+    "seed": 900000,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "bugfix",
+    "seed": 900001,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "bugfix",
+    "seed": 900002,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "bugfix",
+    "seed": 900003,
+    "score": 0.0,
+    "calls": 1
+   },
+   {
+    "family": "bugfix",
+    "seed": 900004,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "bugfix",
+    "seed": 900005,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "bugfix",
+    "seed": 900006,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "bugfix",
+    "seed": 900007,
+    "score": 0.3784,
+    "calls": 1
+   },
+   {
+    "family": "stock",
+    "seed": 900000,
+    "score": 0.0,
+    "calls": 1
+   },
+   {
+    "family": "stock",
+    "seed": 900001,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "stock",
+    "seed": 900002,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "stock",
+    "seed": 900003,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "stock",
+    "seed": 900004,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "stock",
+    "seed": 900005,
+    "score": 1.0,
+    "calls": 2
+   },
+   {
+    "family": "spec",
+    "seed": 900000,
+    "score": 1.0,
+    "calls": 3
+   },
+   {
+    "family": "spec",
+    "seed": 900001,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "spec",
+    "seed": 900002,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "spec",
+    "seed": 900003,
+    "score": 0.0,
+    "calls": 1
+   },
+   {
+    "family": "spec",
+    "seed": 900004,
+    "score": 1.0,
+    "calls": 1
+   },
+   {
+    "family": "spec",
+    "seed": 900005,
+    "score": 0.0,
+    "calls": 1
+   }
+  ]
+ ]
+}

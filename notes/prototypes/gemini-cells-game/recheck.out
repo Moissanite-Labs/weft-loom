@@ -1,0 +1,13 @@
+regime           cases  mismatches
+COLLECTIVE         288  0
+COLLECTIVE_SUM     288  0
+CROSS              288  0
+CROSS_SUM          288  0
+GREEDY             288  0
+RIVAL              288  0
+RIVAL_SUM          288  0
+ROUNDTRIP(0)       288  0
+ROUNDTRIP(0.5)     288  0
+ROUNDTRIP(1)       288  0
+ROUNDTRIP(2)       288  0
+total 3168 cases, 0 mismatches

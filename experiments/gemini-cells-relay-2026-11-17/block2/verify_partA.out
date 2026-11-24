@@ -1,0 +1,11 @@
+rows: 126 of 126 planned
+1. builder harness differs from the archived one: 0
+2. missing 0, not planned 0, present more than once 0, repeated secrets 0
+3. base benchmark model errors 0, base episode reruns 0, base episode timeouts 0, base episode usage-limit reruns 0, boot model errors 0, boot usage-limit reruns 0, build model errors 0, build reruns 0, build timeouts 0, build usage-limit reruns 3, cand benchmark model errors 0, cand episode reruns 0, cand episode timeouts 0, cand episode usage-limit reruns 5, inc benchmark model errors 0, inc episode reruns 0, inc episode timeouts 0, inc episode usage-limit reruns 0
+   rows with a usage-limit rerun anywhere: 4
+   solo-pair-r4 B rep 0: commit
+   solo-pair-r2 A rep 0: commit
+   twin-fixed-builder-r4 B rep 0: commit
+   twin-fixed-builder-r0 A rep 0: commit
+   outcomes: boot_fail 1, commit 91, noop 27, regress 7
+4. spend by the rows' own counts: 14.536 dollars; ledger: 14.624 dollars over 10717 calls
