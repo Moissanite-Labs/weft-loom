@@ -220,7 +220,7 @@ Added 2026-11-24. [`block2/PLAN.md`](block2/PLAN.md) plans a second block in two
 
 ### Part A: the building gap did not hold
 
-The owner approved part A in the session's chat. The approval file (`block2/approval-partA.json`) names the plan's SHA-256, the run folder, a cap of 20 dollars, the approver and the date, and `run.py` checked it and every frozen file's hash before the first call. Part A ran from 05:27 to 08:00 UTC: 126 of 126 assays, no referee fault, no failed model call, no timeout. It cost 14.62 dollars over 10717 calls on its own ledger (`block2/partA/spend.json`); the rows' own counts give 14.54, the rest being attempts cut short by the usage limit below and one probe call. `block2/verify_partA.out` shows that every assay ran the archived harness it names, that every planned assay is there once, and that no task key repeats.
+The owner approved part A in the session's chat. The approval file (`block2/approval-partA.json`) names the plan's SHA-256, the run folder, a cap of 20 dollars, the approver and the date, and `run.py` checked it and every frozen file's hash before the first call. Part A ran from 05:27 to 08:00 UTC: 126 of 126 assays, no referee fault and no timeout; the only failed model calls were the usage-limit refusals in attempts that were then rerun (deviation 4). It cost 14.62 dollars over 10717 calls on its own ledger (`block2/partA/spend.json`); the rows' own counts give 14.54, the rest being attempts cut short by the usage limit below and one probe call. `block2/verify_partA.out` shows that every assay ran the archived harness it names, that every planned assay is there once, and that no task key repeats.
 
 The planned analysis (`block2/results_a.md`, copied here):
 
