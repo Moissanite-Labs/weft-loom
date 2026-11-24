@@ -1,7 +1,7 @@
 # Gemini cells: twin cells that build each other's harness
 
-Date: 2026-11-17
-Status: proposal. Not adopted. The next step it puts forward is the first item under "What would decide it".
+Date: 2026-11-17, updated 2026-11-24
+Status: proposal. Not adopted. The next step it puts forward is the first item under "What would decide it": part A of the record's [block 2 plan](../experiments/gemini-cells-relay-2026-11-17/block2/PLAN.md), which is not approved.
 Source: the owner's proposal in weft-loom pull request 27, a saved conversation with Gemini.
 Prototype: `notes/prototypes/gemini-cells-game/`
 Record: [`experiments/gemini-cells-relay-2026-11-17`](../experiments/gemini-cells-relay-2026-11-17/)
@@ -179,6 +179,12 @@ The method is the same: each concept of the proposal is crossed with each mechan
 - O12. Certificate or nothing: a claim counts only if its witness verifies. (tar, cedar) **Reported.**
 - X2s. A preregistration gate: the plan's commit must come before the first output. (siliquant note, graft X2) **Reported.**
 
+Added 2026-11-24, from work merged or opened in weft-loom since the first version of this note:
+
+- K1. LoRA training on Tinker from a list of examples, with the adapter sampled from right after. (weft-loom pull request 46, open, which ran it once for 0.09 dollars) **Checked** in that pull request's description.
+- K2. Mutation testing of a record's guards: remove each guard and show a test fails. (pull requests 38 and 46, open) **Checked** in their descriptions.
+- K3. Exact feedback did not speed repair: telling a model the signed amount by which each constraint failed did not let it repair in fewer rounds than naming the constraint and place. (pull request 38, open, both registered runs "not decided" or against) **Checked** in that pull request's description.
+
 **Crossings**
 
 | # | Crossing | What it gives | State |
@@ -197,20 +203,25 @@ The method is the same: each concept of the proposal is crossed with each mechan
 | G12 | T3 × W3 | Two candidates per turn, from two builders or two tries, with the better one sent to the gate | Not built. First test: one arm at twice the build cost |
 | G13 | T4 × L1 | A builder shown the price of its own build calls. Shown prices moved 26 of 32 cells at their first act | Not built. First test: the brief with and without one price line |
 | G14 | T5 × L1 | Stack is inheritance of the whole line. In L1 inheritance anchored: on one task blank cells reached the ceiling 2 of 3 times and heirs 0 of 3. So stack may stop exploring sooner than free | Seen once, as a description: with the scoreboard high, stack builders made an edit in 1 of 11 turns and free builders in 5 of 9. First test: the same count on a benchmark with room |
+| G15 | T1 × K1 | A cell's harness includes a small adapter, and the builder writes training examples for its twin's adapter as well as text. That carries the proposal from prompts to weights, where Tinker makes a turn cheap | Not built. First test: one turn, the builder's examples against random examples from the same tasks, on one adapter each |
+| G16 | T2 × K2 | Every guard of the referee is removed in turn and a test must fail | **Built** (the record's `block2/mutate.py`: 30 of 30 caught, after its first run found one gap and a test closed it) |
+| G17 | T2 × O8 | A paid run starts only with an approval bound to the hash of the plan text and the run's tag | **Built** (the record's `run.py`, `check_approval`) |
+| G18 | T4 × K3 | The builder's report: K3 suggests that a more detailed failure signal does not by itself make repair faster. The pilot's builders got scores and traces | Not built. First test: the block 2 assay with and without the traces in the report |
 
 The mathematical mechanisms in the siliquant list gave no crossing with a first test: lattice decoders, permanents, Delsarte ceilings, the zero-vector recurrence, Krawczyk enclosures, interval subdivision and Schur-complement relaxation. They are about weights and counts, and the proposal is about agent harnesses.
 
 ## What would decide it
 
-In order of information for the effort.
+In order of information for the effort. Updated 2026-11-24: item 3 is done, and a new first item comes before the others because it is the cheapest.
 
-1. **A benchmark with room.** Harder task families, built so that a harness which already shows the notes and uses its calls well sits near 0.5, and a block that starts from a harness the pilot's cells built. Until then no arm can be told from another. The power figures of the recheck apply: a difference of 0.10 between arms needs tens of runs, not three.
-2. **Put building in the gate.** The pilot's gate measures only task scores, so a change that halves a cell's building is kept if the tasks still pass. A standing builder assay, even a small one every second turn, would have caught the step limit of 12. Without it the proposal's central quantity is not measured where decisions are made.
-3. **Close the two holes the second reader found before any run where a cell could gain from them.** The hidden tests of the code families run in the same process as the cell's code, so a score could be forged. And the time limit of an episode ends it silently when the model is slow.
-4. **Follow the one contrast with a direction.** Live builder against seed builder, on the harder benchmark, with the assay beside it. If the exam says a live builder ends ahead and the assay says its harness builds worse, one of the two measures is not measuring what it is named for.
-5. **Test fact 5 of the model directly.** Run rival scoring twice: once with the gate drawing the families the builder has seen, once with families it has not. The model says the family-specific advice should go away in the second.
-6. **A tighter gate.** With nothing changed, the gate's score difference has a standard deviation of 0.072, and it kept 2 of 6 identical candidates. More tasks per gate, or a second look before a discard.
-7. **Then the variations not run:** selection among pairs, the two-phase schedule, two candidates per turn, a price line in the brief, a second model family.
+1. **Measure the building gap again.** Fact 5 is the pilot's sharpest result and was found after the runs. Each harness was assayed once, slot A only. Part A of the block 2 plan assays the 19 fault-free final harnesses again, both slots, three fresh assays each, with the predictions, analysis and power fixed beforehand, for about 10 dollars at list. The assay starts every harness from the seed at about 0.5, so it has the room the exam lacks. If free lineages still build worse than both controls, the reciprocal loop is not just absent but reversed under the arrangement the owner's first iteration chose, and item 3 below is the place to look for why.
+2. **A benchmark with room.** Harder task families, built so that a harness which already shows the notes and uses its calls well sits near 0.5, and a block that starts from a harness the pilot's cells built. Until then no arm can be told from another. The power figures of the recheck apply: a difference of 0.10 between arms needs tens of runs, not three.
+3. **Put building in the gate.** The pilot's gate measures only task scores, so a change that halves a cell's building is kept if the tasks still pass. A standing builder assay, even a small one every second turn, would have caught the step limit of 12. Without it the proposal's central quantity is not measured where decisions are made.
+4. **Close the two holes the second reader found before any run where a cell could gain from them.** Done 2026-11-24, offline. The pilot's checker did accept forgeries: given generated instances, it scores code that calls the hidden script's reporting function 1.000 in both code families. The new checker gives the cell's code only the inputs and compares results in the referee, and on 2,520 honest instances it agrees with the old one on every score. An episode is now charged only for the cell's own time, not for waiting on the model. A mutation check removes 30 of the referee's guards one at a time and a test catches each. The record's block 2 section has the files.
+5. **Follow the one contrast with a direction.** Live builder against seed builder, on the harder benchmark, with the assay beside it. If the exam says a live builder ends ahead and the assay says its harness builds worse, one of the two measures is not measuring what it is named for.
+6. **Test fact 5 of the model directly.** Run rival scoring twice: once with the gate drawing the families the builder has seen, once with families it has not. The model says the family-specific advice should go away in the second.
+7. **A tighter gate.** With nothing changed, the gate's score difference has a standard deviation of 0.072, and it kept 2 of 6 identical candidates. More tasks per gate, or a second look before a discard.
+8. **Then the variations not run:** selection among pairs, the two-phase schedule, two candidates per turn, a price line in the brief, a second model family, and G15 below.
 
 ## Open questions
 
@@ -227,7 +238,8 @@ In order of information for the effort.
 - The benchmark is five families of generated tasks with 3 model calls each. A good harness there is mostly one that reads the instance notes whole and does more per call. Other benchmarks would reward other things.
 - The model is reached through a command line tool that adds its own notes to every call. The referee counters that with one fixed line. The record says what was seen and done.
 - The mechanisms marked reported in the transposition were not re-read here.
+- Decimal figures in the sections drawn from the record are checked by a program to equal some number in an output file. Tested by planting errors, that check caught 17 of 60 small ones in this note (the record's README, limits). It guards against invented figures more than mistyped ones.
 
 ## Disclosure
 
-Written by an AI agent session after the owner handed the programme over on 2026-11-17. The prototype game and the task families were written by two further agent sessions from written briefs. Three more recounted the logs, coded what builders changed, and searched for published work. The lead re-solved every case of the game with a second program, and ran the calibration, the pilot and the analysis. No person has reviewed this note or its record.
+Written by an AI agent session after the owner handed the programme over on 2026-11-17. The same session added the 2026-11-24 changes after the owner asked it to pick the work up again. The prototype game and the task families were written by two further agent sessions from written briefs. Three more recounted the logs, coded what builders changed, and searched for published work. The lead re-solved every case of the game with a second program, and ran the calibration, the pilot and the analysis. No person has reviewed this note or its record.

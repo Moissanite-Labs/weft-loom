@@ -25,6 +25,7 @@ SOURCES = [HERE / "results" / n for n in ("tables.md", "explore.md", "summary.js
 SOURCES += [HERE / "PREREG.md", HERE / "second_count" / "recount_final.out", HERE / "second_count" / "recount.out",
             HERE / "referee" / "tasks" / "selftest.out"]
 SOURCES += sorted((HERE / "results" / "faulted").glob("*/*.jsonl"))
+BLOCK2 = sorted((HERE / "block2").glob("*.out")) + [HERE / "block2" / "analyze_a_dryrun.md"]
 GAME = [REPO / "notes" / "prototypes" / "gemini-cells-game" / n for n in ("game.out", "README.md", "recheck.out")]
 
 ALLOWED = {   # figure: where it comes from
@@ -48,8 +49,9 @@ def numbers(text: str) -> list[Decimal]:
     return [Decimal(m.group().lstrip("+")) for m in NUM.finditer(text)]
 
 
-def check(doc: Path, sources: list[Path], sections: tuple[str, ...] | None) -> list[str]:
-    text = doc.read_text()
+def check(doc: Path, sources: list[Path], sections: tuple[str, ...] | None, text: str | None = None) -> list[str]:
+    """Untraced figures of doc (or of `text`, read as if it were doc)."""
+    text = doc.read_text() if text is None else text
     if sections:
         parts = re.split(r"^## ", text, flags=re.M)
         text = "\n".join(p for p in parts if p.split("\n", 1)[0].strip() in sections)
@@ -73,11 +75,24 @@ def check(doc: Path, sources: list[Path], sections: tuple[str, ...] | None) -> l
     return bad
 
 
+# (document, sources, sections or None for all). The plan is checked against a narrow pool:
+# the block 2 outputs and the record's summary tables. A wide pool holds so many numbers that
+# a wrong figure with three decimals often finds a match by chance (a planted 0.087 for 0.081
+# did). block2/check_numbers_power.py measures how often that happens for each document.
+CHECKS = [
+    (HERE / "README.md", SOURCES + BLOCK2, None),
+    (HERE / "block2" / "PLAN.md", BLOCK2 + [HERE / "results" / "explore.md", HERE / "results" / "tables.md",
+                                       HERE / "README.md"], None),
+    (REPO / "notes" / "gemini-cells.md", SOURCES + GAME + BLOCK2 + [HERE / "README.md"],
+     ("What a scoring rule pays for: an exact model", "What live cells did: a pilot", "The reply, claim by claim",
+      "Transposition", "What would decide it")),
+]
+
+
 def main() -> int:
-    bad = check(HERE / "README.md", SOURCES, None)
-    bad += check(REPO / "notes" / "gemini-cells.md", SOURCES + GAME + [HERE / "README.md"],
-                 ("What a scoring rule pays for: an exact model", "What live cells did: a pilot", "The reply, claim by claim",
-                  "Transposition", "What would decide it"))
+    bad = []
+    for doc, sources, sections in CHECKS:
+        bad += check(doc, sources, sections)
     for b in bad:
         print("UNTRACED", b)
     print(f"{len(bad)} figures without a source")

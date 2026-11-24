@@ -194,13 +194,35 @@ It also read the referee for defects. What it found is in the limits below, and 
 - **Three runs an arm** in the planned tables, one model, one machine, one day, six turns.
 - **The gate is coarse.** With nothing changed, its score difference has a standard deviation of 0.072 and it kept 2 of 6 identical candidates.
 - **The gate does not measure building.** A change that halves a cell's building is kept if the tasks still pass.
-- **A score in the two code families could be forged.** Their hidden tests import the cell's code into the process that prints the result. A search of every harness snapshot and build trace found no sign that any cell tried, and every arm is equally exposed. The fix is to run cell code in a child process that never holds the result line.
-- **A slow model ends an episode silently.** The 300-second limit zeroes an episode without a failed call on record. Outside the excluded run no episode in any analysed run hit it.
+- **A score in the two code families could be forged.** Their hidden tests import the cell's code into the process that prints the result. A search of every harness snapshot and build trace found no sign that any cell tried, and every arm is equally exposed. The fix is to run cell code in a child process that never holds the result line. *Added 2026-11-24:* the hole is now shown, not only argued. Run offline on generated instances, the pilot's checker gives 1.000 to code that calls the hidden script's reporting function, in both code families, and 0.972 to bugfix code that returns an object equal to everything (`block2/checker_equivalence.out`). A second scan for the words those two forgeries need found one line, a builder printing example modules (`block2/forgery_rescan.out`). Neither scan covers the code solving cells wrote during episodes, which the pilot did not keep. Block 2 removes the hole.
+- **A slow model ends an episode silently.** The 300-second limit zeroes an episode without a failed call on record. Outside the excluded run no episode in any analysed run hit it. *Added 2026-11-24:* block 2 charges a cell only for its own time and logs every kill.
 - **The stack arm's two cells usually end on one harness,** which then sits the exam once and counts twice, as the plan says. That is more noise for that arm, not a bias.
 - **The example tasks a builder sees** draw their seeds from a range that is not kept apart from the exam's. None of the 90 collided.
 - **The model is reached through the `claude` command line tool,** which adds notes of its own to every call: a working directory, a scratchpad path, proxy and commit rules, and a reminder about the account. The referee starts the tool from a folder whose path matches the cell's own and puts one fixed line in front of every system prompt telling the cell to ignore those notes. They are the same in every arm.
 - **Dollar figures are list prices** reported by the tool. The account is on a plan with a usage limit, and the block ran into it once.
 - **The reading of what builders changed** is one reader's, on replicates 0 to 2.
+- **The figure check is weak against small errors.** *Added 2026-11-24.* `check_numbers.py` shows that every decimal figure in this README, the note and the block 2 plan equals some number in an output file. It does not show that it equals the right one. Planting one wrong figure at a time, moved by 1 to 3 units in its last digit, it caught 31 of 60 in this README, 22 of 60 in the plan and 17 of 60 in the note (`block2/check_numbers_power.out`). The documents hold so many three-decimal numbers that a wrong figure often matches another true one. So read "every figure traces to an output" as a check against invented figures, not against mistyped ones.
+
+## After the pilot: block 2 (proposed, not run)
+
+Added 2026-11-24. [`block2/PLAN.md`](block2/PLAN.md) proposes a second block and is not approved. Nothing in it has been run on a model, and nothing above changes because of it. The pilot's numbers came from the files at commits `0ddfde4` and `ac808c4`. The referee in this folder has changed since, so a rerun of the pilot should check out those commits.
+
+- **Two holes closed.** The code families' hidden checkers now give the cell's code only the inputs, and the referee compares what it returned (deviation from the frozen files, for block 2 only). On 2,520 honest instances the old and new checkers agree on every score, and no forgery scores above its honest counterpart (`block2/checker_equivalence.py`). Episodes are charged only for the cell's own time, not for time spent waiting on the model, with a hard wall limit that reruns the episode and then flags it.
+- **Guards tested by mutation.** `block2/mutate.py` removes 30 guards of the referee one at a time, and a test catches each (`block2/mutate.out`). Its first run found one that no test covered: a symlink planted in an episode's work folder. A test for it was added.
+- **Part A,** about 10 dollars at list: assay the pilot's 19 fault-free final harnesses again, both slots, three fresh assays each, to test the building gap found after the runs (free lineages +0.020 against solo +0.492). The predictions, the analysis script (dry-run on the pilot's assays) and a simulation of power are fixed before any data.
+- **Part B,** about 38 dollars, sketched for a later decision: new runs with a gate that also pays for building.
+
+| Path | What it holds |
+|---|---|
+| `block2/PLAN.md` | The plan, predictions, power, costs, the backend question, the approval rule |
+| `block2/checker_equivalence.py`, `.out` | Old checker against new, honest solutions and forgeries |
+| `block2/mutate.py`, `.out` | The mutation check of the referee's guards |
+| `block2/selftest.out` | The task self-test with the new checker |
+| `block2/forgery_rescan.py`, `.out` | The second scan of the pilot's archives |
+| `block2/analyze_a.py`, `analyze_a_dryrun.md` | Part A's analysis, and its dry run on the pilot's single assays |
+| `block2/power.py`, `.out` | Power of the planned test, by simulation |
+| `block2/costs.py`, `.out` | The plan's cost figures, from the pilot's logs |
+| `tests/test_units.py` | Fast tests of the gate, seeding, decoding, checkers, the brain server and the approval rule |
 
 ## Disclosure
 
