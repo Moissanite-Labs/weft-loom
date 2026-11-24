@@ -66,6 +66,9 @@ python3 explore.py
 python3 second_count/recount_final.py
 python3 forgery_check.py
 python3 check_numbers.py
+python3 block2/analyze_a.py 'block2/partA/assay2-partA-*.jsonl'
+python3 block2/explore_a.py 'block2/partA/assay2-partA-*.jsonl'
+python3 block2/verify_partA.py --ledger block2/partA/spend.json 'block2/partA/assay2-partA-*.jsonl'
 ```
 
 The runs were live calls to a hosted model and are not seeded, so running them again gives a new sample and costs money. They need root on Linux and the `claude` command line tool signed in. `R` is an empty folder outside the repository:
@@ -77,6 +80,8 @@ python3 run.py block --root R --reps 4 --jobs 5
 python3 run.py assay --root R
 python3 pack.py R
 ```
+
+Block 2's part A refuses to start without an approval file for its own run folder (`block2/PLAN.md`, "Approval"): `python3 run.py assay2 --root R2 --tag partA --approval APPROVAL.json`.
 
 Everything ran in one Linux container (kernel 6.18, 4 cores, Python 3.13.18, `claude` 2.1.326) on 2026-11-17.
 
@@ -162,7 +167,7 @@ Not preregistered. `results/explore.md` has the tables.
 - **Where the gain came from.** Over all 19 fault-free runs, the first candidate of each slot to reach the gate moved the score on the same fresh tasks from 0.475 to 0.875 (38 candidates). Every later candidate together moved it from 0.891 to 0.952 (38 candidates).
 - **At a high score.** When the scoreboard showed the target at 0.95 or more, builders made an edit in 17 of 46 turns: 5 of 7 under rival scoring, 5 of 9 under one score with free lineages, 1 of 11 with stack, 3 of 9 solo and 3 of 10 with a seed builder.
 - **Every fault-free run.** Adding the four fault-free runs of replicate 2 changes no reading. Visible means: rival 0.911, free 0.968, stack 0.994 (3 runs), solo 0.938, seed builder 0.906. Every run of the free arm (lowest 0.952) is above every run of the seed-builder arm (highest 0.936), four against four.
-- **The assay over every fault-free run.** Mean gains: rival +0.263, free +0.020, stack +0.199 (3 runs), solo +0.492, seed builder +0.474. Every assay of a free-arm harness (highest +0.092) is below every assay of a solo harness (lowest +0.275) and of a seed-builder harness (lowest +0.423). Seed builders at turn 1 of the same 19 runs gained +0.364. So the harnesses that the twins under one score built for each other were the weakest builders measured, and the harnesses from the two control arms built as well as a seed cell or better. The comparison by arm was not planned.
+- **The assay over every fault-free run.** Mean gains: rival +0.263, free +0.020, stack +0.199 (3 runs), solo +0.492, seed builder +0.474. Every assay of a free-arm harness (highest +0.092) is below every assay of a solo harness (lowest +0.275) and of a seed-builder harness (lowest +0.423). Seed builders at turn 1 of the same 19 runs gained +0.364. So the harnesses that the twins under one score built for each other were the weakest builders measured, and the harnesses from the two control arms built as well as a seed cell or better. The comparison by arm was not planned. *Added 2026-11-24:* measured again with both slots and six fresh assays a run, as preregistered in part A of block 2, this gap did not hold: free +0.285 against solo +0.372, exact p 0.4286. See "Block 2" below.
 - **One call per task.** The final harnesses of replicates 0 to 2 sat the exam again with 1 model call in place of 3, one sitting each. The scores split in two. Of the 28 final harnesses measured, 14 cannot finish in one call and score 0.17, which is what doing nothing scores, one scores 0.31, and 13 score 0.77 to 0.97. Those 13 are 4 of 6 from the rival arm, 1 of 6 from the arm with one score and free lineages, 4 of 4 from stack, 3 of 6 solo and 1 of 6 from the seed-builder arm. The seed scores 0.175. So fewer calls do not give a block room for long: the best harnesses the pilot's cells built already score above 0.9 with one.
 
 ### What builders changed
@@ -178,7 +183,7 @@ A second agent session read all 58 edits and all 28 turns without an edit in rep
 
 ### Cost
 
-The ledger for the whole record stands at 22.20 dollars over 15110 model calls, against the cap of 25. That covers the smoke tests, the warm run, the calibration, the 20 runs of the block (5 of which cost nothing because every call was refused), the replacement replicate, the exam re-sit and the 20 assays. The 15 runs in the planned tables cost 12.62 dollars and 8038 calls by their own count, which leaves out retried calls. The exam with one call per task ran on a separate ledger after the owner opened a spend window: 1.47 dollars over 1009 calls.
+The ledger for the whole record stands at 22.20 dollars over 15110 model calls, against the cap of 25. That covers the smoke tests, the warm run, the calibration, the 20 runs of the block (5 of which cost nothing because every call was refused), the replacement replicate, the exam re-sit and the 20 assays. The 15 runs in the planned tables cost 12.62 dollars and 8038 calls by their own count, which leaves out retried calls. The exam with one call per task ran on a separate ledger after the owner opened a spend window: 1.47 dollars over 1009 calls. Block 2's part A ran on a ledger of its own under the owner's approval: 14.62 dollars over 10717 calls, against a cap of 20.
 
 By arm, a run cost 0.64 dollars with stack, 0.79 solo, 0.81 with a seed builder, 0.97 under one score with free lineages and 1.00 under rival scoring (`results/explore.md`).
 
@@ -199,19 +204,58 @@ It also read the referee for defects. What it found is in the limits below, and 
 - **The stack arm's two cells usually end on one harness,** which then sits the exam once and counts twice, as the plan says. That is more noise for that arm, not a bias.
 - **The example tasks a builder sees** draw their seeds from a range that is not kept apart from the exam's. None of the 90 collided.
 - **The model is reached through the `claude` command line tool,** which adds notes of its own to every call: a working directory, a scratchpad path, proxy and commit rules, and a reminder about the account. The referee starts the tool from a folder whose path matches the cell's own and puts one fixed line in front of every system prompt telling the cell to ignore those notes. They are the same in every arm.
-- **Dollar figures are list prices** reported by the tool. The account is on a plan with a usage limit, and the block ran into it once.
+- **Dollar figures are list prices** reported by the tool. The account is on a plan with a usage limit, and the block ran into it once. Block 2's part A ran into it too (its deviation 4).
 - **The reading of what builders changed** is one reader's, on replicates 0 to 2.
-- **The figure check is weak against small errors.** *Added 2026-11-24.* `check_numbers.py` shows that every decimal figure in this README, the note and the block 2 plan equals some number in an output file. It does not show that it equals the right one. Planting one wrong figure at a time, moved by 1 to 3 units in its last digit, it caught 30 of 60 in this README, 27 of 60 in the plan and 17 of 60 in the note (`block2/check_numbers_power.out`). The documents hold so many three-decimal numbers that a wrong figure often matches another true one. So read "every figure traces to an output" as a check against invented figures, not against mistyped ones.
+- **The figure check is weak against small errors.** *Added 2026-11-24.* `check_numbers.py` shows that every decimal figure in this README, the note and the block 2 plan equals some number in an output file. It does not show that it equals the right one. Planting one wrong figure at a time, moved by 1 to 3 units in its last digit, it caught 24 of 60 in this README, 34 of 60 in the plan and 14 of 60 in the note, measured again after part A's results were added (`block2/check_numbers_power.out`; the first measurement, before them, gave 30, 27 and 17, so 60 plants pin a rate only to within about a tenth). The documents hold so many three-decimal numbers that a wrong figure often matches another true one. So read "every figure traces to an output" as a check against invented figures, not against mistyped ones.
 
-## After the pilot: block 2 (proposed, not run)
+## Block 2: part A run, part B not approved
 
-Added 2026-11-24. [`block2/PLAN.md`](block2/PLAN.md) proposes a second block and is not approved. Nothing in it has been run on a model, and nothing above changes because of it. The pilot's numbers came from the files at commits `0ddfde4` and `ac808c4`. The referee in this folder has changed since, so a rerun of the pilot should check out those commits.
+Added 2026-11-24. [`block2/PLAN.md`](block2/PLAN.md) plans a second block in two parts. The owner approved part A, and it ran the same day; its results are below. Part B is not approved. The pilot's numbers above came from the files at commits `0ddfde4` and `ac808c4`. The referee in this folder has changed since, so a rerun of the pilot should check out those commits.
 
 - **Two holes closed.** The code families' hidden checkers now give the cell's code only the inputs, and the referee compares what it returned (deviation from the frozen files, for block 2 only). On 2,520 honest instances the old and new checkers agree on every score, and no forgery scores above its honest counterpart (`block2/checker_equivalence.py`). The referee reads at most 8 MB of a hidden run's output and builds no set or dict from it, so returned values cannot stall it. Episodes are charged only for the cell's own time, not for time spent waiting on the model, with a hard wall limit that reruns the episode and then flags it; every attempt is logged with its clocks.
 - **Guards tested by mutation.** `block2/mutate.py` removes 45 guards one at a time, and a test catches each (`block2/mutate.out`); two of them are input hygiene rather than security. Its first run found a guard no test covered: a symlink planted in an episode's work folder. A test for it was added.
 - **An independent review** of these changes by another agent session found three defects and several smaller problems. The defects and most of the smaller problems were fixed before this text, and the plan states what is left: the plan understated part A's cost, the mutation script could not rerun its own output, and referee faults were neither carried into the assay rows nor counted by the analysis. It also found the stall above, an assay order that ran arms in blocks, an approval bound to the plan's text alone, and a gate that could discard a candidate exactly at its margin by floating-point error, a fault the pilot's gate had too.
-- **Part A,** about 14 dollars at list: assay the pilot's 19 fault-free final harnesses again, both slots, three fresh assays each, to test the building gap found after the runs (free lineages +0.020 against solo +0.492). The predictions, the analysis script (dry-run on the pilot's assays), a simulation of power and the hashes of every file it runs with are fixed in the plan before any data.
+- **Part A,** planned at about 14 dollars at list: assay the pilot's 19 fault-free final harnesses again, both slots, three fresh assays each, to test the building gap found after the runs (free lineages +0.020 against solo +0.492). The predictions, the analysis script (dry-run on the pilot's assays), a simulation of power and the hashes of every file it runs with were fixed in the plan before any data.
 - **Part B,** about 42 dollars, sketched for a later decision: new runs with a gate that also pays for building.
+
+### Part A: the building gap did not hold
+
+The owner approved part A in the session's chat. The approval file (`block2/approval-partA.json`) names the plan's SHA-256, the run folder, a cap of 20 dollars, the approver and the date, and `run.py` checked it and every frozen file's hash before the first call. Part A ran from 05:27 to 08:00 UTC: 126 of 126 assays, no referee fault, no failed model call, no timeout. It cost 14.62 dollars over 10717 calls on its own ledger (`block2/partA/spend.json`); the rows' own counts give 14.54, the rest being attempts cut short by the usage limit below and one probe call. `block2/verify_partA.out` shows that every assay ran the archived harness it names, that every planned assay is there once, and that no task key repeats.
+
+The planned analysis (`block2/results_a.md`, copied here):
+
+| Arm | Runs | Run values (mean gain of 6 assays) | Mean | No edit, of 24 |
+|---|---|---|---|---|
+| twin-free-rival | 4 | +0.037, +0.160, +0.302, +0.346 | +0.211 | 4 |
+| twin-free-collective | 4 | +0.419, +0.305, +0.145, +0.270 | +0.285 | 7 |
+| twin-stack-collective | 3 | +0.436, +0.032, +0.000 | +0.156 | 11 of 18 |
+| solo-pair | 4 | +0.269, +0.197, +0.516, +0.505 | +0.372 | 4 |
+| twin-fixed-builder | 4 | +0.359, +0.456, +0.234, +0.575 | +0.406 | 1 |
+
+The seed harness as builder gained +0.450 over 12 assays. The plan prints this beside the pilot's +0.331 for seed builders at turn 1 with no pass mark, and the two are not comparable: the checker and the time limit have changed since, and the service behind the model may have.
+
+| Prediction | Difference | Exact p | Verdict |
+|---|---|---|---|
+| A1: free-lineage harnesses build worse than solo harnesses | -0.087 | 0.4286 | does not hold |
+| A2: they build worse than seed-builder harnesses | -0.121 | 0.2286 | does not hold |
+| A3: more of their assays make no edit than solo's | 0.292 against 0.167 | - | holds |
+
+The plan named A1 failing as what counts against the pilot's reading. It failed. Measured on both slots and six times a run, harnesses from the free-lineage arm cannot be told apart from those of either control, so the pilot's "weakest builders measured" stands withdrawn. The direction is still the same, and part A could not have shown a small difference: with four runs an arm the plan's power simulation detects a true difference of 0.12 only 7 to 19 percent of the time, for a spread of 0.2 to 0.1 (`block2/power.out`). So part A withdraws the large gap; it does not show that there is none.
+
+**Read after the planned analysis, not preregistered** (`block2/explore_a.py`, `.out`):
+
+- **The pilot's single assays were not noise.** Over the 19 runs, the pilot's one assay of a slot-A harness correlates +0.703 with part A's mean of three on the same harness. Measuring once does not explain the pilot's gap by itself.
+- **Two things moved it.** The pilot assayed slot A only, and in the free arm slot B builds better: +0.369 against +0.201 on slot A, while solo goes the other way, +0.314 against +0.429. And one free-arm harness had a bad single draw: -0.011 in the pilot, +0.517, +0.565 and +0.608 in part A. On slot A alone a gap remains, free minus solo -0.228 (exact p 0.2000). That contrast was chosen after the data and tests nothing.
+- **Not editing is a trait of a harness.** Of the 32 harnesses assayed three times, 24 edited every time and 4 never did. If every harness had the pooled no-edit rate, about 14 and 0.4 would. The harnesses that never edited are 1 rival, 2 free, 1 stack (its two slots share one harness) and 1 solo; none from the seed-builder arm. Four of them spent all 16 calls of every build without writing a file. The fifth, rival r0 A, has a step limit of 12, below a build's 16 calls. The one other harness with that limit is free-collective r2 B, the one whose builds the pilot saw stop at 12 calls with nothing written (`results/changes/summary.md`). In part A it edited in all three assays, within 12 calls. So the limit alone does not stop a builder.
+- **One assay says about half of what a harness can do.** The intraclass correlation of gains is 0.507: a single assay has a reliability of 0.51, a mean of six 0.86. Run values spread with a standard deviation of 0.113 to 0.243 by arm, inside the 0.1 to 0.2 the power simulation assumed.
+
+**Deviations in running part A.**
+
+1. **One probe call** before the launch, on part A's ledger, to check that the model answered (0.0003 dollars). It is in the ledger and in no row.
+2. **Four processes, not one.** Part A ran as four processes, each taking every fourth assay of the planned order (`--shard i/4`); the plan's command shows one. The order within each repeat is the planned one, interleaved.
+3. **One process crashed at start, before any model call.** The four unpacked the pilot's archives into one folder at the same moment, and one met a folder another had just made (`FileExistsError`). It was restarted within a minute, after a check that all 38 unpacked final harnesses match their hashes. The restart overwrote its first log; the error is quoted here from the session. `run.py` was not changed, since it is frozen.
+4. **The account ran out of allowance for a while,** as it did in the pilot. The frozen code waited, probed, and reran each cut step from the start: 3 builds and 5 candidate episodes, in 4 rows (`block2/verify_partA.out`). The plan says such a refusal "reruns the assay, as in the pilot". The code reruns only the cut build or episode, as the pilot's code did. No rerun depends on a score.
+5. **Added after the data and not planned:** `block2/verify_partA.py` and `block2/explore_a.py`.
 
 | Path | What it holds |
 |---|---|
@@ -224,6 +268,11 @@ Added 2026-11-24. [`block2/PLAN.md`](block2/PLAN.md) proposes a second block and
 | `block2/power.py`, `.out` | Power of the planned test, by simulation |
 | `block2/costs.py`, `.out` | The plan's cost figures, from the pilot's logs |
 | `block2/freeze.py` | Writes the hashes of the files part A runs with into the plan, or checks them |
+| `block2/approval-partA.json` | The owner's approval of part A, bound to the plan's hash, the run folder, the cap and a date |
+| `block2/partA/` | Part A's 126 rows (`assay2-partA-*.jsonl`), its ledger, the four processes' logs, and every build trace and harness snapshot of its assays (`builds.tar.gz`) |
+| `block2/results_a.md` | Part A's planned analysis |
+| `block2/verify_partA.py`, `.out` | Checks of part A's rows: harness hashes, completeness, reruns, spend. Written during the run, not planned |
+| `block2/explore_a.py`, `.out` | Part A read after the planned analysis: retest, slots, reliability, no-edit harnesses. Not planned |
 | `block2/check_numbers_power.py`, `.out` | How often the figure check catches a planted error |
 | `tests/test_units.py` | Fast tests of the gate, seeding, decoding, checkers, the brain server, the fault rules, the approval rule and the plan's hashes |
 

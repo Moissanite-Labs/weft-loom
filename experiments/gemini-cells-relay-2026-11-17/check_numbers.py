@@ -25,7 +25,9 @@ SOURCES = [HERE / "results" / n for n in ("tables.md", "explore.md", "summary.js
 SOURCES += [HERE / "PREREG.md", HERE / "second_count" / "recount_final.out", HERE / "second_count" / "recount.out",
             HERE / "referee" / "tasks" / "selftest.out"]
 SOURCES += sorted((HERE / "results" / "faulted").glob("*/*.jsonl"))
-BLOCK2 = sorted((HERE / "block2").glob("*.out")) + [HERE / "block2" / "analyze_a_dryrun.md"]
+# Part A's outputs are kept out of the plan's pool: the plan was written before them.
+PARTA = [HERE / "block2" / n for n in ("results_a.md", "verify_partA.out", "explore_a.out", "partA/spend.json")]
+BLOCK2 = [p for p in sorted((HERE / "block2").glob("*.out")) if p not in PARTA] + [HERE / "block2" / "analyze_a_dryrun.md"]
 GAME = [REPO / "notes" / "prototypes" / "gemini-cells-game" / n for n in ("game.out", "README.md", "recheck.out")]
 
 ALLOWED = {   # figure: where it comes from
@@ -36,6 +38,7 @@ ALLOWED = {   # figure: where it comes from
         "0.743": "results/faulted/twin-stack-collective-r2/exam_resit.jsonl, mean over all 36 exam tasks",
         "0.667": "results/faulted/twin-stack-collective-r2/log.jsonl, turn 3, old harness",
         "0.652": "results/faulted/twin-stack-collective-r2/log.jsonl, turn 3, candidate",
+        "0.0003": "part A's probe call before the launch, 0.0003022 dollars as the tool reported it in the session",
     },
     "gemini-cells.md": {
         "0.064": "tables.md, contrast live builder minus seed builder", "4.1": "size of the seed harness in kilobytes (4,115 bytes)",
@@ -80,9 +83,9 @@ def check(doc: Path, sources: list[Path], sections: tuple[str, ...] | None, text
 # a wrong figure with three decimals often finds a match by chance (a planted 0.087 for 0.081
 # did). block2/check_numbers_power.py measures how often that happens for each document.
 CHECKS = [
-    (HERE / "README.md", SOURCES + BLOCK2, None),
+    (HERE / "README.md", SOURCES + BLOCK2 + PARTA, None),
     (HERE / "block2" / "PLAN.md", BLOCK2 + [HERE / "results" / "explore.md", HERE / "results" / "tables.md"], None),
-    (REPO / "notes" / "gemini-cells.md", SOURCES + GAME + BLOCK2 + [HERE / "README.md"],
+    (REPO / "notes" / "gemini-cells.md", SOURCES + GAME + BLOCK2 + PARTA + [HERE / "README.md"],
      ("What a scoring rule pays for: an exact model", "What live cells did: a pilot", "The reply, claim by claim",
       "Transposition", "What would decide it")),
 ]

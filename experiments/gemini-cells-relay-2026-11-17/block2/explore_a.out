@@ -1,0 +1,100 @@
+Exploratory, written after the planned analysis was seen. Not preregistered.
+
+## 1. Retest of the pilot's single assays (slot A, same harness)
+
+| Run | Pilot assay | Part A, three assays | Part A mean |
+|---|---|---|---|
+| solo-pair-r0 | +0.498 | +0.397, +0.000, +0.457 | +0.284 |
+| solo-pair-r1 | +0.275 | +0.406, +0.172, +0.604 | +0.394 |
+| solo-pair-r2 | +0.639 | +0.546, +0.552, +0.454 | +0.517 |
+| solo-pair-r4 | +0.556 | +0.520, +0.591, +0.450 | +0.520 |
+| twin-fixed-builder-r0 | +0.505 | +0.521, +0.442, +0.339 | +0.434 |
+| twin-fixed-builder-r1 | +0.453 | +0.225, +0.525, +0.597 | +0.449 |
+| twin-fixed-builder-r2 | +0.423 | +0.474, +0.426, +0.161 | +0.354 |
+| twin-fixed-builder-r4 | +0.515 | +0.534, +0.629, +0.546 | +0.570 |
+| twin-free-collective-r0 | -0.011 | +0.517, +0.565, +0.608 | +0.563 |
+| twin-free-collective-r1 | +0.092 | +0.462, +0.530, -0.274 | +0.239 |
+| twin-free-collective-r2 | +0.000 (no edit) | +0.000, +0.000, +0.000 | +0.000 |
+| twin-free-collective-r4 | +0.000 (no edit) | +0.000, +0.000, +0.000 | +0.000 |
+| twin-free-rival-r0 | +0.000 (no edit) | +0.000, +0.000, +0.000 | +0.000 |
+| twin-free-rival-r1 | +0.559 | +0.278, +0.163, +0.309 | +0.250 |
+| twin-free-rival-r2 | +0.058 | +0.018, +0.417, -0.040 | +0.132 |
+| twin-free-rival-r4 | +0.436 | +0.309, +0.224, +0.514 | +0.349 |
+| twin-stack-collective-r0 | +0.596 | +0.498, +0.303, +0.323 | +0.375 |
+| twin-stack-collective-r1 | +0.000 (no edit) | +0.190, +0.000, +0.000 | +0.063 |
+| twin-stack-collective-r4 | +0.000 (no edit) | +0.000, +0.000, +0.000 | +0.000 |
+
+Over 19 runs, pilot assay against part A's mean of three: Pearson +0.703 (permutation p 0.001), Spearman +0.567 (permutation p 0.013).
+Pilot assay against part A's first assay alone (one against one): Pearson +0.687.
+
+## 2. Arm means by slot
+
+| Arm | Slot A, pilot, one assay a run | Slot A, part A, three a run | Slot B, part A, three a run |
+|---|---|---|---|
+| twin-free-rival | +0.263 | +0.183 | +0.240 |
+| twin-free-collective | +0.020 | +0.201 | +0.369 |
+| twin-stack-collective | +0.199 | +0.146 | +0.166 |
+| solo-pair | +0.492 | +0.429 | +0.314 |
+| twin-fixed-builder | +0.474 | +0.452 | +0.360 |
+
+The planned contrasts on slot A alone, part A's assays: free minus solo -0.228 (exact p 0.2000), free minus seed builder -0.251 (exact p 0.1429). Chosen after seeing the data, so not a test of anything.
+
+## 3. How much one assay says about a harness
+
+36 distinct harnesses (assays each: 3: 32, 6: 3, 12: 1), 126 assays. Between-harness variance 0.0300 (SD 0.173), between-assay variance within a harness 0.0292 (SD 0.171).
+Intraclass correlation 0.507. Reliability of a harness's mean gain over k assays (Spearman-Brown): k=1: 0.51, k=3: 0.76, k=6: 0.86, k=12: 0.93.
+
+## 4. No edit: a trait of the harness or chance each time
+
+Pooled no-edit rate over built harnesses 0.237. Harnesses with three assays: 32.
+
+| No-edit assays of 3 | Harnesses | Expected if every harness had the pooled rate |
+|---|---|---|
+| 0 | 24 | 14.2 |
+| 1 | 4 | 13.2 |
+| 2 | 0 | 4.1 |
+| 3 | 4 | 0.4 |
+
+Harnesses with any no-edit assay:
+
+- solo-pair-r0 A: 1 of 3
+- solo-pair-r1 B: 3 of 3
+- twin-fixed-builder-r0 B: 1 of 3
+- twin-free-collective-r0 B: 1 of 3
+- twin-free-collective-r2 A: 3 of 3
+- twin-free-collective-r4 A: 3 of 3
+- twin-free-rival-r0 A: 3 of 3
+- twin-free-rival-r1 B: 1 of 3
+- twin-stack-collective-r1 A = twin-stack-collective-r1 B: 5 of 6
+- twin-stack-collective-r4 A = twin-stack-collective-r4 B: 6 of 6
+
+Harnesses that never edited, by arm: twin-free-rival 1, twin-free-collective 2, twin-stack-collective 1, solo-pair 1, twin-fixed-builder 0.
+
+Step limit (`MAX_STEPS` in the harness's agent.py, read from the record's archive) and the model calls of each build, for every harness with a no-edit assay or a limit other than the seed's 40. A build turn allows 16 calls.
+
+| Harness | MAX_STEPS | No-edit assays | Calls per build |
+|---|---|---|---|
+| solo-pair-r0 A | 40 | 1 of 3 | 16, 16, 16 |
+| solo-pair-r1 B | 40 | 3 of 3 | 16, 16, 16 |
+| twin-fixed-builder-r0 B | 40 | 1 of 3 | 15, 16, 16 |
+| twin-free-collective-r0 B | 40 | 1 of 3 | 10, 16, 16 |
+| twin-free-collective-r2 A | 40 | 3 of 3 | 16, 16, 16 |
+| twin-free-collective-r2 B | 12 | 0 of 3 | 12, 12, 12 |
+| twin-free-collective-r4 A | 40 | 3 of 3 | 16, 16, 16 |
+| twin-free-rival-r0 A | 12 | 3 of 3 | 6, 12, 12 |
+| twin-free-rival-r0 B | none | 0 of 3 | 16, 16, 16 |
+| twin-free-rival-r1 B | 40 | 1 of 3 | 16, 16, 16 |
+| twin-stack-collective-r1 A = twin-stack-collective-r1 B | 40 | 5 of 6 | 16, 16, 16, 16, 16, 16 |
+| twin-stack-collective-r4 A = twin-stack-collective-r4 B | 40 | 6 of 6 | 16, 16, 16, 16, 16, 16 |
+
+## 5. Spread of run values (mean of six assays) by arm
+
+| Arm | Runs | SD of run values |
+|---|---|---|
+| twin-free-rival | 4 | 0.141 |
+| twin-free-collective | 4 | 0.113 |
+| twin-stack-collective | 3 | 0.243 |
+| solo-pair | 4 | 0.163 |
+| twin-fixed-builder | 4 | 0.145 |
+
+Pooled over free, solo and seed-builder runs, ignoring arm: SD 0.139 over 12 runs.

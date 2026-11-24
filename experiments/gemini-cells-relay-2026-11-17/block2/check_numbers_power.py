@@ -20,11 +20,11 @@ SEED = 20261124
 
 
 def main():
-    rng = random.Random(SEED)
     print(f"{PLANTS} plants per document, seed {SEED}. A plant moves the last digit of one figure by 1 to 3"
           " units up or down.\n")
     print(f"{'document':28} {'figures':>8} {'caught':>7} {'rate':>6}")
     for doc, sources, sections in cn.CHECKS:
+        rng = random.Random(f"{SEED}|{doc.name}")   # per document, so one document's edits leave the others' draws alone
         text = doc.read_text()
         if cn.check(doc, sources, sections, text):
             print(f"{doc.name:28} not clean before planting; skipped")
