@@ -144,6 +144,7 @@ The record [`experiments/gemini-cells-relay-2026-11-17`](../experiments/gemini-c
 - **Self-editors.** Darwin Gödel Machine (Zhang et al., 2025, arXiv 2505.22954, full), SICA (Robeyns et al., 2025, arXiv 2504.15228, full), Gödel Agent (Yin et al., 2024, arXiv 2410.04444, abstract): one agent edits its own code, with an archive of variants. These are the single-cell case.
 - **On the pilot's two main readings.** Jha, Kleiman-Weiner and Jaques (2026, arXiv 2609.38516, full) found that populations of agents sharing skill files did not beat solo learners at matched cost. The Darwin Gödel Machine's ablation with a fixed meta-agent gained early and tapered off, while the full system kept improving over 80 iterations. So fast saturation and "solo matches social" both have published company, and both have counter-examples.
 - **On gaming.** The Darwin Gödel Machine's authors report an agent that removed the markers its hallucination check relied on. RewardHackingAgents (Atinafu and Cohen, 2026, arXiv 2603.11337, full) reports evaluator tampering attempted in about half of episodes, and none once the evaluator was locked by hash. These bear on the referee's two open weaknesses listed in the record.
+- **Added 2026-11-24: gBench** (google-deepmind/gbench, Apache-2.0, 2026; the owner pointed to it). The lead read its README, `docs/quality.md` and `docs/golden-set.md`. It is an evaluation and serving benchmark for open-weight models served behind an OpenAI-compatible `/v1` endpoint, in three tiers: public academic suites, a 16-case deterministic smoke set, and an agentic quality suite. It does not measure agents that edit themselves or each other, so it is not prior work on the proposal. Three of its design choices match choices this record made on its own; they are B1 to B3 below.
 
 ## Transposition
 
@@ -179,11 +180,14 @@ The method is the same: each concept of the proposal is crossed with each mechan
 - O12. Certificate or nothing: a claim counts only if its witness verifies. (tar, cedar) **Reported.**
 - X2s. A preregistration gate: the plan's commit must come before the first output. (siliquant note, graft X2) **Reported.**
 
-Added 2026-11-24, from work merged or opened in weft-loom since the first version of this note:
+Added 2026-11-24: K1 to K3 from work opened in weft-loom since the first version of this note, and B1 to B3 from gBench, which the owner pointed to:
 
 - K1. LoRA training on Tinker from a list of examples, with the adapter sampled from right after. ([pull request 46](https://github.com/Moissanite-Labs/weft-loom/pull/46), open, which ran it once for 0.09 dollars) **Checked** in that pull request's description.
 - K2. Mutation testing of a record's guards: remove each guard and show a test fails. ([pull requests 38](https://github.com/Moissanite-Labs/weft-loom/pull/38) and 46, open) **Checked** in their descriptions.
 - K3. Exact feedback did not speed repair: telling a model the signed amount by which each constraint failed did not let it repair in fewer rounds than naming the constraint and place. ([pull request 38](https://github.com/Moissanite-Labs/weft-loom/pull/38), open: by its registered rule neither model supports the claim) **Checked** in that pull request's description.
+- B1. Harness errors are not scored. In gBench's quality tier, relay, endpoint, Gemini or container failures do not count against the model, and a run left with nothing to score reports no pass rate rather than 0. (gBench README) **Checked.**
+- B2. The suite runs in a container with no network and no writable host path; its only way out is a forwarder that hands calls over a Unix socket to a relay that alone holds the keys. (gBench README, `docs/quality.md`) **Checked.**
+- B3. A 16-case deterministic smoke set run before trusting a served model, including four chat-template sensitivity pairs: each puts a tool call, a tool turn or a multi-turn history on the wire beside a twin that asks the same through one plain user turn, so a broken chat template is told apart from a weak model, and the served model's own template tokens are forbidden in the answer. (gBench `docs/golden-set.md`) **Checked.**
 
 **Crossings**
 
@@ -207,6 +211,9 @@ Added 2026-11-24, from work merged or opened in weft-loom since the first versio
 | G16 | T2 × K2 | Every guard of the referee is removed in turn and a test must fail | **Built** (the record's `block2/mutate.py`: 45 of 45 caught, after its first run found one gap and a test closed it) |
 | G17 | T2 × O8 | A paid run starts only with an approval bound to the hash of the plan text and the run's tag | **Built** (the record's `run.py`, `check_approval`) |
 | G18 | T4 × K3 | The builder's report: K3 suggests that a more detailed failure signal does not by itself make repair faster. The pilot's builders got scores and traces | Not built. First test: the block 2 assay with and without the traces in the report |
+| G19 | T2 × B1 | An episode, build or assay cut short by the backend is not a result about the harness. Block 2 counts such rows and leaves them out, and gBench withholds a score for the same reason | **Built** for block 2 (`referee_fault`, left out and counted by `block2/analyze_a.py`); reached independently before gBench was read |
+| G20 | T2 × B2 | The referee's design: a sandbox with no network and no credentials, and a brain server on a Unix socket that alone reaches the model | **Built** in the pilot; gBench is a published instance of the same design |
+| G21 | T7 × B3 | Before any relay on an open-weight model (part B on Inkling 2 Mini, say), run a smoke set with chat-template pairs against the served endpoint. A broken template would look like a weak harness. PR 46's first review found role markers sent as plain text, the failure those pairs catch. gBench's academic suites could also give part B one external held-out exam family, such as a tool-use suite, to test whether harness edits carry outside the generated families. Fixed public datasets cannot be drawn after a candidate is fixed, so never in the gate | Not built. First test: the 16 cases against the endpoint part B would use |
 
 The mathematical mechanisms in the siliquant list gave no crossing with a first test: lattice decoders, permanents, Delsarte ceilings, the zero-vector recurrence, Krawczyk enclosures, interval subdivision and Schur-complement relaxation. They are about weights and counts, and the proposal is about agent harnesses.
 
