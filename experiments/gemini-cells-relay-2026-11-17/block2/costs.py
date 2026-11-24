@@ -3,9 +3,10 @@
 
     python3 -I -B block2/costs.py > block2/costs.out
 
-List prices as the pilot's ledger recorded them. An assay's cost is its build turn plus the
-two benchmarks of its gate (the boot check's few calls are not in the row and are left out).
-A run's cost is the total in its end row. Part B's build-gate overhead is an estimate: each
+List prices as the pilot's ledger recorded them. An assay's cost is the `usd` of its row:
+the fresh benchmark of the seed that every assay starts with, the build turn, the boot check
+and the two benchmarks of the gate. Retried calls are not in it. A run's cost is the total in
+its end row. Part B's build-gate overhead is an estimate: each
 gate adds two build probes, each a build turn and one benchmark of its candidate, plus one
 benchmark of the seed, priced at the pilot's mean assay parts.
 """
@@ -18,7 +19,7 @@ HERE = Path(__file__).resolve().parent.parent
 assays = [json.loads(line) for f in sorted(glob.glob(str(HERE / "results" / "assay-*of4.jsonl"))) for line in open(f)]
 parts = [(a.get("build_usd", 0.0), (a.get("inc_report") or {}).get("usd", 0.0), (a.get("cand_report") or {}).get("usd", 0.0))
          for a in assays]
-per_assay = [sum(p) for p in parts]
+per_assay = [a["usd"] for a in assays]
 build = st.mean(p[0] for p in parts)
 bench = st.mean(x for p in parts for x in p[1:] if x)
 runs = []

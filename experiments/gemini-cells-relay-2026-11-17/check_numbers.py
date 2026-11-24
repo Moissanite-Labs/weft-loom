@@ -81,8 +81,7 @@ def check(doc: Path, sources: list[Path], sections: tuple[str, ...] | None, text
 # did). block2/check_numbers_power.py measures how often that happens for each document.
 CHECKS = [
     (HERE / "README.md", SOURCES + BLOCK2, None),
-    (HERE / "block2" / "PLAN.md", BLOCK2 + [HERE / "results" / "explore.md", HERE / "results" / "tables.md",
-                                       HERE / "README.md"], None),
+    (HERE / "block2" / "PLAN.md", BLOCK2 + [HERE / "results" / "explore.md", HERE / "results" / "tables.md"], None),
     (REPO / "notes" / "gemini-cells.md", SOURCES + GAME + BLOCK2 + [HERE / "README.md"],
      ("What a scoring rule pays for: an exact model", "What live cells did: a pilot", "The reply, claim by claim",
       "Transposition", "What would decide it")),

@@ -129,7 +129,9 @@ def instances(key: str, t: int, families: tuple, n: int) -> list[tuple[str, int]
 def gate(cand: float, inc: float, margin: float) -> str:
     """The gate: keep a candidate unless it scores more than `margin` below the incumbent,
     both measured on the same fresh instances in this turn."""
-    return "commit" if cand >= inc - margin else "regress"
+    # Scores are means rounded to 4 decimals; compare the difference rounded to 9 so that a
+    # candidate exactly `margin` below is kept whatever the floating-point error.
+    return "commit" if round(cand - inc, 9) >= -margin else "regress"
 
 
 def exam_instances(cfg: Config) -> list[tuple[str, int]]:
@@ -194,7 +196,8 @@ class Relay:
         return {"mean": r["mean"], "by_family": r["by_family"], "calls": r["calls"], "usd": r["usd"],
                 "model_errors": r["model_errors"],
                 "episodes": [{k: e.get(k) for k in ("family", "seed", "score", "calls", "rc", "wall_s",
-                                                          "model_wait_s", "timed_out", "reruns", "referee_fault")}
+                                                          "model_wait_s", "timed_out", "reruns", "limit_reruns",
+                                                          "attempts", "referee_fault")}
                              for e in r["episodes"]]}
 
     def brief(self, t: int, me: str, tgt: str, scores: dict, history: list[dict]) -> str:
@@ -230,7 +233,8 @@ class Relay:
               "edited": info["hash"] != base_h, "build_calls": b["calls"], "build_usd": b["usd"],
               "build_rc": b["rc"], "build_wall_s": b["wall_s"], "build_model_errors": b["model_errors"],
               "build_model_wait_s": b.get("model_wait_s"), "build_timed_out": b.get("timed_out"),
-              "build_reruns": b.get("reruns"), "build_referee_fault": b.get("referee_fault", False)}
+              "build_reruns": b.get("reruns"), "build_limit_reruns": b.get("limit_reruns"),
+              "build_attempts": b.get("attempts"), "build_referee_fault": b.get("referee_fault", False)}
         (self.dir / "builds").mkdir(exist_ok=True)
         (self.dir / "builds" / f"turn{t:02d}.txt").write_text(b["trace"])
         if not info["ok"]:
@@ -244,7 +248,8 @@ class Relay:
             self.usd += boot["usd"]
             self.calls += boot["calls"]
             self.model_errors += boot["model_errors"]
-            ev["boot"] = {k: boot[k] for k in ("ok", "calls", "rc", "model_errors")}
+            ev["boot"] = {k: boot[k] for k in ("ok", "calls", "rc", "model_errors", "timed_out", "model_wait_s",
+                                               "reruns", "limit_reruns", "referee_fault")}
             if not boot["ok"]:
                 ev.update(outcome="boot_fail", boot_stderr=boot["stderr_tail"])
             else:

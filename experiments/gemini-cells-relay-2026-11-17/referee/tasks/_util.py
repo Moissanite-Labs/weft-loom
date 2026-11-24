@@ -225,6 +225,7 @@ def emit(results):
 
 MAX_VALUE_CHARS = 100_000
 MAX_DEPTH = 60
+MAX_STDOUT_BYTES = 8_000_000   # the referee reads no more of a hidden run's output than this
 
 
 def last_json_line(stdout):
@@ -249,6 +250,8 @@ def run_calls(run_py, body, cwd, count, timeout_s=10.0):
         script = (RUNNER.replace("__NONCE__", nonce).replace("__BUDGET__", "6.0")
                   .replace("__MAX_VALUE_CHARS__", str(MAX_VALUE_CHARS)) + body)
         _, stdout = run_py(script, pathlib.Path(cwd), timeout_s)
+        if stdout is None or len(stdout) > MAX_STDOUT_BYTES:
+            return None
         record = last_json_line(stdout)
         if not isinstance(record, dict) or record.get("nonce") != nonce:
             return None
@@ -262,7 +265,10 @@ def run_calls(run_py, body, cwd, count, timeout_s=10.0):
 
 def decode(encoded, depth=0):
     """Python value of an outcome's "v" field. Raises ValueError on anything malformed.
-    Runs in the referee on untrusted data, so it builds plain values only."""
+    Runs in the referee on untrusted data, so it builds plain values only, and never a set
+    or a dict: building those hashes every element, and numbers chosen to collide make that
+    quadratic, enough to stall the referee for minutes. No expected result in either code
+    family is a set or a dict, so a returned set or dict could never score anyway."""
     if depth > MAX_DEPTH:
         raise ValueError("too deep")
     if encoded is None:
@@ -279,17 +285,10 @@ def decode(encoded, depth=0):
         return float(body)
     if tag == "s" and type(body) is str:
         return body
-    if tag in ("l", "t", "S", "F") and type(body) is list:
+    if tag in ("l", "t") and type(body) is list:
         items = [decode(item, depth + 1) for item in body]
-        return {"l": list, "t": tuple, "S": set, "F": frozenset}[tag](items)
-    if tag == "d" and type(body) is list:
-        out = {}
-        for pair in body:
-            if type(pair) is not list or len(pair) != 2:
-                raise ValueError("malformed pair")
-            out[decode(pair[0], depth + 1)] = decode(pair[1], depth + 1)
-        return out
-    raise ValueError("malformed")
+        return items if tag == "l" else tuple(items)
+    raise ValueError("malformed or not supported")
 
 
 def outcome_value(outcome):

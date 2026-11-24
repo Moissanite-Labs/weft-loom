@@ -16,7 +16,7 @@ shows two things on generated instances:
 
 The old checker is read from git at the pilot's commit. Run from the record folder:
 
-    python3 -I -B block2/checker_equivalence.py [--seeds N]
+    python3 -I -B block2/checker_equivalence.py > block2/checker_equivalence.out   # 60 seeds
 
 Exit 0 when every claim above holds. Needs git and python3; no model, no sandbox.
 """
@@ -31,7 +31,7 @@ import tempfile
 HERE = pathlib.Path(__file__).resolve().parent.parent
 REL = "experiments/gemini-cells-relay-2026-11-17/referee/tasks"
 PILOT_COMMIT = "6726330"  # the record as pushed with the pilot's results
-SEEDS = range(int(sys.argv[2]) if sys.argv[1:2] == ["--seeds"] else 20)
+SEEDS = range(int(sys.argv[2]) if sys.argv[1:2] == ["--seeds"] else 60)
 LEVELS = (1, 2, 3)
 
 sys.dont_write_bytecode = True

@@ -169,6 +169,7 @@ class BrainServer:
         self._inflight = 0          # backend calls in flight now
         self._busy_since = 0.0      # when the in-flight count last rose from zero
         self._wait_s = 0.0          # seconds with at least one backend call in flight, so far
+        self.inflight_at_exit = 0   # backend calls still running when the episode ended
         self._stop = False
         self._srv = None
         self._thread = None
@@ -204,9 +205,21 @@ class BrainServer:
         self._thread.start()
         return self
 
+    exit_drain_s = 30.0   # how long the end of an episode waits for backend calls in flight
+
     def __exit__(self, *exc):
         self._stop = True
         self._thread.join(timeout=5)
+        # A call in flight when the cell was killed still costs money. Wait a little for it so
+        # that its cost and record land in this episode; the ledger counts it either way.
+        with self._lock:
+            self.inflight_at_exit = self._inflight
+        deadline = time.monotonic() + self.exit_drain_s
+        while time.monotonic() < deadline:
+            with self._lock:
+                if self._inflight == 0:
+                    break
+            time.sleep(0.05)
         self._srv.close()
         try:
             self.sock_path.unlink()
@@ -262,6 +275,11 @@ class BrainServer:
             n = self.used
         system = str(req.get("system", ""))[:8000]
         prompt, clipped = clip_middle(str(req.get("prompt", "")), self.prompt_chars)
+        if not prompt.strip():
+            # Refused without asking the model, and the call is spent: an empty prompt could make
+            # the backend fail, and a failing backend is time the cell is not charged for.
+            self.records.append({"n": n, "refused": "empty prompt"})
+            return {"error": "empty prompt"}
         t0 = time.time()
         self._enter_call()
         try:

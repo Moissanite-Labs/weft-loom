@@ -1,6 +1,6 @@
 60 plants per document, seed 20261124. A plant moves the last digit of one figure by 1 to 3 units up or down.
 
 document                      figures  caught   rate
-README.md                         164      31   0.52
-PLAN.md                            25      22   0.37
+README.md                         164      30   0.50
+PLAN.md                            27      27   0.45
 gemini-cells.md                    52      17   0.28

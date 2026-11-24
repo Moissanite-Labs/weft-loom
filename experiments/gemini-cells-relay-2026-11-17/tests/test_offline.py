@@ -81,6 +81,10 @@ def run(arm, plan, turns=2):
 class RelayMechanics(unittest.TestCase):
     def test_twin_commit_and_cross_edit(self):
         end, turns, exams, rows = run("twin-free-collective", {("A", 1): "good"})
+        for key in ("timed_out", "reruns", "limit_reruns", "referee_fault"):   # fault fields reach the row
+            self.assertIn(key, turns[0]["boot"])
+            self.assertIn(key, turns[0]["cand_report"]["episodes"][0])
+        self.assertIn("build_referee_fault", turns[0])
         self.assertEqual(turns[0]["outcome"], "commit")
         self.assertEqual((turns[0]["builder"], turns[0]["target"]), ("A", "B"))
         self.assertEqual((turns[0]["inc"], turns[0]["cand"]), (0.0, 1.0))
@@ -169,6 +173,94 @@ class RelayMechanics(unittest.TestCase):
         self.assertNotIn("twin", texts["solo-pair"])
 
 
+class SandboxedChecker(unittest.TestCase):
+    def test_new_checker_through_the_real_sandbox(self):
+        """The code families' checker run as in a live episode: through the sandbox and head."""
+        from referee import tasks
+        root = Path(tempfile.mkdtemp(prefix="gc-test-", dir="/srv"))
+        b = Bench(root, Scripted(lambda s, p: "@done"), tasks.FAMILIES)
+        for family, seed in (("spec", 3), ("bugfix", 3)):
+            module = tasks.FAMILIES[family]
+            ep = b._new_ep(f"chk-{family}")
+            truth = module.generate(seed, ep / "work", 2)
+            module.solve_from_files(ep / "work")
+            self.assertEqual(module.check(ep / "work", truth, b._run_py(ep)), 1.0, family)
+        ep = b._new_ep("chk-forgery")
+        truth = tasks.FAMILIES["spec"].generate(4, ep / "work", 3)
+        (ep / "work" / "solution.py").write_text(
+            "import __main__ as m, os\nos.write(1, b'x' * 20_000_000)\nm.emit([{'v': {'s': 'x'}}] * len(m.CALLS))\n")
+        self.assertEqual(tasks.FAMILIES["spec"].check(ep / "work", truth, b._run_py(ep)), 0.0)
+        from referee.tasks import _util
+        ep = b._new_ep("chk-flood")
+        _, out = b._run_py(ep)("import os\nos.write(1, b'x' * 20_000_000)\n", ep / "work", 20)
+        self.assertLessEqual(len(out), _util.MAX_STDOUT_BYTES + 1)      # the referee holds no more than this
+        shutil.rmtree(root, ignore_errors=True)
+
+
+class Assay2(unittest.TestCase):
+    def test_assay2_end_to_end_with_a_scripted_model(self):
+        """run.py assay2 on one fake packed run, then the planned analysis on its rows."""
+        import hashlib
+        import io
+        import json
+        import subprocess
+        import tarfile
+        import types
+        import run as runmod
+        from referee.bench import tree_hash
+        work = Path(tempfile.mkdtemp(prefix="gc-test-", dir="/srv"))
+        d = work / "source" / "solo-pair-r0"
+        d.mkdir(parents=True)
+        h = tree_hash(relay.SEED_DIR)
+        buf = io.BytesIO()
+        with tarfile.open(fileobj=buf, mode="w:gz") as tf:
+            for f in relay.SEED_DIR.rglob("*"):
+                if f.is_file():
+                    tf.add(f, arcname=f"snap/{h}/{f.relative_to(relay.SEED_DIR)}")
+        (d / "artifacts.tar.gz").write_bytes(buf.getvalue())
+        (d / "log.jsonl").write_text(json.dumps({"kind": "end", "harness": {"A": h, "B": h}}) + "\n")
+
+        def fn(system, prompt):
+            if "--- step 1 ---" in prompt:
+                return "@done"
+            if "# Build turn" in prompt:
+                return "@sh\necho '- one more line' >> target/prompt.md\n@end"
+            if "READY" in prompt:
+                return "@write answer.txt\nREADY\n@end"
+            return "@done"
+
+        frozen = hashlib.sha256((runmod.HERE / "run.py").read_bytes()).hexdigest()
+        plan = work / "PLAN.md"
+        plan.write_text(f"## Frozen files\n\n{frozen}  run.py\n")
+        saved = runmod.PLAN_FILE, runmod.ClaudeCLI
+        runmod.PLAN_FILE = plan
+        runmod.ClaudeCLI = lambda model, ledger: Scripted(fn)
+        try:
+            root = work / "root"
+            approval = work / "approval.json"
+            approval.write_text(json.dumps({"plan_sha256": hashlib.sha256(plan.read_bytes()).hexdigest(),
+                                            "tag": "t", "root": str(root.resolve()), "cap_usd": 1,
+                                            "approved_by": "test", "date": "2026-11-24"}))
+            args = types.SimpleNamespace(root=str(root), source=str(work / "source"), tag="t",
+                                         approval=str(approval), slots="A,B", reps=1, seed_reps=1, shard="0/1")
+            runmod.cmd_assay2(args)
+            runmod.cmd_assay2(args)                                   # resuming adds nothing
+        finally:
+            runmod.PLAN_FILE, runmod.ClaudeCLI = saved
+        rows = [json.loads(x) for x in (root / "assay2-t-0of1.jsonl").read_text().splitlines()]
+        self.assertEqual(len(rows), 3)
+        self.assertEqual(sorted(str((r["run"], r["slot"])) for r in rows),
+                         sorted(str(x) for x in [("solo-pair-r0", "A"), ("solo-pair-r0", "B"), (None, "seed")]))
+        self.assertEqual(len({r["secret"] for r in rows}), 3)
+        self.assertTrue(all("base_report" in r and "boot" in r for r in rows))
+        out = subprocess.run([sys.executable, "-I", "-B", str(Path(__file__).resolve().parents[1] / "block2" / "analyze_a.py"),
+                              str(root / "assay2-t-*.jsonl")], capture_output=True, text=True)
+        self.assertEqual(out.returncode, 0, out.stderr)
+        self.assertIn("| solo-pair | 1 | 2 |", out.stdout)
+        self.assertIn("Seed harness as builder: 1 assays", out.stdout)
+        shutil.rmtree(work, ignore_errors=True)
+
+
 class Limits(unittest.TestCase):
     def test_call_cap_and_prompt_clip(self):
         text, clipped = clip_middle("x" * 500, 200)
@@ -254,7 +346,8 @@ class Limits(unittest.TestCase):
         e = b.episode(looping, "echo", 9, level=2, calls=3, prompt_chars=16000, wall_s=1.5)
         self.assertEqual((e["timed_out"], e["rc"], e["score"], e["reruns"]), ("own_time", 124, 0.0, 0))
         self.assertLess(e["wall_s"], 4.0)
-        self.assertNotIn("referee_fault", e)
+        self.assertFalse(e["referee_fault"])
+        self.assertEqual(e["kill"]["by"], "own_time")
         shutil.rmtree(root, ignore_errors=True)
 
     def test_hard_cap_kill_reruns_then_flags_a_fault(self):
@@ -263,12 +356,13 @@ class Limits(unittest.TestCase):
         root = Path(tempfile.mkdtemp(prefix="gc-test-", dir="/srv"))
         b = Bench(root, Scripted(self._echo_solver(5.0)), FAMILIES)
         b.hard_cap_factor = 2.0
-        before = Bench.hard_cap_events
         e = b.episode(relay.SEED_DIR, "echo", 9, level=2, calls=3, prompt_chars=16000, wall_s=1.5)
         self.assertEqual((e["timed_out"], e["score"]), ("hard_cap", 0.0))
         self.assertEqual(e["reruns"], b.hard_cap_reruns)
         self.assertTrue(e["referee_fault"])
-        self.assertEqual(Bench.hard_cap_events - before, b.hard_cap_reruns + 1)
+        self.assertEqual(b.hard_cap_events, b.hard_cap_reruns + 1)
+        self.assertEqual([a["why"] for a in e["attempts"]], ["hard_cap"] * b.hard_cap_reruns)
+        self.assertTrue(all(a["kill"]["by"] == "hard_cap" and a["kill"]["wait_s"] > 0 for a in e["attempts"]))
         shutil.rmtree(root, ignore_errors=True)
 
     def test_spend_cap_stops_calls(self):

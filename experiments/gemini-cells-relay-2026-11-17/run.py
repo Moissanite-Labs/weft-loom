@@ -246,11 +246,27 @@ def cmd_assay(a) -> None:
 
 
 PLAN_FILE = HERE / "block2" / "PLAN.md"
+ORDER_SEED = "gemini-cells block 2"   # with the tag, seeds the shuffled order of part A's assays
 
 
-def check_approval(path: str | None, tag: str) -> float:
-    """Block 2's live commands start only with an approval file bound to the exact plan text
-    and run tag: {"plan_sha256": ..., "tag": ..., "cap_usd": ...}. Returns the cap."""
+def frozen_hashes(plan_text: str) -> dict[str, str]:
+    """The `<sha256>  <path>` lines of the plan's section "Frozen files"."""
+    import re
+    m = re.search(r"^## Frozen files[^\n]*\n(.*?)(?=^## |\Z)", plan_text, flags=re.M | re.S)
+    section = m.group(1) if m else ""
+    out = {}
+    for line in section.splitlines():
+        parts = line.strip().strip("`").split()
+        if len(parts) == 2 and len(parts[0]) == 64 and all(c in "0123456789abcdef" for c in parts[0]):
+            out[parts[1]] = parts[0]
+    return out
+
+
+def check_approval(path: str | None, tag: str, root: str | None = None) -> float:
+    """Block 2's live commands start only with an approval file bound to the exact plan text,
+    the run tag and the run's root folder (so one ledger and one cap):
+    {"plan_sha256", "tag", "root", "cap_usd", "approved_by", "date"}. The files the plan lists
+    as frozen must match their hashes. Returns the cap."""
     if not path:
         raise SystemExit("refused: a live block-2 command needs --approval (see block2/PLAN.md)")
     try:
@@ -258,26 +274,42 @@ def check_approval(path: str | None, tag: str) -> float:
         cap = float(approval["cap_usd"])
     except Exception as exc:
         raise SystemExit(f"refused: unreadable approval file ({exc})")
-    want = hashlib.sha256(PLAN_FILE.read_bytes()).hexdigest()
-    if approval.get("plan_sha256") != want:
+    plan = PLAN_FILE.read_bytes()
+    if approval.get("plan_sha256") != hashlib.sha256(plan).hexdigest():
         raise SystemExit("refused: the approval is for another text of block2/PLAN.md")
     if approval.get("tag") != tag:
         raise SystemExit(f"refused: the approval is for run tag {approval.get('tag')!r}, not {tag!r}")
+    if root is not None and approval.get("root") != str(Path(root).resolve()):
+        raise SystemExit(f"refused: the approval is for root {approval.get('root')!r}, not {str(Path(root).resolve())!r}")
+    for key in ("approved_by", "date"):
+        if not str(approval.get(key, "")).strip():
+            raise SystemExit(f"refused: the approval has no {key!r}")
     if not 0 < cap <= 50:
         raise SystemExit("refused: cap_usd must be above 0 and at most 50")
+    frozen = frozen_hashes(plan.decode("utf-8"))
+    if not frozen:
+        raise SystemExit("refused: the plan lists no frozen files")
+    for rel, want in frozen.items():
+        f = HERE / rel
+        if not f.is_file() or hashlib.sha256(f.read_bytes()).hexdigest() != want:
+            raise SystemExit(f"refused: {rel} does not match its hash in the plan")
     return cap
 
 
-def assay2_plan(sources: list[str], slots: list[str], reps: int, seed_reps: int) -> list[tuple]:
-    """The order of block 2's assays: repeat by repeat, so that a run cut short leaves every
-    harness with the same number of assays give or take one. Rows are (rep, run, slot);
-    run None is the seed harness as builder."""
+def assay2_plan(sources: list[str], slots: list[str], reps: int, seed_reps: int, tag: str = "") -> list[tuple]:
+    """The order of block 2's assays. Rows are (index, run, slot); run None is the seed harness
+    as builder. Repeat by repeat, so that a run cut short leaves every harness with the same
+    number of assays give or take one. Within a repeat the rows are shuffled, from a seed made
+    of ORDER_SEED, the tag and the repeat, so that arms do not run in blocks and drift in the
+    backend is not tied to arm. The seed's assays are spread evenly over the repeats."""
+    import random
+    blocks = max(reps, 1)
     plan = []
-    for rep in range(max(reps, seed_reps)):
-        if rep < reps:
-            plan += [(rep, run, slot) for run in sources for slot in slots]
-        if rep < seed_reps:
-            plan.append((rep, None, "seed"))
+    for rep in range(blocks):
+        rows = [(rep, run, slot) for run in sources for slot in slots] if rep < reps else []
+        rows += [(k, None, "seed") for k in range(seed_reps) if k % blocks == rep]
+        random.Random(f"{ORDER_SEED}|{tag}|{rep}").shuffle(rows)
+        plan += rows
     return plan
 
 
@@ -286,7 +318,7 @@ def cmd_assay2(a) -> None:
     record's packed archives, plus the seed harness as a builder. Same procedure as `assay`,
     on new seeds, with both slots and several repeats. Refuses to start without an approval."""
     import tarfile
-    cap = check_approval(a.approval, a.tag)
+    cap = check_approval(a.approval, a.tag, a.root)
     cfg = relay.Config()
     root = Path(a.root)
     src_root = root / "src"
@@ -309,7 +341,7 @@ def cmd_assay2(a) -> None:
     if out.exists():
         done = {(r["rep"], r["run"], r["slot"]) for r in map(json.loads, out.read_text().splitlines())}
     shard, of = (int(x) for x in a.shard.split("/"))
-    plan = assay2_plan(sources, a.slots.split(","), a.reps, a.seed_reps)
+    plan = assay2_plan(sources, a.slots.split(","), a.reps, a.seed_reps, a.tag)
     for i, (rep, run, slot) in enumerate(plan):
         if i % of != shard or (rep, run, slot) in done:
             continue
@@ -330,8 +362,9 @@ def cmd_assay2(a) -> None:
             print("spend cap reached: part A stops at row", i, flush=True)
             return
         ev.pop("_cand_report", None), ev.pop("_inc_report", None)
-        ev.update(kind="assay2", tag=a.tag, rep=rep, run=run, slot=slot, builder_is_seed=builder_h == seed_h,
-                  secret=r.secret, usd=round(r.usd, 4))
+        ev.update(kind="assay2", tag=a.tag, position=i, rep=rep, run=run, slot=slot,
+                  builder_is_seed=builder_h == seed_h, base_report=r._slim(base), secret=r.secret,
+                  usd=round(r.usd, 4))
         with open(out, "a") as f:
             f.write(json.dumps(ev) + "\n")
         print(run, slot, rep, ev["outcome"], ev.get("inc"), ev.get("cand"), flush=True)

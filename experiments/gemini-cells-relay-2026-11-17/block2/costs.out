@@ -1,5 +1,5 @@
-pilot assays: 20, mean 0.0813, total 1.627
+pilot assays: 20, mean 0.1122, total 2.244
   of which: build turn mean 0.0288, one benchmark mean 0.0350
 pilot fault-free runs: 19, mean 0.8522, total 16.192
-part A: 126 assays x 0.0813 = 10.25
-part B: 18 plain runs 15.34; build-gate extra per gate 0.1627, per run 1.8282, 6 runs 10.97; 144 assays 11.71; total 38.02
+part A: 126 assays x 0.1122 = 14.14
+part B: 18 plain runs 15.34; build-gate extra per gate 0.1627, per run 1.8282, 6 runs 10.97; 144 assays 16.16; total 42.47

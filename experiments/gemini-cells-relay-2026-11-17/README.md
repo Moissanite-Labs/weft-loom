@@ -31,7 +31,7 @@ The proposal, its variations and an exact model of its scoring rules are in [`no
 | `referee/tasks/` | Five families of generated tasks with hidden checkers, and their self-test |
 | `run.py`, `analyze.py`, `pack.py` | Commands for calibration, runs and assays; the tables; the packing of results |
 | `calibration/ref-harness/` | A harness written by the lead, used only to check that the benchmark tells a better harness from the seed |
-| `tests/` | Thirteen offline tests of the relay with a scripted model, and the sandbox self-test (26 of 26 checks in `results/sandbox_selftest.out`) |
+| `tests/` | Offline tests of the relay with a scripted model (13 when the pilot ran; more were added for block 2, see below), and the sandbox self-test (26 of 26 checks in `results/sandbox_selftest.out`) |
 | `results/tables.md`, `results/summary.json` | Written by `analyze.py` from the run logs. Every figure in the tables below is copied from `tables.md` |
 | `results/runs/<run>/log.jsonl` | One row per baseline, turn and exam, with every harness named by the hash of its tree |
 | `results/runs/<run>/artifacts.tar.gz` | The build traces of the run and every harness snapshot it produced |
@@ -201,16 +201,17 @@ It also read the referee for defects. What it found is in the limits below, and 
 - **The model is reached through the `claude` command line tool,** which adds notes of its own to every call: a working directory, a scratchpad path, proxy and commit rules, and a reminder about the account. The referee starts the tool from a folder whose path matches the cell's own and puts one fixed line in front of every system prompt telling the cell to ignore those notes. They are the same in every arm.
 - **Dollar figures are list prices** reported by the tool. The account is on a plan with a usage limit, and the block ran into it once.
 - **The reading of what builders changed** is one reader's, on replicates 0 to 2.
-- **The figure check is weak against small errors.** *Added 2026-11-24.* `check_numbers.py` shows that every decimal figure in this README, the note and the block 2 plan equals some number in an output file. It does not show that it equals the right one. Planting one wrong figure at a time, moved by 1 to 3 units in its last digit, it caught 31 of 60 in this README, 22 of 60 in the plan and 17 of 60 in the note (`block2/check_numbers_power.out`). The documents hold so many three-decimal numbers that a wrong figure often matches another true one. So read "every figure traces to an output" as a check against invented figures, not against mistyped ones.
+- **The figure check is weak against small errors.** *Added 2026-11-24.* `check_numbers.py` shows that every decimal figure in this README, the note and the block 2 plan equals some number in an output file. It does not show that it equals the right one. Planting one wrong figure at a time, moved by 1 to 3 units in its last digit, it caught 30 of 60 in this README, 27 of 60 in the plan and 17 of 60 in the note (`block2/check_numbers_power.out`). The documents hold so many three-decimal numbers that a wrong figure often matches another true one. So read "every figure traces to an output" as a check against invented figures, not against mistyped ones.
 
 ## After the pilot: block 2 (proposed, not run)
 
 Added 2026-11-24. [`block2/PLAN.md`](block2/PLAN.md) proposes a second block and is not approved. Nothing in it has been run on a model, and nothing above changes because of it. The pilot's numbers came from the files at commits `0ddfde4` and `ac808c4`. The referee in this folder has changed since, so a rerun of the pilot should check out those commits.
 
-- **Two holes closed.** The code families' hidden checkers now give the cell's code only the inputs, and the referee compares what it returned (deviation from the frozen files, for block 2 only). On 2,520 honest instances the old and new checkers agree on every score, and no forgery scores above its honest counterpart (`block2/checker_equivalence.py`). Episodes are charged only for the cell's own time, not for time spent waiting on the model, with a hard wall limit that reruns the episode and then flags it.
-- **Guards tested by mutation.** `block2/mutate.py` removes 30 guards of the referee one at a time, and a test catches each (`block2/mutate.out`). Its first run found one that no test covered: a symlink planted in an episode's work folder. A test for it was added.
-- **Part A,** about 10 dollars at list: assay the pilot's 19 fault-free final harnesses again, both slots, three fresh assays each, to test the building gap found after the runs (free lineages +0.020 against solo +0.492). The predictions, the analysis script (dry-run on the pilot's assays) and a simulation of power are fixed before any data.
-- **Part B,** about 38 dollars, sketched for a later decision: new runs with a gate that also pays for building.
+- **Two holes closed.** The code families' hidden checkers now give the cell's code only the inputs, and the referee compares what it returned (deviation from the frozen files, for block 2 only). On 2,520 honest instances the old and new checkers agree on every score, and no forgery scores above its honest counterpart (`block2/checker_equivalence.py`). The referee reads at most 8 MB of a hidden run's output and builds no set or dict from it, so returned values cannot stall it. Episodes are charged only for the cell's own time, not for time spent waiting on the model, with a hard wall limit that reruns the episode and then flags it; every attempt is logged with its clocks.
+- **Guards tested by mutation.** `block2/mutate.py` removes 45 guards one at a time, and a test catches each (`block2/mutate.out`); two of them are input hygiene rather than security. Its first run found a guard no test covered: a symlink planted in an episode's work folder. A test for it was added.
+- **An independent review** of these changes by another agent session found three defects and several smaller problems. The defects and most of the smaller problems were fixed before this text, and the plan states what is left: the plan understated part A's cost, the mutation script could not rerun its own output, and referee faults were neither carried into the assay rows nor counted by the analysis. It also found the stall above, an assay order that ran arms in blocks, an approval bound to the plan's text alone, and a gate that could discard a candidate exactly at its margin by floating-point error, a fault the pilot's gate had too.
+- **Part A,** about 14 dollars at list: assay the pilot's 19 fault-free final harnesses again, both slots, three fresh assays each, to test the building gap found after the runs (free lineages +0.020 against solo +0.492). The predictions, the analysis script (dry-run on the pilot's assays), a simulation of power and the hashes of every file it runs with are fixed in the plan before any data.
+- **Part B,** about 42 dollars, sketched for a later decision: new runs with a gate that also pays for building.
 
 | Path | What it holds |
 |---|---|
@@ -222,7 +223,9 @@ Added 2026-11-24. [`block2/PLAN.md`](block2/PLAN.md) proposes a second block and
 | `block2/analyze_a.py`, `analyze_a_dryrun.md` | Part A's analysis, and its dry run on the pilot's single assays |
 | `block2/power.py`, `.out` | Power of the planned test, by simulation |
 | `block2/costs.py`, `.out` | The plan's cost figures, from the pilot's logs |
-| `tests/test_units.py` | Fast tests of the gate, seeding, decoding, checkers, the brain server and the approval rule |
+| `block2/freeze.py` | Writes the hashes of the files part A runs with into the plan, or checks them |
+| `block2/check_numbers_power.py`, `.out` | How often the figure check catches a planted error |
+| `tests/test_units.py` | Fast tests of the gate, seeding, decoding, checkers, the brain server, the fault rules, the approval rule and the plan's hashes |
 
 ## Disclosure
 

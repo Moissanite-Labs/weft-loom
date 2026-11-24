@@ -17,6 +17,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from . import sandbox
+from .tasks import _util
 from .brain import BrainServer, is_usage_limit
 
 HERE = Path(__file__).resolve().parent
@@ -100,6 +101,8 @@ class Bench:
         self.parallel = parallel
         (self.run_root / "ep").mkdir(parents=True, exist_ok=True)
         os.chmod(self.run_root, 0o700)
+        self.hard_cap_events = 0           # kills at the hard wall limit seen by this bench
+        self._events_lock = threading.Lock()
 
     def _new_ep(self, tag: str) -> Path:
         with _counter_lock:
@@ -117,7 +120,9 @@ class Bench:
             (check / "hidden_check.py").write_text(script_text)
             rel = Path(cwd).resolve().relative_to((ep / "work").resolve())
             inside = str(Path("/cell/work") / rel)
-            rc, out, _ = sandbox.run(["python3", "/cell/check/hidden_check.py"], cell_dir=ep,
+            # head caps what the referee has to hold: cell code could write without end
+            cmd = ["bash", "-c", f"python3 /cell/check/hidden_check.py | head -c {_util.MAX_STDOUT_BYTES + 1}"]
+            rc, out, _ = sandbox.run(cmd, cell_dir=ep,
                                      cwd=inside, env={"PYTHONPATH": inside}, timeout=timeout_s,
                                      readonly=("/cell/check",))
             shutil.rmtree(check, ignore_errors=True)
@@ -126,7 +131,6 @@ class Bench:
 
     hard_cap_factor = 3.0    # hard wall limit = this times the cell's own-time limit
     hard_cap_reruns = 2      # reruns of an episode or build killed at the hard limit
-    hard_cap_events = 0      # how many such kills this bench has seen
 
     def _launch(self, ep: Path, harness: Path, *, calls: int, prompt_chars: int, wall_s: float,
                 readonly: tuple[str, ...] = ()) -> dict:
@@ -149,7 +153,8 @@ class Bench:
         sandbox.strip_symlinks(ep / "work")
         return {"rc": rc, "calls": srv.used, "usd": round(srv.usd, 6),
                 "wall_s": round(time.time() - t0, 1), "model_wait_s": round(model_wait, 1),
-                "timed_out": killed.get("by"), "stderr_tail": err[-600:],
+                "timed_out": killed.get("by"), "kill": dict(killed) or None,
+                "inflight_at_exit": srv.inflight_at_exit, "stderr_tail": err[-600:],
                 "model_errors": sum(1 for x in srv.records if "error" in x),
                 "limit_hit": any(is_usage_limit(x["error"]) for x in srv.records if "error" in x),
                 "records": srv.records}
@@ -169,42 +174,55 @@ class Bench:
                 if not is_usage_limit(str(exc)):
                     return
 
-    def _backend_fault(self, out: dict, reruns: int) -> bool:
+    def _backend_fault(self, out: dict, state: dict) -> bool:
         """Whether a finished episode or build was cut short by the backend and should run
-        again. Running out of allowance always counts, and the bench waits first. A kill at
-        the hard wall limit counts up to hard_cap_reruns times; after that the result stands
-        and carries referee_fault=True, so the analysis can drop it."""
+        again. Running out of allowance always counts, and the bench waits first; those reruns
+        are counted apart and do not use up the hard-limit reruns. A kill at the hard wall
+        limit counts up to hard_cap_reruns times; after that the result stands and carries
+        referee_fault=True, so the analysis can count and drop it. Every attempt that is run
+        again is kept in state["attempts"] with its kill record."""
         if out.pop("limit_hit"):
+            state["attempts"].append({"why": "usage_limit", "kill": out.get("kill")})
+            state["limit_reruns"] += 1
             self._wait_for_backend()
             return True
         if out.get("timed_out") == "hard_cap":
-            type(self).hard_cap_events += 1
-            if reruns < self.hard_cap_reruns:
+            with self._events_lock:
+                self.hard_cap_events += 1
+            if state["reruns"] < self.hard_cap_reruns:
+                state["attempts"].append({"why": "hard_cap", "kill": out.get("kill")})
+                state["reruns"] += 1
                 return True
             out["referee_fault"] = True
         return False
 
+    @staticmethod
+    def _new_state() -> dict:
+        return {"reruns": 0, "limit_reruns": 0, "attempts": []}
+
+    @staticmethod
+    def _finish(out: dict, state: dict) -> dict:
+        out.update(reruns=state["reruns"], limit_reruns=state["limit_reruns"], attempts=state["attempts"])
+        out.setdefault("referee_fault", False)
+        return out
+
     def episode(self, harness: Path, family: str, seed: int, **kw) -> dict:
         """One episode. If the backend cut it short, run it again: an episode cut short by
         the backend says nothing about the harness."""
-        reruns = 0
+        state = self._new_state()
         while True:
             out = self._episode_once(harness, family, seed, **kw)
-            if not self._backend_fault(out, reruns):
-                out["reruns"] = reruns
-                return out
-            reruns += 1
+            if not self._backend_fault(out, state):
+                return self._finish(out, state)
 
     def build(self, *args, **kw) -> dict:
         """One build turn, rerun from the start if the backend cut it short."""
-        reruns = 0
+        state = self._new_state()
         while True:
             out = self._build_once(*args, **kw)
-            if not self._backend_fault(out, reruns):
-                out["reruns"] = reruns
-                return out
+            if not self._backend_fault(out, state):
+                return self._finish(out, state)
             shutil.rmtree(out["candidate"], ignore_errors=True)
-            reruns += 1
 
     def _episode_once(self, harness: Path, family: str, seed: int, *, level: int, calls: int,
                       prompt_chars: int, wall_s: float, keep: bool = False) -> dict:
@@ -246,7 +264,9 @@ class Bench:
     def boot(self, harness: Path, *, calls: int, prompt_chars: int) -> dict:
         e = self.episode(harness, "boot", 0, level=0, calls=calls, prompt_chars=prompt_chars, wall_s=120)
         return {"ok": e["score"] == 1.0, "calls": e["calls"], "usd": e["usd"], "rc": e["rc"],
-                "model_errors": e["model_errors"], "stderr_tail": e["stderr_tail"]}
+                "model_errors": e["model_errors"], "stderr_tail": e["stderr_tail"],
+                "timed_out": e["timed_out"], "model_wait_s": e["model_wait_s"], "reruns": e["reruns"],
+                "limit_reruns": e["limit_reruns"], "referee_fault": e["referee_fault"]}
 
     def _build_once(self, builder_harness: Path, base: Path, report: dict | None, task_text: str, *,
                     calls: int, prompt_chars: int, wall_s: float, example_seed: int, level: int,
