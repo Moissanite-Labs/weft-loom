@@ -124,21 +124,32 @@ class Bench:
             return rc, out
         return run_py
 
+    hard_cap_factor = 3.0    # hard wall limit = this times the cell's own-time limit
+    hard_cap_reruns = 2      # reruns of an episode or build killed at the hard limit
+    hard_cap_events = 0      # how many such kills this bench has seen
+
     def _launch(self, ep: Path, harness: Path, *, calls: int, prompt_chars: int, wall_s: float,
                 readonly: tuple[str, ...] = ()) -> dict:
+        """Run a harness. `wall_s` limits the cell's own time: wall time minus the time spent
+        waiting for the model backend, which the cell does not control. A hard limit of
+        hard_cap_factor * wall_s on plain wall time catches a backend that stalls."""
         shutil.copytree(harness, ep / "harness")
         sandbox.chown_tree(ep / "work")
         log_path = ep / "brain.jsonl"
         t0 = time.time()
+        killed: dict = {}
         with BrainServer(ep / "brain.sock", self.backend, calls=calls, prompt_chars=prompt_chars,
                          log_path=log_path) as srv:
             rc, out, err = sandbox.run(
                 ["python3", "/cell/harness/agent.py"], cell_dir=ep, cwd="/cell/work",
                 env={"CELL_BRAIN_SOCK": "/cell/brain.sock", "PYTHONPATH": "/cell/api"},
-                timeout=wall_s, readonly=("/cell/harness", "/cell/api") + readonly)
+                timeout=wall_s * self.hard_cap_factor, own_limit=(wall_s, srv.model_wait_s),
+                killed=killed, readonly=("/cell/harness", "/cell/api") + readonly)
+            model_wait = srv.model_wait_s()
         sandbox.strip_symlinks(ep / "work")
         return {"rc": rc, "calls": srv.used, "usd": round(srv.usd, 6),
-                "wall_s": round(time.time() - t0, 1), "stderr_tail": err[-600:],
+                "wall_s": round(time.time() - t0, 1), "model_wait_s": round(model_wait, 1),
+                "timed_out": killed.get("by"), "stderr_tail": err[-600:],
                 "model_errors": sum(1 for x in srv.records if "error" in x),
                 "limit_hit": any(is_usage_limit(x["error"]) for x in srv.records if "error" in x),
                 "records": srv.records}
@@ -158,23 +169,42 @@ class Bench:
                 if not is_usage_limit(str(exc)):
                     return
 
+    def _backend_fault(self, out: dict, reruns: int) -> bool:
+        """Whether a finished episode or build was cut short by the backend and should run
+        again. Running out of allowance always counts, and the bench waits first. A kill at
+        the hard wall limit counts up to hard_cap_reruns times; after that the result stands
+        and carries referee_fault=True, so the analysis can drop it."""
+        if out.pop("limit_hit"):
+            self._wait_for_backend()
+            return True
+        if out.get("timed_out") == "hard_cap":
+            type(self).hard_cap_events += 1
+            if reruns < self.hard_cap_reruns:
+                return True
+            out["referee_fault"] = True
+        return False
+
     def episode(self, harness: Path, family: str, seed: int, **kw) -> dict:
-        """One episode. If the account ran out of allowance during it, wait and run it again:
-        an episode cut short by the backend says nothing about the harness."""
+        """One episode. If the backend cut it short, run it again: an episode cut short by
+        the backend says nothing about the harness."""
+        reruns = 0
         while True:
             out = self._episode_once(harness, family, seed, **kw)
-            if not out.pop("limit_hit"):
+            if not self._backend_fault(out, reruns):
+                out["reruns"] = reruns
                 return out
-            self._wait_for_backend()
+            reruns += 1
 
     def build(self, *args, **kw) -> dict:
-        """One build turn, rerun from the start if the account ran out of allowance during it."""
+        """One build turn, rerun from the start if the backend cut it short."""
+        reruns = 0
         while True:
             out = self._build_once(*args, **kw)
-            if not out.pop("limit_hit"):
+            if not self._backend_fault(out, reruns):
+                out["reruns"] = reruns
                 return out
             shutil.rmtree(out["candidate"], ignore_errors=True)
-            self._wait_for_backend()
+            reruns += 1
 
     def _episode_once(self, harness: Path, family: str, seed: int, *, level: int, calls: int,
                       prompt_chars: int, wall_s: float, keep: bool = False) -> dict:

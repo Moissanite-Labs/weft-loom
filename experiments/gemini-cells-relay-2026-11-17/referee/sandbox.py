@@ -14,6 +14,7 @@ import os
 import shlex
 import signal
 import subprocess
+import time
 from pathlib import Path
 
 CELL_UID = 65534
@@ -74,10 +75,18 @@ def run(
     env: dict[str, str] | None = None,
     timeout: float = 60.0,
     readonly: tuple[str, ...] = (),
+    own_limit: tuple[float, "callable"] | None = None,
+    killed: dict | None = None,
 ) -> tuple[int, str, str]:
     """Run cmd in the sandbox. cell_dir is bound at /cell. Paths in `readonly` are given
     as they appear inside the sandbox (under /cell) and are remounted read-only.
-    Returns (returncode, stdout, stderr); 124 on timeout."""
+    Returns (returncode, stdout, stderr); 124 on timeout.
+
+    `timeout` is a hard limit on wall time. With own_limit = (seconds, wait_fn) the process
+    is also killed once its wall time minus wait_fn() passes `seconds`: wait_fn reports the
+    time spent waiting on something the cell does not control (the model backend), which is
+    not charged to the cell. If `killed` is a dict, it receives "by": "own_time" or
+    "hard_cap" when the process is killed, plus the two clocks at that moment."""
     if os.geteuid() != 0:
         raise RuntimeError("the sandbox launcher needs root")
     os.makedirs(MOUNTPOINT, exist_ok=True)
@@ -96,16 +105,35 @@ def run(
         argv, env=full_env, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
         stderr=subprocess.PIPE, start_new_session=True,
     )
-    try:
-        out, err = proc.communicate(timeout=timeout)
-        rc = proc.returncode
-    except subprocess.TimeoutExpired:
+    started = time.monotonic()
+    while True:
+        elapsed = time.monotonic() - started
+        waited = own_limit[1]() if own_limit else 0.0
+        if elapsed >= timeout:
+            reason = "hard_cap"
+        elif own_limit and elapsed - waited >= own_limit[0]:
+            reason = "own_time"
+        else:
+            reason = None
+        if reason:
+            try:
+                os.killpg(proc.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            out, err = proc.communicate()
+            if killed is not None:
+                killed.update({"by": reason, "wall_s": round(elapsed, 1), "wait_s": round(waited, 1)})
+            rc = 124
+            break
+        step = min(0.5, max(0.01, timeout - elapsed))
+        if own_limit:
+            step = min(step, max(0.01, own_limit[0] - (elapsed - waited)))
         try:
-            os.killpg(proc.pid, signal.SIGKILL)
-        except ProcessLookupError:
-            pass
-        out, err = proc.communicate()
-        rc = 124
+            out, err = proc.communicate(timeout=step)
+            rc = proc.returncode
+            break
+        except subprocess.TimeoutExpired:
+            continue
     return rc, out.decode("utf-8", "replace"), err.decode("utf-8", "replace")
 
 

@@ -37,32 +37,34 @@ on edge cases named in the contract. Score = fraction of all assertions that pas
 module that fails to import, or hangs, fails all of its assertions.
 """
 
-# Body of the hidden test script (appended to _util.HARNESS, after a MODULES = ... line).
+# Body of the hidden run script (appended to _util.RUNNER, after a MODULES = ... line).
+# It is given the expressions only; the expected results stay in the referee.
 TEST_BODY = r'''
 
-def _holds(namespace, expression, expected):
-    if expected == "ValueError":
-        try:
-            eval(expression, namespace)
-        except ValueError:
-            return True
-        return False
-    return eval(expression, namespace) == eval(expected, {})
-
-
-passed = total = 0
+results = []
 for entry in MODULES:
-    total += len(entry["tests"])
     ok, module = guarded(lambda: importlib.import_module("pkg." + entry["module"]), 2.0)
-    if not ok:
-        continue
-    namespace = dict(vars(module))
-    for expression, expected in entry["tests"]:
-        ok, value = guarded(lambda: _holds(namespace, expression, expected), 0.5)
-        if ok and value is True:
-            passed += 1
-finish(passed, total)
+    namespace = dict(vars(module)) if ok else None
+    for expression in entry["exprs"]:
+        if namespace is None:
+            results.append({"x": "import failed"})
+        else:
+            results.append(attempt(lambda: eval(expression, namespace), 0.5))
+emit(results)
 '''
+
+
+def holds_outcome(outcome, expected):
+    """Whether one reported outcome meets one expected result (a pool literal or "ValueError")."""
+    if expected == "ValueError":
+        return _util.raised_value_error(outcome)
+    ok, value = _util.outcome_value(outcome)
+    if not ok:
+        return False
+    try:
+        return (value == eval(expected, {})) is True
+    except Exception:
+        return False
 
 
 def buggy_source(name, bug):
@@ -157,15 +159,20 @@ def generate(seed, workdir, level=2):
 
 
 def check(workdir, truth, run_py):
-    """Fraction of the hidden assertions that pass on the modules now in workdir/pkg."""
+    """Fraction of the hidden assertions that hold on the modules now in workdir/pkg."""
     try:
         workdir = pathlib.Path(workdir)
         if not (workdir / "pkg").is_dir():
             return 0.0
-        modules = [{"module": item["spec"], "tests": item["tests"]} for item in truth["modules"]]
-        total = sum(len(entry["tests"]) for entry in modules)
+        modules = [{"module": item["spec"], "exprs": [expr for expr, _ in item["tests"]]}
+                   for item in truth["modules"]]
+        expected = [want for item in truth["modules"] for _, want in item["tests"]]
         body = f"MODULES = json.loads({json.dumps(modules)!r})\n" + TEST_BODY
-        return _util.run_hidden(run_py, body, workdir, total, 10.0)
+        outcomes = _util.run_calls(run_py, body, workdir, len(expected), 10.0)
+        if outcomes is None:
+            return 0.0
+        passed = sum(1 for outcome, want in zip(outcomes, expected) if holds_outcome(outcome, want))
+        return passed / len(expected)
     except Exception:
         return 0.0
 

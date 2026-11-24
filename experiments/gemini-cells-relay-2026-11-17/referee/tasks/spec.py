@@ -38,30 +38,33 @@ Hidden tests call the function with 12 to 16 different inputs. Score = fraction 
 that give exactly the specified result.
 """
 
-# Body of the hidden test script (appended to _util.HARNESS, after FUNC and TESTS lines).
+# Body of the hidden run script (appended to _util.RUNNER, after FUNC and CALLS lines).
+# It is given the arguments only; the expected results stay in the referee.
 TEST_BODY = r'''
 
-def _passes(function, case):
-    if case.get("raises"):
-        try:
-            function(*case["args"])
-        except ValueError:
-            return True
-        return False
-    result = function(*case["args"])
-    return json.dumps(result, sort_keys=True) == json.dumps(case["value"], sort_keys=True)
-
-
-passed = 0
+results = []
 ok, module = guarded(lambda: importlib.import_module("solution"), 2.0)
 function = getattr(module, FUNC, None) if ok else None
-if callable(function):
-    for case in TESTS:
-        ok, value = guarded(lambda: _passes(function, case), 0.5)
-        if ok and value is True:
-            passed += 1
-finish(passed, len(TESTS))
+for args in CALLS:
+    if callable(function):
+        results.append(attempt(lambda: function(*args), 0.5))
+    else:
+        results.append({"x": "no function"})
+emit(results)
 '''
+
+
+def passes_outcome(outcome, case):
+    """Whether one reported outcome meets one hidden case."""
+    if case.get("raises"):
+        return _util.raised_value_error(outcome)
+    ok, value = _util.outcome_value(outcome)
+    if not ok:
+        return False
+    try:
+        return json.dumps(value, sort_keys=True) == json.dumps(case["value"], sort_keys=True)
+    except Exception:
+        return False
 
 
 def _draw(spec, rng, level):
@@ -159,8 +162,12 @@ def check(workdir, truth, run_py):
         if not (workdir / "solution.py").is_file():
             return 0.0
         tests = truth["tests"]
-        body = f"FUNC = {truth['func']!r}\nTESTS = json.loads({json.dumps(tests)!r})\n" + TEST_BODY
-        return _util.run_hidden(run_py, body, workdir, len(tests), 10.0)
+        calls = [case["args"] for case in tests]
+        body = f"FUNC = {truth['func']!r}\nCALLS = json.loads({json.dumps(calls)!r})\n" + TEST_BODY
+        outcomes = _util.run_calls(run_py, body, workdir, len(tests), 10.0)
+        if outcomes is None:
+            return 0.0
+        return sum(1 for outcome, case in zip(outcomes, tests) if passes_outcome(outcome, case)) / len(tests)
     except Exception:
         return 0.0
 

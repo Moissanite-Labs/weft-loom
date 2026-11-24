@@ -113,12 +113,21 @@ def score_fields(answer, expected, fields):
 
 
 # --------------------------------------------------------------- hidden test harness
+#
+# The code families (bugfix, spec) must run the cell's code to score it. Up to the pilot
+# of 2026-11-17 the expected results, the comparison and the line that reported the score
+# all lived in the same Python process as the cell's code, so code written by a cell could
+# have called the reporting function itself and claimed full marks. From block 2 on, the
+# process that runs cell code is given only the inputs. It reports what each call returned,
+# encoded as plain data, and the referee compares that with the expected results in its own
+# process. Code in the sandbox can then decide what it reports, which is no more than it
+# could do by returning those values: it never sees an expected result.
 
-# Prefix of every hidden test script. It gives the family-specific body two helpers:
-# guarded(fn, limit) runs fn() under a time limit and never raises; finish(passed, total)
-# prints the single JSON result line and exits. The whole script stays under BUDGET
-# seconds even if every call hangs.
-HARNESS = r'''
+# Prefix of every hidden run script. It gives the family-specific body two helpers:
+# attempt(fn, limit) runs fn() under a time limit and returns the encoded outcome, and
+# emit(results) prints the single JSON result line and exits. The whole script stays
+# under BUDGET seconds even if every call hangs.
+RUNNER = r"""
 import contextlib, importlib, io, json, os, signal, sys, time
 
 sys.dont_write_bytecode = True
@@ -126,6 +135,7 @@ if os.getcwd() not in sys.path:
     sys.path.insert(0, os.getcwd())
 _OUT = sys.stdout
 _DEADLINE = time.monotonic() + __BUDGET__
+_MAX_VALUE_CHARS = __MAX_VALUE_CHARS__
 
 
 class _Timeout(BaseException):
@@ -144,7 +154,7 @@ except Exception:
 
 
 def guarded(fn, limit):
-    """Return (True, fn()) or (False, None) on any exception, exit or timeout."""
+    # Return (True, fn()) or (False, None) on any exception, exit or timeout.
     remaining = _DEADLINE - time.monotonic()
     if remaining <= 0:
         return False, None
@@ -161,12 +171,60 @@ def guarded(fn, limit):
         return False, None
 
 
-def finish(passed, total):
-    _OUT.write("\n" + json.dumps({"passed": passed, "total": total, "nonce": "__NONCE__"}) + "\n")
+def _enc(value, depth=0):
+    # Plain-data encoding of a returned value. Subclasses are read through the base type.
+    if depth > 60:
+        raise ValueError("too deep")
+    if value is None:
+        return None
+    if isinstance(value, bool):
+        return {"b": bool(value)}
+    if isinstance(value, int):
+        return {"i": int.__repr__(value)}
+    if isinstance(value, float):
+        return {"f": float.__repr__(value)}
+    if isinstance(value, str):
+        return {"s": str.__str__(value)}
+    if isinstance(value, list):
+        return {"l": [_enc(item, depth + 1) for item in list.__iter__(value)]}
+    if isinstance(value, tuple):
+        return {"t": [_enc(item, depth + 1) for item in tuple.__iter__(value)]}
+    if isinstance(value, dict):
+        return {"d": [[_enc(k, depth + 1), _enc(v, depth + 1)] for k, v in dict.items(value)]}
+    if isinstance(value, frozenset):
+        return {"F": [_enc(item, depth + 1) for item in frozenset.__iter__(value)]}
+    if isinstance(value, set):
+        return {"S": [_enc(item, depth + 1) for item in set.__iter__(value)]}
+    raise TypeError("not plain data")
+
+
+def attempt(fn, limit):
+    # {"v": encoded value}, {"x": "ValueError"} when fn raised ValueError, else {"x": reason}.
+    def inner():
+        try:
+            value = fn()
+        except ValueError:
+            return {"x": "ValueError"}
+        try:
+            encoded = _enc(value)
+            if len(json.dumps(encoded)) > _MAX_VALUE_CHARS:
+                return {"x": "too big"}
+            return {"v": encoded}
+        except Exception:
+            return {"x": "not plain data"}
+    ok, outcome = guarded(inner, limit)
+    return outcome if ok and isinstance(outcome, dict) else {"x": "failed"}
+
+
+def emit(results):
+    _OUT.write("\n" + json.dumps({"results": results, "nonce": "__NONCE__"}) + "\n")
     _OUT.flush()
     os._exit(0)
 
-'''
+"""
+
+MAX_VALUE_CHARS = 100_000
+MAX_DEPTH = 60
 
 
 def last_json_line(stdout):
@@ -180,22 +238,70 @@ def last_json_line(stdout):
         return None
 
 
-def run_hidden(run_py, body, cwd, total, timeout_s=10.0):
-    """Run HARNESS + body through run_py and return passed / total (0.0 on any trouble).
+def run_calls(run_py, body, cwd, count, timeout_s=10.0):
+    """Run RUNNER + body through run_py; the list of `count` outcomes, or None on any trouble.
 
-    The result line must carry a nonce drawn here, so output printed by the code under
-    test cannot be mistaken for the result.
+    The result line must carry a nonce drawn here, so stray output from the code under test
+    is not read as the result. The body sees no expected result.
     """
     try:
         nonce = secrets.token_hex(8)
-        script = HARNESS.replace("__NONCE__", nonce).replace("__BUDGET__", "6.0") + body
+        script = (RUNNER.replace("__NONCE__", nonce).replace("__BUDGET__", "6.0")
+                  .replace("__MAX_VALUE_CHARS__", str(MAX_VALUE_CHARS)) + body)
         _, stdout = run_py(script, pathlib.Path(cwd), timeout_s)
         record = last_json_line(stdout)
         if not isinstance(record, dict) or record.get("nonce") != nonce:
-            return 0.0
-        passed = record.get("passed")
-        if type(passed) is not int or record.get("total") != total or total <= 0:
-            return 0.0
-        return max(0.0, min(1.0, passed / total))
+            return None
+        results = record.get("results")
+        if type(results) is not list or len(results) != count or count <= 0:
+            return None
+        return [item if type(item) is dict else {"x": "malformed"} for item in results]
     except Exception:
-        return 0.0
+        return None
+
+
+def decode(encoded, depth=0):
+    """Python value of an outcome's "v" field. Raises ValueError on anything malformed.
+    Runs in the referee on untrusted data, so it builds plain values only."""
+    if depth > MAX_DEPTH:
+        raise ValueError("too deep")
+    if encoded is None:
+        return None
+    if type(encoded) is not dict or len(encoded) != 1:
+        raise ValueError("malformed")
+    (tag, body), = encoded.items()
+    if tag == "b" and type(body) is bool:
+        return body
+    if tag == "i" and type(body) is str and 0 < len(body) <= 4300 and body.lstrip("-").isdigit() \
+            and body.isascii():
+        return int(body)
+    if tag == "f" and type(body) is str and len(body) <= 40 and body.isascii():
+        return float(body)
+    if tag == "s" and type(body) is str:
+        return body
+    if tag in ("l", "t", "S", "F") and type(body) is list:
+        items = [decode(item, depth + 1) for item in body]
+        return {"l": list, "t": tuple, "S": set, "F": frozenset}[tag](items)
+    if tag == "d" and type(body) is list:
+        out = {}
+        for pair in body:
+            if type(pair) is not list or len(pair) != 2:
+                raise ValueError("malformed pair")
+            out[decode(pair[0], depth + 1)] = decode(pair[1], depth + 1)
+        return out
+    raise ValueError("malformed")
+
+
+def outcome_value(outcome):
+    """(True, value) for an outcome that returned plain data, else (False, None)."""
+    try:
+        if type(outcome) is dict and set(outcome) == {"v"}:
+            return True, decode(outcome["v"])
+    except Exception:
+        pass
+    return False, None
+
+
+def raised_value_error(outcome):
+    """True when the outcome says the call raised ValueError."""
+    return type(outcome) is dict and outcome == {"x": "ValueError"}

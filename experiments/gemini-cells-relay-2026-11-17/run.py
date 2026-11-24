@@ -7,6 +7,7 @@
     python3 run.py arm twin-free-collective --rep 0 --root R
     python3 run.py block --root R --reps 4 --jobs 5
     python3 run.py assay --root R
+    python3 run.py assay2 --root R2 --tag partA --approval APPROVAL.json   (block 2, see block2/PLAN.md)
 
 Needs root on Linux (the sandbox) and the `claude` command line tool signed in.
 """
@@ -244,6 +245,98 @@ def cmd_assay(a) -> None:
             print(run_dir.name, slot, ev["outcome"], ev.get("inc"), ev.get("cand"), flush=True)
 
 
+PLAN_FILE = HERE / "block2" / "PLAN.md"
+
+
+def check_approval(path: str | None, tag: str) -> float:
+    """Block 2's live commands start only with an approval file bound to the exact plan text
+    and run tag: {"plan_sha256": ..., "tag": ..., "cap_usd": ...}. Returns the cap."""
+    if not path:
+        raise SystemExit("refused: a live block-2 command needs --approval (see block2/PLAN.md)")
+    try:
+        approval = json.loads(Path(path).read_text())
+        cap = float(approval["cap_usd"])
+    except Exception as exc:
+        raise SystemExit(f"refused: unreadable approval file ({exc})")
+    want = hashlib.sha256(PLAN_FILE.read_bytes()).hexdigest()
+    if approval.get("plan_sha256") != want:
+        raise SystemExit("refused: the approval is for another text of block2/PLAN.md")
+    if approval.get("tag") != tag:
+        raise SystemExit(f"refused: the approval is for run tag {approval.get('tag')!r}, not {tag!r}")
+    if not 0 < cap <= 50:
+        raise SystemExit("refused: cap_usd must be above 0 and at most 50")
+    return cap
+
+
+def assay2_plan(sources: list[str], slots: list[str], reps: int, seed_reps: int) -> list[tuple]:
+    """The order of block 2's assays: repeat by repeat, so that a run cut short leaves every
+    harness with the same number of assays give or take one. Rows are (rep, run, slot);
+    run None is the seed harness as builder."""
+    plan = []
+    for rep in range(max(reps, seed_reps)):
+        if rep < reps:
+            plan += [(rep, run, slot) for run in sources for slot in slots]
+        if rep < seed_reps:
+            plan.append((rep, None, "seed"))
+    return plan
+
+
+def cmd_assay2(a) -> None:
+    """Block 2, part A: fresh builder assays of the pilot's final harnesses, read from the
+    record's packed archives, plus the seed harness as a builder. Same procedure as `assay`,
+    on new seeds, with both slots and several repeats. Refuses to start without an approval."""
+    import tarfile
+    cap = check_approval(a.approval, a.tag)
+    cfg = relay.Config()
+    root = Path(a.root)
+    src_root = root / "src"
+    sources = []
+    for run_dir in sorted(Path(a.source).iterdir()):
+        archive = run_dir / "artifacts.tar.gz"
+        if not archive.is_file():
+            continue
+        dest = src_root / run_dir.name
+        if not dest.is_dir():
+            dest.mkdir(parents=True)
+            with tarfile.open(archive) as tf:
+                tf.extractall(dest, filter="data")
+            (dest / "log.jsonl").write_bytes((run_dir / "log.jsonl").read_bytes())
+        sources.append(run_dir.name)
+    ledger = Ledger(root / "spend.json", cap)
+    be = ClaudeCLI(cfg.model, ledger)
+    out = root / f"assay2-{a.tag}-{a.shard.replace('/', 'of')}.jsonl"
+    done = set()
+    if out.exists():
+        done = {(r["rep"], r["run"], r["slot"]) for r in map(json.loads, out.read_text().splitlines())}
+    shard, of = (int(x) for x in a.shard.split("/"))
+    plan = assay2_plan(sources, a.slots.split(","), a.reps, a.seed_reps)
+    for i, (rep, run, slot) in enumerate(plan):
+        if i % of != shard or (rep, run, slot) in done:
+            continue
+        r = relay.Relay("twin-free-collective", 0, cfg, root / "as" / f"{i:03d}", be, families())
+        r.run_id = f"assay2|{a.tag}|{run}|{slot}|{rep}"
+        seed_h = r.store.put(relay.SEED_DIR)
+        if run is None:
+            builder_h = seed_h
+        else:
+            rows = [json.loads(x) for x in (src_root / run / "log.jsonl").read_text().splitlines()]
+            end = [x for x in rows if x["kind"] == "end"][0]
+            builder_h = r.store.put(Store(src_root / run).path(end["harness"][slot]))
+        try:
+            base = r._bm(seed_h, relay.instances(f"{r.secret}|base|B", 0, cfg.families, cfg.per_family))
+            ev = r.build_turn(1, "A", "B", builder_h, seed_h, seed_h, base,
+                              {"A": base["mean"], "B": base["mean"]}, [])
+        except SpendCapReached:
+            print("spend cap reached: part A stops at row", i, flush=True)
+            return
+        ev.pop("_cand_report", None), ev.pop("_inc_report", None)
+        ev.update(kind="assay2", tag=a.tag, rep=rep, run=run, slot=slot, builder_is_seed=builder_h == seed_h,
+                  secret=r.secret, usd=round(r.usd, 4))
+        with open(out, "a") as f:
+            f.write(json.dumps(ev) + "\n")
+        print(run, slot, rep, ev["outcome"], ev.get("inc"), ev.get("cand"), flush=True)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -292,6 +385,16 @@ def main() -> None:
     s.add_argument("--slots", default="A")
     s.add_argument("--shard", default="0/1", help="i/n: take every n-th run, starting at i")
     s.set_defaults(fn=cmd_assay)
+    s2 = sub.add_parser("assay2")
+    s2.add_argument("--root", required=True)
+    s2.add_argument("--source", default=str(HERE / "results" / "runs"))
+    s2.add_argument("--tag", required=True)
+    s2.add_argument("--approval")
+    s2.add_argument("--slots", default="A,B")
+    s2.add_argument("--reps", type=int, default=3)
+    s2.add_argument("--seed-reps", type=int, default=12)
+    s2.add_argument("--shard", default="0/1", help="i/n: take every n-th row of the plan, starting at i")
+    s2.set_defaults(fn=cmd_assay2)
     a = ap.parse_args()
     a.fn(a)
 

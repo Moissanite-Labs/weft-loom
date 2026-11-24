@@ -166,9 +166,31 @@ class BrainServer:
         self.usd = 0.0
         self.records: list[dict] = []
         self._lock = threading.Lock()
+        self._inflight = 0          # backend calls in flight now
+        self._busy_since = 0.0      # when the in-flight count last rose from zero
+        self._wait_s = 0.0          # seconds with at least one backend call in flight, so far
         self._stop = False
         self._srv = None
         self._thread = None
+
+    def model_wait_s(self) -> float:
+        """Seconds so far during which at least one backend call was in flight. The referee
+        charges an episode's time limit with its wall time minus this."""
+        with self._lock:
+            extra = time.monotonic() - self._busy_since if self._inflight else 0.0
+            return self._wait_s + extra
+
+    def _enter_call(self):
+        with self._lock:
+            if self._inflight == 0:
+                self._busy_since = time.monotonic()
+            self._inflight += 1
+
+    def _leave_call(self):
+        with self._lock:
+            self._inflight -= 1
+            if self._inflight == 0:
+                self._wait_s += time.monotonic() - self._busy_since
 
     def __enter__(self):
         if self.sock_path.exists():
@@ -241,6 +263,7 @@ class BrainServer:
         system = str(req.get("system", ""))[:8000]
         prompt, clipped = clip_middle(str(req.get("prompt", "")), self.prompt_chars)
         t0 = time.time()
+        self._enter_call()
         try:
             r = self.backend.call(system, prompt)
         except Exception as exc:  # the cell sees a plain error; the log keeps the cause
@@ -248,6 +271,8 @@ class BrainServer:
                 CAP_HIT.set()
             self.records.append({"n": n, "error": f"{type(exc).__name__}: {exc}"[:300]})
             return {"error": "model call failed"}
+        finally:
+            self._leave_call()
         self.usd += r["usd"]
         self.records.append({
             "n": n, "system_sha": hashlib.sha256(system.encode()).hexdigest()[:16],

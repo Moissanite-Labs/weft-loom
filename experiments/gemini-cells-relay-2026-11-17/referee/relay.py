@@ -126,6 +126,12 @@ def instances(key: str, t: int, families: tuple, n: int) -> list[tuple[str, int]
     return out
 
 
+def gate(cand: float, inc: float, margin: float) -> str:
+    """The gate: keep a candidate unless it scores more than `margin` below the incumbent,
+    both measured on the same fresh instances in this turn."""
+    return "commit" if cand >= inc - margin else "regress"
+
+
 def exam_instances(cfg: Config) -> list[tuple[str, int]]:
     """The final exam: the same instances for every run and arm, never used in a turn."""
     out = [(f, cfg.exam_seed_base + i) for f in cfg.families for i in range(cfg.exam_visible_per_family)]
@@ -187,7 +193,8 @@ class Relay:
     def _slim(r: dict) -> dict:
         return {"mean": r["mean"], "by_family": r["by_family"], "calls": r["calls"], "usd": r["usd"],
                 "model_errors": r["model_errors"],
-                "episodes": [{k: e[k] for k in ("family", "seed", "score", "calls", "rc", "wall_s")}
+                "episodes": [{k: e.get(k) for k in ("family", "seed", "score", "calls", "rc", "wall_s",
+                                                          "model_wait_s", "timed_out", "reruns", "referee_fault")}
                              for e in r["episodes"]]}
 
     def brief(self, t: int, me: str, tgt: str, scores: dict, history: list[dict]) -> str:
@@ -221,7 +228,9 @@ class Relay:
               "base": base_h, "target_before": tgt_h, "candidate": info["hash"],
               "candidate_bytes": info["bytes"], "candidate_files": info["files"],
               "edited": info["hash"] != base_h, "build_calls": b["calls"], "build_usd": b["usd"],
-              "build_rc": b["rc"], "build_wall_s": b["wall_s"], "build_model_errors": b["model_errors"]}
+              "build_rc": b["rc"], "build_wall_s": b["wall_s"], "build_model_errors": b["model_errors"],
+              "build_model_wait_s": b.get("model_wait_s"), "build_timed_out": b.get("timed_out"),
+              "build_reruns": b.get("reruns"), "build_referee_fault": b.get("referee_fault", False)}
         (self.dir / "builds").mkdir(exist_ok=True)
         (self.dir / "builds" / f"turn{t:02d}.txt").write_text(b["trace"])
         if not info["ok"]:
@@ -244,7 +253,7 @@ class Relay:
                 cand = self._bm(cand_h, inst)
                 ev.update(inc=inc["mean"], cand=cand["mean"], inc_report=self._slim(inc),
                           cand_report=self._slim(cand))
-                ev["outcome"] = "commit" if cand["mean"] >= inc["mean"] - c.margin else "regress"
+                ev["outcome"] = gate(cand["mean"], inc["mean"], c.margin)
                 ev["_cand_report"], ev["_inc_report"] = cand, inc
         shutil.rmtree(b["candidate"], ignore_errors=True)
         return ev

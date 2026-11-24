@@ -8,6 +8,7 @@ import re
 import shutil
 import sys
 import tempfile
+import time
 import types
 import unittest
 from pathlib import Path
@@ -136,6 +137,24 @@ class RelayMechanics(unittest.TestCase):
         self.assertEqual({t["builder_harness"] for t in turns}, {seed})
         self.assertEqual([t["outcome"] for t in turns], ["commit", "commit"])
 
+    def test_commit_then_reveal(self):
+        """Every turn's benchmark seeds can be recomputed from the secret revealed at the end
+        and the hash of the candidate the turn tested, and the secret matches its hash at the start."""
+        import hashlib
+        end, turns, _, rows = run("twin-free-collective", {("A", 1): "good", ("B", 2): "good"})
+        secret = rows[-1]["secret"]
+        self.assertEqual(hashlib.sha256(secret.encode()).hexdigest(), rows[0]["secret_sha256"])
+        checked = 0
+        for t in turns:
+            if "cand_report" not in t:
+                continue
+            want = relay.instances(f"{secret}|{t['candidate']}", t["t"], ("echo",), 2)
+            got = [(e["family"], e["seed"]) for e in t["cand_report"]["episodes"]]
+            self.assertEqual(got, want)
+            self.assertEqual([(e["family"], e["seed"]) for e in t["inc_report"]["episodes"]], want)
+            checked += 1
+        self.assertEqual(checked, 2)
+
     def test_brief_differs_between_arms_only_where_stated(self):
         cfg = relay.Config()
         texts = {}
@@ -184,6 +203,72 @@ class Limits(unittest.TestCase):
         self.assertEqual(e["model_errors"], 0)
         self.assertGreaterEqual(Bench.limit_waits - before, 1)
         self.assertNotIn("limit_hit", e)
+        shutil.rmtree(root, ignore_errors=True)
+
+    @staticmethod
+    def _echo_solver(delay):
+        def fn(system, prompt):
+            time.sleep(delay)
+            if "--- step 1 ---" in prompt:
+                return "@done"
+            n = int(re.search(r"Write the number (\d+)", prompt).group(1))
+            return f"@write answer.txt\n{n}\n@end"
+        return fn
+
+    def test_symlink_in_work_is_not_followed_by_the_checker(self):
+        """A cell must not be able to point an answer at a file outside the sandbox: the
+        referee reads answers as root, after the sandbox has gone."""
+        root = Path(tempfile.mkdtemp(prefix="gc-test-", dir="/srv"))
+        outside = root / "outside.txt"
+        outside.write_text(str(9 % 1000) + "\n")          # the right answer for seed 9
+
+        def fn(system, prompt):
+            if "--- step 1 ---" in prompt:
+                return "@done"
+            return f"@sh\nln -s {outside} answer.txt\n@end"
+
+        b = Bench(root, Scripted(fn), FAMILIES)
+        e = b.episode(relay.SEED_DIR, "echo", 9, level=2, calls=3, prompt_chars=16000, wall_s=60)
+        self.assertEqual(e["score"], 0.0)
+        shutil.rmtree(root, ignore_errors=True)
+
+    def test_slow_model_is_not_charged_to_the_cell(self):
+        """Time spent waiting for the backend does not count against the cell's limit."""
+        root = Path(tempfile.mkdtemp(prefix="gc-test-", dir="/srv"))
+        b = Bench(root, Scripted(self._echo_solver(1.5)), FAMILIES)
+        e = b.episode(relay.SEED_DIR, "echo", 9, level=2, calls=3, prompt_chars=16000, wall_s=2)
+        self.assertEqual(e["score"], 1.0)
+        self.assertIsNone(e["timed_out"])
+        self.assertGreater(e["wall_s"], 2.0)          # longer than the limit in plain wall time
+        self.assertGreaterEqual(e["model_wait_s"], 2.9)
+        self.assertEqual(e["reruns"], 0)
+        shutil.rmtree(root, ignore_errors=True)
+
+    def test_own_time_kill_is_recorded_and_stands(self):
+        """A harness that spends its own time is killed, logged, and not rerun."""
+        root = Path(tempfile.mkdtemp(prefix="gc-test-", dir="/srv"))
+        looping = root / "looping"
+        shutil.copytree(relay.SEED_DIR, looping)
+        (looping / "agent.py").write_text("while True:\n    pass\n")
+        b = Bench(root, Scripted(self._echo_solver(0)), FAMILIES)
+        e = b.episode(looping, "echo", 9, level=2, calls=3, prompt_chars=16000, wall_s=1.5)
+        self.assertEqual((e["timed_out"], e["rc"], e["score"], e["reruns"]), ("own_time", 124, 0.0, 0))
+        self.assertLess(e["wall_s"], 4.0)
+        self.assertNotIn("referee_fault", e)
+        shutil.rmtree(root, ignore_errors=True)
+
+    def test_hard_cap_kill_reruns_then_flags_a_fault(self):
+        """A backend that stalls past the hard limit makes the episode run again, and after
+        the allowed reruns the result carries referee_fault."""
+        root = Path(tempfile.mkdtemp(prefix="gc-test-", dir="/srv"))
+        b = Bench(root, Scripted(self._echo_solver(5.0)), FAMILIES)
+        b.hard_cap_factor = 2.0
+        before = Bench.hard_cap_events
+        e = b.episode(relay.SEED_DIR, "echo", 9, level=2, calls=3, prompt_chars=16000, wall_s=1.5)
+        self.assertEqual((e["timed_out"], e["score"]), ("hard_cap", 0.0))
+        self.assertEqual(e["reruns"], b.hard_cap_reruns)
+        self.assertTrue(e["referee_fault"])
+        self.assertEqual(Bench.hard_cap_events - before, b.hard_cap_reruns + 1)
         shutil.rmtree(root, ignore_errors=True)
 
     def test_spend_cap_stops_calls(self):
